@@ -1,0 +1,99 @@
+# Project information
+site_name: Mingze Gao
+site_description: A Random Walk Away Finance.
+site_author: Mingze Gao
+# site_url: https://mingze-gao.com
+
+# Repository
+# repo_name: squidfunk/mkdocs-material
+# repo_url: https://github.com/squidfunk/mkdocs-material
+
+# Copyright
+copyright: Copyright &copy; 2018 - 2020 Mingze Gao
+
+# Configuration
+theme:
+  name: material
+  language: en
+  palette:
+    primary: white
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: favicon.ico
+  logo: favicon.png
+
+# Extras
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/mgao6767
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/adriangao
+
+# Google Analytics
+# google_analytics:
+#   - UA-XXXXXXXX-X
+#   - auto
+
+# Plugins
+plugins:
+  - search # necessary for search to work
+  - git-revision-date-localized
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - footnotes
+  - codehilite:
+      linenums: true
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+
+nav:
+  - Home: index.md
+  - CV: cv.md
+  - Timetable: timetable.md
+  - Projects: projects.md
+  - Research Notes:
+    - "What it takes to be a CEO? A fun survey of literature": posts/what-it-takes-to-be-a-ceo/index.md
+  - Research Coding:
+    - "Compute jackknife coefficient estimates in SAS": posts/compute-jackknife-coefficient-estimates-in-sas/index.md
+    - "Compute weekly return from daily CRSP data": posts/compute-weekly-return-from-daily-crsp-data/index.md
+    - "Convert between numeric and character variables": posts/convert-between-numeric-and-character-variables/index.md
+    - "Encode password for SAS remote submission": posts/encode-password-for-sas-remote-submission/index.md
+    - "Generate Fama-French industry classification from SIC": posts/generate-fama-french-industry-classification-from-sic/index.md
+    - "Identify Chinese State-Owned Enterprise using CSMAR": posts/identify-chinese-state-owned-enterprise-using-csmar/index.md
+    - "Use SAS macros on WRDS": posts/use-sas-macros-on-wrds/index.md
+  - Blog:
+    - "100 Bitcoins forgone for science": posts/100-bitcoins-forgone-for-science/index.md
+    - "Accumulator option pricing": posts/accumulator-option-pricing/index.md
+    - "Bitcoin address generator in obfuscated Python": posts/bitcoin-address-generator-in-obfuscated-python/index.md
+    - "Bloomberg BQuant (BQNT)": posts/bloomberg-bquant/index.md
+    - "LeGao to make your own LEGO mosaics": posts/legao-to-make-your-own-lego-mosaics/index.md
+    - "Never use a brain wallet": posts/never-use-a-brain-wallet/index.md
+    - "Setup Docker/Ngnix and Let's Encrypt on Ubuntu": posts/docker-nginx-letsencrypt/index.md
+    - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
