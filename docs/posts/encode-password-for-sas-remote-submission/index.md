@@ -88,4 +88,7 @@ be downloading `comp.funda` in a few seconds!
 
 I made a short video introduction as well, available on my YouTube channel.
 
-{% include youtube.html id='XB3kd1LNJbI' %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XB3kd1LNJbI"
+frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+picture-in-picture" allowfullscreen></iframe>
+
