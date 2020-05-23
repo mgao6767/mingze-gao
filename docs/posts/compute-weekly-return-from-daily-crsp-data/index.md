@@ -4,6 +4,10 @@ Computing the weekly returns from the CRSP daily stock data is a common task but
 may be tricky sometimes. Let's discuss a few different ways to get it done
 incorrectly and correctly.
 
+!!! tip "**TL;DR** Take me to the final solution!"
+	Surely -> [The solution](#2-group-using-aligned-dates-fast-version-with-caveat)
+
+
 ## **INCORRECT** ways
 
 Let me start with a few incorrect ways, which may seem perfectly okay at first
@@ -167,6 +171,12 @@ of data, there will be a lot of duplicates.
 
 ## **CORRECT** ways
 
+Now let's explore two ways that avoid this mistake. Although both generate the
+same result (there can be a few differences, see the caveat), the second one is
+much faster.
+
+### 1. Start with a list of dates (slow version)
+
 Now we can write some correct code to compute the weekly returns. We'll generate
 a series of Fridays first, then we merge based on the past 5 calendar days. This
 will ensure all trading days with non-missing data will be included in the
@@ -187,36 +197,72 @@ format date date9.;
 run;
 ```
 
-### Weekly index return from daily data (as at Friday)
+=== "Weekly index return from daily data (as at Friday)"
 
-```sas linenums="13"
-proc sql;
-/* Compute weekly index return from daily data */
-create table stockrets_weekly as 
-select distinct a.date, dsf.permno, dsf.hsiccd,
-	(exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
-from fridays as a left join crsp.dsf as dsf
-on dsf.date between intnx('day', a.date, -5) and a.date
-	and dsf.permno in (select * from stocks) 
-	and dsf.prc>0 and not missing(dsf.ret)
-group by dsf.permno, a.date
-order by dsf.permno, a.date;
-quit;
-```
+	```sas linenums="13"
+	proc sql;
+	/* Compute weekly index return from daily data */
+	create table mktret_weekly as 
+	select distinct a.date,
+		(exp(sum(log(1+sprtrn)))-1)*100 
+			as mktret label="Weekly SP500 Index Return (%)"
+	from fridays as a left join crsp.dsi as dsi
+	on dsi.date between intnx('day', a.date, -4) and a.date
+	group by a.date
+	order by a.date;
+	quit;
+	```
 
-### Weekly stock return from daily data (as at Friday)
+=== "Weekly stock return from daily data (as at Friday)"
 
-```sas linenums="13"
+	Note that this version is inefficient and takes a long time to run.
+
+	```sas linenums="13"
+	proc sql;
+	/* Stocks (ordinary shares) in the financial sector (2-digit SIC=60-67) */
+	create table stocks as select distinct permno from crsp.stocknames
+	where shrcd in (10, 11) and floor(siccd/100) between 60 and 67;
+
+	/* Compute weekly stock return from daily data */
+	create table stockrets_weekly as 
+	select distinct a.date, dsf.permno, dsf.hsiccd,
+		(exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
+	from fridays as a left join crsp.dsf as dsf
+	on dsf.date between intnx('day', a.date, -4) and a.date
+		and dsf.permno in (select * from stocks) 
+		and dsf.prc>0 and not missing(dsf.ret)
+	group by dsf.permno, a.date
+	order by dsf.permno, a.date;
+	quit;
+	```
+### 2. Group using aligned dates (fast version with caveat)
+
+This version uses a similar logic from the [previous incorrect
+one](#weekly-stock-return-from-daily-data), but it groups based on the aligned
+dates instead of `year(date)` and `week(date)`.
+
+```sas linenums="1" hl_lines="13"
 proc sql;
 /* Compute weekly stock return from daily data */
-create table stockrets_weekly as 
-select distinct a.date, dsf.permno, dsf.hsiccd,
+create table stockrets_weekly2 as 
+select distinct permno, hsiccd,
+	case when weekday(date)=6 then date else intnx("week.6",date,1) end 
+		as date format=date9. label="Friday of the Week",
 	(exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
-from fridays as a left join crsp.dsf as dsf
-on dsf.date between intnx('day', a.date, -5) and a.date
-	and dsf.permno in (select * from stocks) 
-	and dsf.prc>0 and not missing(dsf.ret)
-group by dsf.permno, a.date
-order by dsf.permno, a.date;
+from crsp.dsf (keep=permno date ret prc shrout hsiccd)
+where 
+	date between "01Jan1986"d and "31Dec2019"d
+	and permno in (select * from stocks) 
+	and prc>0 and not missing(ret)
+group by permno, calculated date order by permno, date;
 quit;
 ```
+
+!!! warning "Caveat" 
+	If the beginning and ending dates, `"01Jan1986"d and "31Dec2019"d` in the 
+	example, are not Fridays, then the first and last weekly returns for all 
+	stocks will be incorrect, because they are not using all the daily data in 
+	those weeks.
+	
+    To fix this minor issue, simply extand the beginning and ending dates beyond
+	your sample period by a few weeks.
