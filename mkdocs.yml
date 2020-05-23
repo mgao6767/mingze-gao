@@ -26,7 +26,7 @@ theme:
 
 # Extras
 extra:
-  disqus: mingze-gao
+  # disqus: mingze-gao
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/mgao6767
@@ -34,14 +34,16 @@ extra:
       link: https://linkedin.com/in/adriangao
 
 # Google Analytics
-# google_analytics:
-#   - UA-114057186-1
-#   - auto
+google_analytics:
+  - UA-114057186-1
+  - auto
 
 # Plugins
 plugins:
   - search # necessary for search to work
   - git-revision-date-localized
+  - minify:
+      minify_html: true
 
 # Extensions
 markdown_extensions:
@@ -78,7 +80,8 @@ nav:
   - Home: index.md
   - CV: cv.md
   - Timetable: timetable.md
-  - Projects: projects.md
+  # - Projects: projects.md
+  - Data: data/index.md
   - Research Notes:
     - "What it takes to be a CEO? A fun survey of literature": posts/what-it-takes-to-be-a-ceo/index.md
   - Research Coding:
