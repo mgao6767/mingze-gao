@@ -37,6 +37,11 @@ directory.
 %bhc_financials(01jan1990,01dec2000);
 ```
 
+!!! warning 
+    RSSD dates are not always available, in which case lines 18-24 should be
+    removed.
+
+
 ## Merge with Compustat/CRSP
 
 The firm identifier in the Y-9C data is `RSSD9001`. To merge the BHC's balance
