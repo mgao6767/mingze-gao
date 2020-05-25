@@ -27,7 +27,7 @@ where
     (&end_yr+1 >= year(linkdt) or linkdt = .B) and 
     (&beg_yr-1 <= year(linkenddt) or linkenddt = .E)
 order by 
-    gvkey linkdt;
+    gvkey, linkdt;
 quit;
 ```
 
