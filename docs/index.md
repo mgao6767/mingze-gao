@@ -24,7 +24,7 @@
 <canvas id="site-stats" width="400" height="200"></canvas>
 <script>
 var ctx = document.getElementById('site-stats');
-var myChart = new Chart(ctx, {
+var config = { 
     type: 'line',
     data: {
         labels: [],
@@ -49,14 +49,19 @@ var myChart = new Chart(ctx, {
             fontFamily: 'Roboto',
             text: '30-Day Site Statistics',
         },
+        animation: {duration:1500},
         scales: {
+	        yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
         }
     }
-});
+};
+var myChart = new Chart(ctx, config);
 </script>
 
-
-<div id="site-stats"></div>
 
 <!-- Load the Embed API library -->
 <script>
@@ -69,7 +74,6 @@ var myChart = new Chart(ctx, {
 </script>
 
 <script>
-   
 gapi.analytics.ready(function () {
 fetch('https://api.adrian-gao.com/ga/access_token')
     .then(response => response.json())
@@ -89,18 +93,17 @@ fetch('https://api.adrian-gao.com/ga/access_token')
             }
         });
         report.on('success', function (resp) {
-            // console.log(resp.totalsForAllResults);
             resp.rows.forEach(element => {
                 var year = element[0].substring(0, 4);
                 var month = element[0].substring(4, 6);
                 var day = element[0].substring(6, 8);
                 var date = new Date(year, month - 1, day)
-                myChart.data.labels.push(date.toDateString().substring(4, 10));
-                myChart.data.datasets[0].data.push( element[1] );
-                myChart.data.datasets[1].data.push( element[2] );
-
+                config.data.labels.push(date.toDateString().substring(4, 10));
+                config.data.datasets[0].data.push( element[1] );
+                config.data.datasets[1].data.push( element[2] );
             });
-            myChart.update({duration: 10000});
+            myChart.destroy();
+            myChart = new Chart(ctx, config);
         });
         report.execute();
     })
