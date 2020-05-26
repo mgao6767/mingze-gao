@@ -1,11 +1,36 @@
 version: '3'
 
 services:
+  # serve the actual website
+  web:
+    build: ./
+    restart: always
+    expose:
+      - 80
+    volumes:
+      - ./site:/usr/share/nginx/html
+    container_name: mingzegao
+    environment:
+      VIRTUAL_HOST: mingze-gao.com
+      LETSENCRYPT_HOST: mingze-gao.com
+      LETSENCRYPT_EMAIL: adrian.gao@outlook.com
+  # build and serve the development site
   mkdocs:
     container_name: mkdocs-material
     image: squidfunk/mkdocs-material
     restart: always
-    ports:
-      - "8000:8000"
+    expose:
+      - 80
     volumes:
       - .:/docs
+    environment: 
+      VIRTUAL_HOST: dev.mingze-gao.com
+      LETSENCRYPT_HOST: dev.mingze-gao.com
+      LETSENCRYPT_EMAIL: adrian.gao@outlook.com
+    command: serve --dev-addr=0.0.0.0:80
+
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
