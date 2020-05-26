@@ -17,7 +17,7 @@ exposure of the asset to be hedged:
       asset to be hedge.
 
 $$h=\frac{N_F}{N_A}=\frac{\text{size of hedging position}}{\text{size of
-exposure}}$$
+ exposure}}$$
 
 Apparently, if we vary $h$, the variance (risk) of the combined hedged position
 will also change.
