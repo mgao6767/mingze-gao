@@ -1,0 +1,4 @@
+---
+redirect: /cv
+disqus: ""
+---
