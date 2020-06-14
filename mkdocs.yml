@@ -82,13 +82,10 @@ extra_javascript:
 nav:
   - Home: index.md
   - CV: cv.md
-  - Timetable: timetable.md
-  # - Projects: projects.md
   - Data: data/index.md
   - Research Notes:
     - "Decomposing Herfindahl–Hirschman (HHI) Index": posts/decomposing-hhi-index/index.md
     - "What it takes to be a CEO? A fun survey of literature": posts/what-it-takes-to-be-a-ceo/index.md
-  - Research Coding:
     - "Bank holding companies' financials from FR Y-9C": posts/get-bank-holding-company-financials/index.md
     - "Compute jackknife coefficient estimates in SAS": posts/compute-jackknife-coefficient-estimates-in-sas/index.md
     - "Compute weekly return from daily CRSP data": posts/compute-weekly-return-from-daily-crsp-data/index.md
@@ -104,6 +101,7 @@ nav:
       - "Kyle's Lambda": measures/kyleslambda.md
       - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
   - Teaching Notes:
+    - "Timetable": /timetable
     - "Beta, unlevered and levered": posts/beta-unlevered-and-levered/index.md
     - "Call option value from two approaches": posts/call-option-value-from-two-approaches/index.md
     - "Minimum variance hedge ratio": posts/minimum-variance-hedge-ratio/index.md
@@ -118,5 +116,5 @@ nav:
     - "Python Shared Memory in Multiprocessing": posts/python-shared-memory-in-multiprocessing/index.md
     - "Setup Docker/Ngnix and Let's Encrypt on Ubuntu": posts/docker-nginx-letsencrypt/index.md
     - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
-  - Interactive Option Pricing: /option-pricing-explained
-  - LeGao - Make LEGO Mosaics: /legao
+  # - Interactive Option Pricing: /option-pricing-explained
+  # - LeGao - Make LEGO Mosaics: /legao

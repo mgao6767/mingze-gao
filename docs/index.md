@@ -4,14 +4,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 
 * I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com).
-* PhD candidate in Finance at the University of Sydney. 
-* Research interests:
-    * corporate finance
-    * banking
-    * market microcstructure
-* Here is the place where I randomly write some seriousness or nonsense: 
-    * a random walk away finance
-
+* Finance PhD candidate, research assistant and tutor at the University of Sydney. 
+* Research interests: corporate finance, banking, market microcstructure.
+* Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds).
+* Programmed also the [Interactive Option Pricing](/option-pricing-explained) and [LeGao - Make LEGO Mosaics](/legao).
 
 **Contact**
 
