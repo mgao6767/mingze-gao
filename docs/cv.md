@@ -24,6 +24,7 @@ ___
 ### 📰 Journal Article
 ### 📄 Conference Paper
 1. "Organization Capital and Executive Performance Incentives"
+    - ***R&R at the Journal of Banking and Finance***.
     - The 2020 FMA Annual Meeting, October 2020, New York.
     - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- ***Outstanding PhD Student Paper Award***
     - The 31st Asian Finance Association (AsianFA) Annual Meeting, July 2019, Ho Chi Minh City, Vietnam.
