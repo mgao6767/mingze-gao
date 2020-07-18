@@ -92,7 +92,7 @@ def _estimate(log_prices, k, const_arr):
     var_k = 1/m * np.sum(np.square(rets_k - k * mu))
 
     # Variance Ratio
-    vr = var_1 / var_k
+    vr = var_k / var_1
 
     # a_arr is an array of { (2*(k-j)/k)^2 } for j=1,2,...,k-1, fixed for a given k:
     #   When k=5, a_arr = array([2.56, 1.44, 0.64, 0.16]).
@@ -165,48 +165,48 @@ if __name__ == "__main__":
 In just a few seconds, the output is:
 
 ```Python linenums="1"
-[{'Variance Ratio (k=2)': 0.9996707217170898,
-  'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption': -0.328937992579064,
-  'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption': -0.3292781182710011},
- {'Variance Ratio (k=4)': 0.9992021890048969,
-  'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption': -0.42561351112955187,
-  'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption': -0.4264477015012838},
- {'Variance Ratio (k=6)': 1.0000869872685827,
-  'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption': 0.035120623095718215,
-  'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption': 0.03518806511465767},
- {'Variance Ratio (k=8)': 0.9998906108328671,
-  'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption': -0.03691864919449057,
-  'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption': -0.036980269519275764},
- {'Variance Ratio (k=10)': 0.9992980829037514,
-  'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption': -0.20758162376493566,
-  'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption': -0.2078897981764009},
- {'Variance Ratio (k=15)': 0.9977875916405622,
-  'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption': -0.5201534404047162,
-  'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption': -0.5208267908862809},
- {'Variance Ratio (k=20)': 0.9962095559617874,
-  'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption': -0.7617411898316379,
-  'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption': -0.7626783096578061},
- {'Variance Ratio (k=30)': 0.9945847374445285,
-  'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption': -0.8771491506760526,
-  'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption': -0.8782143980043277},
- {'Variance Ratio (k=40)': 0.9926710842680101,
-  'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption': -1.0214797200547472,
-  'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption': -1.0227495264425346},
- {'Variance Ratio (k=50)': 0.9914239418062346,
-  'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption': -1.064971483937724,
-  'Variance Ratio Test Statistic (k=50) Homoscedasticity Assumption': -1.0663566866143532},
- {'Variance Ratio (k=100)': 0.9848372582876977,
-  'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption': -1.3211709479464242,
-  'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption': -1.3230583986186821},
- {'Variance Ratio (k=200)': 0.9845381685980656,
-  'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption': -0.9490193421402398,
-  'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption': -0.9504042233078055},
- {'Variance Ratio (k=500)': 0.9821092875569704,
-  'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption': -0.6929450052777816,
-  'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption': -0.6939449713145617},
- {'Variance Ratio (k=1000)': 0.9815640440999632,
-  'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption': -0.5045925125167533,
-  'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption': -0.5052681602579187}]
+[{'Variance Ratio (k=2)': 1.0003293867428105,
+  'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption': 0.3290463403922243,
+  'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption': 0.32938657811705435},
+ {'Variance Ratio (k=4)': 1.0007984480057006,
+  'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption': 0.4259533413884602,
+  'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption': 0.4267881978178301},
+ {'Variance Ratio (k=6)': 0.9999130202975425,
+  'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption': -0.035117568315004344,
+  'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption': -0.03518500446785826},
+ {'Variance Ratio (k=8)': 1.0001094011344318,
+  'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption': 0.036922688136577515,
+  'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption': 0.03698431520269611},
+ {'Variance Ratio (k=10)': 1.000702410129927,
+  'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption': 0.20772743120012313,
+  'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption': 0.20803582207641647},
+ {'Variance Ratio (k=15)': 1.0022173139633856,
+  'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption': 0.5213067838911684,
+  'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption': 0.5219816274021579},
+ {'Variance Ratio (k=20)': 1.0038048661705044,
+  'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption': 0.7646395131154204,
+  'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption': 0.7655801985571125},
+ {'Variance Ratio (k=30)': 1.0054447472916035,
+  'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption': 0.8819250061384853,
+  'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption': 0.8829960534692654},
+ {'Variance Ratio (k=40)': 1.0073830253022766,
+  'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption': 1.0290213306735625,
+  'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption': 1.0303005120740392},
+ {'Variance Ratio (k=50)': 1.0086502431826903,
+  'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption': 1.0741837462564026,
+  'Variance Ratio Test Statistic (k=50) Homoscedasticity Assumption': 1.0755809312730416},
+ {'Variance Ratio (k=100)': 1.0153961901671604,
+  'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption': 1.3415119471043384,
+  'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption': 1.3434284573260773},
+ {'Variance Ratio (k=200)': 1.0157046541161026,
+  'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption': 0.9639233626580027,
+  'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption': 0.9653299929052963},
+ {'Variance Ratio (k=500)': 1.0182166207668526,
+  'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption': 0.7055681216511915,
+  'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption': 0.7065863036900429},
+ {'Variance Ratio (k=1000)': 1.0187822241562863,
+  'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption': 0.5140698821944161,
+  'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption': 0.5147582201029065}]
 ```
 
 It's easy to see that at all lags tested, we cannot reject the null hypothesis that this price series follows a random walk.
@@ -227,7 +227,7 @@ def estimate_python(data, k=5):
     var_k = 1/m * np.sum(np.square(rets_k - k * mu))
 
     # Variance Ratio
-    vr = var_1 / var_k
+    vr = var_k / var_1
     # Phi1
     phi1 = 2 * (2*k - 1) * (k-1) / (3*k*T)
     # Phi2
