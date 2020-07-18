@@ -241,7 +241,7 @@ $ docker exec -t wordpress_container_name bash
 Move inside your /var/www/html directory (already there if you’re using the standard Docker Compose image). Run the following command to insert the values.
 
 ``` bash
-$ sed -i "11i php_value upload_max_filesize 256M" .htaccess && sed -i "12i php_value post_max_size 256M" .htaccess
+$ sed -i '/^# END WordPress.*/i php_value upload_max_filesize 256M\nphp_value post_max_size 256M' .htaccess
 ```
 
 !!! note

@@ -18,7 +18,6 @@ services:
   mkdocs:
     container_name: mkdocs-material
     image: squidfunk/mkdocs-material
-    restart: always
     expose:
       - 80
     volumes:
