@@ -3,7 +3,10 @@
 Below is the schedule of my tutorials, workshops and consulations for the
 current and past semesters since 2018.
 
-## 2020 Smester 1
+## 2020 Semester 2
+
+
+## 2020 Semester 1
 ### FINC2012 Corporate Finance II
 
 All changed to Zoom online sessions due to COVID-19.
