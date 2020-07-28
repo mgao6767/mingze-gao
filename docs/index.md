@@ -7,7 +7,7 @@
 * Finance PhD candidate, research assistant and tutor at the University of Sydney. 
 * Research interests: corporate finance, banking, market microcstructure.
 * Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds).
-* Programmed also the [Interactive Option Pricing](/option-pricing-explained) and [LeGao - Make LEGO Mosaics](/legao).
+* Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/).
 
 **Contact**
 
