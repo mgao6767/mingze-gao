@@ -150,7 +150,7 @@ proc sort data=hs.corrected_hist_state_1986_2018 nodupkey; by gvkey fyear; run;
 
 ## Data available for download
 
-You can download the data I compiled here: [corrected_hist_state_1986_2018.dta](/data/download/corrected_hist_state_1986_2018.dta).
+You can download the data I compiled here: [corrected_hist_state_1986_2018.dta.zip](/data/download/corrected_hist_state_1986_2018.dta.zip) (1MB).
 
 
 [^1]: The authors note that "for our final sample of 115,432 firm-year observations, we find that over the 1969 to 2003 period, 9,847 (87.50%) never relocate, 1,211 (10.76%) relocate once, 178 (1.58%) relocate twice, and 18 (0.16%) relocate three times."
