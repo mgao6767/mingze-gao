@@ -77,7 +77,7 @@ The result is a `historical_state.dta` Stata file like this:
 
 ![historical_state.dta](/images/historical_state.png)
 
-## 1986 - 2018 merged
+### 1986 - 2018 merged
 
 Finally, to merge the two datasets together, I imported them into WRDS Cloud and run the following SAS script:
 
