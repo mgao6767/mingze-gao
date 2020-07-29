@@ -46,3 +46,6 @@ Based on the [augmented 10-X header dataset](https://sraf.nd.edu/data/augmented-
 | 2018 | 107                 | 4847        | 2.21                  |
 
 Moreover, 2,947 out of the 17,221 firms, or about 17% firms changed their headquarter state in the merged sample. This is by no means a small number that can be ignored. So, whenever possible, you should try to use the historical information from past SEC filings' metadata.
+
+!!! warning
+    Note that there're some apparent mistakes in the headquarter state identified from the 10K/Q filings. You may want to use Compustat/CRSP if needed.
