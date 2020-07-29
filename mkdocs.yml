@@ -53,11 +53,14 @@ markdown_extensions:
   - meta
   - admonition
   - footnotes
-  - codehilite:
-      linenums: true
-      guess_lang: false
+  # - codehilite:
+  #     linenums: true
+  #     guess_lang: false
   - toc:
       permalink: true
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
