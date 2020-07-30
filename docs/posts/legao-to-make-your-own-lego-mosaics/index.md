@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # LeGao to Make Your Own LEGO Mosaics
 
 I made an online app that turns a picture into a LEGO mosaic, available at [mingze-gao.com/legao](https://mingze-gao.com/legao).
