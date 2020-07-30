@@ -1,0 +1,29 @@
+{% import "partials/language.html" as lang with context %}
+<nav class="md-nav md-nav--secondary" aria-label="{{ lang.t('toc.title') }}">
+    {% set toc = page.toc %}
+    {% if toc | first is defined and "\x3ch1 id=" in page.content %}
+    {% set toc = (toc | first).children %}
+    {% endif %}
+    {% if toc | first is defined %}
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon">
+            {% include ".icons/material/arrow-left.svg" %}
+        </span>
+        {{ lang.t("toc.title") }}
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        {% for toc_item in toc %}
+        {% include "partials/toc-item.html" %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <br>
+    {% set ads = page.meta.ads %}
+    {% if ads and not page.is_homepage %}
+    <div class='ads'>
+        <!-- Autosize -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6680822923673887"
+            data-ad-slot="3791050947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+    {% endif %}
+</nav>

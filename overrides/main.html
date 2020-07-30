@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+{% set ads = page.meta.ads %}
+{% if ads and not page.is_homepage %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+{% endif%}
+{% endblock %}

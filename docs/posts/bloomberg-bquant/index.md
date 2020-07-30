@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # Bloomberg BQuant (BQNT)
 
 Bloomberg is developing a new function in the Terminal, called BQuant, BQNT<GO>, under the Bloomberg Anywhere license. I happen to be able to test it thanks to a fund manager and find it could be a future way of using Bloomberg Terminal.
