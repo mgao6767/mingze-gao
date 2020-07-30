@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # Python Shared Memory in Multiprocessing
 
 Python 3.8 introduced a new module `multiprocessing.shared_memory` that provides

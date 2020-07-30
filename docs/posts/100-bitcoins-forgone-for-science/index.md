@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # 100 Bitcoins Forgone for Science
 
 This post is just another piece of my serious nonsense. All of a sudden, I wanted to know how many Bitcoins I could have mined since 2012? This is because I’ve known Bitcoin since its existence in 2009, but have never really put any effort in mining. Instead, I was fascinated by the idea of using distributed (volunteer) computing to solve scientific problems. For example, BOINC and related projects like World Community Grid are using the computing power donated from around the world to find effective treatments for cancer and HIV/AIDS, low-cost water filtration systems and new materials for capturing solar energy efficiently, etc. I was one of the many volunteers for a long time, even before the genesis block of Bitcoin.
@@ -28,7 +32,7 @@ Next step will be calculating how many Bitcoins I could have mined based on the 
 Taking into account the average block time and the controlled supply of Bitcoin (table below), I plot the daily average number of blocks and Bitcoins generated in this period.
 
 | Date reached | Block  | Reward Era | BTC/block | End BTC % of Limit |
-|--------------|--------|------------|-----------|--------------------|
+| ------------ | ------ | ---------- | --------- | ------------------ |
 | 2009-01-03   | 0      | 1          | 50.00     | 12.500%            |
 | 2010-04-22   | 52500  | 1          | 50.00     | 25.000%            |
 | 2011-01-28   | 105000 | 1          | 50.00     | 37.500%            |

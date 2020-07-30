@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # Working Remotely on a Windows Machine from VSCode on a Mac
 
 Now I only need a MacBook (1.3 GHz dual-core i5) to do all my work anywhere, thanks to a powerful workstation provided by the university. Yet the workstation is based on Windows 10 and sitting behind the university VPN. I don't want to use Remote Desktop everytime I need to do some coding, so I decided to make it so I can code remotely on the workstation but from the lovely VSCode on my little Mac.

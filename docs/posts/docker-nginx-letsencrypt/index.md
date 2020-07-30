@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # Setup Docker/Ngnix and Let's Encrypt on Ubuntu
 
 This is a note for setting up a Docker, Nginx and Let's Encrypt environment on

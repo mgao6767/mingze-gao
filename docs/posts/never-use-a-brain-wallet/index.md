@@ -1,3 +1,7 @@
+---
+ads: true
+---
+
 # Never Use a Brain Wallet
 
 Among many reasons why people find it hard to use cryptocurrency there's a simple one -- memorising the private key is too hard. So, people invented **brain wallet**, which turns a string of words into a private key and thus wallet. 
@@ -118,7 +122,7 @@ As at May 22, 2019, this address has **45,014** transactions with a total of **0
 I explored a little bit more and it's surprising to find out how easy it is to crack a wallet this way. Below is a table of some passphrases and their associated keys and addresses.
 
 | Passphrase  | Private Key                                                      | Address                                                                                                         | Used |
-|-------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------|
+| ----------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---- |
 | satoshi     | da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f | [1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE](https://www.blockchain.com/btc/address/1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE) | True |
 | bitcoin     | 6b88c087247aa2f07ee1c5956b8e1a9f4c7f892a70e324f1bb3d161e05ca107b | [1E984zyYbNmeuumzEdqT8VSL8QGJi3byAD](https://www.blockchain.com/btc/address/1E984zyYbNmeuumzEdqT8VSL8QGJi3byAD) | True |
 | hello world | b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9 | [1CS8g7nwaxPPprb4vqcTVdLCuCRirsbsMb](https://www.blockchain.com/btc/address/1CS8g7nwaxPPprb4vqcTVdLCuCRirsbsMb) | True |
