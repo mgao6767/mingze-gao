@@ -9,3 +9,30 @@
     }</script>
 {% endif%}
 {% endblock %}
+
+{% block site_nav %}
+{% if nav %}
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+    <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+            {% include "partials/nav.html" %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if page.toc %}
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+    <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+            {% include "partials/toc.html" %}
+        </div>
+    </div>
+    {% set ads = page.meta.ads %}
+    {% if ads and not page.is_homepage %}
+    <!-- Autosize -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6680822923673887" data-ad-format="auto"
+        data-ad-slot="3791050947" data-full-width-responsive="true"></ins>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
