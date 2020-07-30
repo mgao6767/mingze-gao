@@ -90,7 +90,7 @@ libname hs "~/historical_state";
 /* Historical HQ state (1994 to 2018) from augmented 10-X header dataset */
 proc import datafile="~/historical_state/historical_state_1994_2018.dta"
 	out=historical_state_1994_2018 dbms=stata replace;
-/* Historical HQ state (1986 to 2003) from Bai, Fairhurst and Serfling (2020 RFS) */
+/* Historical HQ state (1969 to 2003) from Bai, Fairhurst and Serfling (2020 RFS) */
 proc import datafile="~/historical_state/hist_headquarters_Bai_et_al.dta"
 	out=hist_headquarters_Bai_et_al dbms=stata replace;
 
@@ -138,19 +138,19 @@ set hist_headquarters_Bai_et_al
 run;
 
 proc sql;
-create table hs.corrected_hist_state_1986_2018 as 
+create table hs.corrected_hist_state_1969_2018 as 
 select *, coalesce(state, state_sec, state_comp) as corrected_state
 from states where not missing(calculated corrected_state)
 order by gvkey, fyear;
 quit;
 
 /* Sanity check: no duplicated gvkey-fyear */
-proc sort data=hs.corrected_hist_state_1986_2018 nodupkey; by gvkey fyear; run;
+proc sort data=hs.corrected_hist_state_1969_2018 nodupkey; by gvkey fyear; run;
 ```
 
 ## Data available for download
 
-You can download the data I compiled here: [corrected_hist_state_1986_2018.dta.zip](/data/download/corrected_hist_state_1986_2018.dta.zip) (1MB).
+You can download the data I compiled here: [corrected_hist_state_1969_2018.dta.zip](/data/download/corrected_hist_state_1969_2018.dta.zip) (1MB).
 
 
 [^1]: The authors note that "for our final sample of 115,432 firm-year observations, we find that over the 1969 to 2003 period, 9,847 (87.50%) never relocate, 1,211 (10.76%) relocate once, 178 (1.58%) relocate twice, and 18 (0.16%) relocate three times."
