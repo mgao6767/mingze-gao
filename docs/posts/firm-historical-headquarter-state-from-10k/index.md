@@ -4,7 +4,7 @@
 
 In the Compustat database, a firm's headquarter state (and other identification) is in fact the *current* record stored in `comp.company`. This means once a firm relocates (or updates its incorporate state, address, etc.), all historical observations will be updated and not recording historical state information anymore.
 
-To resolve this issue, an effective way is to use the firm's historical SEC filings. You can follow my previous post [Textual Analysis on SEC filings](https://mingze-gao.com/posts/textual-analysis-on-sec-filings/) to extract the header information, which includes a wide range of meta data. Alternatively, the Unversity of Notre Dame's Software Repository for Accounting and Finance provides an [augmented 10-X header dataset](https://sraf.nd.edu/data/augmented-10-x-header-data/).
+To resolve this issue, an effective way is to use the firm's historical SEC filings. You can follow my previous post [Textual Analysis on SEC filings](https://mingze-gao.com/posts/textual-analysis-on-sec-filings/) to extract the header information, which includes a wide range of meta data. Alternatively, the University of Notre Dame's Software Repository for Accounting and Finance provides an [augmented 10-X header dataset](https://sraf.nd.edu/data/augmented-10-x-header-data/).
 
 ## Do I have to use SEC filings?
 
@@ -41,9 +41,9 @@ Moreover, 2,947 out of the 17,221 firms, or about 17% firms changed their headqu
 
 ## How to get the actual historical firm HQ state using SEC filings?
 
-### 1986 - 2003
+### 1969 - 2003
 
-I start with the firm historical HQ state provided by [Bai, Fairhurst and Serfling (2020 RFS)](https://academic.oup.com/rfs/article-abstract/33/2/644/5522377). This dataset contains the historical HQ locations from 1986 to 2003, which is based on the SEC filings post 1994 and hand-collected by the authors from the Moody’s Manuals (later Mergent Manuals) and Dun & Bradstreet’s Million Dollar Directory (later bought by Mergent).[^1]
+I start with the firm historical HQ state provided by [Bai, Fairhurst and Serfling (2020 RFS)](https://academic.oup.com/rfs/article-abstract/33/2/644/5522377). This dataset contains the historical HQ locations from 1969 to 2003, which is based on the SEC filings post 1994 and hand-collected by the authors from the Moody’s Manuals (later Mergent Manuals) and Dun & Bradstreet’s Million Dollar Directory (later bought by Mergent).[^1]
 
 ### 1994 - 2018
 
@@ -77,7 +77,7 @@ The result is a `historical_state.dta` Stata file like this:
 
 ![historical_state.dta](/images/historical_state.png)
 
-### 1986 - 2018 merged
+### 1969 - 2018 merged
 
 Finally, to merge the two datasets together, I imported them into WRDS Cloud and run the following SAS script:
 
