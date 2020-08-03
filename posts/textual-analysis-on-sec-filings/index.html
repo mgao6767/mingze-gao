@@ -1,0 +1,662 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="A Random Walk Away Finance."><link href=https://mingze-gao.com/posts/textual-analysis-on-sec-filings/ rel=canonical><meta name=author content="Mingze Gao"><link rel="shortcut icon" href=../../favicon.ico><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.5.1"><title>Texutal analysis on SEC filings - Mingze Gao</title><link rel=stylesheet href=../../assets/stylesheets/main.5d00201e.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.816e8abc.min.css><meta name=theme-color content><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-114057186-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script><script async src=https://www.google-analytics.com/analytics.js></script></head> <body dir=ltr data-md-color-scheme data-md-color-primary=white data-md-color-accent=indigo> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#textual-analysis-on-sec-filings class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=https://mingze-gao.com title="Mingze Gao" class="md-header-nav__button md-logo" aria-label="Mingze Gao"> <img src=../../favicon.png alt=logo> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> Mingze Gao </span> <span class="md-header-nav__topic md-ellipsis"> Texutal analysis on SEC filings </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class="md-tabs md-tabs--active" aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../decomposing-hhi-index/ class="md-tabs__link md-tabs__link--active"> Research Notes </a> </li> <li class=md-tabs__item> <a href=../../measures/kyleslambda/ class=md-tabs__link> Measures </a> </li> <li class=md-tabs__item> <a href=../beta-unlevered-and-levered/ class=md-tabs__link> Teaching Notes </a> </li> <li class=md-tabs__item> <a href=../100-bitcoins-forgone-for-science/ class=md-tabs__link> Personal Blog </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://mingze-gao.com title="Mingze Gao" class="md-nav__button md-logo" aria-label="Mingze Gao"> <img src=../../favicon.png alt=logo> </a> Mingze Gao </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class=md-nav__item> <a href=../../cv/ title=CV class=md-nav__link> CV </a> </li> <li class=md-nav__item> <a href=../../data/ title=Data class=md-nav__link> Data </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-4 type=checkbox id=nav-4 checked> <label class=md-nav__link for=nav-4> Research Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Research Notes" data-md-level=1> <label class=md-nav__title for=nav-4> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Research Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../decomposing-hhi-index/ title="Decomposing Herfindahl–Hirschman (HHI) Index" class=md-nav__link> Decomposing Herfindahl–Hirschman (HHI) Index </a> </li> <li class=md-nav__item> <a href=../what-it-takes-to-be-a-ceo/ title="What it takes to be a CEO? A fun survey of literature" class=md-nav__link> What it takes to be a CEO? A fun survey of literature </a> </li> <li class=md-nav__item> <a href=../get-bank-holding-company-financials/ title="Bank holding companies' financials from FR Y-9C" class=md-nav__link> Bank holding companies' financials from FR Y-9C </a> </li> <li class=md-nav__item> <a href=../compute-jackknife-coefficient-estimates-in-sas/ title="Compute jackknife coefficient estimates in SAS" class=md-nav__link> Compute jackknife coefficient estimates in SAS </a> </li> <li class=md-nav__item> <a href=../compute-weekly-return-from-daily-crsp-data/ title="Compute weekly return from daily CRSP data" class=md-nav__link> Compute weekly return from daily CRSP data </a> </li> <li class=md-nav__item> <a href=../convert-between-numeric-and-character-variables/ title="Convert between numeric and character variables" class=md-nav__link> Convert between numeric and character variables </a> </li> <li class=md-nav__item> <a href=../encode-password-for-sas-remote-submission/ title="Encode password for SAS remote submission" class=md-nav__link> Encode password for SAS remote submission </a> </li> <li class=md-nav__item> <a href=../firm-historical-headquarter-state-from-10k/ title="Firm Historical Headquarter State from SEC 10K/Q Filings" class=md-nav__link> Firm Historical Headquarter State from SEC 10K/Q Filings </a> </li> <li class=md-nav__item> <a href=../generate-fama-french-industry-classification-from-sic/ title="Generate Fama-French industry classification from SIC" class=md-nav__link> Generate Fama-French industry classification from SIC </a> </li> <li class=md-nav__item> <a href=../identify-chinese-state-owned-enterprise-using-csmar/ title="Identify Chinese State-Owned Enterprise using CSMAR" class=md-nav__link> Identify Chinese State-Owned Enterprise using CSMAR </a> </li> <li class=md-nav__item> <a href=../merge-compustat-and-crsp/ title="Merge Compustat and CRSP" class=md-nav__link> Merge Compustat and CRSP </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Texutal analysis on SEC filings <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg> </span> </label> <a href=./ title="Texutal analysis on SEC filings" class="md-nav__link md-nav__link--active"> Texutal analysis on SEC filings </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#1-build-a-master-index-of-sec-filings class=md-nav__link> 1. Build a master index of SEC filings </a> </li> <li class=md-nav__item> <a href=#2-download-filings-from-edgar class=md-nav__link> 2. Download filings from EDGAR </a> </li> <li class=md-nav__item> <a href=#3-example-textual-analyses class=md-nav__link> 3. Example textual analyses </a> <nav class=md-nav aria-label="3. Example textual analyses"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#31-extract-all-items-reported-in-8-k-filings-since-2004 class=md-nav__link> 3.1 Extract all items reported in 8-K filings since 2004 </a> </li> <li class=md-nav__item> <a href=#32-find-all-8-k-filings-with-item-101-andor-item-203 class=md-nav__link> 3.2 Find all 8-K filings with Item 1.01 and/or Item 2.03 </a> </li> <li class=md-nav__item> <a href=#33-nini-smith-and-sufi-2009 class=md-nav__link> 3.3 Nini, Smith and Sufi (2009) </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../use-sas-macros-on-wrds/ title="Use SAS macros on WRDS" class=md-nav__link> Use SAS macros on WRDS </a> </li> <li class=md-nav__item> <a href=../winsorization-in-sas/ title="Winsorization in SAS" class=md-nav__link> Winsorization in SAS </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-5 type=checkbox id=nav-5> <label class=md-nav__link for=nav-5> Measures <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label=Measures data-md-level=1> <label class=md-nav__title for=nav-5> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Measures </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../measures/kyleslambda/ title="Kyle's Lambda" class=md-nav__link> Kyle's Lambda </a> </li> <li class=md-nav__item> <a href=../../measures/lomackinlay1988/ title="Lo and MacKinlay (1988)" class=md-nav__link> Lo and MacKinlay (1988) </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../timetable/ title=Timetable class=md-nav__link> Timetable </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-7 type=checkbox id=nav-7> <label class=md-nav__link for=nav-7> Teaching Notes <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Teaching Notes" data-md-level=1> <label class=md-nav__title for=nav-7> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Teaching Notes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../beta-unlevered-and-levered/ title="Beta, unlevered and levered" class=md-nav__link> Beta, unlevered and levered </a> </li> <li class=md-nav__item> <a href=../call-option-value-from-two-approaches/ title="Call option value from two approaches" class=md-nav__link> Call option value from two approaches </a> </li> <li class=md-nav__item> <a href=../minimum-variance-hedge-ratio/ title="Minimum variance hedge ratio" class=md-nav__link> Minimum variance hedge ratio </a> </li> <li class=md-nav__item> <a href=../reconciliation-of-black-scholes-variants/ title="Reconciliation of Black-Scholes variants" class=md-nav__link> Reconciliation of Black-Scholes variants </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-8 type=checkbox id=nav-8> <label class=md-nav__link for=nav-8> Personal Blog <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg> </span> </label> <nav class=md-nav aria-label="Personal Blog" data-md-level=1> <label class=md-nav__title for=nav-8> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Personal Blog </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../100-bitcoins-forgone-for-science/ title="100 Bitcoins forgone for science" class=md-nav__link> 100 Bitcoins forgone for science </a> </li> <li class=md-nav__item> <a href=../accumulator-option-pricing/ title="Accumulator option pricing" class=md-nav__link> Accumulator option pricing </a> </li> <li class=md-nav__item> <a href=../bitcoin-address-generator-in-obfuscated-python/ title="Bitcoin address generator in obfuscated Python" class=md-nav__link> Bitcoin address generator in obfuscated Python </a> </li> <li class=md-nav__item> <a href=../bloomberg-bquant/ title="Bloomberg BQuant (BQNT)" class=md-nav__link> Bloomberg BQuant (BQNT) </a> </li> <li class=md-nav__item> <a href=../legao-to-make-your-own-lego-mosaics/ title="LeGao to make your own LEGO mosaics" class=md-nav__link> LeGao to make your own LEGO mosaics </a> </li> <li class=md-nav__item> <a href=../never-use-a-brain-wallet/ title="Never use a brain wallet" class=md-nav__link> Never use a brain wallet </a> </li> <li class=md-nav__item> <a href=../python-shared-memory-in-multiprocessing/ title="Python Shared Memory in Multiprocessing" class=md-nav__link> Python Shared Memory in Multiprocessing </a> </li> <li class=md-nav__item> <a href=../docker-nginx-letsencrypt/ title="Setup Docker/Ngnix and Let's Encrypt on Ubuntu" class=md-nav__link> Setup Docker/Ngnix and Let's Encrypt on Ubuntu </a> </li> <li class=md-nav__item> <a href=../working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/ title="Working remotely on a Windows Machine from VSCode on a Mac" class=md-nav__link> Working remotely on a Windows Machine from VSCode on a Mac </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#1-build-a-master-index-of-sec-filings class=md-nav__link> 1. Build a master index of SEC filings </a> </li> <li class=md-nav__item> <a href=#2-download-filings-from-edgar class=md-nav__link> 2. Download filings from EDGAR </a> </li> <li class=md-nav__item> <a href=#3-example-textual-analyses class=md-nav__link> 3. Example textual analyses </a> <nav class=md-nav aria-label="3. Example textual analyses"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#31-extract-all-items-reported-in-8-k-filings-since-2004 class=md-nav__link> 3.1 Extract all items reported in 8-K filings since 2004 </a> </li> <li class=md-nav__item> <a href=#32-find-all-8-k-filings-with-item-101-andor-item-203 class=md-nav__link> 3.2 Find all 8-K filings with Item 1.01 and/or Item 2.03 </a> </li> <li class=md-nav__item> <a href=#33-nini-smith-and-sufi-2009 class=md-nav__link> 3.3 Nini, Smith and Sufi (2009) </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=textual-analysis-on-sec-filings>Textual Analysis on SEC Filings<a class=headerlink href=#textual-analysis-on-sec-filings title="Permanent link">&para;</a></h1> <p>Nowadays top journals favour more granular studies. Sometimes it's useful to dig into the raw SEC filings and perform textual analysis. This note documents how I download all historical SEC filings via EDGAR and conduct some textual analyses.</p> <div class="admonition tip"> <p class=admonition-title>Tip</p> <p>If you don't require a very customized textual analysis, you should try for example <a href=https://www.seekedgar.com/ >SeekEdgar.com</a>.</p> </div> <h2 id=1-build-a-master-index-of-sec-filings>1. Build a master index of SEC filings<a class=headerlink href=#1-build-a-master-index-of-sec-filings title="Permanent link">&para;</a></h2> <p>I use the <a href=https://github.com/edouardswiac/python-edgar/ ><code>python-edgar</code></a> to download quarterly zipped index files to <code>./edgar-idx</code>.</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span>1
+2
+3</pre></div></td><td class=code><div class=highlight><pre><span></span><code>$ mkdir ~/edgar <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/edgar
+$ git clone https://github.com/edouardswiac/python-edgar.git
+$ python ./python-edgar/run.py -d ./edgar-idx
+</code></pre></div> </td></tr></table> <p>Then merge the downloaded tsv files into a master file using <code>cat</code>.</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span>1
+2</pre></div></td><td class=code><div class=highlight><pre><span></span><code>$ cat ./edgar-idx/*.tsv &gt; ./edgar-idx/master.tsv
+$ du -h ./edgar-idx/master.tsv
+</code></pre></div> </td></tr></table> <p>The resulting <code>master.tsv</code> is about 2.6G as at Feb 2020. I then use the following python script to build a SQLite database for more efficient query.</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=c1># Load index files in `edgar-idx` to a sqlite database.</span>
+
+<span class=kn>import</span> <span class=nn>sqlite3</span>
+
+<span class=n>EDGAR_BASE</span> <span class=o>=</span> <span class=s2>&quot;https://www.sec.gov/Archives/&quot;</span>
+
+<span class=k>def</span> <span class=nf>parse</span><span class=p>(</span><span class=n>line</span><span class=p>):</span>
+    <span class=c1># each line: &quot;cik|firm_name|file_type|date|url_txt|url_html&quot;</span>
+    <span class=c1># an example:</span>
+    <span class=c1># &quot;99780|TRINITY INDUSTRIES INC|8-K|2020-01-15|edgar/data/99780/0000099780-\</span>
+    <span class=c1># 20-000008.txt|edgar/data/99780/0000099780-20-000008-index.html&quot;</span>
+    <span class=nb>tuple</span><span class=p>(</span><span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;|&#39;</span><span class=p>)[:</span><span class=mi>5</span><span class=p>])</span>
+    <span class=n>l</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
+    <span class=n>l</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=n>EDGAR_BASE</span> <span class=o>+</span> <span class=n>l</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+    <span class=k>return</span> <span class=nb>tuple</span><span class=p>(</span><span class=n>l</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+    <span class=n>conn</span> <span class=o>=</span> <span class=n>sqlite3</span><span class=o>.</span><span class=n>connect</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;edgar-idx.sqlite3&quot;</span><span class=p>)</span>
+    <span class=n>c</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>cursor</span><span class=p>()</span>
+    <span class=n>c</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s1>&#39;&#39;&#39;CREATE TABLE IF NOT EXISTS edgar_idx </span>
+<span class=s1>        (cik TEXT, firm_name TEXT, file_type TEXT, date DATE, url TEXT,</span>
+<span class=s1>        PRIMARY KEY(cik, file_type, date));&#39;&#39;&#39;</span><span class=p>)</span>
+
+    <span class=n>filename</span> <span class=o>=</span> <span class=s1>&#39;./edgar-idx/master.tsv&#39;</span>
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+        <span class=n>lines</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+
+    <span class=n>data</span> <span class=o>=</span> <span class=p>[</span><span class=n>parse</span><span class=p>(</span><span class=n>line</span><span class=p>)</span> <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>lines</span><span class=p>]</span>
+    <span class=n>c</span><span class=o>.</span><span class=n>executemany</span><span class=p>(</span><span class=s1>&#39;INSERT OR IGNORE INTO edgar_idx </span><span class=se>\</span>
+<span class=s1>        (cik, firm_name, file_type, date, url) VALUES (?,?,?,?,?)&#39;</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+
+    <span class=n>conn</span><span class=o>.</span><span class=n>commit</span><span class=p>()</span>
+    <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</code></pre></div> </td></tr></table> <h2 id=2-download-filings-from-edgar>2. Download filings from EDGAR<a class=headerlink href=#2-download-filings-from-edgar title="Permanent link">&para;</a></h2> <p>I write the following script to download filings from EDGAR. Note that this script is only a skeleton. The full implementation has proper logging, speed control and detailed error handling. For example, you'll need to keep track of failures and re-download them later. </p> <div class="admonition warning"> <p class=admonition-title>Warning</p> <p>As per SEC's policy, you should limit concurrent requests to below 10 per second. Hence, there is no need to use a proxy pool, such as <a href=https://github.com/imWildCat/scylla><code>Scylla</code></a>. </p> <p>This example script download all 8-K files to <code>./data/{cik}/{file_type}/{date}.txt.gz</code>.</p> <p>Compression is highly recommended unless you've TBs of free disk space!</p> </div> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=c1># Download all 8-K filings.</span>
+
+<span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>import</span> <span class=nn>sqlite3</span>
+<span class=kn>import</span> <span class=nn>requests</span>
+<span class=kn>import</span> <span class=nn>concurrent.futures</span>
+<span class=kn>import</span> <span class=nn>gzip</span>
+<span class=kn>import</span> <span class=nn>tqdm</span>
+
+<span class=k>def</span> <span class=nf>download</span><span class=p>(</span><span class=n>job</span><span class=p>):</span>
+    <span class=n>cik</span><span class=p>,</span> <span class=n>_</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=n>date</span><span class=p>,</span> <span class=n>url</span> <span class=o>=</span> <span class=n>job</span>
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>res</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+        <span class=n>filename</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;./data/</span><span class=si>{</span><span class=n>cik</span><span class=si>}</span><span class=s1>/</span><span class=si>{</span><span class=n>file_type</span><span class=si>}</span><span class=s1>/</span><span class=si>{</span><span class=n>date</span><span class=si>}</span><span class=s1>.txt.gz&#39;</span>
+        <span class=k>if</span> <span class=n>res</span><span class=o>.</span><span class=n>status_code</span> <span class=o>==</span> <span class=mi>200</span><span class=p>:</span>
+            <span class=k>with</span> <span class=n>gzip</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;wb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>res</span><span class=o>.</span><span class=n>content</span><span class=p>)</span>
+    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+        <span class=k>pass</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&quot;__main__&quot;</span><span class=p>:</span>
+    <span class=c1># select what to download</span>
+    <span class=n>conn</span> <span class=o>=</span> <span class=n>create_connection</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;edgar-idx.sqlite3&quot;</span><span class=p>)</span>
+    <span class=n>c</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>cursor</span><span class=p>()</span>
+    <span class=n>c</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s1>&#39;SELECT * FROM edgar_idx WHERE file_type=&quot;8-K&quot;;&#39;</span><span class=p>)</span>
+    <span class=n>jobs</span> <span class=o>=</span> <span class=n>c</span><span class=o>.</span><span class=n>fetchall</span><span class=p>()</span>
+    <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+    <span class=c1># start downloading</span>
+    <span class=n>progress</span> <span class=o>=</span> <span class=n>tqdm</span><span class=o>.</span><span class=n>tqdm</span><span class=p>(</span><span class=n>total</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>jobs</span><span class=p>))</span>
+    <span class=n>futures</span> <span class=o>=</span> <span class=p>[]</span>
+    <span class=k>with</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>ThreadPoolExecutor</span><span class=p>(</span><span class=n>max_workers</span><span class=o>=</span><span class=mi>16</span><span class=p>)</span> <span class=k>as</span> <span class=n>exe</span><span class=p>:</span>
+        <span class=k>for</span> <span class=n>job</span> <span class=ow>in</span> <span class=n>jobs</span><span class=p>:</span>
+            <span class=n>cik</span><span class=p>,</span> <span class=n>_</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=n>date</span><span class=p>,</span> <span class=n>url</span> <span class=o>=</span> <span class=n>job</span>
+            <span class=n>filename</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;./data/</span><span class=si>{</span><span class=n>cik</span><span class=si>}</span><span class=s1>/</span><span class=si>{</span><span class=n>file_type</span><span class=si>}</span><span class=s1>/</span><span class=si>{</span><span class=n>date</span><span class=si>}</span><span class=s1>.txt.gz&#39;</span>
+            <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>filename</span><span class=p>),</span> <span class=n>exist_ok</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+            <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>
+                <span class=n>progress</span><span class=o>.</span><span class=n>update</span><span class=p>()</span>
+            <span class=k>else</span><span class=p>:</span>
+                <span class=n>f</span> <span class=o>=</span> <span class=n>exe</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>download</span><span class=p>,</span> <span class=n>job</span><span class=p>)</span>
+                <span class=n>f</span><span class=o>.</span><span class=n>add_done_callback</span><span class=p>(</span><span class=n>progress</span><span class=o>.</span><span class=n>update</span><span class=p>)</span>
+                <span class=n>futures</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>as_completed</span><span class=p>(</span><span class=n>futures</span><span class=p>):</span>
+        <span class=k>pass</span>
+</code></pre></div> </td></tr></table> <h2 id=3-example-textual-analyses>3. Example textual analyses<a class=headerlink href=#3-example-textual-analyses title="Permanent link">&para;</a></h2> <p>The downloaded txt files are the text version of filings htmls, which generally are well structured. Specifically, each filing is structured as:</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=p>&lt;</span><span class=nt>SEC-DOCUMENT</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>SEC-HEADER</span><span class=p>&gt;&lt;/</span><span class=nt>SEC-HEADER</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>TYPE</span><span class=p>&gt;</span>
+      <span class=p>&lt;</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>FILENAME</span><span class=p>&gt;</span>
+          <span class=p>&lt;</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+          <span class=p>&lt;/</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>
+        <span class=p>&lt;/</span><span class=nt>FILENAME</span><span class=p>&gt;</span>
+      <span class=p>&lt;/</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>TYPE</span><span class=p>&gt;</span>
+  <span class=p>&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+  ...
+<span class=p>&lt;/</span><span class=nt>SEC-DOCUMENT</span><span class=p>&gt;</span>
+</code></pre></div> </td></tr></table> <details class=example><summary>Example</summary><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=p>&lt;</span><span class=nt>SEC-DOCUMENT</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>SEC-HEADER</span><span class=p>&gt;&lt;/</span><span class=nt>SEC-HEADER</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>TYPE</span><span class=p>&gt;</span>8-K
+            <span class=p>&lt;</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>1
+                <span class=p>&lt;</span><span class=nt>FILENAME</span><span class=p>&gt;</span>f13478e8vk.htm
+                    <span class=p>&lt;</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>FORM 8-K
+                        <span class=p>&lt;</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+                        ...
+                        <span class=p>&lt;/</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+                    <span class=p>&lt;/</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>FILENAME</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>
+        <span class=p>&lt;/</span><span class=nt>TYPE</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>TYPE</span><span class=p>&gt;</span>EX-99.1
+            <span class=p>&lt;</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>2
+                <span class=p>&lt;</span><span class=nt>FILENAME</span><span class=p>&gt;</span>f13478exv99w1.htm
+                    <span class=p>&lt;</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>EXHIBIT 99.1
+                        <span class=p>&lt;</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+                        ...
+                        <span class=p>&lt;/</span><span class=nt>TEXT</span><span class=p>&gt;</span>
+                    <span class=p>&lt;/</span><span class=nt>DESCRIPTION</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>FILENAME</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>SEQUENCE</span><span class=p>&gt;</span>
+        <span class=p>&lt;/</span><span class=nt>TYPE</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>DOCUMENT</span><span class=p>&gt;&lt;/</span><span class=nt>DOCUMENT</span><span class=p>&gt;</span>
+    ...
+<span class=p>&lt;/</span><span class=nt>SEC-DOCUMENT</span><span class=p>&gt;</span>
+</code></pre></div> </td></tr></table> </details> <h3 id=31-extract-all-items-reported-in-8-k-filings-since-2004>3.1 Extract all items reported in 8-K filings since 2004<a class=headerlink href=#31-extract-all-items-reported-in-8-k-filings-since-2004 title="Permanent link">&para;</a></h3> <p>Since 2004, SEC requires companies to file 8-K within 4 business days of many types of events. For a short description, see <a href=https://www.sec.gov/fast-answers/answersform8khtm.html>SEC's fast answer to Form 8-K</a>. The detailed instruction (PDF) is available at <a href=https://www.sec.gov/about/forms/form8-k.pdf>here</a>.</p> <p>To extract all items reported in each filing since 2004, there are several ways. First, I can use a regular expression to extract all <code>"Item X.XX"</code> from the 8-K <code>&lt;DOCUMENT&gt;</code>. Or, I can take advantage of the information in <code>&lt;SEC-HEADER&gt;</code>. Below is an example <code>&lt;SEC-HEADER&gt;</code><sup id=fnref:1><a class=footnote-ref href=#fn:1>1</a></sup>, of which the lines of <code>ITEM INFORMATION</code> actually describe the items reported in the filing. </p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=p>&lt;</span><span class=nt>SEC-HEADER</span><span class=p>&gt;</span>0000079732-02-000036.hdr.sgml : 20020802
+<span class=p>&lt;</span><span class=nt>ACCEPTANCE-DATETIME</span><span class=p>&gt;</span>20020802082752
+ACCESSION NUMBER:       0000079732-02-000036
+CONFORMED SUBMISSION TYPE:  8-K
+PUBLIC DOCUMENT COUNT:      4
+CONFORMED PERIOD OF REPORT: 20020801
+ITEM INFORMATION:       Changes in control of registrant
+ITEM INFORMATION:       Financial statements and exhibits
+FILED AS OF DATE:       20020802
+
+FILER:
+
+    COMPANY DATA:   
+        COMPANY CONFORMED NAME:         ATLANTIC CITY ELECTRIC CO
+        CENTRAL INDEX KEY:          0000008192
+        STANDARD INDUSTRIAL CLASSIFICATION: ELECTRIC SERVICES [4911]
+        IRS NUMBER:             210398280
+        STATE OF INCORPORATION:         NJ
+        FISCAL YEAR END:            1231
+
+    FILING VALUES:
+        FORM TYPE:      8-K
+        SEC ACT:        1934 Act
+        SEC FILE NUMBER:    001-03559
+        FILM NUMBER:        02717802
+
+    BUSINESS ADDRESS:   
+        STREET 1:       800 KING STREET
+        STREET 2:       PO BOX 231
+        CITY:           WILMINGTON
+        STATE:          DE
+        ZIP:            19899
+        BUSINESS PHONE:     6096454100
+
+    MAIL ADDRESS:   
+        STREET 1:       800 KING STREET
+        STREET 2:       PO BOX 231
+        CITY:           WILMINGTON
+        STATE:          DE
+        ZIP:            19899
+<span class=p>&lt;/</span><span class=nt>SEC-HEADER</span><span class=p>&gt;</span>
+</code></pre></div> </td></tr></table> <p>Following this strategy, I write the code below to extract all items reported in 8-K filings since 2004. I didn't use regex for this task because the text portion of the filing is actually dirty. For instance, you'll need to remove all html tags, and be careful about the "non-breaking space", <code>&amp;nbsp;</code>, etc. My experience is that using <code>&lt;SEC-HEADER&gt;</code> for this task is the best.</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=c1># Extract all items reported in 8-K filings since 2004.</span>
+<span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>import</span> <span class=nn>gzip</span>
+<span class=kn>import</span> <span class=nn>tqdm</span>
+<span class=kn>import</span> <span class=nn>sqlite3</span>
+<span class=kn>import</span> <span class=nn>concurrent.futures</span>
+
+
+<span class=n>BASE_DIR</span> <span class=o>=</span> <span class=s1>&#39;./data&#39;</span>
+<span class=n>FILE_TYPE</span> <span class=o>=</span> <span class=s1>&#39;8-K&#39;</span>
+<span class=n>DB</span> <span class=o>=</span> <span class=s2>&quot;result.sqlite3&quot;</span>
+
+
+<span class=k>def</span> <span class=nf>walk_dirpath</span><span class=p>(</span><span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>):</span>
+    <span class=sd>&quot;&quot;&quot; Yield paths of all files for a given cik and file type &quot;&quot;&quot;</span>
+    <span class=k>for</span> <span class=n>root</span><span class=p>,</span> <span class=n>_</span><span class=p>,</span> <span class=n>files</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>BASE_DIR</span><span class=p>,</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>)):</span>
+        <span class=k>for</span> <span class=n>filename</span> <span class=ow>in</span> <span class=n>files</span><span class=p>:</span>
+            <span class=k>yield</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>root</span><span class=p>,</span> <span class=n>filename</span><span class=p>)</span>
+
+
+<span class=k>def</span> <span class=nf>regsearch</span><span class=p>(</span><span class=n>cik</span><span class=p>):</span>
+    <span class=n>matches</span> <span class=o>=</span> <span class=p>[]</span>
+    <span class=k>for</span> <span class=n>filepath</span> <span class=ow>in</span> <span class=n>walk_dirpath</span><span class=p>(</span><span class=n>cik</span><span class=p>,</span> <span class=n>FILE_TYPE</span><span class=p>):</span>
+        <span class=n>date</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=n>filepath</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>(</span><span class=s1>&#39;.txt.gz&#39;</span><span class=p>)</span>
+        <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>date</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;-&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>])</span> <span class=o>&lt;</span> <span class=mi>2004</span><span class=p>:</span>
+            <span class=k>continue</span>
+        <span class=k>with</span> <span class=n>gzip</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>filepath</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+            <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+        <span class=n>ls</span> <span class=o>=</span> <span class=p>[</span><span class=n>l</span> <span class=k>for</span> <span class=n>l</span> <span class=ow>in</span> <span class=n>data</span> <span class=k>if</span> <span class=n>l</span><span class=o>.</span><span class=n>startswith</span><span class=p>(</span><span class=sa>b</span><span class=s1>&#39;ITEM INFORMATION&#39;</span><span class=p>)]</span>
+        <span class=k>for</span> <span class=n>l</span> <span class=ow>in</span> <span class=n>ls</span><span class=p>:</span>
+            <span class=n>item</span> <span class=o>=</span> <span class=n>l</span><span class=o>.</span><span class=n>decode</span><span class=p>()</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\t</span><span class=s1>&#39;</span><span class=p>,</span><span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;ITEM INFORMATION:&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>
+            <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>item</span><span class=o>.</span><span class=n>strip</span><span class=p>()):</span>
+                <span class=n>matches</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=n>cik</span><span class=p>,</span> <span class=n>FILE_TYPE</span><span class=p>,</span> <span class=n>date</span><span class=p>,</span> <span class=n>item</span><span class=o>.</span><span class=n>strip</span><span class=p>()))</span>
+    <span class=k>return</span> <span class=n>matches</span>
+
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&quot;__main__&quot;</span><span class=p>:</span>
+    <span class=n>conn</span> <span class=o>=</span> <span class=n>sqlite3</span><span class=o>.</span><span class=n>connect</span><span class=p>(</span><span class=n>DB</span><span class=p>)</span>
+    <span class=n>c</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>cursor</span><span class=p>()</span>
+    <span class=n>c</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s1>&#39;&#39;&#39;CREATE TABLE IF NOT EXISTS files_all_items</span>
+<span class=s1>        (cik TEXT, file_type TEXT, date DATE, item TEXT,</span>
+<span class=s1>        PRIMARY KEY(cik, file_type, date, item));&#39;&#39;&#39;</span><span class=p>)</span>
+    <span class=n>conn</span><span class=o>.</span><span class=n>commit</span><span class=p>()</span>
+
+    <span class=n>_</span><span class=p>,</span> <span class=n>ciks</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=nb>next</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>BASE_DIR</span><span class=p>))</span>
+    <span class=n>progress</span> <span class=o>=</span> <span class=n>tqdm</span><span class=o>.</span><span class=n>tqdm</span><span class=p>(</span><span class=n>total</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>ciks</span><span class=p>))</span>
+    <span class=k>with</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>ProcessPoolExecutor</span><span class=p>(</span><span class=n>max_workers</span><span class=o>=</span><span class=mi>16</span><span class=p>)</span> <span class=k>as</span> <span class=n>exe</span><span class=p>:</span>
+        <span class=n>futures</span> <span class=o>=</span> <span class=p>[</span><span class=n>exe</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>regsearch</span><span class=p>,</span> <span class=n>cik</span><span class=p>)</span> <span class=k>for</span> <span class=n>cik</span> <span class=ow>in</span> <span class=n>ciks</span><span class=p>]</span>
+        <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>as_completed</span><span class=p>(</span><span class=n>futures</span><span class=p>):</span>
+            <span class=n>res</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>result</span><span class=p>()</span>
+            <span class=n>c</span><span class=o>.</span><span class=n>executemany</span><span class=p>(</span>
+                <span class=s2>&quot;INSERT OR IGNORE INTO files_all_items </span><span class=se>\</span>
+<span class=s2>                    (cik, file_type, date, item) VALUES (?,?,?,?)&quot;</span><span class=p>,</span> <span class=n>res</span><span class=p>)</span>
+            <span class=n>conn</span><span class=o>.</span><span class=n>commit</span><span class=p>()</span>
+            <span class=n>progress</span><span class=o>.</span><span class=n>update</span><span class=p>()</span>
+
+    <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</code></pre></div> </td></tr></table> <h3 id=32-find-all-8-k-filings-with-item-101-andor-item-203>3.2 Find all 8-K filings with Item 1.01 and/or Item 2.03<a class=headerlink href=#32-find-all-8-k-filings-with-item-101-andor-item-203 title="Permanent link">&para;</a></h3> <p>To get those filings that have <em>either</em>:</p> <ul> <li>Item 1.01 Entry into a Material Definitive Agreement, or</li> <li>Item 2.03 Creation of a Direct Financial Obligation or an Obligation under an Off-Balance Sheet Arrangement of a Registrant</li> </ul> <p>I run the following SQL query:</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=c1>-- SQLite</span>
+<span class=k>CREATE</span> <span class=k>TABLE</span> <span class=o>`</span><span class=n>files_with_items_101_or_203</span><span class=o>`</span> <span class=k>AS</span>
+<span class=k>SELECT</span> <span class=k>DISTINCT</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=nb>date</span>
+<span class=k>FROM</span> <span class=o>`</span><span class=n>files_all_items</span><span class=o>`</span>
+<span class=k>WHERE</span>
+    <span class=n>instr</span><span class=p>(</span><span class=k>lower</span><span class=p>(</span><span class=n>item</span><span class=p>),</span> <span class=ss>&quot;creation of a direct financial obligation&quot;</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=k>OR</span>
+    <span class=n>instr</span><span class=p>(</span><span class=k>lower</span><span class=p>(</span><span class=n>item</span><span class=p>),</span> <span class=ss>&quot;entry into a material definitive agreement&quot;</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span>
+<span class=k>ORDER</span> <span class=k>BY</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=nb>date</span><span class=p>;</span>
+</code></pre></div> </td></tr></table> <p>To get those with <em>both</em> items, use the following query:</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=c1>-- SQLite</span>
+<span class=k>CREATE</span> <span class=k>TABLE</span> <span class=o>`</span><span class=n>files_with_items_101_and_203</span><span class=o>`</span> <span class=k>AS</span>
+<span class=k>SELECT</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=nb>date</span>
+<span class=k>FROM</span> <span class=o>`</span><span class=n>files_all_items</span><span class=o>`</span>
+<span class=k>WHERE</span>
+    <span class=n>instr</span><span class=p>(</span><span class=k>lower</span><span class=p>(</span><span class=n>item</span><span class=p>),</span> <span class=ss>&quot;creation of a direct financial obligation&quot;</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=k>OR</span>
+    <span class=n>instr</span><span class=p>(</span><span class=k>lower</span><span class=p>(</span><span class=n>item</span><span class=p>),</span> <span class=ss>&quot;entry into a material definitive agreement&quot;</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span>
+<span class=k>GROUP</span> <span class=k>BY</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=nb>date</span>
+<span class=k>HAVING</span> <span class=k>count</span><span class=p>(</span><span class=o>*</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>1</span>
+<span class=k>ORDER</span> <span class=k>BY</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>,</span> <span class=nb>date</span><span class=p>;</span>
+</code></pre></div> </td></tr></table> <h3 id=33-nini-smith-and-sufi-2009>3.3 Nini, Smith and Sufi (2009)<a class=headerlink href=#33-nini-smith-and-sufi-2009 title="Permanent link">&para;</a></h3> <p>This example code finds the appearance of any of the 10 search words used in "Creditor control rights and firm investment policy" by Nini, Smith and Sufi (JFE 2009), which is used to identify the loan contracts as attached in the SEC filing.</p> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=kn>import</span> <span class=nn>re</span>
+<span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>import</span> <span class=nn>sys</span>
+<span class=kn>import</span> <span class=nn>gzip</span>
+<span class=kn>import</span> <span class=nn>tqdm</span>
+<span class=kn>import</span> <span class=nn>sqlite3</span>
+<span class=kn>import</span> <span class=nn>logging</span>
+<span class=kn>import</span> <span class=nn>concurrent.futures</span>
+
+<span class=n>logging</span><span class=o>.</span><span class=n>basicConfig</span><span class=p>(</span><span class=n>stream</span><span class=o>=</span><span class=n>sys</span><span class=o>.</span><span class=n>stdout</span><span class=p>,</span> <span class=n>level</span><span class=o>=</span><span class=n>logging</span><span class=o>.</span><span class=n>WARN</span><span class=p>)</span>
+
+<span class=n>BASE_DIR</span> <span class=o>=</span> <span class=s1>&#39;./data&#39;</span>
+<span class=n>FILE_TYPE</span> <span class=o>=</span> <span class=s1>&#39;10-Q&#39;</span>
+<span class=n>DB</span> <span class=o>=</span> <span class=s2>&quot;result.sqlite3&quot;</span>
+
+<span class=c1># Regex pattern used to remove html tags</span>
+<span class=n>cleanr</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=sa>b</span><span class=s1>&#39;&lt;.*?&gt;|&amp;([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});&#39;</span><span class=p>)</span>
+
+<span class=c1># Regex pattern used to find the appearance of any of the 10 search words used</span>
+<span class=c1># in &quot;Creditor control rights and firm investment policy&quot;</span>
+<span class=c1># by Nini, Smith and Sufi (JFE 2009)</span>
+<span class=c1># pat_10_words = r&quot;CREDIT FACILITY|REVOLVING CREDIT|(CREDIT|LOAN|(LOAN (AND|&amp;) \</span>
+<span class=c1>#    SECURITY)|(FINANCING (AND|&amp;) SECURITY)|CREDIT (AND|&amp;) GUARANTEE) AGREEMENT&quot;</span>
+<span class=n>NSS_10_words</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;credit facility&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;revolving credit&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;credit agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;loan agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;loan and security agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;loan &amp; security agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;credit and guarantee agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;credit &amp; guarantee agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;financing and security agreement&#39;</span><span class=p>,</span>
+                <span class=s1>&#39;financing &amp; security agreement&#39;</span><span class=p>]</span>
+<span class=n>NSS_10_words_str</span> <span class=o>=</span> <span class=s1>&#39;|&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>([</span><span class=n>word</span><span class=o>.</span><span class=n>upper</span><span class=p>()</span> <span class=k>for</span> <span class=n>word</span> <span class=ow>in</span> <span class=n>NSS_10_words</span><span class=p>])</span>
+<span class=n>pat_10_words</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>NSS_10_words_str</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+
+<span class=c1># Regex pattern used in this search</span>
+<span class=n>pattern</span> <span class=o>=</span> <span class=n>pat_10_words</span>
+
+
+<span class=k>def</span> <span class=nf>walk_dirpath</span><span class=p>(</span><span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>):</span>
+    <span class=sd>&quot;&quot;&quot; Yield paths of all files for a given cik and file type &quot;&quot;&quot;</span>
+    <span class=k>for</span> <span class=n>root</span><span class=p>,</span> <span class=n>_</span><span class=p>,</span> <span class=n>files</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>BASE_DIR</span><span class=p>,</span> <span class=n>cik</span><span class=p>,</span> <span class=n>file_type</span><span class=p>)):</span>
+        <span class=k>for</span> <span class=n>filename</span> <span class=ow>in</span> <span class=n>files</span><span class=p>:</span>
+            <span class=k>yield</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>root</span><span class=p>,</span> <span class=n>filename</span><span class=p>)</span>
+
+
+<span class=k>def</span> <span class=nf>regsearch</span><span class=p>(</span><span class=n>cik</span><span class=p>):</span>
+    <span class=n>matches</span> <span class=o>=</span> <span class=p>[]</span>
+    <span class=k>for</span> <span class=n>filepath</span> <span class=ow>in</span> <span class=n>walk_dirpath</span><span class=p>(</span><span class=n>cik</span><span class=p>,</span> <span class=n>FILE_TYPE</span><span class=p>):</span>
+        <span class=n>date</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=n>filepath</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>(</span><span class=s1>&#39;.txt.gz&#39;</span><span class=p>)</span>
+        <span class=k>try</span><span class=p>:</span>
+            <span class=k>with</span> <span class=n>gzip</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=n>filepath</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+                <span class=n>data</span> <span class=o>=</span> <span class=sa>b</span><span class=s1>&#39; &#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>splitlines</span><span class=p>())</span>
+                <span class=n>data</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=n>cleanr</span><span class=p>,</span> <span class=sa>b</span><span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+            <span class=n>match</span> <span class=o>=</span> <span class=n>pattern</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+            <span class=k>if</span> <span class=n>match</span><span class=p>:</span>
+                <span class=n>matches</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=n>cik</span><span class=p>,</span> <span class=n>FILE_TYPE</span><span class=p>,</span> <span class=n>date</span><span class=p>))</span>
+                <span class=n>logging</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=si>{</span><span class=n>filepath</span><span class=si>}</span><span class=s1>, </span><span class=si>{</span><span class=n>match</span><span class=o>.</span><span class=n>group</span><span class=p>()</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+        <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+            <span class=n>logging</span><span class=o>.</span><span class=n>error</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;failed at </span><span class=si>{</span><span class=n>filepath</span><span class=si>}</span><span class=s1>, </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+    <span class=k>return</span> <span class=n>matches</span>
+
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&quot;__main__&quot;</span><span class=p>:</span>
+
+    <span class=n>conn</span> <span class=o>=</span> <span class=n>sqlite3</span><span class=o>.</span><span class=n>connect</span><span class=p>(</span><span class=n>DB</span><span class=p>)</span>
+    <span class=n>c</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>cursor</span><span class=p>()</span>
+    <span class=c1># create a table to store the indices</span>
+    <span class=n>c</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=s1>&#39;&#39;&#39;CREATE TABLE IF NOT EXISTS files_with_10_words</span>
+<span class=s1>        (cik TEXT, file_type TEXT, date DATE,</span>
+<span class=s1>        PRIMARY KEY(cik, file_type, date));&#39;&#39;&#39;</span><span class=p>)</span>
+    <span class=n>conn</span><span class=o>.</span><span class=n>commit</span><span class=p>()</span>
+    <span class=n>_</span><span class=p>,</span> <span class=n>ciks</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=nb>next</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>BASE_DIR</span><span class=p>))</span>
+    <span class=n>progress</span> <span class=o>=</span> <span class=n>tqdm</span><span class=o>.</span><span class=n>tqdm</span><span class=p>(</span><span class=n>total</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>ciks</span><span class=p>))</span>
+    <span class=k>with</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>ProcessPoolExecutor</span><span class=p>(</span><span class=n>max_workers</span><span class=o>=</span><span class=mi>16</span><span class=p>)</span> <span class=k>as</span> <span class=n>exe</span><span class=p>:</span>
+        <span class=n>futures</span> <span class=o>=</span> <span class=p>[</span><span class=n>exe</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>regsearch</span><span class=p>,</span> <span class=n>cik</span><span class=p>)</span> <span class=k>for</span> <span class=n>cik</span> <span class=ow>in</span> <span class=n>ciks</span><span class=p>]</span>
+        <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>as_completed</span><span class=p>(</span><span class=n>futures</span><span class=p>):</span>
+            <span class=n>matches</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>result</span><span class=p>()</span>
+            <span class=n>c</span><span class=o>.</span><span class=n>executemany</span><span class=p>(</span>
+                <span class=s2>&quot;INSERT OR IGNORE INTO files_with_10_words </span><span class=se>\</span>
+<span class=s2>                    (cik, file_type, date) VALUES (?,?,?)&quot;</span><span class=p>,</span> <span class=n>matches</span><span class=p>)</span>
+            <span class=n>conn</span><span class=o>.</span><span class=n>commit</span><span class=p>()</span>
+            <span class=n>progress</span><span class=o>.</span><span class=n>update</span><span class=p>()</span>
+    <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+    <span class=n>logging</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s1>&#39;complete&#39;</span><span class=p>)</span>
+</code></pre></div> </td></tr></table> <div class=footnote> <hr> <ol> <li id=fn:1> <p>The original file is at <a href=https://www.sec.gov/Archives/edgar/data/0000008192/0000079732-02-000036.txt>https://www.sec.gov/Archives/edgar/data/0000008192/0000079732-02-000036.txt</a>&#160;<a class=footnote-backref href=#fnref:1 title="Jump back to footnote 1 in the text">&#8617;</a></p> </li> </ol> </div> <hr> <div class=md-source-date> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2020</span> </small> </div> <h2 id=__comments>Comments</h2> <div id=disqus_thread></div> <script>var disqus_config=function(){this.page.url="https://mingze-gao.com/posts/textual-analysis-on-sec-filings/",this.page.identifier="/posts/textual-analysis-on-sec-filings/"};!function(){var e=document,i=e.createElement("script");i.src="//mingze-gao.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script> </article> </div> </div> </main> <footer class=md-footer> <div class=md-footer-nav> <nav class="md-footer-nav__inner md-grid" aria-label=Footer> <a href=../merge-compustat-and-crsp/ title="Merge Compustat and CRSP" class="md-footer-nav__link md-footer-nav__link--prev" rel=prev> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> Previous </span> Merge Compustat and CRSP </div> </div> </a> <a href=../use-sas-macros-on-wrds/ title="Use SAS macros on WRDS" class="md-footer-nav__link md-footer-nav__link--next" rel=next> <div class=md-footer-nav__title> <div class=md-ellipsis> <span class=md-footer-nav__direction> Next </span> Use SAS macros on WRDS </div> </div> <div class="md-footer-nav__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> </div> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2020 Mingze Gao </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-footer-social> <a href=https://github.com/mgao6767 target=_blank rel=noopener title=github.com class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg> </a> <a href=https://linkedin.com/in/adriangao target=_blank rel=noopener title=linkedin.com class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg> </a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.592d4e23.min.js></script> <script src=../../assets/javascripts/bundle.073197b2.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.01088dc6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> <script src=../../javascripts/extra.js></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script> </body> </html>
