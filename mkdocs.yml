@@ -103,10 +103,6 @@ nav:
     - "Texutal analysis on SEC filings": posts/textual-analysis-on-sec-filings/index.md
     - "Use SAS macros on WRDS": posts/use-sas-macros-on-wrds/index.md
     - "Winsorization in SAS": posts/winsorization-in-sas/index.md
-  - Measures:
-    - "Kyle's Lambda": measures/kyleslambda.md
-    - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
-  - Timetable: timetable.md
   - Teaching Notes:
     - "Beta, unlevered and levered": posts/beta-unlevered-and-levered/index.md
     - "Call option value from two approaches": posts/call-option-value-from-two-approaches/index.md
@@ -124,3 +120,31 @@ nav:
     - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
   # - Interactive Option Pricing: /option-pricing-explained
   # - LeGao - Make LEGO Mosaics: /legao
+  - Measures:
+    - Overview: measures/measures.md
+    - Firm Characteristics:
+      - Accounting Restatement: measures/accounting_restatement.md
+      - Asset Tangibility: measures/asset_tangibility.md
+      - Book Leverage: measures/book_leverage.md
+      - Capital Expenditure: measures/capital_expenditure.md
+      - Credit Rating: measures/credit_rating.md
+      - Executive Ownership: measures/executive_ownership.md
+      - Firm Size: measures/firm_size.md
+      - Market to Book: measures/market_to_book.md
+      - ROA: measures/roa.md
+      - ROE: measures/roe.md
+    - Bank Holding Company (BHC) Characteristics:
+      - BHC Size: measures/bhc_size.md
+      - BHC Loan Growth: measures/bhc_loan_growth.md
+      - BHC FX Exposure: measures/bhc_fx_exposure.md
+      - BHC NetIncome/Assets: measures/bhc_netincome_to_assets.md
+      - BHC Dividend/Assets: measures/bhc_dividend_to_assets.md
+      - BHC RegulatoryCapital/Assets: measures/bhc_regcap_to_assets.md
+      - BHC Tier1Capital/Assets: measures/bhc_tier1cap_to_assets.md
+      - BHC Gross IR Hedging: measures/bhc_gross_ir_hedging.md
+      - BHC Gross FX Hedging: measures/bhc_gross_fx_hedging.md
+      - BHC Maturity Gap: measures/bhc_maturity_gap.md
+  - Market Microstructure:
+      - "Kyle's Lambda": measures/kyleslambda.md
+      - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
+  - Timetable: timetable.md
