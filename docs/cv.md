@@ -40,7 +40,8 @@ ___
 ## 👨🏻‍🏫 Teaching Portfolio
 
 | Time             | Course                                                                        | Institution          |
-|------------------|-------------------------------------------------------------------------------|----------------------|
+| ---------------- | ----------------------------------------------------------------------------- | -------------------- |
+| Semester 2, 2020 | FINC6001 Intermediate Corproate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
 | Semester 1, 2020 | FINC2012 Corproate Finance II                                                 | University of Sydney |
 | Semester 2, 2019 | FINC2012 Corproate Finance II <br>FINC6010 Derivative Securities              | University of Sydney |
 | Semester 1, 2019 | FINC2011 Corproate Finance I <br>FINC2012 Corproate Finance II                | University of Sydney |
