@@ -40,7 +40,7 @@ My (growing) collection of various measures' definitions. Please see [mingze-gao
 * [Stock Delisting](https://mingze-gao.com/measures/stock_delisting)
     * Stocks delisted due to financial troubles or as a result of being merged.
     * Source: `wrds.crsp.dse`.
- [Tobin's Q](https://mingze-gao.com/measures/tobin_q)
+* [Tobin's Q](https://mingze-gao.com/measures/tobin_q)
     * Tobin's Q
     * Source: `wrds.comp.funda`.
     * Reference: [Gompers, Ishii and Metrick (2003 QJE)](https://doi.org/10.1162/00335530360535162), and [Kaplan and Zingales (1997 QJE)](https://doi.org/10.1162/003355397555163).
