@@ -1,6 +1,6 @@
 # Measures
 
-My (growing) collection of various measures' definitions. Please see [mingze-gao.com](https://mingze-gao.com) for how to compute all these measures in one click.
+My (growing) collection of various measures' definitions. Please see [frds.io](https://frds.io) for how to compute all these measures in one click.
 
 ## Firm Characteristics
 
