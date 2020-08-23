@@ -5,6 +5,26 @@ current and past semesters since 2018.
 
 ## 2020 Semester 2
 
+All tutorials are delivered online due to COVID-19. Please check Canvas for the Zoom link for each tutorial.
+
+### FINC6001 Intermediate Corporate Finance
+
+| Type    | Time          | Schedule     |
+|---------|---------------|--------------|
+| Tutoial | Monday 9am    | Week 1 to 13 |
+| Tutoial | Monday 9am    | Week 1 to 13 |
+| Tutoial | Thursday 11am | Week 1 to 13 |
+| Tutoial | Thursday 2pm  | Week 1 to 13 |
+
+### FINC6010 Derivatives Securities
+
+| Type     | Time         | Scedule      |
+|----------|--------------|--------------|
+| Tutorial | Wednesda 5pm | Week 1 to 13 |
+| Tutorial | Wednesda 6pm | Week 1 to 13 |
+| Tutorial | Wednesda 7pm | Week 1 to 13 |
+| Tutorial | Thursday 7m  | Week 1 to 13 |
+
 
 ## 2020 Semester 1
 ### FINC2012 Corporate Finance II
