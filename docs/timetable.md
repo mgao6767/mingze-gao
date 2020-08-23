@@ -18,12 +18,12 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 
 ### FINC6010 Derivatives Securities
 
-| Type     | Time         | Scedule      |
-|----------|--------------|--------------|
-| Tutorial | Wednesda 5pm | Week 1 to 13 |
-| Tutorial | Wednesda 6pm | Week 1 to 13 |
-| Tutorial | Wednesda 7pm | Week 1 to 13 |
-| Tutorial | Thursday 7m  | Week 1 to 13 |
+| Type     | Time          | Scedule      |
+|----------|---------------|--------------|
+| Tutorial | Wednesday 5pm | Week 1 to 13 |
+| Tutorial | Wednesday 6pm | Week 1 to 13 |
+| Tutorial | Wednesday 7pm | Week 1 to 13 |
+| Tutorial | Thursday 7m   | Week 1 to 13 |
 
 
 ## 2020 Semester 1
