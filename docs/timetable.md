@@ -9,22 +9,21 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 
 ### FINC6001 Intermediate Corporate Finance
 
-| Type    | Time          | Schedule     |
-|---------|---------------|--------------|
-| Tutoial | Monday 9am    | Week 1 to 13 |
-| Tutoial | Monday 9am    | Week 1 to 13 |
-| Tutoial | Thursday 11am | Week 1 to 13 |
-| Tutoial | Thursday 2pm  | Week 1 to 13 |
-
-### FINC6010 Derivatives Securities
-
 | Type     | Time          | Scedule      |
-|----------|---------------|--------------|
+| -------- | ------------- | ------------ |
 | Tutorial | Wednesday 5pm | Week 1 to 13 |
 | Tutorial | Wednesday 6pm | Week 1 to 13 |
 | Tutorial | Wednesday 7pm | Week 1 to 13 |
 | Tutorial | Thursday 7m   | Week 1 to 13 |
 
+### FINC6010 Derivatives Securities
+
+| Type    | Time          | Schedule     |
+| ------- | ------------- | ------------ |
+| Tutoial | Monday 9am    | Week 1 to 13 |
+| Tutoial | Monday 7pm    | Week 1 to 13 |
+| Tutoial | Thursday 11am | Week 1 to 13 |
+| Tutoial | Thursday 2pm  | Week 1 to 13 |
 
 ## 2020 Semester 1
 ### FINC2012 Corporate Finance II
