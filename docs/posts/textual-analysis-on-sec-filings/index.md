@@ -41,7 +41,7 @@ def parse(line):
     # an example:
     # "99780|TRINITY INDUSTRIES INC|8-K|2020-01-15|edgar/data/99780/0000099780-\
     # 20-000008.txt|edgar/data/99780/0000099780-20-000008-index.html"
-    tuple(line.split('|')[:5])
+    line = tuple(line.split('|')[:5])
     l = list(line)
     l[-1] = EDGAR_BASE + l[-1]
     return tuple(l)
