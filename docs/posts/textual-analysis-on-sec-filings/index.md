@@ -104,7 +104,7 @@ def download(job):
 
 if __name__ == "__main__":
     # select what to download
-    conn = create_connection(r"edgar-idx.sqlite3")
+    conn = sqlite3.connect(r"edgar-idx.sqlite3")
     c = conn.cursor()
     c.execute('SELECT * FROM edgar_idx WHERE file_type="8-K";')
     jobs = c.fetchall()
