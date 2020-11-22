@@ -23,8 +23,8 @@ ___
 
 ### 📰 Journal Article
 ### 📄 Conference Paper
-1. "Organization Capital and Executive Performance Incentives"
-    - ***R&R at the Journal of Banking and Finance***.
+1. [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
+    - ***Journal of Banking and Finance*, forthcoming**.
     - The 2020 FMA Annual Meeting, October 2020, New York.
     - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- ***Outstanding PhD Student Paper Award***
     - The 31st Asian Finance Association (AsianFA) Annual Meeting, July 2019, Ho Chi Minh City, Vietnam.
@@ -40,7 +40,7 @@ ___
 ## 👨🏻‍🏫 Teaching Portfolio
 
 | Time             | Course                                                                        | Institution          |
-| ---------------- | ----------------------------------------------------------------------------- | -------------------- |
+|------------------|-------------------------------------------------------------------------------|----------------------|
 | Semester 2, 2020 | FINC6001 Intermediate Corproate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
 | Semester 1, 2020 | FINC2012 Corproate Finance II                                                 | University of Sydney |
 | Semester 2, 2019 | FINC2012 Corproate Finance II <br>FINC6010 Derivative Securities              | University of Sydney |
