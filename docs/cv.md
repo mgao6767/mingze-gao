@@ -22,7 +22,6 @@ ___
 ## Research
 
 ### 📰 Journal Article
-### 📄 Conference Paper
 1. [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
     - ***Journal of Banking and Finance***, forthcoming.
     - The 2020 FMA Annual Meeting, October 2020, New York.
@@ -30,6 +29,8 @@ ___
     - The 31st Asian Finance Association (AsianFA) Annual Meeting, July 2019, Ho Chi Minh City, Vietnam.
     - Accounting & Finance Association of Australia and New Zealand (AFAANZ) Annual Conference 2019, July 2019, Brisbane, Australia.
     - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
+
+### 📄 Conference Paper
 
 ### 🏆 Grants & Awards
 
