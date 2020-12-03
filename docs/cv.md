@@ -14,7 +14,7 @@ disqus: ""
 
 - Thesis: "Liquidity, Adverse Selection, and Information Asymmetry around Corporate Earnings Announcements"
 - Supervisor: [Prof. Joakim Westerholm](https://business.sydney.edu.au/staff/joakim.westerholm)
-- Award: University of Syndey Honours Scholarship 2016
+- Award: University of Sydney Honours Scholarship 2016
 
 **Bachelor of Commerce**, **Econometrics & Finance**, Unviersity of Sydney (2013 - 2015)
 
@@ -42,22 +42,22 @@ ___
 
 | Time             | Course                                                                        | Institution          |
 |------------------|-------------------------------------------------------------------------------|----------------------|
-| Semester 2, 2020 | FINC6001 Intermediate Corproate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
-| Semester 1, 2020 | FINC2012 Corproate Finance II                                                 | University of Sydney |
-| Semester 2, 2019 | FINC2012 Corproate Finance II <br>FINC6010 Derivative Securities              | University of Sydney |
-| Semester 1, 2019 | FINC2011 Corproate Finance I <br>FINC2012 Corproate Finance II                | University of Sydney |
-| Semester 2, 2018 | FINC2011 Corproate Finance I <br>FINC2012 Corproate Finance II                | University of Sydney |
-| Semester 1, 2018 | FINC2012 Corproate Finance II                                                 | University of Sydney |
-| Semester 2, 2017 | FINC2012 Corproate Finance II <br>FINC2013 Mergers & Acquisitions             | University of Sydney |
-| Semester 1, 2017 | FINC2012 Corproate Finance II <br>FINC3011 International Financial Management | University of Sydney |
-| Semester 2, 2016 | FINC2012 Corproate Finance II                                                 | University of Sydney |
+| Semester 2, 2020 | FINC6001 Intermediate Corporate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
+| Semester 1, 2020 | FINC2012 Corporate Finance II                                                 | University of Sydney |
+| Semester 2, 2019 | FINC2012 Corporate Finance II <br>FINC6010 Derivative Securities              | University of Sydney |
+| Semester 1, 2019 | FINC2011 Corporate Finance I <br>FINC2012 Corporate Finance II                | University of Sydney |
+| Semester 2, 2018 | FINC2011 Corporate Finance I <br>FINC2012 Corporate Finance II                | University of Sydney |
+| Semester 1, 2018 | FINC2012 Corporate Finance II                                                 | University of Sydney |
+| Semester 2, 2017 | FINC2012 Corporate Finance II <br>FINC3013 Mergers & Acquisitions             | University of Sydney |
+| Semester 1, 2017 | FINC2012 Corporate Finance II <br>FINC3011 International Financial Management | University of Sydney |
+| Semester 2, 2016 | FINC2012 Corporate Finance II                                                 | University of Sydney |
 
 ___
 ## 👨🏻‍💼 Professional Experience
 
 **Quantitative Consultant** - Infinitas Asset Management Ltd (2017 - Present)
 
-[Infinitas Asset Management](https://www.infinitasmgt.com.au) (ABN 78 129 953 724 / AFSL 326087) is a boutique financial adviser and investment manager with a wide client base, including high and ultra-high net worth individuals, family officies, SMSFs, foundations and not-for-profit groups.
+[Infinitas Asset Management](https://www.infinitasmgt.com.au) (ABN 78 129 953 724 / AFSL 326087) is a boutique financial adviser and investment manager with a wide client base, including high and ultra-high net worth individuals, family offices, SMSFs, foundations and not-for-profit groups.
 
 **Co-Founder, Director** - Transcendental Capital Pty Ltd (2018 - Present)
 
