@@ -8,37 +8,43 @@ disqus: ""
 
 **PhD**, **Finance**, University of Sydney (2017 - Present)
 
-- Supervisors: [Prof. Buhui Qiu](https://business.sydney.edu.au/staff/buhui.qiu) and [Dr. Henry Leung](https://business.sydney.edu.au/staff/henry.leung)
+- Supervisors: [Dr. Buhui Qiu](https://business.sydney.edu.au/staff/buhui.qiu) and [Dr. Henry Leung](https://business.sydney.edu.au/staff/henry.leung)
 
 **Bachelor of Commerce (Hon)**, **Finance**, Unviersity of Sydney (2016)
 
 - Thesis: "Liquidity, Adverse Selection, and Information Asymmetry around Corporate Earnings Announcements"
-- Supervisor: [Prof. Joakim Westerholm](https://business.sydney.edu.au/staff/joakim.westerholm)
-- Award: University of Sydney Honours Scholarship 2016
+- Supervisor: [Dr. Joakim Westerholm](https://business.sydney.edu.au/staff/joakim.westerholm)
 
 **Bachelor of Commerce**, **Econometrics & Finance**, Unviersity of Sydney (2013 - 2015)
 
 ___
-## Research
+## 📄 Publications
 
-### 📰 Journal Article
-1. [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
-    - ***Journal of Banking and Finance***, forthcoming.
-    - The 2020 FMA Annual Meeting, October 2020, New York.
+### Journal Article
+- **Gao, M.**, Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
+
+### Conference Paper
+- [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710), with Henry Leung and Buhui Qiu.
+    - The 2020 FMA Annual Meeting (Virtual), October 2020.
     - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- ***Outstanding PhD Student Paper Award***
-    - The 31st Asian Finance Association (AsianFA) Annual Meeting, July 2019, Ho Chi Minh City, Vietnam.
-    - Accounting & Finance Association of Australia and New Zealand (AFAANZ) Annual Conference 2019, July 2019, Brisbane, Australia.
     - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
 
-### 📄 Conference Paper
-
-### 🏆 Grants & Awards
-
+___
+## 🏆 Grants & Awards
+- **The Paulette Isabel Jones PhD Completion Scholarship**, University of Sydney, 2020.
 - **AFA Ph.D. Student Travel Grant Award** for the 2020 Annual Meeting in San Diego, California from January 3-5, 2020.
 - **Outstanding PhD Student Paper Award** at the 3rd Global PhD Colloquium in Fordharm University, New York, April 2019.
+- **The University of Sydney Honours Scholarship**, University of Sydney, 2016.
 
 ___
-## 👨🏻‍🏫 Teaching Portfolio
+## 🏛 Academic Experience
+- **Visiting Scholar**, University of Hong Kong, 2019 (cancelled).
+- **Member** of the [Business Financing and Banking Research Group](https://www.sydney.edu.au/business/our-research/research-groups/business-financing-and-banking-research-group.html) at the University of Sydney.
+- **Discussant**:
+    - The 2020 FMA Annual Meeting (Virtual), October 2020.
+
+___
+## 👨🏻‍🏫 Teaching Experience
 
 | Time             | Course                                                                        | Institution          |
 |------------------|-------------------------------------------------------------------------------|----------------------|
