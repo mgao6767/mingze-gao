@@ -8,7 +8,7 @@ So, ***why not run all possible model specifications and find a concise way to r
 
 ## The Specification Curve
 
-The idea of specificaiton curve is a direct answer to the question provided by Simonsohn, Simmons and Nelson (2020).[^1][^2]
+The idea of specificaiton curve is a direct answer to the question provided by Simonsohn, Simmons and Nelson (2020).[^1] [^2]
 
 To intuitively explain this concept, below is the Figure 2 from my recent paper [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710) on the *Journal of Banking & Finance*,[^3] which is used to show the robustness of an substitution effect of organization capital on executive pay-for-performance sensitivity. Therefore, the estimated coefficients for the variable of interest *OC* are expected to be negative across different model specifications.
 
@@ -78,4 +78,4 @@ The associated help file contains a step-by-step guide on using `specurve`. To o
 
 [^2]: Special thanks to [Rawley Heimer](https://www.bc.edu/bc-web/schools/carroll-school/faculty-research/faculty-directory/rawley-heimer.html) from Boston College who visited our discipline in 2019 and introduced the Specification Curve Analysis to us in the seminar on research methods. 
 
-[^3] Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
+[^3]: Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
