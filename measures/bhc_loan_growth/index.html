@@ -2,11 +2,11 @@
 \text{LoanGrowth}_{i,t} = \ln \left( \frac{\text{BHCK2122}_{i,t}}{\text{BHCK2122}_{i,t-1}} \right)
 </script> </div> <p>where <code>BHCK2122</code> is from the Bank Holding Company data by the Federal Reserve Bank of Chicago.<sup id=fnref:1><a class=footnote-ref href=#fn:1>1</a></sup> </p> <div class="admonition warning"> <p class=admonition-title>Warning</p> <p>A caveat is that if <span><span class=MathJax_Preview>\text{BHCK2122}_{i,t}</span><script type=math/tex>\text{BHCK2122}_{i,t}</script></span> is 0, then this measure would be invalid as <span><span class=MathJax_Preview>\ln(0)</span><script type=math/tex>\ln(0)</script></span> is undefined. In this case, I replace it with -1 which means the total loans is reduced by 100% to 0.</p> </div> <p>An alternative measure of loan growth, the percentage change in the total loans, is not affected by this issue.</p> <div> <div class=MathJax_Preview> \text{LoanGrowthPct}_{i,t} = \left( \frac{\text{BHCK2122}_{i,t}}{\text{BHCK2122}_{i,t-1}} -1\right) \times 100 </div> <script type="math/tex; mode=display">
 \text{LoanGrowthPct}_{i,t} = \left( \frac{\text{BHCK2122}_{i,t}}{\text{BHCK2122}_{i,t-1}} -1\right) \times 100
-</script> </div> <p>Their correlation is over 99%.</p> <h2 id=equivalent-stata-code>Equivalent Stata Code<a class=headerlink href=#equivalent-stata-code title="Permanent link">&para;</a></h2> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=k>use</span> <span class=s>&quot;~/frds/result/BankHoldingCompany LoanGrowth.dta&quot;</span>,<span class=k> clear</span>
+</script> </div> <p>Their correlation is over 99%.</p> <h2 id=equivalent-stata-code>Equivalent Stata Code<a class=headerlink href=#equivalent-stata-code title="Permanent link">&para;</a></h2> <table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre><span></span><span class=normal>1</span>
+<span class=normal>2</span>
+<span class=normal>3</span>
+<span class=normal>4</span>
+<span class=normal>5</span></pre></div></td><td class=code><div class=highlight><pre><span></span><code><span class=k>use</span> <span class=s>&quot;~/frds/result/BankHoldingCompany LoanGrowth.dta&quot;</span>,<span class=k> clear</span>
 <span class=k>gen</span> qtr = <span class=nf>qofd</span>(RSSD9999)<span class=k></span>
 <span class=k>format</span> qtr <span class=nx>%tq</span><span class=k></span>
 <span class=k>xtset</span> RSSD9001 qtr, quarterly<span class=k></span>
