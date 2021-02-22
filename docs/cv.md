@@ -48,6 +48,7 @@ ___
 
 | Time             | Course                                                                        | Institution          |
 |------------------|-------------------------------------------------------------------------------|----------------------|
+| Semester 1, 2021 | FINC2011 Corporate Finance I <br>FINC6013 International Business Finance      | University of Sydney |
 | Semester 2, 2020 | FINC6001 Intermediate Corporate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
 | Semester 1, 2020 | FINC2012 Corporate Finance II                                                 | University of Sydney |
 | Semester 2, 2019 | FINC2012 Corporate Finance II <br>FINC6010 Derivative Securities              | University of Sydney |
