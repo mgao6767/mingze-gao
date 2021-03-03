@@ -51,6 +51,17 @@ $$\phi(k)=\sum_{j=1}^{k-1} \left[\frac{2(k-j)}{k} \right]^2\delta(j)$$
 
 $$\delta(j)=\frac{\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}$$
 
+!!! warning "Erratum"
+    Note that there's a missing $T$ in the numerator of $\delta(j)$ above. It is actually missing the 1988 RFS paper and the 1998 JE'mtric paper, but has been corrected in the 1990 RFS Issue 1: [https://doi.org/10.1093/rfs/3.1.ii](https://doi.org/10.1093/rfs/3.1.ii). The corrected version reads:
+
+    $$\delta(j)=\frac{T\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}$$
+
+    To correct it in the example code below, change the highlighted line 51 to:
+    ```
+    delta_arr = T * b_arr / np.square(np.sum(sqr_demeaned_x))
+    ```
+
+    I thank Simon Jurkatis for letting me know about the erratum.
 
 ## Source Code 
 
@@ -58,7 +69,7 @@ $$\delta(j)=\frac{\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\
 
 This example Python code has been optimized for speed but serves only demonstration purpose. It may contain errors.
 
-```Python linenums="1"
+```Python linenums="1" hl_lines="51"
 # LoMacKinlay.py
 import numpy as np
 from numba import jit
