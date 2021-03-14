@@ -1,7 +1,29 @@
 # Timetable for Teaching and Consultation
 
-Below is the schedule of my tutorials, workshops and consulations for the
+Below is the schedule of my tutorials, workshops and consultations for the
 current and past semesters since 2018.
+
+## 2021 Semester 1
+
+All tutorials are delivered online due to COVID-19. Please check Canvas for the Zoom link for each tutorial.
+
+### FINC2011 Corporate Finance I
+
+| Type     | Time        | Schedule     |
+| -------- | ----------- | ------------ |
+| Tutorial | Monday 9am  | Week 2 to 12 |
+| Tutorial | Monday 11am | Week 2 to 12 |
+| Tutorial | Monday 5pm  | Week 2 to 12 |
+| Tutorial | Monday 6pm  | Week 2 to 12 |
+
+### FINC6013 International Business Finance
+
+| Type     | Time          | Schedule     |
+| -------- | ------------- | ------------ |
+| Tutorial | Thursday 9am  | Week 2 to 12 |
+| Tutorial | Thursday 10am | Week 2 to 12 |
+| Tutorial | Thursday 1pm  | Week 2 to 12 |
+| Tutorial | Thursday 2pm  | Week 2 to 12 |
 
 ## 2020 Semester 2
 
@@ -9,7 +31,7 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 
 ### FINC6001 Intermediate Corporate Finance
 
-| Type     | Time          | Scedule      |
+| Type     | Time          | Schedule     |
 | -------- | ------------- | ------------ |
 | Tutorial | Wednesday 5pm | Week 1 to 12 |
 | Tutorial | Wednesday 6pm | Week 1 to 12 |
@@ -18,12 +40,12 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 
 ### FINC6010 Derivatives Securities
 
-| Type    | Time          | Schedule     |
-| ------- | ------------- | ------------ |
-| Tutoial | Monday 9am    | Week 1 to 12 |
-| Tutoial | Monday 7pm    | Week 1 to 12 |
-| Tutoial | Thursday 11am | Week 1 to 12 |
-| Tutoial | Thursday 2pm  | Week 1 to 12 |
+| Type     | Time          | Schedule     |
+| -------- | ------------- | ------------ |
+| Tutorial | Monday 9am    | Week 1 to 12 |
+| Tutorial | Monday 7pm    | Week 1 to 12 |
+| Tutorial | Thursday 11am | Week 1 to 12 |
+| Tutorial | Thursday 2pm  | Week 1 to 12 |
 
 ## 2020 Semester 1
 ### FINC2012 Corporate Finance II
@@ -341,7 +363,7 @@ All changed to Zoom online sessions due to COVID-19.
 <tr>
 <td><strong>Consultation</strong></td>
 <td>Thursday 15:00</td>
-<td><a href="https://web.timetable.usyd.edu.au/venuebookings/venueDetails.jsp?vs=0&amp;venueId=1897">Economics &amp; Business Builiding (H69) Room 215</a></td>
+<td><a href="https://web.timetable.usyd.edu.au/venuebookings/venueDetails.jsp?vs=0&amp;venueId=1897">Economics &amp; Business Building (H69) Room 215</a></td>
 </tr>
 </table>
 
