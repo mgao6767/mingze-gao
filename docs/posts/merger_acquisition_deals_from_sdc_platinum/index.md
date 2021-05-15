@@ -3,6 +3,7 @@
 Thomson One Banker SDC Platinum database provides comprehensive M&A transaction data from early 1980s, and is perhaps the most widely used M&A database in the world. 
 
 This post documents the steps of downloading M&A deals from the SDC Platinum database. Specifically, I show how to download the complete M&A data where:
+
 * both the acquiror and the target are US firms,
 * the acquiror is a public firm or a private firm,
 * the target is a public firm, a private firm, or a subsidiary,
