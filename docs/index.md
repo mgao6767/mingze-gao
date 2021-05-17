@@ -3,21 +3,22 @@
 <img src="/images/Adrian.jpg" alt="Mingze Gao" width="30%">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 
-* I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com).
-* Finance PhD candidate, research assistant and tutor at the University of Sydney. 
-* Research interests: corporate finance, banking, market microcstructure.
-* Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds).
-* Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/).
+- I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), Ph.D. in Finance.
+- Postdoctoral Research Fellow at the University of Sydney.
+- Research interests: corporate finance, banking, market microcstructure.
+  <!-- - Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds). -->
+  <!-- - Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/). -->
 
 **Contact**
 
-* Email: mingze.gao@sydney.edu.au
-* Room 236E, Postgraduate Research Centre <br> The Codrington Building (H69)
+- Email: mingze.gao@sydney.edu.au
+- Room 236E, Postgraduate Research Centre <br> The Codrington Building (H69)
   <br>The University of Sydney NSW 2006
 
 ---
 
 <canvas id="site-stats" width="400" height="200"></canvas>
+
 <script>
 var ctx = document.getElementById('site-stats');
 var config = { 
@@ -57,7 +58,6 @@ var config = {
 };
 var myChart = new Chart(ctx, config);
 </script>
-
 
 <!-- Load the Embed API library -->
 <script>
