@@ -11,19 +11,19 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 
 | Type     | Time        | Schedule     |
 | -------- | ----------- | ------------ |
-| Tutorial | Monday 9am  | Week 2 to 12 |
-| Tutorial | Monday 11am | Week 2 to 12 |
-| Tutorial | Monday 5pm  | Week 2 to 12 |
-| Tutorial | Monday 6pm  | Week 2 to 12 |
+| Tutorial | Monday 9am  | Week 2 to 13 |
+| Tutorial | Monday 11am | Week 2 to 13 |
+| Tutorial | Monday 5pm  | Week 2 to 13 |
+| Tutorial | Monday 6pm  | Week 2 to 13 |
 
 ### FINC6013 International Business Finance
 
 | Type     | Time          | Schedule     |
 | -------- | ------------- | ------------ |
-| Tutorial | Thursday 9am  | Week 2 to 12 |
-| Tutorial | Thursday 10am | Week 2 to 12 |
-| Tutorial | Thursday 1pm  | Week 2 to 12 |
-| Tutorial | Thursday 2pm  | Week 2 to 12 |
+| Tutorial | Thursday 9am  | Week 2 to 13 |
+| Tutorial | Thursday 10am | Week 2 to 13 |
+| Tutorial | Thursday 1pm  | Week 2 to 13 |
+| Tutorial | Thursday 2pm  | Week 2 to 13 |
 
 ## 2020 Semester 2
 
