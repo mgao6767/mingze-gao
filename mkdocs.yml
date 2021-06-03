@@ -16,7 +16,7 @@ theme:
   name: material
   features:
     - tabs
-    - navigation.tabs
+    # - navigation.tabs
     - navigation.top
   language: en
   palette:
@@ -126,8 +126,8 @@ nav:
       - "Setup Docker/Ngnix and Let's Encrypt on Ubuntu": posts/docker-nginx-letsencrypt/index.md
       - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
   - Apps:
-      - Interactive Option Pricing: /option-pricing-explained
-      - LeGao - Make LEGO Mosaics: /legao
+      - "Interactive Option Pricing": /option-pricing-explained
+      - "LeGao - Make LEGO Mosaics": /legao
   # - Measures:
   #     - Overview: measures/measures.md
   #     - Firm Characteristics:
