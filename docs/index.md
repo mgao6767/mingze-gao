@@ -1,21 +1,22 @@
-# A Random Walk Away Finance.
+# A random walk away finance
 
 <img src="/images/Adrian.jpg" alt="Mingze Gao" width="30%">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script> -->
 
 - I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), Ph.D. in Finance.
 - Postdoctoral Research Fellow at the University of Sydney.
-- Research interests: corporate finance, banking, market microcstructure.
+- Research interests: corporate finance and banking.
+- [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
   <!-- - Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds). -->
   <!-- - Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/). -->
 
 **Contact**
 
 - Email: mingze.gao@sydney.edu.au
-- Room 236E, Postgraduate Research Centre <br> The Codrington Building (H69)
+- Room 512<br>The Codrington Building (H69)
   <br>The University of Sydney NSW 2006
 
----
+<!-- ---
 
 <canvas id="site-stats" width="400" height="200"></canvas>
 
@@ -57,10 +58,10 @@ var config = {
     }
 };
 var myChart = new Chart(ctx, config);
-</script>
+</script> -->
 
 <!-- Load the Embed API library -->
-<script>
+<!-- <script>
 (function(w,d,s,g,js,fs){
   g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
   js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
@@ -104,4 +105,4 @@ fetch('https://api.adrian-gao.com/ga/access_token')
         report.execute();
     })
 });
-</script>
+</script> -->

@@ -16,12 +16,20 @@ theme:
   name: material
   features:
     - tabs
-    # - navigation.tabs
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
   language: en
   palette:
-    primary: white
-    accent: indigo
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
@@ -37,14 +45,14 @@ extra:
       link: https://github.com/mgao6767
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/adriangao
-
-# Google Analytics
-google_analytics:
-  - UA-114057186-1
-  - auto
+  analytics:
+    provider: google
+    property: UA-114057186-1
+  generator: false
 
 # Plugins
 plugins:
+  - tags
   - search # necessary for search to work
   - git-revision-date-localized
   - minify:
@@ -89,7 +97,6 @@ extra_javascript:
 nav:
   - Home: index.md
   - CV: cv.md
-  - FRDS: https://frds.io
   - Specurve: specurve/index.md
   - Research Notes:
       - "Download M&A deals from SDC Platinum": posts/merger_acquisition_deals_from_sdc_platinum/index.md
@@ -125,9 +132,7 @@ nav:
       - "Python Shared Memory in Multiprocessing": posts/python-shared-memory-in-multiprocessing/index.md
       - "Setup Docker/Ngnix and Let's Encrypt on Ubuntu": posts/docker-nginx-letsencrypt/index.md
       - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
-  - Apps:
-      - "Interactive Option Pricing": /option-pricing-explained
-      - "LeGao - Make LEGO Mosaics": /legao
+  - Apps: apps.md
   # - Measures:
   #     - Overview: measures/measures.md
   #     - Firm Characteristics:
