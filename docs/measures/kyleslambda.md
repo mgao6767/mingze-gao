@@ -1,3 +1,8 @@
+---
+redirect: https://frds.io/measures/kyle_lambda/
+disqus: ""
+---
+
 # Kyle's Lambda
 
 A measure of market impact cost from Kyle (1985), which can be interpreted as
