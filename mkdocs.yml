@@ -57,6 +57,11 @@ plugins:
   - git-revision-date-localized
   - minify:
       minify_html: true
+  - redirects:
+      redirect_maps:
+        curriculum-vitae/index.md: https://mingze-gao.com/cv/
+        measures/kyleslambda.md: https://frds.io/measures/kyle_lambda/
+        posts/computing-jackknifed-coefficient-estimates-in-sas/index.md: /posts/compute-jackknife-coefficient-estimates-in-sas/index.md
 
 # Extensions
 markdown_extensions:
@@ -110,7 +115,7 @@ nav:
       - "Firm Historical Headquarter State from SEC 10K/Q Filings": posts/firm-historical-headquarter-state-from-10k/index.md
       - "Generate Fama-French industry classification from SIC": posts/generate-fama-french-industry-classification-from-sic/index.md
       - "Identify Chinese State-Owned Enterprise using CSMAR": posts/identify-chinese-state-owned-enterprise-using-csmar/index.md
-      - "Kyle's Lambda": measures/kyleslambda.md
+      # - "Kyle's Lambda": measures/kyleslambda.md
       - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
       - "Merge Compustat and CRSP": posts/merge-compustat-and-crsp/index.md
       - "Specification Curve Analysis": specurve/index.md

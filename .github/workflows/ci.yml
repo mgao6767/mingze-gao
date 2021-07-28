@@ -14,5 +14,5 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install git+https://${{ secrets.GH_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
-      - run: pip install mkdocs-git-revision-date-localized-plugin mkdocs-minify-plugin
+      - run: pip install mkdocs-git-revision-date-localized-plugin mkdocs-minify-plugin mkdocs-redirects
       - run: mkdocs gh-deploy --force
