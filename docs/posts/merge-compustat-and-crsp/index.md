@@ -26,6 +26,8 @@ where
     /* of the Link Date range, respectively.                           */
     (&end_yr+1 >= year(linkdt) or linkdt = .B) and 
     (&beg_yr-1 <= year(linkenddt) or linkenddt = .E)
+    /* primary link assigned by Compustat or CRSP */
+    and linkprim in ("P", "C") 
 order by 
     gvkey, linkdt;
 quit;
