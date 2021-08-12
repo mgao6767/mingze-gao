@@ -28,7 +28,6 @@ disqus: ""
 ### Conference Paper
 
 - [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710), with Henry Leung and Buhui Qiu.
-
   - The 2020 FMA Annual Meeting (Virtual), October 2020.
   - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- **_Outstanding PhD Student Paper Award_**
   - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
@@ -46,10 +45,10 @@ disqus: ""
 
 ## 🏛 Academic Experience
 
+- **Postdoctoral Research Fellow**, University of Sydney, 2021 - present.
 - **Visiting Scholar**, University of Hong Kong, 2019 (cancelled).
 - **Member** of the [Business Financing and Banking Research Group](https://www.sydney.edu.au/business/our-research/research-groups/business-financing-and-banking-research-group.html) at the University of Sydney.
 - **Discussant**:
-
   - The 2020 FMA Annual Meeting (Virtual), October 2020.
 
 ---
@@ -58,6 +57,7 @@ disqus: ""
 
 | Time             | Course                                                                        | Institution          |
 | ---------------- | ----------------------------------------------------------------------------- | -------------------- |
+| Semester 2, 2021 | FINC2012 Corporate Finance II                                                 | University of Sydney |
 | Semester 1, 2021 | FINC2011 Corporate Finance I <br>FINC6013 International Business Finance      | University of Sydney |
 | Semester 2, 2020 | FINC6001 Intermediate Corporate Finance <br>FINC6010 Derivative Securities    | University of Sydney |
 | Semester 1, 2020 | FINC2012 Corporate Finance II                                                 | University of Sydney |
@@ -73,7 +73,7 @@ disqus: ""
 
 ## 👨🏻‍💼 Professional Experience
 
-**Quantitative Consultant** - Infinitas Asset Management Ltd (2017 - Present)
+**Quantitative Consultant** - Infinitas Asset Management Ltd (2017 - 2020)
 
 [Infinitas Asset Management](https://www.infinitasmgt.com.au) (ABN 78 129 953 724 / AFSL 326087) is a boutique financial adviser and investment manager with a wide client base, including high and ultra-high net worth individuals, family offices, SMSFs, foundations and not-for-profit groups.
 
