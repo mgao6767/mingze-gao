@@ -1,6 +1,7 @@
 ---
 disqus: ""
 ---
+<!-- markdownlint-disable ul-indent -->
 
 # Curriculum Vitae
 
@@ -8,6 +9,7 @@ disqus: ""
 
 **PhD**, **Finance**, University of Sydney (2017 - 2021)
 
+- Thesis: "Three Essays in Corporate Finance and Banking"
 - Supervisors: [Dr. Buhui Qiu](https://business.sydney.edu.au/staff/buhui.qiu) and [Dr. Henry Leung](https://business.sydney.edu.au/staff/henry.leung)
 
 **Bachelor of Commerce (Hon)**, **Finance**, University of Sydney (2016)
@@ -28,9 +30,9 @@ disqus: ""
 ### Conference Paper
 
 - [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710), with Henry Leung and Buhui Qiu.
-  - The 2020 FMA Annual Meeting (Virtual), October 2020.
-  - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- **_Outstanding PhD Student Paper Award_**
-  - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
+    - The 2020 FMA Annual Meeting (Virtual), October 2020.
+    - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- **_Outstanding PhD Student Paper Award_**
+    - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
 
 ---
 
@@ -46,10 +48,12 @@ disqus: ""
 ## 🏛 Academic Experience
 
 - **Postdoctoral Research Fellow**, University of Sydney, 2021 - present.
-- **Visiting Scholar**, University of Hong Kong, 2019 (cancelled).
-- **Member** of the [Business Financing and Banking Research Group](https://www.sydney.edu.au/business/our-research/research-groups/business-financing-and-banking-research-group.html) at the University of Sydney.
+- **Visiting Scholar**:
+    - University of Hong Kong, 2019 (cancelled).
+- **Member**:
+    - The [Business Financing and Banking Research Group](https://www.sydney.edu.au/business/our-research/research-groups/business-financing-and-banking-research-group.html) at the University of Sydney.
 - **Discussant**:
-  - The 2020 FMA Annual Meeting (Virtual), October 2020.
+    - The 2020 FMA Annual Meeting (Virtual), October 2020.
 
 ---
 
