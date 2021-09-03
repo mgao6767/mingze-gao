@@ -3,6 +3,19 @@
 Below is the schedule of my tutorials, workshops and consultations for the
 current and past semesters since 2018.
 
+## 2021 Semester 2
+
+All tutorials are temporarily delivered online due to COVID-19 until further notice. Please check Canvas for the Zoom link for each tutorial.
+
+### FINC2012 Corporate Finance II
+
+| Type     | Time        | Schedule     |
+| -------- | ----------- | ------------ |
+| Tutorial | Monday 10am | Week 2 to 13 |
+| Tutorial | Monday 11am | Week 2 to 13 |
+| Tutorial | Monday 12pm | Week 2 to 13 |
+| Tutorial | Monday 4pm  | Week 2 to 13 |
+
 ## 2021 Semester 1
 
 All tutorials are delivered online due to COVID-19. Please check Canvas for the Zoom link for each tutorial.
