@@ -179,5 +179,6 @@ endrsubmit;
 signoff;
 ```
 
-> If you use this code above, please consider citing the following article for which it was written:
-> - Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
+Lastly, if you use this code above, please consider citing the following article for which it was written.
+
+> Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
