@@ -17,7 +17,7 @@ theme:
   features:
     - tabs
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.instant
     - navigation.tracking
@@ -47,6 +47,8 @@ extra:
       link: https://github.com/mgao6767
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/adriangao
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:mingze.gao@sydney.edu.au
   analytics:
     provider: google
     property: UA-114057186-1
