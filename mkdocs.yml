@@ -17,8 +17,10 @@ theme:
   features:
     - tabs
     - navigation.tabs
-    - navigation.tabs.sticky
+    # - navigation.tabs.sticky
     - navigation.top
+    - navigation.instant
+    - navigation.tracking
   language: en
   palette:
     - scheme: default
