@@ -4,9 +4,9 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script> -->
 
 - I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), Ph.D. in Finance.
-- Postdoctoral Research Fellow at the University of Sydney.
-- Research interests: corporate finance and banking.
-- [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
+- I now work as a Postdoctoral Research Fellow at the University of Sydney on bank monitoring and risk disclosure with [A/Prof. Buhui Qiu](https://www.sydney.edu.au/business/about/our-people/academic-staff/buhui-qiu.html) and [A/Prof. Eliza Wu](https://www.sydney.edu.au/business/about/our-people/academic-staff/eliza-wu.html) in an Australian Research Council (ARC) Discovery Project (DP).
+- I will be on the job market in late 2023.
+- My [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
   <!-- - Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds). -->
   <!-- - Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/). -->
 
