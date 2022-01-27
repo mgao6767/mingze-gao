@@ -25,7 +25,7 @@ disqus: ""
 
 ### Journal Article
 
-- **Gao, M.**, Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, _Journal of Banking & Finance_, 123, 106017.
+- **Gao, M.**, Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, [_Journal of Banking & Finance_](https://doi.org/10.1016/j.jbankfin.2020.106017), 123, 106017.
 
 ### Conference Paper
 
