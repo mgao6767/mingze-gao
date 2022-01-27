@@ -9,7 +9,7 @@ site_url: https://mingze-gao.com
 # repo_url: https://github.com/squidfunk/mkdocs-material
 
 # Copyright
-copyright: Copyright &copy; 2018 - 2021 Mingze Gao
+copyright: Copyright &copy; 2018 - 2022 Mingze Gao
 
 # Configuration
 theme:
@@ -58,6 +58,7 @@ plugins:
   - tags
   - search # necessary for search to work
   - git-revision-date-localized
+      enable_creation_date: true
   - minify:
       minify_html: true
   - redirects:
