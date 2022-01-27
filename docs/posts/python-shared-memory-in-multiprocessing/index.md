@@ -72,8 +72,8 @@ if __name__ == "__main__":
         (datetime.today(), np.nan, 'abc'),
     ] * 5000000
     df = pd.DataFrame(a, columns=['date', 'val', 'character_col'])
-    # Convert into numpy recarray to preserve the dtypes
-    np_array = df.to_records(index=False)
+    # Convert into numpy recarray to preserve the dtypes (1)!
+    np_array = df.to_records(index=False, column_dtypes={'character_col': 'S6'})
     del df
     shape, dtype = np_array.shape, np_array.dtype
     print(f"np_array's size={np_array.nbytes/1e6}MB")
@@ -116,12 +116,20 @@ if __name__ == "__main__":
     tracemalloc.stop()
 ```
 
+1. Check the note below for preventing segfault.
+
 ## Important Note
 
 !!! warning
     A very important note about using `multiprocessing.shared_memory`, as at June
     2020, is that the `numpy.ndarray` cannot have a `dtype=dtype('O')`. That is, the
-    dtype cannot be `dtype(object)`. If it is, there will be a segmentation fault
-    when child processes try to access the shared memory. I'm not sure if it is a
-    bug, because if the shared memory is accessed from within the main process then
-    there will not be any problem.
+    `dtype` cannot be `dtype(object)`. If it is, there will be a segmentation fault
+    when child processes try to access the shared memory and dereference it. It happens when the column contains strings.
+
+To solve this problem, you need to specify the `dtype` in `df.to_records()`. For example:
+
+``` python
+np_array = df.to_records(index=False，column_dtypes={'character_col': 'S6'})
+```
+
+Here, we specify that `character_col` contains strings of length 6. If it contains Unicode, we can use `'U6'` instead. Longer strings will then be truncated at the specified length. As such, there won't be anymore segfault.
