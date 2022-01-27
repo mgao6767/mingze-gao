@@ -57,7 +57,7 @@ extra:
 plugins:
   - tags
   - search # necessary for search to work
-  - git-revision-date-localized
+  - git-revision-date-localized:
       enable_creation_date: true
   - minify:
       minify_html: true
