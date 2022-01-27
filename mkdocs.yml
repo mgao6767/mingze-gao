@@ -20,6 +20,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
+    - content.code.annotate
   language: en
   palette:
     - scheme: default
@@ -75,6 +76,8 @@ markdown_extensions:
   # - codehilite:
   #     linenums: true
   #     guess_lang: false
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.highlight:

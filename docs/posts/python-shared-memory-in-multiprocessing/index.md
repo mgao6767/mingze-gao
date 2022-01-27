@@ -23,7 +23,7 @@ later I can reconstruct the same array from the buffer of shared memory.
 I performed a simple `numpy.nansum` on the numeric column of the data using two
 methods. The first method uses `multiprocessing.shared_memory` where the 4
 spawned processes directly access the data in the shared memory. The second
-method passes the data to the spawned processes, which effectly means each
+method passes the data to the spawned processes, which effectively means each
 process will have a separate copy of the data.
 
 ### Test Result
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         (datetime.today(), np.nan, 'abc'),
     ] * 5000000
     df = pd.DataFrame(a, columns=['date', 'val', 'character_col'])
-    # Convert into numpy recarray to preserve the dtypes (1)!
+    # Convert into numpy recarray to preserve the dtypes (1)
     np_array = df.to_records(index=False, column_dtypes={'character_col': 'S6'})
     del df
     shape, dtype = np_array.shape, np_array.dtype
