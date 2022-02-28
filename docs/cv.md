@@ -61,6 +61,7 @@ disqus: ""
 
 | Time             | Course                                                                        | Institution          |
 | ---------------- | ----------------------------------------------------------------------------- | -------------------- |
+| Semester 1, 2022 | FINC5090 Finance in the Global Economy <br>FINC6021 Corporate Valuation       | University of Sydney |
 | Semester 2, 2021 | FINC2012 Corporate Finance II                                                 | University of Sydney |
 | Semester 1, 2021 | FINC2011 Corporate Finance I <br>FINC6013 International Business Finance      | University of Sydney |
 | Semester 2, 2020 | FINC6001 Intermediate Corporate Finance <br>FINC6010 Derivative Securities    | University of Sydney |

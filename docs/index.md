@@ -5,7 +5,7 @@
 
 - I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), Ph.D. in Finance.
 - I now work as a Postdoctoral Research Fellow at the University of Sydney on bank monitoring and risk disclosure with [A/Prof. Buhui Qiu](https://www.sydney.edu.au/business/about/our-people/academic-staff/buhui-qiu.html) and [A/Prof. Eliza Wu](https://www.sydney.edu.au/business/about/our-people/academic-staff/eliza-wu.html) in an Australian Research Council (ARC) Discovery Project (DP).
-- I will be on the job market in late 2023.
+- I will be on the job market in mid 2023.
 - My [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
   <!-- - Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds). -->
   <!-- - Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/). -->
@@ -13,7 +13,7 @@
 **Contact**
 
 - Email: mingze.gao@sydney.edu.au
-- Room 512<br>The Codrington Building (H69)
+- Room 516<br>The Codrington Building (H69)
   <br>The University of Sydney NSW 2006
 
 <!-- ---
