@@ -152,5 +152,10 @@ proc sort data=hs.corrected_hist_state_1969_2018 nodupkey; by gvkey fyear; run;
 
 You can download the data I compiled here: [corrected_hist_state_1969_2018.dta.zip](/data/download/corrected_hist_state_1969_2018.dta.zip) (1MB).
 
+## Suggested citation
+
+Lastly, if you use the code/data above, please consider citing the following article for which it was written/constructed.
+
+> Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, *Journal of Banking & Finance*, 123, 106017.
 
 [^1]: The authors note that "for our final sample of 115,432 firm-year observations, we find that over the 1969 to 2003 period, 9,847 (87.50%) never relocate, 1,211 (10.76%) relocate once, 178 (1.58%) relocate twice, and 18 (0.16%) relocate three times."
