@@ -28,7 +28,7 @@ subject to the individual rationality or participation constraint (IR) and incen
 $$
     E\left[u\left(v\left(c\left(V\left(a,o\right)\right)\right)-g\left(a\right)\right)\right] \ge \underline{U}
     \\
-    a \in \argmax_{\hat{a}}E\left[u\left(v\left(c\left(V\left(\hat{a},o\right)\right)\right)-g\left(\hat{a}\right)\right)\right] 
+    a \in \arg\max_{\hat{a}}E\left[u\left(v\left(c\left(V\left(\hat{a},o\right)\right)\right)-g\left(\hat{a}\right)\right)\right]
 $$
 
 We first consider the case where the optimal effort is determined endogenously. Under the [Holmstrom and Milgrom (1987)](https://doi.org/10.2307/1913238) framework, the following assumptions are made:
@@ -39,14 +39,17 @@ We first consider the case where the optimal effort is determined endogenously. 
 4. that the agent chooses his effort continuously in a multiperiod model and the optimal contract is linear, i.e., $c=\phi+\theta V$, where $\phi$ is the fixed wage and $\theta$ represents the proportion of firm outcomes shared with the agent via compensation (i.e., $\theta$ represents the agent’s pay-for-performance sensitivity).
 
 Further, [Holmstrom and Milgrom (1987)](https://doi.org/10.2307/1913238) show that the problem is equivalent to a single-period static problem under these assumptions. For simplicity, we also assume a quadratic cost of effort, $g(a)=\frac{1}{2}ga^2$, so that the principal’s optimization problem becomes:
+
 $$
     \max_{\phi,\theta,a^*} E\left[V-c\right]
 $$
+
 subject to
+
 $$
     E\left[-e^{-\eta\left(c-\frac{1}{2}ga^{*2}\right)}\right] \ge \underline{U}
     \\
-    a^* \in \argmax_{\hat{a}} E\left[-e^{-\eta\left(c-\frac{1}{2}g\hat{a}^2\right)}\right]
+    a^* \in \arg\max_{\hat{a}} E\left[-e^{-\eta\left(c-\frac{1}{2}g\hat{a}^2\right)}\right]
 $$
 
 Substituting in $c=\phi+\theta V$ and $V(a,o)=f(a,o)+\varepsilon$, maximizing the agent’s (negative exponential) utility function is equivalent to maximizing $\phi+\theta f(a,o)-\frac{1}{2}ga^2-\frac{1}{2}\eta \theta^2 \sigma^2$. 
