@@ -1,6 +1,6 @@
 # mktstructure
 
-A simple command-line tool to download data from Refinitiv Tick History and some market microstructure measures.
+A simple command-line tool to download data from Refinitiv Tick History and compute some market microstructure measures.
 
 !!! warning
     This tool is still a work in progress. Some breaking changes may be expected but will be kept minimal.
