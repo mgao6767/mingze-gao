@@ -107,7 +107,10 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
 
 nav:
-  - Home: index.md
+  - Home:
+      - index.md
+      - CV: cv.md
+      - Timetable: timetable.md
   - CV: cv.md
   - Specurve: specurve/index.md
   - Research Notes:
@@ -176,4 +179,4 @@ nav:
   #     - Market Microstructure:
   #         - "Kyle's Lambda": measures/kyleslambda.md
   #         - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
-  - Timetable: timetable.md
+  # - Timetable: timetable.md
