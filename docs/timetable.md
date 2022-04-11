@@ -3,6 +3,25 @@
 Below is the schedule of my tutorials, workshops and consultations for the
 current and past semesters since 2018.
 
+## 2022 Semester 1
+
+All tutorials are temporarily delivered online due to COVID-19 until further notice. Please check Canvas for the Zoom link for each tutorial.
+
+### FINC5090 Finance in the Global Economy
+
+| Type     | Time         | Schedule     |
+| -------- | ------------ | ------------ |
+| Tutorial | Thursday 1pm | Week 2 to 13 |
+| Tutorial | Thursday 2pm | Week 2 to 13 |
+| Tutorial | Thursday 3pm | Week 2 to 13 |
+
+### FINC6021 Corporate Valuation
+
+| Type     | Time        | Schedule     |
+| -------- | ----------- | ------------ |
+| Tutorial | Tuesday 1pm | Week 2 to 13 |
+| Tutorial | Tuesday 2pm | Week 2 to 13 |
+
 ## 2021 Semester 2
 
 All tutorials are temporarily delivered online due to COVID-19 until further notice. Please check Canvas for the Zoom link for each tutorial.
