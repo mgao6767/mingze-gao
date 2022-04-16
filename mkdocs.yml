@@ -77,6 +77,8 @@ markdown_extensions:
   # - codehilite:
   #     linenums: true
   #     guess_lang: false
+  - pymdownx.tabbed:
+      alternate_style: true
   - attr_list
   - md_in_html
   - toc:
@@ -148,6 +150,7 @@ nav:
       - "Minimum variance hedge ratio": posts/minimum-variance-hedge-ratio/index.md
       - "Reconciliation of Black-Scholes variants": posts/reconciliation-of-black-scholes-variants/index.md
   - Personal Blog:
+      - "Centrifuge Problem": posts/centrifuge-problem/index.md
       - "100 Bitcoins forgone for science": posts/100-bitcoins-forgone-for-science/index.md
       - "Accumulator option pricing": posts/accumulator-option-pricing/index.md
       - "Bitcoin address generator in obfuscated Python": posts/bitcoin-address-generator-in-obfuscated-python/index.md
