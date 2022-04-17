@@ -12,6 +12,8 @@ disqus: ""
 - Thesis: "Three Essays in Corporate Finance and Banking"
 - Supervisors: [Dr. Buhui Qiu](https://business.sydney.edu.au/staff/buhui.qiu) and [Dr. Henry Leung](https://business.sydney.edu.au/staff/henry.leung)
 
+**Master of IT**, University of New South Wales (2022 - present)
+
 **Bachelor of Commerce (Hon)**, **Finance**, University of Sydney (2016)
 
 - Thesis: "Liquidity, Adverse Selection, and Information Asymmetry around Corporate Earnings Announcements"
