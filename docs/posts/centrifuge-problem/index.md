@@ -244,7 +244,7 @@ def factorize(k: int, nums: list) -> list:
         >>> factorize(6, [2, 3])
         [2, 2, 2]
         >>> factorize(7, [2, 3])
-        [2, 2, 2, 2, 3]
+        [2, 2, 3]
     """
 
     def _factorize(k, nums, res: list):
