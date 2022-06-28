@@ -6,6 +6,7 @@ The example code below compiled with `gcc` exits successfully. Very interesting.
 
 ```c
 #include <assert.h>
+#include <limits.h>
 #include <stdlib.h>
 
 void f(int n) {
