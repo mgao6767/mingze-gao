@@ -49,7 +49,9 @@
 <span class=normal>25</span>
 <span class=normal>26</span>
 <span class=normal>27</span>
-<span class=normal>28</span></pre></div></td><td class=code><div><pre><span></span><code><span class=cp>#include</span><span class=w> </span><span class=cpf>&lt;assert.h&gt;</span><span class=cp></span>
+<span class=normal>28</span>
+<span class=normal>29</span></pre></div></td><td class=code><div><pre><span></span><code><span class=cp>#include</span><span class=w> </span><span class=cpf>&lt;assert.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span><span class=w> </span><span class=cpf>&lt;limits.h&gt;</span><span class=cp></span>
 <span class=cp>#include</span><span class=w> </span><span class=cpf>&lt;stdlib.h&gt;</span><span class=cp></span>
 
 <span class=kt>void</span><span class=w> </span><span class=nf>f</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>n</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w></span>
@@ -130,7 +132,7 @@
 <span class=w>  </span><span class=c1>// This program will end peacefully!</span>
 <span class=w>  </span><span class=k>return</span><span class=w> </span><span class=mi>0</span><span class=p>;</span><span class=w></span>
 <span class=p>}</span><span class=w></span>
-</code></pre></div></td></tr></table></div> <p>I use <code>uint8_t</code> here because <code>memset()</code> fills 8-bit value. But anyway, the uninitialized local variables <code>x</code> and <code>y</code> both have the same value of <code>n</code> because <code>f(n)</code> writes many <code>n</code> on the stack.</p> <p>Studying C is real fun!</p> <!-- Source file information --> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2022</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2022</span> </small> </div> <!-- Add copied contents from original content.html here --> <!-- Get setting from mkdocs.yml, but allow page-level overrides --> <!-- Inject Disqus into current page --> <h2 id=__comments>Comments</h2> <div id=disqus_thread></div> <script>
+</code></pre></div></td></tr></table></div> <p>I use <code>uint8_t</code> here because <code>memset()</code> fills 8-bit value. But anyway, the uninitialized local variables <code>x</code> and <code>y</code> both have the same value of <code>n</code> because <code>f(n)</code> writes many <code>n</code> on the stack.</p> <p>Studying C is real fun!</p> <!-- Source file information --> <hr> <div class=md-source-file> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 28, 2022</span> <br> Created: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2022</span> </small> </div> <!-- Add copied contents from original content.html here --> <!-- Get setting from mkdocs.yml, but allow page-level overrides --> <!-- Inject Disqus into current page --> <h2 id=__comments>Comments</h2> <div id=disqus_thread></div> <script>
     var disqus_config = function() {
       this.page.url = "https://mingze-gao.com/posts/uninitialized-variable-in-c/"
       this.page.identifier =
