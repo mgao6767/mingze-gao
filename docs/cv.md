@@ -27,16 +27,24 @@ disqus: ""
 
 ### Journal Article
 
-- **Gao, M.**, Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, [_Journal of Banking & Finance_](https://doi.org/10.1016/j.jbankfin.2020.106017), 123, 106017.
+- **Gao, M.**, Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, **[_Journal of Banking & Finance_](https://doi.org/10.1016/j.jbankfin.2020.106017)**, 123, 106017.
 
 ### Conference Paper
 
-- [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710), with Henry Leung and Buhui Qiu.
+- **Corporate Real Estate Holdings and Mergers and Acquisitions**, with Thanh Son Luong and Buhui Qiu.
+    - The 2022 FMA Annual Meeting, October 2022, Atlanta, GA.
+- **[Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)**, with Henry Leung and Buhui Qiu.
     - The 2020 FMA Annual Meeting (Virtual), October 2020.
     - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- **_Outstanding PhD Student Paper Award_**
     - The 32nd Annual PhD Conference in Economics and Business, Australian National University, October 2019, Canberra, Australia.
 
 ---
+
+<!-- ## 🖥️ Work in Progress -->
+
+<!-- - **Lone (Loan) Wolf Pack Risk**, with Iftekhar Hasan, Buhui Qiu and Eliza Wu. -->
+
+<!-- --- -->
 
 ## 🏆 Grants & Awards
 
