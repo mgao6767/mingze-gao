@@ -40,6 +40,7 @@ disqus: ""
 
 ## 🏆 Grants & Awards
 
+- **Publication Award**, University of Sydney, 2022.
 - **The Paulette Isabel Jones PhD Completion Scholarship**, University of Sydney, 2020.
 - **AFA Ph.D. Student Travel Grant Award** for the 2020 Annual Meeting in San Diego, California from January 3-5, 2020.
 - **Outstanding PhD Student Paper Award** at the 3rd Global PhD Colloquium in Fordham University, New York, April 2019.

@@ -18,7 +18,7 @@ theme:
     - tabs
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes
+    # - navigation.indexes
     - navigation.top
     - navigation.tracking
     - content.code.annotate
@@ -110,11 +110,10 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
 
 nav:
-  - Home:
-      - index.md
-      - CV: cv.md
-      - Timetable: timetable.md
-  # - CV: cv.md
+  - Home: index.md
+    # - index.md
+    # - CV: cv.md
+  - CV: cv.md
   - Specurve: specurve/index.md
   - FRDS (frds.io): https://frds.io
   - Research Notes:
@@ -185,4 +184,4 @@ nav:
   #     - Market Microstructure:
   #         - "Kyle's Lambda": measures/kyleslambda.md
   #         - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
-  # - Timetable: timetable.md
+  - Timetable: timetable.md
