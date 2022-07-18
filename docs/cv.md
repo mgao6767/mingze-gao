@@ -31,6 +31,8 @@ disqus: ""
 
 ### Conference Paper
 
+- **Lone (Loan) Wolf Pack Risk**, with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
+    - The 2022 FIRN Banking and Financial Stability Meeting, Australian National University, September 2022, Canberra, Australia.
 - **Corporate Real Estate Holdings and Mergers and Acquisitions**, with Thanh Son Luong and Buhui Qiu.
     - The 2022 FMA Annual Meeting, October 2022, Atlanta, GA.
 - **[Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)**, with Henry Leung and Buhui Qiu.
@@ -72,6 +74,7 @@ disqus: ""
 
 | Time             | Course                                                                        | Institution          |
 | ---------------- | ----------------------------------------------------------------------------- | -------------------- |
+| Semester 2, 2022 | FINC3013 Mergers and Acquisitions <br>FINC6017 Mergers and Acquisitions       | University of Sydney |
 | Semester 1, 2022 | FINC5090 Finance in the Global Economy <br>FINC6021 Corporate Valuation       | University of Sydney |
 | Semester 2, 2021 | FINC2012 Corporate Finance II                                                 | University of Sydney |
 | Semester 1, 2021 | FINC2011 Corporate Finance I <br>FINC6013 International Business Finance      | University of Sydney |
