@@ -67,6 +67,7 @@ disqus: ""
 - **Member**:
     - The [Business Financing and Banking Research Group](https://www.sydney.edu.au/business/our-research/research-groups/business-financing-and-banking-research-group.html) at the University of Sydney.
 - **Discussant**:
+    - The 2022 FMA Annual Meeting, Atlanta, October 2022.
     - The 2020 FMA Annual Meeting (Virtual), October 2020.
 
 ---
@@ -97,6 +98,6 @@ disqus: ""
 
 [Infinitas Asset Management](https://www.infinitasmgt.com.au) (ABN 78 129 953 724 / AFSL 326087) is a boutique financial adviser and investment manager with a wide client base, including high and ultra-high net worth individuals, family offices, SMSFs, foundations and not-for-profit groups.
 
-**Co-Founder, Director** - Transcendental Capital Pty Ltd (2018 - Present)
+**Co-Founder, Director** - Transcendental Capital Pty Ltd (2018 - 2022)
 
 [Transcendental Capital](https://www.transcendental-capital.com) (ABN 28 624 272 199) is a proprietary investment company established in 2018 by three finance PhD students from the University of Sydney Business School. The company leverages frontier academic insights in trading and investments across different assets and markets to achieve superior long-term risk-adjusted performance.
