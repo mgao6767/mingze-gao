@@ -3,6 +3,16 @@
 Below is the schedule of my tutorials, workshops and consultations for the
 current and past semesters since 2018.
 
+## 2022 Semester 2
+
+### FINC3013 Mergers and Acquisitions
+
+| Type     | Time           | Location                 |
+| -------- | -------------- | ------------------------ |
+| Tutorial | Wednesday 10am | Carslaw Lecture Room 452 |
+| Tutorial | Wednesday 11am | Carslaw Lecture Room 454 |
+| Tutorial | Wednesday 12am | Carslaw Seminar Room 351 |
+
 ## 2022 Semester 1
 
 All tutorials are temporarily delivered online due to COVID-19 until further notice. Please check Canvas for the Zoom link for each tutorial.
@@ -80,6 +90,7 @@ All tutorials are delivered online due to COVID-19. Please check Canvas for the 
 | Tutorial | Thursday 2pm  | Week 1 to 12 |
 
 ## 2020 Semester 1
+
 ### FINC2012 Corporate Finance II
 
 All changed to Zoom online sessions due to COVID-19.
