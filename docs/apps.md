@@ -12,3 +12,7 @@ The apps, programs and other tools I developed.
 
 * [LeGao](/legao) - a web application used to make LEGO mosaics.
 * [Option Pricing Explained](/option-pricing-explained) - a web application to provide an interactive pricing process for European options.
+
+## DApp
+
+* [Conflux-PoS.com](https://conflux-pos.com) - a PoS pool made for [Conflux Network](https://confluxnetwork.org/).
