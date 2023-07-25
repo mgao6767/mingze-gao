@@ -343,12 +343,26 @@
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+    <style>
+      @media (max-width: 1220px) {
+        img#hide-on-small {
+          display: none;
+        }
+      }
+      @media (min-width: 1220px) {
+        div#hide-on-large {
+          display: none;
+        }
+      }
+    </style>
+
+
+  <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+    <div class="md-sidebar__scrollwrap">
+      <div class="md-sidebar__inner">
+        <img id="hide-on-small" src="/images/adriangao_poly.png" width="100%">
+        <div id="hide-on-large">
+          
 
 
   
@@ -673,16 +687,23 @@
     
   </ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table of contents -->
+  
+  
+  <div
+    class="md-sidebar md-sidebar--secondary"
+    data-md-component="sidebar"
+    data-md-type="toc"
+    
+  >
+    <div class="md-sidebar__scrollwrap">
+      <div class="md-sidebar__inner">
+        
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
@@ -784,11 +805,11 @@
     </ul>
   
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
+      </div>
+    </div>
+  </div>
+  
+
           
             <div class="md-content" data-md-component="content">
               
