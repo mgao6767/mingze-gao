@@ -1,6 +1,6 @@
 ---
 disqus: ''
-template: sidebar.html
+# template: sidebar.html
 ---
 
 # Research

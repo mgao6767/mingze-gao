@@ -1,5 +1,7 @@
 ---
-template: home.html
+# template: home.html
+hide:
+  - toc
 --- 
 
 # Mingze Gao (高铭泽)
