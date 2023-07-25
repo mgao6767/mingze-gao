@@ -1,111 +1,23 @@
 ---
-disqus: ""
+template: home.html
 --- 
-# A random walk away finance
 
-<img src="/images/Adrian.jpg" alt="Mingze Gao" width="30%">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script> -->
+# Mingze Gao (高铭泽)
 
-- I’m [Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), Ph.D. in Finance.
-- I now work as a Postdoctoral Research Fellow at the University of Sydney on bank monitoring and risk disclosure with [A/Prof. Buhui Qiu](https://www.sydney.edu.au/business/about/our-people/academic-staff/buhui-qiu.html) and [A/Prof. Eliza Wu](https://www.sydney.edu.au/business/about/our-people/academic-staff/eliza-wu.html) in an Australian Research Council (ARC) Discovery Project (DP).
-- ==**I will be on the job market in mid 2023.**==
-- My [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao), [Faculty Profile](https://www.sydney.edu.au/business/about/our-people/academic-staff/mingze-gao.html) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
-  <!-- - Authored the Python package [frds - financial research data services](https://github.com/mgao6767/frds). -->
-  <!-- - Programmed also the [Interactive Option Pricing](/option-pricing-explained/) and [LeGao - Make LEGO Mosaics](/legao/). -->
+[Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), is a **Postdoctoral Research Fellow** at the University of Sydney Business School. With a focus on banking and corporate finance, his work has been published at journals including _Journal of Banking & Finance_, _Finance Research Letters_, and/or presented at conferences such as WFA, EFA (scheduled), FMA, FIRN, AFBC, etc.
 
-**Contact**
+Mingze has a strong background in programming and received First Prize in the 2010 National Olympiad in Informatics in Provinces (NOIP). His PhD thesis involves large-scale textual analysis and novel machine learning application, leading to a $500,000 grant from the Australian Research Council (ARC) Discovery Project financing his postdoctoral fellowship. He also has a Grad.Cert. in computing from UNSW with High Distinction, on, e.g., database, crypto and distributed ledger technology. Some of his open-source works include, for example, [frds](https://frds.io), [specurve](https://github.com/mgao6767/specurve), [mktstructure](https://github.com/mgao6767/mktstructure) and [edgar-analyzer](https://github.com/mgao6767/edgar-analyzer).
 
-- Email: mingze.gao@sydney.edu.au
-- Room 516<br>The Codrington Building (H69)
-  <br>The University of Sydney NSW 2006
+[CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao), [Faculty Profile](https://www.sydney.edu.au/business/about/our-people/academic-staff/mingze-gao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
 
-<!-- ---
+## Education
 
-<canvas id="site-stats" width="400" height="200"></canvas>
+- 2017 - 2021 **Ph.D.** in Finance, University of Sydney
+- 2022 - 2023 **Graduate Certificate** in Computing, University of New South Wales
+- 2016 - 2016 **B.Com (Honours)** in Finance, University of Sydney
+- 2013 - 2015 **B.Com** in Econometrics and Finance, University of Sydney
 
-<script>
-var ctx = document.getElementById('site-stats');
-var config = { 
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Site Visits',
-            data: [],
-            backgroundColor: 'rgba(0, 136, 255, 0.4)',
-            borderColor: 'rgba(0, 136, 255, 0.8)'
-        },
-        {
-            label: 'Visitors',
-            data: [],
-        }]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            display: true
-        },
-        title: {
-            display: true,
-            fontFamily: 'Roboto',
-            text: '30-Day Site Statistics',
-        },
-        animation: {duration:1500},
-        scales: {
-	        yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-};
-var myChart = new Chart(ctx, config);
-</script> -->
+## Contact
 
-<!-- Load the Embed API library -->
-<!-- <script>
-(function(w,d,s,g,js,fs){
-  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-  js.src='https://apis.google.com/js/platform.js';
-  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
-}(window,document,'script'));
-</script>
-
-<script>
-gapi.analytics.ready(function () {
-fetch('https://api.adrian-gao.com/ga/access_token')
-    .then(response => response.json())
-    .then(tokenInfo => {
-        gapi.analytics.auth.authorize({
-            'serverAuth': {
-                'access_token': tokenInfo.token
-            }
-        });
-        var report = new gapi.analytics.report.Data({
-            query: {
-                'ids': 'ga:169685330',
-                'start-date': '30daysAgo',
-                'end-date': 'yesterday',
-                'metrics': 'ga:sessions,ga:users',
-                'dimensions': 'ga:date'
-            }
-        });
-        report.on('success', function (resp) {
-            resp.rows.forEach(element => {
-                var year = element[0].substring(0, 4);
-                var month = element[0].substring(4, 6);
-                var day = element[0].substring(6, 8);
-                var date = new Date(year, month - 1, day)
-                config.data.labels.push(date.toDateString().substring(4, 10));
-                config.data.datasets[0].data.push( element[1] );
-                config.data.datasets[1].data.push( element[2] );
-            });
-            myChart.destroy();
-            myChart = new Chart(ctx, config);
-        });
-        report.execute();
-    })
-});
-</script> -->
+- Email: [mingze.gao@sydney.edu.au](mailto:mingze.gao@sydney.edu.au)
+- Room 431, H69, The University of Sydney NSW 2006

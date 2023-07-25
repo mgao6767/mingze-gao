@@ -3,16 +3,36 @@ on:
   push:
     branches:
       - master
+      - main
+permissions:
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - run: pip install git+https://${{ secrets.GH_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git@8.2.9-insiders-4.12.0
-      - run: pip install mkdocs-git-revision-date-localized-plugin mkdocs-minify-plugin mkdocs-redirects
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      # Only used for built-in optimization
+      # - run: apt-get install pngquant 
+      - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: pip install mkdocs-git-revision-date-localized-plugin
+      - run: pip install mkdocs-charts-plugin
+      - run: pip install mkdocs-git-committers-plugin-2
+      - run: pip install mkdocs-include-markdown-plugin
+      - run: pip install mkdocs-rss-plugin
+      - run: pip install mkdocs-redirects
       - run: mkdocs gh-deploy --force
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }} 

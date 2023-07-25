@@ -1,4 +1,0 @@
----
-redirect: /cv
-disqus: ""
----

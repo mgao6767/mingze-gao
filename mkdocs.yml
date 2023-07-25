@@ -1,187 +1,162 @@
-# Project information
 site_name: Mingze Gao
-site_description: A Random Walk Away Finance.
+site_description: Mingze Gao's personal website.
 site_author: Mingze Gao
 site_url: https://mingze-gao.com
+# repo_url: https://github.com/mgao6767/mingze-gao.com
+# repo_name: mgao6767/mingze-gao.com
 
-# Repository
-# repo_name: squidfunk/mkdocs-material
-# repo_url: https://github.com/squidfunk/mkdocs-material
+copyright: Copyright &copy; 2019 - 2023 <a href="https://mingze-gao.com">Mingze Gao</a>
 
-# Copyright
-copyright: Copyright &copy; 2018 - 2022 Mingze Gao
+extra_css:
+  - stylesheets/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+extra_javascript:
+  - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
 
-# Configuration
+plugins:
+  - include-markdown
+  - search
+  - meta:
+      meta_file: '**/.meta.yml'
+  - blog:
+      blog_dir: posts
+      post_url_format: "{slug}"
+      archive_toc: true
+      categories_toc: true
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - charts:
+      vega_theme: default
+  - tags:
+      tags_file: tags.md
+  # - git-revision-date-localized:
+  #     type: date
+  #     enable_creation_date: true
+  # - git-committers:
+  #     repository: mgao6767/mingze-gao.com
+  #     branch: master
+  # - rss:
+  #     match_path: posts/posts/.* 
+  #     date_from_meta:
+  #       as_creation: date
+  #     categories:
+  #       - categories
+  #       - tags 
+  - redirects:
+      redirect_maps:
+        curriculum-vitae/index.md: https://mingze-gao.com/cv/
+        legao/index.md: https://mingze-gao.com/posts/legao-to-make-your-own-lego-mosaics/
+        posts/merger_acquisition_deals_from_sdc_platinum.md: https://mingze-gao.com/posts/download-ma-deals-from-sdc-platinum/
+
 theme:
   name: material
-  features:
-    - tabs
-    - navigation.tabs
-    - navigation.tabs.sticky
-    # - navigation.indexes
-    - navigation.top
-    - navigation.tracking
-    - content.code.annotate
-  language: en
-  palette:
-    - scheme: default
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-    - scheme: slate
-      primary: red
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
-  font:
-    text: Roboto
-    code: Roboto Mono
   favicon: favicon.ico
   logo: favicon.png
   custom_dir: overrides
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  icon:
+    admonition:
+      example: octicons/log-24
+  features:
+    - announce.dismiss
+    # - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - toc.follow 
+    - navigation.prune 
+    - navigation.tabs
+    - navigation.path
+    - navigation.indexes 
+    - navigation.top
 
-# Extras
-extra:
+extra:  
   disqus: mingze-gao
+  generator: false
+  analytics:
+    provider: google
+    property: G-1QDTTQ6EHM
   social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/mgao6767
+    - icon: fontawesome/brands/github
+      link: https://github.com/mgao6767/mingze-gao.com
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/adriangao
     - icon: fontawesome/solid/paper-plane
       link: mailto:mingze.gao@sydney.edu.au
-  analytics:
-    provider: google
-    property: UA-114057186-1
-  generator: false
 
-# Plugins
-plugins:
-  - tags
-  - search # necessary for search to work
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - minify:
-      minify_html: true
-  - redirects:
-      redirect_maps:
-        curriculum-vitae/index.md: https://mingze-gao.com/cv/
-        measures/kyleslambda.md: https://frds.io/measures/kyle_lambda/
-        posts/computing-jackknifed-coefficient-estimates-in-sas/index.md: /posts/compute-jackknife-coefficient-estimates-in-sas/index.md
-
-# Extensions
 markdown_extensions:
-  - meta
+  - abbr
   - admonition
-  - footnotes
-  # - codehilite:
-  #     linenums: true
-  #     guess_lang: false
-  - pymdownx.tabbed:
-      alternate_style: true
   - attr_list
+  - def_list
+  - footnotes
   - md_in_html
   - toc:
       permalink: true
-  - pymdownx.highlight:
-      use_pygments: true
-      linenums: true
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
+  - tables
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
+  - pymdownx.tabbed:
+      alternate_style: true 
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.superfences:
+      custom_fences:
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
   - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.tilde
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tabbed
-  - pymdownx.tilde
-
-extra_javascript:
-  - javascripts/extra.js
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
 
 nav:
   - Home: index.md
-    # - index.md
-    # - CV: cv.md
-  - CV: cv.md
-  - Specurve: specurve/index.md
-  - FRDS (frds.io): https://frds.io
-  - Research Notes:
-      - "Adding Another Factor to Principal-Agent Model": posts/adding-another-factor-to-principal-agent-model/index.md
-      - "Estimate Organization Capital": posts/estimate-organization-capital/index.md
-      - "Download M&A deals from SDC Platinum": posts/merger_acquisition_deals_from_sdc_platinum/index.md
-      - "Decomposing Herfindahl–Hirschman (HHI) Index": posts/decomposing-hhi-index/index.md
-      - "What it takes to be a CEO? A fun survey of literature": posts/what-it-takes-to-be-a-ceo/index.md
-      - "Bank holding companies' financials from FR Y-9C": posts/get-bank-holding-company-financials/index.md
-      - "Compute jackknife coefficient estimates in SAS": posts/compute-jackknife-coefficient-estimates-in-sas/index.md
-      - "Compute weekly return from daily CRSP data": posts/compute-weekly-return-from-daily-crsp-data/index.md
-      - "Convert between numeric and character variables": posts/convert-between-numeric-and-character-variables/index.md
-      - "Encode password for SAS remote submission": posts/encode-password-for-sas-remote-submission/index.md
-      - "Firm Historical Headquarter State from SEC 10K/Q Filings": posts/firm-historical-headquarter-state-from-10k/index.md
-      - "Generate Fama-French industry classification from SIC": posts/generate-fama-french-industry-classification-from-sic/index.md
-      - "Identify Chinese State-Owned Enterprise using CSMAR": posts/identify-chinese-state-owned-enterprise-using-csmar/index.md
-      # - "Kyle's Lambda": measures/kyleslambda.md
-      - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
-      - "Merge Compustat and CRSP": posts/merge-compustat-and-crsp/index.md
-      - "Specification Curve Analysis": specurve/index.md
-      - "Textual analysis on SEC filings": posts/textual-analysis-on-sec-filings/index.md
-      - "Use SAS macros on WRDS": posts/use-sas-macros-on-wrds/index.md
-      - "Winsorization in SAS": posts/winsorization-in-sas/index.md
-  - Teaching Notes:
-      - "Beta, unlevered and levered": posts/beta-unlevered-and-levered/index.md
-      - "Call option value from two approaches": posts/call-option-value-from-two-approaches/index.md
-      - "Minimum variance hedge ratio": posts/minimum-variance-hedge-ratio/index.md
-      - "Reconciliation of Black-Scholes variants": posts/reconciliation-of-black-scholes-variants/index.md
-  - Personal Blog:
-      - "Uninitialized Variable in C": posts/uninitialized-variable-in-c/index.md
-      - "Centrifuge Problem": posts/centrifuge-problem/index.md
-      - "100 Bitcoins forgone for science": posts/100-bitcoins-forgone-for-science/index.md
-      - "Accumulator option pricing": posts/accumulator-option-pricing/index.md
-      - "Bitcoin address generator in obfuscated Python": posts/bitcoin-address-generator-in-obfuscated-python/index.md
-      - "Bloomberg BQuant (BQNT)": posts/bloomberg-bquant/index.md
-      - "LeGao to make your own LEGO mosaics": posts/legao-to-make-your-own-lego-mosaics/index.md
-      - "Never use a brain wallet": posts/never-use-a-brain-wallet/index.md
-      - "Python Shared Memory in Multiprocessing": posts/python-shared-memory-in-multiprocessing/index.md
-      - "Setup Docker/Ngnix and Let's Encrypt on Ubuntu": posts/docker-nginx-letsencrypt/index.md
-      - "Working remotely on a Windows Machine from VSCode on a Mac": posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.md
-  - Apps: apps.md
-  # - Measures:
-  #     - Overview: measures/measures.md
-  #     - Firm Characteristics:
-  #         - Accounting Restatement: measures/accounting_restatement.md
-  #         - Asset Tangibility: measures/asset_tangibility.md
-  #         - Book Leverage: measures/book_leverage.md
-  #         - Capital Expenditure: measures/capital_expenditure.md
-  #         - Credit Rating: measures/credit_rating.md
-  #         - Executive Ownership: measures/executive_ownership.md
-  #         - Firm Size: measures/firm_size.md
-  #         - Market to Book: measures/market_to_book.md
-  #         - ROA: measures/roa.md
-  #         - ROE: measures/roe.md
-  #         - Stock Delisting: measures/stock_delisting.md
-  #         - Tobin's Q: measures/tobin_q.md
-  #     - Bank Holding Company (BHC) Characteristics:
-  #         - BHC Size: measures/bhc_size.md
-  #         - BHC Loan Growth: measures/bhc_loan_growth.md
-  #         - BHC FX Exposure: measures/bhc_fx_exposure.md
-  #         - BHC NetIncome/Assets: measures/bhc_netincome_to_assets.md
-  #         - BHC Dividend/Assets: measures/bhc_dividend_to_assets.md
-  #         - BHC RegulatoryCapital/Assets: measures/bhc_regcap_to_assets.md
-  #         - BHC Tier1Capital/Assets: measures/bhc_tier1cap_to_assets.md
-  #         - BHC Gross IR Hedging: measures/bhc_gross_ir_hedging.md
-  #         - BHC Gross FX Hedging: measures/bhc_gross_fx_hedging.md
-  #         - BHC Maturity Gap: measures/bhc_maturity_gap.md
-  #     - Market Microstructure:
-  #         - "Kyle's Lambda": measures/kyleslambda.md
-  #         - "Lo and MacKinlay (1988)": measures/lomackinlay1988.md
-  - Timetable: timetable.md
+  - CV: cv.pdf
+  - Research: research.md
+  - Blog:
+      - posts/index.md
+      - Tags: tags.md
+  - About:
+      - Me: about.md
+      - Apps: apps.md
