@@ -1,0 +1,29 @@
+# Comment lines starting with a hashtag will be ignored
+# Each choice is independent from others
+Choices:
+  Dependent Variable: # reserved keyword
+    - ln(Wage/GNP deflator): ln_wage # inline comment is ignored
+  Focal Variable: # reserved keyword
+    - Tenure: tenure
+  Control Variables: # reserved keyword
+    - Baseline: age grade collgrad wks_ue ttl_exp hours wks_work
+    - Baseline and Union: age grade collgrad wks_ue ttl_exp hours wks_work union
+  Fixed Effects: # reserved keyword
+    - None:
+    - Race: race
+    - Individual: idcode
+    - Industry: ind_code
+    - Occupation: occ_code
+    - Industry and Occupation: ind_code occ_code
+    - Race-Occupation: race#ind_code # Stata interactions and inline comment
+    # `specurve` knows which hashtag above is for interaction and which marks the begin of inline comment
+  Standard Error Clustering: # reserved keyword
+    - None:
+    - By Industry: ind_code
+    - By Occupation: occ_code
+
+# Each condition must evaluate to True/False for if an observation is included
+Conditions:
+  Subsample:
+    - Central City Area only: c_city==1
+    - Married only: msp==1

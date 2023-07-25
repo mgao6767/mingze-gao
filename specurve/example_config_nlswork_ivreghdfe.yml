@@ -1,0 +1,25 @@
+# Each choice is independent from others
+Choices:
+  Dependent Variable: # reserved keyword
+    - ln(Wage/GNP deflator): ln_wage
+  Focal Variable: # reserved keyword
+    - Tenure (instrumented): (tenure=age) # we use age as a IV for tenure
+  Control Variables: # reserved keyword
+    - Baseline: grade collgrad wks_ue ttl_exp hours wks_work
+    - Baseline and Union: grade collgrad wks_ue ttl_exp hours wks_work union
+  Fixed Effects: # reserved keyword
+    - Race: race
+    - Individual: idcode
+    - Industry: ind_code
+    - Occupation: occ_code
+    - Industry and Occupation: ind_code occ_code
+  Standard Error Clustering: # reserved keyword
+    - None:
+    - By Industry: ind_code
+    - By Occupation: occ_code
+
+# Each condition must evaluate to True/False for if an observation is included
+Conditions:
+  Subsample:
+    - Central City Area only: c_city==1
+    - Married only: msp==1
