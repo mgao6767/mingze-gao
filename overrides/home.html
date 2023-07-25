@@ -1,16 +1,45 @@
 {% extends "main.html" %}
 
 {% block site_nav %}
-  {% if page.is_homepage and nav %}
-  <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" {{ hidden }}>
-    <div class="md-sidebar__scrollwrap">
-      <div class="md-sidebar__inner">
-        <img src="/images/Adrian.jpg" width="100%">
+
+  {% if page.meta and page.meta.hide %}
+    {% set hidden = "hidden" if "navigation" in page.meta.hide %}
+  {% endif %}
+
+    <style>
+      @media (max-width: 1220px) {
+        img#hide-on-small {
+          display: none;
+        }
+      }
+      @media (min-width: 1220px) {
+        div#hide-on-large {
+          display: none;
+        }
+      }
+    </style>
+
+    <!-- Navigation -->
+    {% if nav %}
+    <div
+      class="md-sidebar md-sidebar--primary"
+      data-md-component="sidebar"
+      data-md-type="navigation"
+      {{ hidden }}
+    >
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% if page.is_homepage %}
+            <img id="hide-on-small" src="/images/Adrian.jpg" width="100%">
+          {% endif %}
+          <div id="hide-on-large">
+            {% include "partials/nav.html" %}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  {% endif %}
-  
+    {% endif %}
+    
   {% if not page.is_homepage %}
     {{ super() }}
   {% endif %}

@@ -1,5 +1,5 @@
 ---
-# template: home.html
+template: home.html
 hide:
   - toc
 --- 
