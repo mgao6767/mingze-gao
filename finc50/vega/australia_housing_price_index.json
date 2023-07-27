@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Time Series Line Chart with Symbols and Tooltips",
+  "width": 800,
+  "height": 300,
+  "padding": 5,
+  "title": {
+    "text": "Australia Housing Prices 1994-2021",
+    "subtitle": "Source: OECD (2023), Housing prices (indicator). doi: 10.1787/63008438-en",
+    "subtitleFontStyle": "italic",
+    "subtitlePadding": 5,
+    "frame": "bounds",
+    "anchor": "start",
+    "offset": 12,
+    "zindex": 0
+  },
+  "data": [
+    {
+      "name": "table",
+      "url": "https://mgao6767.github.io/finc50/data/australia_housing_price_index.csv",
+      "format": { "type": "csv", "parse": { "year": "date" } }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "domain": { "data": "table", "field": "year" }
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": { "data": "table", "field": "value" }
+    }
+  ],
+  "axes": [
+    { "orient": "bottom", "scale": "x", "format": "%Y" },
+    { "orient": "left", "scale": "y" }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "x", "field": "year" },
+          "y": { "scale": "y", "field": "value" },
+          "size": { "value": 60 },
+          "shape": { "value": "circle" },
+          "fill": { "value": "steelblue" },
+          "tooltip": { "signal": "{'value': format(datum.value, ',.0f')}" },
+          "cursor": { "value": "pointer" }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "x", "field": "year" },
+          "y": { "scale": "y", "field": "value" },
+          "stroke": { "value": "steelblue" },
+          "strokeWidth": { "value": 2 }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": { "value": "right" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "gray" },
+          "fontSize": { "value": 10 },
+          "x": { "value": 800 },
+          "y": { "value": 295 },
+          "text": { "value": "Footnote: value in 2015 is normalized to 100." }
+        }
+      }
+    }
+  ]
+}
