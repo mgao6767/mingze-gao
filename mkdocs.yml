@@ -143,6 +143,9 @@ markdown_extensions:
         - name: vegalite
           class: vegalite
           format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
@@ -153,7 +156,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - CV: cv.pdf
+  # - CV: cv.pdf
   - Research: research.md
   - Blog:
       - posts/index.md
@@ -161,9 +164,10 @@ nav:
   - About:
       - Me: about.md
       - Apps: apps.md
-  # - FINC50: 
-  #     - finc50/index.md
-  #     - Fixed Income: 
-  #         - finc50/fixed-income/index.md
-  #         - Introduction: finc50/fixed-income/introduction.md
-  #         - Prices and Yields: finc50/fixed-income/bond-prices-and-yields.md
+  - FINC50: 
+      - finc50/index.md
+      - Fixed Income: 
+          - finc50/fixed-income/index.md
+          - Introduction: finc50/fixed-income/introduction.md
+          - Prices and Yields: finc50/fixed-income/bond-prices-and-yields.md
+  - frds.io: https://frds.io

@@ -1,3 +1,7 @@
+---
+disqus: true
+---
+
 # Introduction to Fixed Income Securities
 
 ## What are fixed income securities?
@@ -73,10 +77,133 @@ Investors in fixed income securities come from a broad spectrum and include both
 
 Each type of investor may have different investment objectives and constraints, and therefore might focus on different types of fixed-income securities (e.g., [government bonds](#government-bonds), [corporate bonds](#corporate-bonds), [municipal bonds](#municipal-bonds), etc.) based on their risk tolerance, income requirements, tax situation, and other factors.
 
-## Market size of fixed income securities
+??? info "Market size of fixed income securities"
 
-![market-size-of-fixed-income-securities](./images/market-size-fixed-income-securities.jpg)
+    ![market-size-of-fixed-income-securities](./images/market-size-fixed-income-securities.jpg)
 
-_Source of figure: [SIFMA](https://www.sifma.org/resources/research/fixed-income-chart/)_
+    _Source of figure: [SIFMA](https://www.sifma.org/resources/research/fixed-income-chart/)_
 
-> "Although they usually attract less attention than equity markets, fixed-income markets are more than three times the size of global equity markets", CFA Institute.
+    > "Although they usually attract less attention than equity markets, fixed-income markets are more than three times the size of global equity markets", CFA Institute.
+
+## Features of a bond
+
+### The basics
+
+In its simplest form, a bond may be specified by the following characteristics:
+
+!!! example inline end "Example"
+
+    On March 17, 2021, Microsoft (1) "issued a $6,250,000,000 (2) aggregate principal amount of its 2.921% (3) Notes (5) due 2052 (4) (the “2052 Notes”)".
+    { .annotate }
+
+    1. Issuer
+    2. Face value of the bond
+    3. Coupon rate
+    4. Maturity date
+    5. The terms "bond" and "note" are often used interchangeably. Although typically "note" refers to those with shorter maturities (1 to 10 years) and "bond" refers to those with longer than 10 years of maturity, the difference is really more a matter of convention and industry terminology.
+
+    Source: the firm's [SEC filing](https://microsoft.gcs-web.com/node/29211/html#d130687dex41.htm:~:text=On%20March%C2%A017%2C%202021%2C%20in%20connection%20with%20the%20settlement%20of%20the%20Exchange%20Offers%2C%20the%20Company%20issued%20%246%2C250%2C000%2C000%20aggregate%20principal%20amount%20of%20its%202.921%25%20Notes%20due%202052%20(the%20%E2%80%9C2052%20Notes%E2%80%9D)).
+
+    The bond's indenture (1) also specifies that
+    { .annotate }
+    
+    1. **Indenture** is the legal contract between the bond issuer and the bondholder that outlines the terms and conditions of the bond, including the rights and responsibilities of both parties.
+
+    > The 2052 Notes will bear interest (computed on the basis of a 360-day year consisting of twelve 30-day months) from March 17, 2021 at the rate of 2.921% per annum, payable semi-annually in arrears.
+
+- **Issuer** is the entity raising capital through bond issue.
+- **Face value** is the nominal value of the bond, representing the amount the bondholder will receive at maturity, a.k.a. "par value" or "principal".
+- **Maturity date** is the date on which the bond will mature, and the issuer will return the bond's face value to the bondholders.
+- **Coupon rate** is the interest rate (fixed or variable) that the bond issuer agrees to pay to bondholders. It is usually expressed as a percentage of the bond's face value, and the interest is paid periodically, typically semi-annually or annually.
+
+... (1)
+{ .annotate }
+
+1. Bonds have many more features. We will focus on these for now and introduce others later.
+
+A sequence of cash flows between the bond issuer and investor is described below
+
+``` mermaid
+sequenceDiagram
+    autonumber
+    Issuer (bond seller)-->>Investor (bond buyer): Bond
+    Investor (bond buyer)->>Issuer (bond seller): Price of bond
+    note right of Investor (bond buyer): We will figure out the price later
+
+    loop every 6 months until 2052
+        Issuer (bond seller)->>Investor (bond buyer): Coupon (1/2 of 2.921% of face value)
+    end
+
+    Issuer (bond seller)->>Investor (bond buyer): Return principal ($6,250,000,000)
+    Investor (bond buyer)-->>Issuer (bond seller): Redeem bond
+```
+
+### Additional things
+
+A bond can be **secured** in that the issuer can pledge certain assets (1) to "secure" the payments to investors. In case of defaults 😔, bondholders have a direct claim on the pledged assets.
+{ .annotate }
+
+1. Real estate, equipment, or other valuable properties such as patents, etc.
+
+An **unsecured** bond (or "debenture"), on the other hand, relies solely on the issuer's creditworthiness and ability to generate cash flow to repay bondholders. In case of defaults 😔, bondholders of unsecured bonds only have a claim on the issuer's general assets.
+
+A bond has also a **seniority**. In case of defaults 😔, investors of more senior bonds can claim before investors of less senior bonds. (1)
+{ .annotate }
+
+1. This "more or less senior" notion is vague. More precisely, a [bond seniority table](https://www.google.com/search?q=bond+seniority+table) describes the ranking of bond seniority.
+
+A bond needs to specify the currency as well, along with many other things...
+
+### Embedded options
+
+A bond is ==_plain vanilla_== when it has no ^^embedded options^^, which can add a lot "flavour".
+
+!!! note
+    Embedded options in bonds refer to features or provisions that give either the bond issuer or the bondholder the right to take certain actions under specific circumstances.
+
+Embedded options provide added flexibility to the bond's terms and can impact the bond's cash flows and overall value. The three main types of embedded options found in bonds are:
+
+=== "Call Option (Callable Bonds)"
+
+    - Call option allows the bond issuer to redeem or "call back" the bonds before their scheduled maturity date.
+    - The issuer may choose to call the bonds if prevailing interest rates decline, giving them an opportunity to refinance at a lower cost.
+    - When the bond is called, the bondholders receive the bond's face value and any accrued interest up to that point.
+    - Callable bonds typically offer higher coupon rates compared to non-callable bonds to compensate investors for the risk of early redemption.
+
+=== "Put Option (Puttable Bonds)"
+
+    - Put option allows the bondholder to sell the bonds back to the issuer at a specified price before the scheduled maturity date.
+    - Puttable bonds provide the bondholders with an opportunity to exit their investment if they believe it is advantageous to do so, such as when interest rates rise.
+    - When exercised, the bondholder receives the bond's face value, which may be different from the market price at the time of the put option exercise.
+    - Puttable bonds are relatively less common than callable bonds.
+
+=== "Conversion Option (Convertible Bonds)"
+
+    - Conversion option allows the bondholder to convert their bond into common shares of the issuing company. The conversion ratio specifies the number of shares the bondholder will receive per bond converted.
+    - Convertible bonds are considered _hybrid_ securities because they possess attributes of both debt and equity. Until conversion, they behave like regular bonds, offering fixed coupon payments and a return of the principal at maturity. Upon conversion, they become equity instruments, representing ownership in the issuing company.
+
+## The (simplified) overview
+
+```mermaid
+sequenceDiagram
+autonumber
+    participant Issuer
+    participant Underwriter
+    participant Investors
+
+    rect rgba(0, 0, 255, .1)
+        note left of Issuer: Primary Market
+        Issuer->>Underwriter: Request Bond Underwriting
+        Underwriter->>Issuer: Analyze Issuer's Creditworthiness
+        Underwriter->>Investors: Offer Bonds for Sale
+        Investors->>Underwriter: Express Interest in Buying Bonds
+        Underwriter->>Issuer: Finalize Bond Terms and Pricing
+        Investors->>Underwriter: Place Orders for Bonds
+        Underwriter->>Investors: Issue Bonds to Investors
+    end
+    rect rgba(0, 0, 255, .1)
+        note right of Investors: Secondary Market
+        Investors->>Investors: Buy and Sell Bonds
+    end
+```
+

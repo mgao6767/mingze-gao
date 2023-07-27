@@ -12,6 +12,12 @@ The objectives are
 - to introduce modern finance topics covered in undergraduate and postgraduate courses
 - to experiment interactive web-based technologies in learning and teaching
 
+!!! warning "Note"
+
+    This is a proof-of-concept and _always_ a work-in-progress.
+
+    It could take a relatively long time for me to "complete".
+
 ## Course notes
 
 - [Fixed Income Securities](./fixed-income/)
