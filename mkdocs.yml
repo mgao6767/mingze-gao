@@ -140,12 +140,12 @@ markdown_extensions:
           case: lower
   - pymdownx.superfences:
       custom_fences:
-        - name: vegalite
-          class: vegalite
-          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
