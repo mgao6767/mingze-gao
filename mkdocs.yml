@@ -53,6 +53,7 @@ plugins:
   - redirects:
       redirect_maps:
         curriculum-vitae/index.md: https://mingze-gao.com/cv/
+        cv.md: https://mingze-gao.com/cv.pdf
         legao/index.md: https://mingze-gao.com/posts/legao-to-make-your-own-lego-mosaics/
         posts/merger_acquisition_deals_from_sdc_platinum.md: https://mingze-gao.com/posts/download-ma-deals-from-sdc-platinum/
 
@@ -156,7 +157,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - CV: cv.pdf
+  # - CV: cv.pdf
   - Research: research.md
   - Blog:
       - posts/index.md
