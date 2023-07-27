@@ -57,7 +57,7 @@ template: sidebar.html
 
 - FMA 2022, FIRN 2022.
 
-"**Catering to Environmental Premium in Green Venture Financing**", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
+"[**Catering to Environmental Premium in Green Venture Financing: Evidence from a Bert-Based Deep Learning Approach**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222)", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
 ### In progress
 
