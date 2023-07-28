@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.20+insiders-4.37.0">
+      <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21+insiders-4.37.1">
     
     
       
@@ -894,6 +894,184 @@
 
 <!-- Markdown content -->
 <h1 id="bond-prices-and-yields">Bond Prices and Yields<a class="headerlink" href="#bond-prices-and-yields" title="Permanent link">&para;</a></h1>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A chart of bond's cashflows, present value and price, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Cashflows, PV and Price of a Bond",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "transform": [
+        { "type": "sequence", "as": "year", "start": 0, "step": 1, "stop": 31 },
+        {
+          "type": "formula",
+          "as": "cashflow",
+          "expr": "10000*couponRate*(datum.year&gt;0)+10000*(datum.year==maturityInYears)"
+        },
+        {
+          "type": "formula",
+          "as": "pv",
+          "expr": "datum.cashflow / pow(1+discountRate, datum.year)"
+        },
+        {
+          "type": "formula",
+          "as": "price",
+          "expr": "discountRate&gt;0 ? (10000*couponRate*(1-pow(1+discountRate,-maturityInYears))/discountRate+10000*pow(1+discountRate,-maturityInYears)) : 10000*(1+couponRate*maturityInYears)"
+        },
+        { "type": "filter", "expr": "datum.year&lt;=maturityInYears" }
+      ]
+    },
+    {
+      "name": "scaledata",
+      "source": "table",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": ["cashflow", "price"],
+          "ops": ["max", "max"],
+          "as": ["maxCashflow", "mP"]
+        },
+        {
+          "type": "formula",
+          "as": "maxV",
+          "expr": "max(datum.maxCashflow, datum.mP*1.1)"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "maturityInYears",
+      "value": 10,
+      "bind": { "input": "range", "min": 1, "max": 30, "step": 1 }
+    },
+    {
+      "name": "discountRate",
+      "value": 0.08,
+      "bind": { "input": "range", "min": 0, "max": 0.2, "step": 0.0001 }
+    },
+    {
+      "name": "couponRate",
+      "value": 0.05,
+      "bind": { "input": "range", "min": 0, "max": 0.2, "step": 0.0001 }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": { "data": "table", "field": "year" },
+      "range": "width",
+      "padding": 0.7
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": { "data": "scaledata", "field": "maxV" },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    { "orient": "bottom", "scale": "x", "title": "Year" },
+    { "orient": "left", "scale": "y", "title": "Cash Flows, PV and Bond Price" }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "x", "field": "year" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "cashflow" },
+          "y2": { "scale": "y", "value": 0 },
+          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
+        },
+        "update": {
+          "fill": { "value": "steelblue" },
+          "x": { "scale": "x", "field": "year" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "cashflow" },
+          "y2": { "scale": "y", "value": 0 },
+          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "table" },
+      "encode": {
+        "enter": {
+          "x": { "scale": "x", "field": "year" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "pv" },
+          "y2": { "scale": "y", "value": 0 },
+          "tooltip": { "signal": "{ 'PV': datum.pv }" }
+        },
+        "update": {
+          "fill": { "value": "#d6001c" },
+          "x": { "scale": "x", "field": "year" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "pv" },
+          "y2": { "scale": "y", "value": 0 },
+          "tooltip": { "signal": "{ 'PV': datum.pv }" }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "fill": { "value": "darkgray" },
+          "x": { "scale": "x", "value": 0 },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "price" },
+          "y2": { "scale": "y", "value": 0 },
+          "tooltip": { "signal": "{ 'Bond Price': datum.price }" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 0 },
+          "y": { "scale": "y", "field": "price", "offset": -5 },
+          "text": { "field": "price" },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": { "value": "right" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "rgba(0, 0, 0, 0.5)" },
+          "fontSize": { "value": 14 },
+          "x": { "value": 0, "offset": "width*0.5" },
+          "y": { "value": 0, "offset": "height*1.2" },
+          "text": {
+            "value": "Assume annual coupons in arrears and effect annual discount rate."
+          }
+        }
+      }
+    }
+  ]
+}
+</vegachart></p>
 
 <!-- Source file information -->
 
@@ -1017,5 +1195,9 @@
         
       
     
-  </body>
+  
+        <script>
+        var mkdocs_chart_plugin = {'data_path': '', 'use_data_path': 'True', 'vega_theme': 'default', 'vega_theme_dark': 'dark', 'vega_renderer': 'svg', 'vega_width': 'container', 'fallback_width': '800', 'path_to_homepage': '../../..'}
+        </script>
+        </body>
 </html>
