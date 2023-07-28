@@ -9,8 +9,8 @@
 
 The objectives are
 
-- to introduce modern finance topics covered in undergraduate and postgraduate courses
-- to experiment interactive web-based technologies in learning and teaching
+- to introduce [modern finance topics](#course-notes) covered in undergraduate and postgraduate courses
+- to experiment [interactive web-based technologies](#demo) in learning and teaching
 
 !!! warning "Note"
 
@@ -21,3 +21,13 @@ The objectives are
 ## Course notes
 
 - [Fixed Income Securities](./fixed-income/)
+
+## Demo
+
+### Bond price
+
+```vegalite
+{%
+  include "./fixed-income/vega-charts/bond-cashflows-price.json"
+%}
+```
