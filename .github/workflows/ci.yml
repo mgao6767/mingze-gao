@@ -19,7 +19,9 @@ jobs:
           python-version: 3.x
       - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
       # - run: pip install mkdocs-git-revision-date-localized-plugin
-      - run: pip install mkdocs-charts-plugin
+      # Untill my PR is merged
+      # - run: pip install mkdocs-charts-plugin
+      - run: pip install git+https://github.com/mgao6767/mkdocs-charts-plugin.git  
       # - run: pip install mkdocs-git-committers-plugin-2
       - run: pip install mkdocs-include-markdown-plugin
       - run: pip install mkdocs-rss-plugin
