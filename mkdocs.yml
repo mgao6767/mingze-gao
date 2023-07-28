@@ -15,13 +15,15 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  # - https://cdn.jsdelivr.net/npm/vega@5
-  # - https://cdn.jsdelivr.net/npm/vega-lite@5
-  # - https://cdn.jsdelivr.net/npm/vega-embed@6
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
 
 plugins:
   - include-markdown
   - search
+  - charts:
+      vega_theme: default
   - typeset
   - meta:
       meta_file: '**/.meta.yml'
@@ -33,8 +35,6 @@ plugins:
       post_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
-  # - charts:
-  #     vega_theme: default
   - tags:
       tags_file: tags.md
   # - git-revision-date-localized:
@@ -144,9 +144,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-        # - name: vegalite
-        #   class: vegalite
-        #   format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
