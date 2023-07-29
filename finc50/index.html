@@ -750,6 +750,19 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#risk-and-return" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Risk and return
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -868,13 +881,14 @@
 </ul>
 <h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
 <h3 id="bond-price">Bond price<a class="headerlink" href="#bond-price" title="Permanent link">&para;</a></h3>
+<p>An interactive chart and calculator of bond cashflows, present values and prices.</p>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's cashflows, present value and price, made by Mingze Gao",
   "width": 700,
   "height": 300,
   "title": {
-    "text": "Cashflows, PV and Price of a Bond",
+    "text": "Cashflows, PV and Price of a $10,000 Bond",
     "fontSize": 18,
     "anchor": "middle"
   },
@@ -882,23 +896,53 @@
     {
       "name": "table",
       "transform": [
-        { "type": "sequence", "as": "year", "start": 0, "step": 1, "stop": 31 },
+        {
+          "type": "sequence",
+          "as": "year",
+          "start": 0,
+          "step": 0.5,
+          "stop": 31
+        },
+        {
+          "type": "formula",
+          "as": "i",
+          "expr": "(0.5*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "i2",
+          "expr": "(2*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+
         {
           "type": "formula",
           "as": "cashflow",
-          "expr": "10000*couponRate*(datum.year&gt;0)+10000*(datum.year==maturityInYears)"
+          "expr": "10000*couponRate*(datum.i)*(datum.year&gt;0)+10000*(datum.year==maturityInYears)"
         },
+
+        {
+          "type": "formula",
+          "as": "r",
+          "expr": "couponFrequency=='annual'? discountRate : pow(1+discountRate,0.5)-1"
+        },
+
         {
           "type": "formula",
           "as": "pv",
-          "expr": "datum.cashflow / pow(1+discountRate, datum.year)"
+          "expr": "datum.cashflow / pow(1+datum.r, datum.year)"
         },
+
         {
           "type": "formula",
           "as": "price",
-          "expr": "discountRate&gt;0 ? (10000*couponRate*(1-pow(1+discountRate,-maturityInYears))/discountRate+10000*pow(1+discountRate,-maturityInYears)) : 10000*(1+couponRate*maturityInYears)"
+          "expr": "datum.r&gt;0 ? (10000*couponRate*(datum.i)*(1-pow(1+datum.r,-maturityInYears*datum.i2))/datum.r+10000*pow(1+datum.r,-maturityInYears*datum.i2)) : 10000*(1+couponRate*(datum.i)*maturityInYears*datum.i2)"
         },
-        { "type": "filter", "expr": "datum.year&lt;=maturityInYears" }
+
+        { "type": "filter", "expr": "datum.year&lt;=maturityInYears" },
+        {
+          "type": "filter",
+          "expr": "couponFrequency=='annual'? (datum.year==round(datum.year)) : 1 "
+        }
       ]
     },
     {
@@ -934,13 +978,21 @@
       "name": "couponRate",
       "value": 0.05,
       "bind": { "input": "range", "min": 0, "max": 0.2, "step": 0.0001 }
+    },
+    {
+      "name": "couponFrequency",
+      "value": "annual",
+      "bind": {
+        "input": "radio",
+        "options": ["annual", "semiannual"]
+      }
     }
   ],
   "scales": [
     {
       "name": "x",
       "type": "band",
-      "domain": { "data": "table", "field": "year" },
+      "domain": { "data": "table", "field": "year", "sort": true },
       "range": "width",
       "padding": 0.7
     },
@@ -960,20 +1012,15 @@
       "type": "rect",
       "from": { "data": "table" },
       "encode": {
-        "enter": {
-          "x": { "scale": "x", "field": "year" },
-          "width": { "scale": "x", "band": 1 },
-          "y": { "scale": "y", "field": "cashflow" },
-          "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
-        },
         "update": {
           "fill": { "value": "steelblue" },
           "x": { "scale": "x", "field": "year" },
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "cashflow" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
+          "tooltip": {
+            "signal": "{ 'Cashflow': format(datum.cashflow, '$,.2f') }"
+          }
         }
       }
     },
@@ -981,20 +1028,13 @@
       "type": "rect",
       "from": { "data": "table" },
       "encode": {
-        "enter": {
-          "x": { "scale": "x", "field": "year" },
-          "width": { "scale": "x", "band": 1 },
-          "y": { "scale": "y", "field": "pv" },
-          "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'PV': datum.pv }" }
-        },
         "update": {
           "fill": { "value": "#d6001c" },
           "x": { "scale": "x", "field": "year" },
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "pv" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'PV': datum.pv }" }
+          "tooltip": { "signal": "{ 'PV': format(datum.pv, '$,.2f') }" }
         }
       }
     },
@@ -1008,7 +1048,9 @@
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "price" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Bond Price': datum.price }" }
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price, '$,.2f') }"
+          }
         }
       }
     },
@@ -1019,7 +1061,7 @@
         "update": {
           "x": { "scale": "x", "value": 0 },
           "y": { "scale": "y", "field": "price", "offset": -5 },
-          "text": { "field": "price" },
+          "text": { "signal": "format(datum.price, '$,.2f')" },
           "fontSize": { "value": 12 },
           "align": { "value": "left" },
           "baseline": { "value": "bottom" },
@@ -1033,14 +1075,319 @@
         "enter": {
           "align": { "value": "right" },
           "baseline": { "value": "bottom" },
-          "fill": { "value": "rgba(0, 0, 0, 0.5)" },
+          "fill": { "value": "rgba(0, 0, 0, 0.2)" },
           "fontSize": { "value": 14 },
-          "x": { "value": 0, "offset": "width*0.5" },
+          "x": { "value": 0, "offset": "width*0.85" },
           "y": { "value": 0, "offset": "height*1.2" },
           "text": {
-            "value": "Assume annual coupons in arrears and effect annual discount rate."
+            "value": "Assume coupons paid in arrears and effect annual discount rate (conversion based on coupon frequency)."
           }
         }
+      }
+    }
+  ]
+}
+</vegachart></p>
+<h3 id="risk-and-return">Risk and return<a class="headerlink" href="#risk-and-return" title="Permanent link">&para;</a></h3>
+<p class="annotate">A graph showing volatility and return of S&amp;P500 constituents in 2022.(1)
+Try to pan, zoom, select and click.</p>
+<ol>
+<li>The data is retrieved using the following Python code.
+   <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">link</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/List_of_S%26P_500_companies#S&amp;P_500_component_stocks&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Symbol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2022-12-31&quot;</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]]</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">ret</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">std</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">252</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;return&#39;</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="n">std</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;ticker&quot;</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">index</span><span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;./spy_risk_return.json&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>  
+</span></code></pre></div></li>
+</ol>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {
+    "text": "Return and Volatility of S&amp;P500 Stocks in 2022",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "description": "An interactive scatter plot example supporting pan and zoom.",
+  "width": 700,
+  "height": 300,
+  "padding": {
+    "top": 30,
+    "left": 40,
+    "bottom": 20,
+    "right": 10
+  },
+  "autosize": "none",
+  "config": {
+    "axis": {
+      "domain": false,
+      "tickSize": 1,
+      "tickColor": "#888",
+      "labelFont": "Monaco, Courier New"
+    }
+  },
+  "signals": [
+    {
+      "name": "margin",
+      "value": 20
+    },
+    {
+      "name": "hover",
+      "on": [
+        { "events": "*:mouseover", "encode": "hover" },
+        { "events": "*:mouseout", "encode": "leave" },
+        { "events": "*:mousedown", "encode": "select" },
+        { "events": "*:mouseup", "encode": "release" }
+      ]
+    },
+    {
+      "name": "xoffset",
+      "update": "-(height + padding.bottom)"
+    },
+    {
+      "name": "yoffset",
+      "update": "-(width + padding.left)"
+    },
+    { "name": "xrange", "update": "[0, width]" },
+    { "name": "yrange", "update": "[height, 0]" },
+
+    {
+      "name": "down",
+      "value": null,
+      "on": [
+        { "events": "touchend", "update": "null" },
+        { "events": "mousedown, touchstart", "update": "xy()" }
+      ]
+    },
+    {
+      "name": "xcur",
+      "value": null,
+      "on": [
+        {
+          "events": "mousedown, touchstart, touchend",
+          "update": "slice(xdom)"
+        }
+      ]
+    },
+    {
+      "name": "ycur",
+      "value": null,
+      "on": [
+        {
+          "events": "mousedown, touchstart, touchend",
+          "update": "slice(ydom)"
+        }
+      ]
+    },
+    {
+      "name": "delta",
+      "value": [0, 0],
+      "on": [
+        {
+          "events": [
+            {
+              "source": "window",
+              "type": "mousemove",
+              "consume": true,
+              "between": [
+                { "type": "mousedown" },
+                { "source": "window", "type": "mouseup" }
+              ]
+            },
+            {
+              "type": "touchmove",
+              "consume": true,
+              "filter": "event.touches.length === 1"
+            }
+          ],
+          "update": "down ? [down[0]-x(), y()-down[1]] : [0,0]"
+        }
+      ]
+    },
+    {
+      "name": "anchor",
+      "value": [0, 0],
+      "on": [
+        {
+          "events": "wheel",
+          "update": "[invert('xscale', x()), invert('yscale', y())]"
+        },
+        {
+          "events": {
+            "type": "touchstart",
+            "filter": "event.touches.length===2"
+          },
+          "update": "[(xdom[0] + xdom[1]) / 2, (ydom[0] + ydom[1]) / 2]"
+        }
+      ]
+    },
+    {
+      "name": "zoom",
+      "value": 1,
+      "on": [
+        {
+          "events": "wheel!",
+          "force": true,
+          "update": "pow(1.001, event.deltaY * pow(16, event.deltaMode))"
+        },
+        {
+          "events": { "signal": "dist2" },
+          "force": true,
+          "update": "dist1 / dist2"
+        }
+      ]
+    },
+    {
+      "name": "dist1",
+      "value": 0,
+      "on": [
+        {
+          "events": {
+            "type": "touchstart",
+            "filter": "event.touches.length===2"
+          },
+          "update": "pinchDistance(event)"
+        },
+        {
+          "events": { "signal": "dist2" },
+          "update": "dist2"
+        }
+      ]
+    },
+    {
+      "name": "dist2",
+      "value": 0,
+      "on": [
+        {
+          "events": {
+            "type": "touchmove",
+            "consume": true,
+            "filter": "event.touches.length===2"
+          },
+          "update": "pinchDistance(event)"
+        }
+      ]
+    },
+    {
+      "name": "xdom",
+      "update": "slice(xext)",
+      "on": [
+        {
+          "events": { "signal": "delta" },
+          "update": "[xcur[0] + span(xcur) * delta[0] / width, xcur[1] + span(xcur) * delta[0] / width]"
+        },
+        {
+          "events": { "signal": "zoom" },
+          "update": "[anchor[0] + (xdom[0] - anchor[0]) * zoom, anchor[0] + (xdom[1] - anchor[0]) * zoom]"
+        }
+      ]
+    },
+    {
+      "name": "ydom",
+      "update": "slice(yext)",
+      "on": [
+        {
+          "events": { "signal": "delta" },
+          "update": "[ycur[0] + span(ycur) * delta[1] / height, ycur[1] + span(ycur) * delta[1] / height]"
+        },
+        {
+          "events": { "signal": "zoom" },
+          "update": "[anchor[1] + (ydom[0] - anchor[1]) * zoom, anchor[1] + (ydom[1] - anchor[1]) * zoom]"
+        }
+      ]
+    },
+    {
+      "name": "size",
+      "update": "clamp(20 / span(xdom), 1, 1000)"
+    }
+  ],
+  "data": [
+    {
+      "name": "points",
+      "url": "./demo/spy_risk_return.json",
+      "transform": [
+        { "type": "extent", "field": "std", "signal": "xext" },
+        { "type": "extent", "field": "return", "signal": "yext" },
+        {
+          "type": "formula",
+          "as": "url",
+          "expr": "'https://www.google.com/search?q=ticker:'+datum.ticker",
+          "initonly": true
+        },
+        {
+          "type": "formula",
+          "as": "tip",
+          "expr": "'Ticker:'+datum.ticker",
+          "initonly": true
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "zero": false,
+      "domain": { "signal": "xdom" },
+      "range": { "signal": "xrange" }
+    },
+    {
+      "name": "yscale",
+      "zero": false,
+      "domain": { "signal": "ydom" },
+      "range": { "signal": "yrange" }
+    }
+  ],
+  "axes": [
+    {
+      "scale": "xscale",
+      "orient": "top",
+      "offset": { "signal": "xoffset" },
+      "title": "Volatility",
+      "titlePadding": 15
+    },
+    {
+      "scale": "yscale",
+      "orient": "right",
+      "offset": { "signal": "yoffset" },
+      "title": "Return",
+      "titleAngle": -90,
+      "titlePadding": 20
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": { "data": "points" },
+      "clip": true,
+      "encode": {
+        "enter": {
+          "fillOpacity": { "value": 0.6 },
+          "fill": { "value": "#a6192e" }
+        },
+        "update": {
+          "x": { "scale": "xscale", "field": "std" },
+          "y": { "scale": "yscale", "field": "return" },
+          "size": { "signal": "size" }
+        },
+        "hover": {
+          "fill": { "value": "firebrick" },
+          "tooltip": { "field": "tip", "type": "nominal" },
+          "size": { "signal": "size", "mult": 5 }
+        },
+        "leave": { "fill": { "value": "#a6192e" } },
+        "select": {
+          "size": { "signal": "size", "mult": 5 },
+          "href": { "field": "url", "type": "nominal" }
+        },
+        "release": { "size": { "signal": "size" } }
       }
     }
   ]
@@ -1055,10 +1402,36 @@
 <!-- Get setting from mkdocs.yml, but allow page-level overrides -->
 
 
-  
-
 
 <!-- Inject Disqus into current page -->
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = "https://mingze-gao.com/finc50/"
+      this.page.identifier =
+        "finc50/" 
+    }
+
+    /* Set up for the first time */
+    if (typeof DISQUS === "undefined") {
+      var script = document.createElement("script")
+      script.async = true
+      script.src = "https://mingze-gao.disqus.com/embed.js"
+      script.setAttribute("data-timestamp", Date.now())
+
+      /* Inject script tag */
+      document.body.appendChild(script)
+
+    /* Set up on navigation (instant loading) */
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      })
+    }
+  </script>
 
                 
               </article>
