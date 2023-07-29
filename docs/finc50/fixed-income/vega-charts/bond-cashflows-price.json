@@ -4,7 +4,7 @@
   "width": 700,
   "height": 300,
   "title": {
-    "text": "Cashflows, PV and Price of a Bond",
+    "text": "Cashflows, PV and Price of a $10,000 Bond",
     "fontSize": 18,
     "anchor": "middle"
   },
@@ -12,23 +12,53 @@
     {
       "name": "table",
       "transform": [
-        { "type": "sequence", "as": "year", "start": 0, "step": 1, "stop": 31 },
+        {
+          "type": "sequence",
+          "as": "year",
+          "start": 0,
+          "step": 0.5,
+          "stop": 31
+        },
+        {
+          "type": "formula",
+          "as": "i",
+          "expr": "(0.5*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "i2",
+          "expr": "(2*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+
         {
           "type": "formula",
           "as": "cashflow",
-          "expr": "10000*couponRate*(datum.year>0)+10000*(datum.year==maturityInYears)"
+          "expr": "10000*couponRate*(datum.i)*(datum.year>0)+10000*(datum.year==maturityInYears)"
         },
+
+        {
+          "type": "formula",
+          "as": "r",
+          "expr": "couponFrequency=='annual'? discountRate : pow(1+discountRate,0.5)-1"
+        },
+
         {
           "type": "formula",
           "as": "pv",
-          "expr": "datum.cashflow / pow(1+discountRate, datum.year)"
+          "expr": "datum.cashflow / pow(1+datum.r, datum.year)"
         },
+
         {
           "type": "formula",
           "as": "price",
-          "expr": "discountRate>0 ? (10000*couponRate*(1-pow(1+discountRate,-maturityInYears))/discountRate+10000*pow(1+discountRate,-maturityInYears)) : 10000*(1+couponRate*maturityInYears)"
+          "expr": "datum.r>0 ? (10000*couponRate*(datum.i)*(1-pow(1+datum.r,-maturityInYears*datum.i2))/datum.r+10000*pow(1+datum.r,-maturityInYears*datum.i2)) : 10000*(1+couponRate*(datum.i)*maturityInYears*datum.i2)"
         },
-        { "type": "filter", "expr": "datum.year<=maturityInYears" }
+
+        { "type": "filter", "expr": "datum.year<=maturityInYears" },
+        {
+          "type": "filter",
+          "expr": "couponFrequency=='annual'? (datum.year==round(datum.year)) : 1 "
+        }
       ]
     },
     {
@@ -64,13 +94,21 @@
       "name": "couponRate",
       "value": 0.05,
       "bind": { "input": "range", "min": 0, "max": 0.2, "step": 0.0001 }
+    },
+    {
+      "name": "couponFrequency",
+      "value": "annual",
+      "bind": {
+        "input": "radio",
+        "options": ["annual", "semiannual"]
+      }
     }
   ],
   "scales": [
     {
       "name": "x",
       "type": "band",
-      "domain": { "data": "table", "field": "year" },
+      "domain": { "data": "table", "field": "year", "sort": true },
       "range": "width",
       "padding": 0.7
     },
@@ -90,20 +128,15 @@
       "type": "rect",
       "from": { "data": "table" },
       "encode": {
-        "enter": {
-          "x": { "scale": "x", "field": "year" },
-          "width": { "scale": "x", "band": 1 },
-          "y": { "scale": "y", "field": "cashflow" },
-          "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
-        },
         "update": {
           "fill": { "value": "steelblue" },
           "x": { "scale": "x", "field": "year" },
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "cashflow" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Cashflow': datum.cashflow }" }
+          "tooltip": {
+            "signal": "{ 'Cashflow': format(datum.cashflow, '$,.2f') }"
+          }
         }
       }
     },
@@ -111,20 +144,13 @@
       "type": "rect",
       "from": { "data": "table" },
       "encode": {
-        "enter": {
-          "x": { "scale": "x", "field": "year" },
-          "width": { "scale": "x", "band": 1 },
-          "y": { "scale": "y", "field": "pv" },
-          "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'PV': datum.pv }" }
-        },
         "update": {
           "fill": { "value": "#d6001c" },
           "x": { "scale": "x", "field": "year" },
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "pv" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'PV': datum.pv }" }
+          "tooltip": { "signal": "{ 'PV': format(datum.pv, '$,.2f') }" }
         }
       }
     },
@@ -138,7 +164,9 @@
           "width": { "scale": "x", "band": 1 },
           "y": { "scale": "y", "field": "price" },
           "y2": { "scale": "y", "value": 0 },
-          "tooltip": { "signal": "{ 'Bond Price': datum.price }" }
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price, '$,.2f') }"
+          }
         }
       }
     },
@@ -149,7 +177,7 @@
         "update": {
           "x": { "scale": "x", "value": 0 },
           "y": { "scale": "y", "field": "price", "offset": -5 },
-          "text": { "field": "price" },
+          "text": { "signal": "format(datum.price, '$,.2f')" },
           "fontSize": { "value": 12 },
           "align": { "value": "left" },
           "baseline": { "value": "bottom" },
@@ -163,12 +191,12 @@
         "enter": {
           "align": { "value": "right" },
           "baseline": { "value": "bottom" },
-          "fill": { "value": "rgba(0, 0, 0, 0.5)" },
+          "fill": { "value": "rgba(0, 0, 0, 0.2)" },
           "fontSize": { "value": 14 },
-          "x": { "value": 0, "offset": "width*0.5" },
+          "x": { "value": 0, "offset": "width*0.85" },
           "y": { "value": 0, "offset": "height*1.2" },
           "text": {
-            "value": "Assume annual coupons in arrears and effect annual discount rate."
+            "value": "Assume coupons paid in arrears and effect annual discount rate (conversion based on coupon frequency)."
           }
         }
       }
