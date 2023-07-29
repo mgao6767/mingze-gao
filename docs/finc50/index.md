@@ -1,3 +1,7 @@
+---
+disqus: true
+---
+
 # FINC50
 
 **FINC50** is one half of your Finance 101. (1)
@@ -26,8 +30,29 @@ The objectives are
 
 ### Bond price
 
+An interactive chart and calculator of bond cashflows, present values and prices.
+
 ```vegalite
 {%
   include "./fixed-income/vega-charts/bond-cashflows-price.json"
+%}
+```
+
+### Risk and return
+
+A graph showing volatility and return of S&P500 constituents in 2022.(1)
+Try to pan, zoom, select and click.
+{ .annotate }
+
+1. The data is retrieved using the following Python code.
+   ```python
+   {%
+      include "./demo/spy_risk_return.py"
+   %}  
+   ```
+
+```vegalite
+{%
+  include "./demo/sp500_stock_return_volatility.json"
 %}
 ```
