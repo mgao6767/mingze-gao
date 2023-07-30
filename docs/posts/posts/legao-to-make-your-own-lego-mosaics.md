@@ -14,9 +14,6 @@ I made an online app that turns a picture into a LEGO mosaic: [mingze-gao.com/le
 
 <!-- more -->
 
-!!! warning
-    This app is temporarily shut down as at July 25, 2023 until I find a cheaper solution.
-
 A few weeks ago, I went to the new LEGO flagship store at Bondi with my fiancée, Sherry, and we were impressed by the LEGO Mosaics -- Sydney Harbour Bridge and Opera House in sunset, designed by Ryan McNaught (photo credit: jaysbrickblog.com).
 
 ![LEGO Sydney Bridge](/images/LEGO-Store-Sydney-Harbour-Bridge-Mural-1024x662.jpg)

@@ -13,3 +13,4 @@
 
 - [`phd.io`](https://phds.io) - a website for PhDs to build their personal web pages.
 - [`PaperManager`](https://github.com/mgao6767/PaperManager) - a simple tag-based paper manager with a fast PDF viewer in pure Python.
+- [`LeGao`](/apps/legao) - a web application used to make LEGO mosaics.
