@@ -28,13 +28,23 @@ The objectives are
 
 ## Demo
 
-### Bond price
+### Bond cashflows and price
 
 An interactive chart and calculator of bond cashflows, present values and prices.
 
 ```vegalite
 {%
   include "./fixed-income/vega-charts/bond-cashflows-price.json"
+%}
+```
+
+### Bond price and yield
+
+An interactive chart of bond price and yield.
+
+```vegalite
+{%
+  include "./fixed-income/vega-charts/bond-price-yield.json"
 %}
 ```
 
