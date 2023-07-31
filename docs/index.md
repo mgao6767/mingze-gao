@@ -2,6 +2,7 @@
 template: home.html
 hide:
   - toc
+  - footer
 --- 
 
 # Mingze Gao (高铭泽)

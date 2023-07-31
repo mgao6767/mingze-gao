@@ -82,7 +82,7 @@ theme:
       example: octicons/log-24
   features:
     - announce.dismiss
-    # - navigation.footer
+    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
@@ -171,4 +171,8 @@ nav:
           - finc50/fixed-income/index.md
           - Introduction: finc50/fixed-income/introduction.md
           - Prices and Yields: finc50/fixed-income/bond-prices-and-yields.md
+      - Stata Workshop:
+          - finc50/stata/index.md
+          - Introduction: finc50/stata/introduction.md
+          - Packages: finc50/stata/packages.md
   - frds.io: https://frds.io

@@ -2,6 +2,8 @@
 description: 'A bit more about me'
 disqus: ''
 slug: about
+hide:
+  - footer
 ---
 
 # About Me

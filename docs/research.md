@@ -1,6 +1,8 @@
 ---
 disqus: ''
 template: sidebar.html
+hide:
+    - footer
 ---
 
 # Research

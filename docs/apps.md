@@ -1,3 +1,8 @@
+---
+hide:
+  - footer
+---
+
 # Apps
 
 👨‍💻 The apps, programs and other tools I developed.

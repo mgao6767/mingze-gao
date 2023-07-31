@@ -1,5 +1,7 @@
 ---
 disqus: true
+hide:
+  - footer
 ---
 
 # FINC50
