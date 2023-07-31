@@ -12,13 +12,13 @@
         <meta name="author" content="Mingze Gao">
       
       
-        <link rel="canonical" href="https://mingze-gao.com/finc50/fixed-income/introduction/">
+        <link rel="canonical" href="https://mingze-gao.com/finc50/stata/introduction/">
       
       
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../bond-prices-and-yields/">
+        <link rel="next" href="../packages/">
       
       
         
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction-to-fixed-income-securities" class="md-skip">
+        <a href="#stata-introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -606,6 +606,58 @@
                 
   
   
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../fixed-income/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixed Income
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -628,7 +680,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
         
           
           
@@ -639,7 +691,7 @@
   <span class="md-ellipsis">
     
   
-    Fixed Income
+    Stata Workshop
   
 
     
@@ -649,18 +701,18 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_5_2">
+              <label class="md-nav__link " for="__nav_5_3">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Fixed Income
+    Stata Workshop
   
 
           </label>
@@ -732,11 +784,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-are-fixed-income-securities" class="md-nav__link">
+  <a href="#stata-gui" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          What are fixed income securities?
+          Stata GUI
         </span>
       
     </span>
@@ -745,51 +797,25 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-invest-in-fixed-income-securities" class="md-nav__link">
+  <a href="#basic-demonstration" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Why invest in fixed income securities?
+          Basic demonstration
         </span>
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#who-invest-in-fixed-income-securities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Who invest in fixed income securities?
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-of-a-bond" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Features of a bond
-        </span>
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features of a bond">
+    <nav class="md-nav" aria-label="Basic demonstration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-basics" class="md-nav__link">
+  <a href="#working-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          The basics
+          Working directory
         </span>
       
     </span>
@@ -798,11 +824,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additional-things" class="md-nav__link">
+  <a href="#structure-of-a-stata-command" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Additional things
+          Structure of a Stata command
         </span>
       
     </span>
@@ -811,11 +837,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#embedded-options" class="md-nav__link">
+  <a href="#some-other-quick-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Embedded options
+          Some other quick examples
         </span>
       
     </span>
@@ -829,15 +855,92 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-simplified-overview" class="md-nav__link">
+  <a href="#what-about-regression" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          The (simplified) overview
+          What about regression?
         </span>
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="What about regression?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Load dataset
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Run regression
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save results
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Save results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save-to-word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save to Word
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-to-latex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save to LaTeX
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -856,13 +959,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../bond-prices-and-yields/" class="md-nav__link">
+      <a href="../packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Prices and Yields
+    Packages
   
 
     
@@ -878,58 +981,6 @@
             
           </ul>
         </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../stata/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    
-  
-    Stata Workshop
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
       
     </li>
   
@@ -995,11 +1046,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-are-fixed-income-securities" class="md-nav__link">
+  <a href="#stata-gui" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          What are fixed income securities?
+          Stata GUI
         </span>
       
     </span>
@@ -1008,51 +1059,25 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-invest-in-fixed-income-securities" class="md-nav__link">
+  <a href="#basic-demonstration" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Why invest in fixed income securities?
+          Basic demonstration
         </span>
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#who-invest-in-fixed-income-securities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Who invest in fixed income securities?
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-of-a-bond" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Features of a bond
-        </span>
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features of a bond">
+    <nav class="md-nav" aria-label="Basic demonstration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-basics" class="md-nav__link">
+  <a href="#working-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          The basics
+          Working directory
         </span>
       
     </span>
@@ -1061,11 +1086,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#additional-things" class="md-nav__link">
+  <a href="#structure-of-a-stata-command" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Additional things
+          Structure of a Stata command
         </span>
       
     </span>
@@ -1074,11 +1099,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#embedded-options" class="md-nav__link">
+  <a href="#some-other-quick-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Embedded options
+          Some other quick examples
         </span>
       
     </span>
@@ -1092,15 +1117,92 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-simplified-overview" class="md-nav__link">
+  <a href="#what-about-regression" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          The (simplified) overview
+          What about regression?
         </span>
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="What about regression?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Load dataset
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Run regression
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save results
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Save results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save-to-word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save to Word
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-to-latex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Save to LaTeX
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1165,7 +1267,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Fixed Income
+    Stata Workshop
   </span>
 
         </a>
@@ -1213,208 +1315,175 @@
 
 
 <!-- Markdown content -->
-<h1 id="introduction-to-fixed-income-securities">Introduction to Fixed Income Securities<a class="headerlink" href="#introduction-to-fixed-income-securities" title="Permanent link">&para;</a></h1>
-<h2 id="what-are-fixed-income-securities">What are fixed income securities?<a class="headerlink" href="#what-are-fixed-income-securities" title="Permanent link">&para;</a></h2>
-<p>Fixed income securities are financial instruments that provide a <strong>fixed, or predictable, stream of income</strong> to investors. These securities typically take the form of <a href="https://en.wikipedia.org/wiki/Bond_(finance)">bonds</a>, but also include other investment types like <a href="https://en.wikipedia.org/wiki/Certificate_of_deposit">certificates of deposit</a> and <a href="https://en.wikipedia.org/wiki/Preferred_stock">preferred shares</a>.</p>
-<p>Fixed income securities are essentially <strong>loans</strong> made by an investor to an <em>issuer</em>. In exchange for the loan, the issuer agrees to pay the investor a specified rate of interest during the life of the bond and to repay the principal when it "matures," or comes due.</p>
-<div class="admonition example">
-<p class="admonition-title">Types of fixed income securities</p>
-<p>By the type of issuer, there are</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="government-bonds" name="__tabbed_1" type="radio" /><input id="corporate-bonds" name="__tabbed_1" type="radio" /><input id="municipal-bonds" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="government-bonds">Government bonds</label><label for="corporate-bonds">Corporate bonds</label><label for="municipal-bonds">Municipal bonds</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="admonition info inline end">
-<p class="admonition-title">Risk-free rate</p>
-<p>When we talk about "risk-free rate", we largely refer to the <a href="../bond-prices-and-yields">yield</a> of such government bonds.</p>
+<h1 id="stata-introduction">Stata - Introduction<a class="headerlink" href="#stata-introduction" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.stata.com">Stata</a> is a powerful statistical analysis software that we often use in empirical researches. This series of posts aims to provide some basic knowledge for junior researchers to get started with Stata, as well as some personal tips on more efficiently using Stata in research projects.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<h2 id="stata-gui">Stata GUI<a class="headerlink" href="#stata-gui" title="Permanent link">&para;</a></h2>
+<p>The Graphical User Interface (GUI) of Stata looks like this:</p>
+<p><img alt="stata-gui" src="../images/gui.png" /></p>
+<p>This is the default layout of Stata 16. Some preset preferences can be found via menu option <code>Edit&gt;Preferences&gt;Load preference set</code>. You can also save your personal preferences (color theme, layout, etc.) in the <code>Edit&gt;Preference</code> menu.</p>
+<p>Of the many windows of the GUI, we are mostly interested in the <strong>Results</strong> window (<code>Ctrl+2</code>) where outputs are displayed. While all other windows can be hidden or closed, the <strong>Results</strong> window always remains center of the GUI.</p>
+<p>The <strong>Command</strong> window (<code>Ctrl+1</code>) is where we mostly interact with Stata by entering Stata commands. Since usually we need a group of commands to complete a task, it is a good idea to place them together in a <strong>do file</strong> (with the extension <code>.do</code>), which is the file type native to Stata, just like <code>.py</code> file to Python. Later, we will introduce the Stata's <strong>Do Editor</strong> (<code>Ctrl+9</code>) as a nice editor for <code>.do</code> files.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As a researcher, keeping good record of the programs and codes used is a merit. For oneself, it boosts productivity as more codes are accumulated. Beyond that, it ensures all results can be replicated even years later. Nowadays, more and more top journals also require submission of the codes used in the paper.</p>
 </div>
-<p>Governments issue bonds to borrow money. These bonds are considered among the <strong>safest investments</strong>, as they are backed by the taxing power of the government.</p>
-</div>
-<div class="tabbed-block">
-<p>Companies also issue bonds to finance their operations or projects. Corporate bonds are considered <strong>higher risk</strong> than government bonds, but they also typically pay a higher rate of interest.</p>
-</div>
-<div class="tabbed-block">
-<p class="annotate">Municipal bonds are issued by cities, states, or other local entities for various public purposes. These bonds often have <strong>tax advantages</strong>, making them attractive to certain investors. (1)</p>
-<ol>
-<li>In the U.S., generally, the interest on municipal bonds is exempt from federal income tax. The interest may also be exempt from state and local taxes if you reside in the state where the bond is issued. See <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds-or-fixed-income-products-0">investor.gov</a></li>
-</ol>
-</div>
-</div>
-</div>
-<p>In terms of underlying asset, there are</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="asset-backed-securities-abs" name="__tabbed_2" type="radio" /><input id="mortgage-backed-securities-mbs" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="asset-backed-securities-abs">Asset-backed securities (ABS)</label><label for="mortgage-backed-securities-mbs">Mortgage-backed securities (MBS)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>These are bonds backed by loan receivables other than real estate, such as credit card debt, auto loans, student loans, or even royalties from music. In the case of ABS, a pool of these non-mortgage assets is packaged and sold to investors as securities. The principal and interest payments made by the borrowers on these underlying loans are then passed through to the investors.</p>
-</div>
-<div class="tabbed-block">
-<p>These are investment products backed by home and commercial mortgage loans. These loans are packaged into securities and sold to investors. Similar to ABS, the principal and interest payments made by the borrowers are passed through to the investors. However, MBS are directly tied to the mortgage industry and are susceptible to the performance of the housing market.</p>
-</div>
-</div>
-</div>
-</div>
-<h2 id="why-invest-in-fixed-income-securities">Why invest in fixed income securities?<a class="headerlink" href="#why-invest-in-fixed-income-securities" title="Permanent link">&para;</a></h2>
-<p>Investors choose fixed income securities for several reasons:</p>
-<ol>
-<li>
-<p><strong>Income</strong>: Fixed income securities provide regular interest payments, which can be an attractive source of income.</p>
-</li>
-<li>
-<p><strong>Preservation of capital</strong>: When the bond matures, the full principal amount is returned to the investor. This makes bonds appealing for those looking to preserve their capital.</p>
-</li>
-<li>
-<p><strong>Diversification</strong>: Including fixed income securities in a portfolio can help diversify investments and reduce risk.</p>
-</li>
-</ol>
-<h2 id="who-invest-in-fixed-income-securities">Who invest in fixed income securities?<a class="headerlink" href="#who-invest-in-fixed-income-securities" title="Permanent link">&para;</a></h2>
-<p>Investors in fixed income securities come from a broad spectrum and include both individuals and institutions.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="individuals" name="__tabbed_3" type="radio" /><input id="institutions" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="individuals">Individuals</label><label for="institutions">Institutions</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Individual investors, particularly those in or nearing retirement, often invest in fixed-income securities as a way to preserve capital and generate a steady stream of income.</p>
-</div>
-<div class="tabbed-block">
-<ol>
-<li>
-<p><strong>Pension Funds:</strong> Pension funds invest heavily in fixed-income securities as they provide predictable returns which can be matched against their future payout obligations.</p>
-</li>
-<li>
-<p><strong>Insurance Companies:</strong> Like pension funds, insurance companies have long-term, predictable liabilities and thus invest significantly in fixed-income securities to match these liabilities.</p>
-</li>
-<li>
-<p><strong>Mutual Funds:</strong> There are many mutual funds, known as bond funds, that specialize in investing in fixed-income securities.</p>
-</li>
-<li>
-<p><strong>Banks and Financial Institutions:</strong> Banks and other financial institutions often invest in fixed-income securities as a way to generate a return on their excess capital and to help manage their interest rate risk.</p>
-</li>
-<li>
-<p><strong>Endowments and Foundations:</strong> These entities often include fixed-income securities in their portfolios for diversification and income generation.</p>
-</li>
-<li>
-<p><strong>Central Banks:</strong> Central banks often hold domestic and foreign fixed-income securities as a part of their reserves and as a tool for implementing monetary policy.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<p>Each type of investor may have different investment objectives and constraints, and therefore might focus on different types of fixed-income securities (e.g., <a href="#government-bonds">government bonds</a>, <a href="#corporate-bonds">corporate bonds</a>, <a href="#municipal-bonds">municipal bonds</a>, etc.) based on their risk tolerance, income requirements, tax situation, and other factors.</p>
-<details class="info">
-<summary>Market size of fixed income securities</summary>
-<p><img alt="market-size-of-fixed-income-securities" src="../images/market-size-fixed-income-securities.jpg" /></p>
-<p><em>Source of figure: <a href="https://www.sifma.org/resources/research/fixed-income-chart/">SIFMA</a></em></p>
+<h2 id="basic-demonstration">Basic demonstration<a class="headerlink" href="#basic-demonstration" title="Permanent link">&para;</a></h2>
+<p>Now let's start tying our first Stata command in the <strong>Command</strong> window.</p>
+<h3 id="working-directory">Working directory<a class="headerlink" href="#working-directory" title="Permanent link">&para;</a></h3>
+<p>First, let's type <a href="https://www.stata.com/manuals/dcd.pdf"><code>pwd</code></a> (and hit <code>Eneter</code>), which is a command to display the current working directory. Knowing the current working directory, for example, allows you to use <a href="https://en.wikipedia.org/wiki/Path_(computing)#Absolute_and_relative_paths">relative path</a> correctly.</p>
+<p>Throughout this series, I'll follow the tradition and prefix all Stata commands with <code>.</code>, hence <code>. pwd</code> meaning "enter the <code>pwd</code> command in the Command window":</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.<span class="k"> pwd</span>
+</span></code></pre></div>
+<p>From the <strong>Results</strong> window, we can see a line of text like "C:\Users\mgao\Documents", which is the output of executing the <code>pwd</code> command, i.e., the current working directory of Stata on my PC.</p>
+<p>We can change the current working directory to another directory on the computer via the command <a href="https://www.stata.com/manuals/dcd.pdf"><code>cd</code></a>, for example:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> cd</span> <span class="s">&quot;C:\Users\mgao\Dropbox (Sydney Uni)\BUSS7902 Stata&quot;</span>
+</span></code></pre></div>
+<p>Then we can verify that it's indeed changed by <code>pwd</code> again.</p>
+<h3 id="structure-of-a-stata-command">Structure of a Stata command<a class="headerlink" href="#structure-of-a-stata-command" title="Permanent link">&para;</a></h3>
+<p>The above two examples (<code>pwd</code> and <code>cd</code>) already showcase the basic syntax structure of Stata commands. With a few exceptions, a Stata command is like:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>. _commmand_ _parameter1_ _parameter2_ ... , _options_
+</span></code></pre></div>
+<p>or technically,</p>
 <blockquote>
-<p>"Although they usually attract less attention than equity markets, fixed-income markets are more than three times the size of global equity markets", CFA Institute.</p>
+<p>cmd [varlist | namelist | anything]
+               [if]
+               [in]
+               [using filename]
+               [= exp]
+               [weight]
+               [, options]</p>
 </blockquote>
-</details>
-<h2 id="features-of-a-bond">Features of a bond<a class="headerlink" href="#features-of-a-bond" title="Permanent link">&para;</a></h2>
-<h3 id="the-basics">The basics<a class="headerlink" href="#the-basics" title="Permanent link">&para;</a></h3>
-<p>In its simplest form, a bond may be specified by the following characteristics:</p>
-<div class="admonition example inline end">
-<p class="admonition-title">Example</p>
-<p class="annotate">On March 17, 2021, Microsoft (1) "issued a $6,250,000,000 (2) aggregate principal amount of its 2.921% (3) Notes (5) due 2052 (4) (the “2052 Notes”)".</p>
-<ol>
-<li>Issuer</li>
-<li>Face value of the bond</li>
-<li>Coupon rate</li>
-<li>Maturity date</li>
-<li>The terms "bond" and "note" are often used interchangeably. Although typically "note" refers to those with shorter maturities (1 to 10 years) and "bond" refers to those with longer than 10 years of maturity, the difference is really more a matter of convention and industry terminology.</li>
-</ol>
-<p>Source: the firm's <a href="https://microsoft.gcs-web.com/node/29211/html#d130687dex41.htm:~:text=On%20March%C2%A017%2C%202021%2C%20in%20connection%20with%20the%20settlement%20of%20the%20Exchange%20Offers%2C%20the%20Company%20issued%20%246%2C250%2C000%2C000%20aggregate%20principal%20amount%20of%20its%202.921%25%20Notes%20due%202052%20(the%20%E2%80%9C2052%20Notes%E2%80%9D)">SEC filing</a>.</p>
-<p class="annotate">The bond's indenture (1) also specifies that</p>
-<ol>
-<li><strong>Indenture</strong> is the legal contract between the bond issuer and the bondholder that outlines the terms and conditions of the bond, including the rights and responsibilities of both parties.</li>
-</ol>
-<blockquote>
-<p>The 2052 Notes will bear interest (computed on the basis of a 360-day year consisting of twelve 30-day months) from March 17, 2021 at the rate of 2.921% per annum, payable semi-annually in arrears.</p>
-</blockquote>
+<p>where <code>cmd</code> is the name of a command and everything in <code>[ ]</code> is optional.</p>
+<Aside type="tip">
+  You can use `. help syntax` to see more detailed explanation.
+
+  In fact, Stata's help files are _so_ comprehensive that 99.99% of the time you should simply refer to the help files instead of Googling around...
+</Aside>
+
+<h3 id="some-other-quick-examples">Some other quick examples<a class="headerlink" href="#some-other-quick-examples" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.stata.com/manuals/pdisplay.pdf"><code>display</code></a> prints a message to the <strong>Results</strong> window:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>.<span class="k"> display</span> <span class="s">&quot;hello world!&quot;</span>
+</span></code></pre></div>
+<p><a href="https://www.stata.com/manuals/rcls.pdf"><code>cls</code></a> clears the <strong>Results</strong> window:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>. cls
+</span></code></pre></div>
+<p><a href="https://www.stata.com/manuals/dclear.pdf"><code>clear</code></a> clears memory, removing the dataset loaded, if any:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>.<span class="k"> clear</span>
+</span></code></pre></div>
+<p><a href="https://www.stata.com/manuals/rlog.pdf"><code>log</code></a> echos a copy of the session to file:</p>
+<p>Create a log file name <code>stata101.log</code> in the current working directory. The <code>replace</code> option asks Stata to replace the log file if it already exists. Untill <code>. log close</code>, everything displayed in <strong>Results</strong> will be saved in the log file.</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.<span class="k"> log</span> using <span class="s">&quot;stata101.log&quot;</span>,<span class="k"> replace</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>.<span class="k"> display</span> <span class="s">&quot;hello from Mingze&quot;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>.<span class="k"> log close</span>
+</span></code></pre></div>
+<p><code>cmdlog</code> is similar to <code>log</code> but records only the commands but no results.</p>
+<h2 id="what-about-regression">What about regression?<a class="headerlink" href="#what-about-regression" title="Permanent link">&para;</a></h2>
+<p>Of course, Stata is famous for its superior statistical analysis. Let's see how regressions can be easily done in Stata.</p>
+<h3 id="load-dataset">Load dataset<a class="headerlink" href="#load-dataset" title="Permanent link">&para;</a></h3>
+<p>We start by loading an example dataset that comes with Stata installation. This can be done via <a href="https://www.stata.com/manuals/dsysuse.pdf"><code>sysuse</code></a> command. We use the dataset named "auto":</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.<span class="k"> sysuse</span> auto
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Stata comes with several builtin datasets. Use <code>. sysuse dir</code> to have a look.</p>
+<p>More generally, we can <a href="https://www.stata.com/manuals/duse.pdf"><code>use</code></a> our own datasets. We'll see more on this later.</p>
 </div>
-<ul>
-<li><strong>Issuer</strong> is the entity raising capital through bond issue.</li>
-<li><strong>Face value</strong> is the nominal value of the bond, representing the amount the bondholder will receive at maturity, a.k.a. "par value" or "principal".</li>
-<li><strong>Maturity date</strong> is the date on which the bond will mature, and the issuer will return the bond's face value to the bondholders.</li>
-<li><strong>Coupon rate</strong> is the interest rate (fixed or variable) that the bond issuer agrees to pay to bondholders. It is usually expressed as a percentage of the bond's face value, and the interest is paid periodically, typically semi-annually or annually.</li>
-</ul>
-<p class="annotate">... (1)</p>
-<ol>
-<li>Bonds have many more features. We will focus on these for now and introduce others later.</li>
-</ol>
-<p>A sequence of cash flows between the bond issuer and investor is described below</p>
-<pre class="mermaid"><code>sequenceDiagram
-    autonumber
-    Issuer (bond seller)--&gt;&gt;Investor (bond buyer): Bond
-    Investor (bond buyer)-&gt;&gt;Issuer (bond seller): Price of bond
-    note right of Investor (bond buyer): We will figure out the price later
-
-    loop every 6 months until 2052
-        Issuer (bond seller)-&gt;&gt;Investor (bond buyer): Coupon (1/2 of 2.921% of face value)
-    end
-
-    Issuer (bond seller)-&gt;&gt;Investor (bond buyer): Return principal ($6,250,000,000)
-    Investor (bond buyer)--&gt;&gt;Issuer (bond seller): Redeem bond</code></pre>
-<h3 id="additional-things">Additional things<a class="headerlink" href="#additional-things" title="Permanent link">&para;</a></h3>
-<p class="annotate">A bond can be <strong>secured</strong> in that the issuer can pledge certain assets (1) to "secure" the payments to investors. In case of defaults 😔, bondholders have a direct claim on the pledged assets.</p>
-<ol>
-<li>Real estate, equipment, or other valuable properties such as patents, etc.</li>
-</ol>
-<p>An <strong>unsecured</strong> bond (or "debenture"), on the other hand, relies solely on the issuer's creditworthiness and ability to generate cash flow to repay bondholders. In case of defaults 😔, bondholders of unsecured bonds only have a claim on the issuer's general assets.</p>
-<p class="annotate">A bond has also a <strong>seniority</strong>. In case of defaults 😔, investors of more senior bonds can claim before investors of less senior bonds. (1)</p>
-<ol>
-<li>This "more or less senior" notion is vague. More precisely, a <a href="https://www.google.com/search?q=bond+seniority+table">bond seniority table</a> describes the ranking of bond seniority.</li>
-</ol>
-<p>A bond needs to specify the currency as well, along with many other things...</p>
-<h3 id="embedded-options">Embedded options<a class="headerlink" href="#embedded-options" title="Permanent link">&para;</a></h3>
-<p>A bond is <mark><em>plain vanilla</em></mark> when it has no <ins>embedded options</ins>, which can add a lot "flavour".</p>
+<p>We can now ask Stata to <a href="https://www.stata.com/manuals/ddescribe.pdf"><code>describe</code></a> the meta information of the dataset and <a href="https://www.stata.com/manuals/rsummarize.pdf"><code>summarize</code></a> the variables in terms of number of observations, mean, standard deviation, etc.</p>
+<p>The screenshot below shows the output:</p>
+<p><img alt="sysuse_auto" src="../images/sysuse_auto.png" /></p>
+<p>Enlarge the output of <code>describe</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>. describe
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Contains data from C:\Program Files\Stata16\ado\base/a/auto.dta
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  obs:            74                          1978 Automobile Data
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a> vars:            12                          13 Apr 2018 17:45
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>                                              (_dta has notes)
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>--------------------------------------------------------------------------------
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>              storage   display    value
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>variable name   type    format     label      variable label
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>--------------------------------------------------------------------------------
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>make            str18   %-18s                 Make and Model
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>price           int     %8.0gc                Price
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>mpg             int     %8.0g                 Mileage (mpg)
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>rep78           int     %8.0g                 Repair Record 1978
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>headroom        float   %6.1f                 Headroom (in.)
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>trunk           int     %8.0g                 Trunk space (cu. ft.)
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>weight          int     %8.0gc                Weight (lbs.)
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>length          int     %8.0g                 Length (in.)
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>turn            int     %8.0g                 Turn Circle (ft.)
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>displacement    int     %8.0g                 Displacement (cu. in.)
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>gear_ratio      float   %6.2f                 Gear Ratio
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>foreign         byte    %8.0g      origin     Car type
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>--------------------------------------------------------------------------------
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>Sorted by: foreign
+</span></code></pre></div>
+<h3 id="run-regression">Run regression<a class="headerlink" href="#run-regression" title="Permanent link">&para;</a></h3>
+<p>Suppose we'd like to estimate a simple liner regression to study the relation between car price and mileage, headroom and weight:</p>
+<div class="arithmatex">\[
+price = \alpha + \beta_1 mpg + \beta_2 headroom + \beta_3 weight + \varepsilon
+\]</div>
+<p>All we need to do is a simple line of code,</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>.<span class="k"> regress</span> price mpg headroom weight
+</span></code></pre></div>
+<p>which would generate the following estimation results:</p>
+<p><img alt="reg_price" src="../images/reg_price.png" /></p>
+<h3 id="save-results">Save results<a class="headerlink" href="#save-results" title="Permanent link">&para;</a></h3>
+<p>One of the coolest things Stata can do is to export the tabulated regression results to Microsoft Word, PDF, LaTeX and more. </p>
+<h4 id="save-to-word">Save to Word<a class="headerlink" href="#save-to-word" title="Permanent link">&para;</a></h4>
+<p>For example, we can save the previous results (as shown in the screenshot above) to a Word document named "table1" (<code>table1.docx</code>) easily with the following three lines of codes.</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>. putdocx begin
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>. putdocx<span class="k"> table</span> mytable = etable
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>. putdocx<span class="k"> save</span> table1<span class="m">.</span>docx,<span class="k"> replace</span>
+</span></code></pre></div>
+<p>Behind the scene, Stata creates a <code>.docx</code> to work with. <code>putdocx table</code> command creates a new table (mytable) in the <code>.docx</code> file containing estimation results (<code>etable</code> tells it to tabulates the coefficients from previous estimation). Lastly, Stata saves the <code>.docx</code> file as "table1.docx" in the current working directory.</p>
+<p><img alt="putdocx" src="../images/putdocx.png" /></p>
+<h4 id="save-to-latex">Save to LaTeX<a class="headerlink" href="#save-to-latex" title="Permanent link">&para;</a></h4>
+<p>If working with LaTeX,  you can export results as TeX files conveniently too.</p>
+<p>For this purpose, though, an additional Stata package <a href="http://repec.sowi.unibe.ch/stata/estout/index.html"><code>estout</code></a> is required. Personally I'd say this is gold. You can install <code>estout</code> package via a single command in Stata:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>.<span class="k"> ssc</span> install estout,<span class="k"> replace</span>
+</span></code></pre></div>
+<p>Now, you can use the following two lines of codes: </p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>. eststo:<span class="k"> regress</span> price mpg headroom weight
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>. esttab using <span class="s">&quot;table1.tex&quot;</span>, tex<span class="k"> replace label</span> star(<span class="o">*</span> <span class="m">0.10</span> <span class="o">**</span> <span class="m">0.05</span> <span class="o">***</span> <span class="m">0.01</span>) nogaps<span class="k"> compress</span>
+</span></code></pre></div>
+<p>to produce a TeX file ("table1.tex") with the following content:</p>
+<div class="language-tex highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">\def\sym</span>#1<span class="nb">{</span><span class="k">\ifmmode</span><span class="nb">^{</span>#1<span class="nb">}</span><span class="k">\else</span><span class="s">\(</span><span class="nb">^{#</span><span class="m">1</span><span class="nb">}</span><span class="s">\)</span><span class="k">\fi</span><span class="nb">}</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>l*<span class="nb">{</span>1<span class="nb">}{</span>c<span class="nb">}}</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">\hline\hline</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>                <span class="nb">&amp;</span><span class="k">\multicolumn</span><span class="nb">{</span>1<span class="nb">}{</span>c<span class="nb">}{</span>(1)<span class="nb">}</span><span class="k">\\</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>                <span class="nb">&amp;</span><span class="k">\multicolumn</span><span class="nb">{</span>1<span class="nb">}{</span>c<span class="nb">}{</span>Price<span class="nb">}</span><span class="k">\\</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">\hline</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>Mileage (mpg)   <span class="nb">&amp;</span>   -56.19         <span class="k">\\</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>                <span class="nb">&amp;</span>  (-0.66)         <span class="k">\\</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>Headroom (in.)  <span class="nb">&amp;</span>   -675.6<span class="k">\sym</span><span class="nb">{</span>*<span class="nb">}</span>  <span class="k">\\</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>                <span class="nb">&amp;</span>  (-1.72)         <span class="k">\\</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>Weight (lbs.)   <span class="nb">&amp;</span>    2.062<span class="k">\sym</span><span class="nb">{</span>***<span class="nb">}</span><span class="k">\\</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>                <span class="nb">&amp;</span>   (3.13)         <span class="k">\\</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>Constant        <span class="nb">&amp;</span>   3158.3         <span class="k">\\</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>                <span class="nb">&amp;</span>   (0.87)         <span class="k">\\</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="k">\hline</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>Observations    <span class="nb">&amp;</span>       74         <span class="k">\\</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">\hline\hline</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="k">\multicolumn</span><span class="nb">{</span>2<span class="nb">}{</span>l<span class="nb">}{</span><span class="k">\footnotesize</span> <span class="k">\textit</span><span class="nb">{</span>t<span class="nb">}</span> statistics in parentheses<span class="nb">}</span><span class="k">\\</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="k">\multicolumn</span><span class="nb">{</span>2<span class="nb">}{</span>l<span class="nb">}{</span><span class="k">\footnotesize</span> <span class="k">\sym</span><span class="nb">{</span>*<span class="nb">}</span> <span class="s">\(</span><span class="nb">p&lt;</span><span class="m">0</span><span class="nb">.</span><span class="m">10</span><span class="s">\)</span>, <span class="k">\sym</span><span class="nb">{</span>**<span class="nb">}</span> <span class="s">\(</span><span class="nb">p&lt;</span><span class="m">0</span><span class="nb">.</span><span class="m">05</span><span class="s">\)</span>, <span class="k">\sym</span><span class="nb">{</span>***<span class="nb">}</span> <span class="s">\(</span><span class="nb">p&lt;</span><span class="m">0</span><span class="nb">.</span><span class="m">01</span><span class="s">\)</span><span class="nb">}</span><span class="k">\\</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="nb">}</span>
+</span></code></pre></div>
+<p>You can check the PDF compiled from the above TeX code at this <a href="https://www.overleaf.com/read/synvdxtkrjfk">Overleaf link</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Embedded options in bonds refer to features or provisions that give either the bond issuer or the bondholder the right to take certain actions under specific circumstances.</p>
+<p>We will revisit and elaborate on these topics later.
+I deliberately make them oversimplified only to show you what Stata can do in making our lives much easier.</p>
 </div>
-<p>Embedded options provide added flexibility to the bond's terms and can impact the bond's cash flows and overall value. The three main types of embedded options found in bonds are:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="call-option-callable-bonds" name="__tabbed_4" type="radio" /><input id="put-option-puttable-bonds" name="__tabbed_4" type="radio" /><input id="conversion-option-convertible-bonds" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="call-option-callable-bonds">Call Option (Callable Bonds)</label><label for="put-option-puttable-bonds">Put Option (Puttable Bonds)</label><label for="conversion-option-convertible-bonds">Conversion Option (Convertible Bonds)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li>Call option allows the bond issuer to redeem or "call back" the bonds before their scheduled maturity date.</li>
-<li>The issuer may choose to call the bonds if prevailing interest rates decline, giving them an opportunity to refinance at a lower cost.</li>
-<li>When the bond is called, the bondholders receive the bond's face value and any accrued interest up to that point.</li>
-<li>Callable bonds typically offer higher coupon rates compared to non-callable bonds to compensate investors for the risk of early redemption.</li>
-</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>I prepare this series of introductory course notes for the BUSS7902 Quantitative Business Research Methods for PhD students at the University of Sydney Business School in Semester 1, 2023.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
-<div class="tabbed-block">
-<ul>
-<li>Put option allows the bondholder to sell the bonds back to the issuer at a specified price before the scheduled maturity date.</li>
-<li>Puttable bonds provide the bondholders with an opportunity to exit their investment if they believe it is advantageous to do so, such as when interest rates rise.</li>
-<li>When exercised, the bondholder receives the bond's face value, which may be different from the market price at the time of the put option exercise.</li>
-<li>Puttable bonds are relatively less common than callable bonds.</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Conversion option allows the bondholder to convert their bond into common shares of the issuing company. The conversion ratio specifies the number of shares the bondholder will receive per bond converted.</li>
-<li>Convertible bonds are considered <em>hybrid</em> securities because they possess attributes of both debt and equity. Until conversion, they behave like regular bonds, offering fixed coupon payments and a return of the principal at maturity. Upon conversion, they become equity instruments, representing ownership in the issuing company.</li>
-</ul>
-</div>
-</div>
-</div>
-<h2 id="the-simplified-overview">The (simplified) overview<a class="headerlink" href="#the-simplified-overview" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-autonumber
-    participant Issuer
-    participant Underwriter
-    participant Investors
-
-    rect rgba(0, 0, 255, .1)
-        note left of Issuer: Primary Market
-        Issuer-&gt;&gt;Underwriter: Request Bond Underwriting
-        Underwriter-&gt;&gt;Issuer: Analyze Issuer's Creditworthiness
-        Underwriter-&gt;&gt;Investors: Offer Bonds for Sale
-        Investors-&gt;&gt;Underwriter: Express Interest in Buying Bonds
-        Underwriter-&gt;&gt;Issuer: Finalize Bond Terms and Pricing
-        Investors-&gt;&gt;Underwriter: Place Orders for Bonds
-        Underwriter-&gt;&gt;Investors: Issue Bonds to Investors
-    end
-    rect rgba(0, 0, 255, .1)
-        note right of Investors: Secondary Market
-        Investors-&gt;&gt;Investors: Buy and Sell Bonds
-    end</code></pre>
 
 <!-- Source file information -->
 
@@ -1431,9 +1500,9 @@ autonumber
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function() {
-      this.page.url = "https://mingze-gao.com/finc50/fixed-income/introduction/"
+      this.page.url = "https://mingze-gao.com/finc50/stata/introduction/"
       this.page.identifier =
-        "finc50/fixed-income/introduction/" 
+        "finc50/stata/introduction/" 
     }
 
     /* Set up for the first time */
@@ -1477,7 +1546,7 @@ autonumber
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fixed Income Securities" rel="prev">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Stata Workshop" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -1486,20 +1555,20 @@ autonumber
                 Previous
               </span>
               <div class="md-ellipsis">
-                Fixed Income Securities
+                Stata Workshop
               </div>
             </div>
           </a>
         
         
           
-          <a href="../bond-prices-and-yields/" class="md-footer__link md-footer__link--next" aria-label="Next: Prices and Yields" rel="next">
+          <a href="../packages/" class="md-footer__link md-footer__link--next" aria-label="Next: Packages" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Prices and Yields
+                Packages
               </div>
             </div>
             <div class="md-footer__button md-icon">
