@@ -27,6 +27,7 @@ The objectives are
 ## Course notes
 
 - [Fixed Income Securities](./fixed-income/)
+- [Stata Workshop](./stata/)
 
 ## Demo
 

@@ -12,3 +12,4 @@ First, let's get familiar with **Stata** and see what we can do with it.
 
 - [Introduction](./introduction)
 - [Stata packages](./packages)
+- [Working with datasets](./working-with-datasets)
