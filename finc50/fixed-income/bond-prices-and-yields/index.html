@@ -818,11 +818,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#an-improved-formula" class="md-nav__link">
+  <a href="#a-slightly-improved-formula" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          An improved formula
+          A slightly improved formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-more-improved-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          A more improved formula
         </span>
       
     </span>
@@ -832,6 +845,19 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-dirty-and-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price: dirty and clean
+        </span>
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1024,11 +1050,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#an-improved-formula" class="md-nav__link">
+  <a href="#a-slightly-improved-formula" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          An improved formula
+          A slightly improved formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-more-improved-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          A more improved formula
         </span>
       
     </span>
@@ -1038,6 +1077,19 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-dirty-and-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price: dirty and clean
+        </span>
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1417,7 +1469,10 @@
 <li>Bond price increases, other things equal.</li>
 </ol>
 <h3 id="the-formula">The formula<a class="headerlink" href="#the-formula" title="Permanent link">&para;</a></h3>
-<p>The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
+<p class="annotate">The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>(1), is given by</p>
+<ol>
+<li>This discount rate <span class="arithmatex">\(r\)</span> is assumed to be an effective rate for a period of time between two coupons, i.e., effective annual rate in this case.</li>
+</ol>
 <div class="arithmatex">\[
 P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
 \]</div>
@@ -1675,11 +1730,24 @@ P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of co
 <p>Recall earlier we said that the <em>longer</em> the maturity, the <em>lower</em> the bond price. This is true because we are talking about the <em>initial</em> price at issue. For example, other things equal, the price of a 30-year bond is lower than the price of a 10-year bond.</p>
 <p>Here, <em>time</em> is changing. There is <em>a bond</em> of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.</p>
 </details>
-<h3 id="an-improved-formula">An improved formula<a class="headerlink" href="#an-improved-formula" title="Permanent link">&para;</a></h3>
-<p>The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
+<h3 id="a-slightly-improved-formula">A slightly improved formula<a class="headerlink" href="#a-slightly-improved-formula" title="Permanent link">&para;</a></h3>
+<p>The <del class="critic">initial</del><ins class="critic">time <span class="arithmatex">\(t\)</span></ins> price <span class="arithmatex">\(P_{t}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, <ins class="critic"><span class="arithmatex">\(n\)</span> remaining</ins> annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
 <div class="arithmatex">\[
-P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
 \]</div>
+<p>From only <span class="arithmatex">\(P_{t=0}\)</span> to <span class="arithmatex">\(\{P_{t}\}\)</span> is a major improvement!</p>
+<h3 id="a-more-improved-formula">A more improved formula<a class="headerlink" href="#a-more-improved-formula" title="Permanent link">&para;</a></h3>
+<p>But we can still do better!</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>So far we have been assuming the next coupon is exactly one period (e.g., year) in the future, or in other words, <em>the last coupon has just been paid</em>. What if this is not the case? What if the next annual coupon is in 2 months, not in 12 months, from now?</p>
+</div>
+<p>When the coupon payment date does not align with the time at which we compute the bond price, only a simple adjustment is required.</p>
+<p>The basic idea is, since next coupon and all future payments are closer than what's assumed in computation, we have <mark>over-discounted</mark> the bond value. So, we can correct it by "growing" the undervalued price for the time since last coupon payment.</p>
+<div class="arithmatex">\[
+P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1+r)^n}\right]}_{\text{bond price right after last coupon}} \times (1+r)^{\frac{\text{days since last coupon}}{\text{days between coupons}}}
+\]</div>
+<h2 id="price-dirty-and-clean">Price: dirty and clean<a class="headerlink" href="#price-dirty-and-clean" title="Permanent link">&para;</a></h2>
 <h2 id="price-and-yield">Price and yield<a class="headerlink" href="#price-and-yield" title="Permanent link">&para;</a></h2>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
