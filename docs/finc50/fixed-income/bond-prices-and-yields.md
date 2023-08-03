@@ -65,7 +65,10 @@ Now, let's have fun with the interactive chart above.
 
 ### The formula
 
-The initial price $P_{t=0}$ of a plain vanilla $N$-year bond with face value $F$, annual coupon $C$, at a constant discount rate $r$, is given by
+The initial price $P_{t=0}$ of a plain vanilla $N$-year bond with face value $F$, annual coupon $C$, at a constant discount rate $r$(1), is given by
+{ .annotate }
+
+1. This discount rate $r$ is assumed to be an effective rate for a period of time between two coupons, i.e., effective annual rate in this case.
 
 $$
 P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
@@ -99,13 +102,33 @@ It's not difficult to find that, as it approaches the maturity, the bond price a
 
     Here, _time_ is changing. There is _a bond_ of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.
 
-### An improved formula
+### A slightly improved formula
 
-The initial price $P_{t=0}$ of a plain vanilla $N$-year bond with face value $F$, annual coupon $C$, at a constant discount rate $r$, is given by
+The {~~initial~>time $t$~~} price $P_{t}$ of a plain vanilla $N$-year bond with face value $F$, {++$n$ remaining++} annual coupon $C$, at a constant discount rate $r$, is given by
 
 $$
-P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
 $$
+
+From only $P_{t=0}$ to $\{P_{t}\}$ is a major improvement!
+
+### A more improved formula
+
+But we can still do better!
+
+!!! question
+    So far we have been assuming the next coupon is exactly one period (e.g., year) in the future, or in other words, _the last coupon has just been paid_. What if this is not the case? What if the next annual coupon is in 2 months, not in 12 months, from now?
+
+When the coupon payment date does not align with the time at which we compute the bond price, only a simple adjustment is required.
+
+The basic idea is, since next coupon and all future payments are closer than what's assumed in computation, we have ==over-discounted== the bond value. So, we can correct it by "growing" the undervalued price for the time since last coupon payment.
+
+$$
+P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1+r)^n}\right]}_{\text{bond price right after last coupon}} \times (1+r)^{\frac{\text{days since last coupon}}{\text{days between coupons}}}
+$$
+
+## Price: dirty and clean
+
 
 ## Price and yield
 
