@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21+insiders-4.37.1">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21+insiders-4.37.1">
     
     
       
@@ -722,6 +722,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -738,6 +745,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
   
 
       </a>
@@ -758,11 +772,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#price-and-yield-relationship" class="md-nav__link">
+  <a href="#price-of-a-bond" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Price and yield relationship
+          Price of a bond
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Price of a bond">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          The formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price over time
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Price over time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-improved-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          An improved formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-and-yield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price and yield
         </span>
       
     </span>
@@ -900,11 +978,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#price-and-yield-relationship" class="md-nav__link">
+  <a href="#price-of-a-bond" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Price and yield relationship
+          Price of a bond
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Price of a bond">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          The formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price over time
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Price over time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-improved-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          An improved formula
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#price-and-yield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Price and yield
         </span>
       
     </span>
@@ -1022,6 +1164,31 @@
 
 <!-- Markdown content -->
 <h1 id="bond-prices-and-yields">Bond Prices and Yields<a class="headerlink" href="#bond-prices-and-yields" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This post is still under construction.</p>
+</div>
+<p>In the <a href="../introduction/">last post</a> we introduce features of a bond. Now, let's look at how to price a <em><abbr title="No embedded option.">plain vanilla</abbr></em> bond and examine the relation between bond price and yield.  </p>
+<h2 id="price-of-a-bond">Price of a bond<a class="headerlink" href="#price-of-a-bond" title="Permanent link">&para;</a></h2>
+<p>First, what's the fair price of a bond?</p>
+<p>For the investor, a bond represents a series of cashflows to receive in the future. So its price is naturally the total present value of all cashflows from the bond, including coupon payments (if any) and the repayment of principal (bond face value).</p>
+<p>Therefore, the following equation holds true universally at all time <span class="arithmatex">\(t\)</span>:</p>
+<div class="arithmatex">\[
+\text{Bond Price}_{t} = \text{PV}_t(\text{future coupons}) + \text{PV}_t(\text{face value})
+\]</div>
+<blockquote>
+<p>A bond's price at time <span class="arithmatex">\(t\)</span> is the present value as at time <span class="arithmatex">\(t\)</span> of all coupons to receive in the future, plus the present value as at time <span class="arithmatex">\(t\)</span> of the bond face value. Personally, I'd call this fundamental.</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Before we move on</p>
+<p>Remember that all the complications we will see later are just results of uncertainties about the PVs, which utilmately are determined by cashflows and discount rates. Whenever you're lost, pause and think about how they are affected, and then reasone about how bond price may be affected.</p>
+</div>
+<p class="annotate">I like examples. Suppose we are to issue a 10-year bond with a $10,000 face value that pays 5% annual coupon in arrears(1), with 8% discount rate(2), what would be the price today <span class="arithmatex">\(t=0\)</span> at which we can sell the bond to investors?</p>
+<ol>
+<li>"in arrears" means that the payment is made at the end of the period. So in this case, the bond pays coupon annually at the end of the year, not any time sooner.</li>
+<li>We assume that this is an effective annual rate, and is the same for all 10 years in the future.</li>
+</ol>
+<p>The chart below shows the result. Specifically, the blue bars indicate the bond's cashflows, the overlaying red bars indicate their present values as at time <span class="arithmatex">\(t=0\)</span>. The gray bar at <span class="arithmatex">\(t=0\)</span> is the sum of all red bars, i.e., present values, and the price of the bond today.</p>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's cashflows, present value and price, made by Mingze Gao",
@@ -1220,7 +1387,7 @@
           "x": { "value": 0, "offset": "width*0.85" },
           "y": { "value": 0, "offset": "height*1.2" },
           "text": {
-            "value": "Assume coupons paid in arrears and effect annual discount rate (conversion based on coupon frequency)."
+            "value": "Assume coupons paid in arrears and effective annual discount rate (conversion based on coupon frequency)."
           }
         }
       }
@@ -1228,7 +1395,292 @@
   ]
 }
 </vegachart></p>
-<h2 id="price-and-yield-relationship">Price and yield relationship<a class="headerlink" href="#price-and-yield-relationship" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Try it out</p>
+<p>Change the parameters, see what happens to the bond price!</p>
+</div>
+<p>Now, let's have fun with the interactive chart above.</p>
+<div class="annotate">
+<ul>
+<li>What's the bond price if the coupon rate is same as discount rate? (1)  </li>
+<li>How does the bond price change if maturity is longer?(2)</li>
+<li>How does the bond price change if discount rate is higher?(3)</li>
+<li>How does the bond price change if coupon rate is higher?(4)</li>
+<li>How does the bond price change if coupon is paid semiannually?(5)</li>
+</ul>
+</div>
+<ol>
+<li>Bond price is $10,000, same as the face value!</li>
+<li>Bond price decreases, other things equal.</li>
+<li>Bond price decreases, other things equal.</li>
+<li>Bond price increases, other things equal.</li>
+<li>Bond price increases, other things equal.</li>
+</ol>
+<h3 id="the-formula">The formula<a class="headerlink" href="#the-formula" title="Permanent link">&para;</a></h3>
+<p>The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
+<div class="arithmatex">\[
+P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
+\]</div>
+<p>Note that this is only the <mark><em>initial price</em></mark> when the bond is issued at time <span class="arithmatex">\(t=0\)</span>.</p>
+<h2 id="price-over-time">Price over time<a class="headerlink" href="#price-over-time" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>So, other things equal, how does bond price changes <strong><em>over time</em></strong> as we approaches the maturity date?</p>
+</div>
+<p>Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.</p>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A chart of bond's price over time till maturity, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Bond Price Over Time From Issue To Maturity",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "transform": [
+        {
+          "type": "sequence",
+          "as": "year",
+          "start": 0,
+          "step": 0.5,
+          "stop": 31
+        },
+        {
+          "type": "formula",
+          "as": "i",
+          "expr": "(0.5*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "i2",
+          "expr": "(2*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "cashflow",
+          "expr": "10000*couponRate*(datum.i)*(datum.year&gt;0)+10000*(datum.year==maturityInYears)"
+        },
+        {
+          "type": "formula",
+          "as": "r",
+          "expr": "couponFrequency=='annual'? discountRate : pow(1+discountRate,0.5)-1"
+        },
+        {
+          "type": "formula",
+          "as": "pv",
+          "expr": "datum.cashflow / pow(1+datum.r, datum.year)"
+        },
+        {
+          "type": "formula",
+          "as": "price",
+          "expr": "datum.r&gt;0 ? (10000*couponRate*(datum.i)*(1-pow(1+datum.r,-(maturityInYears-datum.year)*datum.i2))/datum.r+10000*pow(1+datum.r,-(maturityInYears-datum.year)*datum.i2)) : 10000*(1+couponRate*(datum.i)*(maturityInYears-datum.year)*datum.i2)"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.year&lt;=maturityInYears"
+        },
+        {
+          "type": "filter",
+          "expr": "couponFrequency=='annual'? (datum.year==round(datum.year)) : 1 "
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "maturityInYears",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    {
+      "name": "discountRate",
+      "value": 0.08,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "couponRate",
+      "value": 0.05,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "couponFrequency",
+      "value": "annual",
+      "bind": {
+        "input": "radio",
+        "options": ["annual", "semiannual"]
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "year",
+        "sort": true
+      },
+      "range": "width",
+      "padding": 0.7
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "price"
+      },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bond Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 0 },
+          "y": { "scale": "y", "value": 10000 },
+          "x2": { "scale": "x", "signal": "maturityInYears" },
+          "y2": { "scale": "y", "value": 10000 },
+          "strokeWidth": { "value": 2 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          },
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1
+          },
+          "y": {
+            "scale": "y",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price, '$,.2f') }"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "signal": "maturityInYears" },
+          "y": { "scale": "y", "value": 10000, "offset": -5 },
+          "text": {
+            "value": "Bond Face Value"
+          },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "rgba(0, 0, 0, 0.2)"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "x": {
+            "value": 0,
+            "offset": "width*0.85"
+          },
+          "y": {
+            "value": 0,
+            "offset": "height*1.2"
+          },
+          "text": {
+            "value": "Assume coupons paid in arrears and effective annual discount rate (conversion based on coupon frequency)."
+          }
+        }
+      }
+    }
+  ]
+}
+</vegachart></p>
+<div class="admonition tip">
+<p class="admonition-title">Try it out</p>
+<p>Change the discount rate to be lower than coupon rate, what do you find?  </p>
+</div>
+<p class="annotate">It's not difficult to find that, as it approaches the maturity, the bond price approaches the face value, regardless of whether the bond is traded at a premium or discount.(1)</p>
+<ol>
+<li>A bond is traded at a premium (discount) if its price is above (below) face value.</li>
+</ol>
+<details class="warning">
+<summary>Confused?</summary>
+<p>Recall earlier we said that the <em>longer</em> the maturity, the <em>lower</em> the bond price. This is true because we are talking about the <em>initial</em> price at issue. For example, other things equal, the price of a 30-year bond is lower than the price of a 10-year bond.</p>
+<p>Here, <em>time</em> is changing. There is <em>a bond</em> of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.</p>
+</details>
+<h3 id="an-improved-formula">An improved formula<a class="headerlink" href="#an-improved-formula" title="Permanent link">&para;</a></h3>
+<p>The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
+<div class="arithmatex">\[
+P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
+\]</div>
+<h2 id="price-and-yield">Price and yield<a class="headerlink" href="#price-and-yield" title="Permanent link">&para;</a></h2>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price and yield, made by Mingze Gao",
@@ -1392,7 +1844,7 @@
           "x": { "value": 0, "offset": "width" },
           "y": { "value": 0, "offset": "height*1.2" },
           "text": {
-            "value": "Assume $10,000 bond, annual coupons paid in arrears and effect annual discount rate."
+            "value": "Assume $10,000 bond, annual coupons paid in arrears and effective annual discount rate."
           }
         }
       }
