@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A chart of bond's price over time till maturity, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Bond Price Over Time From Issue To Maturity",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "transform": [
+        {
+          "type": "sequence",
+          "as": "year",
+          "start": 0,
+          "step": 0.5,
+          "stop": 31
+        },
+        {
+          "type": "formula",
+          "as": "i",
+          "expr": "(0.5*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "i2",
+          "expr": "(2*(couponFrequency=='semiannual')+(couponFrequency=='annual'))"
+        },
+        {
+          "type": "formula",
+          "as": "cashflow",
+          "expr": "10000*couponRate*(datum.i)*(datum.year>0)+10000*(datum.year==maturityInYears)"
+        },
+        {
+          "type": "formula",
+          "as": "r",
+          "expr": "couponFrequency=='annual'? discountRate : pow(1+discountRate,0.5)-1"
+        },
+        {
+          "type": "formula",
+          "as": "pv",
+          "expr": "datum.cashflow / pow(1+datum.r, datum.year)"
+        },
+        {
+          "type": "formula",
+          "as": "price",
+          "expr": "datum.r>0 ? (10000*couponRate*(datum.i)*(1-pow(1+datum.r,-(maturityInYears-datum.year)*datum.i2))/datum.r+10000*pow(1+datum.r,-(maturityInYears-datum.year)*datum.i2)) : 10000*(1+couponRate*(datum.i)*(maturityInYears-datum.year)*datum.i2)"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.year<=maturityInYears"
+        },
+        {
+          "type": "filter",
+          "expr": "couponFrequency=='annual'? (datum.year==round(datum.year)) : 1 "
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "maturityInYears",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    {
+      "name": "discountRate",
+      "value": 0.08,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "couponRate",
+      "value": 0.05,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "couponFrequency",
+      "value": "annual",
+      "bind": {
+        "input": "radio",
+        "options": ["annual", "semiannual"]
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "domain": {
+        "data": "table",
+        "field": "year",
+        "sort": true
+      },
+      "range": "width",
+      "padding": 0.7
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "price"
+      },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bond Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 0 },
+          "y": { "scale": "y", "value": 10000 },
+          "x2": { "scale": "x", "signal": "maturityInYears" },
+          "y2": { "scale": "y", "value": 10000 },
+          "strokeWidth": { "value": 2 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          },
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "width": {
+            "scale": "x",
+            "band": 1
+          },
+          "y": {
+            "scale": "y",
+            "field": "price"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price, '$,.2f') }"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "signal": "maturityInYears" },
+          "y": { "scale": "y", "value": 10000, "offset": -5 },
+          "text": {
+            "value": "Bond Face Value"
+          },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "rgba(0, 0, 0, 0.2)"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "x": {
+            "value": 0,
+            "offset": "width*0.85"
+          },
+          "y": {
+            "value": 0,
+            "offset": "height*1.2"
+          },
+          "text": {
+            "value": "Assume coupons paid in arrears and effective annual discount rate (conversion based on coupon frequency)."
+          }
+        }
+      }
+    }
+  ]
+}
