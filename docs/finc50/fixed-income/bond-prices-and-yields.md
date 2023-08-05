@@ -81,7 +81,25 @@ Note that this is only the ==_initial price_== when the bond is issued at time $
 !!! question
     So, other things equal, how does bond price changes ___over time___ as we approaches the maturity date?
 
-Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.
+We need a better formula that can let $t$ take values other than 0. Recall the rationale that the price is nothing but sum of all PVs of future payments.
+
+### A slightly improved formula
+
+At time $t$, which is _exactly_ $n$ years till maturity, the price, $P_{t}$, of a plain vanilla bond with face value $F$, annual coupon $C$, at a constant discount rate $r$, is given by
+
+$$
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
+$$
+
+From only $P_{t=0}$ to $\{P_{t}\}$ is a major improvement!(1)
+{ .annotate }
+
+1. However, here $t$ can only be positive integers as we assume $t$ is exactly $n$ years before the bond's maturity. See the next question.
+
+Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.(1)
+{ .annotate }
+
+1. Note that at maturity, $n=0$ such that the price $P_t=F$.
 
 ```vegalite
 {%
@@ -102,16 +120,6 @@ It's not difficult to find that, as it approaches the maturity, the bond price a
 
     Here, _time_ is changing. There is _a bond_ of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.
 
-### A slightly improved formula
-
-The {~~initial~>time $t$~~} price $P_{t}$ of a plain vanilla $N$-year bond with face value $F$, {++$n$ remaining++} annual coupon $C$, at a constant discount rate $r$, is given by
-
-$$
-P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
-$$
-
-From only $P_{t=0}$ to $\{P_{t}\}$ is a major improvement!
-
 ### A more improved formula
 
 But we can still do better!
@@ -127,8 +135,44 @@ $$
 P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1+r)^n}\right]}_{\text{bond price right after last coupon}} \times (1+r)^{\frac{\text{days since last coupon}}{\text{days between coupons}}}
 $$
 
+As such, we can now derive a _continuous_ path for the bond price since issue to maturity, assuming other things equal. This is shown in the next chart as a blue line.(1)
+{ .annotate }
+
+1. In the last one, I deliberately use bar chart to indicate discreteness.
+
 ## Price: dirty and clean
 
+!!! danger "Attention!"
+    Now imagine you are to buy a bond _immediately_ before it matures. What would be the price according to the formula and the chart above?
+
+    No matter how much coupon the bond pays, the price (indicated by the the last bar) is the face value of the bond $10,000. After the purchase, however, you will _immediately_ receive a total payment of bond face value and the last coupon payment, which surely is greater than $10,000.
+
+    Apparently, you need to pay more than the price described by the formula to the seller. 
+
+In fact, a bondholder starts to accumulate ==accrued interest== the moment their own the bond. Even though they may sell the bond right before a coupon payment, but given that they have been holding the bond for almost entire the time until selling just before the next coupon payment, they should be given compensation for not receiving the next coupon, which will be paid to the buyer.
+
+*[accrued interest]: Payoffs entitled to the investor but not yet paid.
+
+Further, we generalize this idea to bond transactions any time between coupon payments -- the buyer should compensate the seller additionally a coupon payment proportional to the time that the seller has been holding since last coupon payment relative to the time between two coupon payments.  
+
+```vegalite
+{%
+  include "./vega-charts/bond-price-time-clean-dirty.json"
+%}
+```
+
+The chart above shows the continuous path of bond price described by the formula in blue and the price including the additional compensation, i.e., the accrued interest. We names these two prices "clean price" and "dirty price", respectively.
+
+- The __clean price__ is the price suggested by the formula. In reality, this is the price that market participants deal with more often, e.g., in financial reporting, portfolio management, etc.
+- The __dirty price__ is the clean price plus accrued interest. This is the actual settlement price for bond transactions.
+
+And the accrued interest is given by
+
+$$
+\text{coupon} \times \frac{\text{time since last coupon}}{\text{time between coupons}}
+$$
+
+which periodically increases and resets.
 
 ## Price and yield
 
