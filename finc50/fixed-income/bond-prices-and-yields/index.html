@@ -1482,7 +1482,20 @@ P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of co
 <p class="admonition-title">Question</p>
 <p>So, other things equal, how does bond price changes <strong><em>over time</em></strong> as we approaches the maturity date?</p>
 </div>
-<p>Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.</p>
+<p>We need a better formula that can let <span class="arithmatex">\(t\)</span> take values other than 0. Recall the rationale that the price is nothing but sum of all PVs of future payments.</p>
+<h3 id="a-slightly-improved-formula">A slightly improved formula<a class="headerlink" href="#a-slightly-improved-formula" title="Permanent link">&para;</a></h3>
+<p>At time <span class="arithmatex">\(t\)</span>, which is <em>exactly</em> <span class="arithmatex">\(n\)</span> years till maturity, the price, <span class="arithmatex">\(P_{t}\)</span>, of a <abbr title="No embedded option.">plain vanilla</abbr> bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
+<div class="arithmatex">\[
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
+\]</div>
+<p class="annotate">From only <span class="arithmatex">\(P_{t=0}\)</span> to <span class="arithmatex">\(\{P_{t}\}\)</span> is a major improvement!(1)</p>
+<ol>
+<li>However, here <span class="arithmatex">\(t\)</span> can only be positive integers as we assume <span class="arithmatex">\(t\)</span> is exactly <span class="arithmatex">\(n\)</span> years before the bond's maturity. See the next question.</li>
+</ol>
+<p class="annotate">Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.(1)</p>
+<ol>
+<li>Note that at maturity, <span class="arithmatex">\(n=0\)</span> such that the price <span class="arithmatex">\(P_t=F\)</span>.</li>
+</ol>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price over time till maturity, made by Mingze Gao",
@@ -1730,12 +1743,6 @@ P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of co
 <p>Recall earlier we said that the <em>longer</em> the maturity, the <em>lower</em> the bond price. This is true because we are talking about the <em>initial</em> price at issue. For example, other things equal, the price of a 30-year bond is lower than the price of a 10-year bond.</p>
 <p>Here, <em>time</em> is changing. There is <em>a bond</em> of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.</p>
 </details>
-<h3 id="a-slightly-improved-formula">A slightly improved formula<a class="headerlink" href="#a-slightly-improved-formula" title="Permanent link">&para;</a></h3>
-<p>The <del class="critic">initial</del><ins class="critic">time <span class="arithmatex">\(t\)</span></ins> price <span class="arithmatex">\(P_{t}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, <ins class="critic"><span class="arithmatex">\(n\)</span> remaining</ins> annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
-<div class="arithmatex">\[
-P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
-\]</div>
-<p>From only <span class="arithmatex">\(P_{t=0}\)</span> to <span class="arithmatex">\(\{P_{t}\}\)</span> is a major improvement!</p>
 <h3 id="a-more-improved-formula">A more improved formula<a class="headerlink" href="#a-more-improved-formula" title="Permanent link">&para;</a></h3>
 <p>But we can still do better!</p>
 <div class="admonition question">
@@ -1747,7 +1754,247 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <div class="arithmatex">\[
 P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1+r)^n}\right]}_{\text{bond price right after last coupon}} \times (1+r)^{\frac{\text{days since last coupon}}{\text{days between coupons}}}
 \]</div>
+<p class="annotate">As such, we can now derive a <em>continuous</em> path for the bond price since issue to maturity, assuming other things equal. This is shown in the next chart as a blue line.(1)</p>
+<ol>
+<li>In the last one, I deliberately use bar chart to indicate discreteness.</li>
+</ol>
 <h2 id="price-dirty-and-clean">Price: dirty and clean<a class="headerlink" href="#price-dirty-and-clean" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Attention!</p>
+<p>Now imagine you are to buy a bond <em>immediately</em> before it matures. What would be the price according to the formula and the chart above?</p>
+<p>No matter how much coupon the bond pays, the price (indicated by the the last bar) is the face value of the bond $10,000. After the purchase, however, you will <em>immediately</em> receive a total payment of bond face value and the last coupon payment, which surely is greater than $10,000.</p>
+<p>Apparently, you need to pay more than the price described by the formula to the seller. </p>
+</div>
+<p>In fact, a bondholder starts to accumulate <mark><abbr title="Payoffs entitled to the investor but not yet paid.">accrued interest</abbr></mark> the moment their own the bond. Even though they may sell the bond right before a coupon payment, but given that they have been holding the bond for almost entire the time until selling just before the next coupon payment, they should be given compensation for not receiving the next coupon, which will be paid to the buyer.</p>
+<p>Further, we generalize this idea to bond transactions any time between coupon payments -- the buyer should compensate the seller additionally a coupon payment proportional to the time that the seller has been holding since last coupon payment relative to the time between two coupon payments.  </p>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A chart of bond's dirty and clean prices over time till maturity, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Bond Price, Dirty &amp; Clean, Over Time From Issue To Maturity",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "transform": [
+        {
+          "type": "sequence",
+          "as": "year",
+          "start": 0,
+          "step": 0.01,
+          "stop": 31
+        },
+        {
+          "type": "formula",
+          "as": "price",
+          "expr": "discountRate&gt;0 ? (10000*couponRate*(1-pow(1+discountRate,-(maturityInYears-datum.year)))/discountRate+10000*pow(1+discountRate,-(maturityInYears-datum.year))) : 10000*(1+couponRate*(maturityInYears-datum.year))"
+        },
+        {
+          "type": "formula",
+          "as": "dirtyprice",
+          "expr": "datum.price+10000*couponRate*(datum.year-floor(datum.year))"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.year&lt;=maturityInYears"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "maturityInYears",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    {
+      "name": "discountRate",
+      "value": 0.08,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "couponRate",
+      "value": 0.05,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 0.2,
+        "step": 0.0001
+      }
+    },
+    {
+      "name": "showDirtyPrice",
+      "value": "true",
+      "bind": {
+        "input": "radio",
+        "options": ["true", "false"]
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "year",
+        "sort": true
+      },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "table",
+        "field": "price"
+      },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "title": "Year"
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "title": "Bond Price"
+    }
+  ],
+  "marks": [
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 0 },
+          "y": { "scale": "y", "value": 10000 },
+          "x2": { "scale": "x", "signal": "maturityInYears" },
+          "y2": { "scale": "y", "value": 10000 },
+          "strokeWidth": { "value": 2 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "price"
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {
+        "data": "table"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "scale": "x",
+            "field": "year"
+          },
+          "y": {
+            "scale": "y",
+            "field": "dirtyprice"
+          },
+          "strokeWidth": { "signal": "showDirtyPrice=='true'? 1: 0" },
+          "strokeDash": { "value": [2, 2] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 },
+          "stroke": { "value": "#d6001c" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "signal": "maturityInYears" },
+          "y": { "scale": "y", "value": 10000, "offset": -5 },
+          "text": {
+            "value": "Bond Face Value"
+          },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "bottom"
+          },
+          "fill": {
+            "value": "rgba(0, 0, 0, 0.2)"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "x": {
+            "value": 0,
+            "offset": "width*0.6"
+          },
+          "y": {
+            "value": 0,
+            "offset": "height*1.2"
+          },
+          "text": {
+            "value": "Assume annual coupons paid in arrears and effective annual discount rate."
+          }
+        }
+      }
+    }
+  ]
+}
+</vegachart></p>
+<p>The chart above shows the continuous path of bond price described by the formula in blue and the price including the additional compensation, i.e., the <abbr title="Payoffs entitled to the investor but not yet paid.">accrued interest</abbr>. We names these two prices "clean price" and "dirty price", respectively.</p>
+<ul>
+<li>The <strong>clean price</strong> is the price suggested by the formula. In reality, this is the price that market participants deal with more often, e.g., in financial reporting, portfolio management, etc.</li>
+<li>The <strong>dirty price</strong> is the clean price plus <abbr title="Payoffs entitled to the investor but not yet paid.">accrued interest</abbr>. This is the actual settlement price for bond transactions.</li>
+</ul>
+<p>And the <abbr title="Payoffs entitled to the investor but not yet paid.">accrued interest</abbr> is given by</p>
+<div class="arithmatex">\[
+\text{coupon} \times \frac{\text{time since last coupon}}{\text{time between coupons}}
+\]</div>
+<p>which periodically increases and resets.</p>
 <h2 id="price-and-yield">Price and yield<a class="headerlink" href="#price-and-yield" title="Permanent link">&para;</a></h2>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
