@@ -13,3 +13,7 @@ First, let's get familiar with **Stata** and see what we can do with it.
 - [Introduction](./introduction)
 - [Stata packages](./packages)
 - [Working with datasets](./working-with-datasets)
+
+Take a side trip to see some amazing features of Stata.
+
+- [FRED - Federal Reserve Economic Data](./fred.md)
