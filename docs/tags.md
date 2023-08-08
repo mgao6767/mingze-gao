@@ -1,6 +1,7 @@
 ---
 hide:
   - footer
+disqus: ""
 ---
 
 # Tags

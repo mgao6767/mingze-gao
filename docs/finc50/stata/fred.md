@@ -1,5 +1,7 @@
 ---
 icon: material/checkbox-marked-outline
+tags:
+  - Stata
 ---
 
 !!! note
