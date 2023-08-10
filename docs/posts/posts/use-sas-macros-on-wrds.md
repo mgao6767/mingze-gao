@@ -36,7 +36,7 @@ If you don't have this SAS code in the home folder, simply create one there or y
 
 Let's say we want to winsorize a dataset by using the macro provided by WRDS ([full code](https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/)). Below is an example of winsorizing Total Assets `AT` of Compustat sample by fiscal year from 1980 to 2018.
 
-```sas[class="line-numbers"]
+```sas linenums="1"
 %let wrds=wrds-cloud.wharton.upenn.edu 4016;
 options comamid=TCP remote=WRDS;
 signon username=_prompt_;
