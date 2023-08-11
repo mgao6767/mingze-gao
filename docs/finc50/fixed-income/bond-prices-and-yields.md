@@ -5,9 +5,6 @@ status: new
 
 # Bond Prices and Yields
 
-!!! info
-    This post is still under construction.
-
 In the [last post](./introduction.md) we introduce features of a bond. Now, let's look at how to price a _plain vanilla_ bond and examine the relation between bond price and yield.  
 
 *[plain vanilla]: No embedded option.
@@ -174,10 +171,69 @@ $$
 
 which periodically increases and resets.
 
-## Price and yield
+!!! note "Day count convention"
+    - For Treasury bonds, we use "actual/actual" convention.
+    - For others, typically "30/360" convention.
+
+## Price and yield (to maturity)
+
+So far, we have not yet spent a single word on a bond's "yield", but instead been using "discount rate". What's the difference?
+
+The answer is straightforward. A bond consists of a series of cashflows in the future, each of which may be discounted at different rates. For example, the coupon in 1 year may be discounted at a 5% discount rate, the coupon in 2 years may be discounted at 6%, and so on.
+
+It turns out that, at any time $t$, while a bond can have multiple future payments each discounted at different rates $\{r_{\tau}\}$, we can always find a single discount rate $\color{red}y$ which, when applied to all future payments, leads to the same bond price at the time:
+
+$$
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+r_n)^n}}_{\text{each discounted at varying rates}} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+{\color{red}y})^{\tau}} + \frac{F}{(1+{\color{red}y})^n}}_{\text{all discounted at the same rate}}
+$$
+
+This single discount rate $\color{red}y$ is called the ==yield to maturity==, or _yield_, of the bond ==at time $t$==.
+
+If we plot bond prices against yields, _at a given time_, it's easy to see that they have a one-to-one mapping and a inverse non-linear relationship.
 
 ```vegalite
 {%
   include "./vega-charts/bond-price-yield.json"
 %}
 ```
+
+There are many interesting features about the bond price-yield relationship.
+
+The ==one-to-one mapping== between bond price and yield implies that we can always compute the other when given either of them. So, knowing either price or yield is sufficient when dealing with bonds.(1)
+{ .annotate }
+
+1. Assuming other bond features are known, such as coupon rate, frequency, etc., which are public information.
+
+The ==inverse== relationship suggests that the higher the yield, the lower the bond price.
+
+The ==non-linearity== suggests that the sensitivity of bond price to yield is not static. In fact, we can tell from the graph that the curve is _convex_. This _convexity_ will be of great importance in later studies of bond risk.
+
+## Other yields
+
+When we talk about a bond's yield, we usually refer to the yield to maturity. But there can be some other yield measures:
+
+- [Current yield](https://www.google.com/search?q=bond+current+yield).
+- [Bond equivalent yield](https://google.com/search?q=bond+equivalent+yield).
+- [Yield to call](https://google.com/search?q=bond+yield+to+call).
+- [Yield to put](https://google.com/search?q=bond+yield+to+put).
+- [Yield to worse](https://google.com/search?q=bond+yield+to+worse).
+- ...
+
+!!! warning "Portfolio of bonds"
+    The yield of a portfolio of bonds is __NOT__ a weighted average of individual bonds' yields because the bonds are not homogeneous.
+
+## Trouble maker: floating-rate bonds
+
+We cannot easily compute the yield of a floater, simply because the values of reference rate in the future are unknown. Instead, we can use some spread measures that describe the yield in excess of the reference rate. The most popular measure of yield spread for a floating-rate bond is _discount margin_.
+
+As its name suggests, discount margin basically captures the "discount rate in excess of reference rate".
+
+Suppose the bond market price is $P_t$, reference rate is assumed _constant_ at $R$, the discount margin $DM$ is the one that solves the equation below:
+
+$$
+P_{t} = \sum_{\tau=1}^{n} \frac{C}{(1+R+{\color{red}DM})^{\tau}} + \frac{F}{(1+R+{\color{red}DM})^n}
+$$
+
+Note that here the coupon payment $C$ is determined by the reference rate $R$ and the quoted margin.
+
+*[quoted margin]: A floating-rate bond's coupon rate is determined by a reference rate plus its quoted margin.
