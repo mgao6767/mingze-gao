@@ -18,7 +18,7 @@
         <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../../stata/">
+        <link rel="next" href="../bond-yields-and-returns/">
       
       
         
@@ -620,6 +620,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -862,11 +864,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#price-and-yield" class="md-nav__link">
+  <a href="#price-and-yield-to-maturity" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Price and yield
+          Price and yield (to maturity)
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-yields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Other yields
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-maker-floating-rate-bonds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Trouble maker: floating-rate bonds
         </span>
       
     </span>
@@ -878,6 +906,32 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bond-yields-and-returns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Yields and Returns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1096,11 +1150,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#price-and-yield" class="md-nav__link">
+  <a href="#price-and-yield-to-maturity" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Price and yield
+          Price and yield (to maturity)
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-yields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Other yields
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trouble-maker-floating-rate-bonds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Trouble maker: floating-rate bonds
         </span>
       
     </span>
@@ -1223,10 +1303,6 @@
 
 <!-- Markdown content -->
 <h1 id="bond-prices-and-yields">Bond Prices and Yields<a class="headerlink" href="#bond-prices-and-yields" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>This post is still under construction.</p>
-</div>
 <p>In the <a href="../introduction/">last post</a> we introduce features of a bond. Now, let's look at how to price a <em><abbr title="No embedded option.">plain vanilla</abbr></em> bond and examine the relation between bond price and yield.  </p>
 <h2 id="price-of-a-bond">Price of a bond<a class="headerlink" href="#price-of-a-bond" title="Permanent link">&para;</a></h2>
 <p>First, what's the fair price of a bond?</p>
@@ -2002,7 +2078,22 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
 \text{coupon} \times \frac{\text{time since last coupon}}{\text{time between coupons}}
 \]</div>
 <p>which periodically increases and resets.</p>
-<h2 id="price-and-yield">Price and yield<a class="headerlink" href="#price-and-yield" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Day count convention</p>
+<ul>
+<li>For Treasury bonds, we use "actual/actual" convention.</li>
+<li>For others, typically "30/360" convention.</li>
+</ul>
+</div>
+<h2 id="price-and-yield-to-maturity">Price and yield (to maturity)<a class="headerlink" href="#price-and-yield-to-maturity" title="Permanent link">&para;</a></h2>
+<p>So far, we have not yet spent a single word on a bond's "yield", but instead been using "discount rate". What's the difference?</p>
+<p>The answer is straightforward. A bond consists of a series of cashflows in the future, each of which may be discounted at different rates. For example, the coupon in 1 year may be discounted at a 5% discount rate, the coupon in 2 years may be discounted at 6%, and so on.</p>
+<p>It turns out that, at any time <span class="arithmatex">\(t\)</span>, while a bond can have multiple future payments each discounted at different rates <span class="arithmatex">\(\{r_{\tau}\}\)</span>, we can always find a single discount rate <span class="arithmatex">\(\color{red}y\)</span> which, when applied to all future payments, leads to the same bond price at the time:</p>
+<div class="arithmatex">\[
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+r_n)^n}}_{\text{each discounted at varying rates}} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+{\color{red}y})^{\tau}} + \frac{F}{(1+{\color{red}y})^n}}_{\text{all discounted at the same rate}}
+\]</div>
+<p>This single discount rate <span class="arithmatex">\(\color{red}y\)</span> is called the <mark>yield to maturity</mark>, or <em>yield</em>, of the bond <mark>at time <span class="arithmatex">\(t\)</span></mark>.</p>
+<p>If we plot bond prices against yields, <em>at a given time</em>, it's easy to see that they have a one-to-one mapping and a inverse non-linear relationship.</p>
 <p><vegachart style='width: 100%'  class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price and yield, made by Mingze Gao",
@@ -2174,6 +2265,35 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
   ]
 }
 </vegachart></p>
+<p>There are many interesting features about the bond price-yield relationship.</p>
+<p class="annotate">The <mark>one-to-one mapping</mark> between bond price and yield implies that we can always compute the other when given either of them. So, knowing either price or yield is sufficient when dealing with bonds.(1)</p>
+<ol>
+<li>Assuming other bond features are known, such as coupon rate, frequency, etc., which are public information.</li>
+</ol>
+<p>The <mark>inverse</mark> relationship suggests that the higher the yield, the lower the bond price.</p>
+<p>The <mark>non-linearity</mark> suggests that the sensitivity of bond price to yield is not static. In fact, we can tell from the graph that the curve is <em>convex</em>. This <em>convexity</em> will be of great importance in later studies of bond risk.</p>
+<h2 id="other-yields">Other yields<a class="headerlink" href="#other-yields" title="Permanent link">&para;</a></h2>
+<p>When we talk about a bond's yield, we usually refer to the yield to maturity. But there can be some other yield measures:</p>
+<ul>
+<li><a href="https://www.google.com/search?q=bond+current+yield">Current yield</a>.</li>
+<li><a href="https://google.com/search?q=bond+equivalent+yield">Bond equivalent yield</a>.</li>
+<li><a href="https://google.com/search?q=bond+yield+to+call">Yield to call</a>.</li>
+<li><a href="https://google.com/search?q=bond+yield+to+put">Yield to put</a>.</li>
+<li><a href="https://google.com/search?q=bond+yield+to+worse">Yield to worse</a>.</li>
+<li>...</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Portfolio of bonds</p>
+<p>The yield of a portfolio of bonds is <strong>NOT</strong> a weighted average of individual bonds' yields because the bonds are not homogeneous.</p>
+</div>
+<h2 id="trouble-maker-floating-rate-bonds">Trouble maker: floating-rate bonds<a class="headerlink" href="#trouble-maker-floating-rate-bonds" title="Permanent link">&para;</a></h2>
+<p>We cannot easily compute the yield of a floater, simply because the values of reference rate in the future are unknown. Instead, we can use some spread measures that describe the yield in excess of the reference rate. The most popular measure of yield spread for a floating-rate bond is <em>discount margin</em>.</p>
+<p>As its name suggests, discount margin basically captures the "discount rate in excess of reference rate".</p>
+<p>Suppose the bond market price is <span class="arithmatex">\(P_t\)</span>, reference rate is assumed <em>constant</em> at <span class="arithmatex">\(R\)</span>, the discount margin <span class="arithmatex">\(DM\)</span> is the one that solves the equation below:</p>
+<div class="arithmatex">\[
+P_{t} = \sum_{\tau=1}^{n} \frac{C}{(1+R+{\color{red}DM})^{\tau}} + \frac{F}{(1+R+{\color{red}DM})^n}
+\]</div>
+<p>Note that here the coupon payment <span class="arithmatex">\(C\)</span> is determined by the reference rate <span class="arithmatex">\(R\)</span> and the <abbr title="A floating-rate bond's coupon rate is determined by a reference rate plus its quoted margin.">quoted margin</abbr>.</p>
 
 <!-- Source file information -->
 
@@ -2254,13 +2374,13 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
         
         
           
-          <a href="../../stata/" class="md-footer__link md-footer__link--next" aria-label="Next: Stata Workshop" rel="next">
+          <a href="../bond-yields-and-returns/" class="md-footer__link md-footer__link--next" aria-label="Next: Yields and Returns" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Stata Workshop
+                Yields and Returns
               </div>
             </div>
             <div class="md-footer__button md-icon">

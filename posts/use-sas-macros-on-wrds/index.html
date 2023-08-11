@@ -995,46 +995,80 @@
 <p>If you don't have this SAS code in the home folder, simply create one there or you can choose to include these two lines of code in your remotely submitted code.</p>
 <h2 id="simple-usage">Simple usage<a class="headerlink" href="#simple-usage" title="Permanent link">&para;</a></h2>
 <p>Let's say we want to winsorize a dataset by using the macro provided by WRDS (<a href="https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/">full code</a>). Below is an example of winsorizing Total Assets <code>AT</code> of Compustat sample by fiscal year from 1980 to 2018.</p>
-<p>```sas[class="line-numbers"]
-%let wrds=wrds-cloud.wharton.upenn.edu 4016;
-options comamid=TCP remote=WRDS;
-signon username=<em>prompt</em>;</p>
-<p>rsubmit;</p>
-<p>/<em> Create a dataset in the work directory </em>/
-data work.funda(keep=gvkey fyear at);
-    set comp.funda;
-    if 1980 &lt;= fyear &lt;= 2018;
-    /<em> Generic filter </em>/
-    if indfmt='INDL' and datafmt='STD' and popsrc='D' and consol='C';
-run;</p>
-<p>/<em> Invoke the macro </em>/
-/<em> The documentation is available at:
-   https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/ </em>/
-%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);</p>
-<p>/<em> Before the winsorization </em>/
-proc means data=work.funda; by fyear; var at; 
-output out=funda_before_win min= mean= max= / autoname; run;
-/<em> After the winsorization </em>/
-proc means data=work.funda_w; by fyear; var at;
-output out=funda_after_win min= mean= max= / autoname; run;</p>
-<p>proc print data=funda_before_win;
-proc print data=funda_after_win; run;</p>
-<p>endrsubmit;
-signoff;
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Invoking the macro is as simple as a single line (line 18 above):
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>```sas
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);
-</span></code></pre></div></p>
+<div class="language-sas highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">%let</span> wrds=wrds-cloud<span class="m">.</span>wharton<span class="m">.</span>upenn<span class="m">.</span>edu <span class="m">4016</span>;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">options</span> comamid=TCP remote=WRDS;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>signon username=_prompt_;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>rsubmit;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c">/* Create a dataset in the work directory */</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="kr">data </span>work<span class="m">.</span>funda(<span class="k">keep</span>=gvkey fyear at);
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">set</span> comp<span class="m">.</span>funda;
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="k">if</span> <span class="m">1980</span> &lt;= fyear &lt;= <span class="m">2018</span>;
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="c">/* Generic filter */</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">if</span> indfmt=<span class="s">&#39;INDL&#39;</span> <span class="k">and</span> datafmt=<span class="s">&#39;STD&#39;</span> <span class="k">and</span> popsrc=<span class="s">&#39;D&#39;</span> <span class="k">and</span> consol=<span class="s">&#39;C&#39;</span><span class="kr">;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="kr">run;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c">/* Invoke the macro */</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="cm">/* The documentation is available at:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="cm">   https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/ */</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="nf">%WINSORIZE</span>(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=<span class="m">1</span>,TRIM=<span class="m">0</span>);
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="c">/* Before the winsorization */</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="kr">proc means </span>data=work<span class="m">.</span>funda; <span class="k">by</span> fyear; var at; 
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">output</span> <span class="k">out</span>=funda_before_win min= mean= max= / autoname<span class="kr">; run;</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="c">/* After the winsorization */</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="kr">proc means </span>data=work<span class="m">.</span>funda_w; <span class="k">by</span> fyear; var at;
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="k">output</span> <span class="k">out</span>=funda_after_win min= mean= max= / autoname<span class="kr">; run;</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="kr">proc print </span>data=funda_before_win<span class="kr">;</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="kr">proc print </span>data=funda_after_win<span class="kr">; run;</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a>endrsubmit;
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a>signoff;
+</span></code></pre></div></td></tr></table></div>
+<p>Invoking the macro is as simple as a single line (line 18 above):</p>
+<div class="language-sas highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">%WINSORIZE</span>(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=<span class="m">1</span>,TRIM=<span class="m">0</span>);
+</span></code></pre></div>
 <p>However, one thing to note about this particular winsorization macro by WRDS is that a variable named <code>a</code> is used in line 57 and 59. So if the <code>INSET</code> has a variable named <code>a</code> as well, there’ll be possible data integrity issue. Hence, I prefer to use another version described in my other post <a href="https://mingze-gao.com/posts/winsorization-in-sas/">Winsorization in SAS</a>.</p>
 <h2 id="load-sas-macros-from-url">Load SAS macros from URL<a class="headerlink" href="#load-sas-macros-from-url" title="Permanent link">&para;</a></h2>
 <p>I tend to collect and store all useful macros on my personal server, hence I don't need to worry about a loss of or changes to the macros. To use these macros, simply include them before invoking.</p>
-<div class="language-sas highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">filename</span> winsor url <span class="s">&quot;https://mingze-gao.com/utils/winsor.sas&quot;</span>;
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nf">%include</span> winsor;
+<div class="language-sas highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">filename</span> winsor url <span class="s">&quot;https://mingze-gao.com/utils/winsor.sas&quot;</span>;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nf">%include</span> winsor;
 </span></code></pre></div>
 <p>Then, I can simply call <code>winsor</code> as below.</p>
-<div class="language-sas highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">%let</span> winsVars = tac inv_at_l drev drevadj ppe roa;
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nf">%winsor</span>(dsetin=work<span class="m">.</span>funda, dsetout=work<span class="m">.</span>funda_wins, byvar=fyear, vars=<span class="nv">&amp;winsVars</span>, type=winsor, pctl=<span class="m">1</span> <span class="m">99</span>);
+<div class="language-sas highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">%let</span> winsVars = tac inv_at_l drev drevadj ppe roa;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nf">%winsor</span>(dsetin=work<span class="m">.</span>funda, dsetout=work<span class="m">.</span>funda_wins, byvar=fyear, vars=<span class="nv">&amp;winsVars</span>, type=winsor, pctl=<span class="m">1</span> <span class="m">99</span>);
 </span></code></pre></div>
 
 <!-- Source file information -->
