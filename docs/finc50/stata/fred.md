@@ -1,5 +1,6 @@
 ---
 icon: material/checkbox-marked-outline
+disqus: true
 tags:
   - Stata
 ---
