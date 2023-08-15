@@ -5,7 +5,7 @@ tags:
     - Stata
 categories:
     - Research Notes
-disqus: ""
+disqus: true
 slug: "fred-federal-reserve-economic-data"
 ---
 

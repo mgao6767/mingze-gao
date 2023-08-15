@@ -25,4 +25,3 @@ Mingze has a strong background in programming and received First Prize in the 20
 ## Contact
 
 - Email: [mingze.gao@sydney.edu.au](mailto:mingze.gao@sydney.edu.au)
-- Room 431, H69, The University of Sydney NSW 2006
