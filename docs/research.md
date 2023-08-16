@@ -25,6 +25,8 @@ hide:
 
 > A firm's organization capital has a significant substitution effect on its executive pay-for-performance sensitivity.
 > [:octicons-arrow-right-24: SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
+>
+> - ___Outstanding PhD Student Paper Award, 3rd Global PhD Colloquium___
 
 <!-- - The 2020 FMA Annual Meeting (Virtual), October 2020. Discussant: Blake Loriot.
 - The 3rd Global PhD Colloquium, April 2019, Fordham University, New York -- **_Outstanding PhD Student Paper Award_**. Discussant: Thomas Noe.
@@ -54,6 +56,7 @@ hide:
 "**Borrower Technology Similarity and Bank Loan Contracting**", with Yunying Huang, Steven Ongena and Eliza Wu.
 
 - EFA 2023 (poster), FMA 2023, 35th AFBC.
+- Semifinalist for ___FMA 2023 Best Paper Awards___ (winners TBA).
 
 "**Corporate Real Estate Holdings and M&As**", with Thanh Son Luong and Buhui Qiu.
 
