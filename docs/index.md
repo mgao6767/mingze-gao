@@ -27,3 +27,8 @@ Mingze has a strong background in programming and received First Prize in the 20
 ## Contact
 
 - Email: [mingze.gao@sydney.edu.au](mailto:mingze.gao@sydney.edu.au)
+
+## News
+
+- 2023-08-16: My paper "Borrower Technology Similarity and Bank Loan Contracting" with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a semifinalist for the Best Paper Awards of FMA Annual Meeting 2023. Winners TBA.
+- 2023-07-27: I will join Macquarie University as a Lecturer in Finance. Contract signed. Starting January 2024.
