@@ -1,0 +1,1793 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mingze Gao's personal website.">
+      
+      
+        <meta name="author" content="Mingze Gao">
+      
+      
+        <link rel="canonical" href="https://mingze-gao.com/posts/difference-in-differences-estimation/">
+      
+      
+        <link rel="prev" href="../crsp-missing-codes/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21+insiders-4.37.1">
+    
+    
+      
+        <title>Difference-in-Differences Estimation - Mingze Gao</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3a36e643.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc776e4.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.197 10a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-2.382 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-1.581 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z"/><path d="M4.125 0h15.75a4.11 4.11 0 0 1 2.92 1.205A4.11 4.11 0 0 1 24 4.125c0 1.384-.476 2.794-1.128 4.16-.652 1.365-1.515 2.757-2.352 4.104l-.008.013c-.849 1.368-1.669 2.691-2.28 3.97-.614 1.283-.982 2.45-.982 3.503a2.625 2.625 0 1 0 4.083-2.183.75.75 0 1 1 .834-1.247A4.126 4.126 0 0 1 19.875 24H4.5a4.125 4.125 0 0 1-4.125-4.125c0-2.234 1.258-4.656 2.59-6.902.348-.586.702-1.162 1.05-1.728.8-1.304 1.567-2.553 2.144-3.738H3.39c-.823 0-1.886-.193-2.567-1.035A3.647 3.647 0 0 1 0 4.125 4.125 4.125 0 0 1 4.125 0ZM15.75 19.875c0-1.38.476-2.786 1.128-4.15.649-1.358 1.509-2.743 2.343-4.086l.017-.028c.849-1.367 1.669-2.692 2.28-3.972.614-1.285.982-2.457.982-3.514A2.615 2.615 0 0 0 19.875 1.5a2.625 2.625 0 0 0-2.625 2.625c0 .865.421 1.509 1.167 2.009A.75.75 0 0 1 18 7.507H7.812c-.65 1.483-1.624 3.069-2.577 4.619-.334.544-.666 1.083-.98 1.612-1.355 2.287-2.38 4.371-2.38 6.137A2.625 2.625 0 0 0 4.5 22.5h12.193a4.108 4.108 0 0 1-.943-2.625ZM1.5 4.125c-.01.511.163 1.008.487 1.403.254.313.74.479 1.402.479h12.86a3.648 3.648 0 0 1-.499-1.882 4.11 4.11 0 0 1 .943-2.625H4.125A2.625 2.625 0 0 0 1.5 4.125Z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1QDTTQ6EHM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1QDTTQ6EHM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#difference-in-differences-estimation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+ Starting 2024, I'll be joinning <a href="https://www.mq.edu.au/">Macquarie University</a> as a Lecturer in Finance! 😄
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mingze Gao" class="md-header__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
+      
+  <img src="../../favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mingze Gao
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Difference-in-Differences Estimation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../research/" class="md-tabs__link">
+        
+  
+    
+  
+  Research
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link md-tabs__link--active">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/" class="md-tabs__link">
+          
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../readings/journals/2022/" class="md-tabs__link">
+          
+  
+    
+  
+  Readings
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../finc50/" class="md-tabs__link">
+          
+  
+    
+  
+  FINC50
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://frds.io" class="md-tabs__link">
+        
+  
+    
+  
+  frds.io
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mingze Gao" class="md-nav__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
+      
+  <img src="../../favicon.png" alt="logo">
+
+    </a>
+    Mingze Gao
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../archive/2023/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../category/cryptocurrency/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../about/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../readings/journals/2022/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../finc50/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    FINC50
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frds.io" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    frds.io
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#one-event-and-the-canonical-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          One event and the canonical DiD
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems-of-twfe-with-multiple-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Problems of TWFE with multiple events
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-do-then-an-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          What to do then? An overview
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stacked-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Stacked DiD
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callaway-and-santanna-cs-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Callaway and Sant'Anna (CS) DiD
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callaway and Sant'Anna (CS) DiD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          How it works?
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-bit-more-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          A bit more details
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-they-compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          How do they compare?
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How do they compare?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cs-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          CS DiD
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stacked-did_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Stacked DiD
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://mingze-gao.com/images/Adrian.jpg" alt="Mingze Gao">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Mingze Gao</strong><br>
+                      PhD, BCom (Hon)
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__title">
+                <div class="md-nav__link">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+              </li>
+              <li class="md-nav__item">
+                <div class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                  <time datetime="2023-08-17 00:00:00" class="md-ellipsis">August 17, 2023</time>
+                </div>
+              </li>
+              
+                <li class="md-nav__item">
+                  <div class="md-nav__link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                    <span class="md-ellipsis">
+                      in
+                      
+                        <a href="../category/research-notes/">Research Notes</a></span>
+                  </div>
+                </li>
+              
+              
+                
+                <li class="md-nav__item">
+                  <div class="md-nav__link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                    <span class="md-ellipsis">
+                      
+                        13 min read
+                      
+                    </span>
+                  </div>
+                </li>
+              
+            </ul>
+            
+              <ul class="md-nav__list">
+                <li class="md-nav__item md-nav__title">
+                  <div class="md-nav__link">
+                    <span class="md-ellipsis">
+                      Related links
+                    </span>
+                  </div>
+                </li>
+                
+                  
+                  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://bcallaway11.github.io/did/articles/multi-period-did.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to DiD with Multiple Time Periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+                  
+                  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://friosavila.github.io/playingwithstata/main_didmany.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    DiD from 2*2 to G*T
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+                  
+                  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://causalinf.substack.com/p/callaway-and-santanna-dd-estimator" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Callaway and Sant'Anna DD estimator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        <!--
+  Copyright (c) 2016-2022 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+  
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+        <a href="../../tags/#did" class="md-tag">DiD</a>
+      
+    
+      
+      
+        <a href="../../tags/#econometrics" class="md-tag">Econometrics</a>
+      
+    
+      
+      
+        <a href="../../tags/#stata" class="md-tag">Stata</a>
+      
+    
+  </nav>
+
+
+
+<!-- Edit button -->
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it
+  doesn't, the page title (or respectively site name) is used
+  as the main headline.
+-->
+
+
+<!-- Markdown content -->
+<h1 id="difference-in-differences-estimation">Difference-in-Differences Estimation<a class="headerlink" href="#difference-in-differences-estimation" title="Permanent link">&para;</a></h1>
+<p>Empirical researchers have been using difference-in-differences (DiD) estimation to identify an event's <strong>A</strong>verage <strong>T</strong>reatment effect on the <strong>T</strong>reated entities (ATT). This post is my understanding and a non-technical note of the DiD approach as it evolves over the past years, especially on the problems and solutions when multiple treatment events are staggered.</p>
+<!-- more -->
+
+<h2 id="one-event-and-the-canonical-did">One event and the canonical DiD<a class="headerlink" href="#one-event-and-the-canonical-did" title="Permanent link">&para;</a></h2>
+<p class="annotate">The canonical DiD takes a <span class="arithmatex">\(2\times 2\)</span> form which involves 2 periods (before &amp; after) and 2 groups (treated and untreated). Under the assumption of parallel trends (1), the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.</p>
+<ol>
+<li><strong>Parallel trends</strong> assume that the change in the outcomes of treated group, in absence of the treatment, is the same as the change in the outcomes of the untreated group.</li>
+</ol>
+<p>Specifically, we would estimate the following model:</p>
+<div class="arithmatex">\[
+\begin{equation}
+  Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
+\end{equation}
+\]</div>
+<p class="annotate">where <span class="arithmatex">\(Y_{it}\)</span> is the outcome of interest for entity <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(D_{it}\)</span> is an indicator that takes the value of 1 if entity <span class="arithmatex">\(i\)</span> has been treated at time <span class="arithmatex">\(t\)</span>(1), <span class="arithmatex">\(\theta_t\)</span> is the time fixed effect and <span class="arithmatex">\(\gamma_i\)</span> is the entity fixed effect (2). Here, estimate of <span class="arithmatex">\(\beta\)</span> is interpreted as the ATT.</p>
+<ol>
+<li>If we have separate <span class="arithmatex">\(\text{Treatment}_i\)</span> and <span class="arithmatex">\(\text{Post}_{t}\)</span> indicators, then <span class="arithmatex">\(D_{it}=\text{Treatment}_i \times \text{Post}_t\)</span>.</li>
+<li>The presence of time and entity fixed effects absorbs individual <span class="arithmatex">\(\text{Post}_t\)</span> and <span class="arithmatex">\(\text{Treatment}_{i}\)</span> variables in the model.</li>
+</ol>
+<p>This TWFE method works when</p>
+<ol>
+<li>There is homogeneous treatment effect, i.e., the treatment effect is the same for all treated entities.</li>
+<li>There is only <mark>one treatment event</mark> such that we have only two periods (before and after the treatment). In this case, TWFE is robust to treatment effect heterogeneity. That is, even though the treatment effect may not be the same for all treated entities, the estimated <span class="arithmatex">\(\beta\)</span> is numerically equal to the ATT.</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">What if there are multiple treatments at different times?</p>
+</div>
+<h2 id="problems-of-twfe-with-multiple-events">Problems of TWFE with multiple events<a class="headerlink" href="#problems-of-twfe-with-multiple-events" title="Permanent link">&para;</a></h2>
+<p>Suppose there are two treatment events. Let's visualize the treatment status of three groups of entities, the Never-treated group N, the Early-treated group E and the Late-treated group L. Here I ignore the possibility that a group has always been treated.</p>
+<p><img alt="treatment-status" src="/images/DiD-staggered-treatment-status.png" /></p>
+<!-- ```mermaid
+gantt
+    title Treatment Status
+    dateFormat YYYY
+    axisFormat %Y
+    section Group N
+        Untreated:done, 2010, 5y
+    section Group E
+        Untreated  :done, a1, 2010, 1y
+        Treated    :after a1, 4y
+    section Group L
+        Untreated :done, 2010, 3y
+        Treated : 2y
+``` -->
+
+<p><a href="https://doi.org/10.1016/j.jeconom.2021.03.014">Goodman-Bacon (2021)</a> shows that, in this case, TWFE estimate of <span class="arithmatex">\(\beta\)</span> in Equation (1) above is in fact a (complicated) weighted-average of all possible <span class="arithmatex">\(2\times2\)</span> DiD estimates, which leads to <strong>bias</strong>:</p>
+<div class="annotate">
+<ul>
+<li>For the event to group E (Early-treated):<ul>
+<li>E vs N. No problem, controls are never treated.</li>
+<li>E vs L. No problem, controls have not yet been treated.</li>
+</ul>
+</li>
+<li>For the event to group L (Late-treated):<ul>
+<li>L vs N. No problem, controls are never treated.</li>
+<li>L vs E. <strong>Problematic</strong>, controls have been treated (by another earlier event).(1)</li>
+</ul>
+</li>
+</ul>
+</div>
+<ol>
+<li>This may not seem obvious given that group E would have <span class="arithmatex">\(D_{it}=1\)</span> after 2011. But DiD is actually comparing the "before-after" differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses <em>do not change</em>. The already-treated group E's status stay unchanged from 2011 to 2014.</li>
+</ol>
+<h2 id="what-to-do-then-an-overview">What to do then? An overview<a class="headerlink" href="#what-to-do-then-an-overview" title="Permanent link">&para;</a></h2>
+<p>When there is a staggered adoption design, i.e., groups of entities receive treatments in a staggered way, there are a few modified DiD approaches that try to produce ATT estimates robust to the bias. But the key idea is to <mark>avoid including as controls the entities that have been previously treated, then find a good way to aggregate the many estimates as a result of multiple events</mark>. Here I discuss two approaches, namely stacked DiD and CS DiD.</p>
+<p><strong>Stacked DiD</strong> tries to solves the issue by essentially "selecting only good controls". Specifically, for each treatment event, we construct a cohort of treated and untreated entities, where the "untreated" are those never treated and/or those not yet treated by <em>any</em> prior treatment. Cohorts are then stacked together in regression. To my knowledge, <a href="https://doi.org/10.1093/rfs/hhr011">Gormley and Matsa (2011)</a> and <a href="https://doi.org/10.1016/j.jacceco.2013.08.001">Gormley, Matsa and Milbourn (2013)</a> already use a stacked DiD. Some later papers using stacked DiD include, for example, <a href="https://doi.org/10.1093/qje/qjz014">Cengiz, Dube, Lindner and Zipperer (2019)</a>, <a href="https://doi.org/10.1257/pol.20180076">Deshpande and Li (2019)</a>, among many others.</p>
+<p><strong>CS DiD</strong> (<a href="https://doi.org/10.1016/j.jeconom.2020.12.001">Callaway and Sant'Anna (2021)</a>) groups entities by their treatment time and estimates each group's ATT at each time period since its treatment to the end of the sample period, also using never treated entities or those not yet treated. The many group-time ATTs are then aggregated to various levels for understanding the treatment effect. As at August 2023, CS DiD has already been cited over 3,000 times based on Google Scholar.</p>
+<h2 id="stacked-did">Stacked DiD<a class="headerlink" href="#stacked-did" title="Permanent link">&para;</a></h2>
+<p>Centre to stacked DiD is the idea of building cohorts of clean <span class="arithmatex">\(2\times2\)</span> DiD pairs, within each the entities used as controls are guaranteed to be not treated previously.</p>
+<!-- !!! note
+    In the example above, we will have two cohorts:
+
+    - Cohort 1. Entities in Group E are treated at 2011, entities in Group N and L are controls.
+    - Cohort 2. Entities in Group L are treated at 2013, entities in Group N are controls. -->
+
+<p>For a stacked DiD, we estimate a regression specification like below:</p>
+<div class="arithmatex">\[
+\begin{equation}
+    Y_{ict} = \beta_0 + \beta_1 {Treat_{ic}\times Post_{ct}} + \beta_2 Treat_{ic} + \beta_3 Post_{ct} + \varepsilon_{ict}
+\end{equation}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(Treat_{ic}\)</span> is an indicator that equals 1 if entity <span class="arithmatex">\(i\)</span> in cohort <span class="arithmatex">\(c\)</span> is treated.</li>
+<li><span class="arithmatex">\(Post_{ct}\)</span> is an indicator that equals 1 if time period <span class="arithmatex">\(t\)</span> in cohort <span class="arithmatex">\(c\)</span> is after treatment event.</li>
+</ul>
+<p>Alternatively and preferably (?), replace <span class="arithmatex">\(Treat_{ci}\)</span> and <span class="arithmatex">\(Post_{ct}\)</span> with cohort-entity fixed effect <span class="arithmatex">\(\gamma_{ic}\)</span> and cohort-time fixed effect <span class="arithmatex">\(\theta_{ct}\)</span>:</p>
+<div class="arithmatex">\[
+\begin{equation}
+    Y_{ict} = \beta D_{ict} + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
+\end{equation}
+\]</div>
+<p>where <span class="arithmatex">\(D_{ict}\equiv Treat_{ic}\times Post_{ct}\)</span> is an indicator that equals 1 if entity <span class="arithmatex">\(i\)</span> in cohort <span class="arithmatex">\(c\)</span> has been treated at time <span class="arithmatex">\(t\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Comparison with one-period TWFE</p>
+<p>Easy to notice that Equation (3) is very similar to Equation (1). Instead of using an entity-time level indicator <span class="arithmatex">\(D_{it}\)</span> in TWFE Equation (1) to estimate ATT, stacked DiD uses an entity-cohort-time level indicator <span class="arithmatex">\(D_{ict}\)</span>. Time and entity fixed effects are also allowed to vary across cohorts.</p>
+</div>
+<p>Stacked DiD effectively pool together ATT estimates from only good <span class="arithmatex">\(2\times2\)</span> DiD pairs, thereby avoiding the bias caused by simple TWFE when treatment events are staggered.</p>
+<p>Stacked DiD by construction causes duplication of observations since an entity-time can be used as control in different cohorts, which means observations in the stacked dataset can be correlated. We need to use proper clustering to address it, usually done by clustering at the entity level.</p>
+<p>An event-study form of stacked DiD can further help identifying the time-varying treatment effects. Specifically, we replace the cohort-time <span class="arithmatex">\(Post_{ct}\)</span> indicator with a series of cohort-time dummy variables, e.g., <span class="arithmatex">\(\{..., d^{-2}_{ct}, d^{-1}_{ct}, d^{0}_{ct}, d^{1}_{ct}, d^{2}_{ct}, ... \}\)</span>, where <span class="arithmatex">\(d^{\tau}_{ct}=1\)</span> if time <span class="arithmatex">\(t\)</span> in cohort <span class="arithmatex">\(c\)</span> is <span class="arithmatex">\(\tau\)</span> periods after (or before, if negative) the treatment. So, we will have</p>
+<div class="arithmatex">\[
+\begin{equation}
+    Y_{ict} = \sum_{\tau} \beta_{\tau} \left(Treat_{ic}\times d^{\tau}_{ct}\right)
+            + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
+\end{equation}
+\]</div>
+<p>The estimates <span class="arithmatex">\(\{\beta_{\tau}\}\)</span> can describe the time-varying treatment effect, i.e., the difference between treated and control in outcome <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(\tau\)</span> periods after the treatment.</p>
+<h2 id="callaway-and-santanna-cs-did">Callaway and Sant'Anna (CS) DiD<a class="headerlink" href="#callaway-and-santanna-cs-did" title="Permanent link">&para;</a></h2>
+<p><a href="https://doi.org/10.1016/j.jeconom.2020.12.001">Callaway and Sant'Anna (2021)</a> (CS) DiD groups entities by their treatment time and estimates each group's ATT at each time since treatment to the end of the sample period, similarly using never treated (or not yet treated) as control.</p>
+<h3 id="how-it-works">How it works?<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between <ins>the outcome if treated</ins> <span class="arithmatex">\(Y(1)\)</span> and <ins>the outcome if untreated</ins> <span class="arithmatex">\(Y(0)\)</span>, for the treated entities (<span class="arithmatex">\(D=1\)</span>).</p>
+<div class="arithmatex">\[
+ATT = \mathbb{E} \left[Y_{t}(1)-Y_{t}(0)\right|D=1]
+\]</div>
+<p>CS DiD builds a group-time ATT, the expected difference in  <ins>the outcome if treated in group <span class="arithmatex">\(g\)</span></ins> <span class="arithmatex">\(Y(g)\)</span> and <ins>the outcome if untreated</ins> <span class="arithmatex">\(Y(0)\)</span>, for the treated entities in group <span class="arithmatex">\(g\)</span> (<span class="arithmatex">\(G=g\)</span>).</p>
+<div class="arithmatex">\[
+ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
+\]</div>
+<p>This is the average effect of participating in the treatment for entities in group <span class="arithmatex">\(g\)</span> at time period <span class="arithmatex">\(t\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In the <a href="#problems-of-twfe-with-multiple-events">example above</a>, we will have many group-time ATTs:</p>
+<ul>
+<li>2011 group: <span class="arithmatex">\(ATT^{g=2011}_{t=2010}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2011}_{t=2011}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2011}_{t=2012}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2011}_{t=2013}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2011}_{t=2014}\)</span>, and <span class="arithmatex">\(\color{blue}ATT^{g=2011}_{t=2015}\)</span>.</li>
+<li>2013 group: <span class="arithmatex">\(ATT^{g=2013}_{t=2010}\)</span>, <span class="arithmatex">\(ATT^{g=2013}_{t=2011}\)</span>, <span class="arithmatex">\(ATT^{g=2013}_{t=2012}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2013}_{t=2013}\)</span>, <span class="arithmatex">\(\color{blue}ATT^{g=2013}_{t=2015}\)</span>, and <span class="arithmatex">\(\color{blue}ATT^{g=2013}_{t=2015}\)</span>.</li>
+</ul>
+<p>The blue-coloured ATTs are of interest to us to study the treatment effect. We can aggregate these ATTs by group <span class="arithmatex">\(g\)</span>, by calendar time <span class="arithmatex">\(t\)</span>, by relative time to events, or to a single overal measure of the treatment effect.</p>
+</div>
+<p>With the many group-time ATT estimates, CS DiD then proposes several aggregation ways to highlight treatment effect heterogeneity or to overall treatment effect parameters, enabling studies on:</p>
+<ul>
+<li>How do average treatment effects vary with length of exposure to the treatment?</li>
+<li>How do average treatment effects vary across groups?</li>
+<li>What is the cumulative average treatment effect of the policy across all groups until some time <span class="arithmatex">\(\tilde{t}\)</span>?</li>
+<li>What is a general-purpose summary of the ATT?</li>
+</ul>
+<h3 id="a-bit-more-details">A bit more details<a class="headerlink" href="#a-bit-more-details" title="Permanent link">&para;</a></h3>
+<p>To me, CS DiD and stacked DiD share some similarities.</p>
+<p>Stacked DiD select "good controls" into groups. While it will create many duplicates, we may use propensity score matching (PSM) to mitigate the problem, which also helps with the parallel trend assumption (conditional on covariates). </p>
+<p>CS DiD does not select "good controls" into groups. Instead, CS DiD estimates group-time ATTs by aggregating the "before-after" differences of entities base on entities' treatment status and their propensity to be treated in the group, etc. For example, the inverse-probability-weighting estimand for <span class="arithmatex">\(ATT(g,t)\)</span> is given by</p>
+<div class="arithmatex">\[
+\begin{equation}
+    ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{P_g}{\mathbb{E}(P_g)}\right)}_{\text{weight}} \times \underbrace{(Y_t-Y_{g-1})}_{\text{before-after diff}}\right]
+\end{equation}
+\]</div>
+<p class="annotate">where <span class="arithmatex">\(P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}\)</span> is like a propensity score ratio; <span class="arithmatex">\(p_g(X)\)</span> is the propensity score of an entity being treated at the time defined by group <span class="arithmatex">\(g\)</span>, conditional on the pre-event covariates <span class="arithmatex">\(X\)</span>; <span class="arithmatex">\(C=1\)</span> if an entity does not participate in the treatment and zero otherwise; <span class="arithmatex">\(G_g=1\)</span> if an entity is in group <span class="arithmatex">\(g\)</span> (i.e., treated at the time defined by group <span class="arithmatex">\(g\)</span>) and zero otherwise.(1)</p>
+<ol>
+<li>In comparison, a TWFE DiD aggregates the "before-after" differences by giving a weight of +1 to treated entities and -1 to controls.</li>
+</ol>
+<h2 id="how-do-they-compare">How do they compare?<a class="headerlink" href="#how-do-they-compare" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is <strong>NOT</strong> a comprehensive test in terms of their performance. The stacked DiD code is written in a few minutes and so may contain errors.</p>
+</div>
+<p>The Stata <strong>-csdid-</strong> command comes very handy. I'm to use its help file and demo dataset to do some quick showcases.</p>
+<h3 id="cs-did">CS DiD<a class="headerlink" href="#cs-did" title="Permanent link">&para;</a></h3>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> https:<span class="o">//</span>friosavila<span class="m">.</span>github<span class="m">.</span>io<span class="o">/</span>playingwithstata<span class="o">/</span>drdid<span class="o">/</span>mpdta<span class="m">.</span>dta,<span class="k"> clear</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>csdid lemp, ivar(countyreal) time(year) gvar(first_treat) method(dripw) wboot rseed(<span class="m">1</span>) agg(simple)
+</span></code></pre></div>
+<p>The output is:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>............
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Difference<span class="o">-</span>in<span class="o">-</span>difference with Multiple Time Periods
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                                                         Number of obs = <span class="m">2</span>,<span class="m">500</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Outcome model  : least squares
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Treatment model: inverse probability
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="o">---------------------------------------------------------------------</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            | Coefficient  Std.<span class="k"> err</span>.      t      [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">------------+--------------------------------------------------------</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        ATT |  <span class="o">-</span>.<span class="m">0399513</span>   .<span class="m">0121272</span>    <span class="o">-</span><span class="m">3.29</span>    <span class="o">-</span>.<span class="m">0647386</span>    <span class="o">-</span>.<span class="m">015164</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="o">---------------------------------------------------------------------</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Control: Never Treated
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>See Callaway and Sant&#39;Anna (<span class="m">2021</span>)<span class="k"> for</span> details
+</span></code></pre></div>
+<details class="quote">
+<summary>Additional results</summary>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> estat</span> all
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Test will be based<span class="k"> on</span> asymptotic VCoV
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>If you want aggregations based<span class="k"> on</span> WB,<span class="k"> use</span> option saverif() ad csdid_stats
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Pretrend Test. H0 All Pre<span class="o">-</span>treatment are equal to <span class="m">0</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nf">chi2</span>(<span class="m">5</span>) =     <span class="m">7.7912</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>p<span class="o">-</span>value  =     <span class="m">0.1681</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Average Treatment Effect<span class="k"> on</span> Treated
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            | Coefficient  Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="o">-------------+----------------------------------------------------------------</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        ATT |  <span class="o">-</span>.<span class="m">0399513</span>    .<span class="m">012034</span>    <span class="o">-</span><span class="m">3.32</span>   <span class="m">0.001</span>    <span class="o">-</span>.<span class="m">0635375</span>    <span class="o">-</span>.<span class="m">016365</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>ATT<span class="k"> by</span> group
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            | Coefficient  Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="o">-------------+----------------------------------------------------------------</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    GAverage |  <span class="o">-</span>.<span class="m">0310183</span>   .<span class="m">0123872</span>    <span class="o">-</span><span class="m">2.50</span>   <span class="m">0.012</span>    <span class="o">-</span>.<span class="m">0552967</span>   <span class="o">-</span>.<span class="m">0067399</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    G2004 |  <span class="o">-</span>.<span class="m">0797491</span>   .<span class="m">0263678</span>    <span class="o">-</span><span class="m">3.02</span>   <span class="m">0.002</span>    <span class="o">-</span>.<span class="m">1314291</span>   <span class="o">-</span>.<span class="m">0280692</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    G2006 |  <span class="o">-</span>.<span class="m">0229095</span>   .<span class="m">0167033</span>    <span class="o">-</span><span class="m">1.37</span>   <span class="m">0.170</span>    <span class="o">-</span>.<span class="m">0556475</span>    .<span class="m">0098284</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    G2007 |  <span class="o">-</span>.<span class="m">0260544</span>   .<span class="m">0166554</span>    <span class="o">-</span><span class="m">1.56</span>   <span class="m">0.118</span>    <span class="o">-</span>.<span class="m">0586985</span>    .<span class="m">0065896</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>ATT<span class="k"> by</span> Calendar Period
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>            | Coefficient  Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="o">-------------+----------------------------------------------------------------</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    CAverage |  <span class="o">-</span>.<span class="m">0417004</span>   .<span class="m">0159719</span>    <span class="o">-</span><span class="m">2.61</span>   <span class="m">0.009</span>    <span class="o">-</span>.<span class="m">0730047</span>   <span class="o">-</span>.<span class="m">0103962</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    T2004 |  <span class="o">-</span>.<span class="m">0105032</span>    .<span class="m">023251</span>    <span class="o">-</span><span class="m">0.45</span>   <span class="m">0.651</span>    <span class="o">-</span>.<span class="m">0560744</span>    .<span class="m">0350679</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    T2005 |  <span class="o">-</span>.<span class="m">0704232</span>   .<span class="m">0309848</span>    <span class="o">-</span><span class="m">2.27</span>   <span class="m">0.023</span>    <span class="o">-</span>.<span class="m">1311522</span>   <span class="o">-</span>.<span class="m">0096941</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    T2006 |   <span class="o">-</span>.<span class="m">048816</span>   .<span class="m">0201259</span>    <span class="o">-</span><span class="m">2.43</span>   <span class="m">0.015</span>    <span class="o">-</span>.<span class="m">0882619</span>     <span class="o">-</span>.<span class="m">00937</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    T2007 |  <span class="o">-</span>.<span class="m">0370593</span>   .<span class="m">0137471</span>    <span class="o">-</span><span class="m">2.70</span>   <span class="m">0.007</span>    <span class="o">-</span>.<span class="m">0640031</span>   <span class="o">-</span>.<span class="m">0101156</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>ATT<span class="k"> by</span> Periods Before and After treatment
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>Event Study:Dynamic effects
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="o">------------------------------------------------------------------------------</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>            | Coefficient  Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="o">-------------+----------------------------------------------------------------</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    Pre_avg |   .<span class="m">0018283</span>    .<span class="m">007657</span>     <span class="m">0.24</span>   <span class="m">0.811</span>    <span class="o">-</span>.<span class="m">0131791</span>    .<span class="m">0168357</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    Post_avg |  <span class="o">-</span>.<span class="m">0772398</span>    .<span class="m">019965</span>    <span class="o">-</span><span class="m">3.87</span>   <span class="m">0.000</span>    <span class="o">-</span>.<span class="m">1163705</span>   <span class="o">-</span>.<span class="m">0381092</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>        Tm3 |   .<span class="m">0305067</span>   .<span class="m">0150336</span>     <span class="m">2.03</span>   <span class="m">0.042</span>     .<span class="m">0010414</span>    .<span class="m">0599719</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>        Tm2 |  <span class="o">-</span>.<span class="m">0005631</span>   .<span class="m">0132916</span>    <span class="o">-</span><span class="m">0.04</span>   <span class="m">0.966</span>    <span class="o">-</span>.<span class="m">0266142</span>    .<span class="m">0254881</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>        Tm1 |  <span class="o">-</span>.<span class="m">0244587</span>   .<span class="m">0142364</span>    <span class="o">-</span><span class="m">1.72</span>   <span class="m">0.086</span>    <span class="o">-</span>.<span class="m">0523616</span>    .<span class="m">0034441</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>        Tp0 |  <span class="o">-</span>.<span class="m">0199318</span>   .<span class="m">0118264</span>    <span class="o">-</span><span class="m">1.69</span>   <span class="m">0.092</span>    <span class="o">-</span>.<span class="m">0431111</span>    .<span class="m">0032474</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>        Tp1 |  <span class="o">-</span>.<span class="m">0509574</span>   .<span class="m">0168935</span>    <span class="o">-</span><span class="m">3.02</span>   <span class="m">0.003</span>     <span class="o">-</span>.<span class="m">084068</span>   <span class="o">-</span>.<span class="m">0178468</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>        Tp2 |  <span class="o">-</span>.<span class="m">1372587</span>   .<span class="m">0364357</span>    <span class="o">-</span><span class="m">3.77</span>   <span class="m">0.000</span>    <span class="o">-</span>.<span class="m">2086713</span>   <span class="o">-</span>.<span class="m">0658461</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>        Tp3 |  <span class="o">-</span>.<span class="m">1008114</span>   .<span class="m">0343592</span>    <span class="o">-</span><span class="m">2.93</span>   <span class="m">0.003</span>    <span class="o">-</span>.<span class="m">1681542</span>   <span class="o">-</span>.<span class="m">0334685</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="o">------------------------------------------------------------------------------</span>
+</span></code></pre></div>
+</details>
+<h3 id="stacked-did_1">Stacked DiD<a class="headerlink" href="#stacked-did_1" title="Permanent link">&para;</a></h3>
+<p>For stacked DiD, I use the following code.</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>frame<span class="k"> copy</span> default events,<span class="k"> replace</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>frame change events
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">keep</span> first_treat 
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">keep if</span> first_treat <span class="o">!=</span> <span class="m">0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">duplicates drop</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">sort</span> first_treat
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">di</span> <span class="s">&quot;3 events in 2004, 2006, 2007 respectively&quot;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">cap</span> frame<span class="k"> drop</span> did
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>mkf did
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1">// for each event, build a cohort</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">foreach</span> c of<span class="k"> numlist</span> <span class="m">2004</span> <span class="m">2006</span> <span class="m">2007</span> {
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">    di</span> <span class="s">&quot;Building cohort </span><span class="nv">`c&#39;</span><span class="s">&quot;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">    keep if</span> first_treat <span class="o">==</span> <span class="nv">`c&#39;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">    di</span> <span class="s">&quot;Treated&quot;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    frame default {
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">        preserve</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">        keep if</span> first_treat <span class="o">==</span> <span class="nv">`c&#39;</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="k">        tempfile</span> treated
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">        save</span> <span class="nv">`treated&#39;</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="k">        restore</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    }
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="k">    di</span> <span class="s">&quot;Controls (never treated)&quot;</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    frame default {
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="k">        preserve</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="k">        keep if</span> (first_treat <span class="o">==</span> <span class="m">0</span>)
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">        replace</span> treat = <span class="m">0</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="k">        tempfile</span> untreated
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="k">        save</span> <span class="nv">`untreated&#39;</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="k">        restore</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    }
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="k">    di</span> <span class="s">&quot;Add to DID frame&quot;</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="k">    preserve</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="k">    clear</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="k">    append</span> using <span class="nv">`treated&#39;</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="k">    append</span> using <span class="nv">`untreated&#39;</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="k">    gen</span> cohort_id = <span class="nv">`c&#39;</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="k">    tempfile</span> cohort
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="k">    save</span> <span class="nv">`cohort&#39;</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>    frame did:<span class="k"> append</span> using <span class="nv">`cohort&#39;</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="k">    restore</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>}
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>cwf did
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="k">gen post</span> = year<span class="o">&gt;=</span>cohort_id
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>reghdfe lemp c<span class="m">.</span>treat#c<span class="m">.</span>post, a(cohort_id#countyreal cohort_id#year)<span class="k"> vce</span>(cluster countyreal) noconst
+</span></code></pre></div>
+<p>The output is:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>(MWFE estimator converged<span class="k"> in</span> <span class="m">2</span> iterations)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>HDFE Linear regression                            Number of obs   =      <span class="m">5</span>,<span class="m">590</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Absorbing <span class="m">2</span> HDFE groups                           <span class="nf">F</span>(   <span class="m">1</span>,    <span class="m">499</span>) =       <span class="m">7.86</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Statistics robust to heteroskedasticity           Prob <span class="o">&gt;</span> F        =     <span class="m">0.0052</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>                                                  R<span class="o">-</span>squared       =     <span class="m">0.9928</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>                                                  Adj R<span class="o">-</span>squared   =     <span class="m">0.9909</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>                                                  Within R<span class="o">-</span>sq.    =     <span class="m">0.0024</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Number of clusters (countyreal) =        <span class="m">500</span>      Root MSE        =     <span class="m">0.1434</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>                             (Std.<span class="k"> err</span>. adjusted<span class="k"> for</span> <span class="m">500</span> clusters<span class="k"> in</span> countyreal)
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="o">--------------------------------------------------------------------------------</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>               |               Robust
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>          lemp | Coefficient  std.<span class="k"> err</span>.      t    P<span class="o">&gt;</span>|t|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="o">---------------+----------------------------------------------------------------</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>c<span class="m">.</span>treat#c<span class="m">.</span>post |  <span class="o">-</span>.<span class="m">0406496</span>   .<span class="m">0144972</span>    <span class="o">-</span><span class="m">2.80</span>   <span class="m">0.005</span>    <span class="o">-</span>.<span class="m">0691327</span>   <span class="o">-</span>.<span class="m">0121665</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="o">--------------------------------------------------------------------------------</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Absorbed degrees of freedom:
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="o">----------------------------------------------------------------+</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>            Absorbed FE | Categories  <span class="o">-</span> Redundant  = Num. Coefs |
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="o">------------------------+---------------------------------------</span>|
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>   cohort_id#countyreal |      <span class="m">1118</span>        <span class="m">1118</span>           <span class="m">0</span>    <span class="o">*</span>|
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>         cohort_id#year |        <span class="m">15</span>           <span class="m">0</span>          <span class="m">15</span>     |
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="o">----------------------------------------------------------------+</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="c1">* = FE nested within cluster; treated as redundant for DoF computation</span>
+</span></code></pre></div>
+<details class="quote">
+<summary>Additional results</summary>
+<p>For the treatment effect dynamics, I generate cohort-year relative time dummies:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">gen</span> Tm3 = year<span class="o">-</span>cohort_id<span class="o">==-</span><span class="m">3</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">gen</span> Tm2 = year<span class="o">-</span>cohort_id<span class="o">==-</span><span class="m">2</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">gen</span> Tm1 = year<span class="o">-</span>cohort_id<span class="o">==-</span><span class="m">1</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">gen</span> Tp0 = year<span class="o">-</span>cohort_id<span class="o">==</span><span class="m">0</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">gen</span> Tp1 = year<span class="o">-</span>cohort_id<span class="o">==</span><span class="m">1</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">gen</span> Tp2 = year<span class="o">-</span>cohort_id<span class="o">==</span><span class="m">2</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">gen</span> Tp3 = year<span class="o">-</span>cohort_id<span class="o">==</span><span class="m">3</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>reghdfe lemp c<span class="m">.</span>treat#c.(Tm3 Tm2 Tm1 Tp0<span class="o">-</span>Tp3), a(cohort_id#countyreal cohort_id#year)<span class="k"> vce</span>(cluster countyreal) noconst
+</span></code></pre></div>
+<p>The output is:</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>(MWFE estimator converged<span class="k"> in</span> <span class="m">2</span> iterations)
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>HDFE Linear regression                            Number of obs   =      <span class="m">5</span>,<span class="m">590</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Absorbing <span class="m">2</span> HDFE groups                           <span class="nf">F</span>(   <span class="m">7</span>,    <span class="m">499</span>) =       <span class="m">3.69</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Statistics robust to heteroskedasticity           Prob <span class="o">&gt;</span> F        =     <span class="m">0.0007</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>                                                  R<span class="o">-</span>squared       =     <span class="m">0.9928</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                                                  Adj R<span class="o">-</span>squared   =     <span class="m">0.9909</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                                                  Within R<span class="o">-</span>sq.    =     <span class="m">0.0050</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Number of clusters (countyreal) =        <span class="m">500</span>      Root MSE        =     <span class="m">0.1433</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>                            (Std.<span class="k"> err</span>. adjusted<span class="k"> for</span> <span class="m">500</span> clusters<span class="k"> in</span> countyreal)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">-------------------------------------------------------------------------------</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>              |               Robust
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>         lemp | Coefficient  std.<span class="k"> err</span>.      t    P<span class="o">&gt;</span>|t|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="o">--------------+----------------------------------------------------------------</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tm3 |   .<span class="m">0224458</span>   .<span class="m">0149578</span>     <span class="m">1.50</span>   <span class="m">0.134</span>    <span class="o">-</span>.<span class="m">0069423</span>    .<span class="m">0518339</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>              |
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tm2 |   .<span class="m">0222899</span>    .<span class="m">019004</span>     <span class="m">1.17</span>   <span class="m">0.241</span>    <span class="o">-</span>.<span class="m">0150478</span>    .<span class="m">0596276</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>              |
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tm1 |  <span class="o">-</span>.<span class="m">0001288</span>   .<span class="m">0225506</span>    <span class="o">-</span><span class="m">0.01</span>   <span class="m">0.995</span>    <span class="o">-</span>.<span class="m">0444347</span>    .<span class="m">0441771</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>              |
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tp0 |  <span class="o">-</span>.<span class="m">0189866</span>   .<span class="m">0250632</span>    <span class="o">-</span><span class="m">0.76</span>   <span class="m">0.449</span>    <span class="o">-</span>.<span class="m">0682289</span>    .<span class="m">0302557</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>              |
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tp1 |  <span class="o">-</span>.<span class="m">0460793</span>   .<span class="m">0288162</span>    <span class="o">-</span><span class="m">1.60</span>   <span class="m">0.110</span>    <span class="o">-</span>.<span class="m">1026953</span>    .<span class="m">0105367</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>              |
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tp2 |  <span class="o">-</span>.<span class="m">1320149</span>   .<span class="m">0398577</span>    <span class="o">-</span><span class="m">3.31</span>   <span class="m">0.001</span>    <span class="o">-</span>.<span class="m">2103245</span>   <span class="o">-</span>.<span class="m">0537052</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>              |
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>c<span class="m">.</span>treat#c<span class="m">.</span>Tp3 |  <span class="o">-</span>.<span class="m">0955675</span>   .<span class="m">0420647</span>    <span class="o">-</span><span class="m">2.27</span>   <span class="m">0.024</span>    <span class="o">-</span>.<span class="m">1782132</span>   <span class="o">-</span>.<span class="m">0129217</span>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="o">-------------------------------------------------------------------------------</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>Absorbed degrees of freedom:
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="o">----------------------------------------------------------------+</span>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>            Absorbed FE | Categories  <span class="o">-</span> Redundant  = Num. Coefs |
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="o">------------------------+---------------------------------------</span>|
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>   cohort_id#countyreal |      <span class="m">1118</span>        <span class="m">1118</span>           <span class="m">0</span>    <span class="o">*</span>|
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>         cohort_id#year |        <span class="m">15</span>           <span class="m">0</span>          <span class="m">15</span>     |
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="o">----------------------------------------------------------------+</span>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="c1">* = FE nested within cluster; treated as redundant for DoF computation</span>
+</span></code></pre></div>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This non-technical note aims to remind me of the big picture of DiDs. It's not intended to give full explanation of the econometrics. I strongly suggest a reading of the related links for a better understanding of CS DiD.</p>
+</div>
+
+<!-- Source file information -->
+
+
+<!-- Add copied contents from original content.html here -->
+
+<!-- Get setting from mkdocs.yml, but allow page-level overrides -->
+
+
+
+<!-- Inject Disqus into current page -->
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = "https://mingze-gao.com/posts/difference-in-differences-estimation/"
+      this.page.identifier =
+        "posts/difference-in-differences-estimation/" 
+    }
+
+    /* Set up for the first time */
+    if (typeof DISQUS === "undefined") {
+      var script = document.createElement("script")
+      script.async = true
+      script.src = "https://mingze-gao.disqus.com/embed.js"
+      script.setAttribute("data-timestamp", Date.now())
+
+      /* Inject script tag */
+      document.body.appendChild(script)
+
+    /* Set up on navigation (instant loading) */
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      })
+    }
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../crsp-missing-codes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CRSP Missing Codes" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                CRSP Missing Codes
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019 - 2023 <a href="https://mingze-gao.com">Mingze Gao</a>
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/mgao6767/mingze-gao.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/adriangao" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:mingze.gao@sydney.edu.au" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "toc.follow", "navigation.prune", "navigation.tabs", "navigation.path", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7c5c0157.min.js"></script>
+      
+        
+          <script src="../../js/mkdocs-charts-plugin.js"></script>
+        
+      
+        
+          <script src="../../javascripts/extra.js"></script>
+        
+      
+        
+          <script src="../../javascripts/mathjax.js"></script>
+        
+      
+        
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+        
+      
+        
+          <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+        
+      
+    
+  </body>
+</html>
