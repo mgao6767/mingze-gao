@@ -123,7 +123,7 @@ $$
 
 This example Python code has been optimized for speed but serves only demonstration purpose. It may contain errors.
 
-```python linenums="1" hl_lines="51"
+```{ .python .annotate linenums="1" hl_lines="51" }
 # LoMacKinlay.py
 import numpy as np
 from numba import jit
@@ -143,11 +143,11 @@ def _estimate(log_prices, k, const_arr):
     mu = np.mean(rets)
     # sqr_demeaned_x is the array of squared demeaned log returns
     sqr_demeaned_x = np.square(rets - mu)
-    # Var(1)
+    # Var_1
     # Didn't use np.var(rets, ddof=1) because
     # sqr_demeaned_x is calculated already and will be used many times.
     var_1 = np.sum(sqr_demeaned_x) / (T-1)
-    # Var(k)
+    # Var_k
     # Variance of log returns where x(i) = ln[p(i)/p(i-k)]
     # Before np.roll() - array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     # After np.roll(,shift=2) - array([8, 9, 0, 1, 2, 3, 4, 5, 6, 7])
@@ -172,7 +172,7 @@ def _estimate(log_prices, k, const_arr):
     b_arr = np.empty(k-1, dtype=np.float64)
     for j in range(1, k):
         b_arr[j-1] = np.sum((sqr_demeaned_x *
-                             np.roll(sqr_demeaned_x, j))[j+1:])
+                             np.roll(sqr_demeaned_x, j))[j:]) # (1)
 
     delta_arr = b_arr / np.square(np.sum(sqr_demeaned_x))
 
@@ -197,7 +197,7 @@ def estimate(data):
     # Estimate many lags.
     for k in [2, 4, 6, 8, 10, 15, 20, 30, 40, 50, 100, 200, 500, 1000]:
         # Compute a constant array as np.array creation is not allowed in nopython mode.
-        const_arr = np.arange(k-1, 0, step=-1, dtype=np.int)
+        const_arr = np.arange(k-1, 0, step=-1, dtype=np.int64) # (2)
         vr, stat1, stat2 = _estimate(np.log(prices), k, const_arr)
         result.append({
             f'Variance Ratio (k={k})': vr,
@@ -206,6 +206,11 @@ def estimate(data):
         })
     return result
 ```
+
+1. Note that a correction has been made here in August 2023. The summed vector should have a length of T-j not T-j-1.
+   The incorrect code before was `np.roll(sqr_demeaned_x, j))[j+1:])`.
+   I thank Jakub Bujnowicz for spotting this error.
+2. `np.int` is deprecated in NumPy 1.2. Changed to `np.int64` in August 2023.
 
 As an example, let's create 1 million prices from random walk and estimate the variance ratio and two test statistics at various lags.
 
@@ -230,48 +235,48 @@ if __name__ == "__main__":
 In just a few seconds, the output is:
 
 ```python
-[{'Variance Ratio (k=2)': 1.0003293867428105,
-  'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption': 0.3290463403922243,
-  'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption': 0.32938657811705435},
- {'Variance Ratio (k=4)': 1.0007984480057006,
-  'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption': 0.4259533413884602,
-  'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption': 0.4267881978178301},
- {'Variance Ratio (k=6)': 0.9999130202975425,
-  'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption': -0.035117568315004344,
-  'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption': -0.03518500446785826},
- {'Variance Ratio (k=8)': 1.0001094011344318,
-  'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption': 0.036922688136577515,
-  'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption': 0.03698431520269611},
- {'Variance Ratio (k=10)': 1.000702410129927,
-  'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption': 0.20772743120012313,
-  'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption': 0.20803582207641647},
- {'Variance Ratio (k=15)': 1.0022173139633856,
-  'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption': 0.5213067838911684,
-  'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption': 0.5219816274021579},
- {'Variance Ratio (k=20)': 1.0038048661705044,
-  'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption': 0.7646395131154204,
-  'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption': 0.7655801985571125},
- {'Variance Ratio (k=30)': 1.0054447472916035,
-  'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption': 0.8819250061384853,
-  'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption': 0.8829960534692654},
- {'Variance Ratio (k=40)': 1.0073830253022766,
-  'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption': 1.0290213306735625,
-  'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption': 1.0303005120740392},
+[{'Variance Ratio (k=2)': 1.0003293867428107,
+  'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption': 0.32904631796994205,
+  'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption': 0.3293865781172764},
+ {'Variance Ratio (k=4)': 1.0007984480057008,
+  'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption': 0.42595328310183966,
+  'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption': 0.4267881978179488},
+ {'Variance Ratio (k=6)': 0.9999130202975436,
+  'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption': -0.03511755955165345,
+  'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption': -0.03518500446740915},
+ {'Variance Ratio (k=8)': 1.0001094011344323,
+  'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption': 0.036922676034485354,
+  'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption': 0.03698431520284624},
+ {'Variance Ratio (k=10)': 1.0007024101299271,
+  'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption': 0.2077273579781436,
+  'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption': 0.20803582207648225},
+ {'Variance Ratio (k=15)': 1.0022173139633859,
+  'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption': 0.521306589715623,
+  'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption': 0.5219816274022102},
+ {'Variance Ratio (k=20)': 1.003804866170505,
+  'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption': 0.7646392343979235,
+  'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption': 0.7655801985572465},
+ {'Variance Ratio (k=30)': 1.0054447472916037,
+  'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption': 0.8819247138934212,
+  'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption': 0.8829960534693014},
+ {'Variance Ratio (k=40)': 1.007383025302277,
+  'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption': 1.0290210221871228,
+  'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption': 1.0303005120741011},
  {'Variance Ratio (k=50)': 1.0086502431826903,
-  'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption': 1.0741837462564026,
+  'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption': 1.0741834484206978,
   'Variance Ratio Test Statistic (k=50) Homoscedasticity Assumption': 1.0755809312730416},
- {'Variance Ratio (k=100)': 1.0153961901671604,
-  'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption': 1.3415119471043384,
-  'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption': 1.3434284573260773},
- {'Variance Ratio (k=200)': 1.0157046541161026,
-  'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption': 0.9639233626580027,
-  'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption': 0.9653299929052963},
- {'Variance Ratio (k=500)': 1.0182166207668526,
-  'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption': 0.7055681216511915,
-  'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption': 0.7065863036900429},
- {'Variance Ratio (k=1000)': 1.0187822241562863,
-  'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption': 0.5140698821944161,
-  'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption': 0.5147582201029065}]
+ {'Variance Ratio (k=100)': 1.0153961901671607,
+  'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption': 1.341511635554299,
+  'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption': 1.3434284573260966},
+ {'Variance Ratio (k=200)': 1.015704654116103,
+  'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption': 0.9639231633966341,
+  'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption': 0.9653299929053236},
+ {'Variance Ratio (k=500)': 1.018216620766853,
+  'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption': 0.7055679685728111,
+  'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption': 0.7065863036900603},
+ {'Variance Ratio (k=1000)': 1.0187822241562867,
+  'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption': 0.5140697633208364,
+  'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption': 0.5147582201029187}]
 ```
 
 It's easy to see that at all lags tested, we cannot reject the null hypothesis that this price series follows a random walk.
