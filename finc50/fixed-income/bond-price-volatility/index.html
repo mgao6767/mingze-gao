@@ -859,6 +859,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -875,6 +882,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
   
 
       </a>
@@ -988,6 +1002,70 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Adjusting for Convexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#impact-of-coupon-rate-on-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Impact of coupon rate on convexity
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approximating-duration-and-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Approximating duration and convexity
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Approximating duration and convexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duration-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Duration approximation
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Convexity approximation
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1216,6 +1294,70 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Adjusting for Convexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#impact-of-coupon-rate-on-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Impact of coupon rate on convexity
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approximating-duration-and-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Approximating duration and convexity
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Approximating duration and convexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duration-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Duration approximation
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Convexity approximation
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1600,27 +1742,290 @@ P=f(C,t,y,F)
 <p>A good thing about duration is that it's additive, meaning that the duration of a portfolio of bonds is simply the value-weighted average of individual bonds' durations.</p>
 <h2 id="adjusting-for-convexity">Adjusting for Convexity<a class="headerlink" href="#adjusting-for-convexity" title="Permanent link">&para;</a></h2>
 <p>Earlier we mentioned that the price-yield relationship is non-linear and <strong>convex</strong>. In simple terms, it means the sensitivity of bond price to yield is decreasing in yield, i.e., when yield is high, a given unit change in yield has a smaller impact on bond price.</p>
-<p>Intuitively, <mark>as yield increases, bond duration decreases</mark>. So, looking at the bond price sensitivity formulae above, we can notice that <span class="arithmatex">\(\partial y\)</span> should also change durations, which were assumed constant. This failure to adjust bond duration when computing the price change due to yield change leads to an underestimation of true price movements. We can correct it by adjusting for bond convexity.</p>
+<p>Intuitively, <mark>as yield increases, bond duration decreases</mark>. So, looking at the bond price sensitivity formulae above, we can notice that <span class="arithmatex">\(\partial y\)</span> should also change durations, which were assumed constant. This failure to adjust bond duration when computing the price change due to yield change leads to an underestimation of true price. We can correct it by adjusting for bond convexity.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Add a figure here.</li>
-</ul>
+<p>From the graph below, we can see that using only duration to approximate bond price is like assuming a linear price-yield relation. Given that the price-yield relation is convex, this means we would underestimate the bond price. The vertical difference between the curved line and dotted straight line is where adjustment for convexity comes in.</p>
 </div>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A chart of bond's convexity, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "Bond Convexity @5% Yield",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "transform": [
+        {
+          "type": "sequence",
+          "as": "yield",
+          "start": 0.0,
+          "step": 0.05,
+          "stop": 10
+        },
+        {
+          "type": "formula",
+          "as": "price",
+          "expr": "datum.yield&gt;0 ? (10000*couponRate*(1-pow(1+datum.yield/100,-maturityInYears))/(datum.yield/100)+10000*pow(1+datum.yield/100,-maturityInYears)) : 10000*(1+couponRate*maturityInYears)"
+        },
+        {
+          "type": "formula",
+          "as": "priceAtYield5",
+          "expr": "(10000*couponRate*(1-pow(1.05,-maturityInYears))/(0.05)+10000*pow(1+0.05,-maturityInYears))"
+        },
+        {
+          "type": "formula",
+          "as": "price5",
+          "expr": "datum.yield&gt;0 ? (10000*0.05*(1-pow(1+datum.yield/100,-maturityInYears))/(datum.yield/100)+10000*pow(1+datum.yield/100,-maturityInYears)) : 10000*(1+0.05*maturityInYears)"
+        },
+        {
+          "type": "formula",
+          "as": "modifiedDuration",
+          "expr": "(10000*couponRate/(0.05*0.05)*(1-1/pow(1+0.05,maturityInYears))+(maturityInYears*(10000-10000*couponRate/0.05))/(pow(1+0.05,maturityInYears+1)))/datum.priceAtYield5"
+        },
+        {
+          "type": "formula",
+          "as": "durationLine",
+          "expr": "(-datum.yield+5)*(datum.modifiedDuration*datum.priceAtYield5/100)+datum.priceAtYield5"
+        },
+        {
+          "type": "formula",
+          "as": "modifiedDurationBenchmark",
+          "expr": "((10000*0.05/(0.05*0.05)*(1-1/pow(1+0.05,maturityInYears))+(maturityInYears*(10000-10000*0.05/0.05))/(pow(1+0.05,maturityInYears+1))))/10000"
+        },
+        {
+          "type": "formula",
+          "as": "durationLineBenchmark",
+          "expr": "(datum.yield-5)*(-datum.modifiedDurationBenchmark*100)+10000"
+        }
+      ]
+    },
+    {
+      "name": "scaledata",
+      "source": "table",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "maxV",
+          "expr": "max(datum.price, datum.price5*1.2)"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "maturityInYears",
+      "value": 30,
+      "bind": { "input": "range", "min": 1, "max": 30, "step": 1 }
+    },
+    {
+      "name": "couponRate",
+      "value": 0.05,
+      "bind": { "input": "range", "min": 0, "max": 0.1, "step": 0.0002 }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": { "data": "table", "field": "yield", "sort": true },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": { "data": "scaledata", "field": "maxV" },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    { "orient": "bottom", "scale": "x", "title": "Yield (%)", "ticks": false },
+    { "orient": "left", "scale": "y", "title": "Bond Price" }
+  ],
+  "marks": [
+    {
+      "type": "rule",
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 5 },
+          "y": { "scale": "y", "value": 0 },
+          "x2": { "scale": "x", "value": 5 },
+          "y2": { "scale": "y", "value": 10000 },
+          "strokeWidth": { "value": 1 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "field": "yield" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "price" },
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price, '$,.2f') }"
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "field": "yield" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "durationLine" },
+          "strokeWidth": { "value": 1 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "field": "yield" },
+          "y": { "scale": "y", "field": "price5" },
+          "stroke": { "value": "#d6001c" },
+          "tooltip": {
+            "signal": "{ 'Bond Price': format(datum.price5, '$,.2f') }"
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "field": "yield" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "durationLineBenchmark" },
+          "stroke": { "value": "#d6001c" },
+          "strokeWidth": { "value": 1 },
+          "strokeDash": { "value": [8, 3] },
+          "strokeCap": { "value": "round" },
+          "opacity": { "value": 1 }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 5 },
+          "y": { "scale": "y", "value": "10000", "offset": 0 },
+          "text": {
+            "signal": "format(datum.modifiedDurationBenchmark, '.3f')+' years Modified Duration with slope of '+format(-datum.modifiedDurationBenchmark*100, '.3f')  "
+          },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "value": 5 },
+          "y": { "scale": "y", "signal": "datum.priceAtYield5" },
+          "text": {
+            "signal": "format(datum.modifiedDuration, '.3f')+' years Modified Duration with slope of '+format(-datum.modifiedDuration*datum.priceAtYield5/100, '.3f')"
+          },
+          "fontSize": { "value": 12 },
+          "align": { "value": "left" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "black" }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": { "value": "right" },
+          "baseline": { "value": "bottom" },
+          "fill": { "value": "rgba(0, 0, 0, 0.2)" },
+          "fontSize": { "value": 14 },
+          "x": { "value": 0, "offset": "width" },
+          "y": { "value": 0, "offset": "height*1.2" },
+          "text": {
+            "value": "Assume $10,000 bond, annual coupons paid in arrears and effective annual discount rate."
+          }
+        }
+      }
+    }
+  ]
+}
+</vegachart></p>
 <p>Mathematically, notice that bond price <span class="arithmatex">\(P\)</span> is a non-linear function <span class="arithmatex">\(f\)</span> of yield <span class="arithmatex">\(y\)</span> and many other parameters. Approximating <span class="arithmatex">\(\Delta P\)</span> using only its first partial derivative <span class="arithmatex">\(\frac{\partial P}{\partial y}\)</span> is of course not enough. We need to consider the second-order partial derivate, <span class="arithmatex">\(\frac{\partial^2 P}{\partial y^2}\)</span> too. This second derivative w.r.t. yield is exactly what we call the (dollar) <mark>convexity</mark> of a bond.</p>
 <div class="arithmatex">\[
 \Delta P = \underbrace{\frac{\partial P}{\partial y}}_{\text{related to duration}} \cdot \partial y + \underbrace{\frac{1}{2}\frac{\partial^2 P}{\partial y^2}}_{\text{related to convexity}} \cdot (\partial y)^2
 \]</div>
-<details class="tip">
-<summary>Taylor Expansion</summary>
+<div class="admonition tip">
+<p class="admonition-title">Why does it work? -- Taylor Expansion</p>
 <p>This is for the math-savvy. According to <a href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Expansion</a>, the change in a function <span class="arithmatex">\(f\)</span>'s value at a point <span class="arithmatex">\(y\)</span> by <span class="arithmatex">\(\Delta y\)</span> is:</p>
 <div class="arithmatex">\[
 f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 \]</div>
-</details>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To be completed.</p>
+<p>where higher order terms are ignored because they are too small.</p>
+</div>
+<p>As such, approximating a bond price's change can be better achieved using both duration and convexity.</p>
+<h3 id="impact-of-coupon-rate-on-convexity">Impact of coupon rate on convexity<a class="headerlink" href="#impact-of-coupon-rate-on-convexity" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">In the graph above, change coupon rate to 0%. What do you find?</p>
+<p>Adjusting only coupon rate, the bond's yield and maturity stay unchanged. The bond price declines, duration goes up, though the slope of the tangent line at yield decreases.</p>
+</div>
+<p class="annotate">For a given yield and maturity, the lower the coupon, the greater the convexity of a bond. This is because a greater portion of the bond value comes later, resulting a higher duration. A higher duration implies greater sensitivity of bond price to yield, so that for a given change in yield, the (percentage) change in price is greater -- the bond's convexity is higher.(1)</p>
+<ol>
+<li>Note that it does not necessarily mean that the price-yield curve is more convex! In the graph above, if we change coupon rate to lower than 5%, the blue-colored curve seems less convex than the baseline red curve (5% coupon), but the low-coupon (blue) bond's convexity is higher. Remember we need to scaled by the bond price, and the low-coupon bond's price is lower.</li>
+</ol>
+<h2 id="approximating-duration-and-convexity">Approximating duration and convexity<a class="headerlink" href="#approximating-duration-and-convexity" title="Permanent link">&para;</a></h2>
+<p>When a bond has embedded options, an analytical solution of bond price can be hard or impossible to get. The lack of an exact bond price function means that we will not be able to compute its partial derivatives, and we have to use approximations to gauge its duration and convexity.</p>
+<h3 id="duration-approximation">Duration approximation<a class="headerlink" href="#duration-approximation" title="Permanent link">&para;</a></h3>
+<p class="annotate">Conceptually, (modified) duration captures the change in bond price given a small change in yield. So, we can approximate a bond's duration by computing (1) the average price changes given a small change in yield in both directions:</p>
+<ol>
+<li>If the exact pricing function is not available due to complex embedded options, we can try to use Monte Carlo simulations to compute an expected value.</li>
+</ol>
+<div class="arithmatex">\[
+\begin{align*}
+\text{approx. Modified Duration} &amp;= \underbrace{\frac{1}{2} \left[\frac{P_{-}-P_0}{P_0} + \frac{P_0 - P_+}{P_0}\right]}_{\text{avg. pct. price change}} \times \underbrace{\frac{1}{\Delta y}}_{\text{per change in yield}} \\
+&amp;= \frac{P_--P_+}{2P_0\cdot \Delta y}
+\end{align*}
+\]</div>
+<h3 id="convexity-approximation">Convexity approximation<a class="headerlink" href="#convexity-approximation" title="Permanent link">&para;</a></h3>
+<p class="annotate">Similarly and conceptually, bond convexity captures the asymmetric changes in price given a small change in yield to the positive and to the negative directions. So, we can approximate a bond's (dollar) convexity by computing (1) the difference in price changes given a small change in yield in both directions:</p>
+<ol>
+<li>Or by simulation.</li>
+</ol>
+<div class="arithmatex">\[
+\begin{align*}
+\text{approx. Convexity} &amp;= \underbrace{\left[\frac{P_{-}-P_0}{\Delta y} - \frac{P_0 - P_+}{\Delta y}\right]}_{\text{diff. in price changes given yield change}} \times \underbrace{\frac{1}{\Delta y}}_{\text{per change in yield}} \\
+&amp;= \frac{P_-+P_+-2P_0}{(\Delta y)^2}
+\end{align*}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Real world application</p>
+<p>Imagine you're a manager of a bond portfolio. Some bonds in the portfolio are exotic and have complex embedded options: this is very common.</p>
+<p>How do you understand the risk of the portfolio, in terms of its value sensitivity to yield?</p>
+<p>You can have a powerful computer program that continuously compute the approximate duration and convexity of each bond in the portfolio, perhaps using Monte Carlo simulations to value those bonds with embedded options. Therefore, you can have a real-time measure of the portfolio's risk exposure to yield changes.</p>
 </div>
 
 <!-- Source file information -->
@@ -1631,10 +2036,36 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 <!-- Get setting from mkdocs.yml, but allow page-level overrides -->
 
 
-  
-
 
 <!-- Inject Disqus into current page -->
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = "https://mingze-gao.com/finc50/fixed-income/bond-price-volatility/"
+      this.page.identifier =
+        "finc50/fixed-income/bond-price-volatility/" 
+    }
+
+    /* Set up for the first time */
+    if (typeof DISQUS === "undefined") {
+      var script = document.createElement("script")
+      script.async = true
+      script.src = "https://mingze-gao.disqus.com/embed.js"
+      script.setAttribute("data-timestamp", Date.now())
+
+      /* Inject script tag */
+      document.body.appendChild(script)
+
+    /* Set up on navigation (instant loading) */
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      })
+    }
+  </script>
 
                 
               </article>
