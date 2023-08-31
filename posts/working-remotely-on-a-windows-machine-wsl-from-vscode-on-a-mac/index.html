@@ -1045,15 +1045,15 @@
 
 
 <!-- Markdown content -->
-<h1 id="working-remotely-on-a-windows-machine-from-vscode-on-a-mac">Working Remotely on a Windows Machine from VSCode on a Mac<a class="headerlink" href="#working-remotely-on-a-windows-machine-from-vscode-on-a-mac" title="Permanent link">&para;</a></h1>
+<div><h1 id="working-remotely-on-a-windows-machine-from-vscode-on-a-mac">Working Remotely on a Windows Machine from VSCode on a Mac<a class="headerlink" href="#working-remotely-on-a-windows-machine-from-vscode-on-a-mac" title="Permanent link">¶</a></h1>
 <p>Now I only need a MacBook (1.3 GHz dual-core i5) to do all my work anywhere, thanks to a powerful workstation provided by the university. Yet the workstation is based on Windows 10 and sitting behind the university VPN. I don't want to use Remote Desktop every time I need to do some coding, so I decided to make it so I can code remotely on the workstation but from the lovely VSCode on my little MacBook.</p>
 <!-- more -->
 
-<h2 id="1-set-up-the-windows-10-host-machine">1. Set up the Windows 10 host machine<a class="headerlink" href="#1-set-up-the-windows-10-host-machine" title="Permanent link">&para;</a></h2>
+<h2 id="1-set-up-the-windows-10-host-machine">1. Set up the Windows 10 host machine<a class="headerlink" href="#1-set-up-the-windows-10-host-machine" title="Permanent link">¶</a></h2>
 <p>The first step is to enable remote SSH login on the Windows machine. It is now super easy to do with the <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux (WSL)</a>. I use the Ubuntu 18.04 LTS distro but other Linux distros should work just fine. This will be the remote environment that I work in. Then I follow the instruction in <a href="https://www.illuminiastudios.com/dev-diaries/ssh-on-windows-subsystem-for-linux/">SSH on Windows Subsystem for Linux (WSL)</a>. The post is in great detail with step-by-step guidance. So I won't repeat it again.</p>
-<h2 id="2-set-up-the-vscode-on-mac">2. Set up the VSCode on Mac<a class="headerlink" href="#2-set-up-the-vscode-on-mac" title="Permanent link">&para;</a></h2>
+<h2 id="2-set-up-the-vscode-on-mac">2. Set up the VSCode on Mac<a class="headerlink" href="#2-set-up-the-vscode-on-mac" title="Permanent link">¶</a></h2>
 <p>The second step is to install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote-SSH extension</a> on VSCode. Then simply ssh into the Ubuntu environment on Windows 10 host machine using the username and password created for the Ubuntu distro. In my case is <code>ssh</code><em><code>myusername</code></em><code>@asgard.econ.usyd.edu.au</code>. A password prompt will of course kindly show up.</p>
-<h2 id="3-use-ssh-key-to-avoid-using-password-login">3. Use SSH key to avoid using password login<a class="headerlink" href="#3-use-ssh-key-to-avoid-using-password-login" title="Permanent link">&para;</a></h2>
+<h2 id="3-use-ssh-key-to-avoid-using-password-login">3. Use SSH key to avoid using password login<a class="headerlink" href="#3-use-ssh-key-to-avoid-using-password-login" title="Permanent link">¶</a></h2>
 <p>The annoying thing is that each time the window reloads and when I start VSCode, I need to manually type in my lengthy password. The better way must be using a SSH key instead.</p>
 <p>To do so, open up the Terminal on the Mac and run:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh-keygen
@@ -1062,8 +1062,8 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh-copy-id<span class="w"> </span>myusername@asgard.econ.usyd.edu.au
 </span></code></pre></div>
 <p>It will ask for the password on the host machine to confirm I am who I am. But after this, starting VSCode will never ask my password again. What a relief!</p>
-<h2 id="lastly">Lastly...<a class="headerlink" href="#lastly" title="Permanent link">&para;</a></h2>
-<p>Because the host machine is inside the university network, I need to first connect to the university VPN, otherwise the host address <code>asgard.econ.usyd.edu.au</code> will not resolve. Still, it's really great that I can code and run my programs remotely on the powerful 8-core 16-thread machine without feeling the hotness and noise, which turns out to be really important in the summer of Australia......</p>
+<h2 id="lastly">Lastly...<a class="headerlink" href="#lastly" title="Permanent link">¶</a></h2>
+<p>Because the host machine is inside the university network, I need to first connect to the university VPN, otherwise the host address <code>asgard.econ.usyd.edu.au</code> will not resolve. Still, it's really great that I can code and run my programs remotely on the powerful 8-core 16-thread machine without feeling the hotness and noise, which turns out to be really important in the summer of Australia......</p></div>
 
 <!-- Source file information -->
 

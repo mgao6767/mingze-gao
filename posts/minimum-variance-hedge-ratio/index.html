@@ -1083,13 +1083,13 @@
 
 
 <!-- Markdown content -->
-<h1 id="minimum-variance-hedge-ratio">Minimum Variance Hedge Ratio<a class="headerlink" href="#minimum-variance-hedge-ratio" title="Permanent link">&para;</a></h1>
+<div><h1 id="minimum-variance-hedge-ratio">Minimum Variance Hedge Ratio<a class="headerlink" href="#minimum-variance-hedge-ratio" title="Permanent link">¶</a></h1>
 <p>This note briefly explains what's the <strong>minimum variance hedge ratio</strong> and how
 to derive it in a cross hedge, where the asset to be hedged is not the same as
 underlying asset.</p>
 <!-- more -->
 
-<h2 id="the-hedge-ratio-h">The Hedge Ratio <span class="arithmatex">\(h\)</span><a class="headerlink" href="#the-hedge-ratio-h" title="Permanent link">&para;</a></h2>
+<h2 id="the-hedge-ratio-h">The Hedge Ratio <span class="arithmatex">\(h\)</span><a class="headerlink" href="#the-hedge-ratio-h" title="Permanent link">¶</a></h2>
 <p>The hedge ratio <span class="arithmatex">\(h\)</span> is the ratio of the size of the hedging position to the
 exposure of the asset to be hedged:</p>
 <ul>
@@ -1103,11 +1103,11 @@ h=\frac{N_F}{N_A}=\frac{\text{size of hedging position}}{\text{size of exposure}
 \]</div>
 <p>Apparently, if we vary <span class="arithmatex">\(h\)</span>, the variance (risk) of the combined hedged position
 will also change.</p>
-<h2 id="the-optimal-minimum-variance-hedge-ratio-h">The (Optimal) Minimum-Variance Hedge Ratio <span class="arithmatex">\(h^*\)</span><a class="headerlink" href="#the-optimal-minimum-variance-hedge-ratio-h" title="Permanent link">&para;</a></h2>
+<h2 id="the-optimal-minimum-variance-hedge-ratio-h">The (Optimal) Minimum-Variance Hedge Ratio <span class="arithmatex">\(h^*\)</span><a class="headerlink" href="#the-optimal-minimum-variance-hedge-ratio-h" title="Permanent link">¶</a></h2>
 <p>Our objective in hedging is to manage the variance (risk) of our position,
 making it as low as possible by setting the hedge ratio <span class="arithmatex">\(h\)</span> to be the optimal
 hedge ratio <span class="arithmatex">\(h^*\)</span> that minimises the variance of the combined hedged position.</p>
-<h3 id="hedge-where-aa">Hedge where <span class="arithmatex">\(A'=A\)</span><a class="headerlink" href="#hedge-where-aa" title="Permanent link">&para;</a></h3>
+<h3 id="hedge-where-aa">Hedge where <span class="arithmatex">\(A'=A\)</span><a class="headerlink" href="#hedge-where-aa" title="Permanent link">¶</a></h3>
 <p>It's relatively easy when the underlying asset of the futures (<span class="arithmatex">\(A'\)</span>) is the same
 as the asset to be hedged (<span class="arithmatex">\(A\)</span>), as they have a perfect correlation and the same
 variance. Thus, as long as the hedge ratio <span class="arithmatex">\(h=1\)</span>, where the size of hedging
@@ -1116,7 +1116,7 @@ variance ensure the value changes in the hedging position offset the changes in
 the value of asset to be hedged, so that the variance of the hedged position is
 minimum at zero (ignoring other basis risks). This means, the optimal
 minimum-variance hedge ratio <span class="arithmatex">\(h^*=1\)</span>.</p>
-<h3 id="cross-hedge-where-a-neq-a">Cross Hedge where <span class="arithmatex">\(A' \neq A\)</span><a class="headerlink" href="#cross-hedge-where-a-neq-a" title="Permanent link">&para;</a></h3>
+<h3 id="cross-hedge-where-a-neq-a">Cross Hedge where <span class="arithmatex">\(A' \neq A\)</span><a class="headerlink" href="#cross-hedge-where-a-neq-a" title="Permanent link">¶</a></h3>
 <p>When the underlying asset of the futures (<span class="arithmatex">\(A'\)</span>) differ from asset to be hedged
 (<span class="arithmatex">\(A\)</span>), the optimal hedge ratio <span class="arithmatex">\(h^*\)</span> that minimises the portfolio variance is
 not necessarily 1 anymore. </p>
@@ -1154,7 +1154,7 @@ h^* =\underset{h}{\operatorname{argmin}} \text{Var}(\Delta C)
 <div class="arithmatex">\[
 h^* = \rho \frac{\sigma_S}{\sigma_F}
 \]</div>
-<h2 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">&para;</a></h2>
+<h2 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">¶</a></h2>
 <p>The optimal hedge ratio <span class="arithmatex">\(h^*\)</span> describes the optimal <span class="arithmatex">\(N_F/N_A\)</span>, so that the
 optimal size of the hedging position:</p>
 <div class="arithmatex">\[
@@ -1178,7 +1178,7 @@ N_F^* = h^* \times N_A
 <ul>
 <li><span class="arithmatex">\(F\)</span> is <em>expected</em> to change by <span class="arithmatex">\((1/h^*)\)</span>% when <span class="arithmatex">\(S\)</span> changes by 1%.</li>
 <li>Holding <span class="arithmatex">\(h^*\)</span> as much of <span class="arithmatex">\(F\)</span> as <span class="arithmatex">\(S\)</span> gives an imperfect hedge where the value of the hedging position is <em>expected</em> to offset the change in <span class="arithmatex">\(S\)</span>.</li>
-</ul>
+</ul></div>
 
 <!-- Source file information -->
 

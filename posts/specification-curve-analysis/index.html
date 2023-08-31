@@ -1143,18 +1143,18 @@
 
 
 <!-- Markdown content -->
-<h1 id="specification-curve-analysis">Specification Curve Analysis<a class="headerlink" href="#specification-curve-analysis" title="Permanent link">&para;</a></h1>
-<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<div><h1 id="specification-curve-analysis">Specification Curve Analysis<a class="headerlink" href="#specification-curve-analysis" title="Permanent link">¶</a></h1>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">¶</a></h2>
 <p>More often than not, empirical researchers need to argue that their chosen model specification reigns. If not, they need to run a battery of tests on alternative specifications and report them. The problem is, researchers can fit a few tables each with a few models in the paper at best, and it's extremely hard for readers to know whether the reported results are being cherry-picked.</p>
 <blockquote>
 <p>So, <strong><em>why not run all possible model specifications and find a concise way to report them all?</em></strong></p>
 </blockquote>
 <!-- more -->
 
-<h2 id="the-specification-curve">The Specification Curve<a class="headerlink" href="#the-specification-curve" title="Permanent link">&para;</a></h2>
+<h2 id="the-specification-curve">The Specification Curve<a class="headerlink" href="#the-specification-curve" title="Permanent link">¶</a></h2>
 <p>The idea of specification curve is a direct answer to the question provided by Simonsohn, Simmons and Nelson (2020).<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <p>To intuitively explain this concept, below is the Figure 2 from my paper <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710">Organization Capital and Executive Performance Incentives</a> on the <em>Journal of Banking &amp; Finance</em>,<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> which is used to show the robustness of an substitution effect of organization capital on executive pay-for-performance sensitivity. Therefore, the estimated coefficients for the variable of interest <em>OC</em> are expected to be negative across different model specifications.</p>
-<p><img alt="specurve-of-oc" src="/images/specification-curve-of-oc.jpg" /></p>
+<p><img alt="specurve-of-oc" src="/images/specification-curve-of-oc.jpg"></p>
 <p>The plot is made up of two parts. The upper panel plots the coefficient estimates of <em>OC</em> in various model specifications, in descending order, and the associated 95% confidence intervals. Sample sizes of each model are plotted as bars at the bottom of the upper panel. For simplicity, we annotate only the maximum and minimum coefficient estimates, as well as the threshold of zero. The lower panel reports the exact specification for each model, where colored dots indicate the choices from various specification alternatives. Both panels share the same x-axis of model number.</p>
 <p>To interpret this specification curve, for example, <em>OC</em> has an estimated coefficient of −0.11 in the first model, which uses the natural logarithm of <em>DELTA_MGMT</em> (a measure of executive pay-for-performance sensitivity) as the dependent variable, and control variables as in the baseline model, including industry fixed effects and year fixed effects, clustering standard errors at the firm level, and is estimated on the full sample.</p>
 <p>Further, the ordered nature of the curve implies that this is the minimum estimated impact of OC on ln(<em>DELTA_MGMT</em>), whereas the maximum estimated coefficient is doubled at −0.22 when the industry fixed effects are replaced with the more conservative firm fixed effects and estimated on the sample excluding global financial crisis period. More importantly, in all specifications, we find the coefficient estimates of OC to be statistically significant. Using an alternative measure of executive pay-for-performance sensitivity as the dependent variable, again, has minimal impact on the documented substitution effect of <em>OC</em>.</p>
@@ -1174,49 +1174,49 @@
 <li>The main findings hold with and without the global financial crisis (GFC) period.</li>
 </ul>
 <p>Of course, even 32 models cannot exhaust <em>all</em> possible specifications. Nevertheless, by addressing the most critical ones, we are able to use <em>one</em> specification curve plot to convince readers that our findings are robust.</p>
-<h2 id="specurve-stata-command-for-specification-curve-analysis"><code>specurve</code> - Stata command for specification curve analysis<a class="headerlink" href="#specurve-stata-command-for-specification-curve-analysis" title="Permanent link">&para;</a></h2>
+<h2 id="specurve-stata-command-for-specification-curve-analysis"><code>specurve</code> - Stata command for specification curve analysis<a class="headerlink" href="#specurve-stata-command-for-specification-curve-analysis" title="Permanent link">¶</a></h2>
 <p>I developed a Stata command <a href="https://github.com/mgao6767/specurve"><strong><code>specurve</code></strong></a> for specification curve analysis. It is written in Stata Mata and has no external dependencies.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> The source code is available at <a href="https://github.com/mgao6767/specurve">GitHub</a>.</p>
-<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">¶</a></h3>
 <p>Run the following command in Stata:</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">net</span> install specurve, from(<span class="s">&quot;https://raw.githubusercontent.com/mgao6767/specurve/master&quot;</span>)<span class="k"> replace</span>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">net</span> install specurve, from(<span class="s">"https://raw.githubusercontent.com/mgao6767/specurve/master"</span>)<span class="k"> replace</span>
 </span></code></pre></div>
-<h2 id="example-usage-output">Example usage &amp; output<a class="headerlink" href="#example-usage-output" title="Permanent link">&para;</a></h2>
-<h3 id="regressions-with-reghdfe">Regressions with <code>reghdfe</code><a class="headerlink" href="#regressions-with-reghdfe" title="Permanent link">&para;</a></h3>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> use</span> <span class="s">&quot;http://www.stata-press.com/data/r13/nlswork.dta&quot;</span>,<span class="k"> clear</span>
+<h2 id="example-usage-output">Example usage &amp; output<a class="headerlink" href="#example-usage-output" title="Permanent link">¶</a></h2>
+<h3 id="regressions-with-reghdfe">Regressions with <code>reghdfe</code><a class="headerlink" href="#regressions-with-reghdfe" title="Permanent link">¶</a></h3>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> use</span> <span class="s">"http://www.stata-press.com/data/r13/nlswork.dta"</span>,<span class="k"> clear</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>(National Longitudinal Survey.  Young Women <span class="m">14-26</span> years of age<span class="k"> in</span> <span class="m">1968</span>)
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>.<span class="k"> copy</span> <span class="s">&quot;https://mingze-gao.com/specurve/example_config_nlswork_reghdfe.yml&quot;</span> .,<span class="k"> replace</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>.<span class="k"> copy</span> <span class="s">"https://mingze-gao.com/specurve/example_config_nlswork_reghdfe.yml"</span> .,<span class="k"> replace</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>. specurve using example_config_nlswork_reghdfe<span class="m">.</span>yml, saving(specurve_demo)
 </span></code></pre></div>
-<p><img alt="example_reghdfe" src="https://github.com/mgao6767/specurve/raw/main/images/example_reghdfe.png" /></p>
-<h3 id="iv-regressions-with-ivreghdfe">IV regressions with <code>ivreghdfe</code><a class="headerlink" href="#iv-regressions-with-ivreghdfe" title="Permanent link">&para;</a></h3>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> copy</span> <span class="s">&quot;https://mingze-gao.com/specurve/example_config_nlswork_ivreghdfe.yml&quot;</span> .,<span class="k"> replace</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>. specurve using example_config_nlswork_ivreghdfe<span class="m">.</span>yml, cmd(ivreghdfe) rounding(<span class="m">0.01</span>) title(<span class="s">&quot;IV regression with ivreghdfe&quot;</span>)
+<p><img alt="example_reghdfe" src="https://github.com/mgao6767/specurve/raw/main/images/example_reghdfe.png"></p>
+<h3 id="iv-regressions-with-ivreghdfe">IV regressions with <code>ivreghdfe</code><a class="headerlink" href="#iv-regressions-with-ivreghdfe" title="Permanent link">¶</a></h3>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> copy</span> <span class="s">"https://mingze-gao.com/specurve/example_config_nlswork_ivreghdfe.yml"</span> .,<span class="k"> replace</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>. specurve using example_config_nlswork_ivreghdfe<span class="m">.</span>yml, cmd(ivreghdfe) rounding(<span class="m">0.01</span>) title(<span class="s">"IV regression with ivreghdfe"</span>)
 </span></code></pre></div>
-<p><img alt="example_ivreghdfe" src="https://github.com/mgao6767/specurve/raw/main/images/example_ivreghdfe.png" /></p>
+<p><img alt="example_ivreghdfe" src="https://github.com/mgao6767/specurve/raw/main/images/example_ivreghdfe.png"></p>
 <p>Check <code>help specurve</code> in Stata for a step-by-step guide.</p>
-<h3 id="post-estimation">Post estimation<a class="headerlink" href="#post-estimation" title="Permanent link">&para;</a></h3>
+<h3 id="post-estimation">Post estimation<a class="headerlink" href="#post-estimation" title="Permanent link">¶</a></h3>
 <p>Estimation results are saved in the <a href="https://www.stata.com/manuals/dframesintro.pdf">frame</a> named "specurve".</p>
 <p>Use <code>frame change specurve</code> to check the results.</p>
 <p>Use <code>frame change default</code> to switch back to the original dataset.</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:1">
-<p>Simonsohn, Uri and Simmons, Joseph P. and Nelson, Leif D., 2020, Specification Curve Analysis, <em>Nature Human Behaviour</em>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Simonsohn, Uri and Simmons, Joseph P. and Nelson, Leif D., 2020, Specification Curve Analysis, <em>Nature Human Behaviour</em>. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 <li id="fn:2">
-<p>Special thanks to <a href="https://www.bc.edu/bc-web/schools/carroll-school/faculty-research/faculty-directory/rawley-heimer.html">Rawley Heimer</a> from Boston College who visited our discipline in 2019 and introduced the Specification Curve Analysis to us in the seminar on research methods.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Special thanks to <a href="https://www.bc.edu/bc-web/schools/carroll-school/faculty-research/faculty-directory/rawley-heimer.html">Rawley Heimer</a> from Boston College who visited our discipline in 2019 and introduced the Specification Curve Analysis to us in the seminar on research methods. <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
 </li>
 <li id="fn:3">
-<p>This plot was made using a previous version of <a href="https://github.com/mgao6767/specurve"><strong><code>specurve</code></strong></a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>This plot was made using a previous version of <a href="https://github.com/mgao6767/specurve"><strong><code>specurve</code></strong></a>. <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
 <li id="fn:4">
-<p>Previous versions depend on Stata 16's Python integration.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Previous versions depend on Stata 16's Python integration. <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
 </li>
 </ol>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

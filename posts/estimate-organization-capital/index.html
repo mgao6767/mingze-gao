@@ -1043,11 +1043,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="estimate-organization-capital">Estimate Organization Capital<a class="headerlink" href="#estimate-organization-capital" title="Permanent link">&para;</a></h1>
+<div><h1 id="estimate-organization-capital">Estimate Organization Capital<a class="headerlink" href="#estimate-organization-capital" title="Permanent link">¶</a></h1>
 <p>As in Eisfeldt and Papanikolaou (2013), we obtain firm-year accounting data from the Compustat and compute the stock of organization capital for firms using the perpetual inventory method that recursively calculates the stock of OC by accumulating the deflated value of SG&amp;A expenses.</p>
 <!-- more -->
 
-<h2 id="organization-capital">Organization Capital<a class="headerlink" href="#organization-capital" title="Permanent link">&para;</a></h2>
+<h2 id="organization-capital">Organization Capital<a class="headerlink" href="#organization-capital" title="Permanent link">¶</a></h2>
 <div class="arithmatex">\[
 OC_{i,t} = (1-\delta_{OC})OC_{i,t-1} + \frac{SGA_{i,t}}{CPI_t}
 \]</div>
@@ -1056,7 +1056,7 @@ OC_{i,t} = (1-\delta_{OC})OC_{i,t-1} + \frac{SGA_{i,t}}{CPI_t}
 OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 \]</div>
 <p>where <span class="arithmatex">\(g\)</span> is the average real growth rate of firm-level SG&amp;A expenses, which is 10% in Eisfeldt and Papanikolaou (2013) or specific for an industry-decade in Li, Qiu and Shen (2018).</p>
-<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
+<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">¶</a></h2>
 <p>This code estimates the organization capital for all Compustat firm-years.</p>
 <p>Note that it requires an external dataset of CPI. You need to name it <code>cpiaucsl</code> and store it in your WRDS home directory.</p>
 <div class="language-SAS highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">  1</a></span>
@@ -1246,7 +1246,7 @@ OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="cm"> * Last Modifed: 24 Feb 2019</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="cm"> * ============================================================================================== */</span>
 </span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="k">libname</span> home <span class="s">&quot;~/&quot;</span><span class="kr">;</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="k">libname</span> home <span class="s">"~/"</span><span class="kr">;</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="kr">data </span>funda(<span class="k">keep</span>=gvkey cusip cik fyear datadate at xsga xrd xad sic2);
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="cm">/*  Variables from Compustat:</span>
@@ -1256,7 +1256,7 @@ OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="cm">    *   XAD:    Advertising Expense; */</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="k">set</span> comp<span class="m">.</span>funda;
 </span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="k">if</span> cmiss(of fyear datadate)=<span class="m">0</span>;
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="k">if</span> indfmt = <span class="s">&#39;INDL&#39;</span> <span class="k">and</span> datafmt=<span class="s">&#39;STD&#39;</span> <span class="k">and</span> popsrc=<span class="s">&#39;D&#39;</span> <span class="k">and</span> consol=<span class="s">&#39;C&#39;</span>;
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="k">if</span> indfmt = <span class="s">'INDL'</span> <span class="k">and</span> datafmt=<span class="s">'STD'</span> <span class="k">and</span> popsrc=<span class="s">'D'</span> <span class="k">and</span> consol=<span class="s">'C'</span>;
 </span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a>    sic2 = <span class="nb">int(</span>sich/<span class="m">100</span>)<span class="kr">;</span>
 </span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="kr">run;</span>
 </span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a>
@@ -1372,7 +1372,7 @@ OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 <p>Lastly, if you use this code above, please consider citing the following article for which it was written.</p>
 <blockquote>
 <p>Gao, M. Leung, H. and Qiu, B. (2021). Organization Capital and Executive Performance Incentives, <em>Journal of Banking &amp; Finance</em>, 123, 106017.</p>
-</blockquote>
+</blockquote></div>
 
 <!-- Source file information -->
 

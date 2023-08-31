@@ -1261,11 +1261,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="accumulator-option-pricing">Accumulator Option Pricing<a class="headerlink" href="#accumulator-option-pricing" title="Permanent link">&para;</a></h1>
+<div><h1 id="accumulator-option-pricing">Accumulator Option Pricing<a class="headerlink" href="#accumulator-option-pricing" title="Permanent link">¶</a></h1>
 <p>An <a href="https://en.wikipedia.org/wiki/Accumulator_(structured_product)">accumulator</a> is a financial derivative that is sometimes known as "<em>I kill you later</em>". This post attempts to explain how it is structured and price it via Monte Carlo simulations in Python.</p>
 <!-- more -->
 
-<h2 id="1-overview-of-accumulator">1. Overview of Accumulator<a class="headerlink" href="#1-overview-of-accumulator" title="Permanent link">&para;</a></h2>
+<h2 id="1-overview-of-accumulator">1. Overview of Accumulator<a class="headerlink" href="#1-overview-of-accumulator" title="Permanent link">¶</a></h2>
 <p>Like all derivatives, there are two parties involved in an accumulator, the buyer and the seller, both agree on a <strong>strike price</strong> that is usually at a discount to the prevailing market price of the underlying security at the time of contract origination.</p>
 <ul>
 <li>The <strong>buyer</strong> has the obligation to buy certain amount of the underlying security at the predetermined strike price.</li>
@@ -1277,27 +1277,27 @@
 <li>If the market price of the underlying security is <strong>between</strong> the knock-out price and the strike price, the buyer "accumulates" the underlying security at the strike price.</li>
 <li>If the market price of the underlying security is <strong>below</strong> the strike price, the buyer is obligated to buy the underlying security at the strike price at 2 (or more) times of the predetermined amount.</li>
 </ul>
-<h2 id="2-an-example-6-month-accumulator">2. An Example 6-month Accumulator<a class="headerlink" href="#2-an-example-6-month-accumulator" title="Permanent link">&para;</a></h2>
+<h2 id="2-an-example-6-month-accumulator">2. An Example 6-month Accumulator<a class="headerlink" href="#2-an-example-6-month-accumulator" title="Permanent link">¶</a></h2>
 <p>Let's make up an example so as to illustrate how it works. </p>
-<h3 id="21-month-0">2.1. Month 0<a class="headerlink" href="#21-month-0" title="Permanent link">&para;</a></h3>
+<h3 id="21-month-0">2.1. Month 0<a class="headerlink" href="#21-month-0" title="Permanent link">¶</a></h3>
 <p>Suppose that I bought an accumulator from Sherry the seller today, where the underlying security is TSC (hypothetical ticker), currently trading at $100. The strike price is $90 and the knock-out price is $105. The amount of stocks that I can buy is 1,000 in each settlement. The accumulator lasts for 6 months and settles monthly.</p>
-<h3 id="22-month-1">2.2. Month 1<a class="headerlink" href="#22-month-1" title="Permanent link">&para;</a></h3>
+<h3 id="22-month-1">2.2. Month 1<a class="headerlink" href="#22-month-1" title="Permanent link">¶</a></h3>
 <p>At the end of month 1, the market price of TSC is $102, which is between the strike price ($90) and the knock-out price ($105). I can buy 1,000 shares from Sherry at the strike price of $90 each and make a profit of <span class="arithmatex">\((\$102-\$90)\times 1000=\$12,000\)</span>.</p>
-<h3 id="23-month-2">2.3. Month 2<a class="headerlink" href="#23-month-2" title="Permanent link">&para;</a></h3>
+<h3 id="23-month-2">2.3. Month 2<a class="headerlink" href="#23-month-2" title="Permanent link">¶</a></h3>
 <p>At the end of month 2, the market price of TSC is $95, which is between the strike price ($90) and the knock-out price ($105). I can buy 1,000 shares from Sherry at the strike price of $90 each and make a profit of <span class="arithmatex">\((\$95-\$90)\times1000=\$5,000\)</span>.</p>
-<h3 id="24-month-3">2.4. Month 3<a class="headerlink" href="#24-month-3" title="Permanent link">&para;</a></h3>
+<h3 id="24-month-3">2.4. Month 3<a class="headerlink" href="#24-month-3" title="Permanent link">¶</a></h3>
 <p>At the end of month 3, the market price of TSC is $85, which is below the strike price ($90). I have to buy 2,000 shares from Sherry at the strike price of $90, making a loss of <span class="arithmatex">\((\$90-\$85)\times2000=\$10,000\)</span>.</p>
-<h3 id="25-month-4">2.5. Month 4<a class="headerlink" href="#25-month-4" title="Permanent link">&para;</a></h3>
+<h3 id="25-month-4">2.5. Month 4<a class="headerlink" href="#25-month-4" title="Permanent link">¶</a></h3>
 <p>At the end of month 4, the market price of TSC is $88, which is below the strike price ($90). I have to buy 2,000 shares from Sherry at the strike price of $90, making a loss of <span class="arithmatex">\((\$90-\$88)\times2000=\$4,000\)</span>.</p>
-<h3 id="26-month-5">2.6. Month 5<a class="headerlink" href="#26-month-5" title="Permanent link">&para;</a></h3>
+<h3 id="26-month-5">2.6. Month 5<a class="headerlink" href="#26-month-5" title="Permanent link">¶</a></h3>
 <p>At the end of month 5, the market price of TSC is $106, which is above the knock-out price, so the contract is terminated immediately. I cannot make any profit from Sherry any longer.</p>
-<h2 id="3-some-observations">3. Some Observations<a class="headerlink" href="#3-some-observations" title="Permanent link">&para;</a></h2>
+<h2 id="3-some-observations">3. Some Observations<a class="headerlink" href="#3-some-observations" title="Permanent link">¶</a></h2>
 <p>In the example above:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> I've <em>accumulated</em> in total of 6,000 shares of TSC at a cost of $90 per share. This implies that an accumulator is like a <strong>forward contract</strong> and helps the buyer lock in the cost of acquiring the underlying security (why it's also known as share forward accumulator).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> As long as the share price is between the strike price and knock-out price, the buyer can accumulate shares at a discount.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> The 6-month accumulator terminates in 5 months because of the knock out and so the seller's loss is limited.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> When the share price is below the strike price, the buyer accumulates more shares but at a loss.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> I've <em>accumulated</em> in total of 6,000 shares of TSC at a cost of $90 per share. This implies that an accumulator is like a <strong>forward contract</strong> and helps the buyer lock in the cost of acquiring the underlying security (why it's also known as share forward accumulator).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> As long as the share price is between the strike price and knock-out price, the buyer can accumulate shares at a discount.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> The 6-month accumulator terminates in 5 months because of the knock out and so the seller's loss is limited.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> When the share price is below the strike price, the buyer accumulates more shares but at a loss.</li>
 </ul>
 <p>All these taken together, we can find that the buyer has:</p>
 <ol>
@@ -1307,7 +1307,7 @@
 <p>But this is not the full story. Another hidden feature is that while the accumulator is terminated when the share price is above the knock-out price, the contract does <strong><em>not</em></strong> terminate when the buyer is at a loss until it matures. So, even though the maximum losses of both the buyer and the seller are fixed, but they differ significantly and disproportionately.</p>
 <p>If so, why would anyone become interested in buying the contract? Potentially it's because the strike is set to be lower at market price, therefore at the beginning the buyers always feel like they are taking advantages. They may also think that once the price increases to above the knock-out level, which might be set to slightly higher than market price, the contract is terminated so they are free of any loss.</p>
 <p>However, the buyers often underestimate the probability of a price decline and how big the impact it will have on accumulator buyers. The "<strong><em>I kill you later</em></strong>" earns its name for a reason.</p>
-<h2 id="4-some-math">4. Some Math ...<a class="headerlink" href="#4-some-math" title="Permanent link">&para;</a></h2>
+<h2 id="4-some-math">4. Some Math ...<a class="headerlink" href="#4-some-math" title="Permanent link">¶</a></h2>
 <p>Let's make some notations.</p>
 <ul>
 <li>Strike price is <span class="arithmatex">\(K\)</span></li>
@@ -1346,9 +1346,9 @@
 </tbody>
 </table>
 <p>However, deriving a closed-end analytical solution is not easy since there are many settlements in the contract and the total payoff is path-dependent (the knock out). There is a conference paper in 2009 discussing the issue and the PDF version is available <a href="http://www.plhyu.com/administrator/components/com_jresearch/files/publications/Accumulator_pricing.pdf">here</a>.</p>
-<h2 id="5-a-simulation-approach">5. ... A Simulation Approach<a class="headerlink" href="#5-a-simulation-approach" title="Permanent link">&para;</a></h2>
+<h2 id="5-a-simulation-approach">5. ... A Simulation Approach<a class="headerlink" href="#5-a-simulation-approach" title="Permanent link">¶</a></h2>
 <p>I am to going to use Monte Carlo simulations to find out the distribution of buyer's payoff.</p>
-<h3 id="51-assumptions">5.1. Assumptions<a class="headerlink" href="#51-assumptions" title="Permanent link">&para;</a></h3>
+<h3 id="51-assumptions">5.1. Assumptions<a class="headerlink" href="#51-assumptions" title="Permanent link">¶</a></h3>
 <p>For simplicity, I'm going to make the following assumptions:</p>
 <ul>
 <li>the share price when the contract is signed <span class="arithmatex">\(S_t=100\)</span>.</li>
@@ -1366,7 +1366,7 @@
 <li>the monthly stock returns follow a normal distribution with mean zero and a standard deviation of <span class="arithmatex">\(\sigma\)</span>.</li>
 </ul>
 <p>Then, there are only two variables: <span class="arithmatex">\(k\)</span> and <span class="arithmatex">\(\sigma\)</span> that I will need to vary!</p>
-<h3 id="52-core-code">5.2. Core Code<a class="headerlink" href="#52-core-code" title="Permanent link">&para;</a></h3>
+<h3 id="52-core-code">5.2. Core Code<a class="headerlink" href="#52-core-code" title="Permanent link">¶</a></h3>
 <p>The simulation code I write below leverages <a href="http://numba.pydata.org/">Numba</a> to speed up the calculation.</p>
 <p>For 1 million simulations per pair of <span class="arithmatex">\((k, \sigma)\)</span>, it takes about 2 seconds on my laptop with JIT and almost 1 minute without it.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1376,10 +1376,10 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nd">@jitclass</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">({</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s1">&#39;times&#39;</span><span class="p">:</span> <span class="n">int32</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s1">&#39;strike_price&#39;</span><span class="p">:</span> <span class="n">float32</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s1">&#39;knock_out_price&#39;</span><span class="p">:</span> <span class="n">float32</span><span class="p">,</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s1">&#39;volatility&#39;</span><span class="p">:</span> <span class="n">float32</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s1">'times'</span><span class="p">:</span> <span class="n">int32</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s1">'strike_price'</span><span class="p">:</span> <span class="n">float32</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s1">'knock_out_price'</span><span class="p">:</span> <span class="n">float32</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s1">'volatility'</span><span class="p">:</span> <span class="n">float32</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}))</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span> <span class="nc">FastSimulation</span><span class="p">:</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
@@ -1409,7 +1409,7 @@
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="k">return</span> <span class="n">buyer_payoffs</span>
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="k">def</span> <span class="nf">buyer_payoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">share_price</span><span class="p">):</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="s2">&quot;Buyer payoff conditional on the accumulator not terminated&quot;</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="s2">"Buyer payoff conditional on the accumulator not terminated"</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="k">if</span> <span class="n">share_price</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">knock_out_price</span><span class="p">:</span>
 </span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="k">return</span> <span class="mi">0</span>
 </span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="n">payoff</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">share_price</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">strike_price</span><span class="p">)</span>
@@ -1418,7 +1418,7 @@
 </span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">else</span><span class="p">:</span>
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="k">return</span> <span class="n">payoff</span> <span class="o">*</span> <span class="mi">2</span>
 </span></code></pre></div>
-<h3 id="53-results">5.3. Results<a class="headerlink" href="#53-results" title="Permanent link">&para;</a></h3>
+<h3 id="53-results">5.3. Results<a class="headerlink" href="#53-results" title="Permanent link">¶</a></h3>
 <p>Numbers are boring. So here I put two plots showing the distribution of the buyer's payoffs. The Python code to generate the plots is as below (1000 simulations).</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
@@ -1430,25 +1430,25 @@
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">hist_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FastSimulation</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="mi">1_000</span><span class="p">,</span> <span class="n">strike_price</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">knock_out_price</span><span class="o">=</span><span class="mi">105</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">group_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Volatility = </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">group_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Volatility = </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">%'</span><span class="p">)</span>
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#75b0ec&#39;</span><span class="p">,</span> <span class="s1">&#39;#338be3&#39;</span><span class="p">,</span> <span class="s1">&#39;#34669c&#39;</span><span class="p">,</span> <span class="s1">&#39;#344054&#39;</span><span class="p">,</span> <span class="s1">&#39;#161c25&#39;</span><span class="p">]</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#75b0ec'</span><span class="p">,</span> <span class="s1">'#338be3'</span><span class="p">,</span> <span class="s1">'#34669c'</span><span class="p">,</span> <span class="s1">'#344054'</span><span class="p">,</span> <span class="s1">'#161c25'</span><span class="p">]</span>
 </span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># Create distplot with curve_type set to &#39;normal&#39;</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_data</span><span class="p">,</span> <span class="n">group_labels</span><span class="p">,</span> <span class="n">show_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">curve_type</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># Create distplot with curve_type set to 'normal'</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span><span class="n">hist_data</span><span class="p">,</span> <span class="n">group_labels</span><span class="p">,</span> <span class="n">show_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">curve_type</span><span class="o">=</span><span class="s2">"kde"</span><span class="p">)</span>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1"># Add title</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">fig</span><span class="p">[</span><span class="s1">&#39;layout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Accumulator With Strike Price of 95 and Knock-Out Price of 105 | MingzeGao&#39;</span><span class="p">,</span> 
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Buyer&#39;s Payoff&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">700e3</span><span class="p">,</span> <span class="mf">300e3</span><span class="p">]),</span> <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Probability&#39;</span><span class="p">))</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">fig</span><span class="p">[</span><span class="s1">'layout'</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Accumulator With Strike Price of 95 and Knock-Out Price of 105 | MingzeGao'</span><span class="p">,</span> 
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Buyer's Payoff"</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">700e3</span><span class="p">,</span> <span class="mf">300e3</span><span class="p">]),</span> <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Probability'</span><span class="p">))</span>
 </span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
 </span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># Plot!</span>
 </span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </span></code></pre></div>
-<h4 id="531-k5-and-vin-15">5.3.1. <span class="arithmatex">\(k=5\)</span> and <span class="arithmatex">\(v\in [1..5]\)</span><a class="headerlink" href="#531-k5-and-vin-15" title="Permanent link">&para;</a></h4>
-<p><img alt="accumulator-95-105" src="/images/accumulator-95-105.png" /></p>
-<h4 id="532-k10-and-vin-15">5.3.2. <span class="arithmatex">\(k=10\)</span> and <span class="arithmatex">\(v\in [1..5]\)</span><a class="headerlink" href="#532-k10-and-vin-15" title="Permanent link">&para;</a></h4>
-<p><img alt="accumulator-90-110" src="/images/accumulator-90-110.png" /></p>
-<h3 id="6-discussion">6. Discussion<a class="headerlink" href="#6-discussion" title="Permanent link">&para;</a></h3>
+<h4 id="531-k5-and-vin-15">5.3.1. <span class="arithmatex">\(k=5\)</span> and <span class="arithmatex">\(v\in [1..5]\)</span><a class="headerlink" href="#531-k5-and-vin-15" title="Permanent link">¶</a></h4>
+<p><img alt="accumulator-95-105" src="/images/accumulator-95-105.png"></p>
+<h4 id="532-k10-and-vin-15">5.3.2. <span class="arithmatex">\(k=10\)</span> and <span class="arithmatex">\(v\in [1..5]\)</span><a class="headerlink" href="#532-k10-and-vin-15" title="Permanent link">¶</a></h4>
+<p><img alt="accumulator-90-110" src="/images/accumulator-90-110.png"></p>
+<h3 id="6-discussion">6. Discussion<a class="headerlink" href="#6-discussion" title="Permanent link">¶</a></h3>
 <p>Apparently, the accumulator is a very interesting and sometimes evil derivative. From the plots above we can notice several things:</p>
 <ol>
 <li>When volatility is low, an accumulator gives the buyer an opportunity to accumulate shares at a discount and therefore positive payoffs.</li>
@@ -1456,7 +1456,7 @@
 <li>The maximum potential payoff is capped and decreasing in volatility but VaR is increasing in the volatility.</li>
 <li>......</li>
 </ol>
-<p>Hence, as a buyer of an accumulator, you win small with low volatility but lose big and huge with high volatility. I don't think any rational investor would like to take the long position. However, we do find exceptions, like <a href="https://en.wikipedia.org/wiki/CITIC_Limited#2008_Foreign_exchange_losses_controversy"><strong>CITIC Limited lost HK$15 billion</strong></a> in accumulators back in 2008.</p>
+<p>Hence, as a buyer of an accumulator, you win small with low volatility but lose big and huge with high volatility. I don't think any rational investor would like to take the long position. However, we do find exceptions, like <a href="https://en.wikipedia.org/wiki/CITIC_Limited#2008_Foreign_exchange_losses_controversy"><strong>CITIC Limited lost HK$15 billion</strong></a> in accumulators back in 2008.</p></div>
 
 <!-- Source file information -->
 

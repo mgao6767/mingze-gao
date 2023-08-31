@@ -1090,12 +1090,12 @@
 
 
 <!-- Markdown content -->
-<h1 id="correlated-random-effects">Correlated Random Effects<a class="headerlink" href="#correlated-random-effects" title="Permanent link">&para;</a></h1>
+<div><h1 id="correlated-random-effects">Correlated Random Effects<a class="headerlink" href="#correlated-random-effects" title="Permanent link">¶</a></h1>
 <p>Can we estimate the coefficient of gender while controlling for individual fixed effects? This sounds impossible as an individual's gender typically does not vary and hence would be absorbed by individual fixed effects. However, <strong>Correlated Random Effects (CRE)</strong> may actually help.</p>
 <p>At last year's FMA Annual Meeting, I learned this CRE estimation technique when discussing a paper titled "Gender Gap in Returns to Publications" by Piotr Spiewanowski, Ivan Stetsyuk and Oleksandr Talavera. Let me recollect my memory and summarize the technique in this post.</p>
 <!-- more -->
 
-<h2 id="random-intercept-effect-model">Random Intercept (Effect) Model<a class="headerlink" href="#random-intercept-effect-model" title="Permanent link">&para;</a></h2>
+<h2 id="random-intercept-effect-model">Random Intercept (Effect) Model<a class="headerlink" href="#random-intercept-effect-model" title="Permanent link">¶</a></h2>
 <p>Consider a random intercept model for a firm-year regression, e.g., to examine the relationship between firm performance, R&amp;D expense, and whether the firm is VC-backed,</p>
 <div class="arithmatex">\[
 \begin{equation}
@@ -1113,7 +1113,7 @@ y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 <p>We can estimate <span class="arithmatex">\(\beta_0\)</span>, <span class="arithmatex">\(\beta_1\)</span>, <span class="arithmatex">\(\beta_2\)</span> and <span class="arithmatex">\(\mu_i\)</span>. Assuming that we've properly controlled for observable firm characteristics, <span class="arithmatex">\(\beta_1\)</span> tells the relationship between R&amp;D expenditure and firm performance. <span class="arithmatex">\(\beta_2\)</span> tells the difference in firm performance between VC-backed and non-VC-backed firms.</p>
 <p>However, we cannot rely on <span class="arithmatex">\(\beta_2\)</span> to assert whether VC-back firms have better or worse performance. The drawback here is that we are unable to exhaustively control for all other time-invariant firm attributes that correlate with both firm performance and VC investment, thereby leading to biased <span class="arithmatex">\(\beta_2\)</span> estimate due to omitted variables.</p>
 <p>Similarly, our estimate of <span class="arithmatex">\(\beta_1\)</span> may also be biased if some omitted firm-specific and time-invariant attributes correlate with both R&amp;D expenditure and firm performance.</p>
-<h2 id="fixed-effect-model">Fixed Effect Model<a class="headerlink" href="#fixed-effect-model" title="Permanent link">&para;</a></h2>
+<h2 id="fixed-effect-model">Fixed Effect Model<a class="headerlink" href="#fixed-effect-model" title="Permanent link">¶</a></h2>
 <p>If we subtract the "between" model</p>
 <div class="arithmatex">\[
 \begin{equation}
@@ -1128,7 +1128,7 @@ y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 \]</div>
 <p>The fixed effect model above removes the firm-level error <span class="arithmatex">\(\mu_i\)</span> so that the within effect (or fixed effect) estimate of <span class="arithmatex">\(\beta_1\)</span> is unbiased even if <span class="arithmatex">\(E(\mu_i|x_{it}) \ne 0\)</span>. This helps a lot and is why most of the time we control for firm fixed effects when estimating firm-year regressions.</p>
 <p>However, the firm-level variable <span class="arithmatex">\(c_i\)</span> is also removed. It is now impossible to estimate <span class="arithmatex">\(\beta_2\)</span> as in the random intercept model. In fact, we can no longer estimate the effect of any firm-level time-invariant attributes after controlling for firm fixed effects.</p>
-<h2 id="hybrid-model">Hybrid Model<a class="headerlink" href="#hybrid-model" title="Permanent link">&para;</a></h2>
+<h2 id="hybrid-model">Hybrid Model<a class="headerlink" href="#hybrid-model" title="Permanent link">¶</a></h2>
 <p>So, how to estimate both <span class="arithmatex">\(\beta_2\)</span> when firm fixed effects are controlled for?</p>
 <p>The same question, if paraphrased differently, is <em>how to estimate the within effect in a random intercept model</em>.</p>
 <p>Interestingly, we can decompose the firm-year level variable <span class="arithmatex">\(x_{it}\)</span> into two components, a between component <span class="arithmatex">\(\bar{x}_i\)</span> and a cluster component <span class="arithmatex">\((x_{it}-\bar{x}_i)\)</span>, so that</p>
@@ -1139,7 +1139,7 @@ y_{it} = \beta_0 + \beta_1 (x_{it}-\bar{x}_i) + \beta_2 c_i + \beta_3 \bar{x}_i 
 \]</div>
 <p>It is apparent that the <span class="arithmatex">\(\beta_1\)</span> estimate gives the within effect as in the fixed effect model, identical to <span class="arithmatex">\(\beta_1\)</span> in Equation (3).</p>
 <p>Moreover, the firm-level variable <span class="arithmatex">\(c_i\)</span> is kept in the model and we can estimate <span class="arithmatex">\(\beta_2\)</span>. The inclusion of cluster mean <span class="arithmatex">\(\bar{x}_i\)</span> corrects the estimate of <span class="arithmatex">\(\beta_2\)</span> for between-cluster differences in <span class="arithmatex">\(x_{it}\)</span>. Note that, however, for <span class="arithmatex">\(\beta_2\)</span> estimate to be unbiased, we still require <span class="arithmatex">\(E(\mu_i|x_{it},c_i)=0\)</span> and <span class="arithmatex">\(\mu_i|x_{it},c_i \sim N(0,\sigma^2_\mu)\)</span>.</p>
-<h2 id="correlated-random-effect-model">Correlated Random Effect Model<a class="headerlink" href="#correlated-random-effect-model" title="Permanent link">&para;</a></h2>
+<h2 id="correlated-random-effect-model">Correlated Random Effect Model<a class="headerlink" href="#correlated-random-effect-model" title="Permanent link">¶</a></h2>
 <p>A related model is correlated random effect model (<a href="https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/">Wooldridge 2010</a>) that relaxes the assumption of zero correlation between the firm-level error <span class="arithmatex">\(\mu_i\)</span> and firm-year variable <span class="arithmatex">\(x_{it}\)</span>. Specifically, it assumes that <span class="arithmatex">\(\mu_i=\pi\bar{x}_i + v_i\)</span>, so Equation (1) becomes</p>
 <div class="arithmatex">\[
 \begin{align}
@@ -1149,17 +1149,17 @@ y_{it} &amp;= \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it} 
 \]</div>
 <p>By including the cluster mean <span class="arithmatex">\(\bar{x}_i\)</span>, we can account for the correlation between the random effects <span class="arithmatex">\(\mu_i\)</span> and the independent variable <span class="arithmatex">\(x_{it}\)</span> and obtain consistent estimates of the coefficients. The inclusion of <span class="arithmatex">\(\bar{x}_i\)</span> in the random intercept (effect) model makes the estimate for <span class="arithmatex">\(\beta_1\)</span> the same within effect (fixed-effect) estimate as in Equation (4).</p>
 <p>Of course, as the time-invariant firm-specific attribute <span class="arithmatex">\(c_i\)</span> remains in the model, we can estimate <span class="arithmatex">\(\beta_2\)</span> as in the hybrid model.</p>
-<h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">&para;</a></h2>
+<h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">¶</a></h2>
 <p>Note that there are many caveats for estimating CRE.</p>
 <p>To be discussed.</p>
-<h2 id="further-readings">Further Readings<a class="headerlink" href="#further-readings" title="Permanent link">&para;</a></h2>
+<h2 id="further-readings">Further Readings<a class="headerlink" href="#further-readings" title="Permanent link">¶</a></h2>
 <p>This post is based on <a href="https://doi.org/10.1177/1536867X1301300105">Within and between Estimates in Random-Effects Models: Advantages and Drawbacks of Correlated Random Effects and Hybrid Models</a>.</p>
 <p>Some other suggested readings include:</p>
 <ul>
 <li><a href="http://econ.msu.edu/faculty/wooldridge/docs/cre1_r4.pdf">Correlated random effects models with unbalanced panels</a>.</li>
 <li><a href="https://doi.org/10.1177/1536867X1801800109">Fitting and Interpreting Correlated Random-coefficient Models Using Stata</a>.</li>
 <li><a href="https://doi.org/10.1016/j.econlet.2022.110408">A correlated random effects approach to the estimation of models with multiple fixed effects</a>.</li>
-</ul>
+</ul></div>
 
 <!-- Source file information -->
 

@@ -1075,14 +1075,14 @@
 
 
 <!-- Markdown content -->
-<h1 id="python-shared-memory-in-multiprocessing">Python Shared Memory in Multiprocessing<a class="headerlink" href="#python-shared-memory-in-multiprocessing" title="Permanent link">&para;</a></h1>
+<div><h1 id="python-shared-memory-in-multiprocessing">Python Shared Memory in Multiprocessing<a class="headerlink" href="#python-shared-memory-in-multiprocessing" title="Permanent link">¶</a></h1>
 <p>Python 3.8 introduced a new module <code>multiprocessing.shared_memory</code> that provides
 shared memory for direct access across processes. My test shows that it
 significantly reduces the memory usage, which also speeds up the program by
 reducing the costs of copying and moving things around.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <!-- more -->
 
-<h2 id="test">Test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h2>
+<h2 id="test">Test<a class="headerlink" href="#test" title="Permanent link">¶</a></h2>
 <p>In this test, I generated a 240MB
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.recarray.html"><code>numpy.recarray</code></a>
 from a <code>pandas.DataFrame</code> with <code>datetime</code>, <code>int</code> and <code>str</code> typed columns. I used
@@ -1093,14 +1093,14 @@ methods. The first method uses <code>multiprocessing.shared_memory</code> where 
 spawned processes directly access the data in the shared memory. The second
 method passes the data to the spawned processes, which effectively means each
 process will have a separate copy of the data.</p>
-<h3 id="test-result">Test Result<a class="headerlink" href="#test-result" title="Permanent link">&para;</a></h3>
-<p><img alt="test-result" src="/images/Python-SharedMemory-test.png" /></p>
+<h3 id="test-result">Test Result<a class="headerlink" href="#test-result" title="Permanent link">¶</a></h3>
+<p><img alt="test-result" src="/images/Python-SharedMemory-test.png"></p>
 <p>A quick run of <a href="#test-code">the test code below</a> shows that the first method
 based on <code>shared_memory</code> uses minimal memory (peak usage is 0.33MB) and is much
 faster (2.09s) than the second one where the entire data is copied and passed
 into each process (peak memory usage of 1.8G and takes 216s). More
 importantly, the memory usage under the second method is consistently high.</p>
-<h3 id="test-code">Test Code<a class="headerlink" href="#test-code" title="Permanent link">&para;</a></h3>
+<h3 id="test-code">Test Code<a class="headerlink" href="#test-code" title="Permanent link">¶</a></h3>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -1187,7 +1187,7 @@ importantly, the memory usage under the second method is consistently high.</p>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">def</span> <span class="nf">work_with_shared_memory</span><span class="p">(</span><span class="n">shm_name</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;With SharedMemory: </span><span class="si">{</span><span class="n">current_process</span><span class="p">()</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'With SharedMemory: </span><span class="si">{</span><span class="n">current_process</span><span class="p">()</span><span class="si">=}</span><span class="s1">'</span><span class="p">)</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="c1"># Locate the shared memory by its name</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="n">shm</span> <span class="o">=</span> <span class="n">SharedMemory</span><span class="p">(</span><span class="n">shm_name</span><span class="p">)</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="c1"># Create the np.recarray from the buffer of the shared memory</span>
@@ -1196,23 +1196,23 @@ importantly, the memory usage under the second method is consistently high.</p>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="k">def</span> <span class="nf">work_no_shared_memory</span><span class="p">(</span><span class="n">np_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">recarray</span><span class="p">):</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No SharedMemory: </span><span class="si">{</span><span class="n">current_process</span><span class="p">()</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No SharedMemory: </span><span class="si">{</span><span class="n">current_process</span><span class="p">()</span><span class="si">=}</span><span class="s1">'</span><span class="p">)</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="c1"># Without shared memory, the np_array is copied into the child process</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np_array</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="c1"># Make a large data frame with date, float and character columns</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>        <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a>        <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">),</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>        <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'string'</span><span class="p">),</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a>        <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'abc'</span><span class="p">),</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="p">]</span> <span class="o">*</span> <span class="mi">5000000</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="s1">&#39;character_col&#39;</span><span class="p">])</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'val'</span><span class="p">,</span> <span class="s1">'character_col'</span><span class="p">])</span>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="c1"># Convert into numpy recarray to preserve the dtypes (1)</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">np_array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;character_col&#39;</span><span class="p">:</span> <span class="s1">&#39;S6&#39;</span><span class="p">})</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">np_array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">'character_col'</span><span class="p">:</span> <span class="s1">'S6'</span><span class="p">})</span>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="k">del</span> <span class="n">df</span>
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np_array</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np_array</span><span class="o">.</span><span class="n">dtype</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np_array&#39;s size=</span><span class="si">{</span><span class="n">np_array</span><span class="o">.</span><span class="n">nbytes</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB&quot;</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"np_array's size=</span><span class="si">{</span><span class="n">np_array</span><span class="o">.</span><span class="n">nbytes</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB"</span><span class="p">)</span>
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="c1"># With shared memory</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="c1"># Start tracking memory usage</span>
@@ -1233,8 +1233,8 @@ importantly, the memory usage under the second method is consistently high.</p>
 </span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a>                <span class="k">pass</span>
 </span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="c1"># Check memory usage</span>
 </span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a>    <span class="n">current</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current memory usage </span><span class="si">{</span><span class="n">current</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB; Peak: </span><span class="si">{</span><span class="n">peak</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB&quot;</span><span class="p">)</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time elapsed: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current memory usage </span><span class="si">{</span><span class="n">current</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB; Peak: </span><span class="si">{</span><span class="n">peak</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB"</span><span class="p">)</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Time elapsed: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">s'</span><span class="p">)</span>
 </span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a>
 </span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="c1"># Without shared memory</span>
@@ -1247,14 +1247,14 @@ importantly, the memory usage under the second method is consistently high.</p>
 </span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a>            <span class="k">pass</span>
 </span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="c1"># Check memory usage</span>
 </span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="n">current</span><span class="p">,</span> <span class="n">peak</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">get_traced_memory</span><span class="p">()</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current memory usage </span><span class="si">{</span><span class="n">current</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB; Peak: </span><span class="si">{</span><span class="n">peak</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB&quot;</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time elapsed: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current memory usage </span><span class="si">{</span><span class="n">current</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB; Peak: </span><span class="si">{</span><span class="n">peak</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2">MB"</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Time elapsed: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">s'</span><span class="p">)</span>
 </span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
 <ol>
 <li>Check the note below for preventing segfault.</li>
 </ol>
-<h2 id="important-note">Important Note<a class="headerlink" href="#important-note" title="Permanent link">&para;</a></h2>
+<h2 id="important-note">Important Note<a class="headerlink" href="#important-note" title="Permanent link">¶</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>A very important note about using <code>multiprocessing.shared_memory</code>, as at June
@@ -1263,18 +1263,18 @@ importantly, the memory usage under the second method is consistently high.</p>
 when child processes try to access the shared memory and dereference it. It happens when the column contains strings.</p>
 </div>
 <p>To solve this problem, you need to specify the <code>dtype</code> in <code>df.to_records()</code>. For example:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">np_array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="err">，</span><span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;character_col&#39;</span><span class="p">:</span> <span class="s1">&#39;S6&#39;</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">np_array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="err">，</span><span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">'character_col'</span><span class="p">:</span> <span class="s1">'S6'</span><span class="p">})</span>
 </span></code></pre></div>
 <p>Here, we specify that <code>character_col</code> contains strings of length 6. If it contains Unicode, we can use <code>'U6'</code> instead. Longer strings will then be truncated at the specified length. As such, there won't be anymore segfault.</p>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:1">
 <p>This test is performed on a 2017 12-inch MacBook with 1.3 GHz Dual-Core
-Intel Core i5 and 8 GB 1867 MHz LPDDR3 RAM.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Intel Core i5 and 8 GB 1867 MHz LPDDR3 RAM. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 </ol>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

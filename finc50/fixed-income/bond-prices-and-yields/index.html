@@ -705,6 +705,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1019,6 +1021,39 @@
     
   
     Price Volatility
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yield-curve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Yield Curve
   
 
     
@@ -1404,9 +1439,9 @@
 
 
 <!-- Markdown content -->
-<h1 id="bond-prices-and-yields">Bond Prices and Yields<a class="headerlink" href="#bond-prices-and-yields" title="Permanent link">&para;</a></h1>
+<div><h1 id="bond-prices-and-yields">Bond Prices and Yields<a class="headerlink" href="#bond-prices-and-yields" title="Permanent link">¶</a></h1>
 <p>In the <a href="../introduction/">last post</a> we introduce features of a bond. Now, let's look at how to price a <em><abbr title="No embedded option.">plain vanilla</abbr></em> bond and examine the relation between bond price and yield.  </p>
-<h2 id="price-of-a-bond">Price of a bond<a class="headerlink" href="#price-of-a-bond" title="Permanent link">&para;</a></h2>
+<h2 id="price-of-a-bond">Price of a bond<a class="headerlink" href="#price-of-a-bond" title="Permanent link">¶</a></h2>
 <p>First, what's the fair price of a bond?</p>
 <p>For the investor, a bond represents a series of cashflows to receive in the future. So its price is naturally the total present value of all cashflows from the bond, including coupon payments (if any) and the repayment of principal (bond face value).</p>
 <p>Therefore, the following equation holds true universally at all time <span class="arithmatex">\(t\)</span>:</p>
@@ -1426,7 +1461,7 @@
 <li>We assume that this is an effective annual rate, and is the same for all 10 years in the future.</li>
 </ol>
 <p>The chart below shows the result. Specifically, the blue bars indicate the bond's cashflows, the overlaying red bars indicate their present values as at time <span class="arithmatex">\(t=0\)</span>. The gray bar at <span class="arithmatex">\(t=0\)</span> is the sum of all red bars, i.e., present values, and the price of the bond today.</p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's cashflows, present value and price, made by Mingze Gao",
   "width": 700,
@@ -1653,7 +1688,7 @@
 <li>Bond price increases, other things equal.</li>
 <li>Bond price increases, other things equal.</li>
 </ol>
-<h3 id="the-formula">The formula<a class="headerlink" href="#the-formula" title="Permanent link">&para;</a></h3>
+<h3 id="the-formula">The formula<a class="headerlink" href="#the-formula" title="Permanent link">¶</a></h3>
 <p class="annotate">The initial price <span class="arithmatex">\(P_{t=0}\)</span> of a <abbr title="No embedded option.">plain vanilla</abbr> <span class="arithmatex">\(N\)</span>-year bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>(1), is given by</p>
 <ol>
 <li>This discount rate <span class="arithmatex">\(r\)</span> is assumed to be an effective rate for a period of time between two coupons, i.e., effective annual rate in this case.</li>
@@ -1662,13 +1697,13 @@
 P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^N}}_{\text{face value's PV}}
 \]</div>
 <p>Note that this is only the <mark><em>initial price</em></mark> when the bond is issued at time <span class="arithmatex">\(t=0\)</span>.</p>
-<h2 id="price-over-time">Price over time<a class="headerlink" href="#price-over-time" title="Permanent link">&para;</a></h2>
+<h2 id="price-over-time">Price over time<a class="headerlink" href="#price-over-time" title="Permanent link">¶</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>So, other things equal, how does bond price changes <strong><em>over time</em></strong> as we approaches the maturity date?</p>
 </div>
 <p>We need a better formula that can let <span class="arithmatex">\(t\)</span> take values other than 0. Recall the rationale that the price is nothing but sum of all PVs of future payments.</p>
-<h3 id="a-slightly-improved-formula">A slightly improved formula<a class="headerlink" href="#a-slightly-improved-formula" title="Permanent link">&para;</a></h3>
+<h3 id="a-slightly-improved-formula">A slightly improved formula<a class="headerlink" href="#a-slightly-improved-formula" title="Permanent link">¶</a></h3>
 <p>At time <span class="arithmatex">\(t\)</span>, which is <em>exactly</em> <span class="arithmatex">\(n\)</span> years till maturity, the price, <span class="arithmatex">\(P_{t}\)</span>, of a <abbr title="No embedded option.">plain vanilla</abbr> bond with face value <span class="arithmatex">\(F\)</span>, annual coupon <span class="arithmatex">\(C\)</span>, at a constant discount rate <span class="arithmatex">\(r\)</span>, is given by</p>
 <div class="arithmatex">\[
 P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coupons' PVs}} + \underbrace{\frac{F}{(1+r)^n}}_{\text{face value's PV}}
@@ -1681,7 +1716,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <ol>
 <li>Note that at maturity, <span class="arithmatex">\(n=0\)</span> such that the price <span class="arithmatex">\(P_t=F\)</span>.</li>
 </ol>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price over time till maturity, made by Mingze Gao",
   "width": 700,
@@ -1928,7 +1963,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <p>Recall earlier we said that the <em>longer</em> the maturity, the <em>lower</em> the bond price. This is true because we are talking about the <em>initial</em> price at issue. For example, other things equal, the price of a 30-year bond is lower than the price of a 10-year bond.</p>
 <p>Here, <em>time</em> is changing. There is <em>a bond</em> of a given maturity (e.g., 30 years), and we study how its price changes over time as we get close to the 30-year mark.</p>
 </details>
-<h3 id="a-more-improved-formula">A more improved formula<a class="headerlink" href="#a-more-improved-formula" title="Permanent link">&para;</a></h3>
+<h3 id="a-more-improved-formula">A more improved formula<a class="headerlink" href="#a-more-improved-formula" title="Permanent link">¶</a></h3>
 <p>But we can still do better!</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
@@ -1943,7 +1978,7 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
 <ol>
 <li>In the last one, I deliberately use bar chart to indicate discreteness.</li>
 </ol>
-<h2 id="price-dirty-and-clean">Price: dirty and clean<a class="headerlink" href="#price-dirty-and-clean" title="Permanent link">&para;</a></h2>
+<h2 id="price-dirty-and-clean">Price: dirty and clean<a class="headerlink" href="#price-dirty-and-clean" title="Permanent link">¶</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Attention!</p>
 <p>Now imagine you are to buy a bond <em>immediately</em> before it matures. What would be the price according to the formula and the chart above?</p>
@@ -1952,7 +1987,7 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
 </div>
 <p>In fact, a bondholder starts to accumulate <mark><abbr title="Payoffs entitled to the investor but not yet paid.">accrued interest</abbr></mark> the moment their own the bond. Even though they may sell the bond right before a coupon payment, but given that they have been holding the bond for almost entire the time until selling just before the next coupon payment, they should be given compensation for not receiving the next coupon, which will be paid to the buyer.</p>
 <p>Further, we generalize this idea to bond transactions any time between coupon payments -- the buyer should compensate the seller additionally a coupon payment proportional to the time that the seller has been holding since last coupon payment relative to the time between two coupon payments.  </p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's dirty and clean prices over time till maturity, made by Mingze Gao",
   "width": 700,
@@ -2187,7 +2222,7 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
 <li>For others, typically "30/360" convention.</li>
 </ul>
 </div>
-<h2 id="price-and-yield-to-maturity">Price and yield (to maturity)<a class="headerlink" href="#price-and-yield-to-maturity" title="Permanent link">&para;</a></h2>
+<h2 id="price-and-yield-to-maturity">Price and yield (to maturity)<a class="headerlink" href="#price-and-yield-to-maturity" title="Permanent link">¶</a></h2>
 <p>So far, we have not yet spent a single word on a bond's "yield", but instead been using "discount rate". What's the difference?</p>
 <p>The answer is straightforward. A bond consists of a series of cashflows in the future, each of which may be discounted at different rates. For example, the coupon in 1 year may be discounted at a 5% discount rate, the coupon in 2 years may be discounted at 6%, and so on.</p>
 <p>It turns out that, at any time <span class="arithmatex">\(t\)</span>, while a bond can have multiple future payments each discounted at different rates <span class="arithmatex">\(\{r_{\tau}\}\)</span>, we can always find a single discount rate <span class="arithmatex">\(\color{red}y\)</span> which, when applied to all future payments, leads to the same bond price at the time:</p>
@@ -2196,7 +2231,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 \]</div>
 <p>This single discount rate <span class="arithmatex">\(\color{red}y\)</span> is called the <mark>yield to maturity</mark>, or <em>yield</em>, of the bond <mark>at time <span class="arithmatex">\(t\)</span></mark>.</p>
 <p>If we plot bond prices against yields, <em>at a given time</em>, it's easy to see that they have a one-to-one mapping and a inverse non-linear relationship.</p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price and yield, made by Mingze Gao",
   "width": 700,
@@ -2374,7 +2409,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 </ol>
 <p>The <mark>inverse</mark> relationship suggests that the higher the yield, the lower the bond price.</p>
 <p>The <mark>non-linearity</mark> suggests that the sensitivity of bond price to yield is not static. In fact, we can tell from the graph that the curve is <em>convex</em>. This <em>convexity</em> will be of great importance in later studies of bond risk.</p>
-<h2 id="other-yields">Other yields<a class="headerlink" href="#other-yields" title="Permanent link">&para;</a></h2>
+<h2 id="other-yields">Other yields<a class="headerlink" href="#other-yields" title="Permanent link">¶</a></h2>
 <p>When we talk about a bond's yield, we usually refer to the yield to maturity. But there can be some other yield measures:</p>
 <ul>
 <li><a href="https://www.google.com/search?q=bond+current+yield">Current yield</a>.</li>
@@ -2388,14 +2423,14 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 <p class="admonition-title">Portfolio of bonds</p>
 <p>The yield of a portfolio of bonds is <strong>NOT</strong> a weighted average of individual bonds' yields because the bonds are not homogeneous.</p>
 </div>
-<h2 id="trouble-maker-floating-rate-bonds">Trouble maker: floating-rate bonds<a class="headerlink" href="#trouble-maker-floating-rate-bonds" title="Permanent link">&para;</a></h2>
+<h2 id="trouble-maker-floating-rate-bonds">Trouble maker: floating-rate bonds<a class="headerlink" href="#trouble-maker-floating-rate-bonds" title="Permanent link">¶</a></h2>
 <p>We cannot easily compute the yield of a floater, simply because the values of reference rate in the future are unknown. Instead, we can use some spread measures that describe the yield in excess of the reference rate. The most popular measure of yield spread for a floating-rate bond is <em>discount margin</em>.</p>
 <p>As its name suggests, discount margin basically captures the "discount rate in excess of reference rate".</p>
 <p>Suppose the bond market price is <span class="arithmatex">\(P_t\)</span>, reference rate is assumed <em>constant</em> at <span class="arithmatex">\(R\)</span>, the discount margin <span class="arithmatex">\(DM\)</span> is the one that solves the equation below:</p>
 <div class="arithmatex">\[
 P_{t} = \sum_{\tau=1}^{n} \frac{C}{(1+R+{\color{red}DM})^{\tau}} + \frac{F}{(1+R+{\color{red}DM})^n}
 \]</div>
-<p>Note that here the coupon payment <span class="arithmatex">\(C\)</span> is determined by the reference rate <span class="arithmatex">\(R\)</span> and the <abbr title="A floating-rate bond's coupon rate is determined by a reference rate plus its quoted margin.">quoted margin</abbr>.</p>
+<p>Note that here the coupon payment <span class="arithmatex">\(C\)</span> is determined by the reference rate <span class="arithmatex">\(R\)</span> and the <abbr title="A floating-rate bond's coupon rate is determined by a reference rate plus its quoted margin.">quoted margin</abbr>.</p></div>
 
 <!-- Source file information -->
 

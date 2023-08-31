@@ -1248,11 +1248,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="difference-in-differences-estimation">Difference-in-Differences Estimation<a class="headerlink" href="#difference-in-differences-estimation" title="Permanent link">&para;</a></h1>
+<div><h1 id="difference-in-differences-estimation">Difference-in-Differences Estimation<a class="headerlink" href="#difference-in-differences-estimation" title="Permanent link">¶</a></h1>
 <p>Empirical researchers have been using difference-in-differences (DiD) estimation to identify an event's <strong>A</strong>verage <strong>T</strong>reatment effect on the <strong>T</strong>reated entities (ATT). This post is my understanding and a non-technical note of the DiD approach as it evolves over the past years, especially on the problems and solutions when multiple treatment events are staggered.</p>
 <!-- more -->
 
-<h2 id="one-event-and-the-canonical-did">One event and the canonical DiD<a class="headerlink" href="#one-event-and-the-canonical-did" title="Permanent link">&para;</a></h2>
+<h2 id="one-event-and-the-canonical-did">One event and the canonical DiD<a class="headerlink" href="#one-event-and-the-canonical-did" title="Permanent link">¶</a></h2>
 <p class="annotate">The canonical DiD takes a <span class="arithmatex">\(2\times 2\)</span> form which involves 2 periods (before &amp; after) and 2 groups (treated and untreated). Under the assumption of parallel trends (1), the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.</p>
 <ol>
 <li><strong>Parallel trends</strong> assume that the change in the outcomes of treated group, in absence of the treatment, is the same as the change in the outcomes of the untreated group.</li>
@@ -1276,9 +1276,9 @@
 <div class="admonition question">
 <p class="admonition-title">What if there are multiple treatments at different times?</p>
 </div>
-<h2 id="problems-of-twfe-with-multiple-events">Problems of TWFE with multiple events<a class="headerlink" href="#problems-of-twfe-with-multiple-events" title="Permanent link">&para;</a></h2>
+<h2 id="problems-of-twfe-with-multiple-events">Problems of TWFE with multiple events<a class="headerlink" href="#problems-of-twfe-with-multiple-events" title="Permanent link">¶</a></h2>
 <p>Suppose there are two treatment events. Let's visualize the treatment status of three groups of entities, the Never-treated group N, the Early-treated group E and the Late-treated group L. Here I ignore the possibility that a group has always been treated.</p>
-<p><img alt="treatment-status" src="/images/DiD-staggered-treatment-status.png" /></p>
+<p><img alt="treatment-status" src="/images/DiD-staggered-treatment-status.png"></p>
 <!-- ```mermaid
 gantt
     title Treatment Status
@@ -1312,11 +1312,11 @@ gantt
 <ol>
 <li>This may not seem obvious given that group E would have <span class="arithmatex">\(D_{it}=1\)</span> after 2011. But DiD is actually comparing the "before-after" differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses <em>do not change</em>. The already-treated group E's status stay unchanged from 2011 to 2014.</li>
 </ol>
-<h2 id="what-to-do-then-an-overview">What to do then? An overview<a class="headerlink" href="#what-to-do-then-an-overview" title="Permanent link">&para;</a></h2>
+<h2 id="what-to-do-then-an-overview">What to do then? An overview<a class="headerlink" href="#what-to-do-then-an-overview" title="Permanent link">¶</a></h2>
 <p>When there is a staggered adoption design, i.e., groups of entities receive treatments in a staggered way, there are a few modified DiD approaches that try to produce ATT estimates robust to the bias. But the key idea is to <mark>avoid including as controls the entities that have been previously treated, then find a good way to aggregate the many estimates as a result of multiple events</mark>. Here I discuss two approaches, namely stacked DiD and CS DiD.</p>
 <p><strong>Stacked DiD</strong> tries to solves the issue by essentially "selecting only good controls". Specifically, for each treatment event, we construct a cohort of treated and untreated entities, where the "untreated" are those never treated and/or those not yet treated by <em>any</em> prior treatment. Cohorts are then stacked together in regression. To my knowledge, <a href="https://doi.org/10.1093/rfs/hhr011">Gormley and Matsa (2011)</a> and <a href="https://doi.org/10.1016/j.jacceco.2013.08.001">Gormley, Matsa and Milbourn (2013)</a> already use a stacked DiD. Some later papers using stacked DiD include, for example, <a href="https://doi.org/10.1093/qje/qjz014">Cengiz, Dube, Lindner and Zipperer (2019)</a>, <a href="https://doi.org/10.1257/pol.20180076">Deshpande and Li (2019)</a>, among many others.</p>
 <p><strong>CS DiD</strong> (<a href="https://doi.org/10.1016/j.jeconom.2020.12.001">Callaway and Sant'Anna (2021)</a>) groups entities by their treatment time and estimates each group's ATT at each time period since its treatment to the end of the sample period, also using never treated entities or those not yet treated. The many group-time ATTs are then aggregated to various levels for understanding the treatment effect. As at August 2023, CS DiD has already been cited over 3,000 times based on Google Scholar.</p>
-<h2 id="stacked-did">Stacked DiD<a class="headerlink" href="#stacked-did" title="Permanent link">&para;</a></h2>
+<h2 id="stacked-did">Stacked DiD<a class="headerlink" href="#stacked-did" title="Permanent link">¶</a></h2>
 <p>Centre to stacked DiD is the idea of building cohorts of clean <span class="arithmatex">\(2\times2\)</span> DiD pairs, within each the entities used as controls are guaranteed to be not treated previously.</p>
 <!-- !!! note
     In the example above, we will have two cohorts:
@@ -1356,9 +1356,9 @@ gantt
 \end{equation}
 \]</div>
 <p>The estimates <span class="arithmatex">\(\{\beta_{\tau}\}\)</span> can describe the time-varying treatment effect, i.e., the difference between treated and control in outcome <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(\tau\)</span> periods after the treatment.</p>
-<h2 id="callaway-and-santanna-cs-did">Callaway and Sant'Anna (CS) DiD<a class="headerlink" href="#callaway-and-santanna-cs-did" title="Permanent link">&para;</a></h2>
+<h2 id="callaway-and-santanna-cs-did">Callaway and Sant'Anna (CS) DiD<a class="headerlink" href="#callaway-and-santanna-cs-did" title="Permanent link">¶</a></h2>
 <p><a href="https://doi.org/10.1016/j.jeconom.2020.12.001">Callaway and Sant'Anna (2021)</a> (CS) DiD groups entities by their treatment time and estimates each group's ATT at each time since treatment to the end of the sample period, similarly using never treated (or not yet treated) as control.</p>
-<h3 id="how-it-works">How it works?<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<h3 id="how-it-works">How it works?<a class="headerlink" href="#how-it-works" title="Permanent link">¶</a></h3>
 <p>Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between <ins>the outcome if treated</ins> <span class="arithmatex">\(Y(1)\)</span> and <ins>the outcome if untreated</ins> <span class="arithmatex">\(Y(0)\)</span>, for the treated entities (<span class="arithmatex">\(D=1\)</span>).</p>
 <div class="arithmatex">\[
 ATT = \mathbb{E} \left[Y_{t}(1)-Y_{t}(0)\right|D=1]
@@ -1384,7 +1384,7 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 <li>What is the cumulative average treatment effect of the policy across all groups until some time <span class="arithmatex">\(\tilde{t}\)</span>?</li>
 <li>What is a general-purpose summary of the ATT?</li>
 </ul>
-<h3 id="a-bit-more-details">A bit more details<a class="headerlink" href="#a-bit-more-details" title="Permanent link">&para;</a></h3>
+<h3 id="a-bit-more-details">A bit more details<a class="headerlink" href="#a-bit-more-details" title="Permanent link">¶</a></h3>
 <p>To me, CS DiD and stacked DiD share some similarities.</p>
 <p>Stacked DiD select "good controls" into groups. While it will create many duplicates, we may use propensity score matching (PSM) to mitigate the problem, which also helps with the parallel trend assumption (conditional on covariates). </p>
 <p>CS DiD does not select "good controls" into groups. Instead, CS DiD estimates group-time ATTs by aggregating the "before-after" differences of entities base on entities' treatment status and their propensity to be treated in the group, etc. For example, the inverse-probability-weighting estimand for <span class="arithmatex">\(ATT(g,t)\)</span> is given by</p>
@@ -1397,13 +1397,13 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 <ol>
 <li>In comparison, a TWFE DiD aggregates the "before-after" differences by giving a weight of +1 to treated entities and -1 to controls.</li>
 </ol>
-<h2 id="how-do-they-compare">How do they compare?<a class="headerlink" href="#how-do-they-compare" title="Permanent link">&para;</a></h2>
+<h2 id="how-do-they-compare">How do they compare?<a class="headerlink" href="#how-do-they-compare" title="Permanent link">¶</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This is <strong>NOT</strong> a comprehensive test in terms of their performance. The stacked DiD code is written in a few minutes and so may contain errors.</p>
 </div>
 <p>The Stata <strong>-csdid-</strong> command comes very handy. I'm to use its help file and demo dataset to do some quick showcases.</p>
-<h3 id="cs-did">CS DiD<a class="headerlink" href="#cs-did" title="Permanent link">&para;</a></h3>
+<h3 id="cs-did">CS DiD<a class="headerlink" href="#cs-did" title="Permanent link">¶</a></h3>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> https:<span class="o">//</span>friosavila<span class="m">.</span>github<span class="m">.</span>io<span class="o">/</span>playingwithstata<span class="o">/</span>drdid<span class="o">/</span>mpdta<span class="m">.</span>dta,<span class="k"> clear</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>csdid lemp, ivar(countyreal) time(year) gvar(first_treat) method(dripw) wboot rseed(<span class="m">1</span>) agg(simple)
@@ -1422,7 +1422,7 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="o">---------------------------------------------------------------------</span>
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Control: Never Treated
 </span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>See Callaway and Sant&#39;Anna (<span class="m">2021</span>)<span class="k"> for</span> details
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>See Callaway and Sant'Anna (<span class="m">2021</span>)<span class="k"> for</span> details
 </span></code></pre></div>
 <details class="quote">
 <summary>Additional results</summary>
@@ -1474,7 +1474,7 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 </span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="o">------------------------------------------------------------------------------</span>
 </span></code></pre></div>
 </details>
-<h3 id="stacked-did_1">Stacked DiD<a class="headerlink" href="#stacked-did_1" title="Permanent link">&para;</a></h3>
+<h3 id="stacked-did_1">Stacked DiD<a class="headerlink" href="#stacked-did_1" title="Permanent link">¶</a></h3>
 <p>For stacked DiD, I use the following code.</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>frame<span class="k"> copy</span> default events,<span class="k"> replace</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>frame change events
@@ -1483,41 +1483,41 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">keep if</span> first_treat <span class="o">!=</span> <span class="m">0</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">duplicates drop</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">sort</span> first_treat
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">di</span> <span class="s">&quot;3 events in 2004, 2006, 2007 respectively&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">di</span> <span class="s">"3 events in 2004, 2006, 2007 respectively"</span>
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">cap</span> frame<span class="k"> drop</span> did
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>mkf did
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1">// for each event, build a cohort</span>
 </span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">foreach</span> c of<span class="k"> numlist</span> <span class="m">2004</span> <span class="m">2006</span> <span class="m">2007</span> {
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">    di</span> <span class="s">&quot;Building cohort </span><span class="nv">`c&#39;</span><span class="s">&quot;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">    keep if</span> first_treat <span class="o">==</span> <span class="nv">`c&#39;</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">    di</span> <span class="s">&quot;Treated&quot;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">    di</span> <span class="s">"Building cohort </span><span class="nv">`c'</span><span class="s">"</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">    keep if</span> first_treat <span class="o">==</span> <span class="nv">`c'</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">    di</span> <span class="s">"Treated"</span>
 </span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    frame default {
 </span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">        preserve</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">        keep if</span> first_treat <span class="o">==</span> <span class="nv">`c&#39;</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">        keep if</span> first_treat <span class="o">==</span> <span class="nv">`c'</span>
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="k">        tempfile</span> treated
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">        save</span> <span class="nv">`treated&#39;</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">        save</span> <span class="nv">`treated'</span>
 </span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="k">        restore</span>
 </span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    }
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="k">    di</span> <span class="s">&quot;Controls (never treated)&quot;</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="k">    di</span> <span class="s">"Controls (never treated)"</span>
 </span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    frame default {
 </span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="k">        preserve</span>
 </span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="k">        keep if</span> (first_treat <span class="o">==</span> <span class="m">0</span>)
 </span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">        replace</span> treat = <span class="m">0</span>
 </span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="k">        tempfile</span> untreated
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="k">        save</span> <span class="nv">`untreated&#39;</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="k">        save</span> <span class="nv">`untreated'</span>
 </span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="k">        restore</span>
 </span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    }
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="k">    di</span> <span class="s">&quot;Add to DID frame&quot;</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="k">    di</span> <span class="s">"Add to DID frame"</span>
 </span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="k">    preserve</span>
 </span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="k">    clear</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="k">    append</span> using <span class="nv">`treated&#39;</span>
-</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="k">    append</span> using <span class="nv">`untreated&#39;</span>
-</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="k">    gen</span> cohort_id = <span class="nv">`c&#39;</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="k">    append</span> using <span class="nv">`treated'</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="k">    append</span> using <span class="nv">`untreated'</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="k">    gen</span> cohort_id = <span class="nv">`c'</span>
 </span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="k">    tempfile</span> cohort
-</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="k">    save</span> <span class="nv">`cohort&#39;</span>
-</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>    frame did:<span class="k"> append</span> using <span class="nv">`cohort&#39;</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="k">    save</span> <span class="nv">`cohort'</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>    frame did:<span class="k"> append</span> using <span class="nv">`cohort'</span>
 </span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="k">    restore</span>
 </span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>}
 </span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
@@ -1612,7 +1612,7 @@ ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This non-technical note aims to remind me of the big picture of DiDs. It's not intended to give full explanation of the econometrics. I strongly suggest a reading of the related links for a better understanding of CS DiD.</p>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

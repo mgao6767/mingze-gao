@@ -1098,7 +1098,7 @@
 
 
 <!-- Markdown content -->
-<h1 id="compute-jackknife-coefficient-estimates-in-sas">Compute Jackknife Coefficient Estimates in SAS<a class="headerlink" href="#compute-jackknife-coefficient-estimates-in-sas" title="Permanent link">&para;</a></h1>
+<div><h1 id="compute-jackknife-coefficient-estimates-in-sas">Compute Jackknife Coefficient Estimates in SAS<a class="headerlink" href="#compute-jackknife-coefficient-estimates-in-sas" title="Permanent link">¶</a></h1>
 <p>In certain scenarios, we want to estimate a model's parameters on the sample for
 each observation with itself excluded. This can be achieved by estimating the
 model repeatedly on the leave-one-out samples but is very inefficient. If we
@@ -1108,7 +1108,7 @@ bias, which produces the <strong><em>Jackknifed</em></strong> coefficient estima
 observation.</p>
 <!-- more -->
 
-<h2 id="variable-definition">Variable Definition<a class="headerlink" href="#variable-definition" title="Permanent link">&para;</a></h2>
+<h2 id="variable-definition">Variable Definition<a class="headerlink" href="#variable-definition" title="Permanent link">¶</a></h2>
 <p>Let's start with some variable definitions to help with the explanation.</p>
 <table>
 <thead>
@@ -1156,10 +1156,10 @@ observation.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h2>
+<h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">¶</a></h2>
 <p>Compute the coefficient estiamtes with the <span class="arithmatex">\(i\)</span>th observation excluded from the
 sample, i.e. <span class="arithmatex">\(b(i)\)</span>, or the Jackknifed coefficient estimate.</p>
-<h2 id="formula">Formula<a class="headerlink" href="#formula" title="Permanent link">&para;</a></h2>
+<h2 id="formula">Formula<a class="headerlink" href="#formula" title="Permanent link">¶</a></h2>
 <p>From the table above, we can get that the <span class="arithmatex">\(j\)</span>th Jackknifed coefficient estimate
 <span class="arithmatex">\(b_{(i)j}\)</span> without using the <span class="arithmatex">\(i\)</span>th observation is:</p>
 <div class="arithmatex">\[b_{(i)j} = b_j - DFBeta_j \times s(i) \sqrt{(X'X)_{jj}} \]</div>
@@ -1209,8 +1209,8 @@ sample, i.e. <span class="arithmatex">\(b(i)\)</span>, or the Jackknifed coeffic
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<h3 id="discretionary-accruals">Discretionary accruals<a class="headerlink" href="#discretionary-accruals" title="Permanent link">&para;</a></h3>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">¶</a></h2>
+<h3 id="discretionary-accruals">Discretionary accruals<a class="headerlink" href="#discretionary-accruals" title="Permanent link">¶</a></h3>
 <p>Suppose we want to calculate the firm-level <a href="/documentation/discretionary-accruals/">discretionary
 accruals</a> for each year using the Jones
 (1991) model and Kothari et al (2005) model. For a firm <span class="arithmatex">\(i\)</span>, we need to first
@@ -1247,7 +1247,7 @@ compute the Jackknifed estimates and thus the predicted accruals.</p>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>ods listing;
 </span></code></pre></div></td></tr></table></div>
 <p>Full SAS program for estimating 5 different measures of discretionary accruals:</p>
-<script src="https://gist.github.com/mgao6767/3e1df83bbb78d76b76ed83ceb6af7993.js"></script>
+<script src="https://gist.github.com/mgao6767/3e1df83bbb78d76b76ed83ceb6af7993.js"></script></div>
 
 <!-- Source file information -->
 

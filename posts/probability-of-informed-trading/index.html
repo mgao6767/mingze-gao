@@ -1069,8 +1069,8 @@
 
 
 <!-- Markdown content -->
-<h1 id="probability-of-informed-trading-pin">Probability of Informed Trading (PIN)<a class="headerlink" href="#probability-of-informed-trading-pin" title="Permanent link">&para;</a></h1>
-<p><img alt="pin-binance" src="/images/probability-of-informed-trading-on-binance.png" /></p>
+<div><h1 id="probability-of-informed-trading-pin">Probability of Informed Trading (PIN)<a class="headerlink" href="#probability-of-informed-trading-pin" title="Permanent link">¶</a></h1>
+<p><img alt="pin-binance" src="/images/probability-of-informed-trading-on-binance.png"></p>
 <!-- more -->
 
 <div class="admonition note">
@@ -1079,9 +1079,9 @@
 <p>The above figure is based on data I collected in 2019 of trades on Binance.</p>
 </div>
 <p>In the market microstructure literature, Easley et. al. (1996) proposed a trading model that can decompose the bid-ask spread. The most commendable aspect of this model is the introduction of the "Probability of Informed Trading," or PIN, which serves as a means of measuring the informational component in the spread. As the name suggests, under ideal conditions, PIN can reflect the probability of informed trading in a market with market maker. In this article, I attempt to comb through the modeling process in the Easley et. al. (1996) paper and discuss how to handle the objective function in maximum likelihood estimation to avoid overflow errors during computation.</p>
-<h2 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h2>
+<h2 id="model">Model<a class="headerlink" href="#model" title="Permanent link">¶</a></h2>
 <p>Assume that the buy and sell orders of informed and uninformed traders follow independent Poisson processes, and the following tree diagram describes the entire trading process:</p>
-<p><img alt="theoretical-model-of-pin" src="/images/theoretical-model-of-pin.jpg" /></p>
+<p><img alt="theoretical-model-of-pin" src="/images/theoretical-model-of-pin.jpg"></p>
 <ul>
 <li>On each trading day, there is a probability of <span class="arithmatex">\(P=\alpha\)</span> that new information will appear, and obviously a probability of <span class="arithmatex">\(P=(1-\alpha)\)</span> that there will be no new information.</li>
 <li>The probability of new information being bearish is <span class="arithmatex">\(P=\delta\)</span>, and the probability of it being bullish is <span class="arithmatex">\(P=(1-\delta)\)</span>.</li>
@@ -1089,7 +1089,7 @@
 <li>If the news is bullish, the arrival rate of buy orders on that day is <span class="arithmatex">\((\varepsilon+\mu)\)</span>, and the arrival rate of sell orders is <span class="arithmatex">\(\varepsilon\)</span>.</li>
 <li>When there is no new information, the arrival rate of both buy and sell orders is <span class="arithmatex">\(\varepsilon\)</span>.</li>
 </ul>
-<h2 id="trading-process">Trading Process<a class="headerlink" href="#trading-process" title="Permanent link">&para;</a></h2>
+<h2 id="trading-process">Trading Process<a class="headerlink" href="#trading-process" title="Permanent link">¶</a></h2>
 <p>Next, assume that the market maker is a Bayesian, that is, he will update his understanding of the overall market status, especially whether there is new information on that day, by observing trades and trading rates. Suppose each trading day is independent, <span class="arithmatex">\(P(t)=(P_n(t), P_b(t), P_g(t))\)</span> is the market maker's prior probability perception, where <span class="arithmatex">\(n\)</span> represents no new information, <span class="arithmatex">\(b\)</span> represents bearish bad news, and <span class="arithmatex">\(g\)</span> represents bullish good news, so <span class="arithmatex">\(P(t)=(1-\alpha, \alpha\delta, \alpha(1-\delta))\)</span>.</p>
 <p>Let <span class="arithmatex">\(S_t\)</span> be the event of a sell order arriving at time <span class="arithmatex">\(t\)</span>, and <span class="arithmatex">\(B_t\)</span> be the event of a buy order arriving at time <span class="arithmatex">\(t\)</span>. Also, let <span class="arithmatex">\(P(t|S_t)\)</span> be the updated probability perception of the market maker after observing a sell order arriving at time <span class="arithmatex">\(t\)</span> based on the existing information. Then, according to Bayes' theorem, if there is no new information at time <span class="arithmatex">\(t\)</span> and the market maker observes a sell order, the posterior probability <span class="arithmatex">\(P_n(t|S_t)\)</span> should be:</p>
 <div class="arithmatex">\[
@@ -1147,7 +1147,7 @@ b(t)=\frac{P_n(t)\varepsilon V^*_i+P_b(t)(\varepsilon+\mu)\underline{V}_i+P_g(t)
 <div class="arithmatex">\[
 \begin{equation} PIN(t)=\frac{\alpha\mu}{\alpha\mu+2\varepsilon}\end{equation}
 \]</div>
-<h2 id="model-estimation">Model Estimation<a class="headerlink" href="#model-estimation" title="Permanent link">&para;</a></h2>
+<h2 id="model-estimation">Model Estimation<a class="headerlink" href="#model-estimation" title="Permanent link">¶</a></h2>
 <p>After the model is established, let's talk about the parameter estimation of this model. The parameters we need to estimate, <span class="arithmatex">\(\theta=(\alpha, \delta, \varepsilon, \mu)\)</span>, are actually very difficult to estimate. This is because we cannot directly observe them, and can only observe the arrival of buy and sell orders. In this model, the daily buy and sell orders are assumed to follow one of the three Poisson processes. Although we don't know which process it is specifically, the overall idea is: more buy orders imply potential good news, more sell orders imply potential bad news, and overall buying and selling will decrease when there is no new information. With this idea in mind, we can try to estimate <span class="arithmatex">\(\theta\)</span> using the maximum likelihood estimation method.</p>
 <p>First, according to the trading model shown in the diagram, assume that there is bad news on a certain day, then the arrival rate of sell orders is <span class="arithmatex">\((\mu+\varepsilon)\)</span>, which means both informed and uninformed traders participate in selling. The arrival rate of buy orders is <span class="arithmatex">\(\varepsilon\)</span>, that is, only uninformed traders will continue to buy. Therefore, the probability of observing a sequence of trades with <span class="arithmatex">\(B\)</span> buy orders and <span class="arithmatex">\(S\)</span> sell orders in a period of time is:</p>
 <div class="arithmatex">\[
@@ -1181,7 +1181,7 @@ L((B, S)| \theta)=  &amp;(1-\alpha)e^{-\varepsilon} \frac{\varepsilon^B}{B!} e^
 L(D|\theta)=\prod_{i=1}^{N}L(\theta|(B_i, S_i))
 \end{equation}
 \]</div>
-<h2 id="bottomline">Bottomline<a class="headerlink" href="#bottomline" title="Permanent link">&para;</a></h2>
+<h2 id="bottomline">Bottomline<a class="headerlink" href="#bottomline" title="Permanent link">¶</a></h2>
 <p>The problem seems to end here. With the objective function, it seems to be all set as long as you program it and pay attention to the parameter boundaries. However, the real challenge comes next, because if you really write the objective function like this and run it, you will inevitably encounter an overflow error. After all, this function is filled with powers and factorials. Even if the time element is chosen very small, some highly liquid assets will still have hundreds of transactions within a few seconds. Therefore, both <span class="arithmatex">\(B!\)</span>, <span class="arithmatex">\(S!\)</span>, and <span class="arithmatex">\((\mu+\varepsilon)^B\)</span> can beautifully crash your program. So, further processing of the objective function here is extremely important.</p>
 <p>By observing equation (16), the three terms in the likelihood function can actually extract a common factor <span class="arithmatex">\(e^{-2\varepsilon}(\mu+\varepsilon)^{B+S}/(B!S!)\)</span>! After extracting this common factor, you can also substitute <span class="arithmatex">\(x\equiv \frac{\varepsilon}{\mu+\varepsilon}\in [0, 1]\)</span> into it. The transformed likelihood function, after taking the logarithm, will be in the form:</p>
 <div class="arithmatex">\[
@@ -1192,7 +1192,7 @@ l((B, S)| \theta)=&amp;\ln(L((B, S)| \theta))\\
 &amp;-\ln(B!S!)
 \end{align}
 \]</div>
-<p>Now, since the last term <span class="arithmatex">\(\ln(B!S!)\)</span> does not affect the parameter estimation at all, it can be safely excluded. The remaining part can perfectly avoid overflow. Personally, I think the brilliant move here is the introduction of <span class="arithmatex">\(x\equiv \frac{\varepsilon}{\mu+\varepsilon}\in [0, 1]\)</span>, which prevents the overflow error caused by <span class="arithmatex">\((\mu+\varepsilon)&gt;1\)</span>.</p>
+<p>Now, since the last term <span class="arithmatex">\(\ln(B!S!)\)</span> does not affect the parameter estimation at all, it can be safely excluded. The remaining part can perfectly avoid overflow. Personally, I think the brilliant move here is the introduction of <span class="arithmatex">\(x\equiv \frac{\varepsilon}{\mu+\varepsilon}\in [0, 1]\)</span>, which prevents the overflow error caused by <span class="arithmatex">\((\mu+\varepsilon)&gt;1\)</span>.</p></div>
 
 <!-- Source file information -->
 

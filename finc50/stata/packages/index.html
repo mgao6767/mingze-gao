@@ -703,6 +703,8 @@
       
         
       
+        
+      
     
     
       
@@ -1408,11 +1410,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="stata-packages">Stata - Packages<a class="headerlink" href="#stata-packages" title="Permanent link">&para;</a></h1>
-<p><img alt="antigravity" src="../images/antigravity.png" /></p>
+<div><h1 id="stata-packages">Stata - Packages<a class="headerlink" href="#stata-packages" title="Permanent link">¶</a></h1>
+<p><img alt="antigravity" src="../images/antigravity.png"></p>
 <p>If you've ever used Python, you may know that it's famous for its simplicity and the many packages available for use. Good news is, Stata is no different. We can install a wide range of Stata packages easily and then use them to achieve a ton of things. </p>
 <p>This post briefly explains where to find, how to install and update Stata packages.</p>
-<h2 id="stata-packages_1">Stata packages<a class="headerlink" href="#stata-packages_1" title="Permanent link">&para;</a></h2>
+<h2 id="stata-packages_1">Stata packages<a class="headerlink" href="#stata-packages_1" title="Permanent link">¶</a></h2>
 <p>In a nutshell, installing and using Stata packages are as simple as the following two lines of code (and a line of output):</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.<span class="k"> ssc</span> install nicewords
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>. nicewords
@@ -1420,8 +1422,8 @@
 </span></code></pre></div>
 <p>Specifically, we use the builtin command <a href="https://www.stata.com/manuals/rssc.pdf"><code>ssc</code></a> to install a package named <code>nicewords</code> in the first line, and then execute the command <code>nicewords</code> in the second line, which randomly prints some nice words.</p>
 <p>Generally, a package can provide one or more Stata commands to use, depending on the complexity of the task it solves.</p>
-<h2 id="where-to-find-stata-packages">Where to find Stata packages<a class="headerlink" href="#where-to-find-stata-packages" title="Permanent link">&para;</a></h2>
-<h3 id="ssc-statistical-software-components-archive"><code>ssc</code> - Statistical Software Components Archive<a class="headerlink" href="#ssc-statistical-software-components-archive" title="Permanent link">&para;</a></h3>
+<h2 id="where-to-find-stata-packages">Where to find Stata packages<a class="headerlink" href="#where-to-find-stata-packages" title="Permanent link">¶</a></h2>
+<h3 id="ssc-statistical-software-components-archive"><code>ssc</code> - Statistical Software Components Archive<a class="headerlink" href="#ssc-statistical-software-components-archive" title="Permanent link">¶</a></h3>
 <p>Stata packages are hosted at the Statistical Software Components (SSC) Archive, which is often called the Boston College Archive and provided by <a href="http://repec.org">http://repec.org</a>. This explains the example above where we used the command <a href="https://www.stata.com/manuals/rssc.pdf"><code>ssc</code></a> to manage (install) packages. </p>
 <p>We can find recently added packages with <code>. ssc new</code>, and the top 10 most popular packages on SSC with <code>. ssc hot</code>. In fact, the top 10 for December 2022 are:</p>
 <table>
@@ -1496,32 +1498,32 @@
 </tr>
 </tbody>
 </table>
-<h3 id="net-eg-github"><code>net</code> - e.g., GitHub<a class="headerlink" href="#net-eg-github" title="Permanent link">&para;</a></h3>
+<h3 id="net-eg-github"><code>net</code> - e.g., GitHub<a class="headerlink" href="#net-eg-github" title="Permanent link">¶</a></h3>
 <p>Apart from SSC, some packages are available on other websites like <a href="https://github.com/search?l=Stata&amp;q=stata&amp;type=Repositories">GitHub</a>. A growing trend is that package authors publish their code repositories on GitHub, which contain the devlopment version of the packages.</p>
-<h2 id="how-to-install-and-update-packages">How to install and update packages<a class="headerlink" href="#how-to-install-and-update-packages" title="Permanent link">&para;</a></h2>
+<h2 id="how-to-install-and-update-packages">How to install and update packages<a class="headerlink" href="#how-to-install-and-update-packages" title="Permanent link">¶</a></h2>
 <p><code>ssc install</code> is pretty much all we need. For example, to install the package <code>reghdfe</code>:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> ssc</span> install reghdfe
 </span></code></pre></div>
 <p>For packages outside SSC, we can install them using <a href="https://www.stata.com/manuals/rnet.pdf"><code>net</code></a>. As an example, I have a package <a href="https://github.com/mgao6767/specurve"><code>specurve</code></a> on GitHub, which can be installed by:</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> net</span> install specurve, from(<span class="s">&quot;https://raw.githubusercontent.com/mgao6767/specurve/master&quot;</span>)
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> net</span> install specurve, from(<span class="s">"https://raw.githubusercontent.com/mgao6767/specurve/master"</span>)
 </span></code></pre></div>
 <p>To update an existing package, we can add the option <code>replace</code> to the above command:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>.<span class="k"> ssc</span> install reghdfe,<span class="k"> replace</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>.<span class="k"> net</span> install specurve,<span class="k"> replace</span> from(<span class="s">&quot;https://raw.githubusercontent.com/mgao6767/specurve/master&quot;</span>)
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>.<span class="k"> net</span> install specurve,<span class="k"> replace</span> from(<span class="s">"https://raw.githubusercontent.com/mgao6767/specurve/master"</span>)
 </span></code></pre></div>
 <p>Alternatively, we can use <a href="https://www.stata.com/manuals/radoupdate.pdf"><code>ado update</code></a>:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>.<span class="k"> ado update</span>,<span class="k"> update</span> <span class="c1">// for community-contributed packages</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>.<span class="k"> ado update</span>,<span class="k"> update</span> ssconly <span class="c1">// for SSC only</span>
 </span></code></pre></div>
-<h2 id="some-packages-of-my-choice">Some packages of my choice<a class="headerlink" href="#some-packages-of-my-choice" title="Permanent link">&para;</a></h2>
-<h3 id="reghdfe-and-ivreghdfe"><code>reghdfe</code> and <code>ivreghdfe</code><a class="headerlink" href="#reghdfe-and-ivreghdfe" title="Permanent link">&para;</a></h3>
+<h2 id="some-packages-of-my-choice">Some packages of my choice<a class="headerlink" href="#some-packages-of-my-choice" title="Permanent link">¶</a></h2>
+<h3 id="reghdfe-and-ivreghdfe"><code>reghdfe</code> and <code>ivreghdfe</code><a class="headerlink" href="#reghdfe-and-ivreghdfe" title="Permanent link">¶</a></h3>
 <p><a href="https://github.com/sergiocorreia/reghdfe"><code>reghdfe</code></a> is among the top 10 Stata packages as we've seen above. It allows for multiple fixed effects in linear regressions, while the builtin <a href="https://www.stata.com/manuals/xtxtreg.pdf"><code>xtreg</code></a> allows only one fixed effect. It's gold!</p>
 <p><a href="https://github.com/sergiocorreia/ivreghdfe"><code>ivreghdfe</code></a> is essentially <code>reghdfe</code> plus <code>ivreg2</code>, which allows us to include multiple fixed effects in instrumental variable regressions.</p>
-<h3 id="estout-and-outreg2"><code>estout</code> and <code>outreg2</code><a class="headerlink" href="#estout-and-outreg2" title="Permanent link">&para;</a></h3>
+<h3 id="estout-and-outreg2"><code>estout</code> and <code>outreg2</code><a class="headerlink" href="#estout-and-outreg2" title="Permanent link">¶</a></h3>
 <p><a href="https://github.com/benjann/estout"><code>estout</code></a> is also a top 10 Stata package that provides tools to make regression tables. We've seen an example from the <a href="../introduction#save-to-latex">previous post</a>. I highly recommend, too!</p>
 <p><code>outreg2</code> does a similar job in a simpler way. Yet if we want finer controls <code>estout</code> is perhaps better, in my humble opinion.</p>
-<h3 id="winsor-and-winsor2"><code>winsor</code> and <code>winsor2</code><a class="headerlink" href="#winsor-and-winsor2" title="Permanent link">&para;</a></h3>
-<p>Data is often noisy with extreme values or impossible values recorded by mistake. In some fields of research, we try to mitigate such concern by <a href="https://en.wikipedia.org/wiki/Winsorizing">winsorization</a>. Note that they may yield different results due to their different approaches in determining percentile values.</p>
+<h3 id="winsor-and-winsor2"><code>winsor</code> and <code>winsor2</code><a class="headerlink" href="#winsor-and-winsor2" title="Permanent link">¶</a></h3>
+<p>Data is often noisy with extreme values or impossible values recorded by mistake. In some fields of research, we try to mitigate such concern by <a href="https://en.wikipedia.org/wiki/Winsorizing">winsorization</a>. Note that they may yield different results due to their different approaches in determining percentile values.</p></div>
 
 <!-- Source file information -->
 

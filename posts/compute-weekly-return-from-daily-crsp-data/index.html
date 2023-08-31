@@ -1125,7 +1125,7 @@
 
 
 <!-- Markdown content -->
-<h1 id="compute-weekly-return-from-daily-crsp-data">Compute Weekly Return from Daily CRSP Data<a class="headerlink" href="#compute-weekly-return-from-daily-crsp-data" title="Permanent link">&para;</a></h1>
+<div><h1 id="compute-weekly-return-from-daily-crsp-data">Compute Weekly Return from Daily CRSP Data<a class="headerlink" href="#compute-weekly-return-from-daily-crsp-data" title="Permanent link">¶</a></h1>
 <p>Computing the weekly returns from the CRSP daily stock data is a common task but
 may be tricky sometimes. Let's discuss a few different ways to get it done
 incorrectly and correctly.</p>
@@ -1135,12 +1135,12 @@ incorrectly and correctly.</p>
 </div>
 <!-- more -->
 
-<h2 id="incorrect-ways"><strong>INCORRECT</strong> ways<a class="headerlink" href="#incorrect-ways" title="Permanent link">&para;</a></h2>
+<h2 id="incorrect-ways"><strong>INCORRECT</strong> ways<a class="headerlink" href="#incorrect-ways" title="Permanent link">¶</a></h2>
 <p>Let me start with a few incorrect ways, which may seem perfectly okay at first
 glance. This part is important because it shows you how a small mistake can lead
 to hard-to-discover bugs.</p>
-<h3 id="weekly-index-return-from-daily-data">Weekly index return from daily data<a class="headerlink" href="#weekly-index-return-from-daily-data" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="date-as-the-friday-of-the-week" name="__tabbed_1" type="radio" /><input id="date-as-the-last-trading-day-of-the-week" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="date-as-the-friday-of-the-week">Date as the Friday of the week</label><label for="date-as-the-last-trading-day-of-the-week">Date as the last trading day of the week</label></div>
+<h3 id="weekly-index-return-from-daily-data">Weekly index return from daily data<a class="headerlink" href="#weekly-index-return-from-daily-data" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="date-as-the-friday-of-the-week" name="__tabbed_1" type="radio"><input id="date-as-the-last-trading-day-of-the-week" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="date-as-the-friday-of-the-week">Date as the Friday of the week</label><label for="date-as-the-last-trading-day-of-the-week">Date as the last trading day of the week</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Using <code>intnx()</code>, we can derive the Friday of the week given a date, as shown
@@ -1165,8 +1165,8 @@ below. </p>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>  <span class="nb">year(</span>date) <span class="k">as</span> Year,
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>  week(date) <span class="k">as</span> Week,
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="hll">  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date
-</span></span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="hll">  <span class="k">else</span> <span class="nb">intnx(</span><span class="s">&quot;week.6&quot;</span>,date,<span class="m">1</span>) <span class="k">end</span> <span class="k">as</span> FridayOfWeek <span class="k">format</span>=date9.,
-</span></span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">&quot;Weekly SP500 Index Return (%)&quot;</span>
+</span></span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="hll">  <span class="k">else</span> <span class="nb">intnx(</span><span class="s">"week.6"</span>,date,<span class="m">1</span>) <span class="k">end</span> <span class="k">as</span> FridayOfWeek <span class="k">format</span>=date9.,
+</span></span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">"Weekly SP500 Index Return (%)"</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="k">from</span> crsp<span class="m">.</span>dsi 
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="k">where</span> 
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>  <span class="nb">year(</span>date) between <span class="nv">&amp;startyear.</span> <span class="k">and</span> <span class="nv">&amp;endyear.</span>
@@ -1286,10 +1286,10 @@ need to keep <code>FridayOfWeek</code> and <code>mktret</code>.</p>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c">/* Compute weekly marekt return from daily data */</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">create</span> <span class="k">table</span> mktret_weekly <span class="k">as</span> 
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">select</span> <span class="k">distinct</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll">  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">&quot;week.6&quot;</span>,date,<span class="m">1</span>) <span class="k">end</span> 
-</span></span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll">    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">&quot;Friday of the Week&quot;</span>,
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll">  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">"week.6"</span>,date,<span class="m">1</span>) <span class="k">end</span> 
+</span></span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll">    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">"Friday of the Week"</span>,
 </span></span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> 
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">&quot;Weekly SP500 Index Return (%)&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">"Weekly SP500 Index Return (%)"</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="k">from</span> crsp<span class="m">.</span>dsi 
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="k">where</span> 
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>  <span class="nb">year(</span>date) between <span class="nv">&amp;startyear.</span> <span class="k">and</span> <span class="nv">&amp;endyear.</span>
@@ -1361,7 +1361,7 @@ need to keep <code>FridayOfWeek</code> and <code>mktret</code>.</p>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c">/* Compute weekly marekt return from daily data */</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">create</span> <span class="k">table</span> mktret_weekly <span class="k">as</span> 
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">select</span> <span class="k">distinct</span> date, 
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">&quot;Weekly SP500 Index Return (%)&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">"Weekly SP500 Index Return (%)"</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">from</span> crsp<span class="m">.</span>dsi <span class="k">where</span> <span class="nb">year(</span>date) between <span class="nv">&amp;startyear.</span> <span class="k">and</span> <span class="nv">&amp;endyear.</span> 
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="k">group</span> <span class="k">by</span> <span class="nb">year(</span>date), week(date) 
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="hll"><span class="k">having</span> date=<span class="nb">max(</span>date) 
@@ -1380,7 +1380,7 @@ variable.</p>
 </div>
 </div>
 </div>
-<h3 id="weekly-stock-return-from-daily-data">Weekly stock return from daily data<a class="headerlink" href="#weekly-stock-return-from-daily-data" title="Permanent link">&para;</a></h3>
+<h3 id="weekly-stock-return-from-daily-data">Weekly stock return from daily data<a class="headerlink" href="#weekly-stock-return-from-daily-data" title="Permanent link">¶</a></h3>
 <p>Following the same logic, we can calculate the weekly stock returns from daily
 CRSP data, where dates are aligned to the Friday of the week.</p>
 <div class="language-sas highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
@@ -1406,9 +1406,9 @@ CRSP data, where dates are aligned to the Friday of the week.</p>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="k">create</span> <span class="k">table</span> stockrets_weekly <span class="k">as</span> 
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">select</span> <span class="k">distinct</span> permno,
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll">  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">&quot;week.6&quot;</span>,date,<span class="m">1</span>) <span class="k">end</span> 
-</span></span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll">    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">&quot;Friday of the Week&quot;</span>,
-</span></span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">&quot;Weekly Return (%)&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll">  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">"week.6"</span>,date,<span class="m">1</span>) <span class="k">end</span> 
+</span></span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll">    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">"Friday of the Week"</span>,
+</span></span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">"Weekly Return (%)"</span>
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="k">from</span> crsp<span class="m">.</span>dsf 
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="k">where</span> 
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a>  <span class="nb">year(</span>date) between <span class="nv">&amp;startyear.</span> <span class="k">and</span> <span class="nv">&amp;endyear.</span>
@@ -1417,7 +1417,7 @@ CRSP data, where dates are aligned to the Friday of the week.</p>
 </span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="k">group</span> <span class="k">by</span> <span class="nb">year(</span>date), week(date), permno <span class="k">order</span> <span class="k">by</span> permno, date<span class="kr">;</span>
 </span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="kr">quit;</span>
 </span></code></pre></div></td></tr></table></div>
-<h3 id="whats-wrong">What's wrong?<a class="headerlink" href="#whats-wrong" title="Permanent link">&para;</a></h3>
+<h3 id="whats-wrong">What's wrong?<a class="headerlink" href="#whats-wrong" title="Permanent link">¶</a></h3>
 <p>The code above seems okay. We know that CRSP daily stock file contains many
 observations where the daily trading volume is 0, in which case the price is
 recorded as the negative bid-ask midpoint. Therefore, we restrict to only those
@@ -1461,11 +1461,11 @@ with positive stock prices. So what's the problem?</p>
 <p>Now we have a mistake. A single week is broken into two because of the use of
 <code>week()</code> function in SAS. Another consequence is that when there're many years
 of data, there will be a lot of duplicates.</p>
-<h2 id="correct-ways"><strong>CORRECT</strong> ways<a class="headerlink" href="#correct-ways" title="Permanent link">&para;</a></h2>
+<h2 id="correct-ways"><strong>CORRECT</strong> ways<a class="headerlink" href="#correct-ways" title="Permanent link">¶</a></h2>
 <p>Now let's explore two ways that avoid this mistake. Although both generate the
 same result (there can be a few differences, see the caveat), the second one is
 much faster.</p>
-<h3 id="1-start-with-a-list-of-dates-slow-version">1. Start with a list of dates (slow version)<a class="headerlink" href="#1-start-with-a-list-of-dates-slow-version" title="Permanent link">&para;</a></h3>
+<h3 id="1-start-with-a-list-of-dates-slow-version">1. Start with a list of dates (slow version)<a class="headerlink" href="#1-start-with-a-list-of-dates-slow-version" title="Permanent link">¶</a></h3>
 <p>Now we can write some correct code to compute the weekly returns. We'll generate
 a series of Fridays first, then we merge based on the past 5 calendar days. This
 will ensure all trading days with non-missing data will be included in the
@@ -1486,15 +1486,15 @@ weekly return calculation, and correct the mistake mentioned above.</p>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c">/* Generate a series of Fridays */</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="kr">data </span>fridays;
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>date=<span class="s">&quot;</span><span class="nv">&amp;start_date</span><span class="s">&quot;</span>d;
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">do</span> <span class="k">while</span> (date&lt;=<span class="s">&quot;</span><span class="nv">&amp;end_date</span><span class="s">&quot;</span>d);
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>date=<span class="s">"</span><span class="nv">&amp;start_date</span><span class="s">"</span>d;
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">do</span> <span class="k">while</span> (date&lt;=<span class="s">"</span><span class="nv">&amp;end_date</span><span class="s">"</span>d);
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="k">if</span> <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> <span class="k">output</span>;
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>    date=<span class="nb">intnx(</span><span class="s">&#39;day&#39;</span>, date, <span class="m">1</span>, <span class="s">&#39;s&#39;</span>);
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>    date=<span class="nb">intnx(</span><span class="s">'day'</span>, date, <span class="m">1</span>, <span class="s">'s'</span>);
 </span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">end</span>;
 </span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="k">format</span> date date9.<span class="kr">;</span>
 </span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="kr">run;</span>
 </span></code></pre></div></td></tr></table></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="weekly-index-return-from-daily-data-as-at-friday" name="__tabbed_2" type="radio" /><input id="weekly-stock-return-from-daily-data-as-at-friday" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="weekly-index-return-from-daily-data-as-at-friday">Weekly index return from daily data (as at Friday)</label><label for="weekly-stock-return-from-daily-data-as-at-friday">Weekly stock return from daily data (as at Friday)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked id="weekly-index-return-from-daily-data-as-at-friday" name="__tabbed_2" type="radio"><input id="weekly-stock-return-from-daily-data-as-at-friday" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="weekly-index-return-from-daily-data-as-at-friday">Weekly index return from daily data (as at Friday)</label><label for="weekly-stock-return-from-daily-data-as-at-friday">Weekly stock return from daily data (as at Friday)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-sas highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-13">13</a></span>
@@ -1512,9 +1512,9 @@ weekly return calculation, and correct the mistake mentioned above.</p>
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="k">create</span> <span class="k">table</span> mktret_weekly <span class="k">as</span> 
 </span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="k">select</span> <span class="k">distinct</span> a<span class="m">.</span>date,
 </span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+sprtrn)))-<span class="m">1</span>)*<span class="m">100</span> 
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">&quot;Weekly SP500 Index Return (%)&quot;</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="k">as</span> mktret <span class="k">label</span>=<span class="s">"Weekly SP500 Index Return (%)"</span>
 </span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="k">from</span> fridays <span class="k">as</span> a left join crsp<span class="m">.</span>dsi <span class="k">as</span> dsi
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="k">on</span> dsi<span class="m">.</span>date between <span class="nb">intnx(</span><span class="s">&#39;day&#39;</span>, a<span class="m">.</span>date, -<span class="m">4</span>) <span class="k">and</span> a<span class="m">.</span>date
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="k">on</span> dsi<span class="m">.</span>date between <span class="nb">intnx(</span><span class="s">'day'</span>, a<span class="m">.</span>date, -<span class="m">4</span>) <span class="k">and</span> a<span class="m">.</span>date
 </span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="k">group</span> <span class="k">by</span> a<span class="m">.</span>date
 </span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="k">order</span> <span class="k">by</span> a<span class="m">.</span>date<span class="kr">;</span>
 </span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="kr">quit;</span>
@@ -1545,9 +1545,9 @@ weekly return calculation, and correct the mistake mentioned above.</p>
 </span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="c">/* Compute weekly stock return from daily data */</span>
 </span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="k">create</span> <span class="k">table</span> stockrets_weekly <span class="k">as</span> 
 </span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="k">select</span> <span class="k">distinct</span> a<span class="m">.</span>date, dsf<span class="m">.</span>permno, dsf<span class="m">.</span>hsiccd,
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">&quot;Weekly Return (%)&quot;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">"Weekly Return (%)"</span>
 </span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="k">from</span> fridays <span class="k">as</span> a left join crsp<span class="m">.</span>dsf <span class="k">as</span> dsf
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="k">on</span> dsf<span class="m">.</span>date between <span class="nb">intnx(</span><span class="s">&#39;day&#39;</span>, a<span class="m">.</span>date, -<span class="m">4</span>) <span class="k">and</span> a<span class="m">.</span>date
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="k">on</span> dsf<span class="m">.</span>date between <span class="nb">intnx(</span><span class="s">'day'</span>, a<span class="m">.</span>date, -<span class="m">4</span>) <span class="k">and</span> a<span class="m">.</span>date
 </span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24"></a>  <span class="k">and</span> dsf<span class="m">.</span>permno <span class="k">in</span> (<span class="k">select</span> * <span class="k">from</span> stocks) 
 </span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25"></a>  <span class="k">and</span> dsf<span class="m">.</span>prc&gt;<span class="m">0</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(dsf<span class="m">.</span>ret)
 </span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="k">group</span> <span class="k">by</span> dsf<span class="m">.</span>permno, a<span class="m">.</span>date
@@ -1557,7 +1557,7 @@ weekly return calculation, and correct the mistake mentioned above.</p>
 </div>
 </div>
 </div>
-<h3 id="2-group-using-aligned-dates-fast-version-with-caveat">2. Group using aligned dates (fast version with caveat)<a class="headerlink" href="#2-group-using-aligned-dates-fast-version-with-caveat" title="Permanent link">&para;</a></h3>
+<h3 id="2-group-using-aligned-dates-fast-version-with-caveat">2. Group using aligned dates (fast version with caveat)<a class="headerlink" href="#2-group-using-aligned-dates-fast-version-with-caveat" title="Permanent link">¶</a></h3>
 <p>This version uses a similar logic from the <a href="#weekly-stock-return-from-daily-data">previous incorrect
 one</a>, but it groups based on the aligned
 dates instead of <code>year(date)</code> and <code>week(date)</code>.</p>
@@ -1578,12 +1578,12 @@ dates instead of <code>year(date)</code> and <code>week(date)</code>.</p>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c">/* Compute weekly stock return from daily data */</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">create</span> <span class="k">table</span> stockrets_weekly2 <span class="k">as</span> 
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">select</span> <span class="k">distinct</span> permno, hsiccd,
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">&quot;week.6&quot;</span>,date,<span class="m">1</span>) <span class="k">end</span> 
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">&quot;Friday of the Week&quot;</span>,
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">&quot;Weekly Return (%)&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>  case when <span class="nb">weekday(</span>date)=<span class="m">6</span> <span class="k">then</span> date <span class="k">else</span> <span class="nb">intnx(</span><span class="s">"week.6"</span>,date,<span class="m">1</span>) <span class="k">end</span> 
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="k">as</span> date <span class="k">format</span>=date9. <span class="k">label</span>=<span class="s">"Friday of the Week"</span>,
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>  (<span class="nb">exp(sum(log(</span><span class="m">1</span>+ret)))-<span class="m">1</span>)*<span class="m">100</span> <span class="k">as</span> ret <span class="k">label</span>=<span class="s">"Weekly Return (%)"</span>
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">from</span> crsp<span class="m">.</span>dsf (<span class="k">keep</span>=permno date ret prc shrout hsiccd)
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="k">where</span> 
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>  date between <span class="s">&quot;01Jan1986&quot;</span>d <span class="k">and</span> <span class="s">&quot;31Dec2019&quot;</span>d
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>  date between <span class="s">"01Jan1986"</span>d <span class="k">and</span> <span class="s">"31Dec2019"</span>d
 </span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>  <span class="k">and</span> permno <span class="k">in</span> (<span class="k">select</span> * <span class="k">from</span> stocks) 
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>  <span class="k">and</span> prc&gt;<span class="m">0</span> <span class="k">and</span> <span class="k">not</span> <span class="k">missing</span>(ret)
 </span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="hll"><span class="k">group</span> <span class="k">by</span> permno, calculated date <span class="k">order</span> <span class="k">by</span> permno, date<span class="kr">;</span>
@@ -1597,7 +1597,7 @@ stocks will be incorrect, because they are not using all the daily data in
 those weeks.</p>
 <p>To fix this minor issue, simply extend the beginning and ending dates beyond
 your sample period by a few weeks.</p>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

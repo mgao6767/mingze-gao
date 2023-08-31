@@ -705,6 +705,8 @@
       
         
       
+        
+      
     
     
       
@@ -1029,8 +1031,8 @@
 
 
 <!-- Markdown content -->
-<h1 id="finc50">FINC50<a class="headerlink" href="#finc50" title="Permanent link">&para;</a></h1>
-<p class="annotate"><strong>FINC50</strong> is one half of your <abbr title="&quot;101&quot; represents a basic beginning course.">Finance 101</abbr>. (1)</p>
+<div><h1 id="finc50">FINC50<a class="headerlink" href="#finc50" title="Permanent link">¶</a></h1>
+<p class="annotate"><strong>FINC50</strong> is one half of your <abbr title='"101" represents a basic beginning course.'>Finance 101</abbr>. (1)</p>
 <ol>
 <li>🙋‍♂️ 50 is a half of 101, rounded down.</li>
 </ol>
@@ -1044,15 +1046,15 @@
 <p>This is a proof-of-concept and <em>always</em> a work-in-progress.</p>
 <p>It could take a relatively long time for me to "complete".</p>
 </div>
-<h2 id="course-notes">Course notes<a class="headerlink" href="#course-notes" title="Permanent link">&para;</a></h2>
+<h2 id="course-notes">Course notes<a class="headerlink" href="#course-notes" title="Permanent link">¶</a></h2>
 <ul>
 <li><a href="./fixed-income/">Fixed Income Securities</a></li>
 <li><a href="./stata/">Stata Workshop</a></li>
 </ul>
-<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
-<h3 id="bond-cashflows-and-price">Bond cashflows and price<a class="headerlink" href="#bond-cashflows-and-price" title="Permanent link">&para;</a></h3>
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">¶</a></h2>
+<h3 id="bond-cashflows-and-price">Bond cashflows and price<a class="headerlink" href="#bond-cashflows-and-price" title="Permanent link">¶</a></h3>
 <p>An interactive chart and calculator of bond cashflows, present values and prices.</p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's cashflows, present value and price, made by Mingze Gao",
   "width": 700,
@@ -1258,9 +1260,9 @@
   ]
 }
 </vegachart></p>
-<h3 id="bond-price-and-yield">Bond price and yield<a class="headerlink" href="#bond-price-and-yield" title="Permanent link">&para;</a></h3>
+<h3 id="bond-price-and-yield">Bond price and yield<a class="headerlink" href="#bond-price-and-yield" title="Permanent link">¶</a></h3>
 <p>An interactive chart of bond price and yield.</p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price and yield, made by Mingze Gao",
   "width": 700,
@@ -1431,7 +1433,7 @@
   ]
 }
 </vegachart></p>
-<h3 id="risk-and-return">Risk and return<a class="headerlink" href="#risk-and-return" title="Permanent link">&para;</a></h3>
+<h3 id="risk-and-return">Risk and return<a class="headerlink" href="#risk-and-return" title="Permanent link">¶</a></h3>
 <p class="annotate">A graph showing volatility and return of S&amp;P500 constituents in 2022.(1)
 Try to pan, zoom, select and click.</p>
 <ol>
@@ -1440,19 +1442,19 @@ Try to pan, zoom, select and click.</p>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">link</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/List_of_S%26P_500_companies#S&amp;P_500_component_stocks&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">link</span> <span class="o">=</span> <span class="s2">"https://en.wikipedia.org/wiki/List_of_S%26P_500_companies#S&amp;P_500_component_stocks"</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Symbol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2022-12-31&quot;</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]]</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'Symbol'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="s2">"2022-01-01"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"2022-12-31"</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'Adj Close'</span><span class="p">]]</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">ret</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">std</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">252</span><span class="p">)</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;return&#39;</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="n">std</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;ticker&quot;</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">index</span><span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;./spy_risk_return.json&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>  
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'return'</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">:</span> <span class="n">std</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">"ticker"</span><span class="p">:</span> <span class="n">ret</span><span class="o">.</span><span class="n">index</span><span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">"./spy_risk_return.json"</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">"records"</span><span class="p">)</span>  
 </span></code></pre></div></li>
 </ol>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "title": {
     "text": "Return and Volatility of S&amp;P500 Stocks in 2022",
@@ -1735,7 +1737,7 @@ Try to pan, zoom, select and click.</p>
     }
   ]
 }
-</vegachart></p>
+</vegachart></p></div>
 
 <!-- Source file information -->
 

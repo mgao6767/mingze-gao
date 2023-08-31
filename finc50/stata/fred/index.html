@@ -701,6 +701,8 @@
       
         
       
+        
+      
     
     
       
@@ -1224,33 +1226,33 @@
 
 
 <!-- Markdown content -->
-<div class="admonition note">
+<div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is just to showcase one of the many amazing features of Stata.</p>
 </div>
 <p>Since Stata 15, we can search, browse and import almost a million U.S. and international economic and financial time series made available by the St. Louis Federal Reserve's <a href="https://fred.stlouisfed.org/">Federal Research Economic Data</a>. This post briefly explains this great feature.</p>
 <!-- more -->
 
-<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
-<p>Before you start, you will need an API Key from FRED. <a href="https://fred.stlouisfed.org/docs/api/api_key.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/></svg></span> Register one here</a></p>
+<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">¶</a></h2>
+<p>Before you start, you will need an API Key from FRED. <a href="https://fred.stlouisfed.org/docs/api/api_key.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span> Register one here</a></p>
 <p class="annotate">Then in Stata, you can store this key permanently so you don't need to provide again.(1)</p>
 <ol>
 <li>Replace <code>_key_</code> with your actual API Key obtained.</li>
 </ol>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> fredkey _key_, permanently
 </span></code></pre></div>
-<h2 id="gui-is-always-a-good-start">GUI is always a good start<a class="headerlink" href="#gui-is-always-a-good-start" title="Permanent link">&para;</a></h2>
+<h2 id="gui-is-always-a-good-start">GUI is always a good start<a class="headerlink" href="#gui-is-always-a-good-start" title="Permanent link">¶</a></h2>
 <p>Alternatively, click on menu <code>File&gt;Import&gt;Fedearl Reserve Economic Data (FRED)</code> will bring up the dialog as shown below.</p>
 <figure>
-<p><img alt="set_fredkey" loading="lazy" src="/images/set_fredkey.png" /></p>
+<p><img alt="set_fredkey" loading="lazy" src="/images/set_fredkey.png"></p>
 </figure>
 <p>Enter API Key and you'll be free to explore all the data series available on FRED.</p>
-<p><img alt="import_fred" loading="lazy" src="/images/import_fred.png" /></p>
+<p><img alt="import_fred" loading="lazy" src="/images/import_fred.png"></p>
 <p>For example, let's see the CPI of Australia...</p>
-<p><img alt="import_fred_cpi_australia" loading="lazy" src="/images/import_fred_cpi_australia.png" /></p>
+<p><img alt="import_fred_cpi_australia" loading="lazy" src="/images/import_fred_cpi_australia.png"></p>
 <p>Describe the data series, we can find many useful meta info.</p>
 <figure>
-<p><img alt="import_fred_cpi_australia_desc" loading="lazy" src="/images/import_fred_cpi_australia_desc.png" /></p>
+<p><img alt="import_fred_cpi_australia_desc" loading="lazy" src="/images/import_fred_cpi_australia_desc.png"></p>
 </figure>
 <div class="admonition warning">
 <p class="admonition-title">Vintage</p>
@@ -1266,7 +1268,7 @@
 </div>
 <p>Let's close the description, double click on the series and click on import. Another dialog will be shown to confirm some final details.</p>
 <figure>
-<p><img alt="import_fred_cpi_australia_import" loading="lazy" src="/images/import_fred_cpi_australia_import.png" /></p>
+<p><img alt="import_fred_cpi_australia_import" loading="lazy" src="/images/import_fred_cpi_australia_import.png"></p>
 </figure>
 <p>The outputs will be like the following:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>. import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) aggregate(quarterly,avg)
@@ -1281,7 +1283,7 @@
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   highest frequency: Quarterly
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    lowest frequency: Quarterly
 </span></code></pre></div>
-<h2 id="programmatical-is-recipe-to-reproducibility">Programmatical is recipe to reproducibility<a class="headerlink" href="#programmatical-is-recipe-to-reproducibility" title="Permanent link">&para;</a></h2>
+<h2 id="programmatical-is-recipe-to-reproducibility">Programmatical is recipe to reproducibility<a class="headerlink" href="#programmatical-is-recipe-to-reproducibility" title="Permanent link">¶</a></h2>
 <p>We don't need to go through the GUI process every time. In fact, Stata already told us what the corresponding command is:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) aggregate(quarterly,avg)
 </span></code></pre></div>
@@ -1299,13 +1301,13 @@
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">replace</span> cpi_australia = <span class="m">100</span><span class="k"> if</span> _n<span class="o">==</span><span class="m">1</span>
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">replace</span> cpi_australia = L<span class="m">.</span>cpi_australia <span class="o">*</span> (<span class="m">1</span><span class="o">+</span>cpi_ret)<span class="k"> if</span> _n<span class="o">&gt;</span><span class="m">1</span>
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1">// Plotting</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">twoway</span> (tsline cpi_australia), title(<span class="s">&quot;Quarterly CPI of Australia 2010Q1-2023Q1&quot;</span>) ytitle(<span class="s">&quot;&quot;</span>) ttitle(<span class="s">&quot;&quot;</span>)<span class="k"> note</span>(<span class="s">&quot;Index 2010Q1=100. Source: FRED, 2023-05-10 vintage.&quot;</span>)
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">twoway</span> (tsline cpi_australia), title(<span class="s">"Quarterly CPI of Australia 2010Q1-2023Q1"</span>) ytitle(<span class="s">""</span>) ttitle(<span class="s">""</span>)<span class="k"> note</span>(<span class="s">"Index 2010Q1=100. Source: FRED, 2023-05-10 vintage."</span>)
 </span></code></pre></div>
-<p><img alt="import_fred_cpi_australia_example" loading="lazy" src="/images/import_fred_cpi_australia_example.png" /></p>
+<p><img alt="import_fred_cpi_australia_example" loading="lazy" src="/images/import_fred_cpi_australia_example.png"></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The code snippet above specifies the data vintage. Therefore, even if someone runs it 30 years from now, they will still get exactly the same data and plot as I do in 2023.</p>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

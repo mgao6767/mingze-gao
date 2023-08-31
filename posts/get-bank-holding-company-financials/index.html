@@ -1043,11 +1043,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="bank-holing-company-financials-from-fr-y-9c">Bank Holing Company Financials from FR Y-9C<a class="headerlink" href="#bank-holing-company-financials-from-fr-y-9c" title="Permanent link">&para;</a></h1>
+<div><h1 id="bank-holing-company-financials-from-fr-y-9c">Bank Holing Company Financials from FR Y-9C<a class="headerlink" href="#bank-holing-company-financials-from-fr-y-9c" title="Permanent link">¶</a></h1>
 <p>A SAS macro used to extract BHC data.</p>
 <!-- more -->
 
-<h2 id="extract-bhc-balance-sheet-data">Extract BHC balance sheet data<a class="headerlink" href="#extract-bhc-balance-sheet-data" title="Permanent link">&para;</a></h2>
+<h2 id="extract-bhc-balance-sheet-data">Extract BHC balance sheet data<a class="headerlink" href="#extract-bhc-balance-sheet-data" title="Permanent link">¶</a></h2>
 <p>This is the SAS macro I write to consolidate and extract BHC's balance sheet
 data from WRDS Bank Regulatory database. It creates a <code>bhcf</code> dataset in the work
 directory.</p>
@@ -1112,7 +1112,7 @@ directory.</p>
 <p>RSSD dates are not always available, in which case lines 18-24 should be
 removed.</p>
 </div>
-<h2 id="merge-with-compustatcrsp">Merge with Compustat/CRSP<a class="headerlink" href="#merge-with-compustatcrsp" title="Permanent link">&para;</a></h2>
+<h2 id="merge-with-compustatcrsp">Merge with Compustat/CRSP<a class="headerlink" href="#merge-with-compustatcrsp" title="Permanent link">¶</a></h2>
 <p>The firm identifier in the Y-9C data is <code>RSSD9001</code>. To merge the BHC's balance
 sheet data with Compustat/CRSP, I use the <code>PERMCO-RSSD</code> link table by the
 Federal Reserve Bank of New York.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> I saved the most recent copy in my server,
@@ -1150,7 +1150,7 @@ https://mingze-gao.com/data/download/crsp_20181231.csv.</p>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="k">select</span> *
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">from</span> crsp<span class="m">.</span>ccmxpf_lnkhist
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">where</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    linktype <span class="k">in</span> (<span class="s">&quot;LU&quot;</span>, <span class="s">&quot;LC&quot;</span>) <span class="k">and</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    linktype <span class="k">in</span> (<span class="s">"LU"</span>, <span class="s">"LC"</span>) <span class="k">and</span>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    (<span class="nv">&amp;end_yr</span><span class="m">+1</span> &gt;= <span class="nb">year(</span>linkdt) <span class="k">or</span> linkdt = .B) <span class="k">and</span> 
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>    (<span class="nv">&amp;beg_yr</span><span class="m">-1</span> &lt;= <span class="nb">year(</span>linkenddt) <span class="k">or</span> linkenddt = .E)
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="k">order</span> <span class="k">by</span> 
@@ -1159,7 +1159,7 @@ https://mingze-gao.com/data/download/crsp_20181231.csv.</p>
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="c">/* PERMCO-RSSD link table by New York FED */</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="k">filename</span> csv url <span class="s">&quot;https://mingze-gao.com/data/download/crsp_20181231.csv&quot;</span><span class="kr">;</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="k">filename</span> csv url <span class="s">"https://mingze-gao.com/data/download/crsp_20181231.csv"</span><span class="kr">;</span>
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="kr">proc import </span>datafile=csv <span class="k">out</span>=work<span class="m">.</span>crsp_20181231 dbms=csv <span class="k">replace</span><span class="kr">; run;</span>
 </span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="kr">proc sql;</span>
 </span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="k">create</span> <span class="k">table</span> gvkey_permno_permco_rssd <span class="k">as</span> 
@@ -1174,13 +1174,13 @@ https://mingze-gao.com/data/download/crsp_20181231.csv.</p>
 in order to run locally with SAS/Connect.</p>
 </div>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:1">
-<p>https://www.newyorkfed.org/research/banking_research/datasets.html&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>https://www.newyorkfed.org/research/banking_research/datasets.html <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 </ol>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

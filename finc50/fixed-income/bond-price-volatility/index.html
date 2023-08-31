@@ -18,7 +18,7 @@
         <link rel="prev" href="../bond-yields-and-returns/">
       
       
-        <link rel="next" href="../../stata/">
+        <link rel="next" href="../yield-curve/">
       
       
         
@@ -705,6 +705,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1073,6 +1075,39 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yield-curve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Yield Curve
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
     </li>
   
 
@@ -1475,7 +1510,7 @@
 
 
 <!-- Markdown content -->
-<h1 id="bond-price-volatility-sensitivity">Bond Price Volatility (Sensitivity)<a class="headerlink" href="#bond-price-volatility-sensitivity" title="Permanent link">&para;</a></h1>
+<div><h1 id="bond-price-volatility-sensitivity">Bond Price Volatility (Sensitivity)<a class="headerlink" href="#bond-price-volatility-sensitivity" title="Permanent link">¶</a></h1>
 <p>A (plain vanilla) bond's price <span class="arithmatex">\(P\)</span> is nothing but a function of some input parameters, including coupon rate <span class="arithmatex">\(C\)</span>, time to maturity <span class="arithmatex">\(t\)</span>, yield <span class="arithmatex">\(y\)</span>, face value <span class="arithmatex">\(F\)</span>, among others:</p>
 <div class="arithmatex">\[
 P=f(C,t,y,F)
@@ -1486,9 +1521,9 @@ P=f(C,t,y,F)
 <p>As a manager of a bond portfolio, for example, you will need to understand the sensitivity of bond value: to which factors and by how much. This allows you to better manage the risk and build trading strategies.</p>
 </div>
 <p>Additionally, for a given bond, the coupon rate <span class="arithmatex">\(C\)</span> and face value <span class="arithmatex">\(F\)</span> will not change. That means we can primarily focus on a bond's price sensitivity w.r.t. yield, and how the time to maturity <span class="arithmatex">\(t\)</span> and other parameters affect such sensitivity.</p>
-<h2 id="price-sensitivity-to-yield">Price sensitivity to yield<a class="headerlink" href="#price-sensitivity-to-yield" title="Permanent link">&para;</a></h2>
+<h2 id="price-sensitivity-to-yield">Price sensitivity to yield<a class="headerlink" href="#price-sensitivity-to-yield" title="Permanent link">¶</a></h2>
 <p>As we have <a href="/finc50/fixed-income/bond-prices-and-yields/#price-and-yield-to-maturity">previously discussed</a>, a bond's price and its yield has an <strong>inverse, non-linear</strong> relationship. More importantly, the non-linearity shows that <mark>the same unit change in yield has different impacts on bond's price</mark>: the higher the yield is, the smaller the impact of a given unit change in yield, other things equal.</p>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's price and yield, made by Mingze Gao",
   "width": 700,
@@ -1668,8 +1703,8 @@ P=f(C,t,y,F)
 \frac{\partial P}{\partial {\color{red}y}}
 \]</div>
 </div>
-<h2 id="measure-of-price-yield-sensitivity-duration">Measure of price-yield sensitivity: Duration<a class="headerlink" href="#measure-of-price-yield-sensitivity-duration" title="Permanent link">&para;</a></h2>
-<h3 id="macaulay-duration">Macaulay Duration<a class="headerlink" href="#macaulay-duration" title="Permanent link">&para;</a></h3>
+<h2 id="measure-of-price-yield-sensitivity-duration">Measure of price-yield sensitivity: Duration<a class="headerlink" href="#measure-of-price-yield-sensitivity-duration" title="Permanent link">¶</a></h2>
+<h3 id="macaulay-duration">Macaulay Duration<a class="headerlink" href="#macaulay-duration" title="Permanent link">¶</a></h3>
 <p>Let's take a closer look at the bond price sensitivity to yield <span class="arithmatex">\(\frac{\partial P}{\partial y}\)</span>.</p>
 <p>Recall that bond price <span class="arithmatex">\(P=f(C,t,{\color{red}y},F)\)</span>, so its partial derivative w.r.t. yield <span class="arithmatex">\(\color{red}y\)</span> is given by: </p>
 <div class="arithmatex">\[
@@ -1711,7 +1746,7 @@ P=f(C,t,y,F)
 &amp;=-\frac{1}{1+y} \left[P\times{\text{Macaulay Duration}}\right]
 \end{align*}
 \]</div>
-<h3 id="modified-duration">Modified Duration<a class="headerlink" href="#modified-duration" title="Permanent link">&para;</a></h3>
+<h3 id="modified-duration">Modified Duration<a class="headerlink" href="#modified-duration" title="Permanent link">¶</a></h3>
 <p>If we define <strong>Modified Duration</strong> as</p>
 <div class="arithmatex">\[
 \text{Modified Duration} = \frac{\text{Macaulay Duration}}{1+y}
@@ -1724,7 +1759,7 @@ P=f(C,t,y,F)
 &amp;=-P\times{\text{Modified Duration}}
 \end{align*}
 \]</div>
-<h3 id="how-to-use-durations">How to use durations?<a class="headerlink" href="#how-to-use-durations" title="Permanent link">&para;</a></h3>
+<h3 id="how-to-use-durations">How to use durations?<a class="headerlink" href="#how-to-use-durations" title="Permanent link">¶</a></h3>
 <p>We can now use durations to approximate the dollar or percentage change in bond price given a small change in yield. Specifically, for a small change in yield <span class="arithmatex">\(\Delta y\)</span>,</p>
 <p>the dollar change in bond price <span class="arithmatex">\(\Delta P\)</span> is</p>
 <div class="arithmatex">\[
@@ -1738,16 +1773,16 @@ P=f(C,t,y,F)
 <p class="admonition-title">PV01</p>
 <p>People are particularly interested in the price movement of a bond given a one-basis-point change in yield, or <strong>PV01</strong>, which is essentially <span class="arithmatex">\(\Delta P\)</span> given <span class="arithmatex">\(\Delta y=0.0001\)</span>.</p>
 </div>
-<h3 id="duration-of-a-bond-portfolio">Duration of a bond portfolio<a class="headerlink" href="#duration-of-a-bond-portfolio" title="Permanent link">&para;</a></h3>
+<h3 id="duration-of-a-bond-portfolio">Duration of a bond portfolio<a class="headerlink" href="#duration-of-a-bond-portfolio" title="Permanent link">¶</a></h3>
 <p>A good thing about duration is that it's additive, meaning that the duration of a portfolio of bonds is simply the value-weighted average of individual bonds' durations.</p>
-<h2 id="adjusting-for-convexity">Adjusting for Convexity<a class="headerlink" href="#adjusting-for-convexity" title="Permanent link">&para;</a></h2>
+<h2 id="adjusting-for-convexity">Adjusting for Convexity<a class="headerlink" href="#adjusting-for-convexity" title="Permanent link">¶</a></h2>
 <p>Earlier we mentioned that the price-yield relationship is non-linear and <strong>convex</strong>. In simple terms, it means the sensitivity of bond price to yield is decreasing in yield, i.e., when yield is high, a given unit change in yield has a smaller impact on bond price.</p>
 <p>Intuitively, <mark>as yield increases, bond duration decreases</mark>. So, looking at the bond price sensitivity formulae above, we can notice that <span class="arithmatex">\(\partial y\)</span> should also change durations, which were assumed constant. This failure to adjust bond duration when computing the price change due to yield change leads to an underestimation of true price. We can correct it by adjusting for bond convexity.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>From the graph below, we can see that using only duration to approximate bond price is like assuming a linear price-yield relation. Given that the price-yield relation is convex, this means we would underestimate the bond price. The vertical difference between the curved line and dotted straight line is where adjustment for convexity comes in.</p>
 </div>
-<p><vegachart style='width: 100%'  class="vegalite">{
+<p><vegachart style="width: 100%" class="vegalite">{
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A chart of bond's convexity, made by Mingze Gao",
   "width": 700,
@@ -1988,7 +2023,7 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 <p>where higher order terms are ignored because they are too small.</p>
 </div>
 <p>As such, approximating a bond price's change can be better achieved using both duration and convexity.</p>
-<h3 id="impact-of-coupon-rate-on-convexity">Impact of coupon rate on convexity<a class="headerlink" href="#impact-of-coupon-rate-on-convexity" title="Permanent link">&para;</a></h3>
+<h3 id="impact-of-coupon-rate-on-convexity">Impact of coupon rate on convexity<a class="headerlink" href="#impact-of-coupon-rate-on-convexity" title="Permanent link">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">In the graph above, change coupon rate to 0%. What do you find?</p>
 <p>Adjusting only coupon rate, the bond's yield and maturity stay unchanged. The bond price declines, duration goes up, though the slope of the tangent line at yield decreases.</p>
@@ -1997,9 +2032,9 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 <ol>
 <li>Note that it does not necessarily mean that the price-yield curve is more convex! In the graph above, if we change coupon rate to lower than 5%, the blue-colored curve seems less convex than the baseline red curve (5% coupon), but the low-coupon (blue) bond's convexity is higher. Remember we need to scaled by the bond price, and the low-coupon bond's price is lower.</li>
 </ol>
-<h2 id="approximating-duration-and-convexity">Approximating duration and convexity<a class="headerlink" href="#approximating-duration-and-convexity" title="Permanent link">&para;</a></h2>
+<h2 id="approximating-duration-and-convexity">Approximating duration and convexity<a class="headerlink" href="#approximating-duration-and-convexity" title="Permanent link">¶</a></h2>
 <p>When a bond has embedded options, an analytical solution of bond price can be hard or impossible to get. The lack of an exact bond price function means that we will not be able to compute its partial derivatives, and we have to use approximations to gauge its duration and convexity.</p>
-<h3 id="duration-approximation">Duration approximation<a class="headerlink" href="#duration-approximation" title="Permanent link">&para;</a></h3>
+<h3 id="duration-approximation">Duration approximation<a class="headerlink" href="#duration-approximation" title="Permanent link">¶</a></h3>
 <p class="annotate">Conceptually, (modified) duration captures the change in bond price given a small change in yield. So, we can approximate a bond's duration by computing (1) the average price changes given a small change in yield in both directions:</p>
 <ol>
 <li>If the exact pricing function is not available due to complex embedded options, we can try to use Monte Carlo simulations to compute an expected value.</li>
@@ -2010,7 +2045,7 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 &amp;= \frac{P_--P_+}{2P_0\cdot \Delta y}
 \end{align*}
 \]</div>
-<h3 id="convexity-approximation">Convexity approximation<a class="headerlink" href="#convexity-approximation" title="Permanent link">&para;</a></h3>
+<h3 id="convexity-approximation">Convexity approximation<a class="headerlink" href="#convexity-approximation" title="Permanent link">¶</a></h3>
 <p class="annotate">Similarly and conceptually, bond convexity captures the asymmetric changes in price given a small change in yield to the positive and to the negative directions. So, we can approximate a bond's (dollar) convexity by computing (1) the difference in price changes given a small change in yield in both directions:</p>
 <ol>
 <li>Or by simulation.</li>
@@ -2026,7 +2061,7 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 <p>Imagine you're a manager of a bond portfolio. Some bonds in the portfolio are exotic and have complex embedded options: this is very common.</p>
 <p>How do you understand the risk of the portfolio, in terms of its value sensitivity to yield?</p>
 <p>You can have a powerful computer program that continuously compute the approximate duration and convexity of each bond in the portfolio, perhaps using Monte Carlo simulations to value those bonds with embedded options. Therefore, you can have a real-time measure of the portfolio's risk exposure to yield changes.</p>
-</div>
+</div></div>
 
 <!-- Source file information -->
 
@@ -2107,13 +2142,13 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
         
         
           
-          <a href="../../stata/" class="md-footer__link md-footer__link--next" aria-label="Next: Stata Workshop" rel="next">
+          <a href="../yield-curve/" class="md-footer__link md-footer__link--next" aria-label="Next: Yield Curve" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Stata Workshop
+                Yield Curve
               </div>
             </div>
             <div class="md-footer__button md-icon">

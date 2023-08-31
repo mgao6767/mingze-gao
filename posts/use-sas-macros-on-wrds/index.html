@@ -1061,20 +1061,20 @@
 
 
 <!-- Markdown content -->
-<h1 id="use-sas-macros-on-wrds">Use SAS Macros on WRDS<a class="headerlink" href="#use-sas-macros-on-wrds" title="Permanent link">&para;</a></h1>
+<div><h1 id="use-sas-macros-on-wrds">Use SAS Macros on WRDS<a class="headerlink" href="#use-sas-macros-on-wrds" title="Permanent link">¶</a></h1>
 <p>The <a href="https://wrds-www.wharton.upenn.edu/">Wharton Research Data Services (WRDS)</a> provides quite a handful of SAS macros that can be used directly. This article explains how to use those handy macros on WRDS when you use remote submission to run your code on the WRDS cloud. Lastly, it explains how to load and use third-party SAS macros from a URL.</p>
 <!-- more -->
 
-<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">¶</a></h2>
 <p>Before everything, just make sure that this <code>autoexec.sas</code> is located in the home folder on your WRDS cloud.</p>
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c">*  The library name definitions below are used by SAS;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c">*  Assign default libref for WRDS (Wharton Research Data Services);</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nf">%include</span> <span class="s">&#39;/wrds/lib/utility/wrdslib.sas&#39;</span>;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">options</span> sasautos=(<span class="s">&#39;/wrds/wrdsmacros/&#39;</span>, SASAUTOS) MAUTOSOURCE;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nf">%include</span> <span class="s">'/wrds/lib/utility/wrdslib.sas'</span>;
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">options</span> sasautos=(<span class="s">'/wrds/wrdsmacros/'</span>, SASAUTOS) MAUTOSOURCE;
 </span></code></pre></div>
 <p>This code runs automatically when you've connected to the WRDS cloud. The first line assigns the default library references for you to use, e.g. <code>comp</code> for Compustat. The second line makes available the macros. A list of these handy macros is available at the <a href="https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/">WRDS documentation</a>.</p>
 <p>If you don't have this SAS code in the home folder, simply create one there or you can choose to include these two lines of code in your remotely submitted code.</p>
-<h2 id="simple-usage">Simple usage<a class="headerlink" href="#simple-usage" title="Permanent link">&para;</a></h2>
+<h2 id="simple-usage">Simple usage<a class="headerlink" href="#simple-usage" title="Permanent link">¶</a></h2>
 <p>Let's say we want to winsorize a dataset by using the macro provided by WRDS (<a href="https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/">full code</a>). Below is an example of winsorizing Total Assets <code>AT</code> of Compustat sample by fiscal year from 1980 to 2018.</p>
 <div class="language-sas highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -1117,7 +1117,7 @@
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">set</span> comp<span class="m">.</span>funda;
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="k">if</span> <span class="m">1980</span> &lt;= fyear &lt;= <span class="m">2018</span>;
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="c">/* Generic filter */</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">if</span> indfmt=<span class="s">&#39;INDL&#39;</span> <span class="k">and</span> datafmt=<span class="s">&#39;STD&#39;</span> <span class="k">and</span> popsrc=<span class="s">&#39;D&#39;</span> <span class="k">and</span> consol=<span class="s">&#39;C&#39;</span><span class="kr">;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">if</span> indfmt=<span class="s">'INDL'</span> <span class="k">and</span> datafmt=<span class="s">'STD'</span> <span class="k">and</span> popsrc=<span class="s">'D'</span> <span class="k">and</span> consol=<span class="s">'C'</span><span class="kr">;</span>
 </span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="kr">run;</span>
 </span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c">/* Invoke the macro */</span>
@@ -1142,15 +1142,15 @@
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">%WINSORIZE</span>(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=<span class="m">1</span>,TRIM=<span class="m">0</span>);
 </span></code></pre></div>
 <p>However, one thing to note about this particular winsorization macro by WRDS is that a variable named <code>a</code> is used in line 57 and 59. So if the <code>INSET</code> has a variable named <code>a</code> as well, there’ll be possible data integrity issue. Hence, I prefer to use another version described in my other post <a href="https://mingze-gao.com/posts/winsorization-in-sas/">Winsorization in SAS</a>.</p>
-<h2 id="load-sas-macros-from-url">Load SAS macros from URL<a class="headerlink" href="#load-sas-macros-from-url" title="Permanent link">&para;</a></h2>
+<h2 id="load-sas-macros-from-url">Load SAS macros from URL<a class="headerlink" href="#load-sas-macros-from-url" title="Permanent link">¶</a></h2>
 <p>I tend to collect and store all useful macros on my personal server, hence I don't need to worry about a loss of or changes to the macros. To use these macros, simply include them before invoking.</p>
-<div class="language-sas highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">filename</span> winsor url <span class="s">&quot;https://mingze-gao.com/utils/winsor.sas&quot;</span>;
+<div class="language-sas highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">filename</span> winsor url <span class="s">"https://mingze-gao.com/utils/winsor.sas"</span>;
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nf">%include</span> winsor;
 </span></code></pre></div>
 <p>Then, I can simply call <code>winsor</code> as below.</p>
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">%let</span> winsVars = tac inv_at_l drev drevadj ppe roa;
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nf">%winsor</span>(dsetin=work<span class="m">.</span>funda, dsetout=work<span class="m">.</span>funda_wins, byvar=fyear, vars=<span class="nv">&amp;winsVars</span>, type=winsor, pctl=<span class="m">1</span> <span class="m">99</span>);
-</span></code></pre></div>
+</span></code></pre></div></div>
 
 <!-- Source file information -->
 

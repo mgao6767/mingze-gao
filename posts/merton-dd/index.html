@@ -1130,11 +1130,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="estimate-merton-distance-to-default">Estimate Merton Distance-to-Default<a class="headerlink" href="#estimate-merton-distance-to-default" title="Permanent link">&para;</a></h1>
+<div><h1 id="estimate-merton-distance-to-default">Estimate Merton Distance-to-Default<a class="headerlink" href="#estimate-merton-distance-to-default" title="Permanent link">¶</a></h1>
 <p>Merton (1974) Distance to Default (DD) model is useful in forecasting defaults. This post documents a few ways to empirically estimate Merton DD (and default probability) as in Bharath and Shumway (2008 RFS).</p>
 <!-- more -->
 
-<h2 id="the-merton-model">The Merton Model<a class="headerlink" href="#the-merton-model" title="Permanent link">&para;</a></h2>
+<h2 id="the-merton-model">The Merton Model<a class="headerlink" href="#the-merton-model" title="Permanent link">¶</a></h2>
 <p>The total value of a firm follows geometric Brownian motion,</p>
 <div class="arithmatex">\[
 \begin{equation}
@@ -1207,8 +1207,8 @@ DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 \pi_{Merton} = \mathcal{N}\left(-DD\right)
 \end{equation}
 \]</div>
-<h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">&para;</a></h2>
-<h3 id="an-iterative-approach">An iterative approach<a class="headerlink" href="#an-iterative-approach" title="Permanent link">&para;</a></h3>
+<h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">¶</a></h2>
+<h3 id="an-iterative-approach">An iterative approach<a class="headerlink" href="#an-iterative-approach" title="Permanent link">¶</a></h3>
 <p>To estimate <span class="arithmatex">\(\pi_{Merton}\)</span>, an iterative procedure can be applied instead of solving equations (2) and (5) simultaneously (see Crosbie and Bohn (2003), Vassalou and Xing (2004), Bharath and Shumway (2008), etc.).</p>
 <ol>
 <li>Set the initial value of <span class="arithmatex">\(\sigma_V=\sigma_E[E/(E+F)]\)</span>.</li>
@@ -1217,7 +1217,7 @@ DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 <li>Repeat steps 2 to 3 until <span class="arithmatex">\(\sigma_V\)</span> converges, i.e., the absolute difference in adjacent estimates is less than <span class="arithmatex">\(10^{-3}\)</span>.</li>
 <li>Use <span class="arithmatex">\(\sigma_V\)</span> and <span class="arithmatex">\(\mu\)</span> in equations (6) and (7) to calculate <span class="arithmatex">\(\pi_{Merton}\)</span>.</li>
 </ol>
-<h3 id="a-naive-approach">A naïve approach<a class="headerlink" href="#a-naive-approach" title="Permanent link">&para;</a></h3>
+<h3 id="a-naive-approach">A naïve approach<a class="headerlink" href="#a-naive-approach" title="Permanent link">¶</a></h3>
 <p>A naïve approach by Bharath and Shumway (2008) that does not solve equations (2) and (5) is constructed as below.</p>
 <ol>
 <li>Approximate the market value of debt with the face value of debt, so that <span class="arithmatex">\(D=F\)</span>.</li>
@@ -1237,10 +1237,10 @@ DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 \pi_{\text{naïve}} = \mathcal{N}(-\text{naïve } DD)
 \end{equation}
 \]</div>
-<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
+<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">¶</a></h2>
 <p>The naïve method is too simple and skipped for now. </p>
 <p>Here I discuss the iterative approach.</p>
-<h3 id="original-sas-code-in-bharath-and-shumway-2008-rfs">Original SAS code in Bharath and Shumway (2008 RFS)<a class="headerlink" href="#original-sas-code-in-bharath-and-shumway-2008-rfs" title="Permanent link">&para;</a></h3>
+<h3 id="original-sas-code-in-bharath-and-shumway-2008-rfs">Original SAS code in Bharath and Shumway (2008 RFS)<a class="headerlink" href="#original-sas-code-in-bharath-and-shumway-2008-rfs" title="Permanent link">¶</a></h3>
 <p>The original code is enclosed in the <a href="https://ssrn.com/abstract=637342">SSRN version</a> of Bharath and Shumway (2008), and was available on <a href="http://www-personal.umich.edu/~shumway/papers.dir/nuiter99_print.sas">Shumway's website</a>.</p>
 <p>However, there are two issues in this version of code:</p>
 <ol>
@@ -1251,9 +1251,9 @@ DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 </ol>
 <p>Other issues are minor and harmless.</p>
 <p>A copy of this version can be found here on <a href="https://gist.github.com/mgao6767/12e3d99cd1bc55eee42bbe57d87fa042">GitHub</a>.</p>
-<h3 id="my-code">My code<a class="headerlink" href="#my-code" title="Permanent link">&para;</a></h3>
+<h3 id="my-code">My code<a class="headerlink" href="#my-code" title="Permanent link">¶</a></h3>
 <p>Based on the original SAS code in Bharath and Shumway (2008), I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I've corrected the above issues.</p>
-<script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
+<script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script></div>
 
 <!-- Source file information -->
 

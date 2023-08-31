@@ -703,6 +703,8 @@
       
         
       
+        
+      
     
     
       
@@ -1472,11 +1474,11 @@
 
 
 <!-- Markdown content -->
-<h1 id="stata-introduction">Stata - Introduction<a class="headerlink" href="#stata-introduction" title="Permanent link">&para;</a></h1>
+<div><h1 id="stata-introduction">Stata - Introduction<a class="headerlink" href="#stata-introduction" title="Permanent link">¶</a></h1>
 <p><a href="https://www.stata.com">Stata</a> is a powerful statistical analysis software that we often use in empirical researches. This series of posts aims to provide some basic knowledge for junior researchers to get started with Stata, as well as some personal tips on more efficiently using Stata in research projects.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<h2 id="stata-gui">Stata GUI<a class="headerlink" href="#stata-gui" title="Permanent link">&para;</a></h2>
+<h2 id="stata-gui">Stata GUI<a class="headerlink" href="#stata-gui" title="Permanent link">¶</a></h2>
 <p>The Graphical User Interface (GUI) of Stata looks like this:</p>
-<p><img alt="stata-gui" src="../images/gui.png" /></p>
+<p><img alt="stata-gui" src="../images/gui.png"></p>
 <p>This is the default layout of Stata 16. Some preset preferences can be found via menu option <code>Edit&gt;Preferences&gt;Load preference set</code>. You can also save your personal preferences (color theme, layout, etc.) in the <code>Edit&gt;Preference</code> menu.</p>
 <p>Of the many windows of the GUI, we are mostly interested in the <strong>Results</strong> window (<code>Ctrl+2</code>) where outputs are displayed. While all other windows can be hidden or closed, the <strong>Results</strong> window always remains center of the GUI.</p>
 <p>The <strong>Command</strong> window (<code>Ctrl+1</code>) is where we mostly interact with Stata by entering Stata commands. Since usually we need a group of commands to complete a task, it is a good idea to place them together in a <strong>do file</strong> (with the extension <code>.do</code>), which is the file type native to Stata, just like <code>.py</code> file to Python. Later, we will introduce the Stata's <strong>Do Editor</strong> (<code>Ctrl+9</code>) as a nice editor for <code>.do</code> files.</p>
@@ -1484,19 +1486,19 @@
 <p class="admonition-title">Tip</p>
 <p>As a researcher, keeping good record of the programs and codes used is a merit. For oneself, it boosts productivity as more codes are accumulated. Beyond that, it ensures all results can be replicated even years later. Nowadays, more and more top journals also require submission of the codes used in the paper.</p>
 </div>
-<h2 id="basic-demonstration">Basic demonstration<a class="headerlink" href="#basic-demonstration" title="Permanent link">&para;</a></h2>
+<h2 id="basic-demonstration">Basic demonstration<a class="headerlink" href="#basic-demonstration" title="Permanent link">¶</a></h2>
 <p>Now let's start tying our first Stata command in the <strong>Command</strong> window.</p>
-<h3 id="working-directory">Working directory<a class="headerlink" href="#working-directory" title="Permanent link">&para;</a></h3>
+<h3 id="working-directory">Working directory<a class="headerlink" href="#working-directory" title="Permanent link">¶</a></h3>
 <p>First, let's type <a href="https://www.stata.com/manuals/dcd.pdf"><code>pwd</code></a> (and hit <code>Eneter</code>), which is a command to display the current working directory. Knowing the current working directory, for example, allows you to use <a href="https://en.wikipedia.org/wiki/Path_(computing)#Absolute_and_relative_paths">relative path</a> correctly.</p>
 <p>Throughout this series, I'll follow the tradition and prefix all Stata commands with <code>.</code>, hence <code>. pwd</code> meaning "enter the <code>pwd</code> command in the Command window":</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.<span class="k"> pwd</span>
 </span></code></pre></div>
 <p>From the <strong>Results</strong> window, we can see a line of text like "C:\Users\mgao\Documents", which is the output of executing the <code>pwd</code> command, i.e., the current working directory of Stata on my PC.</p>
 <p>We can change the current working directory to another directory on the computer via the command <a href="https://www.stata.com/manuals/dcd.pdf"><code>cd</code></a>, for example:</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> cd</span> <span class="s">&quot;C:\Users\mgao\Dropbox (Sydney Uni)\BUSS7902 Stata&quot;</span>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> cd</span> <span class="s">"C:\Users\mgao\Dropbox (Sydney Uni)\BUSS7902 Stata"</span>
 </span></code></pre></div>
 <p>Then we can verify that it's indeed changed by <code>pwd</code> again.</p>
-<h3 id="structure-of-a-stata-command">Structure of a Stata command<a class="headerlink" href="#structure-of-a-stata-command" title="Permanent link">&para;</a></h3>
+<h3 id="structure-of-a-stata-command">Structure of a Stata command<a class="headerlink" href="#structure-of-a-stata-command" title="Permanent link">¶</a></h3>
 <p>The above two examples (<code>pwd</code> and <code>cd</code>) already showcase the basic syntax structure of Stata commands. With a few exceptions, a Stata command is like:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>. _commmand_ _parameter1_ _parameter2_ ... , _options_
 </span></code></pre></div>
@@ -1511,15 +1513,15 @@
                [, options]</p>
 </blockquote>
 <p>where <code>cmd</code> is the name of a command and everything in <code>[ ]</code> is optional.</p>
-<Aside type="tip">
+<aside type="tip">
   You can use `. help syntax` to see more detailed explanation.
 
   In fact, Stata's help files are _so_ comprehensive that 99.99% of the time you should simply refer to the help files instead of Googling around...
-</Aside>
+</aside>
 
-<h3 id="some-other-quick-examples">Some other quick examples<a class="headerlink" href="#some-other-quick-examples" title="Permanent link">&para;</a></h3>
+<h3 id="some-other-quick-examples">Some other quick examples<a class="headerlink" href="#some-other-quick-examples" title="Permanent link">¶</a></h3>
 <p><a href="https://www.stata.com/manuals/pdisplay.pdf"><code>display</code></a> prints a message to the <strong>Results</strong> window:</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>.<span class="k"> display</span> <span class="s">&quot;hello world!&quot;</span>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>.<span class="k"> display</span> <span class="s">"hello world!"</span>
 </span></code></pre></div>
 <p><a href="https://www.stata.com/manuals/rcls.pdf"><code>cls</code></a> clears the <strong>Results</strong> window:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>. cls
@@ -1529,14 +1531,14 @@
 </span></code></pre></div>
 <p><a href="https://www.stata.com/manuals/rlog.pdf"><code>log</code></a> echos a copy of the session to file:</p>
 <p>Create a log file name <code>stata101.log</code> in the current working directory. The <code>replace</code> option asks Stata to replace the log file if it already exists. Untill <code>. log close</code>, everything displayed in <strong>Results</strong> will be saved in the log file.</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.<span class="k"> log</span> using <span class="s">&quot;stata101.log&quot;</span>,<span class="k"> replace</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>.<span class="k"> display</span> <span class="s">&quot;hello from Mingze&quot;</span>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.<span class="k"> log</span> using <span class="s">"stata101.log"</span>,<span class="k"> replace</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>.<span class="k"> display</span> <span class="s">"hello from Mingze"</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>.<span class="k"> log close</span>
 </span></code></pre></div>
 <p><code>cmdlog</code> is similar to <code>log</code> but records only the commands but no results.</p>
-<h2 id="what-about-regression">What about regression?<a class="headerlink" href="#what-about-regression" title="Permanent link">&para;</a></h2>
+<h2 id="what-about-regression">What about regression?<a class="headerlink" href="#what-about-regression" title="Permanent link">¶</a></h2>
 <p>Of course, Stata is famous for its superior statistical analysis. Let's see how regressions can be easily done in Stata.</p>
-<h3 id="load-dataset">Load dataset<a class="headerlink" href="#load-dataset" title="Permanent link">&para;</a></h3>
+<h3 id="load-dataset">Load dataset<a class="headerlink" href="#load-dataset" title="Permanent link">¶</a></h3>
 <p>We start by loading an example dataset that comes with Stata installation. This can be done via <a href="https://www.stata.com/manuals/dsysuse.pdf"><code>sysuse</code></a> command. We use the dataset named "auto":</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.<span class="k"> sysuse</span> auto
 </span></code></pre></div>
@@ -1547,7 +1549,7 @@
 </div>
 <p>We can now ask Stata to <a href="https://www.stata.com/manuals/ddescribe.pdf"><code>describe</code></a> the meta information of the dataset and <a href="https://www.stata.com/manuals/rsummarize.pdf"><code>summarize</code></a> the variables in terms of number of observations, mean, standard deviation, etc.</p>
 <p>The screenshot below shows the output:</p>
-<p><img alt="sysuse_auto" src="../images/sysuse_auto.png" /></p>
+<p><img alt="sysuse_auto" src="../images/sysuse_auto.png"></p>
 <p>Enlarge the output of <code>describe</code>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>. describe
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
@@ -1574,7 +1576,7 @@
 </span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>--------------------------------------------------------------------------------
 </span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>Sorted by: foreign
 </span></code></pre></div>
-<h3 id="run-regression">Run regression<a class="headerlink" href="#run-regression" title="Permanent link">&para;</a></h3>
+<h3 id="run-regression">Run regression<a class="headerlink" href="#run-regression" title="Permanent link">¶</a></h3>
 <p>Suppose we'd like to estimate a simple liner regression to study the relation between car price and mileage, headroom and weight:</p>
 <div class="arithmatex">\[
 price = \alpha + \beta_1 mpg + \beta_2 headroom + \beta_3 weight + \varepsilon
@@ -1583,25 +1585,25 @@ price = \alpha + \beta_1 mpg + \beta_2 headroom + \beta_3 weight + \varepsilon
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>.<span class="k"> regress</span> price mpg headroom weight
 </span></code></pre></div>
 <p>which would generate the following estimation results:</p>
-<p><img alt="reg_price" src="../images/reg_price.png" /></p>
-<h3 id="save-results">Save results<a class="headerlink" href="#save-results" title="Permanent link">&para;</a></h3>
+<p><img alt="reg_price" src="../images/reg_price.png"></p>
+<h3 id="save-results">Save results<a class="headerlink" href="#save-results" title="Permanent link">¶</a></h3>
 <p>One of the coolest things Stata can do is to export the tabulated regression results to Microsoft Word, PDF, LaTeX and more. </p>
-<h4 id="save-to-word">Save to Word<a class="headerlink" href="#save-to-word" title="Permanent link">&para;</a></h4>
+<h4 id="save-to-word">Save to Word<a class="headerlink" href="#save-to-word" title="Permanent link">¶</a></h4>
 <p>For example, we can save the previous results (as shown in the screenshot above) to a Word document named "table1" (<code>table1.docx</code>) easily with the following three lines of codes.</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>. putdocx begin
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>. putdocx<span class="k"> table</span> mytable = etable
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>. putdocx<span class="k"> save</span> table1<span class="m">.</span>docx,<span class="k"> replace</span>
 </span></code></pre></div>
 <p>Behind the scene, Stata creates a <code>.docx</code> to work with. <code>putdocx table</code> command creates a new table (mytable) in the <code>.docx</code> file containing estimation results (<code>etable</code> tells it to tabulates the coefficients from previous estimation). Lastly, Stata saves the <code>.docx</code> file as "table1.docx" in the current working directory.</p>
-<p><img alt="putdocx" src="../images/putdocx.png" /></p>
-<h4 id="save-to-latex">Save to LaTeX<a class="headerlink" href="#save-to-latex" title="Permanent link">&para;</a></h4>
+<p><img alt="putdocx" src="../images/putdocx.png"></p>
+<h4 id="save-to-latex">Save to LaTeX<a class="headerlink" href="#save-to-latex" title="Permanent link">¶</a></h4>
 <p>If working with LaTeX,  you can export results as TeX files conveniently too.</p>
 <p>For this purpose, though, an additional Stata package <a href="http://repec.sowi.unibe.ch/stata/estout/index.html"><code>estout</code></a> is required. Personally I'd say this is gold. You can install <code>estout</code> package via a single command in Stata:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>.<span class="k"> ssc</span> install estout,<span class="k"> replace</span>
 </span></code></pre></div>
 <p>Now, you can use the following two lines of codes: </p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>. eststo:<span class="k"> regress</span> price mpg headroom weight
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>. esttab using <span class="s">&quot;table1.tex&quot;</span>, tex<span class="k"> replace label</span> star(<span class="o">*</span> <span class="m">0.10</span> <span class="o">**</span> <span class="m">0.05</span> <span class="o">***</span> <span class="m">0.01</span>) nogaps<span class="k"> compress</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>. esttab using <span class="s">"table1.tex"</span>, tex<span class="k"> replace label</span> star(<span class="o">*</span> <span class="m">0.10</span> <span class="o">**</span> <span class="m">0.05</span> <span class="o">***</span> <span class="m">0.01</span>) nogaps<span class="k"> compress</span>
 </span></code></pre></div>
 <p>to produce a TeX file ("table1.tex") with the following content:</p>
 <div class="language-tex highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">{</span>
@@ -1634,13 +1636,13 @@ price = \alpha + \beta_1 mpg + \beta_2 headroom + \beta_3 weight + \varepsilon
 I deliberately make them oversimplified only to show you what Stata can do in making our lives much easier.</p>
 </div>
 <div class="footnote">
-<hr />
+<hr>
 <ol>
 <li id="fn:1">
-<p>I prepare this series of introductory course notes for the BUSS7902 Quantitative Business Research Methods for PhD students at the University of Sydney Business School in Semester 1, 2023.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>I prepare this series of introductory course notes for the BUSS7902 Quantitative Business Research Methods for PhD students at the University of Sydney Business School in Semester 1, 2023. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 </ol>
-</div>
+</div></div>
 
 <!-- Source file information -->
 

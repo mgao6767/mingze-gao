@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "An Illustrative Graph of Par Yields and Zero Rates, made by Mingze Gao",
+  "width": 700,
+  "height": 300,
+  "title": {
+    "text": "An Illustrative Graph of Par Yields and Zero Rates",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        { "year": 0.5, "par_yield": 1.05, "spot_rate": 1.05 },
+        { "year": 1, "par_yield": 1.2, "spot_rate": 1.2 },
+        { "year": 1.5, "par_yield": 1.5, "spot_rate": 1.5026393890380874 },
+        { "year": 2.0, "par_yield": 2.2, "spot_rate": 2.2146487236022976 },
+        { "year": 2.5, "par_yield": 2.4, "spot_rate": 2.417717552185062 },
+        { "year": 3.0, "par_yield": 2.8, "spot_rate": 2.8317731857299844 },
+        { "year": 3.5, "par_yield": 3, "spot_rate": 3.0386474132537877 },
+        { "year": 4.0, "par_yield": 3.4, "spot_rate": 3.4637652397155807 },
+        { "year": 4.5, "par_yield": 3.5, "spot_rate": 3.565935420989996 },
+        { "year": 5.0, "par_yield": 3.6, "spot_rate": 3.669886875152593 },
+        { "year": 5.5, "par_yield": 3.8, "spot_rate": 3.8880950450897283 },
+        { "year": 6.0, "par_yield": 4, "spot_rate": 4.1098044395446856 },
+        { "year": 6.5, "par_yield": 4.3, "spot_rate": 4.453684520721444 },
+        { "year": 7.0, "par_yield": 4.8, "spot_rate": 5.053358459472664 },
+        { "year": 7.5, "par_yield": 5, "spot_rate": 5.290201091766365 },
+        { "year": 8.0, "par_yield": 5.2, "spot_rate": 5.533113956451425 },
+        { "year": 8.5, "par_yield": 5.35, "spot_rate": 5.714883279800425 },
+        { "year": 9.0, "par_yield": 5.4, "spot_rate": 5.763193321228037 },
+        { "year": 9.5, "par_yield": 5.45, "spot_rate": 5.8138489723205655 },
+        { "year": 10.0, "par_yield": 5.5, "spot_rate": 5.866698265075694 }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": { "data": "table", "field": "year", "sort": true },
+      "range": "width"
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": { "data": "table", "field": "par_yield" },
+      "range": "height"
+    }
+  ],
+  "axes": [
+    { "orient": "bottom", "scale": "x", "title": "Maturity (years)" },
+    { "orient": "left", "scale": "y", "title": "Yield (%)" }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "fill": { "value": "steelblue" },
+          "x": { "scale": "x", "field": "year" },
+          "y": { "scale": "y", "field": "par_yield" },
+          "tooltip": { "value": "Par Yield" }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "from": { "data": "table" },
+      "encode": {
+        "update": {
+          "fill": { "value": "#d6001c" },
+          "x": { "scale": "x", "field": "year" },
+          "y": { "scale": "y", "field": "spot_rate" },
+          "tooltip": { "value": "Zero Rate" }
+        }
+      }
+    }
+  ]
+}

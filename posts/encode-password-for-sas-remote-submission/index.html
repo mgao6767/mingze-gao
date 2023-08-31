@@ -1038,7 +1038,7 @@
 
 
 <!-- Markdown content -->
-<h1 id="encode-password-for-sas-remote-submission">Encode Password for SAS Remote Submission<a class="headerlink" href="#encode-password-for-sas-remote-submission" title="Permanent link">&para;</a></h1>
+<div><h1 id="encode-password-for-sas-remote-submission">Encode Password for SAS Remote Submission<a class="headerlink" href="#encode-password-for-sas-remote-submission" title="Permanent link">¶</a></h1>
 <p>The <a href="https://wrds-www.wharton.upenn.edu/">Wharton Research Data Services (WRDS)</a>
 allows one to submit and execute SAS programs to the cloud. WRDS has an
 <a href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-sas/sas-from-your-computer/">instruction on accessing WRDS data from SAS on our own
@@ -1061,10 +1061,10 @@ password</a>.
 Concluding the two articles, basically you just need to follow the steps below.</p>
 <!-- more -->
 
-<h2 id="simple-steps">Simple Steps<a class="headerlink" href="#simple-steps" title="Permanent link">&para;</a></h2>
+<h2 id="simple-steps">Simple Steps<a class="headerlink" href="#simple-steps" title="Permanent link">¶</a></h2>
 <p>First, open your SAS program locally on your PC, run the following command
 and replace <code>1234567890</code> with your WRDS password:</p>
-<div class="language-sas highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">proc pwencode </span><span class="k">in</span>=<span class="s">&quot;1234567890&quot;</span><span class="kr">; run;</span>
+<div class="language-sas highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">proc pwencode </span><span class="k">in</span>=<span class="s">"1234567890"</span><span class="kr">; run;</span>
 </span></code></pre></div>
 <p>The output <code>{SAS002}23AA9C2811439227077603C8365060A44800CA1F</code> is the encoded
 password (which is <code>1234567890</code> in this example).</p>
@@ -1077,7 +1077,7 @@ never make public your password in any way.</p>
 replace <code>my_username</code> with your WRDS username:</p>
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">%let</span> wrds=wrds-cloud<span class="m">.</span>wharton<span class="m">.</span>upenn<span class="m">.</span>edu <span class="m">4016</span>;
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">options</span> comamid=TCP remote=WRDS;
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>signon username=my_username password=<span class="s">&quot;{SAS002}23AA9C2811439227077603C8365060A44800CA1F&quot;</span>;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>signon username=my_username password=<span class="s">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;
 </span></code></pre></div>
 <p>After these statements, you'll be able to submit your SAS program remotely to
 and execute on the WRDS server by enclosing your statements with <code>rsubmit</code> and
@@ -1094,7 +1094,7 @@ WRDS.</p>
 <p>Full code is as below.</p>
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">%let</span> wrds=wrds-cloud<span class="m">.</span>wharton<span class="m">.</span>upenn<span class="m">.</span>edu <span class="m">4016</span>;
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">options</span> comamid=TCP remote=WRDS;
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>signon username=my_username password=<span class="s">&quot;{SAS002}23AA9C2811439227077603C8365060A44800CA1F&quot;</span>;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>signon username=my_username password=<span class="s">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rsubmit<span class="kr">;</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="kr">proc download </span>data=comp<span class="m">.</span>funda <span class="k">out</span>=funda<span class="kr">; run;</span>
@@ -1104,11 +1104,10 @@ WRDS.</p>
 <p>Replace <code>my_username</code> and the encoded password with your actual WRDS username
 and encoded password, paste it in the SAS program editor and press <code>F3</code>. You'll
 be downloading <code>comp.funda</code> in a few seconds!</p>
-<h2 id="video-instruction">Video Instruction<a class="headerlink" href="#video-instruction" title="Permanent link">&para;</a></h2>
+<h2 id="video-instruction">Video Instruction<a class="headerlink" href="#video-instruction" title="Permanent link">¶</a></h2>
 <p>I made a short video introduction as well, available on my YouTube channel.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XB3kd1LNJbI"
-frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
-picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XB3kd1LNJbI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+picture-in-picture" allowfullscreen></iframe></div>
 
 <!-- Source file information -->
 

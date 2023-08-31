@@ -1048,13 +1048,13 @@
 
 
 <!-- Markdown content -->
-<h1 id="convert-between-numeric-and-character-variables">Convert Between Numeric and Character Variables<a class="headerlink" href="#convert-between-numeric-and-character-variables" title="Permanent link">&para;</a></h1>
+<div><h1 id="convert-between-numeric-and-character-variables">Convert Between Numeric and Character Variables<a class="headerlink" href="#convert-between-numeric-and-character-variables" title="Permanent link">¶</a></h1>
 <p>Converting between numeric and character variables is one of the most frequently
 encountered issues when processing datasets. This article explains how to do
 this conversion correctly and efficiently.</p>
 <!-- more -->
 
-<h2 id="numeric-to-character">Numeric to Character<a class="headerlink" href="#numeric-to-character" title="Permanent link">&para;</a></h2>
+<h2 id="numeric-to-character">Numeric to Character<a class="headerlink" href="#numeric-to-character" title="Permanent link">¶</a></h2>
 <p>Assume there's an imported dataset named <code>filings</code>, where <code>cik</code> is stored as a
 numeric variable as shown below:</p>
 <table>
@@ -1136,9 +1136,9 @@ dataset becomes:</p>
 </table>
 <p>In STATA, convert numeric variable to string with leading zeros (assuming
 6-digit fixed length) can be achieved via the <code>string()</code> function.</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">gen</span> char_var = <span class="nf">string</span>(num_var,<span class="s">&quot;%06.0f&quot;</span>)
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">gen</span> char_var = <span class="nf">string</span>(num_var,<span class="s">"%06.0f"</span>)
 </span></code></pre></div>
-<h2 id="character-to-numeric">Character to Numeric<a class="headerlink" href="#character-to-numeric" title="Permanent link">&para;</a></h2>
+<h2 id="character-to-numeric">Character to Numeric<a class="headerlink" href="#character-to-numeric" title="Permanent link">¶</a></h2>
 <p>In SAS, converting a character variable to a numeric one uses the <code>INPUT()</code>
 function:</p>
 <div class="language-sas highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>var_numeric = <span class="k">input</span>(var_char, best12.);
@@ -1158,7 +1158,7 @@ converted. In such a case, you may choose to use the <code>encode</code> command
 although it in fact is generating categories.</p>
 </div>
 <p>A more detailed explanation with examples is available at
-<a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-quickly-convert-many-string-variables-to-numericvariables/">stats.idre.ucla.edu</a></p>
+<a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-quickly-convert-many-string-variables-to-numericvariables/">stats.idre.ucla.edu</a></p></div>
 
 <!-- Source file information -->
 
