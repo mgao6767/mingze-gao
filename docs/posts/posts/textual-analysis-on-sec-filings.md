@@ -10,6 +10,8 @@ tags:
     - Code
 categories:
   - Research Notes
+links:
+  - Download SEC filings from EDGAR: /posts/download-sec-filings-from-edgar/
 ---
 
 # Textual Analysis on SEC Filings
@@ -21,6 +23,9 @@ Nowadays top journals favour more granular studies. Sometimes it's useful to dig
 !!! tip 
     If you don't require a very customized textual analysis, you should try
     for example [SeekEdgar.com](https://www.seekedgar.com/).
+
+!!! tip "Ready-to-use program"
+    (2023 update) I've made [a program specifically for downloading SEC filings from EDGAR](/posts/download-sec-filings-from-edgar/). So you can now skip the steps 1 and 2 below.
 
 ## 1. Build a master index of SEC filings
 
