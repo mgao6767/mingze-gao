@@ -18,7 +18,7 @@ links:
 This post documents how to download SEC filings from EDGAR using [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer), a Python program I wrote. It features:
 
 - [x] 3 commands only to download any type of filings for any period of time
-- [x] auto throattling of download speed to adhere to the SEC policy of fair use
+- [x] auto throttling of download speed to adhere to the SEC policy of fair use
 
 <!-- more -->
 
