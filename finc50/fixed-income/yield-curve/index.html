@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21+insiders-4.37.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.21+insiders-4.37.1">
     
     
       
@@ -116,7 +116,7 @@
               </button>
             
             
- Starting 2024, I'll be joinning <a href="https://www.mq.edu.au/">Macquarie University</a> as a Lecturer in Finance! 😄
+From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie University</a> as a Lecturer in Finance! 😄
 
           </div>
           
@@ -705,8 +705,6 @@
       
         
       
-        
-      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -794,32 +792,6 @@
     
   
     Prices and Yields
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../bond-yields-and-returns/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Yields and Returns
   
 
     
@@ -2090,10 +2062,36 @@ P(\text{2.5yr } y_{2.5}\% \text{ TNote}) = \frac{0.5\times y_{2.5}}{1+\frac{r_{0
 <!-- Get setting from mkdocs.yml, but allow page-level overrides -->
 
 
-  
-
 
 <!-- Inject Disqus into current page -->
+
+  <h2 id="__comments">Comments</h2>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = "https://mingze-gao.com/finc50/fixed-income/yield-curve/"
+      this.page.identifier =
+        "finc50/fixed-income/yield-curve/" 
+    }
+
+    /* Set up for the first time */
+    if (typeof DISQUS === "undefined") {
+      var script = document.createElement("script")
+      script.async = true
+      script.src = "https://mingze-gao.disqus.com/embed.js"
+      script.setAttribute("data-timestamp", Date.now())
+
+      /* Inject script tag */
+      document.body.appendChild(script)
+
+    /* Set up on navigation (instant loading) */
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      })
+    }
+  </script>
 
                 
               </article>
