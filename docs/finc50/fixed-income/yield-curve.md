@@ -1,5 +1,5 @@
 ---
-disqus: ""
+disqus: true
 status: new
 ---
 
