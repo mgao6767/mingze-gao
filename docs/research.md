@@ -53,7 +53,7 @@ hide:
 
 - FIRN 2023 (scheduled), Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
-"**Borrower Technology Similarity and Bank Loan Contracting**", with Yunying Huang, Steven Ongena and Eliza Wu.
+"[**Borrower Technology Similarity and Bank Loan Contracting**"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
 - EFA 2023 (poster), FMA 2023, 35th AFBC.
 - Semifinalist for ___FMA 2023 Best Paper Awards___ (winners TBA).

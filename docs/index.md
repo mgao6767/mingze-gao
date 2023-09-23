@@ -31,5 +31,5 @@ Mingze has a strong background in programming and received First Prize in the 20
 ## News
 
 - 2023-09-18: I had the privilege of serving as a discussant at the 2023 FIRN-ANU Banking and Financial Stability Conference.
-- 2023-08-16: My paper "Borrower Technology Similarity and Bank Loan Contracting" with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a semifinalist for the Best Paper Awards of FMA Annual Meeting 2023. Winners TBA.
+- 2023-08-16: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a semifinalist for the Best Paper Awards of FMA Annual Meeting 2023. Winners TBA.
 - 2023-07-27: I will join Macquarie University as a Lecturer in Finance. Contract signed. Starting January 2024.
