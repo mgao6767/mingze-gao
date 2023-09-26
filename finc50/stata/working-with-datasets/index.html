@@ -1362,7 +1362,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 <p class="admonition-title">Recap</p>
 <p>We can use the command <code>sysuse</code> to use builtin datasets, and <code>use</code> to load other external datasets.</p>
 </div>
-<p>In the <a href="./introduction#load-dataset">introduction</a>, we briefly mentioned how to load Stata datasets to use. Now, let's take a more in-depth look at how we work with datasets in Stata.</p>
+<p>In the <a href="../introduction#load-dataset">introduction</a>, we briefly mentioned how to load Stata datasets to use. Now, let's take a more in-depth look at how we work with datasets in Stata.</p>
 <h2 id="datasets-here-and-there">Datasets, here and there<a class="headerlink" href="#datasets-here-and-there" title="Permanent link">¶</a></h2>
 <p>Datasets are stored at different places, locally on our computer's hard disk or remotely on a server. For Stata to use them, we need to load them into Stata, or putting them into memory.</p>
 <p>Because Stata commands (e.g., <code>summarize</code>, <code>describe</code>, <code>count</code>, etc.) operate on the <strong>current</strong> dataset in memory, working simultaneously on multiple datasets <em>was</em> painful -- one needs to save current, load the other dataset, perform tasks and save/load again. But since <mark>Stata 16</mark>, a feature called <code>frame</code> is introduced, where different datasets can be loaded into memory at the same time, but in different "frames". The chart below gives a simple illustration.</p>
