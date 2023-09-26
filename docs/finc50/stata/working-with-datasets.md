@@ -12,7 +12,7 @@ disqus: true
 
     We can use the command `sysuse` to use builtin datasets, and `use` to load other external datasets.
 
-In the [introduction](./introduction#load-dataset), we briefly mentioned how to load Stata datasets to use. Now, let's take a more in-depth look at how we work with datasets in Stata.
+In the [introduction](../introduction#load-dataset), we briefly mentioned how to load Stata datasets to use. Now, let's take a more in-depth look at how we work with datasets in Stata.
 
 ## Datasets, here and there
 
