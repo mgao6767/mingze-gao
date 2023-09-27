@@ -869,7 +869,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Return Equation
+          Return equation
         </span>
       
     </span>
@@ -882,7 +882,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Shock Equation
+          Shock equation
         </span>
       
     </span>
@@ -895,7 +895,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Volatility Equation
+          Volatility equation
         </span>
       
     </span>
@@ -908,7 +908,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Log-Likelihood Function
+          Log-likelihood function
         </span>
       
     </span>
@@ -958,6 +958,51 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Improvements
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Initial values
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variance-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Variance bounds
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1122,18 +1167,22 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 <h2 id="garch11-model">GARCH(1,1) Model<a class="headerlink" href="#garch11-model" title="Permanent link">¶</a></h2>
 <p>The GARCH(1,1) (Generalized Autoregressive Conditional Heteroskedasticity) model is a commonly used model for capturing the time-varying volatility in financial time series data. The model can be defined as follows:</p>
-<h3 id="return-equation">Return Equation<a class="headerlink" href="#return-equation" title="Permanent link">¶</a></h3>
+<h3 id="return-equation">Return equation<a class="headerlink" href="#return-equation" title="Permanent link">¶</a></h3>
 <p>There are many ways to specify return dynamics. Let's focus on the simplest one assuming a constant mean.</p>
 <div class="arithmatex">\[
 r_t = \mu + \epsilon_t
 \]</div>
 <p>Here <span class="arithmatex">\( r_t \)</span> represents the return at time <span class="arithmatex">\( t \)</span>, and <span class="arithmatex">\( \mu \)</span> is the mean return.</p>
-<h3 id="shock-equation">Shock Equation<a class="headerlink" href="#shock-equation" title="Permanent link">¶</a></h3>
+<h3 id="shock-equation">Shock equation<a class="headerlink" href="#shock-equation" title="Permanent link">¶</a></h3>
 <div class="arithmatex">\[
 \epsilon_t = \sigma_t \cdot z_t
 \]</div>
 <p>In this equation, <span class="arithmatex">\( \epsilon_t \)</span> is the shock term, <span class="arithmatex">\( \sigma_t \)</span> is the conditional volatility, and <span class="arithmatex">\( z_t \)</span> is a white noise error term with zero mean and unit variance (<span class="arithmatex">\( z_t \sim N(0,1) \)</span>).</p>
-<h3 id="volatility-equation">Volatility Equation<a class="headerlink" href="#volatility-equation" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can also assume that the noise term follows a different distribution, such as Student-t, and modify the likelihood function below accordingly.</p>
+</div>
+<h3 id="volatility-equation">Volatility equation<a class="headerlink" href="#volatility-equation" title="Permanent link">¶</a></h3>
 <div class="arithmatex">\[
 \sigma_t^2 = \omega + \alpha \cdot \epsilon_{t-1}^2 + \beta \cdot \sigma_{t-1}^2
 \]</div>
@@ -1147,15 +1196,11 @@ r_t = \mu + \epsilon_t
 \]</div>
 <p>In this formulation, <span class="arithmatex">\(\omega\)</span> is the constant or "base" level of volatility, while <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span> determine how shocks to returns and past volatility influence future volatility. The unconditional variance provides a long-run average level around which the conditional variance oscillates.</p>
 </div>
-<h3 id="log-likelihood-function">Log-Likelihood Function<a class="headerlink" href="#log-likelihood-function" title="Permanent link">¶</a></h3>
+<h3 id="log-likelihood-function">Log-likelihood function<a class="headerlink" href="#log-likelihood-function" title="Permanent link">¶</a></h3>
 <p>The likelihood function for a GARCH(1,1) model is used for the estimation of parameters <span class="arithmatex">\(\mu\)</span>, <span class="arithmatex">\(\omega\)</span>, <span class="arithmatex">\(\alpha\)</span>, and <span class="arithmatex">\(\beta\)</span>. Given a time series of returns <span class="arithmatex">\( \{ r_1, r_2, \ldots, r_T \} \)</span>, the likelihood function <span class="arithmatex">\( L(\mu, \omega, \alpha, \beta) \)</span> can be written as:</p>
 <div class="arithmatex">\[
 L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}} \exp\left(-\frac{(r_t-\mu)^2}{2\sigma_t^2}\right)
 \]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This likelihood function assumes that the noise term <span class="arithmatex">\( z_t \)</span> follows a standard normal distribution. We can assume that the noise term follows a different distribution and modify the likelihood function accordingly.</p>
-</div>
 <p>Taking the natural logarithm of <span class="arithmatex">\( L \)</span>, we obtain the log-likelihood function <span class="arithmatex">\( \ell(\mu, \omega, \alpha, \beta) \)</span>:</p>
 <div class="arithmatex">\[
 \ell(\mu, \omega, \alpha, \beta) = -\frac{T}{2} \log(2\pi) - \frac{1}{2} \sum_{t=1}^{T} \left( \log(\sigma_t^2) + \frac{(r_t-\mu)^2}{\sigma_t^2} \right)
@@ -1234,7 +1279,7 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 </span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="n">ARCHModelResult</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mh">0x1cb7b8f4460</span>
 </span></code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">GARCH(1,1) in Stata</p>
 <p>To estimate GARCH(1,1) in Stata, use the following code:</p>
 <div class="language-stata highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> https:<span class="o">//</span>www<span class="m">.</span>stata<span class="o">-</span>press<span class="m">.</span>com<span class="o">/</span>data<span class="o">/</span>r18<span class="o">/</span>stocks,<span class="k"> clear</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">replace</span> toyota = toyota <span class="o">*</span> <span class="m">100</span>
@@ -1363,7 +1408,17 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>I leave out the estimation of standard errors in this post.</p>
-</div></div>
+</div>
+<h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">¶</a></h3>
+<p>In this part, I explore how to make the manual estimation more numerically stable. Insights are drawn from the <code>arch</code> source code.</p>
+<h4 id="initial-values">Initial values<a class="headerlink" href="#initial-values" title="Permanent link">¶</a></h4>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> To be added.</li>
+</ul>
+<h4 id="variance-bounds">Variance bounds<a class="headerlink" href="#variance-bounds" title="Permanent link">¶</a></h4>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> To be added.</li>
+</ul></div>
 
 <!-- Source file information -->
 
