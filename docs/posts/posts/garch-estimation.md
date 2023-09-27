@@ -70,7 +70,7 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 Taking the natural logarithm of \( L \), we obtain the log-likelihood function \( \ell(\mu, \omega, \alpha, \beta) \):
 
 \[
-\ell(\mu, \omega, \alpha, \beta) = -\frac{T}{2} \log(2\pi) - \frac{1}{2} \sum_{t=1}^{T} \left( \log(\sigma_t^2) + \frac{(r_t-\mu)^2}{\sigma_t^2} \right)
+\ell(\mu, \omega, \alpha, \beta) = -\frac{1}{2} \sum_{t=1}^{T} \left( \log(2\pi)  + \log(\sigma_t^2) + \frac{(r_t-\mu)^2}{\sigma_t^2} \right)
 \]
 
 The parameters \(\mu, \omega, \alpha, \beta \) can then be estimated by maximizing this log-likelihood function.
@@ -311,11 +311,45 @@ Log-likelihood: -3749.0392910447126
 
 ### Improvements
 
-In this part, I explore how to make the manual estimation more numerically stable. Insights are drawn from the `arch` source code.
+In this part, I explore how to improve the estimation and enhance its numerical stability. Insights are drawn from the `arch` source code.
 
-#### Initial values
+#### Initial value of conditional variance
 
-- [ ] To be added.
+Note that the conditional variance in a GARCH(1,1) model is:
+
+\[
+\sigma_t^2 = \omega + \alpha \cdot \epsilon_{t-1}^2 + \beta \cdot \sigma_{t-1}^2
+\]
+
+We need a good starting value \(\sigma_0^2\) to begin with, which can be estimated via the __backcasting technique__. Once we have that \( \sigma^2_0 \) through backcasting, we can proceed to calculate the entire series of conditional variances using the standard GARCH recursion formula.
+
+To backcast the initial variance, we can use the Exponential Weighted Moving Average (EWMA) method, setting \(\sigma^2_0\) to the EWMA of the sample variance of the first \(n \leq T\) returns:
+
+\[
+\sigma^2_0 = \sum_{t=1}^{n} w_t \cdot r_t^2
+\]
+
+where \( w_t \) are the exponentially decaying weights and \( r_t \) are residuals of returns, i.e., returns de-meaned by sample average. This \(\sigma^2_0\) is then used to derive \(\sigma^2_1\) the starting value for the conditional variance series.
+
+#### Initial value of \(\omega\)
+
+The starting value of \(\omega\) is relatively straightforward. Notice that earlier we have jotted down the unconditional variance \(\sigma^2 = \frac{\omega}{1-\alpha-\beta}\). Therefore, given a level of persistence (\(\alpha+\beta\)), we can set the initial guess of \(\omega\) to be the sample variance times one minus persistence:
+
+\[
+\omega = \hat{\sigma}^2 \cdot (\alpha+\beta)
+\]
+
+where we use the known sample variance of residuals \(\hat{\sigma}^2\) as a guess for the unconditional variance \(\sigma^2\). However, we still need to find good starting values for \(\alpha\) and \(\beta\).
+
+#### Initial value of \(\alpha\) and \(\beta\)
+
+Unfortunately, there is no better way to find good starting values for \(\alpha\) and \(\beta\) than a grid search. Luckily, this grid search can be relatively small.
+
+First, we don't know ex ante the persistence level, so we need to vary the persistence level from some low values to some high values, e.g., from 0.1 to 0.98. Second, generally the \(\alpha\) parameter is not too big, for example, ranging from 0.01 to 0.2.
+
+We can permute combinations of the persistence level and \(\alpha\), which naturally gives the corresponding \(\beta\) and hence \(\omega\). The "optimal" set of initial values of \(\omega, \alpha, \beta\) are the one that gives the highest log-likelihood.[^1]
+
+[^1]: The initial value of \(\mu\) is reasonably set to the sample mean return.
 
 #### Variance bounds
 
