@@ -19,7 +19,7 @@ This post details GARCH(1,1) model and its estimation manually in Python, compar
 
 The GARCH(1,1) (Generalized Autoregressive Conditional Heteroskedasticity) model is a commonly used model for capturing the time-varying volatility in financial time series data. The model can be defined as follows:
 
-### Return Equation
+### Return equation
 
 There are many ways to specify return dynamics. Let's focus on the simplest one assuming a constant mean.
 
@@ -29,7 +29,7 @@ r_t = \mu + \epsilon_t
 
 Here \( r_t \) represents the return at time \( t \), and \( \mu \) is the mean return.
 
-### Shock Equation
+### Shock equation
 
 \[
 \epsilon_t = \sigma_t \cdot z_t
@@ -37,7 +37,10 @@ Here \( r_t \) represents the return at time \( t \), and \( \mu \) is the mean 
 
 In this equation, \( \epsilon_t \) is the shock term, \( \sigma_t \) is the conditional volatility, and \( z_t \) is a white noise error term with zero mean and unit variance (\( z_t \sim N(0,1) \)).
 
-### Volatility Equation
+!!! note
+    We can also assume that the noise term follows a different distribution, such as Student-t, and modify the likelihood function below accordingly.
+
+### Volatility equation
 
 \[
 \sigma_t^2 = \omega + \alpha \cdot \epsilon_{t-1}^2 + \beta \cdot \sigma_{t-1}^2
@@ -56,16 +59,13 @@ Here \( \sigma_t^2 \) is the conditional variance at time \( t \), and \( \omega
 
     In this formulation, \(\omega\) is the constant or "base" level of volatility, while \(\alpha\) and \(\beta\) determine how shocks to returns and past volatility influence future volatility. The unconditional variance provides a long-run average level around which the conditional variance oscillates.
 
-### Log-Likelihood Function
+### Log-likelihood function
 
 The likelihood function for a GARCH(1,1) model is used for the estimation of parameters \(\mu\), \(\omega\), \(\alpha\), and \(\beta\). Given a time series of returns \( \{ r_1, r_2, \ldots, r_T \} \), the likelihood function \( L(\mu, \omega, \alpha, \beta) \) can be written as:
 
 \[
 L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}} \exp\left(-\frac{(r_t-\mu)^2}{2\sigma_t^2}\right)
 \]
-
-!!! note
-    This likelihood function assumes that the noise term \( z_t \) follows a standard normal distribution. We can assume that the noise term follows a different distribution and modify the likelihood function accordingly.
 
 Taking the natural logarithm of \( L \), we obtain the log-likelihood function \( \ell(\mu, \omega, \alpha, \beta) \):
 
@@ -164,7 +164,7 @@ Covariance estimator: robust
 ARCHModelResult, id: 0x1cb7b8f4460
 ```
 
-!!! note
+!!! note "GARCH(1,1) in Stata"
     To estimate GARCH(1,1) in Stata, use the following code:
 
     ```stata
@@ -308,3 +308,15 @@ Log-likelihood: -3749.0392910447126
 
 !!! note
     I leave out the estimation of standard errors in this post.
+
+### Improvements
+
+In this part, I explore how to make the manual estimation more numerically stable. Insights are drawn from the `arch` source code.
+
+#### Initial values
+
+- [ ] To be added.
+
+#### Variance bounds
+
+- [ ] To be added.
