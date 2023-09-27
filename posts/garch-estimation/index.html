@@ -976,11 +976,37 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#initial-values" class="md-nav__link">
+  <a href="#initial-value-of-conditional-variance" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Initial values
+          Initial value of conditional variance
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-value-of-omega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Initial value of <span class="arithmatex">\(\omega\)</span>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-value-of-alpha-and-beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Initial value of <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>
         </span>
       
     </span>
@@ -1082,7 +1108,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                     <span class="md-ellipsis">
                       
-                        8 min read
+                        9 min read
                       
                     </span>
                   </div>
@@ -1203,7 +1229,7 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 \]</div>
 <p>Taking the natural logarithm of <span class="arithmatex">\( L \)</span>, we obtain the log-likelihood function <span class="arithmatex">\( \ell(\mu, \omega, \alpha, \beta) \)</span>:</p>
 <div class="arithmatex">\[
-\ell(\mu, \omega, \alpha, \beta) = -\frac{T}{2} \log(2\pi) - \frac{1}{2} \sum_{t=1}^{T} \left( \log(\sigma_t^2) + \frac{(r_t-\mu)^2}{\sigma_t^2} \right)
+\ell(\mu, \omega, \alpha, \beta) = -\frac{1}{2} \sum_{t=1}^{T} \left( \log(2\pi)  + \log(\sigma_t^2) + \frac{(r_t-\mu)^2}{\sigma_t^2} \right)
 \]</div>
 <p>The parameters <span class="arithmatex">\(\mu, \omega, \alpha, \beta \)</span> can then be estimated by maximizing this log-likelihood function.</p>
 <h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">¶</a></h2>
@@ -1410,15 +1436,40 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 <p>I leave out the estimation of standard errors in this post.</p>
 </div>
 <h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">¶</a></h3>
-<p>In this part, I explore how to make the manual estimation more numerically stable. Insights are drawn from the <code>arch</code> source code.</p>
-<h4 id="initial-values">Initial values<a class="headerlink" href="#initial-values" title="Permanent link">¶</a></h4>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> To be added.</li>
-</ul>
+<p>In this part, I explore how to improve the estimation and enhance its numerical stability. Insights are drawn from the <code>arch</code> source code.</p>
+<h4 id="initial-value-of-conditional-variance">Initial value of conditional variance<a class="headerlink" href="#initial-value-of-conditional-variance" title="Permanent link">¶</a></h4>
+<p>Note that the conditional variance in a GARCH(1,1) model is:</p>
+<div class="arithmatex">\[
+\sigma_t^2 = \omega + \alpha \cdot \epsilon_{t-1}^2 + \beta \cdot \sigma_{t-1}^2
+\]</div>
+<p>We need a good starting value <span class="arithmatex">\(\sigma_0^2\)</span> to begin with, which can be estimated via the <strong>backcasting technique</strong>. Once we have that <span class="arithmatex">\( \sigma^2_0 \)</span> through backcasting, we can proceed to calculate the entire series of conditional variances using the standard GARCH recursion formula.</p>
+<p>To backcast the initial variance, we can use the Exponential Weighted Moving Average (EWMA) method, setting <span class="arithmatex">\(\sigma^2_0\)</span> to the EWMA of the sample variance of the first <span class="arithmatex">\(n \leq T\)</span> returns:</p>
+<div class="arithmatex">\[
+\sigma^2_0 = \sum_{t=1}^{n} w_t \cdot r_t^2
+\]</div>
+<p>where <span class="arithmatex">\( w_t \)</span> are the exponentially decaying weights and <span class="arithmatex">\( r_t \)</span> are residuals of returns, i.e., returns de-meaned by sample average. This <span class="arithmatex">\(\sigma^2_0\)</span> is then used to derive <span class="arithmatex">\(\sigma^2_1\)</span> the starting value for the conditional variance series.</p>
+<h4 id="initial-value-of-omega">Initial value of <span class="arithmatex">\(\omega\)</span><a class="headerlink" href="#initial-value-of-omega" title="Permanent link">¶</a></h4>
+<p>The starting value of <span class="arithmatex">\(\omega\)</span> is relatively straightforward. Notice that earlier we have jotted down the unconditional variance <span class="arithmatex">\(\sigma^2 = \frac{\omega}{1-\alpha-\beta}\)</span>. Therefore, given a level of persistence (<span class="arithmatex">\(\alpha+\beta\)</span>), we can set the initial guess of <span class="arithmatex">\(\omega\)</span> to be the sample variance times one minus persistence:</p>
+<div class="arithmatex">\[
+\omega = \hat{\sigma}^2 \cdot (\alpha+\beta)
+\]</div>
+<p>where we use the known sample variance of residuals <span class="arithmatex">\(\hat{\sigma}^2\)</span> as a guess for the unconditional variance <span class="arithmatex">\(\sigma^2\)</span>. However, we still need to find good starting values for <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>.</p>
+<h4 id="initial-value-of-alpha-and-beta">Initial value of <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span><a class="headerlink" href="#initial-value-of-alpha-and-beta" title="Permanent link">¶</a></h4>
+<p>Unfortunately, there is no better way to find good starting values for <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span> than a grid search. Luckily, this grid search can be relatively small.</p>
+<p>First, we don't know ex ante the persistence level, so we need to vary the persistence level from some low values to some high values, e.g., from 0.1 to 0.98. Second, generally the <span class="arithmatex">\(\alpha\)</span> parameter is not too big, for example, ranging from 0.01 to 0.2.</p>
+<p>We can permute combinations of the persistence level and <span class="arithmatex">\(\alpha\)</span>, which naturally gives the corresponding <span class="arithmatex">\(\beta\)</span> and hence <span class="arithmatex">\(\omega\)</span>. The "optimal" set of initial values of <span class="arithmatex">\(\omega, \alpha, \beta\)</span> are the one that gives the highest log-likelihood.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h4 id="variance-bounds">Variance bounds<a class="headerlink" href="#variance-bounds" title="Permanent link">¶</a></h4>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> To be added.</li>
-</ul></div>
+</ul>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The initial value of <span class="arithmatex">\(\mu\)</span> is reasonably set to the sample mean return. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div></div>
 
 <!-- Source file information -->
 
