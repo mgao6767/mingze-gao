@@ -355,4 +355,18 @@ We can permute combinations of the persistence level and \(\alpha\), which natur
 
 #### Variance bounds
 
-- [ ] To be added.
+Another issue is that we want to ensure that in the estimation, condition variance 
+does not blow up to infinitity or becomes zero. Hence, we need to 
+construct bounds for conditional variances during the GARCH(1,1) parameter estimation process. 
+
+To do this, we can calculate loose lower and upper bounds for each observation.
+Specifically, we can use sample variance of the residuals to compute global lower and upper 
+bounds. We then use EWMA to compute the conditional variance for each time point.
+The EWMA variances are then adjusted to ensure they are within global bounds.
+Lastly, we scale the adjusted EWMA variances to form the variance bounds at each
+time.
+
+During the estimation process, whenever we compute the conditional variances based 
+on the prevailing model parameters, we ensure that they are adjusted to be reasonably
+within the bounds at each time.
+
