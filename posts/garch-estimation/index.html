@@ -1116,6 +1116,42 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
               
             </ul>
             
+              <ul class="md-nav__list">
+                <li class="md-nav__item md-nav__title">
+                  <div class="md-nav__link">
+                    <span class="md-ellipsis">
+                      Related links
+                    </span>
+                  </div>
+                </li>
+                
+                  
+                  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frds.io/algorithms/garch" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    GARCH(1,1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              </ul>
+            
           </nav>
           
         </div>
@@ -1214,9 +1250,9 @@ r_t = \mu + \epsilon_t
 \]</div>
 <p>Here <span class="arithmatex">\( \sigma_t^2 \)</span> is the conditional variance at time <span class="arithmatex">\( t \)</span>, and <span class="arithmatex">\( \omega \)</span>, <span class="arithmatex">\( \alpha \)</span>, <span class="arithmatex">\( \beta \)</span> are parameters to be estimated. This equation captures how volatility evolves over time.</p>
 <div class="admonition note">
-<p class="admonition-title">The unconditional variance</p>
+<p class="admonition-title">The unconditional variance and persistence</p>
 <p>The unconditional variance, often denoted as <span class="arithmatex">\(\text{Var}(\epsilon_t)\)</span> or <span class="arithmatex">\(\sigma^2\)</span>, refers to the long-run average or steady-state variance of the return series. It is the variance one would expect the series to revert to over the long term, and it doesn't condition on any past information. </p>
-<p>For a GARCH(1,1) model to be stationary, the sum of <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span> must be less than 1 (<span class="arithmatex">\(\alpha + \beta &lt; 1\)</span>). Given this condition, the unconditional variance <span class="arithmatex">\(\sigma^2\)</span> can be computed as follows:</p>
+<p>For a GARCH(1,1) model to be stationary, the <strong>persistence</strong>, sum of <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>, must be less than 1 (<span class="arithmatex">\(\alpha + \beta &lt; 1\)</span>). Given this condition, the unconditional variance <span class="arithmatex">\(\sigma^2\)</span> can be computed as follows:</p>
 <div class="arithmatex">\[
 \sigma^2 = \frac{\omega}{1 - \alpha - \beta}
 \]</div>
