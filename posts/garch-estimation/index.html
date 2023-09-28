@@ -1108,7 +1108,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                     <span class="md-ellipsis">
                       
-                        9 min read
+                        10 min read
                       
                     </span>
                   </div>
@@ -1495,9 +1495,18 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 <p>First, we don't know ex ante the persistence level, so we need to vary the persistence level from some low values to some high values, e.g., from 0.1 to 0.98. Second, generally the <span class="arithmatex">\(\alpha\)</span> parameter is not too big, for example, ranging from 0.01 to 0.2.</p>
 <p>We can permute combinations of the persistence level and <span class="arithmatex">\(\alpha\)</span>, which naturally gives the corresponding <span class="arithmatex">\(\beta\)</span> and hence <span class="arithmatex">\(\omega\)</span>. The "optimal" set of initial values of <span class="arithmatex">\(\omega, \alpha, \beta\)</span> are the one that gives the highest log-likelihood.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h4 id="variance-bounds">Variance bounds<a class="headerlink" href="#variance-bounds" title="Permanent link">¶</a></h4>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> To be added.</li>
-</ul>
+<p>Another issue is that we want to ensure that in the estimation, condition variance 
+does not blow up to infinitity or becomes zero. Hence, we need to 
+construct bounds for conditional variances during the GARCH(1,1) parameter estimation process. </p>
+<p>To do this, we can calculate loose lower and upper bounds for each observation.
+Specifically, we can use sample variance of the residuals to compute global lower and upper 
+bounds. We then use EWMA to compute the conditional variance for each time point.
+The EWMA variances are then adjusted to ensure they are within global bounds.
+Lastly, we scale the adjusted EWMA variances to form the variance bounds at each
+time.</p>
+<p>During the estimation process, whenever we compute the conditional variances based 
+on the prevailing model parameters, we ensure that they are adjusted to be reasonably
+within the bounds at each time.</p>
 <div class="footnote">
 <hr>
 <ol>
