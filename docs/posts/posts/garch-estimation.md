@@ -338,7 +338,7 @@ where \( w_t \) are the exponentially decaying weights and \( r_t \) are residua
 The starting value of \(\omega\) is relatively straightforward. Notice that earlier we have jotted down the unconditional variance \(\sigma^2 = \frac{\omega}{1-\alpha-\beta}\). Therefore, given a level of persistence (\(\alpha+\beta\)), we can set the initial guess of \(\omega\) to be the sample variance times one minus persistence:
 
 \[
-\omega = \hat{\sigma}^2 \cdot (\alpha+\beta)
+\omega = \hat{\sigma}^2 \cdot (1-\alpha-\beta)
 \]
 
 where we use the known sample variance of residuals \(\hat{\sigma}^2\) as a guess for the unconditional variance \(\sigma^2\). However, we still need to find good starting values for \(\alpha\) and \(\beta\).
@@ -349,14 +349,14 @@ Unfortunately, there is no better way to find good starting values for \(\alpha\
 
 First, we don't know ex ante the persistence level, so we need to vary the persistence level from some low values to some high values, e.g., from 0.1 to 0.98. Second, generally the \(\alpha\) parameter is not too big, for example, ranging from 0.01 to 0.2.
 
-We can permute combinations of the persistence level and \(\alpha\), which naturally gives the corresponding \(\beta\) and hence \(\omega\). The "optimal" set of initial values of \(\omega, \alpha, \beta\) are the one that gives the highest log-likelihood.[^1]
+We can permute combinations of the persistence level and \(\alpha\), which naturally gives the corresponding \(\beta\) and hence \(\omega\). The "optimal" set of initial values of \(\omega, \alpha, \beta\) is the one that gives the highest log-likelihood.[^1]
 
 [^1]: The initial value of \(\mu\) is reasonably set to the sample mean return.
 
 #### Variance bounds
 
 Another issue is that we want to ensure that in the estimation, condition variance 
-does not blow up to infinitity or becomes zero. Hence, we need to 
+does not blow up to infinity or becomes zero. Hence, we need to 
 construct bounds for conditional variances during the GARCH(1,1) parameter estimation process. 
 
 To do this, we can calculate loose lower and upper bounds for each observation.
@@ -370,3 +370,6 @@ During the estimation process, whenever we compute the conditional variances bas
 on the prevailing model parameters, we ensure that they are adjusted to be reasonably
 within the bounds at each time.
 
+!!! note
+    See [frds.measures.GARCHModel](https://frds.io/algorithms/garch/) for the
+    full implementation of the above improvements.
