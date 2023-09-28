@@ -7,6 +7,8 @@ tags:
   - Python
 categories:
   - Teaching Notes
+links:
+  - GARCH(1,1): https://frds.io/algorithms/garch
 ---
 
 # GARCH Estimation
@@ -48,10 +50,10 @@ In this equation, \( \epsilon_t \) is the shock term, \( \sigma_t \) is the cond
 
 Here \( \sigma_t^2 \) is the conditional variance at time \( t \), and \( \omega \), \( \alpha \), \( \beta \) are parameters to be estimated. This equation captures how volatility evolves over time.
 
-!!! note "The unconditional variance"
+!!! note "The unconditional variance and persistence"
     The unconditional variance, often denoted as \(\text{Var}(\epsilon_t)\) or \(\sigma^2\), refers to the long-run average or steady-state variance of the return series. It is the variance one would expect the series to revert to over the long term, and it doesn't condition on any past information. 
 
-    For a GARCH(1,1) model to be stationary, the sum of \(\alpha\) and \(\beta\) must be less than 1 (\(\alpha + \beta < 1\)). Given this condition, the unconditional variance \(\sigma^2\) can be computed as follows:
+    For a GARCH(1,1) model to be stationary, the __persistence__, sum of \(\alpha\) and \(\beta\), must be less than 1 (\(\alpha + \beta < 1\)). Given this condition, the unconditional variance \(\sigma^2\) can be computed as follows:
 
     \[
     \sigma^2 = \frac{\omega}{1 - \alpha - \beta}
