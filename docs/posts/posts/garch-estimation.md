@@ -9,11 +9,12 @@ categories:
   - Teaching Notes
 links:
   - GARCH(1,1): https://frds.io/algorithms/garch
+  - GJR-GARCH(1,1): https://frds.io/algorithms/gjr-garch
 ---
 
 # GARCH Estimation
 
-This post details GARCH(1,1) model and its estimation manually in Python, compared to using libraries and in Stata.
+This post details GARCH(1,1) model and its estimation manually in Python, compared to using libraries and in Stata. For GJR-GARCH(1,1), see my [documentation on frds.io](https://frds.io/algorithms/gjr-garch/).
 
 <!-- more -->
 
@@ -230,6 +231,9 @@ ARCHModelResult, id: 0x1cb7b8f4460
 ### Manual estimation
 
 Let's try do this manually to see how we can use maximum likelihood estimation (MLE) to estimate the parameters.
+
+!!! note
+    This code below is not optimized. See the discussion later and source code of [frds.algorithms.GARCHModel](https://frds.io/algorithms/garch/) for a better version.
 
 ```python
 from scipy.optimize import minimize
