@@ -1150,6 +1150,31 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
 
                 
+                  
+                  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frds.io/algorithms/gjr-garch" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    GJR-GARCH(1,1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
               </ul>
             
           </nav>
@@ -1224,7 +1249,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 <!-- Markdown content -->
 <div><h1 id="garch-estimation">GARCH Estimation<a class="headerlink" href="#garch-estimation" title="Permanent link">¶</a></h1>
-<p>This post details GARCH(1,1) model and its estimation manually in Python, compared to using libraries and in Stata.</p>
+<p>This post details GARCH(1,1) model and its estimation manually in Python, compared to using libraries and in Stata. For GJR-GARCH(1,1), see my <a href="https://frds.io/algorithms/gjr-garch/">documentation on frds.io</a>.</p>
 <!-- more -->
 
 <h2 id="garch11-model">GARCH(1,1) Model<a class="headerlink" href="#garch11-model" title="Permanent link">¶</a></h2>
@@ -1397,6 +1422,10 @@ L(\mu, \omega, \alpha, \beta) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma_t^2}}
 </div>
 <h3 id="manual-estimation">Manual estimation<a class="headerlink" href="#manual-estimation" title="Permanent link">¶</a></h3>
 <p>Let's try do this manually to see how we can use maximum likelihood estimation (MLE) to estimate the parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This code below is not optimized. See the discussion later and source code of <a href="https://frds.io/algorithms/garch/">frds.algorithms.GARCHModel</a> for a better version.</p>
+</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
