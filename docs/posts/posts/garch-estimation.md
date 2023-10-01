@@ -9,6 +9,7 @@ categories:
   - Teaching Notes
 links:
   - GARCH(1,1): https://frds.io/algorithms/garch
+  - GARCH-CCC: https://frds.io/algorithms/garch-ccc
   - GJR-GARCH(1,1): https://frds.io/algorithms/gjr-garch
 ---
 
@@ -375,5 +376,5 @@ on the prevailing model parameters, we ensure that they are adjusted to be reaso
 within the bounds at each time.
 
 !!! note
-    See [frds.measures.GARCHModel](https://frds.io/algorithms/garch/) for the
+    See [frds.algorithms.GARCHModel](https://frds.io/algorithms/garch/) for the
     full implementation of the above improvements.
