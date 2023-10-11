@@ -25,6 +25,7 @@ Consider a random intercept model for a firm-year regression, e.g., to examine t
 
 $$
 \begin{equation}
+\label{eq:random_effect_model}
 y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 \end{equation}
 $$
@@ -49,14 +50,16 @@ If we subtract the "between" model
 
 $$
 \begin{equation}
+\label{eq:between_model}
 \bar{y}_{i} = \beta_0 + \beta_1 \bar{x}_{it} + \beta_2 c_i + \mu_i + \bar{\varepsilon}_{i}
 \end{equation}
 $$
 
-from Equation (1), we have the fixed effect model in the demeaned form:
+from Equation $\eqref{eq:random_effect_model}$, we have the fixed effect model in the demeaned form:
 
 $$
 \begin{equation}
+\label{eq:demeaned_form}
 (y_{it} - \bar{y}_i) = \beta_1 (x_{it}-\bar{x}_i) + (\varepsilon_{it} - \bar{\varepsilon}_{i})
 \end{equation}
 $$
@@ -75,17 +78,18 @@ Interestingly, we can decompose the firm-year level variable $x_{it}$ into two c
 
 $$
 \begin{equation}
+\label{eq:hybrid}
 y_{it} = \beta_0 + \beta_1 (x_{it}-\bar{x}_i) + \beta_2 c_i + \beta_3 \bar{x}_i + \mu_i + \varepsilon_{it}
 \end{equation}
 $$
 
-It is apparent that the $\beta_1$ estimate gives the within effect as in the fixed effect model, identical to $\beta_1$ in Equation (3).
+It is apparent that the $\beta_1$ estimate gives the within effect as in the fixed effect model, identical to $\beta_1$ in Equation $\eqref{eq:demeaned_form}$.
 
 Moreover, the firm-level variable $c_i$ is kept in the model and we can estimate $\beta_2$. The inclusion of cluster mean $\bar{x}_i$ corrects the estimate of $\beta_2$ for between-cluster differences in $x_{it}$. Note that, however, for $\beta_2$ estimate to be unbiased, we still require $E(\mu_i|x_{it},c_i)=0$ and $\mu_i|x_{it},c_i \sim N(0,\sigma^2_\mu)$.
 
 ## Correlated Random Effect Model
 
-A related model is correlated random effect model ([Wooldridge 2010](https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/)) that relaxes the assumption of zero correlation between the firm-level error $\mu_i$ and firm-year variable $x_{it}$. Specifically, it assumes that $\mu_i=\pi\bar{x}_i + v_i$, so Equation (1) becomes
+A related model is correlated random effect model ([Wooldridge 2010](https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/)) that relaxes the assumption of zero correlation between the firm-level error $\mu_i$ and firm-year variable $x_{it}$. Specifically, it assumes that $\mu_i=\pi\bar{x}_i + v_i$, so Equation $\eqref{eq:random_effect_model}$ becomes
 
 $$
 \begin{align}
@@ -94,7 +98,7 @@ y_{it} &= \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it} \\
 \end{align}
 $$
 
-By including the cluster mean $\bar{x}_i$, we can account for the correlation between the random effects $\mu_i$ and the independent variable $x_{it}$ and obtain consistent estimates of the coefficients. The inclusion of $\bar{x}_i$ in the random intercept (effect) model makes the estimate for $\beta_1$ the same within effect (fixed-effect) estimate as in Equation (4).
+By including the cluster mean $\bar{x}_i$, we can account for the correlation between the random effects $\mu_i$ and the independent variable $x_{it}$ and obtain consistent estimates of the coefficients. The inclusion of $\bar{x}_i$ in the random intercept (effect) model makes the estimate for $\beta_1$ the same within effect (fixed-effect) estimate as in Equation $\eqref{eq:hybrid}$.
 
 Of course, as the time-invariant firm-specific attribute $c_i$ remains in the model, we can estimate $\beta_2$ as in the hybrid model.
 
