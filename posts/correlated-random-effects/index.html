@@ -1074,6 +1074,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 <p>Consider a random intercept model for a firm-year regression, e.g., to examine the relationship between firm performance, R&amp;D expense, and whether the firm is VC-backed,</p>
 <div class="arithmatex">\[
 \begin{equation}
+\label{eq:random_effect_model}
 y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 \end{equation}
 \]</div>
@@ -1092,12 +1093,14 @@ y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 <p>If we subtract the "between" model</p>
 <div class="arithmatex">\[
 \begin{equation}
+\label{eq:between_model}
 \bar{y}_{i} = \beta_0 + \beta_1 \bar{x}_{it} + \beta_2 c_i + \mu_i + \bar{\varepsilon}_{i}
 \end{equation}
 \]</div>
-<p>from Equation (1), we have the fixed effect model in the demeaned form:</p>
+<p>from Equation <span class="arithmatex">\(\eqref{eq:random_effect_model}\)</span>, we have the fixed effect model in the demeaned form:</p>
 <div class="arithmatex">\[
 \begin{equation}
+\label{eq:demeaned_form}
 (y_{it} - \bar{y}_i) = \beta_1 (x_{it}-\bar{x}_i) + (\varepsilon_{it} - \bar{\varepsilon}_{i})
 \end{equation}
 \]</div>
@@ -1109,20 +1112,21 @@ y_{it} = \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it}
 <p>Interestingly, we can decompose the firm-year level variable <span class="arithmatex">\(x_{it}\)</span> into two components, a between component <span class="arithmatex">\(\bar{x}_i\)</span> and a cluster component <span class="arithmatex">\((x_{it}-\bar{x}_i)\)</span>, so that</p>
 <div class="arithmatex">\[
 \begin{equation}
+\label{eq:hybrid}
 y_{it} = \beta_0 + \beta_1 (x_{it}-\bar{x}_i) + \beta_2 c_i + \beta_3 \bar{x}_i + \mu_i + \varepsilon_{it}
 \end{equation}
 \]</div>
-<p>It is apparent that the <span class="arithmatex">\(\beta_1\)</span> estimate gives the within effect as in the fixed effect model, identical to <span class="arithmatex">\(\beta_1\)</span> in Equation (3).</p>
+<p>It is apparent that the <span class="arithmatex">\(\beta_1\)</span> estimate gives the within effect as in the fixed effect model, identical to <span class="arithmatex">\(\beta_1\)</span> in Equation <span class="arithmatex">\(\eqref{eq:demeaned_form}\)</span>.</p>
 <p>Moreover, the firm-level variable <span class="arithmatex">\(c_i\)</span> is kept in the model and we can estimate <span class="arithmatex">\(\beta_2\)</span>. The inclusion of cluster mean <span class="arithmatex">\(\bar{x}_i\)</span> corrects the estimate of <span class="arithmatex">\(\beta_2\)</span> for between-cluster differences in <span class="arithmatex">\(x_{it}\)</span>. Note that, however, for <span class="arithmatex">\(\beta_2\)</span> estimate to be unbiased, we still require <span class="arithmatex">\(E(\mu_i|x_{it},c_i)=0\)</span> and <span class="arithmatex">\(\mu_i|x_{it},c_i \sim N(0,\sigma^2_\mu)\)</span>.</p>
 <h2 id="correlated-random-effect-model">Correlated Random Effect Model<a class="headerlink" href="#correlated-random-effect-model" title="Permanent link">¶</a></h2>
-<p>A related model is correlated random effect model (<a href="https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/">Wooldridge 2010</a>) that relaxes the assumption of zero correlation between the firm-level error <span class="arithmatex">\(\mu_i\)</span> and firm-year variable <span class="arithmatex">\(x_{it}\)</span>. Specifically, it assumes that <span class="arithmatex">\(\mu_i=\pi\bar{x}_i + v_i\)</span>, so Equation (1) becomes</p>
+<p>A related model is correlated random effect model (<a href="https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/">Wooldridge 2010</a>) that relaxes the assumption of zero correlation between the firm-level error <span class="arithmatex">\(\mu_i\)</span> and firm-year variable <span class="arithmatex">\(x_{it}\)</span>. Specifically, it assumes that <span class="arithmatex">\(\mu_i=\pi\bar{x}_i + v_i\)</span>, so Equation <span class="arithmatex">\(\eqref{eq:random_effect_model}\)</span> becomes</p>
 <div class="arithmatex">\[
 \begin{align}
 y_{it} &amp;= \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \mu_i + \varepsilon_{it} \\
  &amp;= \beta_0 + \beta_1 x_{it} + \beta_2 c_i + \pi\bar{x}_i + v_i + \varepsilon_{it}
 \end{align}
 \]</div>
-<p>By including the cluster mean <span class="arithmatex">\(\bar{x}_i\)</span>, we can account for the correlation between the random effects <span class="arithmatex">\(\mu_i\)</span> and the independent variable <span class="arithmatex">\(x_{it}\)</span> and obtain consistent estimates of the coefficients. The inclusion of <span class="arithmatex">\(\bar{x}_i\)</span> in the random intercept (effect) model makes the estimate for <span class="arithmatex">\(\beta_1\)</span> the same within effect (fixed-effect) estimate as in Equation (4).</p>
+<p>By including the cluster mean <span class="arithmatex">\(\bar{x}_i\)</span>, we can account for the correlation between the random effects <span class="arithmatex">\(\mu_i\)</span> and the independent variable <span class="arithmatex">\(x_{it}\)</span> and obtain consistent estimates of the coefficients. The inclusion of <span class="arithmatex">\(\bar{x}_i\)</span> in the random intercept (effect) model makes the estimate for <span class="arithmatex">\(\beta_1\)</span> the same within effect (fixed-effect) estimate as in Equation <span class="arithmatex">\(\eqref{eq:hybrid}\)</span>.</p>
 <p>Of course, as the time-invariant firm-specific attribute <span class="arithmatex">\(c_i\)</span> remains in the model, we can estimate <span class="arithmatex">\(\beta_2\)</span> as in the hybrid model.</p>
 <h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Permanent link">¶</a></h2>
 <p>Note that there are many caveats for estimating CRE.</p>

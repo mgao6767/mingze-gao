@@ -10,6 +10,11 @@
   color: var(--md-primary-fg-color);
 } */
 
+/* Make equations full-width */
+mjx-container {
+  width: 100% !important;
+}
+
 article p a,
 article li a {
   text-decoration-line: underline;
