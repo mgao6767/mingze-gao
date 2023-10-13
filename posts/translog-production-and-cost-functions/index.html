@@ -12,13 +12,11 @@
         <meta name="author" content="Mingze Gao">
       
       
-        <link rel="canonical" href="https://mingze-gao.com/posts/garch-constant-conditional-correlation-ccc/">
+        <link rel="canonical" href="https://mingze-gao.com/posts/translog-production-and-cost-functions/">
       
       
-        <link rel="prev" href="../garch-estimation/">
+        <link rel="prev" href="../garch-constant-conditional-correlation-ccc/">
       
-      
-        <link rel="next" href="../translog-production-and-cost-functions/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>GARCH-Constant Conditional Correlation (CCC) - Mingze Gao</title>
+        <title>Translog Production and Cost Functions - Mingze Gao</title>
       
     
     
@@ -101,7 +99,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#garch-constant-conditional-correlation-ccc" class="md-skip">
+        <a href="#translog-production-and-cost-functions" class="md-skip">
           Skip to content
         </a>
       
@@ -149,7 +147,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GARCH-Constant Conditional Correlation (CCC)
+              Translog Production and Cost Functions
             
           </span>
         </div>
@@ -853,25 +851,51 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multivariate-garch-ccc" class="md-nav__link">
+  <a href="#ces-production-function" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Multivariate GARCH-CCC
+          CES Production Function
         </span>
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Multivariate GARCH-CCC">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translog-production-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Translog Production Function
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#derive-cost-function-from-production-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Derive Cost Function From Production Function
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Derive Cost Function From Production Function">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#return-equation" class="md-nav__link">
+  <a href="#cost-minimization-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Return equation
+          Cost minimization problem
         </span>
       
     </span>
@@ -880,37 +904,11 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 </li>
         
           <li class="md-nav__item">
-  <a href="#shock-equation" class="md-nav__link">
+  <a href="#solving-the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Shock equation
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conditional-covariance-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Conditional covariance matrix
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#log-likelihood-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Log-likelihood function
+          Solving the problem
         </span>
       
     </span>
@@ -924,37 +922,11 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 </li>
       
         <li class="md-nav__item">
-  <a href="#estimation-techniques" class="md-nav__link">
+  <a href="#translog-cost-function" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Estimation techniques
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Example code
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          References
+          Translog Cost Function
         </span>
       
     </span>
@@ -1012,7 +984,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
               <li class="md-nav__item">
                 <div class="md-nav__link">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                  <time datetime="2023-10-02 00:00:00" class="md-ellipsis">October 2, 2023</time>
+                  <time datetime="2023-10-13 00:00:00" class="md-ellipsis">October 13, 2023</time>
                 </div>
               </li>
               
@@ -1023,7 +995,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                       in
                       
                         <a href="../category/teaching-notes/">Teaching Notes</a>, 
-                        <a href="../category/programming/">Programming</a></span>
+                        <a href="../category/research-notes/">Research Notes</a></span>
                   </div>
                 </li>
               
@@ -1034,99 +1006,13 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                     <span class="md-ellipsis">
                       
-                        6 min read
+                        9 min read
                       
                     </span>
                   </div>
                 </li>
               
             </ul>
-            
-              <ul class="md-nav__list">
-                <li class="md-nav__item md-nav__title">
-                  <div class="md-nav__link">
-                    <span class="md-ellipsis">
-                      Related links
-                    </span>
-                  </div>
-                </li>
-                
-                  
-                  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://frds.io/algorithms/garch-ccc" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    GARCH-CCC
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-                
-                  
-                  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://frds.io/algorithms/garch" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    GARCH(1,1)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-                
-                  
-                  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://frds.io/algorithms/gjr-garch" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    GJR-GARCH(1,1)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-                
-              </ul>
             
           </nav>
           
@@ -1166,22 +1052,12 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
       
       
-        <a href="../../tags/#garch" class="md-tag">GARCH</a>
+        <a href="../../tags/#economics" class="md-tag">Economics</a>
       
     
       
       
         <a href="../../tags/#econometrics" class="md-tag">Econometrics</a>
-      
-    
-      
-      
-        <a href="../../tags/#stata" class="md-tag">Stata</a>
-      
-    
-      
-      
-        <a href="../../tags/#python" class="md-tag">Python</a>
       
     
   </nav>
@@ -1199,210 +1075,282 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 
 <!-- Markdown content -->
-<div><h1 id="garch-constant-conditional-correlation-ccc">GARCH-Constant Conditional Correlation (CCC)<a class="headerlink" href="#garch-constant-conditional-correlation-ccc" title="Permanent link">¶</a></h1>
-<p>This post details a multivariate GARCH Constant Conditional Correlation (CCC) model. It was somewhat surprising that I didn't find a good Python implementation of GARCH-CCC, so I wrote my own, see <a href="https://frds.io/algorithms/garch-ccc/">documentation on frds.io</a>. It performs very well, often generates (marginally) better estimates than in Stata based on log-likelihood.</p>
+<div><h1 id="translog-production-and-cost-functions">Translog Production and Cost Functions<a class="headerlink" href="#translog-production-and-cost-functions" title="Permanent link">¶</a></h1>
+<p>In this post, I'll carefully explain the derivation of cost function from a CES 
+production function, as well as the derivation of translog (transcendental logarithmic) production and cost functions.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Production
+    A[Production Function] -. approximation .-&gt; D(Translog Production function)
+    end
+    subgraph Cost
+    B[Cost Function] -. approximation .-&gt; C(Translog Cost Function)
+    end
+    A == Conversion via Duality ==&gt; B</code></pre>
+<p>Before I start, the graph above illustrate the relations. Specifically, we can derive the 
+cost function from a CES production function via the duality theorem. Translog production
+and translog cost functions are approximations to the production and corresponding cost function, respectively, via Taylor expansion.</p>
 <!-- more -->
 
-<h2 id="multivariate-garch-ccc">Multivariate GARCH-CCC<a class="headerlink" href="#multivariate-garch-ccc" title="Permanent link">¶</a></h2>
-<p>The Multivariate GARCH model generalizes the univariate <a href="../garch-estimation/">GARCH</a> framework to multiple time series, capturing not only the conditional variances but also the conditional covariances between the series. One common form is the <strong>Constant Conditional Correlation (CCC) model</strong> proposed by Bollerslev (1990). </p>
-<h3 id="return-equation">Return equation<a class="headerlink" href="#return-equation" title="Permanent link">¶</a></h3>
-<p>The return equation for a <span class="arithmatex">\(N\)</span>-dimensional time series is:</p>
+<h2 id="ces-production-function">CES Production Function<a class="headerlink" href="#ces-production-function" title="Permanent link">¶</a></h2>
+<p>Let's start from the a general production function, CES (Constant Elasticity of Substitution).</p>
+<p>The <strong>standard CES production function</strong> with two factors <span class="arithmatex">\(X_1\)</span> and <span class="arithmatex">\(X_2\)</span> is given by:</p>
 <div class="arithmatex">\[
-\mathbf{r}_t = \boldsymbol{\mu} + \boldsymbol{\epsilon}_t
+\begin{equation}
+\label{eq:ces-production}
+Q = A \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}}
+\end{equation}
 \]</div>
-<p>Here, <span class="arithmatex">\( \mathbf{r}_t \)</span> is a <span class="arithmatex">\( N \times 1 \)</span> vector of returns, and <span class="arithmatex">\( \boldsymbol{\mu} \)</span> is a <span class="arithmatex">\( N \times 1 \)</span> vector of mean returns. <span class="arithmatex">\( \boldsymbol{\epsilon}_t \)</span> is the <span class="arithmatex">\( N \times 1 \)</span> vector of shock terms.</p>
+<p>where <span class="arithmatex">\(\alpha_1+\alpha_2=1\)</span>, <span class="arithmatex">\(A\)</span> is a scale parameter, <span class="arithmatex">\(\alpha\)</span> is the distribution parameter, and <span class="arithmatex">\(\rho\)</span> is the substitution parameter.</p>
 <div class="admonition note">
-<p class="admonition-title">Bivariate example</p>
+<p class="admonition-title">Note</p>
+<p>The <strong>Cobb-Douglas production function</strong> is a special case of the CES function when <span class="arithmatex">\(\rho \to 0\)</span>:</p>
 <div class="arithmatex">\[
-    \begin{align*}
-    r_{1t} &amp;= \mu_1 + \epsilon_{1,t-1} \\\\
-    r_{2t} &amp;= \mu_2 + \epsilon_{2,t-1}
-    \end{align*}
+Q = A X_1^{\alpha} X_2^{1-\alpha}
 \]</div>
 </div>
-<h3 id="shock-equation">Shock equation<a class="headerlink" href="#shock-equation" title="Permanent link">¶</a></h3>
-<p>The shock term is modelled as:</p>
+<h2 id="translog-production-function">Translog Production Function<a class="headerlink" href="#translog-production-function" title="Permanent link">¶</a></h2>
+<p>Taking the natural logarithm of both sides of Equation <span class="arithmatex">\(\eqref{eq:ces-production}\)</span>, we get:</p>
 <div class="arithmatex">\[
-\boldsymbol{\epsilon}_t = \mathbf{H}_t^{1/2} \mathbf{z}_t
+\begin{equation}
+\label{eq:log-form-ces-production}
+\ln Q = \ln A + \frac{1}{\rho} \ln \left[ \alpha X_1^{\rho} + (1-\alpha) X_2^{\rho} \right]
+\end{equation}
 \]</div>
-<p>Here, <span class="arithmatex">\( \mathbf{H}_t \)</span> is a <span class="arithmatex">\( N \times N \)</span> conditional covariance matrix, <span class="arithmatex">\( \mathbf{H}_t^{1/2} \)</span> is a <span class="arithmatex">\( N \times N \)</span> positive definite matrix, and <span class="arithmatex">\( \mathbf{z}_t \)</span> is a <span class="arithmatex">\( N \times 1 \)</span> vector of standard normal innovations.</p>
+<p>The Taylor expansion of <span class="arithmatex">\( \frac{1}{\rho} \ln \left[ \alpha X_1^{\rho} + (1-\alpha) X_2^{\rho} \right] \)</span> around <span class="arithmatex">\(\rho=0\)</span> is <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">1</a></sup></p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:taylor-expansion-of-ces}
+\alpha  \ln X_1 + (1-\alpha)  \ln X_2-\frac{1}{2} \rho
+    \left[(\alpha -1) \alpha  (\ln X_1-\ln X_2)^2\right]+O\left(\rho ^2\right) 
+\end{equation}
+\]</div>
+<p>Omitting <span class="arithmatex">\(O\left(\rho ^2\right) \)</span> and substituting the Taylor expansion into Equation <span class="arithmatex">\(\eqref{eq:log-form-ces-production}\)</span>, we have</p>
+<div class="arithmatex">\[
+\begin{align}
+\label{eq:log-production-with-taylor}
+\ln Q &amp;= \ln A \\
+ &amp;+ \alpha  \ln X_1 + (1-\alpha)  \ln X_2-\frac{1}{2} \rho \left[(\alpha -1) \alpha  (\ln X_1-\ln X_2)^2\right] \nonumber
+\end{align}
+\]</div>
+<p>which <mark>clearly is a function of <span class="arithmatex">\(\ln X_1\)</span>, <span class="arithmatex">\(\ln X_2\)</span> and their interaction terms</mark>.</p>
+<p>We can therefore reparameterize Equation <span class="arithmatex">\(\eqref{eq:log-production-with-taylor}\)</span> and get the <strong>Translog  production function</strong>:</p>
+<div class="arithmatex">\[
+\begin{align}
+\ln Q &amp;= a_0 + a_1 \ln X_1 + a_2 \ln X_2 \\
+&amp;+ b_{11} (\ln X_1)^2 + b_{22} (\ln X_2)^2 + b_{12} \ln X_1 \ln X_2 \nonumber
+\end{align}
+\]</div>
+<p>Here, <span class="arithmatex">\(a_1\)</span> and <span class="arithmatex">\(a_2\)</span> are coefficients that capture the first-order effects, and <span class="arithmatex">\(b_{11}\)</span>, <span class="arithmatex">\(b_{22}\)</span>, and <span class="arithmatex">\(b_{12}\)</span> are coefficients that capture the second-order effects.</p>
 <div class="admonition note">
-<p class="admonition-title">Bivariate example</p>
-<div class="arithmatex">\[
-    \begin{align*}
-    \epsilon_{1t} &amp;= \sqrt{h_{1t}} \cdot z_{1t} \\\\
-    \epsilon_{2t} &amp;= \sqrt{h_{2t}} \cdot z_{2t}
-    \end{align*} 
-\]</div>
+<p class="admonition-title">Note</p>
+<p>If we use fist-order Taylor expansion in Equation <span class="arithmatex">\(\eqref{eq:taylor-expansion-of-ces}\)</span> instead,
+we will end up with a log-linear production function.</p>
 </div>
-<h3 id="conditional-covariance-matrix">Conditional covariance matrix<a class="headerlink" href="#conditional-covariance-matrix" title="Permanent link">¶</a></h3>
-<p>In the CCC-GARCH(1,1) model, the conditional covariance matrix <span class="arithmatex">\(\mathbf{H}_t\)</span> is constructed as:</p>
-<div class="arithmatex">\[
-\mathbf{H}_t = \mathbf{D}_t\mathbf{R}\mathbf{D}_t
-\]</div>
-<p>where <span class="arithmatex">\( \mathbf{D}_t = \text{diag}(\mathbf{h}_t)^{1/2} \)</span>, and <span class="arithmatex">\( \mathbf{h}_t \)</span> is a <span class="arithmatex">\( N \times 1 \)</span> vector whose elements are univariate GARCH(1,1) variances for each time series. <span class="arithmatex">\( \mathbf{R} \)</span> is a positive definite constant conditional correlation matrix.</p>
-<div class="admonition note">
-<p class="admonition-title">Bivariate example</p>
-<p>In a bivariate GARCH(1,1) setting, we have two univariate GARCH(1,1) processes, one for each return series. Specifically, the GARCH(1,1) equations for the conditional variances <span class="arithmatex">\( h_{1t} \)</span> and <span class="arithmatex">\( h_{2t} \)</span> can be written as:</p>
-<div class="arithmatex">\[
-    \begin{align*}
-    h_{1t} &amp;= \omega_1 + \alpha_1 \epsilon_{1,t-1}^2 + \beta_1 h_{1,t-1} \\\\
-    h_{2t} &amp;= \omega_2 + \alpha_2 \epsilon_{2,t-1}^2 + \beta_2 h_{2,t-1}
-    \end{align*}
-\]</div>
-<p>where</p>
-<ul>
-<li><span class="arithmatex">\( \epsilon_{1,t-1} \)</span> and <span class="arithmatex">\( \epsilon_{2,t-1} \)</span> are past shock terms from their respective time series.</li>
-<li>The parameters <span class="arithmatex">\( \omega_1, \alpha_1, \beta_1, \omega_2, \alpha_2, \beta_2 \)</span> are to be estimated.</li>
-</ul>
-<p>With these individual variances, the conditional covariance matrix <span class="arithmatex">\( \mathbf{H}_t \)</span> is:</p>
-<div class="arithmatex">\[
-\mathbf{H}_t = \begin{pmatrix}
-h_{1t} &amp; \rho\sqrt{h_{1t} h_{2t}} \\
-\rho\sqrt{h_{1t} h_{2t}} &amp; h_{2t}
-\end{pmatrix}
-\]</div>
-<p>Here, <span class="arithmatex">\( \rho \)</span> is the correlation between the two time series. It is assumed to be constant over time in the CCC-GARCH framework.</p>
-</div>
-<h3 id="log-likelihood-function">Log-likelihood function<a class="headerlink" href="#log-likelihood-function" title="Permanent link">¶</a></h3>
-<p>The log-likelihood function for the <span class="arithmatex">\(N\)</span>-dimensional multivariate GARCH CCC model is:</p>
-<div class="arithmatex">\[
-   \begin{align*}
-   \ell &amp;= -\frac{1}{2} \sum_{t=1}^T \left[ N\ln(2\pi) + \ln(|\mathbf{H}_t|) + \mathbf{\epsilon}_t' \mathbf{H}_t^{-1} \mathbf{\epsilon}_t \right] \\\\
-        &amp;= -\frac{1}{2} \sum_{t=1}^T \left[ N\ln(2\pi) + \ln(|\mathbf{D}_t\mathbf{R}\mathbf{D}_t|) + \mathbf{\epsilon}_t' \mathbf{D}_t^{-1}\mathbf{R}^{-1}\mathbf{D}_t^{-1} \mathbf{\epsilon}_t \right] \\\\
-        &amp;= -\frac{1}{2} \sum_{t=1}^T \left[ N\ln(2\pi) + 2 \ln(|\mathbf{D}_t|) + \ln(|\mathbf{R}|)+ \mathbf{z}_t' \mathbf{R}^{-1} \mathbf{z}_t \right] 
-   \end{align*}
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{z}_t=\mathbf{D}_t^{-1}\mathbf{\epsilon}_t\)</span> is the vector of standardized residuals.</p>
-<div class="admonition note">
-<p class="admonition-title">Bivariate example</p>
-<p>In the bivariate case, the log-likelihood function can be specifically written as a function of all parameters.</p>
-<p>The log-likelihood function <span class="arithmatex">\( \ell(\Theta) \)</span> for the bivariate case with all parameters <span class="arithmatex">\( \Theta = (\mu_1, \omega_1, \alpha_1, \beta_1, \mu_2, \omega_2, \alpha_2, \beta_2, \rho) \)</span> is:</p>
-<div class="arithmatex">\[
-\ell(\Theta) = -\frac{1}{2} \sum_{t=1}^T \left[ 2\ln(2\pi) + 2 \ln(|\mathbf{D}_t|) + \ln(|\mathbf{R}|) + \mathbf{z}_t' \mathbf{R}^{-1} \mathbf{z}_t \right]
-\]</div>
-<p>Here, <span class="arithmatex">\( \mathbf{z}_t' \)</span> is the transpose of the vector of standardized residuals <span class="arithmatex">\( \mathbf{z}_t \)</span>:</p>
-<div class="arithmatex">\[
-\mathbf{z}_t = \begin{pmatrix}
-z_{1,t} \\
-z_{2,t}
-\end{pmatrix}
-\]</div>
-<p>Further, <span class="arithmatex">\( \mathbf{D}_t \)</span> is:</p>
-<div class="arithmatex">\[
-\mathbf{D}_t = \begin{pmatrix}
-\sqrt{h_{1t}} &amp; 0 \\
-0 &amp; \sqrt{h_{2t}}
-\end{pmatrix}
-\]</div>
-<p>So the log-determinant of <span class="arithmatex">\( \mathbf{D}_t \)</span> is:</p>
-<div class="arithmatex">\[
-\ln(|\mathbf{D}_t|) = \frac{1}{2} \ln(h_{1t} h_{2t})
-\]</div>
-<p>The log-determinant of <span class="arithmatex">\( \mathbf{R} \)</span> is:</p>
-<div class="arithmatex">\[
-\ln(|\mathbf{R}|) = \ln(1 - \rho^2)
-\]</div>
-<p>The inverse of <span class="arithmatex">\( \mathbf{R} \)</span> is:</p>
-<div class="arithmatex">\[
-\mathbf{R}^{-1} = \frac{1}{1 - \rho^2} \begin{pmatrix}
-1 &amp; -\rho \\
--\rho &amp; 1
-\end{pmatrix}
-\]</div>
-<p>Lastly, <span class="arithmatex">\( \mathbf{z}_t' \mathbf{R}^{-1} \mathbf{z}_t \)</span> is:</p>
-<div class="arithmatex">\[
-\mathbf{z}_t' \mathbf{R}^{-1} \mathbf{z}_t = \frac{1}{1 - \rho^2} \left[ z_{1t}^2 - 2\rho z_{1t} z_{2t} + z_{2t}^2 \right]
-\]</div>
-<p>Inserting all of these into <span class="arithmatex">\( \ell(\Theta) \)</span> in equation (Eq: log_likelihood_bivariate) leads to:</p>
-<div class="arithmatex">\[
-\ell(\Theta) = -\frac{1}{2} \sum_{t=1}^T \left[ 2\ln(2\pi) + \ln(h_{1t} h_{2t} (1 - \rho^2)) + \frac{1}{1 - \rho^2} \left( z_{1t}^2 - 2\rho z_{1t} z_{2t} + z_{2t}^2 \right) \right]
-\]</div>
-</div>
-<h2 id="estimation-techniques">Estimation techniques<a class="headerlink" href="#estimation-techniques" title="Permanent link">¶</a></h2>
-<p><a href="https://frds.io/algorithms/garch-ccc/"><code>frds.algorithms.GARCHModel_CCC</code></a> is my implementation. Specifically, I estimate all the GARCH-DCC parameters simultaneously via maximizing the log-likelihood.</p>
-<p><strong>General steps are</strong>:</p>
+<h2 id="derive-cost-function-from-production-function">Derive Cost Function From Production Function<a class="headerlink" href="#derive-cost-function-from-production-function" title="Permanent link">¶</a></h2>
+<p>Given the CES production function <span class="arithmatex">\(\eqref{eq:ces-production}\)</span>, we can
+derive the cost function via the duality theorem.</p>
+<div class="admonition tip">
+<p class="admonition-title">Duality in a nutshell</p>
 <ol>
-<li>Use <code>frds.algorithms.GARCHModel</code> to estimate the <a href="/algorithms/garch">GARCH</a> model for each of the returns.</li>
-<li>Use the standardized residuals from the estimated GARCH models to compute the correlation coefficient.</li>
-<li>Use as starting values the estimated parameters from above in optimizing the log-likelihood function.</li>
+<li>The production function describes the maximum output <span class="arithmatex">\(Q\)</span> that can be produced given the input factors.</li>
+<li>Given a production function and input prices, the firm aims to minimize its costs subject to the constraint of producing a given output level <span class="arithmatex">\(Q\)</span>. This leads to a cost minimization problem.</li>
 </ol>
-<h2 id="example-code">Example code<a class="headerlink" href="#example-code" title="Permanent link">¶</a></h2>
-<p>Let's import the dataset.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">data_url</span> <span class="o">=</span> <span class="s2">"https://www.stata-press.com/data/r18/stocks.dta"</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">convert_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"date"</span><span class="p">])</span>
-</span></code></pre></div>
-<p>Scale returns to percentage returns for better optimization results</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">returns1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"toyota"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">returns2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"nissan"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-</span></code></pre></div>
-<p>Use <code>frds.algorithms.GARCHModel_CCC</code> to estimate a GARCH(1,1)-CCC.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">frds.algorithms</span> <span class="kn">import</span> <span class="n">GARCHModel_CCC</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">model_ccc</span> <span class="o">=</span> <span class="n">GARCHModel_CCC</span><span class="p">(</span><span class="n">returns1</span><span class="p">,</span> <span class="n">returns2</span><span class="p">)</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">model_ccc</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">Parameters</span><span class="p">(</span><span class="n">mu1</span><span class="o">=</span><span class="mf">0.02745814255283541</span><span class="p">,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>           <span class="n">omega1</span><span class="o">=</span><span class="mf">0.03401400758840226</span><span class="p">,</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>           <span class="n">alpha1</span><span class="o">=</span><span class="mf">0.06593379740524756</span><span class="p">,</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>           <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9219575443861723</span><span class="p">,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>           <span class="n">mu2</span><span class="o">=</span><span class="mf">0.009390068254041505</span><span class="p">,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>           <span class="n">omega2</span><span class="o">=</span><span class="mf">0.058694325049554734</span><span class="p">,</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>           <span class="n">alpha2</span><span class="o">=</span><span class="mf">0.0830561828957614</span><span class="p">,</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>           <span class="n">beta2</span><span class="o">=</span><span class="mf">0.9040961791372522</span><span class="p">,</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>           <span class="n">rho</span><span class="o">=</span><span class="mf">0.6506770477876749</span><span class="p">,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>           <span class="n">loglikelihood</span><span class="o">=-</span><span class="mf">7281.321453218112</span><span class="p">)</span>
-</span></code></pre></div>
-<p>These results are comparable to the ones obtained in Stata, and even marginally 
-better based on log-likelihood. In Stata, we can estimate the same model as below:</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">webuse</span> stocks,<span class="k"> clear</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">replace</span> toyota = toyota <span class="o">*</span> <span class="m">100</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">replace</span> nissan = nissan <span class="o">*</span> <span class="m">100</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>mgarch ccc (toyota nissan = ),<span class="k"> arch</span>(<span class="m">1</span>) garch(<span class="m">1</span>)
-</span></code></pre></div>
-<p>The Stata results are:</p>
-<div class="language-text highlight"><pre><span></span><code> Constant conditional correlation MGARCH model
-
- Sample: 1 thru 2015                                      Number of obs = 2,015
- Distribution: Gaussian                                   Wald chi2(.)  =     .
- Log likelihood = -7282.961                               Prob &gt; chi2   =     .
-
- -------------------------------------------------------------------------------------
-                     | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
- --------------------+----------------------------------------------------------------
- toyota              |
-             _cons   |   .0277462   .0302805     0.92   0.360    -.0316024    .0870948
- --------------------+----------------------------------------------------------------
- ARCH_toyota         |
-                arch |
-                L1.  |   .0666384   .0101597     6.56   0.000     .0467257    .0865511
-                     |
-              garch  |
-                L1.  |   .9210688   .0119214    77.26   0.000     .8977032    .9444343
-                     |
-              _cons  |   .0344153   .0109208     3.15   0.002      .013011    .0558197
- --------------------+----------------------------------------------------------------
- nissan              |
-              _cons  |   .0079682   .0349351     0.23   0.820    -.0605034    .0764398
- --------------------+----------------------------------------------------------------
- ARCH_nissan         |
-                arch |
-                L1.  |   .0851778   .0132656     6.42   0.000     .0591778    .1111779
-                     |
-              garch  |
-                L1.  |   .9016613   .0150494    59.91   0.000     .8721649    .9311577
-                     |
-              _cons  |   .0603765   .0178318     3.39   0.001     .0254269    .0953262
- --------------------+----------------------------------------------------------------
- corr(toyota,nissan) |   .6512249   .0128548    50.66   0.000       .62603    .6764199
- -------------------------------------------------------------------------------------
-</code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h2>
-<ul>
-<li><a href="https://doi.org/10.2307/1912773">Engle, R. F. (1982)</a>, "Autoregressive Conditional Heteroskedasticity with Estimates of the Variance of United Kingdom Inflation." <em>Econometrica</em>, 50(4), 987-1007.</li>
-<li><a href="https://doi.org/10.2307/2109358">Bollerslev, T. (1990)</a>, "Modelling the Coherence in Short-Run Nominal Exchange Rates: A Multivariate Generalized ARCH Model." <em>Review of Economics and Statistics</em>, 72(3), 498-505.</li>
-</ul></div>
+<p>Cost minimization and the production maximization are essentially "dual" to each other. The conditions that solve one problem can be used to solve the other. This is a manifestation of the more general concept of duality in optimization theory.</p>
+</div>
+<p>Recall that the CES production function is</p>
+<div class="arithmatex">\[
+Q = A \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}}
+\]</div>
+<p>The firm's cost function is</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:cost-function}
+C = w_1 X_1 + w_2 X_2
+\end{equation}
+\]</div>
+<p>where <span class="arithmatex">\(w_1\)</span> and <span class="arithmatex">\(w_2\)</span> are the factor prices.</p>
+<h3 id="cost-minimization-problem">Cost minimization problem<a class="headerlink" href="#cost-minimization-problem" title="Permanent link">¶</a></h3>
+<p>To derive the cost function from the given CES production function, we need to find the minimum cost of producing a given level of output <span class="arithmatex">\( Q \)</span> given input prices <span class="arithmatex">\( w_1 \)</span> and <span class="arithmatex">\( w_2 \)</span>.</p>
+<p>The cost minimization problem is:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\min_{X_1, X_2} \quad C=w_1 X_1 + w_2 X_2
+\end{equation}
+\]</div>
+<p>Subject to:</p>
+<div class="arithmatex">\[
+\begin{equation}
+A \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}} = Q
+\end{equation}
+\]</div>
+<h3 id="solving-the-problem">Solving the problem<a class="headerlink" href="#solving-the-problem" title="Permanent link">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This part is math-heavy. The derived cost function is given by Equation <span class="arithmatex">\(\eqref{eq:derived-cost-function}\)</span>.</p>
+</div>
+<p>The Lagrangian for this problem is:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\mathcal{L} = w_1 X_1 + w_2 X_2 + \lambda \left[ Q - A \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}} \right]
+\end{equation}
+\]</div>
+<p>Take the first-order conditions:</p>
+<div class="arithmatex">\[
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial X_1} &amp;= w_1 - \lambda A \alpha_1 \rho X_1^{\rho-1} \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}-1} = 0 \\
+\frac{\partial \mathcal{L}}{\partial X_2} &amp;= w_2 - \lambda A \alpha_2 \rho X_2^{\rho-1} \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}-1} = 0 \\
+\frac{\partial \mathcal{L}}{\partial \lambda} &amp;= Q - A \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}} = 0
+\end{align}
+\]</div>
+<p>Solve the first two equations for <span class="arithmatex">\( \lambda \)</span>:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:lambda}
+\lambda = \frac{w_1}{A \alpha_1 \rho X_1^{\rho-1} \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}-1}} = \frac{w_2}{A \alpha_2 \rho X_2^{\rho-1} \left( \alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho} \right)^{\frac{1}{\rho}-1}}
+\end{equation}
+\]</div>
+<p>Simplifying <span class="arithmatex">\(\eqref{eq:lambda}\)</span>, we get:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:lambda-equal}
+w_1 X_2^{\rho-1} \alpha_2 = w_2 X_1^{\rho-1} \alpha_1
+\end{equation}
+\]</div>
+<p>Manipulating <span class="arithmatex">\(\eqref{eq:lambda-equal}\)</span>, we have:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\frac{X_1}{X_2} = \left(\frac{\alpha_2 w_1}{\alpha_1 w_2}\right)^{\frac{1}{\rho-1}}
+\end{equation}
+\]</div>
+<p>so that</p>
+<div class="arithmatex">\[
+\begin{align}
+(\alpha_2 w_1)^{\frac{\rho}{\rho-1}} X_2^{\rho} &amp;= (\alpha_1 w_2)^{\frac{\rho}{\rho-1}} X_1^{\rho} \\
+\left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho} &amp;= \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_1 X_1^{\rho}
+\end{align}
+\]</div>
+<p>Adding <span class="arithmatex">\(\left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho}
+\)</span> to both sides, we have</p>
+<div class="arithmatex">\[
+\begin{align}
+\left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho} + \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho}
+ &amp;= \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_1 X_1^{\rho} + \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho} \nonumber \\
+\left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \alpha_2 X_2^{\rho}
+ &amp;= \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right) \left(\alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho}\right) 
+\end{align}
+\]</div>
+<p>Raise both sides to the power of <span class="arithmatex">\(\frac{1}{\rho}\)</span>, we have</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:x2_before_simplification}
+\left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \right)^{\frac{1}{\rho}} \alpha_2^{\frac{1}{\rho}} X_2
+ = \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right)^{\frac{1}{\rho}} \left(\alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho}\right)^{\frac{1}{\rho}} 
+\end{equation}
+\]</div>
+<p>Let <span class="arithmatex">\(K = \left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \right)^{\frac{1}{\rho}}\)</span>,
+observe that <span class="arithmatex">\(\frac{Q}{A} = \left(\alpha_1 X_1^{\rho} + \alpha_2 X_2^{\rho}\right)^{\frac{1}{\rho}} \)</span>, we can simplify <span class="arithmatex">\(\eqref{eq:x2_before_simplification}\)</span> to</p>
+<div class="arithmatex">\[
+\begin{equation}
+K \alpha_2^{\frac{1}{\rho}} X_2 = \left(w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right)^{\frac{1}{\rho}} \frac{Q}{A}
+\end{equation}
+\]</div>
+<p>Therefore, <span class="arithmatex">\(X_2\)</span> is given by</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:x2}
+X_2 = K^{-1} w_2^{\frac{1}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \frac{Q}{A}
+\end{equation}
+\]</div>
+<p>We can similarly get <span class="arithmatex">\(X_1\)</span></p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:x1}
+X_1 = K^{-1} w_1^{\frac{1}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} \frac{Q}{A}
+\end{equation}
+\]</div>
+<p>Substituting <span class="arithmatex">\(\eqref{eq:x1}\)</span> and <span class="arithmatex">\(\eqref{eq:x2}\)</span> into the cost function <span class="arithmatex">\(\eqref{eq:cost-function}\)</span>, we have</p>
+<div class="arithmatex">\[
+\begin{align}
+C &amp;= w_1 X_1 + w_2 X_2 \nonumber \\
+&amp;= K^{-1} w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} \frac{Q}{A} + K^{-1} w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \frac{Q}{A} \\
+&amp;= \frac{Q}{A} K^{-1} \left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right)
+\end{align}
+\]</div>
+<p>Since <span class="arithmatex">\(K = \left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \right)^{\frac{1}{\rho}}\)</span>, we have the derived cost function:</p>
+<div class="admonition success">
+<p class="admonition-title">Cost function derived from CES production function</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:derived-cost-function}
+C = \frac{Q}{A} \left(w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}}\right)^{\frac{\rho-1}{\rho}}
+\end{equation}
+\]</div>
+</div>
+<h2 id="translog-cost-function">Translog Cost Function<a class="headerlink" href="#translog-cost-function" title="Permanent link">¶</a></h2>
+<p>Taking the natural logarithm of both sides of Equation <span class="arithmatex">\(\eqref{eq:derived-cost-function}\)</span>, we get:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\label{eq:log-cost-function}
+\ln(C) = \ln \left( \frac{Q}{A} \right) + \frac{\rho-1}{\rho} \ln \left( w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \right)
+\end{equation}
+\]</div>
+<p>The Taylor expansion of <span class="arithmatex">\( \frac{\rho-1}{\rho} \ln \left( w_1^{\frac{\rho}{\rho-1}} \alpha_1^{\frac{-1}{\rho-1}} + w_2^{\frac{\rho}{\rho-1}} \alpha_2^{\frac{-1}{\rho-1}} \right) \)</span> around <span class="arithmatex">\(\rho=0\)</span> is <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">2</a></sup></p>
+<div class="arithmatex">\[
+\begin{align}
+\label{eq:taylor-expansion-of-log-cost}
+&amp;((\alpha_2-1)\ln\alpha_1-\alpha_2(\ln\alpha_2+\ln w_1-\ln w_2)+\ln w_1)\nonumber\\
+&amp;+\frac{1}{2}(\alpha_2-1)\alpha_2\rho(\ln \alpha_1-\ln \alpha_2-\ln w_1+\ln w_2)^2+O\left(\rho^2\right)
+\end{align}
+\]</div>
+<p>Omitting <span class="arithmatex">\(O\left(\rho ^2\right) \)</span> and substituting the Taylor expansion into Equation <span class="arithmatex">\(\eqref{eq:log-cost-function}\)</span>, we have</p>
+<div class="arithmatex">\[
+\begin{align} 
+\ln C &amp;= -\ln A + \ln Q \nonumber\\
+&amp;+((\alpha_2-1)\ln\alpha_1-\alpha_2(\ln\alpha_2+\ln w_1-\ln w_2)+\ln w_1)\nonumber\\
+&amp;+\frac{1}{2}(\alpha_2-1)\alpha_2\rho(\ln \alpha_1-\ln \alpha_2-\ln w_1+\ln w_2)^2
+\label{eq:log-cost-taylor}
+\end{align}
+\]</div>
+<p>which <mark>clearly is a function of <span class="arithmatex">\(\ln Q\)</span>; <span class="arithmatex">\(\ln w_1\)</span>, <span class="arithmatex">\(\ln w_2\)</span> and their interaction terms</mark>.</p>
+<p>We can therefore reparameterize Equation <span class="arithmatex">\(\eqref{eq:log-cost-taylor}\)</span> and get the <strong>Translog cost function</strong>:</p>
+<div class="arithmatex">\[
+\begin{align} \label{eq:translog-cost}
+\ln C &amp;= a_0 + a_1 \ln Q \\
+&amp;+ b_{11} \ln w_1 + b_{22} \ln w_2 + b_{12} \ln w_1 \ln w_2 \nonumber
+\end{align}
+\]</div>
+<div class="admonition question">
+<p class="admonition-title">Why there is no interaction between <span class="arithmatex">\(\ln Q\)</span> and <span class="arithmatex">\(\ln w\)</span>?</p>
+<p>This is NOT an error! It is because we started from a <strong>standarded CES production function</strong>,
+which doesn't include interaction terms.</p>
+<p>A more general form of translog cost function includes interaction terms <span class="arithmatex">\(\ln Q \ln w\)</span>
+because the underlying production function is even more flexible than the standard CES production function. This is the beauty of translog.</p>
+</div>
+<p>In a general form, the translog cost function <span class="arithmatex">\( \ln C(Q, W) \)</span> as a function of output <span class="arithmatex">\( Q \)</span> and a vector of <span class="arithmatex">\(n\)</span> input prices <span class="arithmatex">\( W \)</span> is represented as</p>
+<div class="arithmatex">\[
+\begin{align} 
+\ln C(Q, W) &amp;= \beta_0 + \beta_1 \ln Q + \frac{1}{2} \beta_2 (\ln Q)^2 \\
+&amp;+ \sum_{i=1}^{n} \gamma_i \ln W_i + \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \theta_{ij} \ln W_i \ln W_j \nonumber \\
+&amp;+ \sum_{i=1}^{n} \phi_i \ln Q \ln W_i \nonumber
+\label{eq:translog-cost-general}
+\end{align}
+\]</div>
+<p>Note that here it includes a quadratic term for <span class="arithmatex">\(\ln Q\)</span> and interactions between <span class="arithmatex">\(\ln Q\)</span> and <span class="arithmatex">\(\ln W\)</span>. <mark>As a result, it can approximate a wide range of very complex cost functions (hence complex underlying production function, via duality)</mark>.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:3">
+<p>This is computed in Mathematica via
+  </p><div class="language-mathematica highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">expr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Series</span><span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Log</span><span class="p">[</span><span class="n">alpha</span><span class="o">*</span><span class="n">X1</span><span class="o">^</span><span class="n">rho</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">X2</span><span class="o">^</span><span class="n">rho</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}];</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">simplifiedExpr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FullSimplify</span><span class="p">[</span><span class="n">expr</span><span class="p">];</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">TeXForm</span><span class="p">[</span><span class="n">simplifiedExpr</span><span class="p">]</span>
+</span></code></pre></div> <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 1 in the text">↩</a>
+</li>
+<li id="fn:4">
+<p>This is computed in Mathematica, too. <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div></div>
 
 <!-- Source file information -->
 
@@ -1419,9 +1367,9 @@ better based on log-likelihood. In Stata, we can estimate the same model as belo
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function() {
-      this.page.url = "https://mingze-gao.com/posts/garch-constant-conditional-correlation-ccc/"
+      this.page.url = "https://mingze-gao.com/posts/translog-production-and-cost-functions/"
       this.page.identifier =
-        "posts/garch-constant-conditional-correlation-ccc/" 
+        "posts/translog-production-and-cost-functions/" 
     }
 
     /* Set up for the first time */
@@ -1469,7 +1417,7 @@ better based on log-likelihood. In Stata, we can estimate the same model as belo
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../garch-estimation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GARCH Estimation" rel="prev">
+          <a href="../garch-constant-conditional-correlation-ccc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GARCH-Constant Conditional Correlation (CCC)" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -1478,26 +1426,11 @@ better based on log-likelihood. In Stata, we can estimate the same model as belo
                 Previous
               </span>
               <div class="md-ellipsis">
-                GARCH Estimation
+                GARCH-Constant Conditional Correlation (CCC)
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../translog-production-and-cost-functions/" class="md-footer__link md-footer__link--next" aria-label="Next: Translog Production and Cost Functions" rel="next">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Translog Production and Cost Functions
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
         
       </nav>
     

@@ -843,6 +843,17 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#translog-production-and-cost-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Translog Production and Cost Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#garch-constant-conditional-correlation-ccc" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1120,6 +1131,17 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#translog-production-and-cost-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Translog Production and Cost Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#garch-constant-conditional-correlation-ccc" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1232,6 +1254,110 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
       <header class="md-typeset">
         <h1 id="teaching-notes">Teaching Notes<a class="headerlink" href="#teaching-notes" title="Permanent link">¶</a></h1>
       </header>
+      
+        <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Post excerpt -->
+<article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+
+    <!-- Post authors -->
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://mingze-gao.com/images/Adrian.jpg" alt="Mingze Gao" />
+          </span>
+        
+      </nav>
+    
+
+    <!-- Post metadata -->
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+
+        <!-- Post date -->
+        <li class="md-meta__item">
+          <time datetime="2023-10-13 00:00:00">October 13, 2023</time></li>
+
+        <!-- Post categories -->
+        
+          <li class="md-meta__item">
+            in
+            
+              <a
+                href="./"
+                class="md-meta__link"
+              >Teaching Notes</a>, 
+              <a
+                href="../research-notes/"
+                class="md-meta__link"
+              >Research Notes</a></li>
+        
+
+        <!-- Post readtime -->
+        
+          
+          <li class="md-meta__item">
+            
+              9 min read
+            
+          </li>
+        
+      </ul>
+
+      <!-- Draft marker -->
+      
+    </div>
+  </header>
+
+  <!-- Post content -->
+  <div class="md-post__content md-typeset">
+    <h2 id="translog-production-and-cost-functions"><a class="toclink" href="../../translog-production-and-cost-functions/">Translog Production and Cost Functions</a></h2>
+<p>In this post, I'll carefully explain the derivation of cost function from a CES 
+production function, as well as the derivation of translog (transcendental logarithmic) production and cost functions.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Production
+    A[Production Function] -. approximation .-&gt; D(Translog Production function)
+    end
+    subgraph Cost
+    B[Cost Function] -. approximation .-&gt; C(Translog Cost Function)
+    end
+    A == Conversion via Duality ==&gt; B</code></pre>
+<p>Before I start, the graph above illustrate the relations. Specifically, we can derive the 
+cost function from a CES production function via the duality theorem. Translog production
+and translog cost functions are approximations to the production and corresponding cost function, respectively, via Taylor expansion.</p>
+
+
+    <!-- Continue reading link -->
+    <nav class="md-post__action">
+      <a href="../../translog-production-and-cost-functions/">
+        <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span>
+        Continue reading
+      </a>
+    </nav>
+  </div>
+</article>
       
         <!--
   Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
