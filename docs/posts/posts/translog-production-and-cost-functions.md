@@ -348,3 +348,43 @@ In a general form, the translog cost function \( \ln C(Q, W) \) as a function of
 \]
 
 Note that here it includes a quadratic term for $\ln Q$ and interactions between $\ln Q$ and $\ln W$. ==As a result, it can approximate a wide range of very complex cost functions (hence complex underlying production function, via duality)==.
+
+### Linear Homogeneity Constraint
+
+In economic theory, a cost function is often assumed to be linearly homogeneous in input prices. This means that if all input prices \( W_i \) are scaled by a constant \( \lambda > 0 \), the total cost \( C \) should also scale by the same constant \( \lambda \). Mathematically, this is expressed as:
+
+\[
+\begin{equation}
+C(Q, \lambda W) = \lambda C(Q, W)
+\end{equation}
+\]
+
+Linear homogeneity is an important property because it ensures that the cost function is consistent with the idea of constant returns to scale in prices.
+
+#### Implications for parameters
+
+If we take the total differential of the log cost, holding output constant, we have,
+
+\[
+\begin{equation}
+d\ln C = \sum_{i=1}^{n} \gamma_i d\ln W_i+ \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n} \theta_{ij} \ln W_j d\ln W_i + \sum_{i=1}^{n}\phi_i \ln Q d\ln W_i
+\end{equation}
+\]
+
+By assumption, all input prices scale by the same factor $\lambda$ so that $d\ln W_i$ is the same across all $n$ inputs. Therefore, we can factor it out, which gives,
+
+\[
+\begin{equation}
+d\ln C = d\ln \bar{W} \sum_{i=1}^{n} \gamma_i + d\ln \bar{W}^2 \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n} \theta_{ij} + d\ln \bar{W} \ln Q \sum_{i=1}^{n}\phi_i
+\end{equation}
+\]
+
+To ensure $\frac{d\ln C}{d\ln \bar{W}}=1$ hence linear homogeneity in the translog cost function, the following conditions must be met:
+
+\[
+\begin{align}
+\sum_{i=1}^{n} \gamma_i &= 1 \\
+\sum_{j=1}^{n} \theta_{ij} &= 0 \quad \text{for all } i \\
+\sum_{i=1}^{n} \phi_{i} &= 0
+\end{align}
+\]
