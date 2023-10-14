@@ -932,6 +932,44 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Translog Cost Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-homogeneity-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Linear Homogeneity Constraint
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linear Homogeneity Constraint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implications-for-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Implications for parameters
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1006,7 +1044,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                     <span class="md-ellipsis">
                       
-                        9 min read
+                        10 min read
                       
                     </span>
                   </div>
@@ -1336,6 +1374,35 @@ because the underlying production function is even more flexible than the standa
 \end{align}
 \]</div>
 <p>Note that here it includes a quadratic term for <span class="arithmatex">\(\ln Q\)</span> and interactions between <span class="arithmatex">\(\ln Q\)</span> and <span class="arithmatex">\(\ln W\)</span>. <mark>As a result, it can approximate a wide range of very complex cost functions (hence complex underlying production function, via duality)</mark>.</p>
+<h3 id="linear-homogeneity-constraint">Linear Homogeneity Constraint<a class="headerlink" href="#linear-homogeneity-constraint" title="Permanent link">¶</a></h3>
+<p>In economic theory, a cost function is often assumed to be linearly homogeneous in input prices. This means that if all input prices <span class="arithmatex">\( W_i \)</span> are scaled by a constant <span class="arithmatex">\( \lambda &gt; 0 \)</span>, the total cost <span class="arithmatex">\( C \)</span> should also scale by the same constant <span class="arithmatex">\( \lambda \)</span>. Mathematically, this is expressed as:</p>
+<div class="arithmatex">\[
+\begin{equation}
+C(Q, \lambda W) = \lambda C(Q, W)
+\end{equation}
+\]</div>
+<p>Linear homogeneity is an important property because it ensures that the cost function is consistent with the idea of constant returns to scale in prices.</p>
+<h4 id="implications-for-parameters">Implications for parameters<a class="headerlink" href="#implications-for-parameters" title="Permanent link">¶</a></h4>
+<p>If we take the total differential of the log cost, holding output constant, we have,</p>
+<div class="arithmatex">\[
+\begin{equation}
+d\ln C = \sum_{i=1}^{n} \gamma_i d\ln W_i+ \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n} \theta_{ij} \ln W_j d\ln W_i + \sum_{i=1}^{n}\phi_i \ln Q d\ln W_i
+\end{equation}
+\]</div>
+<p>By assumption, all input prices scale by the same factor <span class="arithmatex">\(\lambda\)</span> so that <span class="arithmatex">\(d\ln W_i\)</span> is the same across all <span class="arithmatex">\(n\)</span> inputs. Therefore, we can factor it out, which gives,</p>
+<div class="arithmatex">\[
+\begin{equation}
+d\ln C = d\ln \bar{W} \sum_{i=1}^{n} \gamma_i + d\ln \bar{W}^2 \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n} \theta_{ij} + d\ln \bar{W} \ln Q \sum_{i=1}^{n}\phi_i
+\end{equation}
+\]</div>
+<p>To ensure <span class="arithmatex">\(\frac{d\ln C}{d\ln \bar{W}}=1\)</span> hence linear homogeneity in the translog cost function, the following conditions must be met:</p>
+<div class="arithmatex">\[
+\begin{align}
+\sum_{i=1}^{n} \gamma_i &amp;= 1 \\
+\sum_{j=1}^{n} \theta_{ij} &amp;= 0 \quad \text{for all } i \\
+\sum_{i=1}^{n} \phi_{i} &amp;= 0
+\end{align}
+\]</div>
 <div class="footnote">
 <hr>
 <ol>
