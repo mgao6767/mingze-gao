@@ -16,7 +16,7 @@ production function, as well as the derivation of translog (transcendental logar
 ```mermaid
 flowchart TB
     subgraph Production
-    A[Production Function] -. approximation .-> D(Translog Production function)
+    A[Production Function] -. approximation .-> D(Translog Production Function)
     end
     subgraph Cost
     B[Cost Function] -. approximation .-> C(Translog Cost Function)
@@ -388,3 +388,8 @@ To ensure $\frac{d\ln C}{d\ln \bar{W}}=1$ hence linear homogeneity in the transl
 \sum_{i=1}^{n} \phi_{i} &= 0
 \end{align}
 \]
+
+!!! tip
+
+    See [Translog Cost Function Estimation](/posts/translog-cost-function-estimation/) for estimation notes and code example.
+  
