@@ -56,7 +56,7 @@ hide:
 "[**Borrower Technology Similarity and Bank Loan Contracting**"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
 - EFA 2023 (poster), FMA 2023, 35th AFBC.
-- Semifinalist for ___FMA 2023 Best Paper Awards___ (winners TBA).
+- Semifinalist for ___FMA 2023 Best Paper Awards___.
 
 "**Corporate Real Estate Holdings and M&As**", with Thanh Son Luong and Buhui Qiu.
 
