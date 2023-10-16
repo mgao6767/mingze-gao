@@ -330,7 +330,7 @@ We can therefore reparameterize Equation $\eqref{eq:log-cost-taylor}$ and get th
 
 !!! question "Why there is no interaction between \(\ln Q\) and \(\ln w\)?"
 
-    This is NOT an error! It is because we started from a **standarded CES production function**,
+    This is NOT an error! It is because we started from a **standard CES production function**,
     which doesn't include interaction terms.
 
     A more general form of translog cost function includes interaction terms \(\ln Q \ln w\)
