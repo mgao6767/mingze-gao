@@ -1090,7 +1090,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                     <span class="md-ellipsis">
                       
-                        7 min read
+                        11 min read
                       
                     </span>
                   </div>
@@ -1271,6 +1271,11 @@ Given a firm-year panel, we can simply estimate the following model:</p>
 <p>We can of course use OLS to estimate <span class="arithmatex">\(\eqref{eq:model-to-estimate}\)</span>. However, this approach means that we do not accounting for differences in efficiency among different firms. Specifically, OLS assumes that the error term (<span class="arithmatex">\(\epsilon_{mt}\)</span>) in <span class="arithmatex">\(\eqref{eq:model-to-estimate}\)</span> is just random noise.</p>
 <p>On the other hand, we can model <span class="arithmatex">\(\epsilon_{mt}=v_{mt}+u_{mt}\)</span> such that random error <span class="arithmatex">\(v_{mt}\)</span> is i.i.d. normal with mean zero and variance <span class="arithmatex">\(\sigma^2_{v}\)</span>. The <span class="arithmatex">\(u_{mt}\)</span> term denotes the systematic deviations from the optimal cost due to inefficiency. <span class="arithmatex">\(u_{mt}\)</span> can be modeled to be i.i.d. half-normal and variance <span class="arithmatex">\(\sigma^2_{u}\)</span> independent of <span class="arithmatex">\(v_{mt}\)</span>. This approach is basically a <strong>Stochastic Frontier Analysis (SFA)</strong>, which can be estimated via MLE. 
 An influential example is <a href="https://doi.org/10.1162/REST_a_00155">Koetter, Kolari, and Spierdijk (2012)</a>.</p>
+<div class="admonition question">
+<p class="admonition-title">SFA: pooled or panel?</p>
+<p>There are many further considerations when applying SFA, for example, whether a pooled "cross-sectional" SFA or a panel SFA. The former assumes a single efficient frontier for all firm-years, while the latter assumes a time-varying frontier. Moreoever, in a panel SFA, we can further assume a time-invariant firm inefficiency, or a time-decaying firm inefficiency. </p>
+<p>Based on my limited reading, it seems that the literature typically does not use panel SFA. I do not attempt to discuss which one to use, but will provide code examples for all.</p>
+</div>
 <h2 id="trend-or-time-fixed-effects">Trend or Time Fixed Effects<a class="headerlink" href="#trend-or-time-fixed-effects" title="Permanent link">¶</a></h2>
 <p>In the literature, it is also very common to include either trend or time fixed effects in model <span class="arithmatex">\(\eqref{eq:model-to-estimate}\)</span>.</p>
 <p>If we include trend, the model to estimate is:</p>
@@ -1332,10 +1337,96 @@ Measuring multi-product banks' market power using the Lerner index,
 </li>
 </ul>
 <h2 id="code-examples">Code Examples<a class="headerlink" href="#code-examples" title="Permanent link">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To be added.</p>
-</div></div>
+<p>Here I demonstrate how to estimate translog function for banks. Specifically, I start with the bank-year data from BankScope downloaded via WRDS.</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">keep if</span> ctrycode <span class="o">==</span> <span class="s">"US"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">keep if</span> special <span class="o">==</span> <span class="s">"Commercial banks"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Use year-end data</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">keep if</span> closdate <span class="o">==</span> <span class="nf">mdy</span>(<span class="m">12</span>, <span class="m">31</span>, <span class="nf">year</span>(closdate))
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">keep if</span> <span class="m">2015</span><span class="o">&lt;=</span><span class="nf">year</span>(closdate) <span class="o">&amp;</span> <span class="nf">year</span>(closdate)<span class="o">&lt;=</span><span class="m">2020</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">// Unit can be "0", "th", etc. </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Most credit unions use "0" unit; Commercial banks use "th" (thousands)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">keep if</span> unit <span class="o">==</span> <span class="s">"th"</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">// C1: statement of a mother bank integrating the statements of its controlled </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">// subsidiaries or branches with no unconsolidated companion</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">keep if</span> consol <span class="o">==</span> <span class="s">"C1"</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">gen</span> year = <span class="nf">year</span>(closdate)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">encode</span> bvdidnum,<span class="k"> gen</span>(bvdid)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">xtset</span> bvdid year
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">rename</span> data91100 total_assets
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">rename</span> data72500 staff_expenses
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">rename</span> data72800 total_operating_expenses
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">rename</span> data72700 other_operating_expenses
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">rename</span> data72600 other_admin_expenses
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">rename</span> data91300 total_customer_deposits
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">rename</span> data82450 total_interest_customer_deposits
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">gen</span> Q  = total_assets
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">gen</span> C  = total_operating_expenses
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">gen</span> W1 = staff_expenses <span class="o">/</span> total_assets
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">gen</span> W2 = total_interest_customer_deposits <span class="o">/</span> total_customer_deposits
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">gen</span> W3 = (other_operating_expenses<span class="o">+</span>other_admin_expenses) <span class="o">/</span> total_assets
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>winsor2 Q C W1 W2 W3, cut(<span class="m">1</span> <span class="m">99</span>)<span class="k"> replace</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1">// Scale cost and input prices</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">gen</span> C_s  = C <span class="o">/</span> W1
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">gen</span> W2_s = W2 <span class="o">/</span> W1
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">gen</span> W3_s = W3 <span class="o">/</span> W1
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">gen</span> logQ  =<span class="k"> log</span>(Q)
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="k">gen</span> logC  =<span class="k"> log</span>(C_s)
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">gen</span> logW2 =<span class="k"> log</span>(W2_s)
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="k">gen</span> logW3 =<span class="k"> log</span>(W3_s)
+</span></code></pre></div>
+<p>Now it comes to the estimation. In some cases, like the one below with time fixed effects, Stata may fail to start the MLE process with an error "initial values not feasible".</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">frontier</span> logC c<span class="m">.</span>logQ##(c<span class="m">.</span>logQ c<span class="m">.</span>logW2 c<span class="m">.</span>logW3) c<span class="m">.</span>logW2#c<span class="m">.</span>logW3 i<span class="m">.</span>year, cost
+</span></code></pre></div>
+<p>According to this <a href="https://www.stata.com/statalist/archive/2003-05/msg00650.html">Stata mail list</a>, the reason is because Stata uses a method of moments estimator to find the starting values for MLE. For some datasets, especially those with almost no inefficiency effect, these starting values will not be feasible.</p>
+<p>The solution, as I summarize, is to supply the starting values using <code>-from()-</code> (for half-normal or exponential models) or <code>-ufrom()-</code> (for truncated-normal model). Specifically,</p>
+<ol>
+<li>Use a simple linear regression to get starting values for the
+coefficients.</li>
+<li>Use the natural log of the square of RMSE as the starting value for -lnsig2v- parameter, the natural log of variance of the idiosyncratic error.</li>
+<li>Use a small positive number, say .1, as the starting value for the -lnsig2u- parameter, the natural log of the variance of the log of the inefficiency term.</li>
+</ol>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// A simple linear regression</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">global</span> rhs = <span class="s">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.year"</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">regress</span>  logC <span class="vg">${rhs}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// matrix b0_hnormal is [b..., lnsig2v, lnsig2u]</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">matrix</span> b0_hnormal =<span class="k"> e</span>(b), <span class="nf">ln</span>(<span class="nf">e</span>(rmse)<span class="o">^</span><span class="m">2</span>) , .<span class="m">1</span>
+</span></code></pre></div>
+<p>Then, estimate SFA with the given starting values <code>b0_hnormal</code>. I additionally specify options <code>difficult</code> to automatically switch optimization algorithm. <code>iter</code> option may be used to limit the maximum number of iterations.</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">frontier</span> logC <span class="vg">${rhs}</span>, cost from(b0_hnormal,<span class="k"> copy</span>) dist(hnormal) difficult iter(<span class="m">25</span>)
+</span></code></pre></div>
+<p>This time the estimation successfully complete. We can compute the margin cost MC as</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">gen</span> MC = C<span class="o">/</span>Q <span class="o">*</span> (_b[logQ] <span class="o">+</span> <span class="m">2</span><span class="o">*</span>_b[logQ#logQ]<span class="o">*</span>logQ <span class="o">+</span> _b[logQ#logW2]<span class="o">*</span>logW2 <span class="o">+</span> _b[logQ#logW3]<span class="o">*</span>logW3)
+</span></code></pre></div>
+<p>If we use trend model instead, the above becomes</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">gen</span> trend = year <span class="o">-</span> <span class="m">2015</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">global</span> rhs = <span class="s">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 c.trend c.trend#c.trend c.trend#c.logQ c.trend#(c.logW2 c.logW3)"</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">regress</span>  logC <span class="vg">${rhs}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">// matrix b0 is [b..., lnsig2v, lnsig2u]</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">matrix</span> b0_hnormal =<span class="k"> e</span>(b), <span class="nf">ln</span>(<span class="nf">e</span>(rmse)<span class="o">^</span><span class="m">2</span>) , .<span class="m">1</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">frontier</span> logC <span class="vg">${rhs}</span>, cost from(b0_hnormal,<span class="k"> copy</span>) dist(hnormal) difficult iter(<span class="m">25</span>)
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">gen</span> MC_trend = C<span class="o">/</span>Q <span class="o">*</span> (_b[logQ] <span class="o">+</span> <span class="m">2</span><span class="o">*</span>_b[logQ#logQ]<span class="o">*</span>logQ <span class="o">+</span> _b[logQ#logW2]<span class="o">*</span>logW2 <span class="o">+</span> _b[logQ#logW3]<span class="o">*</span>logW3 <span class="o">+</span> _b[trend#logQ]<span class="o">*</span>trend)
+</span></code></pre></div>
+<p>In this case, <code>MC</code> and <code>MC_trend</code> have a correlation of 1.0, so the two models (time fixed effects and trend) are basically the same.</p>
+<p>Panel SFA can be done via <code>xtfrontier</code> in Stata (<code>xtfrontier</code> assumes truncated-normal).</p>
+<div class="language-stata highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">global</span> rhs = <span class="s">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3"</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">regress</span>  logC <span class="vg">${rhs}</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">// matrix b0_xtfront is [b..., lnsigma2, lgtgamma, mu]</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// see Stata help xtfrontier for the meaning of the params</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">matrix</span> b0_xtfront =<span class="k"> e</span>(b), <span class="nf">ln</span>(<span class="nf">e</span>(rmse)<span class="o">^</span><span class="m">2</span>) , .<span class="m">1</span> , .<span class="m">1</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">xtfrontier</span> logC <span class="vg">${rhs}</span>, cost ti from(b0_xtfront,<span class="k"> copy</span>) difficult iter(<span class="m">25</span>)
+</span></code></pre></div>
+<p>Note that with panel SFA, the <code>ti</code> option specifies a time-invariant firm inefficient. Yet the inefficiency estimate is again highly correlated with the pooled SFA.</p></div>
 
 <!-- Source file information -->
 
