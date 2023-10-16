@@ -154,6 +154,12 @@ We can of course use OLS to estimate $\eqref{eq:model-to-estimate}$. However, th
 On the other hand, we can model $\epsilon_{mt}=v_{mt}+u_{mt}$ such that random error $v_{mt}$ is i.i.d. normal with mean zero and variance $\sigma^2_{v}$. The $u_{mt}$ term denotes the systematic deviations from the optimal cost due to inefficiency. $u_{mt}$ can be modeled to be i.i.d. half-normal and variance $\sigma^2_{u}$ independent of $v_{mt}$. This approach is basically a **Stochastic Frontier Analysis (SFA)**, which can be estimated via MLE. 
 An influential example is [Koetter, Kolari, and Spierdijk (2012)](https://doi.org/10.1162/REST_a_00155).
 
+!!! question "SFA: pooled or panel?"
+
+    There are many further considerations when applying SFA, for example, whether a pooled "cross-sectional" SFA or a panel SFA. The former assumes a single efficient frontier for all firm-years, while the latter assumes a time-varying frontier. Moreoever, in a panel SFA, we can further assume a time-invariant firm inefficiency, or a time-decaying firm inefficiency. 
+    
+    Based on my limited reading, it seems that the literature typically does not use panel SFA. I do not attempt to discuss which one to use, but will provide code examples for all.
+
 ## Trend or Time Fixed Effects
 
 In the literature, it is also very common to include either trend or time fixed effects in model $\eqref{eq:model-to-estimate}$.
@@ -220,5 +226,115 @@ Measuring multi-product banks' market power using the Lerner index,
 
 ## Code Examples
 
-!!! note
-    To be added.
+Here I demonstrate how to estimate translog function for banks. Specifically, I start with the bank-year data from BankScope downloaded via WRDS.
+
+```stata
+keep if ctrycode == "US"
+keep if special == "Commercial banks"
+// Use year-end data
+keep if closdate == mdy(12, 31, year(closdate))
+keep if 2015<=year(closdate) & year(closdate)<=2020
+// Unit can be "0", "th", etc. 
+// Most credit unions use "0" unit; Commercial banks use "th" (thousands)
+keep if unit == "th"
+// C1: statement of a mother bank integrating the statements of its controlled 
+// subsidiaries or branches with no unconsolidated companion
+keep if consol == "C1"
+
+gen year = year(closdate)
+encode bvdidnum, gen(bvdid)
+xtset bvdid year
+
+rename data91100 total_assets
+rename data72500 staff_expenses
+rename data72800 total_operating_expenses
+rename data72700 other_operating_expenses
+rename data72600 other_admin_expenses
+rename data91300 total_customer_deposits
+rename data82450 total_interest_customer_deposits
+
+gen Q  = total_assets
+gen C  = total_operating_expenses
+gen W1 = staff_expenses / total_assets
+gen W2 = total_interest_customer_deposits / total_customer_deposits
+gen W3 = (other_operating_expenses+other_admin_expenses) / total_assets
+
+winsor2 Q C W1 W2 W3, cut(1 99) replace
+
+// Scale cost and input prices
+gen C_s  = C / W1
+gen W2_s = W2 / W1
+gen W3_s = W3 / W1
+
+gen logQ  = log(Q)
+gen logC  = log(C_s)
+gen logW2 = log(W2_s)
+gen logW3 = log(W3_s)
+```
+
+Now it comes to the estimation. In some cases, like the one below with time fixed effects, Stata may fail to start the MLE process with an error "initial values not feasible".
+
+```stata
+frontier logC c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.year, cost
+```
+
+According to this [Stata mail list](https://www.stata.com/statalist/archive/2003-05/msg00650.html), the reason is because Stata uses a method of moments estimator to find the starting values for MLE. For some datasets, especially those with almost no inefficiency effect, these starting values will not be feasible.
+
+The solution, as I summarize, is to supply the starting values using `-from()-` (for half-normal or exponential models) or `-ufrom()-` (for truncated-normal model). Specifically,
+
+1. Use a simple linear regression to get starting values for the
+coefficients.
+1. Use the natural log of the square of RMSE as the starting value for -lnsig2v- parameter, the natural log of variance of the idiosyncratic error.
+1. Use a small positive number, say .1, as the starting value for the -lnsig2u- parameter, the natural log of the variance of the log of the inefficiency term.
+
+```stata
+// A simple linear regression
+global rhs = "c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.year"
+regress  logC ${rhs}
+// matrix b0_hnormal is [b..., lnsig2v, lnsig2u]
+matrix b0_hnormal = e(b), ln(e(rmse)^2) , .1
+```
+
+Then, estimate SFA with the given starting values `b0_hnormal`. I additionally specify options `difficult` to automatically switch optimization algorithm. `iter` option may be used to limit the maximum number of iterations.
+
+```stata
+frontier logC ${rhs}, cost from(b0_hnormal, copy) dist(hnormal) difficult iter(25)
+```
+
+This time the estimation successfully complete. We can compute the margin cost MC as
+
+```stata
+gen MC = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3)
+```
+
+If we use trend model instead, the above becomes
+
+```stata
+gen trend = year - 2015
+
+global rhs = "c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 c.trend c.trend#c.trend c.trend#c.logQ c.trend#(c.logW2 c.logW3)"
+regress  logC ${rhs}
+
+// matrix b0 is [b..., lnsig2v, lnsig2u]
+matrix b0_hnormal = e(b), ln(e(rmse)^2) , .1
+
+frontier logC ${rhs}, cost from(b0_hnormal, copy) dist(hnormal) difficult iter(25)
+
+gen MC_trend = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3 + _b[trend#logQ]*trend)
+```
+
+In this case, `MC` and `MC_trend` have a correlation of 1.0, so the two models (time fixed effects and trend) are basically the same.
+
+Panel SFA can be done via `xtfrontier` in Stata (`xtfrontier` assumes truncated-normal).
+
+```stata
+global rhs = "c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3"
+regress  logC ${rhs}
+// matrix b0_xtfront is [b..., lnsigma2, lgtgamma, mu]
+// see Stata help xtfrontier for the meaning of the params
+matrix b0_xtfront = e(b), ln(e(rmse)^2) , .1 , .1
+
+xtfrontier logC ${rhs}, cost ti from(b0_xtfront, copy) difficult iter(25)
+```
+
+Note that with panel SFA, the `ti` option specifies a time-invariant firm inefficient. Yet the inefficiency estimate is again highly correlated with the pooled SFA.
