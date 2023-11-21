@@ -42,16 +42,14 @@ hide:
 
 ## 📝 Working Papers
 
-### In circulation
-
 "[**Lone (Loan) Wolf Pack Risk**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418)", with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
 
-- WFA 2023, FIRN 2023 (scheduled), FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
+- WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
 - SUERF Policy Brief [No. 586](https://www.suerf.org/suer-policy-brief/66891/the-big-problem-of-small-syndicates), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
 
 "**Anomalous Lending and Bank Risk**", with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
-- FIRN 2023 (scheduled), Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
+- FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
 "[**Borrower Technology Similarity and Bank Loan Contracting**"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
@@ -64,11 +62,7 @@ hide:
 
 "[**Catering to Environmental Premium in Green Venture Financing: Evidence from a Bert-Based Deep Learning Approach**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222)", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
-### In progress
-
-1. "Liquidity and Price Impact at the 52 Week High", with Joshua Della Vedova, Andrew Grant and Joakim Westerholm.
-2. "Differentiated Lending and Bank Risks: Evidence from Global Syndicated Loans", with Hanyun Ding, Buhui Qiu and Eliza Wu.
-3. "Climate Exposure from Lending Portfolio and Bank Risk", with Meitong He, Buhui Qiu and Eliza Wu.
+- Journal of Contemporary Accounting and Economics Annual Symposium 2024.
 
 ## 🧑‍🎓 Student Supervision
 

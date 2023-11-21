@@ -35,6 +35,7 @@ Mingze has a strong background in programming and received First Prize in the 20
 
 ## News
 
+- 2023-11-21: Glad to present and discuss at the 2023 FIRN Annual Meeting held at Hobart!
 - 2023-10-24: I made my own literature search engine [PhDs.io](https://phds.io). First version is online.
 - 2023-09-18: I had the privilege of serving as a discussant at the 2023 FIRN-ANU Banking and Financial Stability Conference.
 - 2023-08-16: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a semifinalist for the Best Paper Awards of FMA Annual Meeting 2023. Winners TBA.
