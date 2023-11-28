@@ -15,7 +15,9 @@ hide:
 
 :octicons-arrow-right-24: [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao), [Faculty Profile](https://www.sydney.edu.au/business/about/our-people/academic-staff/mingze-gao) and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
 
-Mingze has a strong background in programming and received First Prize in the 2010 National Olympiad in Informatics in Provinces (NOIP). His PhD thesis involves large-scale textual analysis and novel machine learning application, leading to a $500,000 grant from the Australian Research Council (ARC) Discovery Project financing his postdoctoral fellowship. He also has a Grad.Cert. in computing from UNSW with High Distinction, on, e.g., database, crypto and distributed ledger technology. Some of his open-source works include, for example,
+<!-- Mingze has a strong background in programming and received First Prize in the 2010 National Olympiad in Informatics in Provinces (NOIP). His PhD thesis involves large-scale textual analysis and novel machine learning application, leading to a $500,000 grant from the Australian Research Council (ARC) Discovery Project financing his postdoctoral fellowship. He also has a Grad.Cert. in computing from UNSW with High Distinction, on, e.g., database, crypto and distributed ledger technology.  -->
+
+Some of his open-source works include, for example,
 
 - [phds.io](https://phds.io), a literature search engine targeting top finance and econ journals.
 - [frds](https://frds.io), a Python library and collection of ready-to-use methods for computing a wide array of measures in the literature.
@@ -35,8 +37,9 @@ Mingze has a strong background in programming and received First Prize in the 20
 
 ## News
 
+- 2023-11-23: Incredibly honored to receive the **2023 FIRN Best Paper Award** for my paper ["Lone (Loan) Wolf Pack Risk"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418)" with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
 - 2023-11-21: Glad to present and discuss at the 2023 FIRN Annual Meeting held at Hobart!
 - 2023-10-24: I made my own literature search engine [PhDs.io](https://phds.io). First version is online.
 - 2023-09-18: I had the privilege of serving as a discussant at the 2023 FIRN-ANU Banking and Financial Stability Conference.
-- 2023-08-16: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a semifinalist for the Best Paper Awards of FMA Annual Meeting 2023. Winners TBA.
-- 2023-07-27: I will join Macquarie University as a Lecturer in Finance. Contract signed. Starting January 2024.
+- 2023-08-16: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu, has been selected as a **semifinalist for the Best Paper Awards of FMA Annual Meeting 2023**. Winners TBA.
+- 2023-07-27: I will join Macquarie University as a **Lecturer in Finance**. Contract signed. Starting January 2024.
