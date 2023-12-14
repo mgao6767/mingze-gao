@@ -1,6 +1,5 @@
 ---
 disqus: true
-status: new
 ---
 
 # Yield Curve and Term Structure of Interest Rates

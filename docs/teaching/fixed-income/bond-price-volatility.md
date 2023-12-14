@@ -1,6 +1,5 @@
 ---
 disqus: true
-status: "new"
 ---
 
 # Bond Price Volatility (Sensitivity)
