@@ -12,29 +12,31 @@
         <meta name="author" content="Mingze Gao">
       
       
-        <link rel="canonical" href="https://mingze-gao.com/finc50/stata/fred/">
+        <link rel="canonical" href="https://mingze-gao.com/teaching/stata/">
       
       
-        <link rel="prev" href="../working-with-datasets/">
+        <link rel="prev" href="../fixed-income/yield-curve/">
       
+      
+        <link rel="next" href="introduction/">
       
       
         
       
       
-      <link rel="icon" href="../../../favicon.ico">
+      <link rel="icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.21+insiders-4.37.1">
     
     
       
-        <title>FRED - Federal Reserve Economic Data - Mingze Gao</title>
+        <title>Stata Workshop - Mingze Gao</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.3a36e643.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3a36e643.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc776e4.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc776e4.min.css">
       
       
   
@@ -58,11 +60,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -99,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prerequisite" class="md-skip">
+        <a href="#stata-workshop" class="md-skip">
           Skip to content
         </a>
       
@@ -129,9 +131,9 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Mingze Gao" class="md-header__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
+    <a href="../.." title="Mingze Gao" class="md-header__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
       
-  <img src="../../../favicon.png" alt="logo">
+  <img src="../../favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -147,7 +149,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FRED - Federal Reserve Economic Data
+              Stata Workshop
             
           </span>
         </div>
@@ -244,7 +246,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -261,7 +263,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-tabs__item">
-      <a href="../../../cv.pdf" class="md-tabs__link">
+      <a href="../../cv.pdf" class="md-tabs__link">
         
   
     
@@ -278,7 +280,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-tabs__item">
-      <a href="../../../research/" class="md-tabs__link">
+      <a href="../../research/" class="md-tabs__link">
         
   
     
@@ -297,7 +299,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
     
       <li class="md-tabs__item">
-        <a href="../../../posts/" class="md-tabs__link">
+        <a href="../../posts/" class="md-tabs__link">
           
   
     
@@ -319,12 +321,12 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
     
       <li class="md-tabs__item">
-        <a href="../../" class="md-tabs__link md-tabs__link--active">
+        <a href="../" class="md-tabs__link md-tabs__link--active">
           
   
     
   
-  FINC50
+  Teaching
 
         </a>
       </li>
@@ -377,6 +379,8 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
           
             
               
+                
+              
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -388,9 +392,9 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Mingze Gao" class="md-nav__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
+    <a href="../.." title="Mingze Gao" class="md-nav__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
       
-  <img src="../../../favicon.png" alt="logo">
+  <img src="../../favicon.png" alt="logo">
 
     </a>
     Mingze Gao
@@ -404,7 +408,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -429,7 +433,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../../../cv.pdf" class="md-nav__link">
+      <a href="../../cv.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -454,7 +458,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../../../research/" class="md-nav__link">
+      <a href="../../research/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -501,7 +505,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         
   
   
-    <a href="../../../posts/" class="md-nav__link">
+    <a href="../../posts/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -557,13 +561,13 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
     
   
-    FINC50
+    Teaching
   
 
     
@@ -584,7 +588,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
             <span class="md-nav__icon md-icon"></span>
             
   
-    FINC50
+    Teaching
   
 
           </label>
@@ -622,7 +626,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         
   
   
-    <a href="../../fixed-income/" class="md-nav__link">
+    <a href="../fixed-income/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -683,7 +687,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   <span class="md-ellipsis">
@@ -699,7 +703,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
             </a>
             
-              <label class="md-nav__link " for="__nav_5_3">
+              <label class="md-nav__link md-nav__link--active" for="__nav_5_3">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -724,7 +728,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="introduction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -750,7 +754,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../packages/" class="md-nav__link">
+      <a href="packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +780,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
     <li class="md-nav__item">
-      <a href="../working-with-datasets/" class="md-nav__link">
+      <a href="working-with-datasets/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -800,35 +804,9 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h10V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8h-2m-11.09-.92L6.5 11.5 11 16 21 6l-1.41-1.42L11 13.17l-3.09-3.09Z"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-    FRED - Federal Reserve Economic Data
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="fred/" class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h10V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8h-2m-11.09-.92L6.5 11.5 11 16 21 6l-1.41-1.42L11 13.17l-3.09-3.09Z"/></svg>
@@ -845,63 +823,6 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisite" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Prerequisite
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gui-is-always-a-good-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          GUI is always a good start
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#programmatical-is-recipe-to-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Programmatical is recipe to reproducibility
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -980,6 +901,8 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -989,53 +912,8 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisite" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Prerequisite
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gui-is-always-a-good-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          GUI is always a good start
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#programmatical-is-recipe-to-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Programmatical is recipe to reproducibility
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1048,6 +926,8 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
               
                 
 
+  
+
 
 
   
@@ -1059,7 +939,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -1076,10 +956,10 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
     
       <li class="md-path__item">
-        <a href="../../" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    FINC50
+    Teaching
   </span>
 
         </a>
@@ -1093,7 +973,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
     
       <li class="md-path__item">
-        <a href="../" class="md-path__link">
+        <a href="./" class="md-path__link">
           
   <span class="md-ellipsis">
     Stata Workshop
@@ -1135,15 +1015,8 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 
   
+  
 
-  <nav class="md-tags" >
-    
-      
-      
-        <a href="../../../tags/#stata" class="md-tag">Stata</a>
-      
-    
-  </nav>
 
 
 
@@ -1156,92 +1029,23 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   as the main headline.
 -->
 
-  <h1>FRED - Federal Reserve Economic Data</h1>
-
 
 <!-- Markdown content -->
-<div><div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is just to showcase one of the many amazing features of Stata.</p>
+<div><h1 id="stata-workshop">Stata Workshop<a class="headerlink" href="#stata-workshop" title="Permanent link">¶</a></h1>
+<div class="admonition success">
+<p class="admonition-title">Welcome</p>
+<p>This series of introductory notes is prepared for the BUSS7902 Quantitative Business Research Methods at the University of Sydney Business School.</p>
 </div>
-<p>Since Stata 15, we can search, browse and import almost a million U.S. and international economic and financial time series made available by the St. Louis Federal Reserve's <a href="https://fred.stlouisfed.org/">Federal Research Economic Data</a>. This post briefly explains this great feature.</p>
-<!-- more -->
-
-<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">¶</a></h2>
-<p>Before you start, you will need an API Key from FRED. <a href="https://fred.stlouisfed.org/docs/api/api_key.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span> Register one here</a></p>
-<p class="annotate">Then in Stata, you can store this key permanently so you don't need to provide again.(1)</p>
-<ol>
-<li>Replace <code>_key_</code> with your actual API Key obtained.</li>
-</ol>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> fredkey _key_, permanently
-</span></code></pre></div>
-<h2 id="gui-is-always-a-good-start">GUI is always a good start<a class="headerlink" href="#gui-is-always-a-good-start" title="Permanent link">¶</a></h2>
-<p>Alternatively, click on menu <code>File&gt;Import&gt;Fedearl Reserve Economic Data (FRED)</code> will bring up the dialog as shown below.</p>
-<figure>
-<p><img alt="set_fredkey" loading="lazy" src="/images/set_fredkey.png"></p>
-</figure>
-<p>Enter API Key and you'll be free to explore all the data series available on FRED.</p>
-<p><img alt="import_fred" loading="lazy" src="/images/import_fred.png"></p>
-<p>For example, let's see the CPI of Australia...</p>
-<p><img alt="import_fred_cpi_australia" loading="lazy" src="/images/import_fred_cpi_australia.png"></p>
-<p>Describe the data series, we can find many useful meta info.</p>
-<figure>
-<p><img alt="import_fred_cpi_australia_desc" loading="lazy" src="/images/import_fred_cpi_australia_desc.png"></p>
-</figure>
-<div class="admonition warning">
-<p class="admonition-title">Vintage</p>
-<p>Note that "vintage" section lists a number of dates, with each vintage referring <mark>a particular version of the data series at that point of time</mark>.</p>
-<p>It may sound strange but an economic data series may be revised multiple times after it has been published. Potential reasons may be that later people collect more accurate information, or that there is a change of estimation method, etc.</p>
-<blockquote>
-<p>For example, the <ins>CPI from 2005 to 2010</ins> collected by a research as at 2011 may be different from the one collected as at 2023. Without specifying the data vintage, replicating a prior work can be hard.</p>
-</blockquote>
-<p>Another tricky part is that ignoring vintages introduces <mark>look-ahead bias</mark> in analysis.</p>
-<blockquote>
-<p>For example, a trading strategy using the <em>revised</em> GDP accessed today, instead of the <em>vintage</em> GDP, implicitly uses hindsight as the GDP series may have been revised to accomodate more accurate data obtained after release.</p>
-</blockquote>
-</div>
-<p>Let's close the description, double click on the series and click on import. Another dialog will be shown to confirm some final details.</p>
-<figure>
-<p><img alt="import_fred_cpi_australia_import" loading="lazy" src="/images/import_fred_cpi_australia_import.png"></p>
-</figure>
-<p>The outputs will be like the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>. import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) aggregate(quarterly,avg)
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Summary
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Series ID                    Nobs    Date range                Frequency
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>AUSCPIALLQINMEI              53      2010-01-01 to 2023-01-01  Quarterly
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a># of series imported: 1
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   highest frequency: Quarterly
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    lowest frequency: Quarterly
-</span></code></pre></div>
-<h2 id="programmatical-is-recipe-to-reproducibility">Programmatical is recipe to reproducibility<a class="headerlink" href="#programmatical-is-recipe-to-reproducibility" title="Permanent link">¶</a></h2>
-<p>We don't need to go through the GUI process every time. In fact, Stata already told us what the corresponding command is:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) aggregate(quarterly,avg)
-</span></code></pre></div>
-<p>We can simply put this line of code into our program.</p>
-<p>For example, the code below generates a time-series chart for Australia's CPI.</p>
-<div class="language-stata highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Import</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>import fred AUSCPIALLQINMEI, daterange(<span class="m">2010-01-01</span> <span class="m">2023-03-31</span>) vintage(<span class="m">2023-05-10</span>) aggregate(quarterly,avg)<span class="k"> clear</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">rename</span> AUSCPIALLQINMEI_20230510 cpi_australia
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// Time format</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">gen</span> yrqtr = <span class="nf">yq</span>(<span class="nf">year</span>(daten),<span class="nf">quarter</span>(daten))
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">format</span> yrqtr <span class="nx">%tq</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">tsset</span> yrqtr
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">// Set start of the period to 100</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">gen</span> cpi_ret = cpi_australia<span class="o">/</span>L<span class="m">.</span>cpi_australia <span class="o">-</span> <span class="m">1</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">replace</span> cpi_australia = <span class="m">100</span><span class="k"> if</span> _n<span class="o">==</span><span class="m">1</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">replace</span> cpi_australia = L<span class="m">.</span>cpi_australia <span class="o">*</span> (<span class="m">1</span><span class="o">+</span>cpi_ret)<span class="k"> if</span> _n<span class="o">&gt;</span><span class="m">1</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1">// Plotting</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">twoway</span> (tsline cpi_australia), title(<span class="s">"Quarterly CPI of Australia 2010Q1-2023Q1"</span>) ytitle(<span class="s">""</span>) ttitle(<span class="s">""</span>)<span class="k"> note</span>(<span class="s">"Index 2010Q1=100. Source: FRED, 2023-05-10 vintage."</span>)
-</span></code></pre></div>
-<p><img alt="import_fred_cpi_australia_example" loading="lazy" src="/images/import_fred_cpi_australia_example.png"></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The code snippet above specifies the data vintage. Therefore, even if someone runs it 30 years from now, they will still get exactly the same data and plot as I do in 2023.</p>
-</div></div>
+<p>First, let's get familiar with <strong>Stata</strong> and see what we can do with it.</p>
+<ul>
+<li><a href="./introduction">Introduction</a></li>
+<li><a href="./packages">Stata packages</a></li>
+<li><a href="./working-with-datasets">Working with datasets</a></li>
+</ul>
+<p>Take a side trip to see some amazing features of Stata.</p>
+<ul>
+<li><a href="fred/">FRED - Federal Reserve Economic Data</a></li>
+</ul></div>
 
 <!-- Source file information -->
 
@@ -1251,36 +1055,10 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 <!-- Get setting from mkdocs.yml, but allow page-level overrides -->
 
 
+  
+
 
 <!-- Inject Disqus into current page -->
-
-  <h2 id="__comments">Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function() {
-      this.page.url = "https://mingze-gao.com/finc50/stata/fred/"
-      this.page.identifier =
-        "finc50/stata/fred/" 
-    }
-
-    /* Set up for the first time */
-    if (typeof DISQUS === "undefined") {
-      var script = document.createElement("script")
-      script.async = true
-      script.src = "https://mingze-gao.disqus.com/embed.js"
-      script.setAttribute("data-timestamp", Date.now())
-
-      /* Inject script tag */
-      document.body.appendChild(script)
-
-    /* Set up on navigation (instant loading) */
-    } else {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      })
-    }
-  </script>
 
                 
               </article>
@@ -1303,10 +1081,12 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" hidden>
         
           
-          <a href="../working-with-datasets/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Working with datasets" rel="prev">
+          <a href="../fixed-income/yield-curve/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Yield Curve" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -1315,11 +1095,26 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                 Previous
               </span>
               <div class="md-ellipsis">
-                Working with datasets
+                Yield Curve
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
@@ -1378,21 +1173,21 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "toc.follow", "navigation.prune", "navigation.tabs", "navigation.path", "navigation.indexes", "navigation.top"], "search": "../../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "toc.follow", "navigation.prune", "navigation.tabs", "navigation.path", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.6c7302c4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.7c5c0157.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7c5c0157.min.js"></script>
       
         
-          <script src="../../../js/mkdocs-charts-plugin.js"></script>
-        
-      
-        
-          <script src="../../../javascripts/extra.js"></script>
+          <script src="../../js/mkdocs-charts-plugin.js"></script>
         
       
         
-          <script src="../../../javascripts/mathjax.js"></script>
+          <script src="../../javascripts/extra.js"></script>
+        
+      
+        
+          <script src="../../javascripts/mathjax.js"></script>
         
       
         
