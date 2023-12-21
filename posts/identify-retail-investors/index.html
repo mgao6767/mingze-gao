@@ -12,13 +12,11 @@
         <meta name="author" content="Mingze Gao">
       
       
-        <link rel="canonical" href="https://mingze-gao.com/posts/kyleslambda/">
+        <link rel="canonical" href="https://mingze-gao.com/posts/identify-retail-investors/">
       
       
-        <link rel="prev" href="../lomackinlay1988/">
+        <link rel="prev" href="../translog-cost-function-estimation/">
       
-      
-        <link rel="next" href="../textual-analysis-on-sec-filings/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>Kyle's Lambda - Mingze Gao</title>
+        <title>Identify Retail Investors - Mingze Gao</title>
       
     
     
@@ -101,7 +99,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kyles-lambda" class="md-skip">
+        <a href="#identify-retail-investors" class="md-skip">
           Skip to content
         </a>
       
@@ -149,7 +147,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kyle's Lambda
+              Identify Retail Investors
             
           </span>
         </div>
@@ -814,11 +812,11 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
+  <a href="#boehmer-et-al-2021-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Definition
+          Boehmer et al. (2021) algorithm
         </span>
       
     </span>
@@ -827,11 +825,11 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 </li>
       
         <li class="md-nav__item">
-  <a href="#source-code" class="md-nav__link">
+  <a href="#barber-et-al-2023-experiment" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Source Code
+          Barber et al. (2023) experiment
         </span>
       
     </span>
@@ -889,7 +887,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
               <li class="md-nav__item">
                 <div class="md-nav__link">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                  <time datetime="2020-05-26 00:00:00" class="md-ellipsis">May 26, 2020</time>
+                  <time datetime="2023-12-21 00:00:00" class="md-ellipsis">December 21, 2023</time>
                 </div>
               </li>
               
@@ -899,7 +897,7 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
                     <span class="md-ellipsis">
                       in
                       
-                        <a href="../category/teaching-notes/">Teaching Notes</a></span>
+                        <a href="../category/research-notes/">Research Notes</a></span>
                   </div>
                 </li>
               
@@ -956,17 +954,12 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
     
       
       
-        <a href="../../tags/#python" class="md-tag">Python</a>
+        <a href="../../tags/#taq" class="md-tag">TAQ</a>
       
     
       
       
-        <a href="../../tags/#code" class="md-tag">Code</a>
-      
-    
-      
-      
-        <a href="../../tags/#liquidity" class="md-tag">Liquidity</a>
+        <a href="../../tags/#asset-pricing" class="md-tag">Asset pricing</a>
       
     
   </nav>
@@ -984,74 +977,35 @@ From January 2024, I'll join <a href="https://www.mq.edu.au/">Macquarie Universi
 
 
 <!-- Markdown content -->
-<div><h1 id="kyles-lambda">Kyle's Lambda<a class="headerlink" href="#kyles-lambda" title="Permanent link">¶</a></h1>
-<p>A measure of market impact cost from Kyle (1985), which can be interpreted as
-the cost of demanding a certain amount of liquidity over a given time period.</p>
+<div><h1 id="identify-retail-investors">Identify Retail Investors<a class="headerlink" href="#identify-retail-investors" title="Permanent link">¶</a></h1>
+<p>Retail investors and their trading behaviour attract many research interests. One strand of literature uses proprietary datasets to identify retail investors. The other uses algorithms. A recent JF paper <a href="https://doi.org/10.1111/jofi.13033">Boehmer et al. (2021)</a> proposes a simple one based only on the trade price, which also signs the trade direction effectively. Even more interestingly, I just read a follow-up work forthcoming on JF by <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4202874">Barber et al. (2023)</a>. The authors placed 85,000 retail trades themselves to validate the Boehmer et al. (2021) algorithm.</p>
 <!-- more -->
 
-<h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">¶</a></h2>
-<p>Following Hasbrouck (2009) and Goyenko, Holden, Trzcinka (2009), Kyle's Lambda
-for a given stock <span class="arithmatex">\(i\)</span> and day <span class="arithmatex">\(t\)</span>, is calculated as the slope coefficient
-<span class="arithmatex">\(\lambda_{i,t}\)</span> in the regression:</p>
-<div class="arithmatex">\[
-ret_{i,t,n}= \delta_{i,t} + \lambda_{i,t} S_{i,t,n}+\epsilon_{i,t,n}
-\]</div>
-<p>where for the <span class="arithmatex">\(n\)</span>th five-minute period on date <span class="arithmatex">\(t\)</span> and stock <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(ret_{i,t,n}\)</span>
-is the stock return and <span class="arithmatex">\(S_{i,t,n}\)</span> is the sum of the signed square-root dollar
-volume, that is,</p>
-<div class="arithmatex">\[
-S_{i,t,n}=\sum_k{\text{sign}}(dvol_{i,t,n,k}) \sqrt{dvol_{i,t,n,k}}
-\]</div>
-<h2 id="source-code">Source Code<a class="headerlink" href="#source-code" title="Permanent link">¶</a></h2>
-<p><img style="width:82px;height:20px" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT"></p>
-<p>This example Python code is not optimized for speed and serves only demonstration purpose. It may contain errors.</p>
-<p>It returns <span class="arithmatex">\(\lambda \times 10^6\)</span></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># KylesLambda.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">'KylesLambda'</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">"""</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">A measure of market impact cost from Kyle (1985), </span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">which can be interpreted as the cost of demanding a certain amount of liquidity over a given time period.</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">Result is Lambda*1E6.</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">"""</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">vars_needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Price'</span><span class="p">,</span> <span class="s1">'Volume'</span><span class="p">,</span> <span class="s1">'Direction'</span><span class="p">]</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">price</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Price'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">volume</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Volume'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">direction</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Direction'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">sqrt_dollar_volume</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">volume</span><span class="p">))</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">signed_sqrt_dollar_volume</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">sqrt_dollar_volume</span><span class="p">))</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="c1"># Find the total signed sqrt dollar volume and return per 5 min.</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'datetime64'</span><span class="p">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">last_ts</span><span class="p">,</span> <span class="n">last_price</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">price</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">bracket_ssdv</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">bracket</span> <span class="o">=</span> <span class="n">last_ts</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'m'</span><span class="p">)</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">rets</span><span class="p">,</span> <span class="n">ssdvs</span><span class="p">,</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">timestamps</span><span class="p">):</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">if</span> <span class="n">ts</span> <span class="o">&lt;=</span> <span class="n">bracket</span><span class="p">:</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="n">bracket_ssdv</span> <span class="o">+=</span> <span class="n">signed_sqrt_dollar_volume</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">price</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">last_price</span><span class="p">)</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">bracket_ssdv</span><span class="p">):</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                <span class="n">rets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="n">ssdvs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bracket_ssdv</span><span class="p">)</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="c1"># Reset bracket</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            <span class="n">bracket</span> <span class="o">=</span> <span class="n">ts</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'m'</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            <span class="n">last_price</span> <span class="o">=</span> <span class="n">price</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>            <span class="n">bracket_ssdv</span> <span class="o">=</span> <span class="n">signed_sqrt_dollar_volume</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Perform regression.</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ssdvs</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ssdvs</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">coef</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rets</span><span class="p">),</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="k">except</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinAlgError</span><span class="p">:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="k">return</span> <span class="kc">None</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">else</span> <span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mf">1E6</span>
-</span></code></pre></div></div>
+<h2 id="boehmer-et-al-2021-algorithm">Boehmer et al. (2021) algorithm<a class="headerlink" href="#boehmer-et-al-2021-algorithm" title="Permanent link">¶</a></h2>
+<p>A quick summary of the background info and the algorithm:</p>
+<ul>
+<li>In the U.S., retail investors' marketable orders are typically not executed on exchanges but filled from a broker's own inventory.</li>
+<li>These orders are publicly reported to a Financial Industry Regulatory Authority (FINRA) TRF, which is included in the TAQ consolidated tape with an exchange code <code>D</code>.</li>
+<li>These orders often receive minor price improvements (like 0.01, 0.1, or 0.2 cent) relative to the national best bid or offer (NBBO).</li>
+<li>SEC Rule 606 requires brokers to provide summary statistics on their order-routing practices for orders not directed to exchanges, which are <em>mostly</em> retail and often receive price improvement.</li>
+<li>Institutional orders, in contrast, are typically executed on exchanges or dark pools and priced in round pennies, except for midpoint trades.</li>
+</ul>
+<p>Therefore, the algorithm to identify retail transactions is simply:</p>
+<ul>
+<li>Retail seller transactions are reported on a TRF at prices slightly above a round penny.</li>
+<li>Retail buyer transactions are at prices slightly below a round penny.</li>
+<li>Transactions at round pennies or near half-pennies are not classified as retail.</li>
+</ul>
+<p>For example, for a trade with exchange code <code>D</code> on TAQ,</p>
+<ul>
+<li>if trade price is 10.21 (round penny), it is non-retail.</li>
+<li>if trade price is <mark>10.211</mark> (slightly above a round penny), it is a retail sell.</li>
+<li>if trade price is <mark>10.209</mark> (slightly below a round penny), it is a retail buy.</li>
+<li>if trade price is 10.214, 10.215, or 10.216 (near half-penny), it is non-retail.</li>
+</ul>
+<h2 id="barber-et-al-2023-experiment">Barber et al. (2023) experiment<a class="headerlink" href="#barber-et-al-2023-experiment" title="Permanent link">¶</a></h2>
+<p>I find this very interesting. The authors actually conduct an experiment by actually placing 85,000 retail trades themselves to validate the Boehmer et al. (2021) algorithm. They find that the algorithm identifies 35% of their trades as retail, incorrectly signs 28% of identified trades.</p>
+<p>There is no need to summarize the paper here. SSRN link is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4202874">here</a>.</p></div>
 
 <!-- Source file information -->
 
@@ -1068,9 +1022,9 @@ S_{i,t,n}=\sum_k{\text{sign}}(dvol_{i,t,n,k}) \sqrt{dvol_{i,t,n,k}}
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function() {
-      this.page.url = "https://mingze-gao.com/posts/kyleslambda/"
+      this.page.url = "https://mingze-gao.com/posts/identify-retail-investors/"
       this.page.identifier =
-        "posts/kyleslambda/" 
+        "posts/identify-retail-investors/" 
     }
 
     /* Set up for the first time */
@@ -1118,7 +1072,7 @@ S_{i,t,n}=\sum_k{\text{sign}}(dvol_{i,t,n,k}) \sqrt{dvol_{i,t,n,k}}
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../lomackinlay1988/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Variance Ratio Test - Lo and MacKinlay (1988)" rel="prev">
+          <a href="../translog-cost-function-estimation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Translog Cost Function Estimation" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -1127,26 +1081,11 @@ S_{i,t,n}=\sum_k{\text{sign}}(dvol_{i,t,n,k}) \sqrt{dvol_{i,t,n,k}}
                 Previous
               </span>
               <div class="md-ellipsis">
-                Variance Ratio Test - Lo and MacKinlay (1988)
+                Translog Cost Function Estimation
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../textual-analysis-on-sec-filings/" class="md-footer__link md-footer__link--next" aria-label="Next: Textual Analysis on SEC Filings" rel="next">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Textual Analysis on SEC Filings
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
         
       </nav>
     
