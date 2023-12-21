@@ -10,6 +10,8 @@ tags:
 categories:
   - Research Notes
 slug: probability-of-informed-trading
+links:
+  - Python code: https://frds.io/measures/probability_of_informed_trading/
 ---
 
 # Probability of Informed Trading (PIN)
