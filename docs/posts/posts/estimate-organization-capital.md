@@ -64,7 +64,6 @@ rsubmit;
  *  This code may contain error. Please check before use.
  *
  * Author: Mingze (Adrian) Gao
- * mingze.gao@sydney.edu.au
  *
  * Last Modifed: 24 Feb 2019
  * ============================================================================================== */

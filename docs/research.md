@@ -68,4 +68,4 @@ hide:
 
 ## 🧑‍🎓 Student Supervision
 
-- Meitong He, Honours student at University of Sydney, 2023 (co-supervision with Buhui Qiu).
+- Meitong He, Honours student at University of Sydney, 2023 (co-supervision with Buhui Qiu). Graduated with First Class Honours.
