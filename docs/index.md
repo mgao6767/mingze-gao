@@ -13,7 +13,7 @@ hide:
 
 [^1]: Poster session.
 
-:octicons-arrow-right-24: [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao), and [SSRN Profile](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772).
+:octicons-arrow-right-24: [CV](https://mingze-gao.com/cv/), [Google Scholar](https://scholar.google.com/citations?user=5n1YYx0AAAAJ&hl=en&oi=ao), [SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772), and [Faculty Profile](https://researchers.mq.edu.au/en/persons/mingze-gao).
 
 <!-- Mingze has a strong background in programming and received First Prize in the 2010 National Olympiad in Informatics in Provinces (NOIP). His PhD thesis involves large-scale textual analysis and novel machine learning application, leading to a $500,000 grant from the Australian Research Council (ARC) Discovery Project financing his postdoctoral fellowship. He also has a Grad.Cert. in computing from UNSW with High Distinction, on, e.g., database, crypto and distributed ledger technology.  -->
 
