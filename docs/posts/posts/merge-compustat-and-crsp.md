@@ -1,6 +1,6 @@
 ---
 date: 2020-05-25
-updatedDate: Jul 30, 2021
+updatedDate: Jan 23, 2024
 authors:
   - mgao
 tags:
@@ -21,6 +21,70 @@ for annual, quarterly and monthly data, inspired by and adapted from several
 examples from the WRDS.[^4]
 
 <!-- more -->
+
+## Ready-to-use code
+
+!!! note "2024 update"
+    
+    Download the Compustat/CRSP gvkey-permco-permno link table without duplicates.
+
+```sas
+%let wrds=wrds-cloud.wharton.upenn.edu 4016;
+options comamid=TCP remote=WRDS;
+signon username=_prompt_;
+
+rsubmit;
+
+%let year_start = 1990;
+%let year_end = 2020;
+
+proc sql;
+	create table lnk as select * from crsp.ccmxpf_lnkhist where
+	linktype in ("LU", "LC") and
+	/* Extend the period to deal with fiscal year issues */
+	/* Note that the ".B" and ".E" missing value codes represent the   */
+	/* earliest possible beginning date and latest possible end date   */
+	/* of the Link Date range, respectively.                           */
+   (&year_end.+1 >=year(linkdt) or linkdt=.B) and
+   (&year_start.-1 <=year(linkenddt) or linkenddt=.E)
+    /* primary link	assigned by Compustat or CRSP */
+	and linkprim in ("P", "C")
+  	order by gvkey, linkdt;
+quit;
+
+proc sql;
+	create table mydata as select * from lnk, 
+		comp.funda (keep=gvkey fyear tic cik datadate indfmt datafmt popsrc consol) as cst 
+	where
+		indfmt='FS' /* FS - Financial Services ('INDL' for industrial ) */
+		and datafmt='STD' /* STD - Standardized */
+		and popsrc='D' /* D - Domestic (USA, Canada and ADRs)*/
+		and consol='C' /* C - Consolidated. Parent and Subsidiary accounts combined */
+		and lnk.gvkey=cst.gvkey
+		and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
+		and (cst.datadate <=linkenddt or linkenddt=.E);
+quit;proc sql;
+	create table mydata as select * from lnk, comp.funda (keep=gvkey fyear tic cik
+		datadate indfmt datafmt popsrc consol) as cst where
+		datafmt='STD' and popsrc='D' and consol='C' and lnk.gvkey=cst.gvkey
+		and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
+		and (cst.datadate <=linkenddt or linkenddt=.E);
+quit;
+
+/* Verify that we have unique gvkey-permco and gvkey-permno links */
+proc sort data=mydata nodupkey; by lpermco gvkey datadate; run;
+proc sort data=mydata nodupkey; by lpermno gvkey datadate; run;
+
+data gvkey_permco_permno; set mydata;
+   rename lpermno=permno;
+   rename lpermco=permco;
+run;
+
+proc download data=gvkey_permco_permno out=gvkey_permco_permno; run;
+
+endrsubmit;
+signoff;
+```
 
 ## `GVKEY-PERMNO` link table
 
