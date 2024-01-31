@@ -62,9 +62,11 @@ hide:
 
 - FMA 2022, FIRN 2022.
 
-"[**Catering to Environmental Premium in Green Venture Financing: Evidence from a Bert-Based Deep Learning Approach**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222)", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
+"[**Catering to Environmental Premium in Green Venture Financing: Evidence from a BERT-based Deep Learning Approach**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222)", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
 - Journal of Contemporary Accounting and Economics Annual Symposium 2024.
+
+"**Liquidity and Price Impact at the 52 Week High**", with Joshua Della Vedova, Andrew Grant and Joakim Westerholm.
 
 ## 🧑‍🎓 Student Supervision
 
