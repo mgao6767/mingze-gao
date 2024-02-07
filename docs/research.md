@@ -16,7 +16,6 @@ hide:
 - (code) [Organization capital](/posts/estimate-organization-capital)
 - (code) [Specification curve analysis](/posts/specification-curve-analysis) - listed in [Harvard Business School Research Computing Services blog](https://hbs-rcs.github.io/post/specification-curve-analysis/). For the Stata command, see my [`specurve`](https://github.com/mgao6767/specurve).
 - (code) [Textual analysis on 8K filings](/posts/textual-analysis-on-sec-filings) - e.g., Nini, Smith and Sufi (2009). For a full Python CLI application, see my [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer).
-- (code) [Kyle's Lambda](/posts/kyleslambda)
 - (code) [Variance ratio test - Lo and MacKinlay (1988)](/posts/lomackinlay1988)
 
 ## 📄 Publications
