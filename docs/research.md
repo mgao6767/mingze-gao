@@ -44,7 +44,7 @@ hide:
 "[**Lone (Loan) Wolf Pack Risk**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418)", with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
 
 - WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
-- ___FIRN 2023 Best Paper Award___.
+- ___FIRN 2023 The Brattle Group Best Paper Award___.
 - SUERF Policy Brief [No. 586](https://www.suerf.org/suer-policy-brief/66891/the-big-problem-of-small-syndicates), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
 
 "**Anomalous Lending and Bank Risk**", with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
@@ -66,6 +66,8 @@ hide:
 - Journal of Contemporary Accounting and Economics Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
 
 "**Liquidity and Price Impact at the 52 Week High**", with Joshua Della Vedova, Andrew Grant and Joakim Westerholm.
+
+- 17th International Behavioural Finance Conference.
 
 ## 🧑‍🎓 Student Supervision
 
