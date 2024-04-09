@@ -53,7 +53,7 @@ hide:
 
 "[**Borrower Technology Similarity and Bank Loan Contracting**"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
-- SFS Cavalcade 2024 (scheduled), EFA 2023 (poster), FMA 2023, 35th AFBC.
+- SFS Cavalcade 2024 (scheduled), EFA 2023 (poster), FMA 2023, 35th AFBC, Macquarie University, University of Sydney.
 - Semifinalist for ___FMA 2023 Best Paper Awards___.
 - CEPR Discussion Paper [DP18624](https://cepr.org/publications/dp18624).
 
@@ -63,7 +63,7 @@ hide:
 
 "[**Catering to Environmental Premium in Green Venture Financing: Evidence from a BERT-based Deep Learning Approach**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222)", with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
-- Journal of Contemporary Accounting and Economics Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
+- AsianFA 2024 (scheduled), Journal of Contemporary Accounting and Economics Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
 
 "**Liquidity and Price Impact at the 52 Week High**", with Joshua Della Vedova, Andrew Grant and Joakim Westerholm.
 
