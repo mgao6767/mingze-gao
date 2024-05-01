@@ -65,7 +65,7 @@ hide:
 
 - AsianFA 2024 (scheduled), Journal of Contemporary Accounting and Economics Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
 
-"**Liquidity and Price Impact at the 52 Week High**", with Joshua Della Vedova, Andrew Grant and Joakim Westerholm.
+"**Liquidity and Price Impact at the 52 Week High**", with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
 
 - 17th International Behavioural Finance Conference.
 
