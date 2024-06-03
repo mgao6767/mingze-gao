@@ -9,7 +9,7 @@ hide:
 
 <img id="hide-on-large" src="/images/AdrianAI.png" width="30%">
 
-[Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), is a **Lecturer in Finance** at the Macquarie Business School (MQBS). He is previously a Postdoctoral Research Fellow at the University of Sydney Business School. With a focus on banking and corporate finance, his work has been published at journals including _Journal of Banking & Finance_, _Finance Research Letters_, and/or presented at conferences such as WFA, SFS Cavalcade (scheduled), EFA (poster), FMA, FIRN, and AFBC. He also serves as an ad hoc referee at ABDC-A*/A journals. He will be on the Faculty Board of MQBS from 2024 to 2026. 
+[Mingze Gao](https://mingze-gao.com), aka [Adrian](https://adrian-gao.com), is a **Lecturer in Finance** at the Macquarie Business School (MQBS). He is previously a Postdoctoral Research Fellow at the University of Sydney Business School. With a focus on banking and corporate finance, his work has been published at journals including _Journal of Banking & Finance_, _Finance Research Letters_, and/or presented at conferences such as WFA, SFS Cavalcade, EFA (poster), FMA, FIRN, and AFBC. He also serves as an ad hoc referee at ABDC-A*/A journals. He will be on the Faculty Board of MQBS from 2024 to 2026. 
 
 <!-- [^1]: Poster session. -->
 
