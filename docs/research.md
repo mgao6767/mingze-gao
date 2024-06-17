@@ -45,7 +45,7 @@ hide:
 
 - WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
 - ___FIRN 2023 The Brattle Group Best Paper Award___.
-- SUERF Policy Brief [No. 586](https://www.suerf.org/suer-policy-brief/66891/the-big-problem-of-small-syndicates), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
+- SUERF Policy Brief [No. 586](https://www.suerf.org/publications/suerf-policy-notes-and-briefs/the-big-problem-of-small-syndicates/), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
 
 "**Anomalous Lending and Bank Risk**", with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
