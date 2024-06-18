@@ -38,6 +38,7 @@ Some of his open-source works include, for example,
 
 ## News
 
+- 2024-06-18: Glad to receive the Data Horizons Research Funding 2024 at the Macquarie University. Great team work!
 - 2024-02-07: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu has been accepted for presentation at the **SFS Cavalcade 2024**.
 - 2024-01-02: My new position as a **Lecturer in Finance** at the Macquarie Business School starts!
 - 2023-11-23: Incredibly honoured to receive the **FIRN 2023 The Brattle Group Best Paper Award** for my paper ["Lone (Loan) Wolf Pack Risk"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418) with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
