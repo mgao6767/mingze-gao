@@ -1,4 +1,6 @@
 ---
+authors:
+  - mgao
 date: 2023-09-08 
 categories:
   - Research Notes
@@ -10,7 +12,7 @@ tags:
   - Python
   - Code
 links:
-  - Textual Analysis on SEC filings: /posts/textual-analysis-on-sec-filings/
+  - Textual Analysis on SEC filings: https://mingze-gao.com/posts/textual-analysis-on-sec-filings/
 ---
 
 # Download SEC Filings from EDGAR

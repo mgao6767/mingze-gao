@@ -5,7 +5,7 @@ window.MathJax = {
     processEscapes: true,
     processEnvironments: true,
     tags: "ams",
-    packages: { "[+]": ["color", "tagformat"] },
+    packages: { "[+]": ["color", "tagformat", "boldsymbol"] },
     tagformat: {
       number: (n) => n.toString(),
       tag: (tag) => "(" + tag + ")",
@@ -13,7 +13,7 @@ window.MathJax = {
       url: (id, base) => base + "#" + encodeURIComponent(id),
     },
   },
-  loader: { load: ["[tex]/color", "[tex]/tagformat"] },
+  loader: { load: ["[tex]/color", "[tex]/tagformat", "[tex]/boldsymbol"] },
   options: {
     ignoreHtmlClass: ".*|",
     processHtmlClass: "arithmatex",

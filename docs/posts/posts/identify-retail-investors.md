@@ -5,6 +5,8 @@ tags:
   - Asset pricing
 categories:
   - Research Notes
+authors:
+  - mgao
 ---
 
 # Identify Retail Investors

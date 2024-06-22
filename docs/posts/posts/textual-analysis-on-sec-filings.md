@@ -11,7 +11,7 @@ tags:
 categories:
   - Research Notes
 links:
-  - Download SEC filings from EDGAR: /posts/download-sec-filings-from-edgar/
+  - Download SEC filings from EDGAR: https://mingze-gao.com/posts/download-sec-filings-from-edgar/
 ---
 
 # Textual Analysis on SEC Filings
