@@ -1,7 +1,6 @@
 ---
 date: 2022-04-16
-authors:
-    - mgao
+
 ---
 
 # Centrifuge Problem

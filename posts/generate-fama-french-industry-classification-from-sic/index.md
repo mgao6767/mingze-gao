@@ -1,7 +1,4 @@
 ---
-authors:
-    - mgao
-# date: May 22, 2020
 date: 2020-05-22
 tags:
     - Stata

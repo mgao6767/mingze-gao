@@ -1,7 +1,5 @@
 ---
 date: 2020-06-10
-authors:
-  - mgao
 tags:
   - SAS
   - Code

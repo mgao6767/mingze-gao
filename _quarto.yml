@@ -3,15 +3,6 @@ project:
   preview:
     port: 4200
 
-# author:
-#   - name: Mingze Gao
-#     degrees:
-#       - PhD
-#     orcid: 0000-0002-8635-4269
-#     email: mingze.gao@mq.edu.au
-#     affiliations:
-#       - name: Macquarie University
-
 bibliography: references.bib
 cap-location: margin
 
@@ -20,6 +11,7 @@ website:
   favicon: images/favicon.png
   twitter-card: true
   site-url: https://mingze-gao.com
+  back-to-top-navigation: true
   navbar:
     left:
       - href: index.qmd
@@ -28,7 +20,7 @@ website:
         text: CV
       - href: research.md
         text: Research
-      - href: posts/index.qmd
+      - href: posts.qmd
         text: Blog
   page-footer: 
     left: "Copyright © 2019 - 2024 Mingze Gao" 

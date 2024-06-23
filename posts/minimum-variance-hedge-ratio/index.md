@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2020-05-26
 # date: May 26, 2020
 hasTex: true

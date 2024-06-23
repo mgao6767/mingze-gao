@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2023-09-26
 tags:
   - GARCH

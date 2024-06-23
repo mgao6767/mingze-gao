@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2020-05-25
 hasTex: true
 tags:

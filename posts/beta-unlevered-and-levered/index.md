@@ -1,7 +1,6 @@
 ---
 date: 2020-03-24
-authors:
-    - mgao
+
 hasTex: true
 tags:
   - Beta

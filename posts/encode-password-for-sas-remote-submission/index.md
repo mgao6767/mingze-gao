@@ -1,7 +1,6 @@
 ---
 date: 2019-07-25
-authors:
-    - mgao
+
 tags:
     - SAS
 categories:

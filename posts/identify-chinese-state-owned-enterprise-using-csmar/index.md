@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 description: Identify Chinese State-Owned Enterprise using CSMAR
 date: 2020-05-22
 tags:

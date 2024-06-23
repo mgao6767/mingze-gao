@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 description: SAS code to calculate Merton (1974) Distance-to-Default and default probability as in Bharath and Shumway (2008 RFS).
 date: 2022-11-30
 # date: Nov 30, 2022

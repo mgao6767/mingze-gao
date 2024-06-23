@@ -1,8 +1,6 @@
 ---
 date: 2020-05-25
 updatedDate: Jan 23, 2024
-authors:
-  - mgao
 tags:
   - CRSP
   - Compustat

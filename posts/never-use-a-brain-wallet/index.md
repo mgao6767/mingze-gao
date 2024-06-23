@@ -1,6 +1,4 @@
 ---
-authors:
-    - mgao
 date: 2019-05-29
 # date: May 29, 2019
 tags:

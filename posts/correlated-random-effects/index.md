@@ -3,8 +3,6 @@
 date: 2023-04-09
 draft: false
 hasTex: true
-authors:
-  - mgao
 tags:
   - Econometrics
 categories:

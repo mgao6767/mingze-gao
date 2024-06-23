@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2023-08-08
 draft: false
 tags:

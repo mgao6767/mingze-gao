@@ -1,7 +1,5 @@
 ---
 date: 2022-06-18
-authors:
-  - mgao
 tags:
   - C
   - Code

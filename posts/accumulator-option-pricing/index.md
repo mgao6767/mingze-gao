@@ -3,8 +3,7 @@ date: 2019-05-29
 updatedDate: Nov 17, 2022
 hasTex: true
 heroImage: "/images/accumulator-95-105.png"
-authors:
-    - mgao
+
 tags:
     - Option
     - Simulation

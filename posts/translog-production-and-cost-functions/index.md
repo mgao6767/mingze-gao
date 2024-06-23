@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2023-10-13
 tags:
   - Economics

@@ -1,6 +1,4 @@
 ---
-authors:
-  - mgao
 date: 2021-02-11
 # date: Feb 11, 2021
 updatedDate: Feb 13, 2023

@@ -1,8 +1,7 @@
 ---
 date: 2020-07-28
 slug: firm-historical-headquarter-state-from-10k
-authors:
-    - mgao
+
 updatedDate: Mar 20, 2023
 tags:
     - SEC

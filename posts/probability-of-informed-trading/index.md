@@ -1,7 +1,5 @@
 ---
 date: 2023-04-05
-authors:
-  - mgao
 hasTranslation: true
 hasTex: true
 tags:

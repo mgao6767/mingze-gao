@@ -2,8 +2,6 @@
 # date: May 24, 2020
 date: 2020-05-24
 hasTex: true
-authors:
-  - mgao
 tags:
   - HHI
 categories:

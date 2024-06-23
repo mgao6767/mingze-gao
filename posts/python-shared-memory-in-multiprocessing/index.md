@@ -1,7 +1,6 @@
 ---
 date: 2020-06-08
-authors:
-    - mgao
+
 updatedDate: Jan 27, 2022
 categories:
     - Programming

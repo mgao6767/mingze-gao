@@ -1,7 +1,6 @@
 ---
 date: 2020-05-27
-authors:
-    - mgao
+
 updatedDate: Feb 24, 2023
 tags:
     - Textual Analysis
