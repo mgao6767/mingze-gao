@@ -1,14 +1,11 @@
 ---
+title: 100 Bitcoins Forgone for Science
 date: 2019-02-25
-authors:
-  - mgao
 tags:
   - Bitcoin
 categories:
   - Cryptocurrency
 ---
-
-# 100 Bitcoins Forgone for Science
 
 This post is just another piece of my serious nonsense. All of a sudden, I wanted to know how many Bitcoins I could have mined since 2012? This is because I’ve known Bitcoin since its existence in 2009, but have never really put any effort in mining. Instead, I was fascinated by the idea of using distributed (volunteer) computing to solve scientific problems. For example, BOINC and related projects like World Community Grid are using the computing power donated from around the world to find effective treatments for cancer and HIV/AIDS, low-cost water filtration systems and new materials for capturing solar energy efficiently, etc. I was one of the many volunteers for a long time, even before the genesis block of Bitcoin.
 
