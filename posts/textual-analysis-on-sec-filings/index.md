@@ -1,7 +1,7 @@
 ---
+title: Textual Analysis on SEC Filings
 date: 2020-05-27
-
-updatedDate: Feb 24, 2023
+date-modified: 2023-02-24
 tags:
     - Textual Analysis
     - SEC
@@ -13,18 +13,16 @@ links:
   - Download SEC filings from EDGAR: https://mingze-gao.com/posts/download-sec-filings-from-edgar/
 ---
 
-# Textual Analysis on SEC Filings
-
 Nowadays top journals favour more granular studies. Sometimes it's useful to dig into the raw SEC filings and perform textual analysis. This note documents how I download all historical SEC filings via EDGAR and conduct some textual analyses.
 
 <!-- more -->
 
-!!! tip 
-    If you don't require a very customized textual analysis, you should try
-    for example [SeekEdgar.com](https://www.seekedgar.com/).
+::: {.callout-tip}
+If you don't require a very customized textual analysis, you should try
+for example [SeekEdgar.com](https://www.seekedgar.com/).
 
-!!! tip "Ready-to-use program"
-    (2023 update) I've made [a program specifically for downloading SEC filings from EDGAR](/posts/download-sec-filings-from-edgar/). So you can now skip the steps 1 and 2 below.
+Alternatively, I've made [a program specifically for downloading SEC filings from EDGAR](/posts/download-sec-filings-from-edgar/). So you can now skip the steps 1 and 2 below.
+:::
 
 ## 1. Build a master index of SEC filings
 
@@ -88,16 +86,11 @@ if __name__ == '__main__':
 I write the following script to download filings from EDGAR. Note that this
 script is only a skeleton. The full implementation has proper logging, speed
 control and detailed error handling. For example, you'll need to keep track of
-failures and re-download them later. 
+failures and re-download them later.
 
-!!! warning 
-    As per SEC's policy, you should limit concurrent requests to below
-    10 per second. Hence, there is no need to use a proxy pool, such as
-    [`Scylla`](https://github.com/imWildCat/scylla). 
+This example script download all 8-K files to `./data/{cik}/{file_type}/{date}.txt.gz`.
 
-    This example script download all 8-K files to `./data/{cik}/{file_type}/{date}.txt.gz`.
-    
-    Compression is highly recommended unless you've TBs of free disk space!
+Compression is highly recommended unless you've TBs of free disk space!
 
 ```python
 # Download all 8-K filings.
@@ -171,40 +164,41 @@ are well structured. Specifically, each filing is structured as:
 </SEC-DOCUMENT>
 ```
 
-??? example 
-    ```html
-    <SEC-DOCUMENT>
-        <SEC-HEADER></SEC-HEADER>
-        <DOCUMENT>
-            <TYPE>8-K
-                <SEQUENCE>1
-                    <FILENAME>f13478e8vk.htm
-                        <DESCRIPTION>FORM 8-K
-                            <TEXT>
-                            ...
-                            </TEXT>
-                        </DESCRIPTION>
-                    </FILENAME>
-                </SEQUENCE>
-            </TYPE>
-        </DOCUMENT>
-        <DOCUMENT>
-            <TYPE>EX-99.1
-                <SEQUENCE>2
-                    <FILENAME>f13478exv99w1.htm
-                        <DESCRIPTION>EXHIBIT 99.1
-                            <TEXT>
-                            ...
-                            </TEXT>
-                        </DESCRIPTION>
-                    </FILENAME>
-                </SEQUENCE>
-            </TYPE>
-        </DOCUMENT>
-        <DOCUMENT></DOCUMENT>
-        ...
-    </SEC-DOCUMENT>
-    ```
+::: {.callout-note title="Example" collapse=true}
+```html
+<SEC-DOCUMENT>
+    <SEC-HEADER></SEC-HEADER>
+    <DOCUMENT>
+        <TYPE>8-K
+            <SEQUENCE>1
+                <FILENAME>f13478e8vk.htm
+                    <DESCRIPTION>FORM 8-K
+                        <TEXT>
+                        ...
+                        </TEXT>
+                    </DESCRIPTION>
+                </FILENAME>
+            </SEQUENCE>
+        </TYPE>
+    </DOCUMENT>
+    <DOCUMENT>
+        <TYPE>EX-99.1
+            <SEQUENCE>2
+                <FILENAME>f13478exv99w1.htm
+                    <DESCRIPTION>EXHIBIT 99.1
+                        <TEXT>
+                        ...
+                        </TEXT>
+                    </DESCRIPTION>
+                </FILENAME>
+            </SEQUENCE>
+        </TYPE>
+    </DOCUMENT>
+    <DOCUMENT></DOCUMENT>
+    ...
+</SEC-DOCUMENT>
+```
+:::
 
 ### 3.1 Extract all items reported in 8-K filings since 2004
 
@@ -369,12 +363,11 @@ HAVING count(*) > 1
 ORDER BY cik, file_type, date;
 ```
 
-### 3.3 Nini, Smith and Sufi (2009)
+### 3.3 @nini_creditor_2009
 
 This example code finds the appearance of any of the 10 search words used in
-"Creditor control rights and firm investment policy" by Nini, Smith and Sufi
-(JFE 2009), which is used to identify the loan contracts as attached in the SEC
-filing.
+"Creditor control rights and firm investment policy" by @nini_creditor_2009,
+which is used to identify the loan contracts as attached in the SEC filing.
 
 ```Python
 import re
