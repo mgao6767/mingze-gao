@@ -1,9 +1,9 @@
 ---
+title: Accumulator Option Pricing
 date: 2019-05-29
 updatedDate: Nov 17, 2022
 hasTex: true
 heroImage: "/images/accumulator-95-105.png"
-
 tags:
     - Option
     - Simulation
@@ -11,8 +11,6 @@ tags:
 categories:
     - Teaching Notes
 ---
-
-# Accumulator Option Pricing
 
 An [accumulator](https://en.wikipedia.org/wiki/Accumulator_(structured_product)) is a financial derivative that is sometimes known as "*I kill you later*". This post attempts to explain how it is structured and price it via Monte Carlo simulations in Python.
 
@@ -99,7 +97,9 @@ So at each settlement, the payoff matrix conditional on the contract not termina
 | $K\le S_t\le K^+$ | $A(S_t-K)\ge0$ | $-A(S_t-K)\le0$ |
 | $S_t<K$           | $c A(S_t-K)<0$ | $-cA(S_t-K)>0$  |
 
-However, deriving a closed-end analytical solution is not easy since there are many settlements in the contract and the total payoff is path-dependent (the knock out). There is a conference paper in 2009 discussing the issue and the PDF version is available [here](http://www.plhyu.com/administrator/components/com_jresearch/files/publications/Accumulator_pricing.pdf).
+However, deriving a closed-end analytical solution is not easy since there are many settlements in the contract and the total payoff is path-dependent (the knock out).[^1]
+
+[^1]: There is a conference paper in 2009 discussing the issue and the PDF version is available [here](http://www.plhyu.com/administrator/components/com_jresearch/files/publications/Accumulator_pricing.pdf).
 
 ## 5. ... A Simulation Approach
 
@@ -182,6 +182,7 @@ class FastSimulation:
 
 Numbers are boring. So here I put two plots showing the distribution of the buyer's payoffs. The Python code to generate the plots is as below (1000 simulations).
 
+::: {.callout-note collapse=true title="Plotting code"}
 ```python
 import plotly.figure_factory as ff
 import plotly.graph_objs as go
@@ -207,14 +208,11 @@ fig['layout'].update(title='Accumulator With Strike Price of 95 and Knock-Out Pr
 # Plot!
 iplot(fig)
 ```
+:::
 
-#### 5.3.1. $k=5$ and $v\in [1..5]$
+![$k=5$ and $v\in [1..5]$](/images/accumulator-95-105.png)
 
-![accumulator-95-105](/images/accumulator-95-105.png)
-
-#### 5.3.2. $k=10$ and $v\in [1..5]$
-
-![accumulator-90-110](/images/accumulator-90-110.png)
+![$k=10$ and $v\in [1..5]$](/images/accumulator-90-110.png)
 
 ### 6. Discussion
 
