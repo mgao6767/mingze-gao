@@ -1,7 +1,7 @@
 ---
+title: Specification Curve Analysis
 date: 2021-02-11
-# date: Feb 11, 2021
-updatedDate: Feb 13, 2023
+date-modified: 2023-02-13
 heroImage: "https://github.com/mgao6767/specurve/raw/main/images/example1.png"
 tags:
   - Stata
@@ -11,8 +11,6 @@ tags:
 categories:
   - Research Notes
 ---
-
-# Specification Curve Analysis
 
 ## Motivation
 
@@ -24,11 +22,11 @@ More often than not, empirical researchers need to argue that their chosen model
 
 ## The Specification Curve
 
-The idea of specification curve is a direct answer to the question provided by Simonsohn, Simmons and Nelson (2020).[^1] [^2]
+The idea of specification curve is a direct answer to the question provided by @simonsohn_specification_2020.[^1]
 
-To intuitively explain this concept, below is the Figure 2 from my paper [Organization Capital and Executive Performance Incentives](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710) on the _Journal of Banking & Finance_,[^3] which is used to show the robustness of an substitution effect of organization capital on executive pay-for-performance sensitivity. Therefore, the estimated coefficients for the variable of interest _OC_ are expected to be negative across different model specifications.
+To intuitively explain this concept, below is the Figure 2 from @gao_organization_2021, which is used to show the robustness of an substitution effect of organization capital on executive pay-for-performance sensitivity. Therefore, the estimated coefficients for the variable of interest _OC_ are expected to be negative across different model specifications.
 
-![specurve-of-oc](/images/specification-curve-of-oc.jpg)
+![The original figure in @gao_organization_2021. This plot was made using a previous version of [**`specurve`**](https://github.com/mgao6767/specurve).](/images/specification-curve-of-oc.jpg){#fig-specure-of-oc}
 
 The plot is made up of two parts. The upper panel plots the coefficient estimates of _OC_ in various model specifications, in descending order, and the associated 95% confidence intervals. Sample sizes of each model are plotted as bars at the bottom of the upper panel. For simplicity, we annotate only the maximum and minimum coefficient estimates, as well as the threshold of zero. The lower panel reports the exact specification for each model, where colored dots indicate the choices from various specification alternatives. Both panels share the same x-axis of model number.
 
@@ -55,7 +53,7 @@ Of course, even 32 models cannot exhaust _all_ possible specifications. Neverthe
 
 ## `specurve` - Stata command for specification curve analysis
 
-I developed a Stata command [**`specurve`**](https://github.com/mgao6767/specurve) for specification curve analysis. It is written in Stata Mata and has no external dependencies.[^4] The source code is available at [GitHub](https://github.com/mgao6767/specurve).
+I developed a Stata command [**`specurve`**](https://github.com/mgao6767/specurve) for specification curve analysis. It is written in Stata Mata and has no external dependencies.[^2] The source code is available at [GitHub](https://github.com/mgao6767/specurve).
 
 ### Installation
 
@@ -100,7 +98,5 @@ Use `frame change specurve` to check the results.
 Use `frame change default` to switch back to the original dataset.
 
 
-[^1]: Simonsohn, Uri and Simmons, Joseph P. and Nelson, Leif D., 2020, Specification Curve Analysis, _Nature Human Behaviour_.
-[^2]: Special thanks to [Rawley Heimer](https://www.bc.edu/bc-web/schools/carroll-school/faculty-research/faculty-directory/rawley-heimer.html) from Boston College who visited our discipline in 2019 and introduced the Specification Curve Analysis to us in the seminar on research methods.
-[^3]: This plot was made using a previous version of [**`specurve`**](https://github.com/mgao6767/specurve).
-[^4]: Previous versions depend on Stata 16's Python integration.
+[^1]: Special thanks to [Rawley Heimer](https://www.bc.edu/bc-web/schools/carroll-school/faculty-research/faculty-directory/rawley-heimer.html) from Boston College who visited our discipline in 2019 and introduced the Specification Curve Analysis to us in the seminar on research methods.
+[^2]: Previous versions depend on Stata 16's Python integration.
