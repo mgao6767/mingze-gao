@@ -1,8 +1,8 @@
 ---
+title: Firm Historical Headquarter State from SEC 10K/Q Filings
 date: 2020-07-28
+date-modified: 2023-03-20
 slug: firm-historical-headquarter-state-from-10k
-
-updatedDate: Mar 20, 2023
 tags:
     - SEC
     - Textual Analysis
@@ -14,17 +14,16 @@ categories:
     - Research Notes
 ---
 
-# Firm Historical Headquarter State from SEC 10K/Q Filings
-
 ## Why the need to use SEC filings?
 
 In the Compustat database, a firm's headquarter state (and other identification) is in fact the *current* record stored in `comp.company`. This means once a firm relocates (or updates its incorporate state, address, etc.), all historical observations will be updated and not recording historical state information anymore.
 
 To resolve this issue, an effective way is to use the firm's historical SEC filings. You can follow my previous post [Textual Analysis on SEC filings](https://mingze-gao.com/posts/textual-analysis-on-sec-filings/) to extract the header information, which includes a wide range of meta data. Alternatively, the University of Notre Dame's Software Repository for Accounting and Finance provides an [augmented 10-X header dataset](https://sraf.nd.edu/data/augmented-10-x-header-data/).
 
-!!! note "2023 March Update"
-    In this update I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode.
-    [hist_state_zipcode_from_8k_2004_2022.csv.zip](/data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip)
+::: {.callout-note title="2023 March Update"}
+In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode.
+[hist_state_zipcode_from_8k_2004_2022.csv.zip](/data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip)
+:::
 
 <!-- more -->
 
@@ -65,7 +64,7 @@ Moreover, 2,947 out of the 17,221 firms, or about 17% firms changed their headqu
 
 ### 1969 - 2003
 
-I start with the firm historical HQ state provided by [Bai, Fairhurst and Serfling (2020 RFS)](https://academic.oup.com/rfs/article-abstract/33/2/644/5522377). This dataset contains the historical HQ locations from 1969 to 2003, which is based on the SEC filings post 1994 and hand-collected by the authors from the Moody’s Manuals (later Mergent Manuals) and Dun & Bradstreet’s Million Dollar Directory (later bought by Mergent).[^1]
+I start with the firm historical HQ state provided by @bai_employment_2020. This dataset contains the historical HQ locations from 1969 to 2003, which is based on the SEC filings post 1994 and hand-collected by the authors from the Moody’s Manuals (later Mergent Manuals) and Dun & Bradstreet’s Million Dollar Directory (later bought by Mergent).[^1]
 
 ### 1994 - 2018
 
@@ -97,13 +96,13 @@ if __name__ == "__main__":
 
 The result is a `historical_state.dta` Stata file like this:
 
-![historical_state.dta](/images/historical_state.png)
+![Screenshot of `historical_state.dta` in Stata](/images/historical_state.png)
 
 ### 1969 - 2018 merged
 
 Finally, to merge the two datasets together, I imported them into WRDS Cloud and run the following SAS script:
 
-* Pre-2003, use [Bai, Fairhurst and Serfling (2020 RFS)](https://academic.oup.com/rfs/article-abstract/33/2/644/5522377).
+* Pre-2003, use @bai_employment_2020.
 * Post-2003, use the business address as in the header of 10K/Q filings, and the Compustat records if the business address is missing and invalid from parsing the headers.
 
 ```sas
@@ -177,7 +176,6 @@ You can download the data I compiled here: [corrected_hist_state_1969_2018.dta.z
 ### *__2023 Update__*
 
 In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode.
-
 Data: [hist_state_zipcode_from_8k_2004_2022.csv.zip](/data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip)
 
 Specifically, I download all 8-K filings from EDGAR and run a script to extract business address from filing header into a database.
