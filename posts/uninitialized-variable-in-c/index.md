@@ -1,4 +1,5 @@
 ---
+title: Uninitialized Variable in C
 date: 2022-06-18
 tags:
   - C
@@ -6,8 +7,6 @@ tags:
 categories:
   - Programming
 ---
-
-# Uninitialized Variable in C
 
 Uninitialized variable in C can be anything (most of the time). I find, in some cases, we can know the value of an uninitialized variable and thus maybe exploit it.
 
