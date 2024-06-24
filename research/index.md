@@ -29,7 +29,7 @@ cap-location: margin
 [Organization Capital and Executive Performance Incentives](https://doi.org/10.1016/j.jbankfin.2020.106017), with Henry Leung and Buhui Qiu, ___Journal of Banking & Finance___, 2021. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
 
 ::: {.column-margin}
-![Specification Curve - Organization Capital and Executive PFPS](images/specification-curve-of-oc.jpg)
+![Specification Curve - Organization Capital and Executive PFPS](/images/specification-curve-of-oc.jpg)
 :::
 
 - A firm's organization capital has a substitution effect on its executive pay-for-performance sensitivity.
@@ -48,7 +48,7 @@ cap-location: margin
 [Lone (Loan) Wolf Pack Risk](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418), with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
 
 ::: {.column-margin}
-![Aggregate Syndicate Concentration](images/timeseries_aggregate_sc.png)
+![Aggregate Syndicate Concentration](/images/timeseries_aggregate_sc.png)
 :::
 
 - WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.

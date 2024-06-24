@@ -1,11 +1,13 @@
 ---
 title: "Blog"
 listing:
-  contents: posts
+  contents: .
   sort-ui: true
   filter-ui: false
   sort: "date desc"
   type: table
   categories: true
   fields: [date, title]
+comments: false
+author: ''
 ---
