@@ -1,5 +1,5 @@
 ---
-# date: May 22, 2020
+title: Bloomberg BQuant (BQNT)
 date: 2020-05-22
 tags:
   - Bloomberg
@@ -11,19 +11,17 @@ categories:
 slug: bloomberg-bquant
 ---
 
-# Bloomberg BQuant (BQNT)
-
-Bloomberg is developing a new function in the Terminal, called BQuant, BQNT<GO>, under the Bloomberg Anywhere license. I happen to be able to test it thanks to a fund manager and find it could be a future way of using Bloomberg Terminal.
+Bloomberg is developing a new function in the Terminal, called BQuant, BQNT\<GO\>, under the Bloomberg Anywhere license. I happen to be able to test it thanks to a fund manager and find it could be a future way of using Bloomberg Terminal.
 
 <!-- more -->
 
 ## Background
 
-Bloomberg recently made JupyterLab available inside the Terminal and invited partners to test it out. This function is named **BQuant**, or **BQNT<GO\>**, which is still under heavy development, but the idea is just great. Jupyter notebooks inside Bloomberg Terminal! Just before this news, I was helping a fund manager in writing some alert programs that do some analysis on equity market and then send email notifications, which didn’t go well because first it is very easy to breach the data limit using Bloomberg API (blpapi) and second I wasn’t very comfortable about the presentation of analysis results. I was using poor HTML code in emails and didn’t find a convenient way to insert plots and figures. Besides, I was also writing some back testing code to evaluate potential trading strategies. But still there’s a concern as I won’t be working there full time and they probably won’t have a permanent programmer, so if they want to alter parameters a little bit it’ll be a problem.
+Bloomberg recently made JupyterLab available inside the Terminal and invited partners to test it out. This function is named **BQuant**, or **BQNT\<GO\>**, which is still under heavy development, but the idea is just great. Jupyter notebooks inside Bloomberg Terminal! Just before this news, I was helping a fund manager in writing some alert programs that do some analysis on equity market and then send email notifications, which didn’t go well because first it is very easy to breach the data limit using Bloomberg API (`blpapi`) and second I wasn’t very comfortable about the presentation of analysis results. I was using poor HTML code in emails and didn’t find a convenient way to insert plots and figures. Besides, I was also writing some back testing code to evaluate potential trading strategies. But still there’s a concern as I won’t be working there full time and they probably won’t have a permanent programmer, so if they want to alter parameters a little bit it’ll be a problem.
 
-But things happen, with BQNT or more specifically the Jupyter notebook, I can make an interactive UI-based application without worrying about the data limit issue, as they also provide a new data retrieval interface, **BQL**, **Bloomberg Query Language**. In the past, pulling data through blpapi is basically retrieving data from the Terminal. But BQL, something like SQL, is to submit the query request to Bloomberg’s server and get the data directly from server, which also enables basic calculations so as to further reduce the size of data being pulled out. Then, BQNT comes with pre-installed bqplot and some wrappers of libraries like ipwidgets, which makes visualization much easier and interactive. As BQNT is a customized JupyterLab, output cells can be maximized and code hided. The result is just like a single-page application.
+But things happen, with BQNT or more specifically the Jupyter notebook, I can make an interactive UI-based application without worrying about the data limit issue, as they also provide a new data retrieval interface, **BQL**, **Bloomberg Query Language**. In the past, pulling data through `blpapi` is basically retrieving data from the Terminal. But BQL, something like SQL, is to submit the query request to Bloomberg’s server and get the data directly from server, which also enables basic calculations so as to further reduce the size of data being pulled out. Then, BQNT comes with pre-installed bqplot and some wrappers of libraries like ipwidgets, which makes visualization much easier and interactive. As BQNT is a customized JupyterLab, output cells can be maximized and code hided. The result is just like a single-page application.
 
-![tearsheet](/images/BQNT-Tearsheet.png)
+![Tearsheet of Bloomberg BQuant](/images/BQNT-Tearsheet.png)
 
 The tearsheet above shows some basic features of BQNT, and of course there are more. There’s a gallery in the Terminal with several demos showing what BQNT can make, including portfolio performance report, security filtering, trading strategy back test, etc., quite inspiring.
 
@@ -35,7 +33,7 @@ I can foresee that in the future, users of Bloomberg Terminal can have BQNT powe
 
 ### BQL for Data Retrieval
 
-We know there’s a blpapi available already. Using this API one can pull data from a Terminal to Excel, Python, etc. But there is a limit on the frequency or total queries allowed in a certain period, which however isn’t clear. As Bloomberg doesn’t allow local storage of its data, if we need to retrieve a sizeable data too many times, there will be an issue.
+We know there’s a `blpapi` available already. Using this API one can pull data from a Terminal to Excel, Python, etc. But there is a limit on the frequency or total queries allowed in a certain period, which however isn’t clear. As Bloomberg doesn’t allow local storage of its data, if we need to retrieve a sizeable data too many times, there will be an issue.
 
 The good thing about BQNT is that it comes with a new query system – so called BQL. It allows simple calculations done on the server side so as to reduce the size of data transferred. And, people in Bloomberg said, by using BQL we are not very likely to face any data limit issue again. I haven’t done much stress tests so I can’t tell whether there is still a limit or not.
 
@@ -77,31 +75,39 @@ For fund managers or traders who want only a ready-to-use application, they can 
 
 This App I wrote replicates BT<GO\> in its back testing outputs, but comes with more flexibility such as trailing stop loss, which isn’t available in BT<GO\>. It serves as a demo of BQNT powered application, validating current beta.
 
-The objectives of the app are: 
+The objectives of the app are:
 
 - to perform %R strategy on a single security as well as on all components of an index;
-- to provide both quantitative and qualitative back testing results; 
+- to provide both quantitative and qualitative back testing results;
 - be friendly to any user with zero programming knowledge.
 
 #### Main UI
 
 The main UI provides a short description of the trading strategy under back test, followed by a control panel where we can specify benchmark, underlying, time range, % parameters as well as trailing stop loss percentage. I also put a progress bar and status bar below for more immediate feedback.
 
-![Main UI](/images/bqnt-main-ui.jpg)
+:::{.column-page}
+![Main UI (I should probably not center the table)](/images/bqnt-main-ui.jpg)
+:::
 
 #### Outputs
 
 If the underlying selected is a single security, e.g. CBA AU Equity, the simple back test output is something like below. An `InteractiveLinePlot` linked with a subplot to show equity evolution in selection; a `LinePlot` for the price series of the security with markers for enters and exits; and a `LinePlot` for the %R indicator.
 
+:::{.column-page}
 ![Output Single Security](/images/bqnt-output-single-security.jpg)
+:::
 
 If the underlying selected is an index, e.g. AS31 Index, the back test is performed on each individual component of the index and results are presented below. A `KDEPlot` shows the distribution of total return, max return and min return, followed by a `ToggleButtons` to show All, Positive only and Negative only. Equity Return by industry sector and the benchmark return are sorted and plotted below.
 
+:::{.column-page}
 ![Output Multisecurity 1](/images/bqnt-output-multisecurity-1.jpg)
+:::
 
 Then there is the detailed `DataGrid` for all calculated metrics of all securities and of each industry sectors, just like the output in BT<GO\>. Results can be exported to a spreadsheet which will be conveniently stored in the BQNT platform, or the ‘cloud’ of size 250MB in total. A qualitative summary of this particular back test is provided in the end.
 
+:::{.column-page}
 ![Output Multisecurity 2](/images/bqnt-output-multisecurity-2.jpg)
+:::
 
 This App is by no means a finished work. I basically tried to mix in as many different things as possible. The end product should be one such that provides a condensed and conclusive opinion after each run, considering that its users may be those fund managers who do not want to get their hands dirty.
 

@@ -1,5 +1,5 @@
 ---
-# date: May 24, 2020
+title: Decomposing Herfindahl–Hirschman (HHI) Index
 date: 2020-05-24
 hasTex: true
 tags:
@@ -8,8 +8,6 @@ categories:
   - Research Notes
 slug: decomposing-hhi-index
 ---
-
-# Decomposing Herfindahl–Hirschman (HHI) Index
 
 Herfindahl–Hirschman (HHI) Index is a well-known market concentration measure
 determined by two factors:
