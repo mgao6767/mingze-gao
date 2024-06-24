@@ -1,15 +1,19 @@
 ---
+title: Variance Ratio Test - Lo and MacKinlay (1988)
 date: 2020-05-26
-# updatedDate: Mar 4, 2021
+# date-modified: 2021-03-04
+date-modified: 2023-08-23
 slug: lomackinlay1988
+format:
+  html:
+    code-line-numbers: true
+code-annotations: hover
 tags:
     - Python
     - Code
 categories:
     - Teaching Notes
 ---
-
-# Variance Ratio Test - Lo and MacKinlay (1988)
 
 A simple test for the random walk hypothesis of prices and efficient market.
 
@@ -96,22 +100,24 @@ $$
 \end{equation}
 $$
 
-!!! warning "Erratum"
-    Note that there's a missing $T$ in the numerator of $\delta(j)$ of Equation (8). It is actually missing the 1988 RFS paper and the 1998 JE'mtric paper, but has been corrected in the 1990 RFS Issue 1: [https://doi.org/10.1093/rfs/3.1.ii](https://doi.org/10.1093/rfs/3.1.ii). The corrected version reads:
+::: {.callout-warning title="Erratum"}
 
-    $$
-    \begin{equation}
-    \delta(j)=\frac{T\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}
-    \end{equation}
-    $$
+Note that there's a missing $T$ in the numerator of $\delta(j)$ of Equation (8). It is actually missing the 1988 RFS paper and the 1998 JE'mtric paper, but has been corrected in the 1990 RFS Issue 1: [https://doi.org/10.1093/rfs/3.1.ii](https://doi.org/10.1093/rfs/3.1.ii). The corrected version reads:
 
-    To correct it in the example code below, change the line 51 below to:
+$$
+\begin{equation}
+\delta(j)=\frac{T\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}
+\end{equation}
+$$
 
-    ```python
-    delta_arr = T * b_arr / np.square(np.sum(sqr_demeaned_x))
-    ```
+To correct it in the example code below, change the line 51 below to:
 
-    I thank Simon Jurkatis for letting me know about the erratum.
+```python
+delta_arr = T * b_arr / np.square(np.sum(sqr_demeaned_x))
+```
+
+I thank Simon Jurkatis for letting me know about the erratum.
+:::
 
 ## Source Code
 
@@ -123,7 +129,7 @@ $$
 
 This example Python code has been optimized for speed but serves only demonstration purpose. It may contain errors.
 
-```{ .python .annotate linenums="1" hl_lines="51" }
+```python
 # LoMacKinlay.py
 import numpy as np
 from numba import jit
@@ -172,9 +178,9 @@ def _estimate(log_prices, k, const_arr):
     b_arr = np.empty(k-1, dtype=np.float64)
     for j in range(1, k):
         b_arr[j-1] = np.sum((sqr_demeaned_x *
-                             np.roll(sqr_demeaned_x, j))[j:]) # (1)
+                             np.roll(sqr_demeaned_x, j))[j:]) # <1>
 
-    delta_arr = b_arr / np.square(np.sum(sqr_demeaned_x))
+    delta_arr = b_arr / np.square(np.sum(sqr_demeaned_x)) # <2>
 
     # Both arrarys are of length (k-1)
     assert len(delta_arr) == len(a_arr) == k-1
@@ -197,7 +203,7 @@ def estimate(data):
     # Estimate many lags.
     for k in [2, 4, 6, 8, 10, 15, 20, 30, 40, 50, 100, 200, 500, 1000]:
         # Compute a constant array as np.array creation is not allowed in nopython mode.
-        const_arr = np.arange(k-1, 0, step=-1, dtype=np.int64) # (2)
+        const_arr = np.arange(k-1, 0, step=-1, dtype=np.int64) # <3>
         vr, stat1, stat2 = _estimate(np.log(prices), k, const_arr)
         result.append({
             f'Variance Ratio (k={k})': vr,
@@ -210,7 +216,8 @@ def estimate(data):
 1. Note that a correction has been made here in August 2023. The summed vector should have a length of T-j not T-j-1.
    The incorrect code before was `np.roll(sqr_demeaned_x, j))[j+1:])`.
    I thank Jakub Bujnowicz for spotting this error.
-2. `np.int` is deprecated in NumPy 1.2. Changed to `np.int64` in August 2023.
+2. Check the Erratum for correction.
+3. `np.int` is deprecated in NumPy 1.2. Changed to `np.int64` in August 2023.
 
 As an example, let's create 1 million prices from random walk and estimate the variance ratio and two test statistics at various lags.
 
