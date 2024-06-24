@@ -1,4 +1,5 @@
 ---
+title: Convert Between Numeric and Character Variables
 date: 2020-05-22
 tags:
     - SAS
@@ -7,8 +8,6 @@ tags:
 categories:
   - Programming
 ---
-
-# Convert Between Numeric and Character Variables
 
 Converting between numeric and character variables is one of the most frequently
 encountered issues when processing datasets. This article explains how to do
@@ -41,8 +40,9 @@ data filings(drop=cik); set filings;
 run;
 ```
 
-!!! tip
-    `PUT()` function also works in `PROC SQL`.
+::: {.callout-tip}
+`PUT()` function also works in `PROC SQL`.
+:::
 
 The generated `cik_char` variable is of format and informat `$10.`, and the
 dataset becomes:
@@ -84,10 +84,11 @@ all character variables into numeric in one go.
 destring, repalce
 ```
 
-!!! warning
-    If a character variable has non-numeric characters in it, then it will not be
-    converted. In such a case, you may choose to use the `encode` command,
-    although it in fact is generating categories.
+::: {.callout-warning}
+If a character variable has non-numeric characters in it, then it will not be
+converted. In such a case, you may choose to use the `encode` command,
+although it in fact is generating categories.
+:::
     
 A more detailed explanation with examples is available at
 [stats.idre.ucla.edu](https://stats.idre.ucla.edu/stata/faq/how-can-i-quickly-convert-many-string-variables-to-numericvariables/)

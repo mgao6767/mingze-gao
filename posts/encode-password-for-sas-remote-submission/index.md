@@ -1,13 +1,11 @@
 ---
+title: Encode Password for SAS Remote Submission
 date: 2019-07-25
-
 tags:
     - SAS
 categories:
   - Programming
 ---
-
-# Encode Password for SAS Remote Submission
 
 The [Wharton Research Data Services (WRDS)](https://wrds-www.wharton.upenn.edu/)
 allows one to submit and execute SAS programs to the cloud. WRDS has an
@@ -47,10 +45,10 @@ proc pwencode in="1234567890"; run;
 The output `{SAS002}23AA9C2811439227077603C8365060A44800CA1F` is the encoded
 password (which is `1234567890` in this example).
 
-!!! warning "Do NOT share your SAS program with encoded password!"
-    Encoded password functions the same as your plain-text password. You should
-    never make public your password in any way.
-
+::: {.callout-warning title="Do NOT share your SAS program with encoded password!"}
+Encoded password functions the same as your plain-text password. You should
+never make public your password in any way.
+:::
 
 Next, put the following statements at the beginning of your SAS program and
 replace `my_username` with your WRDS username:
@@ -99,7 +97,4 @@ be downloading `comp.funda` in a few seconds!
 
 I made a short video introduction as well, available on my YouTube channel.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XB3kd1LNJbI"
-frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
-picture-in-picture" allowfullscreen></iframe>
-
+{{< video https://www.youtube.com/embed/XB3kd1LNJbI >}}

@@ -1,4 +1,5 @@
 ---
+title: What it takes to be a CEO? A fun survey of literature
 date: 2020-05-22
 # date: May 22, 2020
 tags:
@@ -7,8 +8,6 @@ tags:
 categories:
   - Research Notes
 ---
-
-# What it takes to be a CEO? A fun survey of literature
 
 Taking up the position of CEO means more than pressure from the board and investors. You’ll also face heavy scrutiny from academia. Whether or not a firm’s hiring and compensation committees use them as a reference, here are some of the findings that you may want to be aware of.
 

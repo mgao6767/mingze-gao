@@ -1,6 +1,6 @@
 ---
+title: Beta - Unlevered and Levered
 date: 2020-03-24
-
 hasTex: true
 tags:
   - Beta
@@ -8,8 +8,6 @@ categories:
   - Teaching Notes
 slug: beta-unlevered-and-levered
 ---
-
-# Beta - Unlevered and Levered
 
 Beta is a measure of market risk. This post tries to explain the unlevered and levered betas.
 
@@ -23,9 +21,9 @@ $\beta_{E}$ equals its asset's beta $\beta_{A}$. This beta is also the
 leverage. The unlevered beta measures the market risk exposure of the firm's
 shareholders. Let's call this firm $u$, Hence, we have:
 
-\begin{equation}
+$$
 \beta_{\text{unlevered}}=\beta_E^u=\beta_A^u
-\end{equation}
+$$ {#eq-beta-unlevered}
 
 This equality says that in an unlevered firm, the unlevered beta equals its
 equity beta and its asset beta.
@@ -37,27 +35,27 @@ asset of the levered firm $l$ is financed by both equity and debt, and hence the
 asset's market risk is from both equity and debt. The asset's beta is a weighted
 average of its equity beta and debt beta.
 
-
-\begin{equation}
+$$
 \beta_A^l = \frac{E}{E+D(1-t)} \beta_E^l + \frac{D(1-t)}{E+D(1-t)} \beta_D^l
-\end{equation}
+$$ {#eq-beta-assets-levered}
 
-
->  $\beta_A^l$ measures the change in the return on a portfolio of all firm
->  $l$'s securities (debt and equity) for each additional one percent change in
->  the market return.
+::: {.callout-note}
+$\beta_A^l$ measures the change in the return on a portfolio of all firm
+$l$'s securities (debt and equity) for each additional one percent change in
+the market return.
+:::
 
 This part is not very hard to understand. The beta of a portfolio is the
 weighted average beta of its constituents. If you believe that debt beta is zero
 since the value of debt may not be affected by the equity market, then
-$\beta_D^l=0$ and the equation (2) can be simplified to:
+$\beta_D^l=0$ and @eq-beta-assets-levered can be simplified to:
 
 $$
 \begin{align}
-\beta_A^l &= \frac{E}{E+D(1-t)} \beta_E^l \newline
+\beta_A^l &= \frac{E}{E+D(1-t)} \beta_E^l \\
     &= \frac{1}{1+\frac{D}{E}(1-t)} \beta_E^l
 \end{align}
-$$
+$$ {#eq-beta-assets-levered-simplified}
 
 However, this firm's shareholders are now more exposed to the market risk than
 before, because leverage increases the variation in the payoff to shareholders.
@@ -75,27 +73,27 @@ the other portfolio of firm $l$'s asset, then these two portfolios *should* have
 the same expected return and market risk exposure.[^1] This means the two
 portfolios have the same beta, implying:
 
-$$\begin{equation}\beta_A^u = \beta_A^l \end{equation}$$
+$$\begin{equation}\beta_A^u = \beta_A^l \end{equation}$$ {#eq-betas-levered-unlevered}
 
-If we substitue in the definition of unlevered and levered beta (equation (1)
-and (4)):
+If we substitue in the definition of unlevered and levered beta (@eq-beta-unlevered
+and @eq-beta-assets-levered-simplified):
 
 $$
 \begin{equation}
 \beta_{\text{unlevered}} =  \frac{1}{1+\frac{D}{E}(1-t)} \beta_{\text{levered}}
 \end{equation}
-$$
+$$ {#eq-betas}
 
 or
 
 $$
 \begin{equation} \beta_{\text{levered}} =  \left( 1+\frac{D}{E}(1-t) \right)
 \beta_{\text{unlevered}} \end{equation}
-$$
+$$ {#eq-betas-2}
 
-This is the formula that we use to lever and unlever beta.[^2] 
+This is the formula that we use to lever and unlever beta.[^2]
 
-[^2]: This eq.(7) is also named **Hamada Equation**, where we assumed a zero
+[^2]: This @eq-betas-2 is also named **Hamada Equation**, where we assumed a zero
 debt beta. It draws on the Modigliani-Miller theorem on capital structure, and
 appeared in Prof. Robert Hamada's paper ["The Effect of the Firm's Capital
 Structure on the Systematic Risk of Common
@@ -110,8 +108,8 @@ in order to get the **unlevered beta**. This unlevered beta is also called the
 **asset beta**.
 
 Note that the **asset beta** is a syncronym for **unlevered beta**. It is not,
-however, the asset's beta $\beta_A^l$ when the firm is leveraged as in equation
-(2) to (4). This convention is confusing indeed, so throughout this post, I'm
+however, the asset's beta $\beta_A^l$ when the firm is leveraged. 
+This convention is confusing indeed, so throughout this post, I'm
 using *asset's beta* to refer to the beta of a portfolio of all securities (debt
 and equity) of the levered firm.
 

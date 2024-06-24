@@ -1,20 +1,18 @@
 ---
-# date: May 22, 2020
+title: LeGao to Make Your Own LEGO Mosaics
 date: 2020-05-22
-updatedDate: Sep 29, 2022
+date-modified: Sep 29, 2022
 tags:
   - Apps
 ---
-
-# LeGao to Make Your Own LEGO Mosaics
 
 I made an online app that turns a picture into a LEGO mosaic: [mingze-gao.com/legao](https://mingze-gao.com/legao).
 
 <!-- more -->
 
-A few weeks ago, I went to the new LEGO flagship store at Bondi with my fiancée, Sherry, and we were impressed by the LEGO Mosaics -- Sydney Harbour Bridge and Opera House in sunset, designed by Ryan McNaught (photo credit: jaysbrickblog.com).
+A few weeks ago, I went to the new LEGO flagship store at Bondi with my fiancée, Sherry, and we were impressed by the LEGO Mosaics -- Sydney Harbour Bridge and Opera House in sunset, designed by Ryan McNaught.
 
-![LEGO Sydney Bridge](/images/LEGO-Store-Sydney-Harbour-Bridge-Mural-1024x662.jpg)
+![LEGO Sydney Bridge (credit: jaysbrickblog.com)](/images/LEGO-Store-Sydney-Harbour-Bridge-Mural-1024x662.jpg)
 
 This mosaic is made of 62,300 bricks and took 282 hours to build. Every single pixel is a ~~1x1~~ LEGO brick! We love it so much so that I'm thinking of making one myself and use it to decorate a wall in our apartment in the future.
 

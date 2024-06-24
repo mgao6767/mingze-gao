@@ -1,4 +1,5 @@
 ---
+title: Generate Fama-French Industry Classification From SIC
 date: 2020-05-22
 tags:
     - Stata
@@ -6,8 +7,6 @@ tags:
 categories:
     - Research Notes
 ---
-
-# Generate Fama-French Industry Classification From SIC
 
 This Stata program creates the Fama-French industry classification from SIC code.
 

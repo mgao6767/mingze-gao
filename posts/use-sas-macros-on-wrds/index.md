@@ -1,4 +1,5 @@
 ---
+title: Use SAS Macros on WRDS
 date: 2020-05-22
 # date: May 22, 2020
 tags:
@@ -8,8 +9,6 @@ tags:
 categories:
   - Research Notes
 ---
-
-# Use SAS Macros on WRDS
 
 The [Wharton Research Data Services (WRDS)](https://wrds-www.wharton.upenn.edu/) provides quite a handful of SAS macros that can be used directly. This article explains how to use those handy macros on WRDS when you use remote submission to run your code on the WRDS cloud. Lastly, it explains how to load and use third-party SAS macros from a URL.
 
@@ -34,7 +33,7 @@ If you don't have this SAS code in the home folder, simply create one there or y
 
 Let's say we want to winsorize a dataset by using the macro provided by WRDS ([full code](https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/)). Below is an example of winsorizing Total Assets `AT` of Compustat sample by fiscal year from 1980 to 2018.
 
-```sas linenums="1"
+```sas
 %let wrds=wrds-cloud.wharton.upenn.edu 4016;
 options comamid=TCP remote=WRDS;
 signon username=_prompt_;

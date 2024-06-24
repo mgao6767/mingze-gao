@@ -1,4 +1,5 @@
 ---
+title: Setup Docker/Ngnix and Let's Encrypt on Ubuntu
 date: 2020-05-22
 tags:
   - Docker
@@ -8,8 +9,6 @@ categories:
   - Programming
 slug: docker-nginx-letsencrypt
 ---
-
-# Setup Docker/Ngnix and Let's Encrypt on Ubuntu
 
 This is a note for setting up a Docker, Nginx and Let's Encrypt environment on
 Ubuntu 20.04 LTS.
@@ -78,24 +77,28 @@ also included below.
 ```bash
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
-!!! note
-    To install a different version of Compose, substitute `1.25.5`
-    with the version of Compose you want to use.
 
-2.  Apply executable permissions to the binary:
+::: {.callout-note}
+To install a different version of Compose, substitute `1.25.5`
+with the version of Compose you want to use.
+:::
+
+1.  Apply executable permissions to the binary:
 
 ``` bash
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
-    
-!!! note 
-    If the command `docker-compose` fails after installation, check your
-    path. You can also create a symbolic link to `/usr/bin` or any other
-    directory in your path. For example:
 
-    ```
-    $ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-    ```
+::: {.callout-note}
+If the command `docker-compose` fails after installation, check your
+path. You can also create a symbolic link to `/usr/bin` or any other
+directory in your path. For example:
+
+```bash
+$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+:::
 
 ## Set up Nginx-Proxy
 
@@ -113,70 +116,69 @@ $ mkdir nginx-proxy && cd nginx-proxy
 
 In the nginx-proxy directory, create a new file named `docker-compose.yml` and paste in the following text:
 
-??? example "example `docker-compose.yml` for nginx-proxy"
+::: {.callout-note title="example `docker-compose.yml` for nginx-proxy" collapse=true}
+```yaml
+version: '3'
 
-    ```yaml
-    version: '3'
-
-    services:
-      nginx:
-        image: nginx
-        restart: always
-        container_name: nginx-proxy
-        ports:
-          - "80:80"
-          - "443:443"
-        volumes:
-          - conf:/etc/nginx/conf.d
-          - vhost:/etc/nginx/vhost.d
-          - html:/usr/share/nginx/html
-          - certs:/etc/nginx/certs
-        labels:
-          - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
-
-      dockergen:
-        image: jwilder/docker-gen
-        restart: always
-        container_name: nginx-proxy-gen
-        depends_on:
-          - nginx
-        command: -notify-sighup nginx-proxy -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-        volumes:
-          - conf:/etc/nginx/conf.d
-          - vhost:/etc/nginx/vhost.d
-          - html:/usr/share/nginx/html
-          - certs:/etc/nginx/certs
-          - /var/run/docker.sock:/tmp/docker.sock:ro
-          - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-
-      letsencrypt:
-        image: jrcs/letsencrypt-nginx-proxy-companion
-        restart: always
-        container_name: nginx-proxy-le
-        depends_on:
-          - nginx
-          - dockergen
-        environment:
-          NGINX_PROXY_CONTAINER: nginx-proxy
-          NGINX_DOCKER_GEN_CONTAINER: nginx-proxy-gen
-        volumes:
-          - conf:/etc/nginx/conf.d
-          - vhost:/etc/nginx/vhost.d
-          - html:/usr/share/nginx/html
-          - certs:/etc/nginx/certs
-          - /var/run/docker.sock:/var/run/docker.sock:ro
-
+services:
+  nginx:
+    image: nginx
+    restart: always
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
-      conf:
-      vhost:
-      html:
-      certs:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
-    networks:
-      default:
-        external:
-          name: nginx-proxy
-    ```
+  dockergen:
+    image: jwilder/docker-gen
+    restart: always
+    container_name: nginx-proxy-gen
+    depends_on:
+      - nginx
+    command: -notify-sighup nginx-proxy -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    container_name: nginx-proxy-le
+    depends_on:
+      - nginx
+      - dockergen
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+      NGINX_DOCKER_GEN_CONTAINER: nginx-proxy-gen
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+```
 
 Inside of the `nginx-proxy` directory, use the following `curl` command to copy the developer’s sample `nginx.tmpl` file to your VPS.
 
@@ -201,45 +203,46 @@ Create a directory for the `docker-compose.yml` with:
 
 ??? example "example `docker-compose.yml` for WordPress container"
 
-    ```yaml
-    version: "3"
+```yaml
+version: "3"
 
-    services:
-      db_node_domain:
-        image: mysql:5.7
-        volumes:
-            - db_data:/var/lib/mysql
-        restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: somewordpress
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
-        container_name: wp_test_db
-
-      wordpress:
-        depends_on:
-            - db_node_domain
-        image: wordpress:latest
-        expose:
-            - 80
-        restart: always
-        environment:
-            VIRTUAL_HOST: blog.example.com
-            LETSENCRYPT_HOST: blog.example.com
-            LETSENCRYPT_EMAIL: foo@example.com
-            WORDPRESS_DB_HOST: db_node_domain:3306
-            WORDPRESS_DB_USER: wordpress
-            WORDPRESS_DB_PASSWORD: wordpress
-        container_name: wp_test
+services:
+  db_node_domain:
+    image: mysql:5.7
     volumes:
-      db_data:
+        - db_data:/var/lib/mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: somewordpress
+        MYSQL_DATABASE: wordpress
+        MYSQL_USER: wordpress
+        MYSQL_PASSWORD: wordpress
+    container_name: wp_test_db
 
-    networks:
-      default:
-        external:
-          name: nginx-proxy
-    ```
+  wordpress:
+    depends_on:
+        - db_node_domain
+    image: wordpress:latest
+    expose:
+        - 80
+    restart: always
+    environment:
+        VIRTUAL_HOST: blog.example.com
+        LETSENCRYPT_HOST: blog.example.com
+        LETSENCRYPT_EMAIL: foo@example.com
+        WORDPRESS_DB_HOST: db_node_domain:3306
+        WORDPRESS_DB_USER: wordpress
+        WORDPRESS_DB_PASSWORD: wordpress
+    container_name: wp_test
+volumes:
+  db_data:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+```
+:::
 
 To create a second WordPress container, add `MYSQL_TCP_PORT` environment variable and set it to a different port.
 
@@ -257,6 +260,7 @@ Move inside your /var/www/html directory (already there if you’re using the st
 $ sed -i '/^# END WordPress.*/i php_value upload_max_filesize 256M\nphp_value post_max_size 256M' .htaccess
 ```
 
-!!! note
-    To restore the values, run `$ sed -i "11,12d" .htaccess`
+::: {.callout-note}
+To restore the values, run `$ sed -i "11,12d" .htaccess`
+:::
 
