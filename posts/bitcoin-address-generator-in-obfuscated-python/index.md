@@ -1,4 +1,5 @@
 ---
+title: Bitcoin Address Generator in Obfuscated Python
 date: 2020-07-30
 categories:
   - Cryptocurrency
@@ -7,15 +8,13 @@ tags:
   - Python
 ---
 
-# Bitcoin Address Generator in Obfuscated Python
-
 Never underestimate what programmers can do.
 
 <!-- more -->
 
 The code below shows a fully-functioning Bitcoin address generator in obfuscated Python (2.5-2.7), which I saw in [an interesting article](https://preshing.com/20131219/bitcoin-address-generator-in-obfuscated-python/) posted in 2013.
 
-```Python linenums="1"
+```Python
 _                   =r"""A(W/2,*M(3*G
                *G*V(2*J%P),G,J,G)+((M((J-T
             )*V((G-S)%P),S,T,G)if(S@(G,J))if(
@@ -46,7 +45,8 @@ qP0XtEimhVQZnEfQj/       sQ1Lg="),        0,0);F$:"1"+F(W
 
 I’ve tested it on Python 2.7 on Ubuntu. Working like a charm.
 
-![demo](/images/bitcoin-address-generator-in-obfuscated-python.png)
+![Screenshot of running the obfuscated code to generate a Bitcoin address](/images/bitcoin-address-generator-in-obfuscated-python.png)
 
-!!! warning
-    Don't use this address! The private key is not private!
+::: {.callout-warning}
+Don't use this address! The private key is not private!
+:::
