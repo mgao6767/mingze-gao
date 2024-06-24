@@ -1,15 +1,14 @@
 ---
+title: Python Shared Memory in Multiprocessing
 date: 2020-06-08
-
-updatedDate: Jan 27, 2022
+date-modifed: 2022-01-27
+code-annotations: hover
 categories:
     - Programming
 tags:
     - Python
     - Code
 ---
-
-# Python Shared Memory in Multiprocessing
 
 Python 3.8 introduced a new module `multiprocessing.shared_memory` that provides
 shared memory for direct access across processes. My test shows that it
@@ -37,7 +36,7 @@ process will have a separate copy of the data.
 
 ### Test Result
 
-![test-result](/images/Python-SharedMemory-test.png)
+![Test result](/images/Python-SharedMemory-test.png)
 
 A quick run of [the test code below](#test-code) shows that the first method
 based on `shared_memory` uses minimal memory (peak usage is 0.33MB) and is much
@@ -47,7 +46,7 @@ importantly, the memory usage under the second method is consistently high.
 
 ### Test Code
 
-```python linenums="1"
+```python
 from multiprocessing.shared_memory import SharedMemory
 from multiprocessing.managers import SharedMemoryManager
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -81,8 +80,8 @@ if __name__ == "__main__":
         (datetime.today(), np.nan, 'abc'),
     ] * 5000000
     df = pd.DataFrame(a, columns=['date', 'val', 'character_col'])
-    # Convert into numpy recarray to preserve the dtypes (1)
-    np_array = df.to_records(index=False, column_dtypes={'character_col': 'S6'})
+    # Convert into numpy recarray to preserve the dtypes 
+    np_array = df.to_records(index=False, column_dtypes={'character_col': 'S6'}) # <1>
     del df
     shape, dtype = np_array.shape, np_array.dtype
     print(f"np_array's size={np_array.nbytes/1e6}MB")
@@ -127,17 +126,18 @@ if __name__ == "__main__":
 
 1. Check the note below for preventing segfault.
 
-## Important Note
+## Note on Segfault
 
-!!! warning
-    A very important note about using `multiprocessing.shared_memory`, as at June
-    2020, is that the `numpy.ndarray` cannot have a `dtype=dtype('O')`. That is, the
-    `dtype` cannot be `dtype(object)`. If it is, there will be a segmentation fault
-    when child processes try to access the shared memory and dereference it. It happens when the column contains strings.
+::: {.callout-warning}
+A very important note about using `multiprocessing.shared_memory`, as at June
+2020, is that the `numpy.ndarray` cannot have a `dtype=dtype('O')`. That is, the
+`dtype` cannot be `dtype(object)`. If it is, there will be a segmentation fault
+when child processes try to access the shared memory and dereference it. It happens when the column contains strings.
+:::
 
 To solve this problem, you need to specify the `dtype` in `df.to_records()`. For example:
 
-``` python
+```python
 np_array = df.to_records(index=False，column_dtypes={'character_col': 'S6'})
 ```
 
