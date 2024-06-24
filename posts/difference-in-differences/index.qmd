@@ -189,9 +189,9 @@ $$
 \end{equation}
 $$
 
-where $P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}$ is like a propensity score ratio; $p_g(X)$ is the propensity score of an entity being treated at the time defined by group $g$, conditional on the pre-event covariates $X$; $C=1$ if an entity does not participate in the treatment and zero otherwise; $G_g=1$ if an entity is in group $g$ (i.e., treated at the time defined by group $g$) and zero otherwise.[^1]
+where $P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}$ is like a propensity score ratio; $p_g(X)$ is the propensity score of an entity being treated at the time defined by group $g$, conditional on the pre-event covariates $X$; $C=1$ if an entity does not participate in the treatment and zero otherwise; $G_g=1$ if an entity is in group $g$ (i.e., treated at the time defined by group $g$) and zero otherwise.[^3]
 
-[^1]: In comparison, a TWFE DiD aggregates the "before-after" differences by giving a weight of +1 to treated entities and -1 to controls.
+[^3]: In comparison, a TWFE DiD aggregates the "before-after" differences by giving a weight of +1 to treated entities and -1 to controls.
 
 ## How do they compare?
 
