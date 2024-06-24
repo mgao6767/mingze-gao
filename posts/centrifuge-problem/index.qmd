@@ -1,29 +1,28 @@
 ---
 date: 2022-04-16
-
+title: Centrifuge Problem
 ---
 
-# Centrifuge Problem
-
-!!! question
-    Given a centrifuge with $n$ holes, can we balance it with $k$ ($1\le k \le n$) identical test tubes?
-
-<!-- more -->
+> Given a centrifuge with $n$ holes, can we balance it with $k$ ($1\le k \le n$) identical test tubes?
 
 This is a simple yet interesting problem, very well illustrated by [Numberphile](https://youtu.be/7DHE8RnsCQ8) and discussed by [Matt Baker's blog](https://mattbaker.blog/2018/06/25/the-balanced-centrifuge-problem/).
 
 The now proved solution is that:
 
-!!! note Solution
-    You can balance $k$ identical test tubes, $1\le k\le n$, in an $n$-hole centrifuge if and only if both $k$ and $n-k$ can be expressed as a sum of prime divisors of $n$.
+::: {.callout-note title="Solution"}
+You can balance $k$ identical test tubes, $1\le k\le n$, in an $n$-hole centrifuge if and only if both $k$ and $n-k$ can be expressed as a sum of prime divisors of $n$.
+:::
 
-=== "Example: 18-hole centrifuge"
+::: {.panel-tabset}
 
-    ![18-hole-centrifuge](./18-hole-centrifuge.svg)
+## "Example: 18-hole centrifuge"
 
-=== "Example: 20-hole centrifuge"
+![18-hole-centrifuge](./18-hole-centrifuge.svg)
 
-    ![20-hole-centrifuge](./20-hole-centrifuge.svg)
+## "Example: 20-hole centrifuge"
+
+![20-hole-centrifuge](./20-hole-centrifuge.svg)
+:::
 
 Below is my attempt to programmatically answer the centrifuge problem.
 
@@ -150,61 +149,64 @@ def centrifuge_dp(n: int, k: int) -> bool:
 
 Obviously, the Method 2 and 3 are _much_ faster than the naïve Method 1. Method 3 does not even use recursion and is the fastest.
 
-!!! note
-    A note there is that if we are to check all $1\le k\le n$, e.g., `[i for i in range(1, n+1) if centrifuge(n,i)]`, we need to make some adjustment to the functions above so as to bootstrap or perform DP only once for each $n$. This is trivial.
+::: {.callout-note}
+A note there is that if we are to check all $1\le k\le n$, e.g., `[i for i in range(1, n+1) if centrifuge(n,i)]`, we need to make some adjustment to the functions above so as to bootstrap or perform DP only once for each $n$. This is trivial.
+:::
 
 ## Visualization
 
 Below are some plots of balanced centrifuges. Note that for a particular value of $k$, there can be more than one way to balance the centrifuge. Here, I illustrate only one.
 
-=== "6-hole"
+::: {.panel-tabset}
+# "6-hole"
 
-    ```python
-    plot_centrifuge(6, "6-hole-centrifuge.svg")
-    ```
-    ![6-hole-centrifuge](./6-hole-centrifuge.svg)
+```python
+plot_centrifuge(6, "6-hole-centrifuge.svg")
+```
+![6-hole-centrifuge](./6-hole-centrifuge.svg)
 
-=== "10-hole"
+# "10-hole"
 
-    ```python
-    plot_centrifuge(10, "10-hole-centrifuge.svg")
-    ```
-    ![10-hole-centrifuge](./10-hole-centrifuge.svg)
+```python
+plot_centrifuge(10, "10-hole-centrifuge.svg")
+```
+![10-hole-centrifuge](./10-hole-centrifuge.svg)
 
-=== "12-hole"
+# "12-hole"
 
-    ```python
-    plot_centrifuge(12, "12-hole-centrifuge.svg")
-    ```
-    ![12-hole-centrifuge](./12-hole-centrifuge.svg)
+```python
+plot_centrifuge(12, "12-hole-centrifuge.svg")
+```
+![12-hole-centrifuge](./12-hole-centrifuge.svg)
 
-=== "12-hole"
+# "12-hole"
 
-    ```python
-    plot_centrifuge(18, "18-hole-centrifuge.svg")
-    ```
-    ![18-hole-centrifuge](./18-hole-centrifuge.svg)
+```python
+plot_centrifuge(18, "18-hole-centrifuge.svg")
+```
+![18-hole-centrifuge](./18-hole-centrifuge.svg)
 
-=== "20-hole"
+# "20-hole"
 
-    ```python
-    plot_centrifuge(20, "20-hole-centrifuge.svg")
-    ```
-    ![20-hole-centrifuge](./20-hole-centrifuge.svg)
+```python
+plot_centrifuge(20, "20-hole-centrifuge.svg")
+```
+![20-hole-centrifuge](./20-hole-centrifuge.svg)
 
-=== "24-hole"
+# "24-hole"
 
-    ```python
-    plot_centrifuge(24, "24-hole-centrifuge.svg")
-    ```
-    ![24-hole-centrifuge](./24-hole-centrifuge.svg)
+```python
+plot_centrifuge(24, "24-hole-centrifuge.svg")
+```
+![24-hole-centrifuge](./24-hole-centrifuge.svg)
 
-=== "33-hole"
+# "33-hole"
 
-    ```python
-    plot_centrifuge(33, "33-hole-centrifuge.svg")
-    ```
-    ![33-hole-centrifuge](./33-hole-centrifuge.svg)
+```python
+plot_centrifuge(33, "33-hole-centrifuge.svg")
+```
+![33-hole-centrifuge](./33-hole-centrifuge.svg)
+:::
 
 ### Python code
 
@@ -361,5 +363,6 @@ if __name__ == "__main__":
 
 ### Download plots of balanced centrifuges
 
-!!! success More plots
-    You can [download the Python code and all plots of balanced $n$-hole centrifuge](./centrifuge-problem.zip), $6\le n\le50$, which I calculated using the code above.
+::: {.callout-tip title="More plots"}
+You can [download the Python code and all plots of balanced $n$-hole centrifuge](./centrifuge-problem.zip), $6\le n\le50$, which I calculated using the code above.
+:::
