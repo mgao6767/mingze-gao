@@ -1,4 +1,5 @@
 ---
+title: Compute Jackknife Coefficient Estimates in SAS
 date: 2020-06-10
 tags:
   - SAS
@@ -8,8 +9,6 @@ tags:
 categories:
   - Research Notes
 ---
-
-# Compute Jackknife Coefficient Estimates in SAS
 
 In certain scenarios, we want to estimate a model's parameters on the sample for
 each observation with itself excluded. This can be achieved by estimating the
@@ -66,12 +65,9 @@ $j=1,2,...K$, where $K$ is the number of coefficients, and the `INFLUENCE` and
 | $DFBeta_j$   | `OutputStatistics=` from `INFLUENCE` option in `MODEL` statement | `DFB_<jthVariable>`        |
 | $(X'X)_{jj}$ | `InvXPX=` from `I` option in `MODEL` statement                   | `<jthVariable>`            |
 
-## Example
+## Discretionary accruals
 
-### Discretionary accruals
-Suppose we want to calculate the firm-level [discretionary
-accruals](/documentation/discretionary-accruals/) for each year using the Jones
-(1991) model and Kothari et al (2005) model. For a firm $i$, we need to first
+Suppose we want to calculate the firm-level discretionary accruals for each year using the @jones_earnings_1991 model and @kothari_performance_2005 model. For a firm $i$, we need to first
 estimate the model for the industry-year excluding firm $i$, then use the
 coefficient estimates to generate predicted accruals for firm $i$. The firm's
 discretionary accruals is the actual accruals minus the predicted accruals.
@@ -80,7 +76,7 @@ Below is an example `PROC REG` that produces three datasets named `work.params`,
 `work.outstats` and `work.xpxinv`, which contain sufficient statistics to
 compute the Jackknifed estimates and thus the predicted accruals.
 
-```sas linenums="1"
+```sas
 ods listing close; 
 proc reg data=work.funda edf outest=work.params;
   /* industry-year regression */
