@@ -1,6 +1,10 @@
 ---
+title: Merge Compustat and CRSP
 date: 2020-05-25
-updatedDate: Jan 23, 2024
+date-modified: 2024-01-23
+format:
+  html:
+    code-line-numbers: true
 tags:
   - CRSP
   - Compustat
@@ -11,8 +15,6 @@ categories:
   - Research Notes
 ---
 
-# Merge Compustat and CRSP
-
 Using the CRSP/Compustat Merged Database (CCM) to extract data is one of the
 fundamental steps in most finance studies. Here I document several SAS programs
 for annual, quarterly and monthly data, inspired by and adapted from several
@@ -22,9 +24,7 @@ examples from the WRDS.[^4]
 
 ## Ready-to-use code
 
-!!! note "2024 update"
-    
-    Download the Compustat/CRSP gvkey-permco-permno link table without duplicates.
+Download the Compustat/CRSP gvkey-permco-permno link table without duplicates.
 
 ```sas
 %let wrds=wrds-cloud.wharton.upenn.edu 4016;
@@ -37,36 +37,36 @@ rsubmit;
 %let year_end = 2020;
 
 proc sql;
-	create table lnk as select * from crsp.ccmxpf_lnkhist where
-	linktype in ("LU", "LC") and
-	/* Extend the period to deal with fiscal year issues */
-	/* Note that the ".B" and ".E" missing value codes represent the   */
-	/* earliest possible beginning date and latest possible end date   */
-	/* of the Link Date range, respectively.                           */
+  create table lnk as select * from crsp.ccmxpf_lnkhist where
+  linktype in ("LU", "LC") and
+  /* Extend the period to deal with fiscal year issues */
+  /* Note that the ".B" and ".E" missing value codes represent the   */
+  /* earliest possible beginning date and latest possible end date   */
+  /* of the Link Date range, respectively.                           */
    (&year_end.+1 >=year(linkdt) or linkdt=.B) and
    (&year_start.-1 <=year(linkenddt) or linkenddt=.E)
     /* primary link	assigned by Compustat or CRSP */
-	and linkprim in ("P", "C")
-  	order by gvkey, linkdt;
+  and linkprim in ("P", "C")
+    order by gvkey, linkdt;
 quit;
 
 proc sql;
-	create table mydata as select * from lnk, 
-		comp.funda (keep=gvkey fyear tic cik datadate indfmt datafmt popsrc consol) as cst 
-	where
-		indfmt='FS' /* FS - Financial Services ('INDL' for industrial ) */
-		and datafmt='STD' /* STD - Standardized */
-		and popsrc='D' /* D - Domestic (USA, Canada and ADRs)*/
-		and consol='C' /* C - Consolidated. Parent and Subsidiary accounts combined */
-		and lnk.gvkey=cst.gvkey
-		and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
-		and (cst.datadate <=linkenddt or linkenddt=.E);
+  create table mydata as select * from lnk, 
+    comp.funda (keep=gvkey fyear tic cik datadate indfmt datafmt popsrc consol) as cst 
+  where
+    indfmt='FS' /* FS - Financial Services ('INDL' for industrial ) */
+    and datafmt='STD' /* STD - Standardized */
+    and popsrc='D' /* D - Domestic (USA, Canada and ADRs)*/
+    and consol='C' /* C - Consolidated. Parent and Subsidiary accounts combined */
+    and lnk.gvkey=cst.gvkey
+    and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
+    and (cst.datadate <=linkenddt or linkenddt=.E);
 quit;proc sql;
-	create table mydata as select * from lnk, comp.funda (keep=gvkey fyear tic cik
-		datadate indfmt datafmt popsrc consol) as cst where
-		datafmt='STD' and popsrc='D' and consol='C' and lnk.gvkey=cst.gvkey
-		and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
-		and (cst.datadate <=linkenddt or linkenddt=.E);
+  create table mydata as select * from lnk, comp.funda (keep=gvkey fyear tic cik
+    datadate indfmt datafmt popsrc consol) as cst where
+    datafmt='STD' and popsrc='D' and consol='C' and lnk.gvkey=cst.gvkey
+    and (&year_start. <=fyear <=&year_end.) and (linkdt <=cst.datadate or linkdt=.B)
+    and (cst.datadate <=linkenddt or linkenddt=.E);
 quit;
 
 /* Verify that we have unique gvkey-permco and gvkey-permno links */
@@ -88,7 +88,7 @@ signoff;
 
 First, we need to create a `GVKEY-PERMNO` link table.
 
-```sas linenums="1" hl_lines="9 11"
+```sas
 %let beg_yr = 2000;
 %let end_yr = 2003;
 
@@ -138,7 +138,7 @@ Generally, using `LC` and `LU` should be sufficient.
 
 Example `ccmfunda.sas`.
 
-```sas linenums="1"
+```sas
 proc sql;
 create table mydata as 
 select *
@@ -158,7 +158,7 @@ quit;
 
 Example `ccmfundq.sas`.
 
-```sas linenums="1"
+```sas
 proc sql;
 create table mydata as 
 select *
@@ -174,16 +174,11 @@ and (cst.datadate <= linkenddt or linkenddt = .E);
 quit;
 ```
 
-## Compustat Monthly and CRSP
+[^4]: Useful resources:
 
-To be done.
-
-[^4]: WRDS Overview of CRSP/COMPUSTAT Merged: <br>
-      https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/crsp/crspcompustat-merged-ccm/wrds-overview-crspcompustat-merged-ccm/ <br> 
-      Use CRSP-Compustat Merged Table to Add Permno to Compustat Data: <br> 
-      https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macro-ccm/ <br>
-      Merging CRSP and Compustat Data: <br>
-      https://wrds-www.wharton.upenn.edu/pages/support/applications/linking-databases/linking-crsp-and-compustat/
+      - [WRDS Overview of CRSP/COMPUSTAT Merged](https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/crsp/crspcompustat-merged-ccm/wrds-overview-crspcompustat-merged-ccm/)
+      - [Use CRSP-Compustat Merged Table to Add Permno to Compustat Data](https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macro-ccm/)
+      - [Merging CRSP and Compustat Data](https://wrds-www.wharton.upenn.edu/pages/support/applications/linking-databases/linking-crsp-and-compustat/)
 
 [^1]: Other CRSP `PERMNOs` with the same `PERMCO` will link to other `GVKEYs`.
 `LS` links mainly relate to ETFs where a single CRSP `PERMCO` links to multiple

@@ -1,6 +1,9 @@
 ---
+title: Bank Holing Company Financials from FR Y-9C
 date: 2020-05-25
-
+format:
+  html:
+    code-line-numbers: true
 tags:
     - SAS
     - Code
@@ -9,9 +12,11 @@ categories:
 slug: get-bank-holding-company-financials
 ---
 
-# Bank Holing Company Financials from FR Y-9C
-
 A SAS macro used to extract BHC data.
+
+::: {.callout-note}
+This note needs to be updated.
+:::
 
 <!-- more -->
 
@@ -21,7 +26,7 @@ This is the SAS macro I write to consolidate and extract BHC's balance sheet
 data from WRDS Bank Regulatory database. It creates a `bhcf` dataset in the work
 directory.
 
-```sas linenums="1"
+```sas
 %macro bhc_financials(loopdatestart,loopdateend);
     /* Specify the variables to extract */
     %let vars=rssd9999 rssd9001 rssd9007 rssd9008 bhck2170 bhck3210;
@@ -52,10 +57,9 @@ directory.
 %bhc_financials(01jan1990,01dec2000);
 ```
 
-!!! warning 
-    RSSD dates are not always available, in which case lines 18-24 should be
-    removed.
-
+::: {.callout-note}
+RSSD dates are not always available, in which case lines 18-24 should be removed.
+:::
 
 ## Merge with Compustat/CRSP
 
@@ -63,11 +67,11 @@ The firm identifier in the Y-9C data is `RSSD9001`. To merge the BHC's balance
 sheet data with Compustat/CRSP, I use the `PERMCO-RSSD` link table by the
 Federal Reserve Bank of New York.[^1] I saved the most recent copy in my server,
 and formatted it so that it can used directly. It is available at
-https://mingze-gao.com/data/download/crsp_20181231.csv.
+[https://mingze-gao.com/data/download/crsp_20181231.csv](https://mingze-gao.com/data/download/crsp_20181231.csv).
 
-[^1]: https://www.newyorkfed.org/research/banking_research/datasets.html
+[^1]: [Link table](https://www.newyorkfed.org/research/banking_research/datasets.html)
 
-```sas linenums="1"
+```sas
 %let beg_yr = 1986;
 %let end_yr = 2018;
 
@@ -95,6 +99,7 @@ on lnk.lpermco=fed.permco;
 quit;
 ```
 
-!!! note 
-    Please run these programs on the WRDS cloud. You'll need to modify them
-    in order to run locally with SAS/Connect.
+::: {.callout-note}
+Please run these programs on the WRDS cloud. You'll need to modify them
+in order to run locally with SAS/Connect.
+:::

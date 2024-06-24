@@ -1,4 +1,5 @@
 ---
+title: Call Option Value from Two Approaches
 date: 2020-05-25
 hasTex: true
 tags:
@@ -6,8 +7,6 @@ tags:
 categories:
   - Teaching Notes
 ---
-
-# Call Option Value from Two Approaches
 
 Suppose today the stock price is $S$ and in one year time, the stock price could
 be either $S_1$ or $S_2$. You hold an European call option on this stock with an

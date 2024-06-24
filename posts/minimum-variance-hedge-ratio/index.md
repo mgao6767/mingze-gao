@@ -1,14 +1,12 @@
 ---
+title: Minimum Variance Hedge Ratio
 date: 2020-05-26
-# date: May 26, 2020
 hasTex: true
 tags:
   - Hedge
 categories:
   - Teaching Notes
 ---
-
-# Minimum Variance Hedge Ratio
 
 This note briefly explains what's the **minimum variance hedge ratio** and how
 to derive it in a cross hedge, where the asset to be hedged is not the same as
