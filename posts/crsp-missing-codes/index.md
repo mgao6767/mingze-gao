@@ -1,4 +1,5 @@
 ---
+title: CRSP Missing Codes
 date: 2023-08-15
 tags:
   - CRSP
@@ -8,13 +9,9 @@ links:
   - CRSP Prices: https://www.crsp.org/products/documentation/data-definitions-p#price-end-of-period
 ---
 
-# CRSP Missing Codes
+A note on the missing codes in CRSP.[^1]
 
-A note on the missing codes in CRSP.
-
-<!-- more -->
-
-## Codes
+[^1]: Source: [https://wrds-www.wharton.upenn.edu/demo/crsp/form/](https://wrds-www.wharton.upenn.edu/demo/crsp/form/)
 
 | Variable Name | C/Fortran Value | SAS Missing Code | Description                                                                                                       |
 | ------------- | --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -46,7 +43,3 @@ Units:
 - Most prices are represented in U.S. dollar values per share.
 - `SHROUT` in thousands.
 - `VOL`: The sum of the trading volumes during the month, reported in units of 100, and are not adjusted for splits during the month.
-
-## Source
-
-[https://wrds-www.wharton.upenn.edu/demo/crsp/form/](https://wrds-www.wharton.upenn.edu/demo/crsp/form/)
