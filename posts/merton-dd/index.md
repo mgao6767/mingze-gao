@@ -1,5 +1,6 @@
 ---
-description: SAS code to calculate Merton (1974) Distance-to-Default and default probability as in Bharath and Shumway (2008 RFS).
+title: Estimate Merton Distance-to-Default
+# description: SAS code to calculate Merton (1974) Distance-to-Default and default probability as in Bharath and Shumway (2008 RFS).
 date: 2022-11-30
 # date: Nov 30, 2022
 hasTex: true
@@ -13,9 +14,7 @@ categories:
   - Research Notes
 ---
 
-# Estimate Merton Distance-to-Default
-
-Merton (1974) Distance to Default (DD) model is useful in forecasting defaults. This post documents a few ways to empirically estimate Merton DD (and default probability) as in Bharath and Shumway (2008 RFS).
+@merton_pricing_1974 Distance to Default (DD) model is useful in forecasting defaults. This post documents a few ways to empirically estimate Merton DD (and default probability) as in @bharath_forecasting_2008.
 
 <!-- more -->
 
@@ -27,7 +26,7 @@ $$
 \begin{equation}
 dV = \mu Vdt+\sigma_V VdW
 \end{equation}
-$$
+$$ {#eq-firm-value-gbm}
 
 where,
 
@@ -44,7 +43,7 @@ $$
 \begin{equation}
 E=V\mathcal{N}(d_1)-e^{-rT}F\mathcal{N}(d_2)
 \end{equation}
-$$
+$$ {#eq-firm-equity-value-bsm}
 
 where,
 
@@ -59,7 +58,7 @@ $$
 \begin{equation}
 d_1 = \frac{\ln(V/F)+(r+0.5\sigma_V^2)T}{\sigma_V \sqrt{T}}
 \end{equation}
-$$
+$$ {#eq-merton-d1}
 
 with $d_2 = d_1-\sigma_V \sqrt{T}$.
 
@@ -69,7 +68,7 @@ $$
 \begin{equation}
 \sigma_E = \left(\frac{V}{E}\right)\frac{\partial E}{\partial V}\sigma_V
 \end{equation}
-$$
+$$ {#eq-firm-equity-volatility-and-firm-value-volatility}
 
 In the Black-Scholes-Merton model, $\frac{\partial E}{\partial V}=\mathcal{N}(d_1)$, so that
 
@@ -77,7 +76,7 @@ $$
 \begin{equation}
 \sigma_E = \left(\frac{V}{E}\right)\mathcal{N}(d_1)\sigma_V
 \end{equation}
-$$
+$$ {#eq-firm-equity-volatility-and-firm-value-volatility-bsm}
 
 We observe from the market:
 
@@ -95,7 +94,7 @@ $$
 \begin{equation}
 DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}} 
 \end{equation}
-$$
+$$ {#eq-merton-distance-to-default}
 
 where,
 
@@ -107,13 +106,13 @@ $$
 \begin{equation}
 \pi_{Merton} = \mathcal{N}\left(-DD\right)
 \end{equation}
-$$
+$$ {#eq-merton-default-prob}
 
 ## Estimation
 
 ### An iterative approach
 
-To estimate $\pi_{Merton}$, an iterative procedure can be applied instead of solving equations (2) and (5) simultaneously (see Crosbie and Bohn (2003), Vassalou and Xing (2004), Bharath and Shumway (2008), etc.).
+To estimate $\pi_{Merton}$, an iterative procedure can be applied instead of solving @eq-firm-equity-value-bsm and @eq-firm-equity-volatility-and-firm-value-volatility-bsm simultaneously (see @crosbie_modeling_2003, @vassalou_default_2004, @bharath_forecasting_2008, etc.).
 
 1. Set the initial value of $\sigma_V=\sigma_E[E/(E+F)]$.
 2. Use this value of $\sigma_V$ and equation (2) to infer the market value of firm's assets every day for the previous year.
@@ -123,7 +122,7 @@ To estimate $\pi_{Merton}$, an iterative procedure can be applied instead of sol
 
 ### A naïve approach
 
-A naïve approach by Bharath and Shumway (2008) that does not solve equations (2) and (5) is constructed as below.
+A naïve approach by @bharath_forecasting_2008 that does not solve @eq-firm-equity-value-bsm and @eq-firm-equity-volatility-and-firm-value-volatility-bsm is constructed as below.
 
 1. Approximate the market value of debt with the face value of debt, so that $D=F$.
 2. Approximate the volatility of debt as $\sigma_D=0.05+0.25\sigma_E$, where 0.05 represents term structure volatility and 25\% of equity volatility is included to allow for volatility associated with default risk.
@@ -136,7 +135,7 @@ $$
 \begin{equation}
 \text{naïve } DD=\frac{\ln[(E+F)/F]+ (r_{it-1}-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 \end{equation}
-$$
+$$ {#eq-merton-distance-to-default-naive}
 
 and the naïve default probability is
 
@@ -144,17 +143,17 @@ $$
 \begin{equation}
 \pi_{\text{naïve}} = \mathcal{N}(-\text{naïve } DD)
 \end{equation}
-$$
+$$ {#eq-merton-default-prob-naive}
 
 ## Code
 
-The naïve method is too simple and skipped for now. 
+The naïve method is too simple and skipped for now.
 
 Here I discuss the iterative approach.
 
-### Original SAS code in Bharath and Shumway (2008 RFS)
+### Original SAS code in @bharath_forecasting_2008
 
-The original code is enclosed in the [SSRN version](https://ssrn.com/abstract=637342) of Bharath and Shumway (2008), and was available on [Shumway's website](http://www-personal.umich.edu/~shumway/papers.dir/nuiter99_print.sas).
+The original code is enclosed in the [SSRN version](https://ssrn.com/abstract=637342) of @bharath_forecasting_2008, and was available on [Shumway's website](http://www-personal.umich.edu/~shumway/papers.dir/nuiter99_print.sas).
 
 However, there are two issues in this version of code:
 
@@ -169,6 +168,6 @@ A copy of this version can be found here on [GitHub](https://gist.github.com/mga
 
 ### My code
 
-Based on the original SAS code in Bharath and Shumway (2008), I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I've corrected the above issues.
+Based on the original SAS code in @bharath_forecasting_2008, I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I've corrected the above issues.
 
 <script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
