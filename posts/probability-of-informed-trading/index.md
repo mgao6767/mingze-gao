@@ -1,4 +1,5 @@
 ---
+title: Probability of Informed Trading (PIN)
 date: 2023-04-05
 hasTranslation: true
 hasTex: true
@@ -12,24 +13,23 @@ links:
   - Python code: https://frds.io/measures/probability_of_informed_trading/
 ---
 
-# Probability of Informed Trading (PIN)
+::: {.callout-note}
+This post was originally published on my old blog in March 2018 in Chinese. Translation is provided by ChatGPT-4.
+:::
 
-![pin-binance](/images/probability-of-informed-trading-on-binance.png)
+In the market microstructure literature, @easley_liquidity_1996 proposed a trading model that can decompose the bid-ask spread. The most commendable aspect of this model is the introduction of the "Probability of Informed Trading," or PIN, which serves as a means of measuring the informational component in the spread. As the name suggests, under ideal conditions, PIN can reflect the probability of informed trading in a market with market maker. 
+
+In this post, I attempt to comb through the modeling process in the @easley_liquidity_1996 paper and discuss how to handle the objective function in maximum likelihood estimation to avoid overflow errors during computation.
+
+![PIN in Binance, based on data I collected in 2019 of trades on Binance.](/images/probability-of-informed-trading-on-binance.png){#fig-pin-binance}
 
 <!-- more -->
-
-!!! note
-    This post was originally published on my old blog in March 2018 in Chinese. Translation is provided by ChatGPT-4.
-
-    The above figure is based on data I collected in 2019 of trades on Binance.
-
-In the market microstructure literature, Easley et. al. (1996) proposed a trading model that can decompose the bid-ask spread. The most commendable aspect of this model is the introduction of the "Probability of Informed Trading," or PIN, which serves as a means of measuring the informational component in the spread. As the name suggests, under ideal conditions, PIN can reflect the probability of informed trading in a market with market maker. In this article, I attempt to comb through the modeling process in the Easley et. al. (1996) paper and discuss how to handle the objective function in maximum likelihood estimation to avoid overflow errors during computation.
 
 ## Model
 
 Assume that the buy and sell orders of informed and uninformed traders follow independent Poisson processes, and the following tree diagram describes the entire trading process:
 
-![theoretical-model-of-pin](/images/theoretical-model-of-pin.jpg)
+![Theoretical model of PIN](/images/theoretical-model-of-pin.jpg){#fig-pin-model}
 
 - On each trading day, there is a probability of $P=\alpha$ that new information will appear, and obviously a probability of $P=(1-\alpha)$ that there will be no new information.
 - The probability of new information being bearish is $P=\delta$, and the probability of it being bullish is $P=(1-\delta)$.
@@ -183,3 +183,7 @@ l((B, S)| \theta)=&\ln(L((B, S)| \theta))\\
 $$
 
 Now, since the last term $\ln(B!S!)$ does not affect the parameter estimation at all, it can be safely excluded. The remaining part can perfectly avoid overflow. Personally, I think the brilliant move here is the introduction of $x\equiv \frac{\varepsilon}{\mu+\varepsilon}\in [0, 1]$, which prevents the overflow error caused by $(\mu+\varepsilon)>1$.
+
+## Python code
+
+See my implementation here: [https://frds.io/measures/probability_of_informed_trading/](https://frds.io/measures/probability_of_informed_trading/).
