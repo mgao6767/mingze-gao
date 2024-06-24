@@ -1,6 +1,6 @@
 ---
+title: Never Use a Brain Wallet
 date: 2019-05-29
-# date: May 29, 2019
 tags:
     - Bitcoin
     - Python
@@ -8,21 +8,21 @@ tags:
 categories:
     - Programming
     - Cryptocurrency
+freeze: auto
+format: 
+  html: default
+  ipynb: default
 ---
-
-# Never Use a Brain Wallet
 
 Among many reasons why people find it hard to use cryptocurrency there's a simple one -- memorising the private key is too hard. So, people invented **brain wallet**, which turns a string of words into a private key and thus wallet.
 
 It's genius in that now a user needs only to memorise whatever he or she used to create the wallet. You can turn your name, phone number, DoB, favourite quote, lover's home address, ..., literally anything into a cryptocurrency wallet. However, this also means that if someone else successfully guessed the passphrase you used, they can sweep all the coins you have!
 
-<!-- more -->
-
 ## Python brain wallet for Bitcoin
 
 After a little bit of research, I've put together a simple brain wallet Python script that turns any input string to a legal Bitcoin private key and its address.
 
-```python
+```{python}
 import codecs
 import hashlib
 import ecdsa
@@ -109,7 +109,7 @@ class BrainWallet:
 
 Let me show you some really easy-to-guess passphrases and their associated private keys and addresses. As an example, the code below uses "password" as the input passphrase and derives the private key and address from it.
 
-```python
+```{python}
 passphrase = 'password'
 wallet = BrainWallet()
 private_key, address = wallet.generate_address_from_passphrase(passphrase)
@@ -118,20 +118,13 @@ print(f'private key: {private_key}')
 print(f'address: {address}')
 ```
 
-The output is:
-
-```python
-passphrase: password
-private key: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-address: 16ga2uqnF1NqpAuQeeg7sTCAdtDUwDyJav
-```
-
 As at May 22, 2019, this address has **45,014** transactions with a total of **0.3563 BTC** (of course the balance is zero)! You can check its current balance at [blockchain.com](https://www.blockchain.com/btc/address/16ga2uqnF1NqpAuQeeg7sTCAdtDUwDyJav). Also, congratulations, you are now one of the many owners of this address/wallet. So next time you observe some coins transfered to it, you'll be able to use it as well (though I don't suggest you to do so)!
 
 ## Some other *"cracked"* wallets
 
 I explored a little bit more and it's surprising to find out how easy it is to crack a wallet this way. Below is a table of some passphrases and their associated keys and addresses.
 
+::: {.column-page}
 | Passphrase  | Private Key                                                      | Address                                                                                                         | Used |
 | ----------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---- |
 | satoshi     | da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f | [1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE](https://www.blockchain.com/btc/address/1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE) | True |
@@ -141,6 +134,7 @@ I explored a little bit more and it's surprising to find out how easy it is to c
 | god         | 5723360ef11043a879520412e9ad897e0ebcb99cc820ec363bfecc9d751a1a99 | [1KxmSmcMTmPvU1qSLYpJLrqnSzBoQ53NXN](https://www.blockchain.com/btc/address/1KxmSmcMTmPvU1qSLYpJLrqnSzBoQ53NXN) | True |
 | terminator  | aa802f654e3ae7aaa1b73f8724056a05e2691accea8dd90057916080f84d7e93 | [18kvt3D6K1CG8MxGP6ke7q6vLU5NGpLZdR](https://www.blockchain.com/btc/address/18kvt3D6K1CG8MxGP6ke7q6vLU5NGpLZdR) | True |
 | abc         | ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad | [1NEwmNSC7w9nZeASngHCd43Bc5eC2FmXpn](https://www.blockchain.com/btc/address/1NEwmNSC7w9nZeASngHCd43Bc5eC2FmXpn) | True |
+:::
 
 And a lot of swear words are used as well, but I'm just going to skip them.
 
