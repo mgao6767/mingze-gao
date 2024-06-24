@@ -30,7 +30,7 @@ Then, if I received 1k Points a day, it might be safe to say I’ve been mining 
 
 I did some math and found that it seems in June 2012 my hashrate was as high as 0.006% of the whole network, though one year later it’s effectively 0%. lol.
 
-![hashrate](/images/hashrate.png)
+![Hashrate comparison](/images/hashrate.png)
 
 Next step will be calculating how many Bitcoins I could have mined based on the hashrate history.
 
@@ -50,11 +50,11 @@ Taking into account the average block time and the controlled supply of Bitcoin 
 | 2017-06-23   | 472500 | 3          | 12.50     | 81.250%            |
 | 2018-05-29   | 525000 | 3          | 12.50     | 84.375%            |
 
-![block rate](/images/the-daily-average-number-of-blocks-and-bitcoins-generated.png)
+![Block rate](/images/the-daily-average-number-of-blocks-and-bitcoins-generated.png)
 
 Based my average hashrate and the historical network hashrate, the plot below shows how many Bitcoins I could have mined if I didn’t denote my computers’ computing power to the World Community Grid but to Bitcoin mining – **14.8 Bitcoins**!
 
-![bitcoins forgone](/images/the-numer-of-bitcoins-i-could-have-mined.png)
+![Bitcoins forgone](/images/the-numer-of-bitcoins-i-could-have-mined.png)
 
 Okay, problem solved.
 
@@ -72,4 +72,4 @@ The funny thing is that I’ve put in only 348 PetaFLOPs into World Community Gr
 
 Hence, if my donation of computing power to SETI@Home and Einstein@Home happened at similar time as to WCG, then potentially I could have mined at least **6 times** more Bitcoins. Well, I couldn’t imagine what my life would be if I’ve mined **100 Bitcoins**, which might be **$2.5 million**.
 
-![sad](/images/computer-guy.png)
+![](/images/computer-guy.png)
