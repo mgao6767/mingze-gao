@@ -1,8 +1,10 @@
 ---
+title: Download SEC Filings from EDGAR
 date: 2023-09-08 
 categories:
   - Research Notes
   - Programming
+reference-location: margin
 tags:
   - SEC
   - EDGAR
@@ -13,12 +15,10 @@ links:
   - Textual Analysis on SEC filings: https://mingze-gao.com/posts/textual-analysis-on-sec-filings/
 ---
 
-# Download SEC Filings from EDGAR
-
 This post documents how to download SEC filings from EDGAR using [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer), a Python program I wrote. It features:
 
-- [x] 3 commands only to download any type of filings for any period of time
-- [x] auto throttling of download speed to adhere to the SEC policy of fair use
+- 3 commands only to download any type of filings for any period of time
+- auto throttling of download speed to adhere to the SEC policy of fair use
 
 <!-- more -->
 
@@ -28,15 +28,15 @@ This post documents how to download SEC filings from EDGAR using [`edgar-analyze
 pip install edgar-analyzer
 ```
 
-!!! warning
-    EDGAR has [limitations on the download speed](https://www.sec.gov/os/accessing-edgar-data). While the program tries its best to adhere to the requirements, it may accidentally go above the limit, resulting a temporary or even permanent ban. Please use at your own risk.
+::: {.callout-warning}
+EDGAR has [limitations on the download speed](https://www.sec.gov/os/accessing-edgar-data). While the program tries its best to adhere to the requirements, it may accidentally go above the limit, resulting a temporary or even permanent ban. Please use at your own risk.
+:::
 
 ## Download index files
 
-EDGAR started in 1994/1995. EDGAR provides quarterly index files since 1993Q1 (1) which contain the firm CIK, name, filing date, type, and URL of the filing.
-{ .annotate }
+EDGAR started in 1994/1995. EDGAR provides quarterly index files since 1993Q1 (1) which contain the firm CIK, name, filing date, type, and URL of the filing.[^1]
 
-1. The number of filings in 1993 is close to zero so we can start from 1994.
+[^1]: The number of filings in 1993 is close to zero so we can start from 1994.
 
 We will use these index files to build a database so that we can more efficiently download the filings of our choice.
 
@@ -69,14 +69,15 @@ Some extra notes:
 - Only filings not downloaded yet will be downloaded. This ensures that we do not repeatedly download the same filings multiple times if we restart the program.
 - Download speed will be auto throttled as per SEC's fair use policy, irrespective of the number of threads specified. Multithreading beyond certain number will not increase download speed any further.
 
-!!! tip
-    You can always use `edgar-analyzer [subcommand] --help` to check the docs.
+::: {.callout-tip}
+You can always use `edgar-analyzer [subcommand] --help` to check the docs.
+:::
 
 ## Extras
 
 The program additionally has some subcommands to perform certain textual analyses.
 
-Just a simple example of the job `find_event_date`. Based on the 1,491,368 8K filings (2004-2022), the table below shows the reporting lags (date of filing minus date of event). 
+Just a simple example of the job `find_event_date`. Based on the 1,491,368 8K filings (2004-2022), the table below shows the reporting lags (date of filing minus date of event).
 
 We can find that _most_ filings are filed on the same day as the event reported, and that over 99.99% of filings are filed within 4 calendar days (SEC requires 4 business days).
 
@@ -94,5 +95,6 @@ We can find that _most_ filings are filed on the same day as the event reported,
 | 9                            | 3         | 0.00%      | 100.00%    |
 | 10 or more                   | 44        | 0.00%      | 100.00%    |
 
-!!! note
-    This tool is a work in progress and breaking changes may be expected.
+::: {.callout-note}
+This tool is a work in progress and breaking changes may be expected.
+:::
