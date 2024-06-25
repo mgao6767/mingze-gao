@@ -35,6 +35,14 @@ website:
         href: https://www.linkedin.com/in/adriangao/
       - icon: send
         href: mailto:mingze.gao@mq.edu.au
+  sidebar:
+    title: Teaching
+    contents:
+      - section: "Fixed Income"
+        contents:
+          - posts/fixed-income/introduction/index.qmd
+          - posts/fixed-income/bond-prices-and-yields/index.qmd
+
 format:
   html:
     theme: cosmo
