@@ -12,7 +12,7 @@ if not os.getenv("QUARTO_PROJECT_RENDER_ALL"):
 
 OUTPUT_DIR = os.getenv("QUARTO_PROJECT_OUTPUT_DIR")
 
-resources_directories = ["specurve", "data", "utils"]
+resources_directories = ["specurve", "data", "utils", "apps"]
 
 for src in resources_directories:
     dst = os.path.join(OUTPUT_DIR, src)
