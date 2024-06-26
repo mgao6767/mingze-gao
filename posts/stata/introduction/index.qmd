@@ -1,12 +1,11 @@
 ---
+title: Stata - Introduction
 date: 2023-02-03
-draft: false
+categories:
+    - Teaching Notes
 tags:
     - Stata
-disqus: true
 ---
-
-# Stata - Introduction
 
 [Stata](https://www.stata.com) is a powerful statistical analysis software that we often use in empirical researches. This series of posts aims to provide some basic knowledge for junior researchers to get started with Stata, as well as some personal tips on more efficiently using Stata in research projects.[^1]
 
@@ -16,7 +15,7 @@ disqus: true
 
 The Graphical User Interface (GUI) of Stata looks like this:
 
-![stata-gui](./images/gui.png)
+![GUI of Stata](/images/gui.png)
 
 This is the default layout of Stata 16. Some preset preferences can be found via menu option `Edit>Preferences>Load preference set`. You can also save your personal preferences (color theme, layout, etc.) in the `Edit>Preference` menu.
 
@@ -24,8 +23,9 @@ Of the many windows of the GUI, we are mostly interested in the __Results__ wind
 
 The __Command__ window (`Ctrl+1`) is where we mostly interact with Stata by entering Stata commands. Since usually we need a group of commands to complete a task, it is a good idea to place them together in a __do file__ (with the extension `.do`), which is the file type native to Stata, just like `.py` file to Python. Later, we will introduce the Stata's __Do Editor__ (`Ctrl+9`) as a nice editor for `.do` files.
 
-!!! tip
-    As a researcher, keeping good record of the programs and codes used is a merit. For oneself, it boosts productivity as more codes are accumulated. Beyond that, it ensures all results can be replicated even years later. Nowadays, more and more top journals also require submission of the codes used in the paper.
+::: {.callout-tip}
+As a researcher, keeping good record of the programs and codes used is a merit. For oneself, it boosts productivity as more codes are accumulated. Beyond that, it ensures all results can be replicated even years later. Nowadays, more and more top journals also require submission of the codes used in the paper.
+:::
 
 ## Basic demonstration
 
@@ -71,11 +71,11 @@ or technically,
 
 where `cmd` is the name of a command and everything in `[ ]` is optional.
 
-<Aside type="tip">
-  You can use `. help syntax` to see more detailed explanation.
+::: {.callout-tip}
+You can use `. help syntax` to see more detailed explanation.
 
-  In fact, Stata's help files are _so_ comprehensive that 99.99% of the time you should simply refer to the help files instead of Googling around...
-</Aside>
+In fact, Stata's help files are _so_ comprehensive that 99.99% of the time you should simply refer to the help files instead of Googling around...
+:::
 
 ### Some other quick examples
 
@@ -99,7 +99,7 @@ where `cmd` is the name of a command and everything in `[ ]` is optional.
 
 [`log`](https://www.stata.com/manuals/rlog.pdf) echos a copy of the session to file:
 
-Create a log file name `stata101.log` in the current working directory. The `replace` option asks Stata to replace the log file if it already exists. Untill `. log close`, everything displayed in __Results__ will be saved in the log file.
+Create a log file name `stata101.log` in the current working directory. The `replace` option asks Stata to replace the log file if it already exists. Until `. log close`, everything displayed in __Results__ will be saved in the log file.
 
 ```stata
 . log using "stata101.log", replace
@@ -121,16 +121,17 @@ We start by loading an example dataset that comes with Stata installation. This 
 . sysuse auto
 ```
 
-!!! tip
-    Stata comes with several builtin datasets. Use `. sysuse dir` to have a look.
+::: {.callout-tip}
+Stata comes with several builtin datasets. Use `. sysuse dir` to have a look.
 
-    More generally, we can [`use`](https://www.stata.com/manuals/duse.pdf) our own datasets. We'll see more on this later.
+More generally, we can [`use`](https://www.stata.com/manuals/duse.pdf) our own datasets. We'll see more on this later.
+:::
 
 We can now ask Stata to [`describe`](https://www.stata.com/manuals/ddescribe.pdf) the meta information of the dataset and [`summarize`](https://www.stata.com/manuals/rsummarize.pdf) the variables in terms of number of observations, mean, standard deviation, etc.
 
 The screenshot below shows the output:
 
-![sysuse_auto](./images/sysuse_auto.png)
+![sysuse_auto](/images/sysuse_auto.png)
 
 Enlarge the output of `describe`:
 
@@ -177,7 +178,7 @@ All we need to do is a simple line of code,
 
 which would generate the following estimation results:
 
-![reg_price](./images/reg_price.png)
+![reg_price](/images/reg_price.png)
 
 ### Save results
 
@@ -195,7 +196,7 @@ For example, we can save the previous results (as shown in the screenshot above)
 
 Behind the scene, Stata creates a `.docx` to work with. `putdocx table` command creates a new table (mytable) in the `.docx` file containing estimation results (`etable` tells it to tabulates the coefficients from previous estimation). Lastly, Stata saves the `.docx` file as "table1.docx" in the current working directory.
 
-![putdocx](./images/putdocx.png)
+![putdocx](/images/putdocx.png)
 
 #### Save to LaTeX
 
@@ -243,6 +244,7 @@ Observations    &       74         \\
 
 You can check the PDF compiled from the above TeX code at this [Overleaf link](https://www.overleaf.com/read/synvdxtkrjfk).
 
-!!! note
-    We will revisit and elaborate on these topics later.
-    I deliberately make them oversimplified only to show you what Stata can do in making our lives much easier.
+::: {.callout-note}
+We will revisit and elaborate on these topics later.
+I deliberately make them oversimplified only to show you what Stata can do in making our lives much easier.
+:::
