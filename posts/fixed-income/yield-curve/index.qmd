@@ -1,0 +1,382 @@
+---
+title: Yield Curve and Term Structure of Interest Rates
+date: 2023-08-31
+categories:
+  - Teaching Notes
+---
+
+::: {.callout-note}
+We focus on risk-free government bonds for now as their yields serve as the backbone of pricing other bonds.
+:::
+
+## Background
+
+As discussed [earlier](/posts/fixed-income/bond-prices-and-yields/#price-and-yield-to-maturity), a bond represents a series of cashflows in the future and its price equals the sum of present values of all cashflows, each of which may be discounted at __different__ rates.
+
+Whatever these different discount rates are, we can always find a __single__ discount rate (named _yield to maturity_ or YTM) which, when applied to all future payments, gives the market price at the time. Therefore, the yield to maturity is just the same thing as the bond's market price.
+
+!!! question "But how should a bond's price (hence yield to maturity) be determined?"
+    Of course, price is shaped by transactions in the market. Yet how exactly do market participants value a bond so that they agree on the transaction price? Alternatively, if a new bond is to be issued, how should it be priced?
+
+If we look at the bond pricing formula,
+
+$$
+P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+r_n)^n}}_{\text{each discounted at corresponding spot rate}} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+{y})^{\tau}} + \frac{F}{(1+{y})^n}}_{\text{all discounted at YTM}}
+$$
+
+clearly the ultimate factor at play is the series of discount rates $\{r_\tau\}$, which are the __spot rates__ as at time $t$. On the other hand, each spot rate is applied to discount a single cashflow promised in the future, which resembles the payment of a __zero-coupon bond__, therefore, the spot rate is also sometimes called the "__zero rate__".  
+
+::: {.callout-note title="Example"}
+
+A two-year 5% coupon $100 bond with annual payments can be viewed as a portfolio of two separate assets:
+
+- __Asset 1__ pays a single cashflow of $5 in one year, nothing else in any other time.
+- __Asset 2__ pays a single cashflow of $105 in two years, nothing else in any other time.
+
+To value __Asset 1__, we need the one-year spot rate.
+To value __Asset 2__, we need the two-year spot rate.
+
+So, to value the bond, we need both the one-year spot rate and the two-year spot rate.
+:::
+
+Ideally, we would like to have a __table of spot rates__ that tells us all the spot rates for all maturities, e.g., the 6-month rate, the 1-year rate, 1.5-year rate, 2-year rate, 2.5-year rate, 3-year rate, ..., etc. This table mapping the _term to maturity_[^1] to the corresponding spot rate describes the __term structure of interest rates__, whose graphical representations are __yield curves__.
+
+[^1]: Term to maturity: the remaining time to maturity.
+
+```{ojs}
+//| echo: false
+ 
+d = {
+  const data = {"YTM": [], "Year": []};
+  for (let year= 0.05; year < 10; year+=0.5) {
+    data.YTM.push(Math.pow(1.1, year)-1)
+    data.Year.push(year)
+  }
+  return data;
+}
+Plot.plot({
+  caption: "An illustrative yield curve",
+  x: {padding: 0.4, label: "Maturity (years)"},
+  y: {padding: 0.4, label: "Spot Rate (%)"},
+  grid: true,
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    Plot.dot(transpose(d), {x: "Year", y: "YTM", stroke: "blue"}),
+  ]
+})
+```
+
+Moreover, we want this curve to be continuous without gaps, so that at any point of time we would know the spot rate to use for a cashflow, say 3.14 years in the future.
+
+However, do we have all spot rates readily available? Unfortunately, no. At least not directly.
+
+## What do we have in reality?
+
+Why do we not have a table of all spot rates? This is firstly because there are no government bonds for some maturities. For example, the U.S. government issues only Treasury securities of a selected range of maturities:[^2]
+
+- Treasury Bills (no coupon): 4, 8, 13, 17, 26, and 52 weeks.
+- Treasury Notes (semi-annual coupon): 2, 3, 5, 7, or 10 years.
+- Treasury Bonds (semi-annual coupon): 20 or 30 years.
+
+[^2]: See [TreasuryDirect](https://www.treasurydirect.gov/marketable-securities/) for a list of available Treasury securities. This is the official website to buy U.S. Treasury securities.
+
+Further, __the YTM of a bond is a complicated weighted average of spot rates $\{r_\tau\}$__ conditional on other bond-specific characteristics. For example, the YTM $y_n$ of a $n$-year coupon bond with annual payments $C$ and face value $F$ is function $g$ of $\{r_{\tau}\}, C, F, n$:
+
+$$
+y_{n} = g(\{r_\tau\}| C, F, n)
+$$
+
+We can observe from the market the YTMs $\{y_n\}$ of Treasury securities of all maturities. If we plot them, we may end up with a "yield (to maturity) curve" like below:
+
+```{ojs}
+//| echo: false
+ 
+d2 = {
+  const data = {"YTM": [], "Year": []};
+  const m = [0.5, 1, 2, 3, 5, 7, 10, 20, 30];
+  for (let year= 0; year < 31; year++) {
+    data.Year.push(year)
+    if (m.includes(year)) {
+      data.YTM.push(Math.pow(1.05, year)-1);
+    } else {
+      data.YTM.push(null);
+    }
+  }
+  return data;
+}
+Plot.plot({
+  caption: "An illustrative graph of Treasury Securities' YTMs",
+  x: {padding: 0.4, label: "Maturity (years)"},
+  y: {padding: 0.4, label: "YTM (%)"},
+  grid: true,
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    Plot.dot(transpose(d2), {x: "Year", y: "YTM", stroke: "blue"}),
+  ]
+})
+```
+
+::: {.callout-caution}
+Notice that here we plot the YTMs $\{y_n\}$, not the spot rates $\{r_\tau\}$.
+:::
+
+Immediately, we can feel the need for some further work:
+
+- First, we need some reasonable interpolation methods to fill the gaps and connect the dots.
+- Second, we need a method to extract spot rate $r$ from yield $y$.
+
+For the first point, unfortunately, finding such a reasonable interpolation method is not easy and requires advanced finance and mathematical knowledge. It is beyond the scope of discussion here.
+
+Further, for those coupon-paying Treasury securities (TNotes and TBonds), their observed market yields are subject to the "__coupon effect__", i.e., the bond yield is affected by coupon rate holding everything else constant.
+
+But luckily, once we have removed the "coupon effect" from the yields, the second point is relatively straightforward as we will see soon.
+
+## The "coupon effect" and "par yield"
+
+Recall that a bond's YTM is a function of spot rates _conditional on_ its coupon rate and other characteristics. This means that, other things equal, coupon rates affect YTM. This effect is __unwanted__ - we are only interested in the relationship between yields and maturities without the distortion in yield comparisons caused by differences in coupon rates among bonds of different maturities.
+
+::: {.callout-note title="Quick notes on the coupon effect"}
+- If the yield curve (of spot rates) is not flat, then bonds with the same maturity but different coupons will have different yields.
+    - If the yield curve is upward-sloping, then for any given maturity, higher coupon bonds will have lower yields.
+    - If the yield curve is downward-sloping, then for any given maturity, higher coupon bonds will have higher yields.
+
+See for example [this NYU Stern course note](https://pages.stern.nyu.edu/~jcarpen0/courses/b403333/03yield.pdf) on the coupon effect.
+:::
+
+There is, fortunately, a situation where the "coupon effect" is not a concern, that is when the bonds are trading at par. __When bonds are trading at par, their coupon rates and yields are aligned, and this "coupon effect" is mitigated__.
+
+Therefore, when we initially select the Treasury securities in our analysis, we would like to choose those that are trading at par. We'd also like to choose those __on-the-run__[^3] Treasury securities because their yields are the most recent reflection of market expectation, and they are more likely to be trading at par or close to par.
+
+[^3]: "on-the-run" refers to the most recently issued and actively traded securities in a particular category, usually referring to government bonds. These are the latest bonds or securities issued by a government or other issuing entity, and they are typically the ones that are most actively traded in the market.
+
+    In the context of government bonds, such as U.S. Treasury bonds, the term "on-the-run" is used to describe the most recently auctioned bonds of a particular maturity. These bonds are considered the benchmark or reference securities for that maturity because they represent the most current market conditions.
+
+The YTMs of these Treasury securities trading at par are called the "__par yields__". Notice that while they're named "yield", but they are also the coupon rate of bonds such that these bonds are traded at par.
+
+> In other words, __par yield__ is like a market consensus of what the coupon rate (hence yield) of a newly issued Treasury bond should be, so that it is fairly issued at par.
+
+Of course, not all on-the-run Treasury securities will necessarily be trading at par. Some adjustments may be applied by the Treasury. Though the Treasury does not disclose the exact method, but they do report [the daily par yields for all maturities](https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics).
+
+## The yield curve
+
+Now that par yields remove the coupon effect, we may proceed to computing spot rates (zero rates), which will then be used in bond pricing.[^4]
+
+[^4]: We didn't talk about how to "fill the gaps" between consecutive par yields because the methods used by central banks are pretty complicated. Let's assume that we are provided with such par yield curve without gaps to facilitate our discussions.
+
+It should be noted, though, given a series of par yields, there should be a corresponding series zero rates. Hence, __a yield curve can either be represented in terms of par yields or zero rates - they carry the same information__.
+
+### Par yields to zero rates
+
+Suppose at the end of the day, we observe the following par yields:
+
+| Maturity     | Type                  | Par Yield          | Zero Rate |
+| ------------ | --------------------- | ------------------ | --------- |
+| __6 months__ | __TBill__ (no coupon) | $y_{0.5yr}=1.05\%$ | 1.05%     |
+| __1 year__   | __TBill__ (no coupon) | $y_{1yr}=1.2\%$    | 1.2%      |
+| 1.5 years    | Hypothetical TNote    | $y_{1.5yr}=1.5\%$  |           |
+| __2 year__   | __TNote__             | $y_{2yr}=2.2\%$    |           |
+| 2.5 year     | Hypothetical TNote    | $y_{2.5yr}=2.4\%$  |           |
+| __3 year__   | __TNote__             | $y_{3yr}=2.8\%$    |           |
+| 3.5 year     | Hypothetical TNote    | $y_{3.5yr}=3\%$    |           |
+| 4 year       | Hypothetical TNote    | $y_{4yr}=3.4\%$    |           |
+| ...          |
+
+We can compute the zero rates from the given par yields using a method called __bootstrapping__.[^5]
+
+[^5]: Bootstrapping is an iterative process. In each iteration, we compute a single output based known information plus all the _previously computed outputs_, so that the "information set" grows gradually as we move forward.
+
+__Iteration 1__
+
+Let's consider the pricing of the (hypothetical) 1.5-year TNote. Its par yield and hence coupon rate is $y_{1.5}=1.5\%$. Notice that the only unknown variable is the 1.5-year spot rate (zero rate) ${\color{red}r_{1.5}}$:
+
+$$
+P(\text{1.5yr } y_{1.5}\% \text{ TNote}) = \frac{0.5\times y_{1.5}}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_{1.5}}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_{1.5}+100}{(1+\frac{\color{red}r_{1.5}}{2})^3} = 100
+$$
+
+Since there is only one unknown, we can solve for the 1.5-year spot rate (zero rate) ${\color{red}r_{1.5}}$. In this example, the value of $\color{green}r_{1.5}=1.5026\%$
+
+| Maturity     | Type                  | Par Yield          | Zero Rate     |
+| ------------ | --------------------- | ------------------ | ------------- |
+| __6 months__ | __TBill__ (no coupon) | $y_{0.5yr}=1.05\%$ | 1.05%         |
+| __1 year__   | __TBill__ (no coupon) | $y_{1yr}=1.2\%$    | 1.2%          |
+| 1.5 years    | Hypothetical TNote    | $y_{1.5yr}=1.5\%$  | $\color{green}r_{1.5}=1.5026\%$ |
+| __2 year__   | __TNote__             | $y_{2yr}=2.2\%$    |               |
+| 2.5 year     | Hypothetical TNote    | $y_{2.5yr}=2.4\%$  |               |
+| __3 year__   | __TNote__             | $y_{3yr}=2.8\%$    |               |
+| 3.5 year     | Hypothetical TNote    | $y_{3.5yr}=3\%$    |               |
+| 4 year       | Hypothetical TNote    | $y_{4yr}=3.4\%$    |               |
+| ...          |
+
+__Iteration 2__
+
+Now consider the pricing of the 2-year TNote. Its par yield hence coupon rate is $y_{2}=2.2\%$. Notice that we now have the 1.5-year spot rate $\color{green}r_{1.5}$ available from last iteration, and the only unknown variable is now the 2-year spot rate (zero rate) ${\color{red}r_{2}}$:
+
+$$
+P(\text{2yr } y_2\% \text{ TNote}) = \frac{0.5\times y_2}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_2}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_2}{(1+\frac{\color{green}r_{1.5}}{2})^3} +\frac{0.5\times y_2+100}{(1+\frac{\color{red}r_{2}}{2})^4}=100
+$$
+
+We can solve for the 2-year spot rate (zero rate) ${\color{red}r_{2}}$. It turns out that in this example, ${\color{green}r_{2}=2.2146\%}$.
+
+| Maturity     | Type                  | Par Yield          | Zero Rate     |
+| ------------ | --------------------- | ------------------ | ------------- |
+| __6 months__ | __TBill__ (no coupon) | $y_{0.5yr}=1.05\%$ | 1.05%         |
+| __1 year__   | __TBill__ (no coupon) | $y_{1yr}=1.2\%$    | 1.2%          |
+| 1.5 years    | Hypothetical TNote    | $y_{1.5yr}=1.5\%$  | $\color{green}r_{1.5}=1.5026\%$ |
+| __2 year__   | __TNote__             | $y_{2yr}=2.2\%$    | ${\color{green}r_{2}=2.2146\%}$ |
+| 2.5 year     | Hypothetical TNote    | $y_{2.5yr}=2.4\%$  |               |
+| __3 year__   | __TNote__             | $y_{3yr}=2.8\%$    |               |
+| 3.5 year     | Hypothetical TNote    | $y_{3.5yr}=3\%$    |               |
+| 4 year       | Hypothetical TNote    | $y_{4yr}=3.4\%$    |               |
+| ...          |
+
+__Iteration 3__
+
+Now consider the pricing of the 2.5-year TNote. Its par yield hence coupon rate is $y_{2.5}=2.4\%$. Notice that we now have $\color{green}r_{1.5}$ and $\color{green}r_{2}$ available from last iterations, and the only unknown variable is now the 2.5-year spot rate (zero rate) ${\color{red}r_{2.5}}$:
+
+$$
+P(\text{2.5yr } y_{2.5}\% \text{ TNote}) = \frac{0.5\times y_{2.5}}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_{2.5}}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_{2.5}}{(1+\frac{\color{green}r_{1.5}}{2})^3} +\frac{0.5\times y_{2.5}}{(1+\frac{\color{green}r_{2}}{2})^4} + \frac{0.5\times y_{2.5}+100}{(1+\frac{\color{red}r_{2.5}}{2})^4}=100
+$$
+
+We can solve for the 2.5-year spot rate (zero rate) ${\color{red}r_{2.5}}$. It turns out that in this example, ${\color{green}r_{2.5}=2.4176\%}$.
+
+| Maturity     | Type                  | Par Yield          | Zero Rate     |
+| ------------ | --------------------- | ------------------ | ------------- |
+| __6 months__ | __TBill__ (no coupon) | $y_{0.5yr}=1.05\%$ | 1.05%         |
+| __1 year__   | __TBill__ (no coupon) | $y_{1yr}=1.2\%$    | 1.2%          |
+| 1.5 years    | Hypothetical TNote    | $y_{1.5yr}=1.5\%$  | $\color{green}r_{1.5}=1.5026\%$ |
+| __2 year__   | __TNote__             | $y_{2yr}=2.2\%$    | ${\color{green}r_{2}=2.2146\%}$ |
+| 2.5 year     | Hypothetical TNote    | $y_{2.5yr}=2.4\%$  | ${\color{green}r_{2.5}=2.4176\%}$ |
+| __3 year__   | __TNote__             | $y_{3yr}=2.8\%$    |               |
+| 3.5 year     | Hypothetical TNote    | $y_{3.5yr}=3\%$    |               |
+| 4 year       | Hypothetical TNote    | $y_{4yr}=3.4\%$    |               |
+| ...          |
+
+__Iterations continue...__
+
+Eventually, we will be able to fill all the blanks in the table by working out the zero rates for all maturities.
+
+### Plotting yield curves
+
+In terms of the example above, we can plot the par yields (blue) and bootstrapped zero rates (red) as below.
+
+```{ojs}
+//| echo: false
+
+d3 = [{ "year": 0.5, "par_yield": 1.05, "spot_rate": 1.05 },
+        { "year": 1, "par_yield": 1.2, "spot_rate": 1.2 },
+        { "year": 1.5, "par_yield": 1.5, "spot_rate": 1.5026393890380874 },
+        { "year": 2.0, "par_yield": 2.2, "spot_rate": 2.2146487236022976 },
+        { "year": 2.5, "par_yield": 2.4, "spot_rate": 2.417717552185062 },
+        { "year": 3.0, "par_yield": 2.8, "spot_rate": 2.8317731857299844 },
+        { "year": 3.5, "par_yield": 3, "spot_rate": 3.0386474132537877 },
+        { "year": 4.0, "par_yield": 3.4, "spot_rate": 3.4637652397155807 },
+        { "year": 4.5, "par_yield": 3.5, "spot_rate": 3.565935420989996 },
+        { "year": 5.0, "par_yield": 3.6, "spot_rate": 3.669886875152593 },
+        { "year": 5.5, "par_yield": 3.8, "spot_rate": 3.8880950450897283 },
+        { "year": 6.0, "par_yield": 4, "spot_rate": 4.1098044395446856 },
+        { "year": 6.5, "par_yield": 4.3, "spot_rate": 4.453684520721444 },
+        { "year": 7.0, "par_yield": 4.8, "spot_rate": 5.053358459472664 },
+        { "year": 7.5, "par_yield": 5, "spot_rate": 5.290201091766365 },
+        { "year": 8.0, "par_yield": 5.2, "spot_rate": 5.533113956451425 },
+        { "year": 8.5, "par_yield": 5.35, "spot_rate": 5.714883279800425 },
+        { "year": 9.0, "par_yield": 5.4, "spot_rate": 5.763193321228037 },
+        { "year": 9.5, "par_yield": 5.45, "spot_rate": 5.8138489723205655 },
+        { "year": 10.0, "par_yield": 5.5, "spot_rate": 5.866698265075694 }]
+Plot.plot({
+  caption: "An illustrative graph of par yields and zero rates",
+  x: {padding: 0.4, label: "Maturity (years)"},
+  y: {padding: 0.4, label: "YTM (%)"},
+  grid: true,
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    Plot.dot(d3, {x: "year", y: "par_yield", stroke: "blue"}),
+    Plot.dot(d3, {x: "year", y: "spot_rate", stroke: "red"}),
+  ]
+})
+```
+
+::: {.callout-tip title="What does a yield curve look like in real world?"}
+See an animation of the daily yield curves since January 2021 to August 2023[^6]. This is the par yield curve without interpolation. I simply connect consecutive par yields straightly.
+
+[^6]: Yes, yield curve is not constant. As time changes, the par yields (hence spot rates) change!
+:::
+
+{{< video https://www.youtube.com/embed/ou2pjXICvaE?si=F5ijTE5fZkQUc9pJ >}}
+
+::: {.callout-note title="Stata code for the animation" collapse="true"}
+```stata
+/* Yield Curve Animation Frames */
+
+/* Import data from FRED */
+import fred DGS1MO DGS3MO DGS6MO DGS1 DGS2 DGS3 DGS5 DGS7 DGS10 DGS20 DGS30, ///
+daterange(2021-01-01 2023-08-25) aggregate(daily,eop) clear
+drop datestr 
+
+/* Rename vars to reshape */
+foreach yr in 1 2 3 5 7 10 20 30 {
+loc months = `yr'*12
+rename DGS`yr' DGS`months'
+}
+foreach m in 1 3 6 {
+rename DSG`m'MO DGS`m'
+}
+reshape long DGS, i(daten) j(maturityInMonths)
+rename DGS yield
+
+/* Vars */
+gen maturity = maturityInMonths/12
+label var maturity "Maturity (years)"
+label var yield "Yield (%)"
+
+/* Remove no-yield dates */
+drop if yield == .
+
+loc i = 0
+forvalues year = 2021/2023 {
+forvalues month = 1/12 {
+  forvalues day = 1/31 {
+    /* Skip dates without data */
+    loc date = mdy(`month', `day', `year')
+    if `date' == . {
+      continue
+    }
+    local formatted_date : display %tdY-m-d `date'
+    di "`formatted_date'"
+    su if daten== mdy(`month',`day',`year'), meanonly
+    if r(N)==0 {
+      continue
+    }
+    /* Plot and index each date as a frame */
+    loc i = `i' + 1
+    twoway (spike yield maturity, sort lcolor(%30) lpattern(dash)) ///
+    (connected yield maturity, sort) if daten== mdy(`month',`day',`year'), ///
+    ylabel(0(1)10) xtitle(Maturity) ///
+    xlabel(0.5 "6M" 1 "1Y" 2 "2Y" 3 "3Y" 5 "5Y" 7 "7Y" ///
+      10 "10Y" 20 "20Y" 30 "30Y", labsize(vsmall) ///
+    angle(forty_five)) title(Yield Curve of U.S. Treasury Securities) ///
+    subtitle("Date: `formatted_date'") ///
+    caption(Made by Dr. Mingze Gao, size(vsmall) position(5)) ///
+    note(Source: FRED) legend(off)
+    graph export "yiled_curve_`i'.png", replace
+  }
+}
+}
+```
+:::
+
+### Shapes of yield curve
+
+We can see from the animation above that the yield curve has been overall __shifted__ upwardly in the past few years. Moreover, the __shape__ of the yield curve has changed.
+
+- In 2021, the yield curve's shape was __normal__, meaning that it's upward-sloping with short-term yields lower than long-term yields.
+- In 2022, the yield curve's shape became __flat__, meaning that the short-term yields are similar to those long-term yields.
+- Since late 2022 and in 2023, the yield curve's shape is __inverted__, meaning that it's downward-sloping the short-term yields higher than long-term yields.
+
+These shapes of yield curves are informative.
+
+- An __upward-sloping yield curve__ generally indicates that investors expect the economy to grow in the future, leading to higher inflation and interest rates. It reflects the market's anticipation of increasing borrowing costs and potentially rising demand for credit.
+- A __flat yield curve__ could suggest uncertainty about the economic outlook. It might also indicate that the central bank is maintaining a neutral stance or that market participants believe that current interest rates are close to their peak.
+- An __inverted yield curve__ is often seen as a signal of potential economic slowdown or recession. It suggests that investors expect future interest rates to decline due to weaker economic conditions. An inverted curve can indicate that market participants expect the central bank to cut interest rates to stimulate economic growth.

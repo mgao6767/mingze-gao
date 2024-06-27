@@ -1,0 +1,99 @@
+---
+title: Stata - Packages
+date: 2023-02-16
+categories:
+  - Teaching Notes
+tags:
+  - Stata
+---
+
+![Antigravity!](/images/antigravity.png)
+
+If you've ever used Python, you may know that it's famous for its simplicity and the many packages available for use. Good news is, Stata is no different. We can install a wide range of Stata packages easily and then use them to achieve a ton of things. 
+
+This post briefly explains where to find, how to install and update Stata packages.
+
+## Stata packages
+
+In a nutshell, installing and using Stata packages are as simple as the following two lines of code (and a line of output):
+
+```stata
+. ssc install nicewords
+. nicewords
+Absolutely excellent!
+```
+
+Specifically, we use the builtin command [`ssc`](https://www.stata.com/manuals/rssc.pdf) to install a package named `nicewords` in the first line, and then execute the command `nicewords` in the second line, which randomly prints some nice words.
+
+Generally, a package can provide one or more Stata commands to use, depending on the complexity of the task it solves.
+
+## Where to find Stata packages
+
+### `ssc` - Statistical Software Components Archive
+
+Stata packages are hosted at the Statistical Software Components (SSC) Archive, which is often called the Boston College Archive and provided by [http://repec.org](http://repec.org). This explains the example above where we used the command [`ssc`](https://www.stata.com/manuals/rssc.pdf) to manage (install) packages. 
+
+We can find recently added packages with `. ssc new`, and the top 10 most popular packages on SSC with `. ssc hot`. In fact, the top 10 for December 2022 are:
+
+| Rank | # hits  | Package  | Author(s)      |
+| ---- | ------- | -------- | -------------- |
+| 1    | 63836.7 | outreg2  | Roy Wada       |
+| 2    | 54131.9 | estout   | Ben Jann       |
+| 3    | 33531.3 | winsor2  | Yujun Lian     |
+| 4    | 32575.0 | asdoc    | Attaullah Shah |
+| 5    | 23632.8 | grstyle  | Ben Jann       |
+| 6    | 21866.9 | reghdfe  | Sergio Correia |
+| 7    | 17123.1 | ftools   | Sergio Correia |
+| 8    | 16163.0 | logout   | Roy Wada       |
+| 9    | 16161.3 | fastgini | Zurab Sajaia   |
+| 10   | 13942.7 | coefplot | Ben Jann       |
+
+### `net` - e.g., GitHub
+
+Apart from SSC, some packages are available on other websites like [GitHub](https://github.com/search?l=Stata&q=stata&type=Repositories). A growing trend is that package authors publish their code repositories on GitHub, which contain the devlopment version of the packages.
+
+## How to install and update packages
+
+`ssc install` is pretty much all we need. For example, to install the package `reghdfe`:
+
+```stata
+. ssc install reghdfe
+```
+
+For packages outside SSC, we can install them using [`net`](https://www.stata.com/manuals/rnet.pdf). As an example, I have a package [`specurve`](https://github.com/mgao6767/specurve) on GitHub, which can be installed by:
+
+```stata
+. net install specurve, from("https://raw.githubusercontent.com/mgao6767/specurve/master")
+```
+
+To update an existing package, we can add the option `replace` to the above command:
+
+```stata
+. ssc install reghdfe, replace
+. net install specurve, replace from("https://raw.githubusercontent.com/mgao6767/specurve/master")
+```
+
+Alternatively, we can use [`ado update`](https://www.stata.com/manuals/radoupdate.pdf):
+
+```stata
+. ado update, update // for community-contributed packages
+. ado update, update ssconly // for SSC only
+```
+
+## Some packages of my choice
+
+### `reghdfe` and `ivreghdfe`
+
+[`reghdfe`](https://github.com/sergiocorreia/reghdfe) is among the top 10 Stata packages as we've seen above. It allows for multiple fixed effects in linear regressions, while the builtin [`xtreg`](https://www.stata.com/manuals/xtxtreg.pdf) allows only one fixed effect. It's gold!
+
+[`ivreghdfe`](https://github.com/sergiocorreia/ivreghdfe) is essentially `reghdfe` plus `ivreg2`, which allows us to include multiple fixed effects in instrumental variable regressions.
+
+### `estout` and `outreg2`
+
+[`estout`](https://github.com/benjann/estout) is also a top 10 Stata package that provides tools to make regression tables. We've seen an example from the [previous post](../introduction#save-to-latex). I highly recommend, too!
+
+`outreg2` does a similar job in a simpler way. Yet if we want finer controls `estout` is perhaps better, in my humble opinion.
+
+### `winsor` and `winsor2`
+
+Data is often noisy with extreme values or impossible values recorded by mistake. In some fields of research, we try to mitigate such concern by [winsorization](https://en.wikipedia.org/wiki/Winsorizing). Note that they may yield different results due to their different approaches in determining percentile values.

@@ -1,0 +1,191 @@
+---
+title: Introduction to Fixed Income Securities
+date: 2023-07-26
+categories: 
+    - Teaching Notes
+---
+
+## What are fixed income securities?
+
+Fixed income securities are financial instruments that provide a **fixed, or predictable, stream of income** to investors. These securities typically take the form of [bonds](https://en.wikipedia.org/wiki/Bond_(finance)), but also include other investment types like [certificates of deposit](https://en.wikipedia.org/wiki/Certificate_of_deposit) and [preferred shares](https://en.wikipedia.org/wiki/Preferred_stock).
+
+Fixed income securities are essentially **loans** made by an investor to an _issuer_. In exchange for the loan, the issuer agrees to pay the investor a specified rate of interest during the life of the bond and to repay the principal when it "matures," or comes due.
+
+### Types of fixed income securities
+
+By the type of issuer, there are
+
+#### Government bonds
+
+Governments issue bonds to borrow money. These bonds are considered among the **safest investments**, as they are backed by the taxing power of the government.[^1]
+
+[^1]: When we talk about "risk-free rate", we largely refer to the [yield](../bond-prices-and-yields) of such government bonds.
+
+#### Corporate bonds
+
+Companies also issue bonds to finance their operations or projects. Corporate bonds are considered **higher risk** than government bonds, but they also typically pay a higher rate of interest.
+
+#### Municipal bonds
+
+Municipal bonds are issued by cities, states, or other local entities for various public purposes. These bonds often have **tax advantages**, making them attractive to certain investors.[^2]
+    
+[^2]: In the U.S., generally, the interest on municipal bonds is exempt from federal income tax. The interest may also be exempt from state and local taxes if you reside in the state where the bond is issued. See [investor.gov](https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds-or-fixed-income-products-0)
+
+
+In terms of underlying asset, there are
+
+#### Asset-backed securities (ABS)
+
+These are bonds backed by loan receivables other than real estate, such as credit card debt, auto loans, student loans, or even royalties from music. In the case of ABS, a pool of these non-mortgage assets is packaged and sold to investors as securities. The principal and interest payments made by the borrowers on these underlying loans are then passed through to the investors.
+
+#### Mortgage-backed securities (MBS)
+
+These are investment products backed by home and commercial mortgage loans. These loans are packaged into securities and sold to investors. Similar to ABS, the principal and interest payments made by the borrowers are passed through to the investors. However, MBS are directly tied to the mortgage industry and are susceptible to the performance of the housing market.
+
+## Why invest in fixed income securities?
+
+Investors choose fixed income securities for several reasons:
+
+1. **Income**: Fixed income securities provide regular interest payments, which can be an attractive source of income.
+2. **Preservation of capital**: When the bond matures, the full principal amount is returned to the investor. This makes bonds appealing for those looking to preserve their capital.
+3. **Diversification**: Including fixed income securities in a portfolio can help diversify investments and reduce risk.
+
+## Who invest in fixed income securities?
+
+Investors in fixed income securities come from a broad spectrum and include both individuals and institutions.
+
+
+::: {.column-margin}
+
+![Market size of fixed income securities. [Source: SIFMA](https://www.sifma.org/resources/research/fixed-income-chart/)](/images/market-size-fixed-income-securities.jpg)
+
+> "Although they usually attract less attention than equity markets, fixed-income markets are more than three times the size of global equity markets", CFA Institute.
+:::
+
+### Individuals
+
+Individual investors, particularly those in or nearing retirement, often invest in fixed-income securities as a way to preserve capital and generate a steady stream of income.
+
+### Institutions
+
+ 1. **Pension Funds:** Pension funds invest heavily in fixed-income securities as they provide predictable returns which can be matched against their future payout obligations.
+ 2. **Insurance Companies:** Like pension funds, insurance companies have long-term, predictable liabilities and thus invest significantly in fixed-income securities to match these liabilities.
+ 3. **Mutual Funds:** There are many mutual funds, known as bond funds, that specialize in investing in fixed-income securities.
+ 4. **Banks and Financial Institutions:** Banks and other financial institutions often invest in fixed-income securities as a way to generate a return on their excess capital and to help manage their interest rate risk.
+ 5. **Endowments and Foundations:** These entities often include fixed-income securities in their portfolios for diversification and income generation.
+ 6. **Central Banks:** Central banks often hold domestic and foreign fixed-income securities as a part of their reserves and as a tool for implementing monetary policy.
+
+Each type of investor may have different investment objectives and constraints, and therefore might focus on different types of fixed-income securities (e.g., [government bonds](#government-bonds), [corporate bonds](#corporate-bonds), [municipal bonds](#municipal-bonds), etc.) based on their risk tolerance, income requirements, tax situation, and other factors.
+
+## Features of a bond
+
+### The basics
+
+In its simplest form, a bond may be specified by the following characteristics:[^3]
+
+[^3]: Bonds have many more features. We will focus on these for now and introduce others later.
+
+- **Issuer** is the entity raising capital through bond issue.
+- **Face value** is the nominal value of the bond, representing the amount the bondholder will receive at maturity, a.k.a. "par value" or "principal".
+- **Maturity date** is the date on which the bond will mature, and the issuer will return the bond's face value to the bondholders.
+- **Coupon rate** is the interest rate (fixed or variable) that the bond issuer agrees to pay to bondholders. It is usually expressed as a percentage of the bond's face value, and the interest is paid periodically, typically semi-annually or annually.
+
+[For example](https://microsoft.gcs-web.com/node/29211/html#d130687dex41.htm:~:text=On%20March%C2%A017%2C%202021%2C%20in%20connection%20with%20the%20settlement%20of%20the%20Exchange%20Offers%2C%20the%20Company%20issued%20%246%2C250%2C000%2C000%20aggregate%20principal%20amount%20of%20its%202.921%25%20Notes%20due%202052%20(the%20%E2%80%9C2052%20Notes%E2%80%9D)), on March 17, 2021, Microsoft[^4] issued a \$6,250,000,000[^5] aggregate principal amount of its 2.921%[^6] Notes[^7] due 2052[^8] (the “2052 Notes”).
+
+[^4]: Issuer
+[^5]: Face value of the bond
+[^6]: Coupon rate
+[^7]: Maturity date
+[^8]: The terms "bond" and "note" are often used interchangeably. Although typically "note" refers to those with shorter maturities (1 to 10 years) and "bond" refers to those with longer than 10 years of maturity, the difference is really more a matter of convention and industry terminology.
+
+The bond's indenture[^9] also specifies that
+
+[^9]: **Indenture** is the legal contract between the bond issuer and the bondholder that outlines the terms and conditions of the bond, including the rights and responsibilities of both parties.
+
+> The 2052 Notes will bear interest (computed on the basis of a 360-day year consisting of twelve 30-day months) from March 17, 2021 at the rate of 2.921% per annum, payable semi-annually in arrears.
+
+A sequence of cash flows between the bond issuer and investor is described below
+
+```{mermaid}
+sequenceDiagram
+    autonumber
+    Issuer (bond seller)-->>Investor (bond buyer): Bond
+    Investor (bond buyer)->>Issuer (bond seller): Price of bond
+    note right of Investor (bond buyer): We will figure out the price later
+
+    loop every 6 months until 2052
+        Issuer (bond seller)->>Investor (bond buyer): Coupon (1/2 of 2.921% of face value)
+    end
+
+    Issuer (bond seller)->>Investor (bond buyer): Return principal ($6,250,000,000)
+    Investor (bond buyer)-->>Issuer (bond seller): Redeem bond
+```
+
+### Additional things
+
+A bond can be **secured** in that the issuer can pledge certain assets[^10] to "secure" the payments to investors. In case of defaults 😔, bondholders have a direct claim on the pledged assets.
+
+[^10]: Real estate, equipment, or other valuable properties such as patents, etc.
+
+An **unsecured** bond (or "debenture"), on the other hand, relies solely on the issuer's creditworthiness and ability to generate cash flow to repay bondholders. In case of defaults 😔, bondholders of unsecured bonds only have a claim on the issuer's general assets.
+
+A bond has also a **seniority**. In case of defaults 😔, investors of more senior bonds can claim before investors of less senior bonds.[^11]
+
+[^11]: This "more or less senior" notion is vague. More precisely, a [bond seniority table](https://www.google.com/search?q=bond+seniority+table) describes the ranking of bond seniority.
+
+A bond needs to specify the currency as well, along with many other things...
+
+### Embedded options
+
+A bond is _plain vanilla_ when it has no __embedded options__, which can add a lot "flavour".
+
+::: {.callout-note}
+Embedded options in bonds refer to features or provisions that give either the bond issuer or the bondholder the right to take certain actions under specific circumstances.
+:::
+
+Embedded options provide added flexibility to the bond's terms and can impact the bond's cash flows and overall value. The three main types of embedded options found in bonds are:
+
+#### Call Option (Callable Bonds)
+
+- Call option allows the bond issuer to redeem or "call back" the bonds before their scheduled maturity date.
+- The issuer may choose to call the bonds if prevailing interest rates decline, giving them an opportunity to refinance at a lower cost.
+- When the bond is called, the bondholders receive the bond's face value and any accrued interest up to that point.
+- Callable bonds typically offer higher coupon rates compared to non-callable bonds to compensate investors for the risk of early redemption.
+
+#### Put Option (Puttable Bonds)
+
+- Put option allows the bondholder to sell the bonds back to the issuer at a specified price before the scheduled maturity date.
+- Puttable bonds provide the bondholders with an opportunity to exit their investment if they believe it is advantageous to do so, such as when interest rates rise.
+- When exercised, the bondholder receives the bond's face value, which may be different from the market price at the time of the put option exercise.
+- Puttable bonds are relatively less common than callable bonds.
+
+#### Conversion Option (Convertible Bonds)
+
+- Conversion option allows the bondholder to convert their bond into common shares of the issuing company. The conversion ratio specifies the number of shares the bondholder will receive per bond converted.
+- Convertible bonds are considered _hybrid_ securities because they possess attributes of both debt and equity. Until conversion, they behave like regular bonds, offering fixed coupon payments and a return of the principal at maturity. Upon conversion, they become equity instruments, representing ownership in the issuing company.
+
+## The (simplified) overview
+
+```{mermaid}
+sequenceDiagram
+autonumber
+    participant Issuer
+    participant Underwriter
+    participant Investors
+
+    rect rgba(0, 0, 255, .1)
+        note left of Issuer: Primary Market
+        Issuer->>Underwriter: Request Bond Underwriting
+        Underwriter->>Issuer: Analyze Issuer's Creditworthiness
+        Underwriter->>Investors: Offer Bonds for Sale
+        Investors->>Underwriter: Express Interest in Buying Bonds
+        Underwriter->>Issuer: Finalize Bond Terms and Pricing
+        Investors->>Underwriter: Place Orders for Bonds
+        Underwriter->>Investors: Issue Bonds to Investors
+    end
+    rect rgba(0, 0, 255, .1)
+        note right of Investors: Secondary Market
+        Investors->>Investors: Buy and Sell Bonds
+    end
+```
+
