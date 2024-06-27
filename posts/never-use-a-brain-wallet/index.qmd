@@ -8,7 +8,6 @@ tags:
 categories:
     - Programming
     - Cryptocurrency
-freeze: auto
 format: 
   html: default
   ipynb: default
@@ -22,7 +21,7 @@ It's genius in that now a user needs only to memorise whatever he or she used to
 
 After a little bit of research, I've put together a simple brain wallet Python script that turns any input string to a legal Bitcoin private key and its address.
 
-```{python}
+```python
 import codecs
 import hashlib
 import ecdsa
@@ -109,13 +108,21 @@ class BrainWallet:
 
 Let me show you some really easy-to-guess passphrases and their associated private keys and addresses. As an example, the code below uses "password" as the input passphrase and derives the private key and address from it.
 
-```{python}
+```python
 passphrase = 'password'
 wallet = BrainWallet()
 private_key, address = wallet.generate_address_from_passphrase(passphrase)
 print(f'passphrase: {passphrase}')
 print(f'private key: {private_key}')
 print(f'address: {address}')
+```
+
+The output is:
+
+```python
+passphrase: password
+private key: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+address: 16ga2uqnF1NqpAuQeeg7sTCAdtDUwDyJav
 ```
 
 As at May 22, 2019, this address has **45,014** transactions with a total of **0.3563 BTC** (of course the balance is zero)! You can check its current balance at [blockchain.com](https://www.blockchain.com/btc/address/16ga2uqnF1NqpAuQeeg7sTCAdtDUwDyJav). Also, congratulations, you are now one of the many owners of this address/wallet. So next time you observe some coins transfered to it, you'll be able to use it as well (though I don't suggest you to do so)!

@@ -21,7 +21,7 @@ This post details a multivariate GARCH Constant Conditional Correlation (CCC) mo
 
 ## Multivariate GARCH-CCC
 
-The Multivariate GARCH model generalizes the univariate [GARCH](./garch-estimation.md) framework to multiple time series, capturing not only the conditional variances but also the conditional covariances between the series. One common form is the **Constant Conditional Correlation (CCC) model** proposed by @bollerslev_modelling_1990.
+The Multivariate GARCH model generalizes the univariate [GARCH](/posts/garch-estimation/index.md) framework to multiple time series, capturing not only the conditional variances but also the conditional covariances between the series. One common form is the **Constant Conditional Correlation (CCC) model** proposed by @bollerslev_modelling_1990.
 
 ### Return equation
 
