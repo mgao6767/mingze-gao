@@ -71,6 +71,6 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 
 - FMA 2022, FIRN 2022.
 
-## 🧑‍🎓 Student Supervision
+## ‍🎓 Student Supervision
 
 - Meitong He, Honours student at University of Sydney, 2023 (co-supervision with Buhui Qiu). Graduated with First Class Honours.
