@@ -1,1698 +1,1045 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="Mingze Gao's personal website.">
-      
-      
-        <meta name="author" content="Mingze Gao">
-      
-      
-        <link rel="canonical" href="https://mingze-gao.com/posts/lomackinlay1988/">
-      
-      
-        <link rel="prev" href="../minimum-variance-hedge-ratio/">
-      
-      
-        <link rel="next" href="../textual-analysis-on-sec-filings/">
-      
-      
-        
-      
-      
-      <link rel="icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.4.2+insiders-4.42.0">
-    
-    
-      
-        <title>Variance Ratio Test - Lo and MacKinlay (1988) - Mingze Gao</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f2778614.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.46987102.min.css">
-      
-      
-  
-  
-    
-    
-  
-  
-  <style>:root{--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.197 10a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-2.382 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-1.581 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z"/><path d="M4.125 0h15.75a4.11 4.11 0 0 1 2.92 1.205A4.11 4.11 0 0 1 24 4.125c0 1.384-.476 2.794-1.128 4.16-.652 1.365-1.515 2.757-2.352 4.104l-.008.013c-.849 1.368-1.669 2.691-2.28 3.97-.614 1.283-.982 2.45-.982 3.503a2.625 2.625 0 1 0 4.083-2.183.75.75 0 1 1 .834-1.247A4.126 4.126 0 0 1 19.875 24H4.5a4.125 4.125 0 0 1-4.125-4.125c0-2.234 1.258-4.656 2.59-6.902.348-.586.702-1.162 1.05-1.728.8-1.304 1.567-2.553 2.144-3.738H3.39c-.823 0-1.886-.193-2.567-1.035A3.647 3.647 0 0 1 0 4.125 4.125 4.125 0 0 1 4.125 0ZM15.75 19.875c0-1.38.476-2.786 1.128-4.15.649-1.358 1.509-2.743 2.343-4.086l.017-.028c.849-1.367 1.669-2.692 2.28-3.972.614-1.285.982-2.457.982-3.514A2.615 2.615 0 0 0 19.875 1.5a2.625 2.625 0 0 0-2.625 2.625c0 .865.421 1.509 1.167 2.009A.75.75 0 0 1 18 7.507H7.812c-.65 1.483-1.624 3.069-2.577 4.619-.334.544-.666 1.083-.98 1.612-1.355 2.287-2.38 4.371-2.38 6.137A2.625 2.625 0 0 0 4.5 22.5h12.193a4.108 4.108 0 0 1-.943-2.625ZM1.5 4.125c-.01.511.163 1.008.487 1.403.254.313.74.479 1.402.479h12.86a3.648 3.648 0 0 1-.499-1.882 4.11 4.11 0 0 1 .943-2.625H4.125A2.625 2.625 0 0 0 1.5 4.125Z"/></svg>');}</style>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.47">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mingze Gao">
+<meta name="dcterms.date" content="2020-05-26">
 
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-  
+<title>Variance Ratio Test - Lo and MacKinlay (1988) – Mingze Gao</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
 
 
-  
-  
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
-<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-1QDTTQ6EHM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-1QDTTQ6EHM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#variance-ratio-test-lo-and-mackinlay-1988" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Mingze Gao" class="md-header__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
-      
-  <img src="../../favicon.png" alt="logo">
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Variance Ratio Test - Lo and MacKinlay (1988) – Mingze Gao">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/lomackinlay1988/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
+</head>
 
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Mingze Gao</span>
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Mingze Gao
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              Variance Ratio Test - Lo and MacKinlay (1988)
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
-          </a>
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-    
-    
-  </nav>
-  
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../cv.pdf" class="md-tabs__link">
-        
-  
-    
-  
-  CV
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../research/" class="md-tabs__link">
-        
-  
-    
-  
-  Research
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
-          
-  
-    
-  
-  Blog
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../teaching/" class="md-tabs__link">
-          
-  
-    
-  
-  Teaching
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://phds.io" class="md-tabs__link">
-        
-  
-    
-  
-  phds.io
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="https://frds.io" class="md-tabs__link">
-        
-  
-    
-  
-  frds.io
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Mingze Gao" class="md-nav__button md-logo" aria-label="Mingze Gao" data-md-component="logo">
-      
-  <img src="../../favicon.png" alt="logo">
-
-    </a>
-    Mingze Gao
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../cv.pdf" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    CV
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../research/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Research
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
-              
-  
-  <span class="md-ellipsis">
-    
-  
-    Blog
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Blog
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../tags/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Tags
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../archive/2023/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    
-  
-    Archive
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../category/research-notes/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    
-  
-    Categories
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../teaching/" class="md-nav__link ">
-              
-  
-  <span class="md-ellipsis">
-    
-  
-    Teaching
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Teaching
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../teaching/fixed-income/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    
-  
-    Fixed Income
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../teaching/stata/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    
-  
-    Stata Workshop
-  
-
-    
-  </span>
-  
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://phds.io" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    phds.io
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://frds.io" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    frds.io
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition">Definition</a>
+  <ul class="collapse">
+  <li><a href="#variance-ratio-vr" id="toc-variance-ratio-vr" class="nav-link" data-scroll-target="#variance-ratio-vr">Variance Ratio (VR)</a></li>
+  <li><a href="#variance-ratio-test-statistics" id="toc-variance-ratio-test-statistics" class="nav-link" data-scroll-target="#variance-ratio-test-statistics">Variance Ratio Test Statistics</a></li>
+  </ul></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code">Source Code</a></li>
   </ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Definition
-        </span>
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Definition">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#variance-ratio-vr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Variance Ratio (VR)
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variance-ratio-test-statistics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Variance Ratio Test Statistics
-        </span>
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Variance Ratio Test Statistics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#homoscedasticity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Homoscedasticity
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#heteroscedasticity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Heteroscedasticity
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#source-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Source Code
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-  <div class="md-content md-content--post" data-md-component="content">
-    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
-      <div class="md-sidebar__scrollwrap">
-        <div class="md-sidebar__inner md-post">
-          <nav class="md-nav md-nav--primary">
-            <div class="md-post__back">
-              <div class="md-nav__title md-nav__container">
-                <a href="../" class="md-nav__link">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-                  <span class="md-ellipsis">
-                    Back to index
-                  </span>
-                </a>
-              </div>
-            </div>
-            
-            <ul class="md-post__meta md-nav__list">
-              <li class="md-nav__item md-nav__item--section">
-                <div class="md-post__title">
-                  <span class="md-ellipsis">
-                    Metadata
-                  </span>
-                </div>
-                <nav class="md-nav">
-                  <ul class="md-nav__list">
-                    <li class="md-nav__item">
-                      <div class="md-nav__link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                        <time datetime="2020-05-26 00:00:00" class="md-ellipsis">May 26, 2020</time>
-                      </div>
-                    </li>
-                    
-                    
-                      <li class="md-nav__item">
-                        <div class="md-nav__link">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
-                          <span class="md-ellipsis">
-                            in
-                            
-                              <a href="../category/teaching-notes/">Teaching Notes</a></span>
-                        </div>
-                      </li>
-                    
-                    
-                      
-                      <li class="md-nav__item">
-                        <div class="md-nav__link">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
-                          <span class="md-ellipsis">
-                            
-                              8 min read
-                            
-                          </span>
-                        </div>
-                      </li>
-                    
-                  </ul>
-                </nav>
-              </li>
-            </ul>
-            
-          </nav>
-          
-        </div>
-      </div>
     </div>
-    <article class="md-content__inner md-typeset">
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Variance Ratio Test - Lo and MacKinlay (1988)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Teaching Notes</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
       
-        <!--
-  Copyright (c) 2016-2022 Martin Donath <martin.donath@squidfunk.com>
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
-
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2020</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">August 23, 2023</p>
+    </div>
+  </div>
+    
+  </div>
   
 
-<nav class="md-tags" >
-  
-    
-    
-    
-      <a href="../../tags/#python" class="md-tag">Python</a>
-    
-  
-    
-    
-    
-      <a href="../../tags/#code" class="md-tag">Code</a>
-    
-  
-</nav>
+
+</header>
 
 
-<!-- Edit button -->
-
-
-<!--
-  Hack: check whether the content contains a h1 headline. If it
-  doesn't, the page title (or respectively site name) is used
-  as the main headline.
--->
-
-
-<!-- Markdown content -->
-<div><h1 id="variance-ratio-test-lo-and-mackinlay-1988">Variance Ratio Test - Lo and MacKinlay (1988)<a class="headerlink" href="#variance-ratio-test-lo-and-mackinlay-1988" title="Permanent link">¶</a></h1>
 <p>A simple test for the random walk hypothesis of prices and efficient market.</p>
 <!-- more -->
-
-<h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">¶</a></h2>
-<p>Let's assume:</p>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<p>Let’s assume:</p>
 <ul>
-<li>a price series <span class="arithmatex">\(\{p_t\}=\{p_0,p_1,p_2,...,p_T\}\)</span> and</li>
-<li>a log return series <span class="arithmatex">\(\{x_t\}=\{x_1, x_2, ..., x_T\}\)</span> where <span class="arithmatex">\(x_t=\ln \frac{p_t}{p_{t-1}}\)</span></li>
+<li>a price series <span class="math inline">\(\{p_t\}=\{p_0,p_1,p_2,...,p_T\}\)</span> and</li>
+<li>a log return series <span class="math inline">\(\{x_t\}=\{x_1, x_2, ..., x_T\}\)</span> where <span class="math inline">\(x_t=\ln \frac{p_t}{p_{t-1}}\)</span></li>
 </ul>
-<h3 id="variance-ratio-vr">Variance Ratio (VR)<a class="headerlink" href="#variance-ratio-vr" title="Permanent link">¶</a></h3>
-<p>The <strong>variance ratio</strong> of <span class="arithmatex">\(k\)</span>-period return is defined as:</p>
-<div class="arithmatex">\[
+<section id="variance-ratio-vr" class="level3">
+<h3 class="anchored" data-anchor-id="variance-ratio-vr">Variance Ratio (VR)</h3>
+<p>The <strong>variance ratio</strong> of <span class="math inline">\(k\)</span>-period return is defined as:</p>
+<p><span class="math display">\[
 \begin{equation}
 \textit{V}(k)=\frac{\textit{Var}(x_t+x_{t-1}+...+x_{t-k+1})/k}{\textit{Var}(x_t)}
 \end{equation}
-\]</div>
-<p>The estimator of <span class="arithmatex">\(\textit{V}(k)\)</span> proposed in Lo and MacKinlay (1988) is</p>
-<div class="arithmatex">\[
+\]</span></p>
+<p>The estimator of <span class="math inline">\(\textit{V}(k)\)</span> proposed in Lo and MacKinlay (1988) is</p>
+<p><span class="math display">\[
 \begin{equation}
 \textit{VR}(k)=\frac{\hat\sigma^2(k)}{\hat\sigma^2(1)}
 \end{equation}
-\]</div>
-<p>where <span class="arithmatex">\(\hat\sigma^2(1)\)</span> is the unbiased estimator of the one-period return variance, using the one-period returns <span class="arithmatex">\(\{x_t\}\)</span>, and is defined as</p>
-<div class="arithmatex">\[
+\]</span></p>
+<p>where <span class="math inline">\(\hat\sigma^2(1)\)</span> is the unbiased estimator of the one-period return variance, using the one-period returns <span class="math inline">\(\{x_t\}\)</span>, and is defined as</p>
+<p><span class="math display">\[
 \begin{equation}
 \hat\sigma^2(1)=\frac{1}{T-1} \sum_{t-1}^T (x_t - \hat\mu)^2
 \end{equation}
-\]</div>
-<p>and <span class="arithmatex">\(\hat\sigma^2(k)\)</span> is the estimator of <span class="arithmatex">\(k\)</span>-period return variance using <span class="arithmatex">\(k\)</span>-period returns. Lo and MacKinlay (1988) defined it, due to limited sample size and the desire to improve the power of the test, as</p>
-<div class="arithmatex">\[
+\]</span></p>
+<p>and <span class="math inline">\(\hat\sigma^2(k)\)</span> is the estimator of <span class="math inline">\(k\)</span>-period return variance using <span class="math inline">\(k\)</span>-period returns. Lo and MacKinlay (1988) defined it, due to limited sample size and the desire to improve the power of the test, as</p>
+<p><span class="math display">\[
 \begin{equation}
 \hat\sigma^2(k)=\frac{1}{m} \sum_{t-1}^T \left(\ln\frac{P_t}{P_{t-k}} - k\hat\mu \right)^2
 \end{equation}
-\]</div>
-<p>where <span class="arithmatex">\(m=k(T-k+1)(1-k/T)\)</span> is chosen such that <span class="arithmatex">\(\hat\sigma^2(k)\)</span> is an unbiased estimator of the <span class="arithmatex">\(k\)</span>-period return variance when <span class="arithmatex">\(\sigma^2_t\)</span> is constant over time.</p>
-<h3 id="variance-ratio-test-statistics">Variance Ratio Test Statistics<a class="headerlink" href="#variance-ratio-test-statistics" title="Permanent link">¶</a></h3>
-<p>Lo and MacKinlay (1988) proposed that under the null hypothesis of <span class="arithmatex">\(V(k)=1\)</span>, the test statistic is given by</p>
-<div class="arithmatex">\[
+\]</span></p>
+<p>where <span class="math inline">\(m=k(T-k+1)(1-k/T)\)</span> is chosen such that <span class="math inline">\(\hat\sigma^2(k)\)</span> is an unbiased estimator of the <span class="math inline">\(k\)</span>-period return variance when <span class="math inline">\(\sigma^2_t\)</span> is constant over time.</p>
+</section>
+<section id="variance-ratio-test-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="variance-ratio-test-statistics">Variance Ratio Test Statistics</h3>
+<p>Lo and MacKinlay (1988) proposed that under the null hypothesis of <span class="math inline">\(V(k)=1\)</span>, the test statistic is given by</p>
+<p><span class="math display">\[
 \begin{equation}
 Z(k)=\frac{\textit{VR}(k)-1}{\sqrt{\phi(k)}}
 \end{equation}
-\]</div>
+\]</span></p>
 <p>which follows the standard normal distribution asymptotically.</p>
-<h4 id="homoscedasticity">Homoscedasticity<a class="headerlink" href="#homoscedasticity" title="Permanent link">¶</a></h4>
-<p>Under the assumption of homoscedasticity, the asymptotic variance <span class="arithmatex">\(\phi\)</span> is given by</p>
-<div class="arithmatex">\[
+<section id="homoscedasticity" class="level4">
+<h4 class="anchored" data-anchor-id="homoscedasticity">Homoscedasticity</h4>
+<p>Under the assumption of homoscedasticity, the asymptotic variance <span class="math inline">\(\phi\)</span> is given by</p>
+<p><span class="math display">\[
 \begin{equation}
 \phi(k)=\frac{2(2k-1)(k-1)}{3kT}
 \end{equation}
-\]</div>
-<h4 id="heteroscedasticity">Heteroscedasticity<a class="headerlink" href="#heteroscedasticity" title="Permanent link">¶</a></h4>
-<p>Under the assumption of heteroscedasticity, the asymptotic variance <span class="arithmatex">\(\phi\)</span> is given by</p>
-<div class="arithmatex">\[
+\]</span></p>
+</section>
+<section id="heteroscedasticity" class="level4">
+<h4 class="anchored" data-anchor-id="heteroscedasticity">Heteroscedasticity</h4>
+<p>Under the assumption of heteroscedasticity, the asymptotic variance <span class="math inline">\(\phi\)</span> is given by</p>
+<p><span class="math display">\[
 \begin{equation}
 \phi(k)=\sum_{j=1}^{k-1} \left[\frac{2(k-j)}{k} \right]^2\delta(j)
 \end{equation}
-\]</div>
-<div class="arithmatex">\[
+\]</span></p>
+<p><span class="math display">\[
 \begin{equation}
 \delta(j)=\frac{\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}
 \end{equation}
-\]</div>
-<div class="admonition warning">
-<p class="admonition-title">Erratum</p>
-<p>Note that there's a missing <span class="arithmatex">\(T\)</span> in the numerator of <span class="arithmatex">\(\delta(j)\)</span> of Equation (8). It is actually missing the 1988 RFS paper and the 1998 JE'mtric paper, but has been corrected in the 1990 RFS Issue 1: <a href="https://doi.org/10.1093/rfs/3.1.ii">https://doi.org/10.1093/rfs/3.1.ii</a>. The corrected version reads:</p>
-<div class="arithmatex">\[
+\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Erratum">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Erratum
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there’s a missing <span class="math inline">\(T\)</span> in the numerator of <span class="math inline">\(\delta(j)\)</span> of Equation (8). It is actually missing the 1988 RFS paper and the 1998 JE’mtric paper, but has been corrected in the 1990 RFS Issue 1: <a href="https://doi.org/10.1093/rfs/3.1.ii">https://doi.org/10.1093/rfs/3.1.ii</a>. The corrected version reads:</p>
+<p><span class="math display">\[
 \begin{equation}
 \delta(j)=\frac{T\sum_{t=j+1}^T (x_t - \hat\mu)^2(x_{t-j} - \hat\mu)^2}{\left[\sum_{t=1}^T (x_t - \hat\mu)^2\right]^2}
 \end{equation}
-\]</div>
+\]</span></p>
 <p>To correct it in the example code below, change the line 51 below to:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">delta_arr</span> <span class="o">=</span> <span class="n">T</span> <span class="o">*</span> <span class="n">b_arr</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_demeaned_x</span><span class="p">))</span>
-</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>delta_arr <span class="op">=</span> T <span class="op">*</span> b_arr <span class="op">/</span> np.square(np.<span class="bu">sum</span>(sqr_demeaned_x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I thank Simon Jurkatis for letting me know about the erratum.</p>
 </div>
-<h2 id="source-code">Source Code<a class="headerlink" href="#source-code" title="Permanent link">¶</a></h2>
+</div>
+</section>
+</section>
+</section>
+<section id="source-code" class="level2">
+<h2 class="anchored" data-anchor-id="source-code">Source Code</h2>
 <p><img style="width:82px;height:20px" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT"></p>
 <p>This example Python code has been optimized for speed but serves only demonstration purpose. It may contain errors.</p>
-<div class="language-python annotate highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span>
-<span class="normal"><a href="#__codelineno-1-21">21</a></span>
-<span class="normal"><a href="#__codelineno-1-22">22</a></span>
-<span class="normal"><a href="#__codelineno-1-23">23</a></span>
-<span class="normal"><a href="#__codelineno-1-24">24</a></span>
-<span class="normal"><a href="#__codelineno-1-25">25</a></span>
-<span class="normal"><a href="#__codelineno-1-26">26</a></span>
-<span class="normal"><a href="#__codelineno-1-27">27</a></span>
-<span class="normal"><a href="#__codelineno-1-28">28</a></span>
-<span class="normal"><a href="#__codelineno-1-29">29</a></span>
-<span class="normal"><a href="#__codelineno-1-30">30</a></span>
-<span class="normal"><a href="#__codelineno-1-31">31</a></span>
-<span class="normal"><a href="#__codelineno-1-32">32</a></span>
-<span class="normal"><a href="#__codelineno-1-33">33</a></span>
-<span class="normal"><a href="#__codelineno-1-34">34</a></span>
-<span class="normal"><a href="#__codelineno-1-35">35</a></span>
-<span class="normal"><a href="#__codelineno-1-36">36</a></span>
-<span class="normal"><a href="#__codelineno-1-37">37</a></span>
-<span class="normal"><a href="#__codelineno-1-38">38</a></span>
-<span class="normal"><a href="#__codelineno-1-39">39</a></span>
-<span class="normal"><a href="#__codelineno-1-40">40</a></span>
-<span class="normal"><a href="#__codelineno-1-41">41</a></span>
-<span class="normal"><a href="#__codelineno-1-42">42</a></span>
-<span class="normal"><a href="#__codelineno-1-43">43</a></span>
-<span class="normal"><a href="#__codelineno-1-44">44</a></span>
-<span class="normal"><a href="#__codelineno-1-45">45</a></span>
-<span class="normal"><a href="#__codelineno-1-46">46</a></span>
-<span class="normal"><a href="#__codelineno-1-47">47</a></span>
-<span class="normal"><a href="#__codelineno-1-48">48</a></span>
-<span class="normal"><a href="#__codelineno-1-49">49</a></span>
-<span class="normal"><a href="#__codelineno-1-50">50</a></span>
-<span class="normal"><a href="#__codelineno-1-51">51</a></span>
-<span class="normal"><a href="#__codelineno-1-52">52</a></span>
-<span class="normal"><a href="#__codelineno-1-53">53</a></span>
-<span class="normal"><a href="#__codelineno-1-54">54</a></span>
-<span class="normal"><a href="#__codelineno-1-55">55</a></span>
-<span class="normal"><a href="#__codelineno-1-56">56</a></span>
-<span class="normal"><a href="#__codelineno-1-57">57</a></span>
-<span class="normal"><a href="#__codelineno-1-58">58</a></span>
-<span class="normal"><a href="#__codelineno-1-59">59</a></span>
-<span class="normal"><a href="#__codelineno-1-60">60</a></span>
-<span class="normal"><a href="#__codelineno-1-61">61</a></span>
-<span class="normal"><a href="#__codelineno-1-62">62</a></span>
-<span class="normal"><a href="#__codelineno-1-63">63</a></span>
-<span class="normal"><a href="#__codelineno-1-64">64</a></span>
-<span class="normal"><a href="#__codelineno-1-65">65</a></span>
-<span class="normal"><a href="#__codelineno-1-66">66</a></span>
-<span class="normal"><a href="#__codelineno-1-67">67</a></span>
-<span class="normal"><a href="#__codelineno-1-68">68</a></span>
-<span class="normal"><a href="#__codelineno-1-69">69</a></span>
-<span class="normal"><a href="#__codelineno-1-70">70</a></span>
-<span class="normal"><a href="#__codelineno-1-71">71</a></span>
-<span class="normal"><a href="#__codelineno-1-72">72</a></span>
-<span class="normal"><a href="#__codelineno-1-73">73</a></span>
-<span class="normal"><a href="#__codelineno-1-74">74</a></span>
-<span class="normal"><a href="#__codelineno-1-75">75</a></span>
-<span class="normal"><a href="#__codelineno-1-76">76</a></span>
-<span class="normal"><a href="#__codelineno-1-77">77</a></span>
-<span class="normal"><a href="#__codelineno-1-78">78</a></span>
-<span class="normal"><a href="#__codelineno-1-79">79</a></span>
-<span class="normal"><a href="#__codelineno-1-80">80</a></span>
-<span class="normal"><a href="#__codelineno-1-81">81</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># LoMacKinlay.py</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">'LoMacKinlay1988'</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">description</span> <span class="o">=</span> <span class="s1">'Variance ratio and test statistics as in Lo and MacKinlay (1988)'</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">vars_needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Price'</span><span class="p">]</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nogil</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="k">def</span> <span class="nf">_estimate</span><span class="p">(</span><span class="n">log_prices</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">const_arr</span><span class="p">):</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="c1"># Log returns = [x2, x3, x4, ..., xT], where x(i)=ln[p(i)/p(i-1)]</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="n">rets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">log_prices</span><span class="p">)</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>    <span class="c1"># T is the length of return series</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>    <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rets</span><span class="p">)</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>    <span class="c1"># mu is the mean log return</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rets</span><span class="p">)</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a>    <span class="c1"># sqr_demeaned_x is the array of squared demeaned log returns</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a>    <span class="n">sqr_demeaned_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">rets</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>    <span class="c1"># Var_1</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a>    <span class="c1"># Didn't use np.var(rets, ddof=1) because</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a>    <span class="c1"># sqr_demeaned_x is calculated already and will be used many times.</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>    <span class="n">var_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_demeaned_x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a>    <span class="c1"># Var_k</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a>    <span class="c1"># Variance of log returns where x(i) = ln[p(i)/p(i-k)]</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a>    <span class="c1"># Before np.roll() - array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a>    <span class="c1"># After np.roll(,shift=2) - array([8, 9, 0, 1, 2, 3, 4, 5, 6, 7])</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a>    <span class="c1"># Discard the first k elements.</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a>    <span class="n">rets_k</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_prices</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">log_prices</span><span class="p">,</span> <span class="n">k</span><span class="p">))[</span><span class="n">k</span><span class="p">:]</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a>    <span class="n">var_k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">rets_k</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">mu</span><span class="p">))</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a>    <span class="c1"># Variance Ratio</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a>    <span class="n">vr</span> <span class="o">=</span> <span class="n">var_k</span> <span class="o">/</span> <span class="n">var_1</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a>    <span class="c1"># a_arr is an array of { (2*(k-j)/k)^2 } for j=1,2,...,k-1, fixed for a given k:</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a>    <span class="c1">#   When k=5, a_arr = array([2.56, 1.44, 0.64, 0.16]).</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a>    <span class="c1">#   When k=8, a_arr = array([3.0625, 2.25, 1.5625, 1., 0.5625, 0.25, 0.0625])</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a>    <span class="c1"># Without JIT it's defined as:</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40"></a>    <span class="c1">#   a_arr = np.square(np.arange(k-1, 0, step=-1, dtype=np.int) * 2 / k)</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41"></a>    <span class="c1"># But np.array creation is not allowed in nopython mode.</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42"></a>    <span class="c1"># So const_arr=np.arange(k-1, 0, step=-1, dtype=np.int) is created outside.</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43"></a>    <span class="n">a_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">const_arr</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44"></a>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45"></a>    <span class="c1"># b_arr is part of the delta_arr.</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46"></a>    <span class="n">b_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47"></a>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48"></a>        <span class="n">b_arr</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">sqr_demeaned_x</span> <span class="o">*</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49"></a>                             <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">sqr_demeaned_x</span><span class="p">,</span> <span class="n">j</span><span class="p">))[</span><span class="n">j</span><span class="p">:])</span> <span class="c1"># (1)</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50"></a>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="hll">    <span class="n">delta_arr</span> <span class="o">=</span> <span class="n">b_arr</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_demeaned_x</span><span class="p">))</span>
-</span></span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52"></a>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53"></a>    <span class="c1"># Both arrarys are of length (k-1)</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta_arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_arr</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56"></a>    <span class="n">phi1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57"></a>    <span class="n">phi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a_arr</span> <span class="o">*</span> <span class="n">delta_arr</span><span class="p">)</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58"></a>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59"></a>    <span class="c1"># VR test statistics under two assumptions</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60"></a>    <span class="n">vr_stat_homoscedasticity</span> <span class="o">=</span> <span class="p">(</span><span class="n">vr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61"></a>    <span class="n">vr_stat_heteroscedasticity</span> <span class="o">=</span> <span class="p">(</span><span class="n">vr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62"></a>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63"></a>    <span class="k">return</span> <span class="n">vr</span><span class="p">,</span> <span class="n">vr_stat_homoscedasticity</span><span class="p">,</span> <span class="n">vr_stat_heteroscedasticity</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64"></a>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65"></a>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67"></a>    <span class="s2">"A fast estimation of Variance Ratio test statistics as in Lo and MacKinlay (1988)"</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68"></a>    <span class="c1"># Prices array = [p1, p2, p3, p4, ..., pT]</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69"></a>    <span class="n">prices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Price'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70"></a>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71"></a>    <span class="c1"># Estimate many lags.</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72"></a>    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]:</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73"></a>        <span class="c1"># Compute a constant array as np.array creation is not allowed in nopython mode.</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74"></a>        <span class="n">const_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">step</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="c1"># (2)</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75"></a>        <span class="n">vr</span><span class="p">,</span> <span class="n">stat1</span><span class="p">,</span> <span class="n">stat2</span> <span class="o">=</span> <span class="n">_estimate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">prices</span><span class="p">),</span> <span class="n">k</span><span class="p">,</span> <span class="n">const_arr</span><span class="p">)</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76"></a>        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77"></a>            <span class="sa">f</span><span class="s1">'Variance Ratio (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">)'</span><span class="p">:</span> <span class="n">vr</span><span class="p">,</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78"></a>            <span class="sa">f</span><span class="s1">'Variance Ratio Test Statistic (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="n">stat1</span><span class="p">,</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79"></a>            <span class="sa">f</span><span class="s1">'Variance Ratio Test Statistic (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="n">stat2</span>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80"></a>        <span class="p">})</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81"></a>    <span class="k">return</span> <span class="n">result</span>
-</span></code></pre></div></td></tr></table></div>
-<ol>
-<li>Note that a correction has been made here in August 2023. The summed vector should have a length of T-j not T-j-1.
-   The incorrect code before was <code>np.roll(sqr_demeaned_x, j))[j+1:])</code>.
-   I thank Jakub Bujnowicz for spotting this error.</li>
-<li><code>np.int</code> is deprecated in NumPy 1.2. Changed to <code>np.int64</code> in August 2023.</li>
-</ol>
-<p>As an example, let's create 1 million prices from random walk and estimate the variance ratio and two test statistics at various lags.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="c1"># Generate random steps with mean=0 and standard deviation=1</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="c1"># Set first element to 0 so that the first price will be the starting stock price</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="c1"># Simulate stock prices, P with a large starting price</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">P</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="c1"># Test</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Price'</span><span class="p">])</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">pprint</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="co"># LoMacKinlay.py</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="im">from</span> numba <span class="im">import</span> jit</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>name <span class="op">=</span> <span class="st">'LoMacKinlay1988'</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a>description <span class="op">=</span> <span class="st">'Variance ratio and test statistics as in Lo and MacKinlay (1988)'</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a>vars_needed <span class="op">=</span> [<span class="st">'Price'</span>]</span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a></span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10"></a><span class="at">@jit</span>(nopython<span class="op">=</span><span class="va">True</span>, nogil<span class="op">=</span><span class="va">True</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11"></a><span class="kw">def</span> _estimate(log_prices, k, const_arr):</span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a>    <span class="co"># Log returns = [x2, x3, x4, ..., xT], where x(i)=ln[p(i)/p(i-1)]</span></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a>    rets <span class="op">=</span> np.diff(log_prices)</span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14"></a>    <span class="co"># T is the length of return series</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15"></a>    T <span class="op">=</span> <span class="bu">len</span>(rets)</span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16"></a>    <span class="co"># mu is the mean log return</span></span>
+<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17"></a>    mu <span class="op">=</span> np.mean(rets)</span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18"></a>    <span class="co"># sqr_demeaned_x is the array of squared demeaned log returns</span></span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19"></a>    sqr_demeaned_x <span class="op">=</span> np.square(rets <span class="op">-</span> mu)</span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20"></a>    <span class="co"># Var_1</span></span>
+<span id="annotated-cell-1-21"><a href="#annotated-cell-1-21"></a>    <span class="co"># Didn't use np.var(rets, ddof=1) because</span></span>
+<span id="annotated-cell-1-22"><a href="#annotated-cell-1-22"></a>    <span class="co"># sqr_demeaned_x is calculated already and will be used many times.</span></span>
+<span id="annotated-cell-1-23"><a href="#annotated-cell-1-23"></a>    var_1 <span class="op">=</span> np.<span class="bu">sum</span>(sqr_demeaned_x) <span class="op">/</span> (T<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="annotated-cell-1-24"><a href="#annotated-cell-1-24"></a>    <span class="co"># Var_k</span></span>
+<span id="annotated-cell-1-25"><a href="#annotated-cell-1-25"></a>    <span class="co"># Variance of log returns where x(i) = ln[p(i)/p(i-k)]</span></span>
+<span id="annotated-cell-1-26"><a href="#annotated-cell-1-26"></a>    <span class="co"># Before np.roll() - array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span></span>
+<span id="annotated-cell-1-27"><a href="#annotated-cell-1-27"></a>    <span class="co"># After np.roll(,shift=2) - array([8, 9, 0, 1, 2, 3, 4, 5, 6, 7])</span></span>
+<span id="annotated-cell-1-28"><a href="#annotated-cell-1-28"></a>    <span class="co"># Discard the first k elements.</span></span>
+<span id="annotated-cell-1-29"><a href="#annotated-cell-1-29"></a>    rets_k <span class="op">=</span> (log_prices <span class="op">-</span> np.roll(log_prices, k))[k:]</span>
+<span id="annotated-cell-1-30"><a href="#annotated-cell-1-30"></a>    m <span class="op">=</span> k <span class="op">*</span> (T <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> k <span class="op">/</span> T)</span>
+<span id="annotated-cell-1-31"><a href="#annotated-cell-1-31"></a>    var_k <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(np.square(rets_k <span class="op">-</span> k <span class="op">*</span> mu))</span>
+<span id="annotated-cell-1-32"><a href="#annotated-cell-1-32"></a></span>
+<span id="annotated-cell-1-33"><a href="#annotated-cell-1-33"></a>    <span class="co"># Variance Ratio</span></span>
+<span id="annotated-cell-1-34"><a href="#annotated-cell-1-34"></a>    vr <span class="op">=</span> var_k <span class="op">/</span> var_1</span>
+<span id="annotated-cell-1-35"><a href="#annotated-cell-1-35"></a></span>
+<span id="annotated-cell-1-36"><a href="#annotated-cell-1-36"></a>    <span class="co"># a_arr is an array of { (2*(k-j)/k)^2 } for j=1,2,...,k-1, fixed for a given k:</span></span>
+<span id="annotated-cell-1-37"><a href="#annotated-cell-1-37"></a>    <span class="co">#   When k=5, a_arr = array([2.56, 1.44, 0.64, 0.16]).</span></span>
+<span id="annotated-cell-1-38"><a href="#annotated-cell-1-38"></a>    <span class="co">#   When k=8, a_arr = array([3.0625, 2.25, 1.5625, 1., 0.5625, 0.25, 0.0625])</span></span>
+<span id="annotated-cell-1-39"><a href="#annotated-cell-1-39"></a>    <span class="co"># Without JIT it's defined as:</span></span>
+<span id="annotated-cell-1-40"><a href="#annotated-cell-1-40"></a>    <span class="co">#   a_arr = np.square(np.arange(k-1, 0, step=-1, dtype=np.int) * 2 / k)</span></span>
+<span id="annotated-cell-1-41"><a href="#annotated-cell-1-41"></a>    <span class="co"># But np.array creation is not allowed in nopython mode.</span></span>
+<span id="annotated-cell-1-42"><a href="#annotated-cell-1-42"></a>    <span class="co"># So const_arr=np.arange(k-1, 0, step=-1, dtype=np.int) is created outside.</span></span>
+<span id="annotated-cell-1-43"><a href="#annotated-cell-1-43"></a>    a_arr <span class="op">=</span> np.square(const_arr <span class="op">*</span> <span class="dv">2</span> <span class="op">/</span> k)</span>
+<span id="annotated-cell-1-44"><a href="#annotated-cell-1-44"></a></span>
+<span id="annotated-cell-1-45"><a href="#annotated-cell-1-45"></a>    <span class="co"># b_arr is part of the delta_arr.</span></span>
+<span id="annotated-cell-1-46"><a href="#annotated-cell-1-46"></a>    b_arr <span class="op">=</span> np.empty(k<span class="op">-</span><span class="dv">1</span>, dtype<span class="op">=</span>np.float64)</span>
+<span id="annotated-cell-1-47"><a href="#annotated-cell-1-47"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, k):</span>
+<span id="annotated-cell-1-48"><a href="#annotated-cell-1-48"></a>        b_arr[j<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> np.<span class="bu">sum</span>((sqr_demeaned_x <span class="op">*</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-49" class="code-annotation-target"><a href="#annotated-cell-1-49"></a>                             np.roll(sqr_demeaned_x, j))[j:])</span>
+<span id="annotated-cell-1-50"><a href="#annotated-cell-1-50"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-51" class="code-annotation-target"><a href="#annotated-cell-1-51"></a>    delta_arr <span class="op">=</span> b_arr <span class="op">/</span> np.square(np.<span class="bu">sum</span>(sqr_demeaned_x))</span>
+<span id="annotated-cell-1-52"><a href="#annotated-cell-1-52"></a></span>
+<span id="annotated-cell-1-53"><a href="#annotated-cell-1-53"></a>    <span class="co"># Both arrarys are of length (k-1)</span></span>
+<span id="annotated-cell-1-54"><a href="#annotated-cell-1-54"></a>    <span class="cf">assert</span> <span class="bu">len</span>(delta_arr) <span class="op">==</span> <span class="bu">len</span>(a_arr) <span class="op">==</span> k<span class="op">-</span><span class="dv">1</span></span>
+<span id="annotated-cell-1-55"><a href="#annotated-cell-1-55"></a></span>
+<span id="annotated-cell-1-56"><a href="#annotated-cell-1-56"></a>    phi1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>k <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (k<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> (<span class="dv">3</span><span class="op">*</span>k<span class="op">*</span>T)</span>
+<span id="annotated-cell-1-57"><a href="#annotated-cell-1-57"></a>    phi2 <span class="op">=</span> np.<span class="bu">sum</span>(a_arr <span class="op">*</span> delta_arr)</span>
+<span id="annotated-cell-1-58"><a href="#annotated-cell-1-58"></a></span>
+<span id="annotated-cell-1-59"><a href="#annotated-cell-1-59"></a>    <span class="co"># VR test statistics under two assumptions</span></span>
+<span id="annotated-cell-1-60"><a href="#annotated-cell-1-60"></a>    vr_stat_homoscedasticity <span class="op">=</span> (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi1)</span>
+<span id="annotated-cell-1-61"><a href="#annotated-cell-1-61"></a>    vr_stat_heteroscedasticity <span class="op">=</span> (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi2)</span>
+<span id="annotated-cell-1-62"><a href="#annotated-cell-1-62"></a></span>
+<span id="annotated-cell-1-63"><a href="#annotated-cell-1-63"></a>    <span class="cf">return</span> vr, vr_stat_homoscedasticity, vr_stat_heteroscedasticity</span>
+<span id="annotated-cell-1-64"><a href="#annotated-cell-1-64"></a></span>
+<span id="annotated-cell-1-65"><a href="#annotated-cell-1-65"></a></span>
+<span id="annotated-cell-1-66"><a href="#annotated-cell-1-66"></a><span class="kw">def</span> estimate(data):</span>
+<span id="annotated-cell-1-67"><a href="#annotated-cell-1-67"></a>    <span class="co">"A fast estimation of Variance Ratio test statistics as in Lo and MacKinlay (1988)"</span></span>
+<span id="annotated-cell-1-68"><a href="#annotated-cell-1-68"></a>    <span class="co"># Prices array = [p1, p2, p3, p4, ..., pT]</span></span>
+<span id="annotated-cell-1-69"><a href="#annotated-cell-1-69"></a>    prices <span class="op">=</span> data[<span class="st">'Price'</span>].to_numpy(dtype<span class="op">=</span>np.float64)</span>
+<span id="annotated-cell-1-70"><a href="#annotated-cell-1-70"></a>    result <span class="op">=</span> []</span>
+<span id="annotated-cell-1-71"><a href="#annotated-cell-1-71"></a>    <span class="co"># Estimate many lags.</span></span>
+<span id="annotated-cell-1-72"><a href="#annotated-cell-1-72"></a>    <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>]:</span>
+<span id="annotated-cell-1-73"><a href="#annotated-cell-1-73"></a>        <span class="co"># Compute a constant array as np.array creation is not allowed in nopython mode.</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-74" class="code-annotation-target"><a href="#annotated-cell-1-74"></a>        const_arr <span class="op">=</span> np.arange(k<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, step<span class="op">=-</span><span class="dv">1</span>, dtype<span class="op">=</span>np.int64)</span>
+<span id="annotated-cell-1-75"><a href="#annotated-cell-1-75"></a>        vr, stat1, stat2 <span class="op">=</span> _estimate(np.log(prices), k, const_arr)</span>
+<span id="annotated-cell-1-76"><a href="#annotated-cell-1-76"></a>        result.append({</span>
+<span id="annotated-cell-1-77"><a href="#annotated-cell-1-77"></a>            <span class="ss">f'Variance Ratio (k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">)'</span>: vr,</span>
+<span id="annotated-cell-1-78"><a href="#annotated-cell-1-78"></a>            <span class="ss">f'Variance Ratio Test Statistic (k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">) Homoscedasticity Assumption'</span>: stat1,</span>
+<span id="annotated-cell-1-79"><a href="#annotated-cell-1-79"></a>            <span class="ss">f'Variance Ratio Test Statistic (k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">) Heteroscedasticity Assumption'</span>: stat2</span>
+<span id="annotated-cell-1-80"><a href="#annotated-cell-1-80"></a>        })</span>
+<span id="annotated-cell-1-81"><a href="#annotated-cell-1-81"></a>    <span class="cf">return</span> result</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="49" data-code-annotation="1">Note that a correction has been made here in August 2023. The summed vector should have a length of T-j not T-j-1. The incorrect code before was <code>np.roll(sqr_demeaned_x, j))[j+1:])</code>. I thank Jakub Bujnowicz for spotting this error.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="51" data-code-annotation="2">Check the Erratum for correction.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="74" data-code-annotation="3"><code>np.int</code> is deprecated in NumPy 1.2. Changed to <code>np.int64</code> in August 2023.</span>
+</dd>
+</dl>
+<p>As an example, let’s create 1 million prices from random walk and estimate the variance ratio and two test statistics at various lags.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="co"># Generate random steps with mean=0 and standard deviation=1</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    steps <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span><span class="dv">1000000</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="co"># Set first element to 0 so that the first price will be the starting stock price</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    steps[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="co"># Simulate stock prices, P with a large starting price</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    P <span class="op">=</span> <span class="dv">10000</span> <span class="op">+</span> np.cumsum(steps)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="co"># Test</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    data <span class="op">=</span> pd.DataFrame(P, columns<span class="op">=</span>[<span class="st">'Price'</span>])</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    result <span class="op">=</span> estimate(data)</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    pprint(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In just a few seconds, the output is:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">[{</span><span class="s1">'Variance Ratio (k=2)'</span><span class="p">:</span> <span class="mf">1.0003293867428107</span><span class="p">,</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="s1">'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.32904631796994205</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="s1">'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.3293865781172764</span><span class="p">},</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=4)'</span><span class="p">:</span> <span class="mf">1.0007984480057008</span><span class="p">,</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="s1">'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.42595328310183966</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  <span class="s1">'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.4267881978179488</span><span class="p">},</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=6)'</span><span class="p">:</span> <span class="mf">0.9999130202975436</span><span class="p">,</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="s1">'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.03511755955165345</span><span class="p">,</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  <span class="s1">'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.03518500446740915</span><span class="p">},</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=8)'</span><span class="p">:</span> <span class="mf">1.0001094011344323</span><span class="p">,</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  <span class="s1">'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.036922676034485354</span><span class="p">,</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  <span class="s1">'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.03698431520284624</span><span class="p">},</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=10)'</span><span class="p">:</span> <span class="mf">1.0007024101299271</span><span class="p">,</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  <span class="s1">'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.2077273579781436</span><span class="p">,</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  <span class="s1">'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.20803582207648225</span><span class="p">},</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=15)'</span><span class="p">:</span> <span class="mf">1.0022173139633859</span><span class="p">,</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  <span class="s1">'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.521306589715623</span><span class="p">,</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  <span class="s1">'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.5219816274022102</span><span class="p">},</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=20)'</span><span class="p">:</span> <span class="mf">1.003804866170505</span><span class="p">,</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  <span class="s1">'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.7646392343979235</span><span class="p">,</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  <span class="s1">'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.7655801985572465</span><span class="p">},</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=30)'</span><span class="p">:</span> <span class="mf">1.0054447472916037</span><span class="p">,</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  <span class="s1">'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.8819247138934212</span><span class="p">,</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>  <span class="s1">'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.8829960534693014</span><span class="p">},</span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=40)'</span><span class="p">:</span> <span class="mf">1.007383025302277</span><span class="p">,</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>  <span class="s1">'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.0290210221871228</span><span class="p">,</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>  <span class="s1">'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.0303005120741011</span><span class="p">},</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=50)'</span><span class="p">:</span> <span class="mf">1.0086502431826903</span><span class="p">,</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>  <span class="s1">'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.0741834484206978</span><span class="p">,</span>
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>  <span class="s1">'Variance Ratio Test Statistic (k=50) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.0755809312730416</span><span class="p">},</span>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=100)'</span><span class="p">:</span> <span class="mf">1.0153961901671607</span><span class="p">,</span>
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>  <span class="s1">'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.341511635554299</span><span class="p">,</span>
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>  <span class="s1">'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">1.3434284573260966</span><span class="p">},</span>
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=200)'</span><span class="p">:</span> <span class="mf">1.015704654116103</span><span class="p">,</span>
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>  <span class="s1">'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.9639231633966341</span><span class="p">,</span>
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>  <span class="s1">'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.9653299929053236</span><span class="p">},</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=500)'</span><span class="p">:</span> <span class="mf">1.018216620766853</span><span class="p">,</span>
-</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>  <span class="s1">'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.7055679685728111</span><span class="p">,</span>
-</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>  <span class="s1">'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.7065863036900603</span><span class="p">},</span>
-</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a> <span class="p">{</span><span class="s1">'Variance Ratio (k=1000)'</span><span class="p">:</span> <span class="mf">1.0187822241562867</span><span class="p">,</span>
-</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>  <span class="s1">'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.5140697633208364</span><span class="p">,</span>
-</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>  <span class="s1">'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption'</span><span class="p">:</span> <span class="mf">0.5147582201029187</span><span class="p">}]</span>
-</span></code></pre></div>
-<p>It's easy to see that at all lags tested, we cannot reject the null hypothesis that this price series follows a random walk.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>[{<span class="st">'Variance Ratio (k=2)'</span>: <span class="fl">1.0003293867428107</span>,</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="st">'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption'</span>: <span class="fl">0.32904631796994205</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption'</span>: <span class="fl">0.3293865781172764</span>},</span>
+<span id="cb3-4"><a href="#cb3-4"></a> {<span class="st">'Variance Ratio (k=4)'</span>: <span class="fl">1.0007984480057008</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="st">'Variance Ratio Test Statistic (k=4) Heteroscedasticity Assumption'</span>: <span class="fl">0.42595328310183966</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="st">'Variance Ratio Test Statistic (k=4) Homoscedasticity Assumption'</span>: <span class="fl">0.4267881978179488</span>},</span>
+<span id="cb3-7"><a href="#cb3-7"></a> {<span class="st">'Variance Ratio (k=6)'</span>: <span class="fl">0.9999130202975436</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="st">'Variance Ratio Test Statistic (k=6) Heteroscedasticity Assumption'</span>: <span class="op">-</span><span class="fl">0.03511755955165345</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="st">'Variance Ratio Test Statistic (k=6) Homoscedasticity Assumption'</span>: <span class="op">-</span><span class="fl">0.03518500446740915</span>},</span>
+<span id="cb3-10"><a href="#cb3-10"></a> {<span class="st">'Variance Ratio (k=8)'</span>: <span class="fl">1.0001094011344323</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="st">'Variance Ratio Test Statistic (k=8) Heteroscedasticity Assumption'</span>: <span class="fl">0.036922676034485354</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="st">'Variance Ratio Test Statistic (k=8) Homoscedasticity Assumption'</span>: <span class="fl">0.03698431520284624</span>},</span>
+<span id="cb3-13"><a href="#cb3-13"></a> {<span class="st">'Variance Ratio (k=10)'</span>: <span class="fl">1.0007024101299271</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="st">'Variance Ratio Test Statistic (k=10) Heteroscedasticity Assumption'</span>: <span class="fl">0.2077273579781436</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="st">'Variance Ratio Test Statistic (k=10) Homoscedasticity Assumption'</span>: <span class="fl">0.20803582207648225</span>},</span>
+<span id="cb3-16"><a href="#cb3-16"></a> {<span class="st">'Variance Ratio (k=15)'</span>: <span class="fl">1.0022173139633859</span>,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="st">'Variance Ratio Test Statistic (k=15) Heteroscedasticity Assumption'</span>: <span class="fl">0.521306589715623</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="st">'Variance Ratio Test Statistic (k=15) Homoscedasticity Assumption'</span>: <span class="fl">0.5219816274022102</span>},</span>
+<span id="cb3-19"><a href="#cb3-19"></a> {<span class="st">'Variance Ratio (k=20)'</span>: <span class="fl">1.003804866170505</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="st">'Variance Ratio Test Statistic (k=20) Heteroscedasticity Assumption'</span>: <span class="fl">0.7646392343979235</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="st">'Variance Ratio Test Statistic (k=20) Homoscedasticity Assumption'</span>: <span class="fl">0.7655801985572465</span>},</span>
+<span id="cb3-22"><a href="#cb3-22"></a> {<span class="st">'Variance Ratio (k=30)'</span>: <span class="fl">1.0054447472916037</span>,</span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="st">'Variance Ratio Test Statistic (k=30) Heteroscedasticity Assumption'</span>: <span class="fl">0.8819247138934212</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="st">'Variance Ratio Test Statistic (k=30) Homoscedasticity Assumption'</span>: <span class="fl">0.8829960534693014</span>},</span>
+<span id="cb3-25"><a href="#cb3-25"></a> {<span class="st">'Variance Ratio (k=40)'</span>: <span class="fl">1.007383025302277</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="st">'Variance Ratio Test Statistic (k=40) Heteroscedasticity Assumption'</span>: <span class="fl">1.0290210221871228</span>,</span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="st">'Variance Ratio Test Statistic (k=40) Homoscedasticity Assumption'</span>: <span class="fl">1.0303005120741011</span>},</span>
+<span id="cb3-28"><a href="#cb3-28"></a> {<span class="st">'Variance Ratio (k=50)'</span>: <span class="fl">1.0086502431826903</span>,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>  <span class="st">'Variance Ratio Test Statistic (k=50) Heteroscedasticity Assumption'</span>: <span class="fl">1.0741834484206978</span>,</span>
+<span id="cb3-30"><a href="#cb3-30"></a>  <span class="st">'Variance Ratio Test Statistic (k=50) Homoscedasticity Assumption'</span>: <span class="fl">1.0755809312730416</span>},</span>
+<span id="cb3-31"><a href="#cb3-31"></a> {<span class="st">'Variance Ratio (k=100)'</span>: <span class="fl">1.0153961901671607</span>,</span>
+<span id="cb3-32"><a href="#cb3-32"></a>  <span class="st">'Variance Ratio Test Statistic (k=100) Heteroscedasticity Assumption'</span>: <span class="fl">1.341511635554299</span>,</span>
+<span id="cb3-33"><a href="#cb3-33"></a>  <span class="st">'Variance Ratio Test Statistic (k=100) Homoscedasticity Assumption'</span>: <span class="fl">1.3434284573260966</span>},</span>
+<span id="cb3-34"><a href="#cb3-34"></a> {<span class="st">'Variance Ratio (k=200)'</span>: <span class="fl">1.015704654116103</span>,</span>
+<span id="cb3-35"><a href="#cb3-35"></a>  <span class="st">'Variance Ratio Test Statistic (k=200) Heteroscedasticity Assumption'</span>: <span class="fl">0.9639231633966341</span>,</span>
+<span id="cb3-36"><a href="#cb3-36"></a>  <span class="st">'Variance Ratio Test Statistic (k=200) Homoscedasticity Assumption'</span>: <span class="fl">0.9653299929053236</span>},</span>
+<span id="cb3-37"><a href="#cb3-37"></a> {<span class="st">'Variance Ratio (k=500)'</span>: <span class="fl">1.018216620766853</span>,</span>
+<span id="cb3-38"><a href="#cb3-38"></a>  <span class="st">'Variance Ratio Test Statistic (k=500) Heteroscedasticity Assumption'</span>: <span class="fl">0.7055679685728111</span>,</span>
+<span id="cb3-39"><a href="#cb3-39"></a>  <span class="st">'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption'</span>: <span class="fl">0.7065863036900603</span>},</span>
+<span id="cb3-40"><a href="#cb3-40"></a> {<span class="st">'Variance Ratio (k=1000)'</span>: <span class="fl">1.0187822241562867</span>,</span>
+<span id="cb3-41"><a href="#cb3-41"></a>  <span class="st">'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption'</span>: <span class="fl">0.5140697633208364</span>,</span>
+<span id="cb3-42"><a href="#cb3-42"></a>  <span class="st">'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption'</span>: <span class="fl">0.5147582201029187</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It’s easy to see that at all lags tested, we cannot reject the null hypothesis that this price series follows a random walk.</p>
 <p>For comparison purpose, below is an implementation in pure Python. It is more readable but is significantly slower.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">estimate_python</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">"A slow pure python implementation"</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">prices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Price'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">log_prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">rets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">log_prices</span><span class="p">)</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rets</span><span class="p">)</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rets</span><span class="p">)</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">var_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">rets</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">rets_k</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_prices</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">log_prices</span><span class="p">,</span> <span class="n">k</span><span class="p">))[</span><span class="n">k</span><span class="p">:]</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">var_k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">rets_k</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">mu</span><span class="p">))</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="c1"># Variance Ratio</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="n">vr</span> <span class="o">=</span> <span class="n">var_k</span> <span class="o">/</span> <span class="n">var_1</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="c1"># Phi1</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="n">phi1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="c1"># Phi2</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="k">def</span> <span class="nf">delta</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>            <span class="n">t</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># array index is t-1 for t-th element</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>            <span class="n">res</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">((</span><span class="n">rets</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">rets</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">mu</span><span class="p">))</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        <span class="k">return</span> <span class="n">res</span> <span class="o">/</span> <span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">var_1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    <span class="n">phi2</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="n">phi2</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">delta</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    <span class="k">return</span> <span class="n">vr</span><span class="p">,</span> <span class="p">(</span><span class="n">vr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi1</span><span class="p">),</span> <span class="p">(</span><span class="n">vr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span>
-</span></code></pre></div></div>
-
-<!-- Source file information -->
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> estimate_python(data, k<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"A slow pure python implementation"</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    prices <span class="op">=</span> data[<span class="st">'Price'</span>].to_numpy(dtype<span class="op">=</span>np.float64)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    log_prices <span class="op">=</span> np.log(prices)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    rets <span class="op">=</span> np.diff(log_prices)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    T <span class="op">=</span> <span class="bu">len</span>(rets)</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    mu <span class="op">=</span> np.mean(rets)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    var_1 <span class="op">=</span> np.var(rets, ddof<span class="op">=</span><span class="dv">1</span>, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    rets_k <span class="op">=</span> (log_prices <span class="op">-</span> np.roll(log_prices, k))[k:]</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    m <span class="op">=</span> k <span class="op">*</span> (T <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> k <span class="op">/</span> T)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    var_k <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>m <span class="op">*</span> np.<span class="bu">sum</span>(np.square(rets_k <span class="op">-</span> k <span class="op">*</span> mu))</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="co"># Variance Ratio</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    vr <span class="op">=</span> var_k <span class="op">/</span> var_1</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="co"># Phi1</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    phi1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>k <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (k<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> (<span class="dv">3</span><span class="op">*</span>k<span class="op">*</span>T)</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="co"># Phi2</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="kw">def</span> delta(j):</span>
+<span id="cb4-20"><a href="#cb4-20"></a>        res <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">+</span><span class="dv">1</span>, T<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb4-22"><a href="#cb4-22"></a>            t <span class="op">-=</span> <span class="dv">1</span>  <span class="co"># array index is t-1 for t-th element</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>            res <span class="op">+=</span> np.square((rets[t]<span class="op">-</span>mu)<span class="op">*</span>(rets[t<span class="op">-</span>j]<span class="op">-</span>mu))</span>
+<span id="cb4-24"><a href="#cb4-24"></a>        <span class="cf">return</span> res <span class="op">/</span> ((T<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> var_1)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a>    phi2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, k):</span>
+<span id="cb4-28"><a href="#cb4-28"></a>        phi2 <span class="op">+=</span> (<span class="dv">2</span><span class="op">*</span>(k<span class="op">-</span>j)<span class="op">/</span>k)<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> delta(j)</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a>    <span class="cf">return</span> vr, (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi1), (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-<!-- Add copied contents from original content.html here -->
+</section>
 
-<!-- Get setting from mkdocs.yml, but allow page-level overrides -->
-
-
-
-<!-- Inject Disqus into current page -->
-
-  <h2 id="__comments">Comments</h2>
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function() {
-      this.page.url = "https://mingze-gao.com/posts/lomackinlay1988/"
-      this.page.identifier =
-        "posts/lomackinlay1988/" 
-    }
-
-    /* Set up for the first time */
-    if (typeof DISQUS === "undefined") {
-      var script = document.createElement("script")
-      script.async = true
-      script.src = "https://mingze-gao.disqus.com/embed.js"
-      script.setAttribute("data-timestamp", Date.now())
-
-      /* Inject script tag */
-      document.body.appendChild(script)
-
-    /* Set up on navigation (instant loading) */
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
     } else {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      })
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-  </script>
-
-      
-    </article>
-  </div>
-
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-    
-      
-        
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../minimum-variance-hedge-ratio/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Minimum Variance Hedge Ratio">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Minimum Variance Hedge Ratio
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../textual-analysis-on-sec-filings/" class="md-footer__link md-footer__link--next" aria-label="Next: Textual Analysis on SEC Filings">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Textual Analysis on SEC Filings
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2019 - 2024 <a href="https://mingze-gao.com">Mingze Gao</a>
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © 2019 - 2024 Mingze Gao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
     </div>
-  
-  
-</div>
-      
-        <div class="md-social">
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://github.com/mgao6767/mingze-gao.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
     </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://linkedin.com/in/adriangao" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
     </a>
-  
-    
-    
-    
-    
-    <a href="mailto:mingze.gao@mq.edu.au" target="_blank" rel="noopener" title="" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
     </a>
-  
-</div>
-      
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
     </div>
   </div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "toc.follow", "navigation.prune", "navigation.tabs", "navigation.path", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.65061dd4.min.js"></script>
-      
-        <script src="../../js/mkdocs-charts-plugin.js"></script>
-      
-        <script src="../../javascripts/extra.js"></script>
-      
-        <script src="../../javascripts/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-      
-    
-  </body>
-</html>
+
+
+
+
+</body></html>
