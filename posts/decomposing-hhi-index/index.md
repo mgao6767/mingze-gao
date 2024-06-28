@@ -126,7 +126,7 @@ can be an even better one since it's smaller than $H$, which enables us to
 measure the concentration contributed from the number of firms, measured by
 $E_n$.
 
-![](https://mingze-gao.com/images/HHI-decomposition-1.jpg)
+![](/images/HHI-decomposition-1.jpg)
 
 This decomposition is appealing also in that $E_n$, from the graph above,
 effectively is the horizontal difference between the two curves, i.e. the
@@ -147,7 +147,7 @@ by $H$, the relative importance of the two components is changing.
 - When $H$ is larger, on the other hand, $E_i$ contributes more to $H$, which
   means the firm size inequality plays a bigger role in market concentration.
 
-![](https://mingze-gao.com/images/HHI-decomposition-2.jpg)
+![](/images/HHI-decomposition-2.jpg)
 
 A potential implication for regulators who are concerned about market
 concentration, I think, is to **1)** focus more on reducing the entry barrier if
