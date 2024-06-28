@@ -11,13 +11,21 @@ code-block-bg: true
 bibliography: references.bib
 cap-location: margin
 
+language: 
+  search-box-placeholder: Search
+
 website:
   title: "Mingze Gao"
   favicon: images/favicon.png
   twitter-card: true
   site-url: https://mingze-gao.com
+  google-analytics: "G-1QDTTQ6EHM"
   back-to-top-navigation: true
+  search:
+    type: textbox
   navbar:
+    logo: images/favicon.png
+    title: false
     left:
       - href: index.qmd
         text: Home
@@ -56,7 +64,9 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - styles.scss
     css: styles.css
     toc: true
     mermaid:
