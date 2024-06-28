@@ -5,6 +5,9 @@ project:
   post-render: 
     - scripts/post-render.py
 
+highlight-style: github
+code-block-bg: true
+
 bibliography: references.bib
 cap-location: margin
 
@@ -58,3 +61,6 @@ format:
     toc: true
     mermaid:
       theme: default
+    code-copy: true
+    syntax-definitions: 
+      - syntax/sas.xml
