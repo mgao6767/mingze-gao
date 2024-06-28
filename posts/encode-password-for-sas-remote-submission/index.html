@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -177,22 +211,22 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The <a href="https://wrds-www.wharton.upenn.edu/">Wharton Research Data Services (WRDS)</a> allows one to submit and execute SAS programs to the cloud. WRDS has an <a href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-sas/sas-from-your-computer/">instruction on accessing WRDS data from SAS on our own PCs</a>. Generally, you should use:</p>
-<pre class="sas"><code>%let wrds=wrds-cloud.wharton.upenn.edu 4016;
-options comamid=TCP remote=WRDS;
-signon username=_prompt_;
-
-rsubmit;
-
-/* Code for remote execution goes here. */
-
-endrsubmit;
-signoff;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>signon username=_prompt_;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Code for remote execution goes here. */</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, if you want to save the effort of entering username and password every time, you’ll need to <a href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-sas/encoding-your-wrds-password/">encode your password</a>. Concluding the two articles, basically you just need to follow the steps below.</p>
 <!-- more -->
 <section id="simple-steps" class="level2">
 <h2 class="anchored" data-anchor-id="simple-steps">Simple Steps</h2>
 <p>First, open your SAS program locally on your PC, run the following command and replace <code>1234567890</code> with your WRDS password:</p>
-<pre class="sas"><code>proc pwencode in="1234567890"; run;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> pwencode <span class="kw">in</span>=<span class="st">"1234567890"</span><span class="kw">; run</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output <code>{SAS002}23AA9C2811439227077603C8365060A44800CA1F</code> is the encoded password (which is <code>1234567890</code> in this example).</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Do NOT share your SAS program with encoded password!">
 <div class="callout-header d-flex align-content-center">
@@ -208,24 +242,24 @@ Do NOT share your SAS program with encoded password!
 </div>
 </div>
 <p>Next, put the following statements at the beginning of your SAS program and replace <code>my_username</code> with your WRDS username:</p>
-<pre class="sas"><code>%let wrds=wrds-cloud.wharton.upenn.edu 4016;
-options comamid=TCP remote=WRDS;
-signon username=my_username password="{SAS002}23AA9C2811439227077603C8365060A44800CA1F";</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>signon username=my_username password=<span class="st">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After these statements, you’ll be able to submit your SAS program remotely to and execute on the WRDS server by enclosing your statements with <code>rsubmit</code> and <code>endrsubmit</code>. An example would be:</p>
-<pre class="sas"><code>rsubmit;
-proc download data=comp.funda out=funda; run;
-endrsubmit;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> download<span class="kw"> data</span>=comp.funda out=funda<span class="kw">; run</span>;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As you can guess, this statement actually downloads the whole Compustat Fundamentals Annual to the local work directory, with the downloaded dataset also named <code>funda</code>.</p>
 <p>Lastly, after everything, you should run <code>signoff</code> to close the connection with WRDS.</p>
 <p>Full code is as below.</p>
-<pre class="sas"><code>%let wrds=wrds-cloud.wharton.upenn.edu 4016;
-options comamid=TCP remote=WRDS;
-signon username=my_username password="{SAS002}23AA9C2811439227077603C8365060A44800CA1F";
-
-rsubmit;
-proc download data=comp.funda out=funda; run;
-endrsubmit;
-signoff;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>signon username=my_username password=<span class="st">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> download<span class="kw"> data</span>=comp.funda out=funda<span class="kw">; run</span>;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Replace <code>my_username</code> and the encoded password with your actual WRDS username and encoded password, paste it in the SAS program editor and press <code>F3</code>. You’ll be downloading <code>comp.funda</code> in a few seconds!</p>
 </section>
 <section id="video-instruction" class="level2">

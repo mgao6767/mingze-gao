@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -182,59 +216,59 @@ ul.task-list li input[type="checkbox"] {
 <section id="prerequisite" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisite">Prerequisite</h2>
 <p>Before everything, just make sure that this <code>autoexec.sas</code> is located in the home folder on your WRDS cloud.</p>
-<pre class="sas"><code>*  The library name definitions below are used by SAS;
-*  Assign default libref for WRDS (Wharton Research Data Services);
-%include '/wrds/lib/utility/wrdslib.sas';
-options sasautos=('/wrds/wrdsmacros/', SASAUTOS) MAUTOSOURCE;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">*  The library name definitions below are used by SAS;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">*  Assign default libref for WRDS (Wharton Research Data Services);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>%include '/wrds/lib/utility/wrdslib.sas';</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> sasautos=(<span class="st">'/wrds/wrdsmacros/'</span>, SASAUTOS) MAUTOSOURCE;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This code runs automatically when you’ve connected to the WRDS cloud. The first line assigns the default library references for you to use, e.g.&nbsp;<code>comp</code> for Compustat. The second line makes available the macros. A list of these handy macros is available at the <a href="https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/">WRDS documentation</a>.</p>
 <p>If you don’t have this SAS code in the home folder, simply create one there or you can choose to include these two lines of code in your remotely submitted code.</p>
 </section>
 <section id="simple-usage" class="level2">
 <h2 class="anchored" data-anchor-id="simple-usage">Simple usage</h2>
 <p>Let’s say we want to winsorize a dataset by using the macro provided by WRDS (<a href="https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/">full code</a>). Below is an example of winsorizing Total Assets <code>AT</code> of Compustat sample by fiscal year from 1980 to 2018.</p>
-<pre class="sas"><code>%let wrds=wrds-cloud.wharton.upenn.edu 4016;
-options comamid=TCP remote=WRDS;
-signon username=_prompt_;
-
-rsubmit;
-
-/* Create a dataset in the work directory */
-data work.funda(keep=gvkey fyear at);
-    set comp.funda;
-    if 1980 &lt;= fyear &lt;= 2018;
-    /* Generic filter */
-    if indfmt='INDL' and datafmt='STD' and popsrc='D' and consol='C';
-run;
-
-/* Invoke the macro */
-/* The documentation is available at:
-   https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/ */
-%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);
-
-/* Before the winsorization */
-proc means data=work.funda; by fyear; var at; 
-output out=funda_before_win min= mean= max= / autoname; run;
-/* After the winsorization */
-proc means data=work.funda_w; by fyear; var at;
-output out=funda_after_win min= mean= max= / autoname; run;
-
-proc print data=funda_before_win;
-proc print data=funda_after_win; run;
-
-endrsubmit;
-signoff;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>signon username=_prompt_;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Create a dataset in the work directory */</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> work.funda(<span class="kw">keep</span>=gvkey fyear at);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">set</span> comp.funda;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="dv">1980</span> &lt;= fyear &lt;= <span class="dv">2018</span>;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Generic filter */</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> indfmt=<span class="st">'INDL'</span> <span class="kw">and</span> datafmt=<span class="st">'STD'</span> <span class="kw">and</span> popsrc=<span class="st">'D'</span> <span class="kw">and</span> consol=<span class="st">'C'</span>;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">/* Invoke the macro */</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* The documentation is available at:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">   https://wrds-www.wharton.upenn.edu/pages/support/research-wrds/macros/wrds-macros-winsorize/ */</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">/* Before the winsorization */</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> means<span class="kw"> data</span>=work.funda; <span class="kw">by</span> fyear; <span class="fu">var</span> at; </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">output</span> out=funda_before_win <span class="fu">min</span>= <span class="fu">mean</span>= <span class="fu">max</span>= / autoname<span class="kw">; run</span>;</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">/* After the winsorization */</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> means<span class="kw"> data</span>=work.funda_w; <span class="kw">by</span> fyear; <span class="fu">var</span> at;</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">output</span> out=funda_after_win <span class="fu">min</span>= <span class="fu">mean</span>= <span class="fu">max</span>= / autoname<span class="kw">; run</span>;</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> print<span class="kw"> data</span>=funda_before_win;</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> print<span class="kw"> data</span>=funda_after_win<span class="kw">; run</span>;</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Invoking the macro is as simple as a single line (line 18 above):</p>
-<pre class="sas"><code>%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>%WINSORIZE(INSET=funda,OUTSET=funda_w,SORTVAR=fyear,VARS=at,PERC1=1,TRIM=0);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, one thing to note about this particular winsorization macro by WRDS is that a variable named <code>a</code> is used in line 57 and 59. So if the <code>INSET</code> has a variable named <code>a</code> as well, there’ll be possible data integrity issue. Hence, I prefer to use another version described in my other post <a href="https://mingze-gao.com/posts/winsorization-in-sas/">Winsorization in SAS</a>.</p>
 </section>
 <section id="load-sas-macros-from-url" class="level2">
 <h2 class="anchored" data-anchor-id="load-sas-macros-from-url">Load SAS macros from URL</h2>
 <p>I tend to collect and store all useful macros on my personal server, hence I don’t need to worry about a loss of or changes to the macros. To use these macros, simply include them before invoking.</p>
-<pre class="sas"><code>filename winsor url "https://mingze-gao.com/utils/winsor.sas";
-%include winsor;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">filename</span> winsor url <span class="st">"https://mingze-gao.com/utils/winsor.sas"</span>;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>%include winsor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then, I can simply call <code>winsor</code> as below.</p>
-<pre class="sas"><code>%let winsVars = tac inv_at_l drev drevadj ppe roa;
-%winsor(dsetin=work.funda, dsetout=work.funda_wins, byvar=fyear, vars=&amp;winsVars, type=winsor, pctl=1 99);</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> winsVars = tac inv_at_l drev drevadj ppe roa;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>%winsor(dsetin=work.funda, dsetout=work.funda_wins, byvar=fyear, vars=&amp;winsVars, type=winsor, pctl=1 99);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

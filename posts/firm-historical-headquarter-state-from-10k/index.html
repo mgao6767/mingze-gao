@@ -472,67 +472,67 @@ div.csl-indent {
 <li>Pre-2003, use <span class="citation" data-cites="bai_employment_2020">Bai, Fairhurst, and Serfling (<a href="#ref-bai_employment_2020" role="doc-biblioref">2020</a>)</span>.</li>
 <li>Post-2003, use the business address as in the header of 10K/Q filings, and the Compustat records if the business address is missing and invalid from parsing the headers.</li>
 </ul>
-<pre class="sas"><code>libname hs "~/historical_state";
-
-/* Historical HQ state (1994 to 2018) from augmented 10-X header dataset */
-proc import datafile="~/historical_state/historical_state_1994_2018.dta"
-    out=historical_state_1994_2018 dbms=stata replace;
-/* Historical HQ state (1969 to 2003) from Bai, Fairhurst and Serfling (2020 RFS) */
-proc import datafile="~/historical_state/hist_headquarters_Bai_et_al.dta"
-    out=hist_headquarters_Bai_et_al dbms=stata replace;
-
-/* Build the post-1994 dataset using SEC filings */
-proc sql;
-create table funda as 
-select gvkey, cik, datadate, fyear from comp.funda
-where indfmt= 'INDL' and datafmt='STD' and popsrc='D' and consol='C'
-and year(datadate) between 1994 and 2018
-/* "For firms that change fiscal year within a calendar year, 
-    we take the last reported date when extracting financial data. 
-    This leaves us with one set of observations for each firm (gvkey) in each year." 
-    -- Pelueger, Siriwardane and Sunderam (2020 QJE) */
-group by gvkey, fyear having datadate=max(datadate);
-
-create table firm_historical_state as 
-select a.*, b.ba_state as state_sec label="State from SEC filings"
-from funda as a left join historical_state as b 
-on a.cik=b.cik and year(a.datadate)=year(b.file_date) and b.file_date&lt;=a.datadate
-group by a.gvkey, a.datadate
-/* use the SEC filing closet to and before the Compustat datadate */
-having b.file_date=max(b.file_date);
-
-create table historical_state_1994_2018 as
-select a.*, b.state as state_comp label="State from Compustat"
-from firm_historical_state as a left join comp.company as b 
-on a.gvkey=b.gvkey
-order by a.gvkey, a.datadate;
-quit;
-
-/* Sanity check: no duplicated gvkey-fyear */
-proc sort data=historical_state_1994_2018 nodupkey; by gvkey datadate; run;
-
-
-proc sql;
-create table hist_headquarters_Bai_et_al as 
-select put(gvkeyn, z6.) as gvkey, fyear, state 
-from hist_headquarters_Bai_et_al;
-quit;
-
-/* Stack together the two datasets */
-data states; 
-set hist_headquarters_Bai_et_al 
-    historical_state_1994_2018(where=(fyear&gt;2003) keep=gvkey fyear state:);
-run;
-
-proc sql;
-create table hs.corrected_hist_state_1969_2018 as 
-select *, coalesce(state, state_sec, state_comp) as corrected_state
-from states where not missing(calculated corrected_state)
-order by gvkey, fyear;
-quit;
-
-/* Sanity check: no duplicated gvkey-fyear */
-proc sort data=hs.corrected_hist_state_1969_2018 nodupkey; by gvkey fyear; run;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">libname</span> hs <span class="st">"~/historical_state"</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Historical HQ state (1994 to 2018) from augmented 10-X header dataset */</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> import datafile=<span class="st">"~/historical_state/historical_state_1994_2018.dta"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    out=historical_state_1994_2018 dbms=stata <span class="kw">replace</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* Historical HQ state (1969 to 2003) from Bai, Fairhurst and Serfling (2020 RFS) */</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> import datafile=<span class="st">"~/historical_state/hist_headquarters_Bai_et_al.dta"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    out=hist_headquarters_Bai_et_al dbms=stata <span class="kw">replace</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">/* Build the post-1994 dataset using SEC filings */</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> funda <span class="kw">as</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> gvkey, cik, datadate, fyear <span class="kw">from</span> comp.funda</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> indfmt= <span class="st">'INDL'</span> <span class="kw">and</span> datafmt=<span class="st">'STD'</span> <span class="kw">and</span> popsrc=<span class="st">'D'</span> <span class="kw">and</span> consol=<span class="st">'C'</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span> <span class="fu">year</span>(datadate) between <span class="dv">1994</span> <span class="kw">and</span> <span class="dv">2018</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* "For firms that change fiscal year within a calendar year, </span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">    we take the last reported date when extracting financial data. </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    This leaves us with one set of observations for each firm (gvkey) in each year." </span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">    -- Pelueger, Siriwardane and Sunderam (2020 QJE) */</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> gvkey, fyear <span class="kw">having</span> datadate=<span class="fu">max</span>(datadate);</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> firm_historical_state <span class="kw">as</span> </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> a.*, b.ba_state <span class="kw">as</span> state_sec <span class="kw">label</span>=<span class="st">"State from SEC filings"</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> funda <span class="kw">as</span> a <span class="fu">left</span> join historical_state <span class="kw">as</span> b </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">on</span> a.cik=b.cik <span class="kw">and</span> <span class="fu">year</span>(a.datadate)=<span class="fu">year</span>(b.file_date) <span class="kw">and</span> b.file_date&lt;=a.datadate</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> a.gvkey, a.datadate</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">/* use the SEC filing closet to and before the Compustat datadate */</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">having</span> b.file_date=<span class="fu">max</span>(b.file_date);</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> historical_state_1994_2018 <span class="kw">as</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> a.*, b.state <span class="kw">as</span> state_comp <span class="kw">label</span>=<span class="st">"State from Compustat"</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> firm_historical_state <span class="kw">as</span> a <span class="fu">left</span> join comp.company <span class="kw">as</span> b </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">on</span> a.gvkey=b.gvkey</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> a.gvkey, a.datadate;</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">/* Sanity check: no duplicated gvkey-fyear */</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sort<span class="kw"> data</span>=historical_state_1994_2018 nodupkey; <span class="kw">by</span> gvkey datadate<span class="kw">; run</span>;</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> hist_headquarters_Bai_et_al <span class="kw">as</span> </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">put</span>(gvkeyn, z6.) <span class="kw">as</span> gvkey, fyear, state </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> hist_headquarters_Bai_et_al;</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co">/* Stack together the two datasets */</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> states; </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> hist_headquarters_Bai_et_al </span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    historical_state_1994_2018(<span class="kw">where</span>=(fyear&gt;<span class="dv">2003</span>) <span class="kw">keep</span>=gvkey fyear state:);</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> hs.corrected_hist_state_1969_2018 <span class="kw">as</span> </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> *, coalesce(state, state_sec, state_comp) <span class="kw">as</span> corrected_state</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> states <span class="kw">where</span> <span class="kw">not</span> missing(calculated corrected_state)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> gvkey, fyear;</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="co">/* Sanity check: no duplicated gvkey-fyear */</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sort<span class="kw"> data</span>=hs.corrected_hist_state_1969_2018 nodupkey; <span class="kw">by</span> gvkey fyear<span class="kw">; run</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="data-available-for-download" class="level2">

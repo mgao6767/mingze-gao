@@ -248,9 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Because <code>cik</code> is of different digits, to convert the numeric <code>cik</code> into a character variable, the natural procedure is to pad it with leading zeros. For example, <code>cik</code> (Central Index Key) itself is a 10-digit number used by SEC.</p>
 <p>In SAS, convert numeric variable to string with leading zeros (assuming 10-digit fixed length) is done via <code>PUT()</code> function:</p>
-<pre class="sas"><code>data filings(drop=cik); set filings;
-    cik_char = put(cik, z10.); 
-run;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> filings(<span class="kw">drop</span>=cik); <span class="kw">set</span> filings;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    cik_char = <span class="kw">put</span>(cik, z10.); </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -302,7 +302,7 @@ Tip
 <section id="character-to-numeric" class="level2">
 <h2 class="anchored" data-anchor-id="character-to-numeric">Character to Numeric</h2>
 <p>In SAS, converting a character variable to a numeric one uses the <code>INPUT()</code> function:</p>
-<pre class="sas"><code>var_numeric = input(var_char, best12.);</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>var_numeric = <span class="kw">input</span>(var_char, best12.);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In STATA, this conversion be can be done via either <code>real()</code> function or <code>destring</code> command.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> num_var = <span class="fu">real</span>(char_var);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>real()</code> function works on a single variable. <code>destring</code> command can convert all character variables into numeric in one go.</p>

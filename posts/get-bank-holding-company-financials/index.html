@@ -228,32 +228,32 @@ Note
 <section id="extract-bhc-balance-sheet-data" class="level2">
 <h2 class="anchored" data-anchor-id="extract-bhc-balance-sheet-data">Extract BHC balance sheet data</h2>
 <p>This is the SAS macro I write to consolidate and extract BHC’s balance sheet data from WRDS Bank Regulatory database. It creates a <code>bhcf</code> dataset in the work directory.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>%macro bhc_financials(loopdatestart,loopdateend);</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    /* Specify the variables to extract */</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    %let vars=rssd9999 rssd9001 rssd9007 rssd9008 bhck2170 bhck3210;</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    %let loopdatestart=%sysfunc(inputn(&amp;loopdatestart,anydtdte9.));</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    %let loopdateend=%sysfunc(inputn(&amp;loopdateend,anydtdte9.));</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    %let dif=%sysfunc(intck(month,&amp;loopdatestart,&amp;loopdateend));</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    %let dats=;</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    %do i=0 %to &amp;dif;</span>
-<span id="cb1-9"><a href="#cb1-9"></a>        %let date=%sysfunc(intnx(month,&amp;loopdatestart,&amp;i,e));</span>
-<span id="cb1-10"><a href="#cb1-10"></a>        %let month=%sysfunc(month(&amp;date),z2.);</span>
-<span id="cb1-11"><a href="#cb1-11"></a>        %let year=%sysfunc(year(&amp;date));</span>
-<span id="cb1-12"><a href="#cb1-12"></a>        %if &amp;month=3 or &amp;month=6 or &amp;month=9 or &amp;month=12 %then %do;</span>
-<span id="cb1-13"><a href="#cb1-13"></a>        %let dats=&amp;dats bank.bhcf&amp;year&amp;month;</span>
-<span id="cb1-14"><a href="#cb1-14"></a>        %end;</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    %end;</span>
-<span id="cb1-16"><a href="#cb1-16"></a>    %put &amp;dats;</span>
-<span id="cb1-17"><a href="#cb1-17"></a>    data bhcf(keep=&amp;vars); set &amp;dats; </span>
-<span id="cb1-18"><a href="#cb1-18"></a>        rssd9999 = input(put(rssd9999, 8.), yymmdd10.);/* reporting date */</span>
-<span id="cb1-19"><a href="#cb1-19"></a>        rssd9007 = input(put(rssd9007, 8.), yymmdd10.);/* date start */</span>
-<span id="cb1-20"><a href="#cb1-20"></a>        rssd9008 = input(put(rssd9008, 8.), yymmdd10.);/* date end */</span>
-<span id="cb1-21"><a href="#cb1-21"></a>        format rssd9999 date9.;</span>
-<span id="cb1-22"><a href="#cb1-22"></a>        format rssd9007 date9.;</span>
-<span id="cb1-23"><a href="#cb1-23"></a>        format rssd9008 date9.;</span>
-<span id="cb1-24"><a href="#cb1-24"></a>        where rssd9999 between rssd9007 and rssd9008;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>    run;</span>
-<span id="cb1-26"><a href="#cb1-26"></a>%mend bhc_financials;</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">%macro</span> bhc_financials(loopdatestart,loopdateend);</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">/* Specify the variables to extract */</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">%let</span> vars=rssd9999 rssd9001 rssd9007 rssd9008 bhck2170 bhck3210;</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">%let</span> loopdatestart=<span class="kw">%sysfunc</span>(<span class="fu">inputn</span>(<span class="kw">&amp;loopdatestart,</span>anydtdte9.));</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">%let</span> loopdateend=<span class="kw">%sysfunc</span>(<span class="fu">inputn</span>(<span class="kw">&amp;loopdateend,</span>anydtdte9.));</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">%let</span> <span class="fu">dif</span>=<span class="kw">%sysfunc</span>(<span class="fu">intck</span>(<span class="fu">month</span>,<span class="kw">&amp;loopdatestart,&amp;loopdateend)</span>);</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">%let</span> dats=;</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="kw">%do</span> i=<span class="dv">0</span> <span class="kw">%to</span> <span class="kw">&amp;dif;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>        <span class="kw">%let</span> <span class="fu">date</span>=<span class="kw">%sysfunc</span>(<span class="fu">intnx</span>(<span class="fu">month</span>,<span class="kw">&amp;loopdatestart,&amp;i,</span>e));</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="kw">%let</span> <span class="fu">month</span>=<span class="kw">%sysfunc</span>(<span class="fu">month</span>(<span class="kw">&amp;date)</span>,z2.);</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="kw">%let</span> <span class="fu">year</span>=<span class="kw">%sysfunc</span>(<span class="fu">year</span>(<span class="kw">&amp;date)</span>);</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="kw">%if</span> <span class="kw">&amp;month=</span><span class="dv">3</span> <span class="kw">or</span> <span class="kw">&amp;month=</span><span class="dv">6</span> <span class="kw">or</span> <span class="kw">&amp;month=</span><span class="dv">9</span> <span class="kw">or</span> <span class="kw">&amp;month=</span><span class="dv">12</span> <span class="kw">%then</span> <span class="kw">%do</span>;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>        <span class="kw">%let</span> dats=<span class="kw">&amp;dats </span>bank.bhcf<span class="kw">&amp;year&amp;</span><span class="fu">month</span>;</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="kw">%end</span>;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="kw">%end</span>;</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="kw">%put</span> <span class="kw">&amp;dats;</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="kw">    data</span> bhcf(<span class="kw">keep</span>=<span class="kw">&amp;vars)</span>; <span class="kw">set</span> <span class="kw">&amp;dats;</span> </span>
+<span id="cb1-18"><a href="#cb1-18"></a>        rssd9999 = <span class="kw">input</span>(<span class="kw">put</span>(rssd9999, <span class="dv">8</span>.), yymmdd10.);<span class="co">/* reporting date */</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>        rssd9007 = <span class="kw">input</span>(<span class="kw">put</span>(rssd9007, <span class="dv">8</span>.), yymmdd10.);<span class="co">/* date start */</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        rssd9008 = <span class="kw">input</span>(<span class="kw">put</span>(rssd9008, <span class="dv">8</span>.), yymmdd10.);<span class="co">/* date end */</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>        <span class="kw">format</span> rssd9999 date9.;</span>
+<span id="cb1-22"><a href="#cb1-22"></a>        <span class="kw">format</span> rssd9007 date9.;</span>
+<span id="cb1-23"><a href="#cb1-23"></a>        <span class="kw">format</span> rssd9008 date9.;</span>
+<span id="cb1-24"><a href="#cb1-24"></a>        <span class="kw">where</span> rssd9999 between rssd9007 <span class="kw">and</span> rssd9008;</span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="kw">    run</span>;</span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="kw">%mend</span> bhc_financials;</span>
 <span id="cb1-27"><a href="#cb1-27"></a></span>
 <span id="cb1-28"><a href="#cb1-28"></a>%bhc_financials(01jan1990,01dec2000);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -273,31 +273,31 @@ Note
 <section id="merge-with-compustatcrsp" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="merge-with-compustatcrsp">Merge with Compustat/CRSP</h2>
 <p>The firm identifier in the Y-9C data is <code>RSSD9001</code>. To merge the BHC’s balance sheet data with Compustat/CRSP, I use the <code>PERMCO-RSSD</code> link table by the Federal Reserve Bank of New York.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I saved the most recent copy in my server, and formatted it so that it can used directly. It is available at <a href="https://mingze-gao.com/data/download/crsp_20181231.csv">https://mingze-gao.com/data/download/crsp_20181231.csv</a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="https://www.newyorkfed.org/research/banking_research/datasets.html">Link table</a></p></div></div><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>%let beg_yr = 1986;</span>
-<span id="cb2-2"><a href="#cb2-2"></a>%let end_yr = 2018;</span>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="https://www.newyorkfed.org/research/banking_research/datasets.html">Link table</a></p></div></div><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">%let</span> beg_yr = <span class="dv">1986</span>;</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">%let</span> end_yr = <span class="dv">2018</span>;</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>proc sql;</span>
-<span id="cb2-5"><a href="#cb2-5"></a>create table lnk as</span>
-<span id="cb2-6"><a href="#cb2-6"></a>select *</span>
-<span id="cb2-7"><a href="#cb2-7"></a>from crsp.ccmxpf_lnkhist</span>
-<span id="cb2-8"><a href="#cb2-8"></a>where</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    linktype in ("LU", "LC") and</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    (&amp;end_yr+1 &gt;= year(linkdt) or linkdt = .B) and </span>
-<span id="cb2-11"><a href="#cb2-11"></a>    (&amp;beg_yr-1 &lt;= year(linkenddt) or linkenddt = .E)</span>
-<span id="cb2-12"><a href="#cb2-12"></a>order by </span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">create</span> <span class="kw">table</span> lnk <span class="kw">as</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">select</span> *</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">from</span> crsp.ccmxpf_lnkhist</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">where</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    linktype <span class="kw">in</span> (<span class="st">"LU"</span>, <span class="st">"LC"</span>) <span class="kw">and</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    (<span class="kw">&amp;end_yr+</span><span class="dv">1</span> &gt;= <span class="fu">year</span>(linkdt) <span class="kw">or</span> linkdt = .B) <span class="kw">and</span> </span>
+<span id="cb2-11"><a href="#cb2-11"></a>    (<span class="kw">&amp;beg_yr-</span><span class="dv">1</span> &lt;= <span class="fu">year</span>(linkenddt) <span class="kw">or</span> linkenddt = .E)</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">order</span> <span class="kw">by</span> </span>
 <span id="cb2-13"><a href="#cb2-13"></a>    gvkey, linkdt;</span>
-<span id="cb2-14"><a href="#cb2-14"></a>quit;</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">quit</span>;</span>
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a>/* PERMCO-RSSD link table by New York FED */</span>
-<span id="cb2-18"><a href="#cb2-18"></a>filename csv url "https://mingze-gao.com/data/download/crsp_20181231.csv";</span>
-<span id="cb2-19"><a href="#cb2-19"></a>proc import datafile=csv out=work.crsp_20181231 dbms=csv replace; run;</span>
-<span id="cb2-20"><a href="#cb2-20"></a>proc sql;</span>
-<span id="cb2-21"><a href="#cb2-21"></a>create table gvkey_permno_permco_rssd as </span>
-<span id="cb2-22"><a href="#cb2-22"></a>    select *</span>
-<span id="cb2-23"><a href="#cb2-23"></a>from lnk join crsp_20181231 as fed</span>
-<span id="cb2-24"><a href="#cb2-24"></a>on lnk.lpermco=fed.permco;</span>
-<span id="cb2-25"><a href="#cb2-25"></a>quit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">/* PERMCO-RSSD link table by New York FED */</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">filename</span> csv url <span class="st">"https://mingze-gao.com/data/download/crsp_20181231.csv"</span>;</span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="kw">proc</span> import datafile=csv out=work.crsp_20181231 dbms=csv <span class="kw">replace; run</span>;</span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">create</span> <span class="kw">table</span> gvkey_permno_permco_rssd <span class="kw">as</span> </span>
+<span id="cb2-22"><a href="#cb2-22"></a>    <span class="kw">select</span> *</span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="kw">from</span> lnk join crsp_20181231 <span class="kw">as</span> fed</span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="kw">on</span> lnk.lpermco=fed.permco;</span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

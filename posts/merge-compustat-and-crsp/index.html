@@ -229,58 +229,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></div><section id="ready-to-use-code" class="level2">
 <h2 class="anchored" data-anchor-id="ready-to-use-code">Ready-to-use code</h2>
 <p>Download the Compustat/CRSP gvkey-permco-permno link table without duplicates.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>%let wrds=wrds-cloud.wharton.upenn.edu 4016;</span>
-<span id="cb1-2"><a href="#cb1-2"></a>options comamid=TCP remote=WRDS;</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
 <span id="cb1-3"><a href="#cb1-3"></a>signon username=_prompt_;</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a>rsubmit;</span>
 <span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>%let year_start = 1990;</span>
-<span id="cb1-8"><a href="#cb1-8"></a>%let year_end = 2020;</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">%let</span> year_start = <span class="dv">1990</span>;</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">%let</span> year_<span class="kw">end</span> = <span class="dv">2020</span>;</span>
 <span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a>proc sql;</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  create table lnk as select * from crsp.ccmxpf_lnkhist where</span>
-<span id="cb1-12"><a href="#cb1-12"></a>  linktype in ("LU", "LC") and</span>
-<span id="cb1-13"><a href="#cb1-13"></a>  /* Extend the period to deal with fiscal year issues */</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  /* Note that the ".B" and ".E" missing value codes represent the   */</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  /* earliest possible beginning date and latest possible end date   */</span>
-<span id="cb1-16"><a href="#cb1-16"></a>  /* of the Link Date range, respectively.                           */</span>
-<span id="cb1-17"><a href="#cb1-17"></a>   (&amp;year_end.+1 &gt;=year(linkdt) or linkdt=.B) and</span>
-<span id="cb1-18"><a href="#cb1-18"></a>   (&amp;year_start.-1 &lt;=year(linkenddt) or linkenddt=.E)</span>
-<span id="cb1-19"><a href="#cb1-19"></a>    /* primary link assigned by Compustat or CRSP */</span>
-<span id="cb1-20"><a href="#cb1-20"></a>  and linkprim in ("P", "C")</span>
-<span id="cb1-21"><a href="#cb1-21"></a>    order by gvkey, linkdt;</span>
-<span id="cb1-22"><a href="#cb1-22"></a>quit;</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">proc</span> sql;</span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="kw">create</span> <span class="kw">table</span> lnk <span class="kw">as</span> <span class="kw">select</span> * <span class="kw">from</span> crsp.ccmxpf_lnkhist <span class="kw">where</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  linktype <span class="kw">in</span> (<span class="st">"LU"</span>, <span class="st">"LC"</span>) <span class="kw">and</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">/* Extend the period to deal with fiscal year issues */</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="co">/* Note that the ".B" and ".E" missing value codes represent the   */</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="co">/* earliest possible beginning date and latest possible end date   */</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co">/* of the Link Date range, respectively.                           */</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>   (<span class="kw">&amp;year_end.</span>+<span class="dv">1</span> &gt;=<span class="fu">year</span>(linkdt) <span class="kw">or</span> linkdt=.B) <span class="kw">and</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>   (<span class="kw">&amp;year_start.</span>-<span class="dv">1</span> &lt;=<span class="fu">year</span>(linkenddt) <span class="kw">or</span> linkenddt=.E)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="co">/* primary link assigned by Compustat or CRSP */</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="kw">and</span> linkprim <span class="kw">in</span> (<span class="st">"P"</span>, <span class="st">"C"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="kw">order</span> <span class="kw">by</span> gvkey, linkdt;</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="kw">quit</span>;</span>
 <span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a>proc sql;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>  create table mydata as select * from lnk, </span>
-<span id="cb1-26"><a href="#cb1-26"></a>    comp.funda (keep=gvkey fyear tic cik datadate indfmt datafmt popsrc consol) as cst </span>
-<span id="cb1-27"><a href="#cb1-27"></a>  where</span>
-<span id="cb1-28"><a href="#cb1-28"></a>    indfmt='FS' /* FS - Financial Services ('INDL' for industrial ) */</span>
-<span id="cb1-29"><a href="#cb1-29"></a>    and datafmt='STD' /* STD - Standardized */</span>
-<span id="cb1-30"><a href="#cb1-30"></a>    and popsrc='D' /* D - Domestic (USA, Canada and ADRs)*/</span>
-<span id="cb1-31"><a href="#cb1-31"></a>    and consol='C' /* C - Consolidated. Parent and Subsidiary accounts combined */</span>
-<span id="cb1-32"><a href="#cb1-32"></a>    and lnk.gvkey=cst.gvkey</span>
-<span id="cb1-33"><a href="#cb1-33"></a>    and (&amp;year_start. &lt;=fyear &lt;=&amp;year_end.) and (linkdt &lt;=cst.datadate or linkdt=.B)</span>
-<span id="cb1-34"><a href="#cb1-34"></a>    and (cst.datadate &lt;=linkenddt or linkenddt=.E);</span>
-<span id="cb1-35"><a href="#cb1-35"></a>quit;proc sql;</span>
-<span id="cb1-36"><a href="#cb1-36"></a>  create table mydata as select * from lnk, comp.funda (keep=gvkey fyear tic cik</span>
-<span id="cb1-37"><a href="#cb1-37"></a>    datadate indfmt datafmt popsrc consol) as cst where</span>
-<span id="cb1-38"><a href="#cb1-38"></a>    datafmt='STD' and popsrc='D' and consol='C' and lnk.gvkey=cst.gvkey</span>
-<span id="cb1-39"><a href="#cb1-39"></a>    and (&amp;year_start. &lt;=fyear &lt;=&amp;year_end.) and (linkdt &lt;=cst.datadate or linkdt=.B)</span>
-<span id="cb1-40"><a href="#cb1-40"></a>    and (cst.datadate &lt;=linkenddt or linkenddt=.E);</span>
-<span id="cb1-41"><a href="#cb1-41"></a>quit;</span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="kw">proc</span> sql;</span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="kw">create</span> <span class="kw">table</span> mydata <span class="kw">as</span> <span class="kw">select</span> * <span class="kw">from</span> lnk, </span>
+<span id="cb1-26"><a href="#cb1-26"></a>    comp.funda (<span class="kw">keep</span>=gvkey fyear tic cik datadate indfmt datafmt popsrc consol) <span class="kw">as</span> cst </span>
+<span id="cb1-27"><a href="#cb1-27"></a>  <span class="kw">where</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    indfmt=<span class="st">'FS'</span> <span class="co">/* FS - Financial Services ('INDL' for industrial ) */</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="kw">and</span> datafmt=<span class="st">'STD'</span> <span class="co">/* STD - Standardized */</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="kw">and</span> popsrc=<span class="st">'D'</span> <span class="co">/* D - Domestic (USA, Canada and ADRs)*/</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="kw">and</span> consol=<span class="st">'C'</span> <span class="co">/* C - Consolidated. Parent and Subsidiary accounts combined */</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw">and</span> lnk.gvkey=cst.gvkey</span>
+<span id="cb1-33"><a href="#cb1-33"></a>    <span class="kw">and</span> (<span class="kw">&amp;year_start.</span> &lt;=fyear &lt;=<span class="kw">&amp;year_end.</span>) <span class="kw">and</span> (linkdt &lt;=cst.datadate <span class="kw">or</span> linkdt=.B)</span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="kw">and</span> (cst.datadate &lt;=linkenddt <span class="kw">or</span> linkenddt=.E);</span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="kw">quit;proc</span> sql;</span>
+<span id="cb1-36"><a href="#cb1-36"></a>  <span class="kw">create</span> <span class="kw">table</span> mydata <span class="kw">as</span> <span class="kw">select</span> * <span class="kw">from</span> lnk, comp.funda (<span class="kw">keep</span>=gvkey fyear tic cik</span>
+<span id="cb1-37"><a href="#cb1-37"></a>    datadate indfmt datafmt popsrc consol) <span class="kw">as</span> cst <span class="kw">where</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    datafmt=<span class="st">'STD'</span> <span class="kw">and</span> popsrc=<span class="st">'D'</span> <span class="kw">and</span> consol=<span class="st">'C'</span> <span class="kw">and</span> lnk.gvkey=cst.gvkey</span>
+<span id="cb1-39"><a href="#cb1-39"></a>    <span class="kw">and</span> (<span class="kw">&amp;year_start.</span> &lt;=fyear &lt;=<span class="kw">&amp;year_end.</span>) <span class="kw">and</span> (linkdt &lt;=cst.datadate <span class="kw">or</span> linkdt=.B)</span>
+<span id="cb1-40"><a href="#cb1-40"></a>    <span class="kw">and</span> (cst.datadate &lt;=linkenddt <span class="kw">or</span> linkenddt=.E);</span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="kw">quit</span>;</span>
 <span id="cb1-42"><a href="#cb1-42"></a></span>
-<span id="cb1-43"><a href="#cb1-43"></a>/* Verify that we have unique gvkey-permco and gvkey-permno links */</span>
-<span id="cb1-44"><a href="#cb1-44"></a>proc sort data=mydata nodupkey; by lpermco gvkey datadate; run;</span>
-<span id="cb1-45"><a href="#cb1-45"></a>proc sort data=mydata nodupkey; by lpermno gvkey datadate; run;</span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="co">/* Verify that we have unique gvkey-permco and gvkey-permno links */</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="kw">proc</span> sort<span class="kw"> data</span>=mydata nodupkey; <span class="kw">by</span> lpermco gvkey datadate<span class="kw">; run</span>;</span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="kw">proc</span> sort<span class="kw"> data</span>=mydata nodupkey; <span class="kw">by</span> lpermno gvkey datadate<span class="kw">; run</span>;</span>
 <span id="cb1-46"><a href="#cb1-46"></a></span>
-<span id="cb1-47"><a href="#cb1-47"></a>data gvkey_permco_permno; set mydata;</span>
-<span id="cb1-48"><a href="#cb1-48"></a>   rename lpermno=permno;</span>
-<span id="cb1-49"><a href="#cb1-49"></a>   rename lpermco=permco;</span>
-<span id="cb1-50"><a href="#cb1-50"></a>run;</span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="kw">data</span> gvkey_permco_permno; <span class="kw">set</span> mydata;</span>
+<span id="cb1-48"><a href="#cb1-48"></a>   <span class="kw">rename</span> lpermno=permno;</span>
+<span id="cb1-49"><a href="#cb1-49"></a>   <span class="kw">rename</span> lpermco=permco;</span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="kw">run</span>;</span>
 <span id="cb1-51"><a href="#cb1-51"></a></span>
-<span id="cb1-52"><a href="#cb1-52"></a>proc download data=gvkey_permco_permno out=gvkey_permco_permno; run;</span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="kw">proc</span> download<span class="kw"> data</span>=gvkey_permco_permno out=gvkey_permco_permno<span class="kw">; run</span>;</span>
 <span id="cb1-53"><a href="#cb1-53"></a></span>
 <span id="cb1-54"><a href="#cb1-54"></a>endrsubmit;</span>
 <span id="cb1-55"><a href="#cb1-55"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -288,27 +288,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="gvkey-permno-link-table" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gvkey-permno-link-table"><code>GVKEY-PERMNO</code> link table</h2>
 <p>First, we need to create a <code>GVKEY-PERMNO</code> link table.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>%let beg_yr = 2000;</span>
-<span id="cb2-2"><a href="#cb2-2"></a>%let end_yr = 2003;</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">%let</span> beg_yr = <span class="dv">2000</span>;</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">%let</span> end_yr = <span class="dv">2003</span>;</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>proc sql;</span>
-<span id="cb2-5"><a href="#cb2-5"></a>create table lnk as</span>
-<span id="cb2-6"><a href="#cb2-6"></a>select *</span>
-<span id="cb2-7"><a href="#cb2-7"></a>from crsp.ccmxpf_lnkhist</span>
-<span id="cb2-8"><a href="#cb2-8"></a>where</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    /* See below for a description of the link types */</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    linktype in ("LU", "LC") and</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    /* Extend the period to deal with fiscal year issues */</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    /* Note that the ".B" and ".E" missing value codes represent the   */</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    /* earliest possible beginning date and latest possible end date   */</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    /* of the Link Date range, respectively.                           */</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    (&amp;end_yr+1 &gt;= year(linkdt) or linkdt = .B) and </span>
-<span id="cb2-16"><a href="#cb2-16"></a>    (&amp;beg_yr-1 &lt;= year(linkenddt) or linkenddt = .E)</span>
-<span id="cb2-17"><a href="#cb2-17"></a>    /* primary link assigned by Compustat or CRSP */</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    and linkprim in ("P", "C") </span>
-<span id="cb2-19"><a href="#cb2-19"></a>order by </span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">create</span> <span class="kw">table</span> lnk <span class="kw">as</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">select</span> *</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">from</span> crsp.ccmxpf_lnkhist</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">where</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="co">/* See below for a description of the link types */</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    linktype <span class="kw">in</span> (<span class="st">"LU"</span>, <span class="st">"LC"</span>) <span class="kw">and</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="co">/* Extend the period to deal with fiscal year issues */</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="co">/* Note that the ".B" and ".E" missing value codes represent the   */</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="co">/* earliest possible beginning date and latest possible end date   */</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="co">/* of the Link Date range, respectively.                           */</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    (<span class="kw">&amp;end_yr+</span><span class="dv">1</span> &gt;= <span class="fu">year</span>(linkdt) <span class="kw">or</span> linkdt = .B) <span class="kw">and</span> </span>
+<span id="cb2-16"><a href="#cb2-16"></a>    (<span class="kw">&amp;beg_yr-</span><span class="dv">1</span> &lt;= <span class="fu">year</span>(linkenddt) <span class="kw">or</span> linkenddt = .E)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    <span class="co">/* primary link assigned by Compustat or CRSP */</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="kw">and</span> linkprim <span class="kw">in</span> (<span class="st">"P"</span>, <span class="st">"C"</span>) </span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="kw">order</span> <span class="kw">by</span> </span>
 <span id="cb2-20"><a href="#cb2-20"></a>    gvkey, linkdt;</span>
-<span id="cb2-21"><a href="#cb2-21"></a>quit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table">
 <colgroup>
 <col style="width: 4%">
@@ -366,36 +366,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compustat-annual-and-crsp" class="level2">
 <h2 class="anchored" data-anchor-id="compustat-annual-and-crsp">Compustat Annual and CRSP</h2>
 <p>Example <code>ccmfunda.sas</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>proc sql;</span>
-<span id="cb3-2"><a href="#cb3-2"></a>create table mydata as </span>
-<span id="cb3-3"><a href="#cb3-3"></a>select *</span>
-<span id="cb3-4"><a href="#cb3-4"></a>from lnk, comp.funda (keep=gvkey fyear datadate indfmt datafmt popsrc consol sale) as cst</span>
-<span id="cb3-5"><a href="#cb3-5"></a>where indfmt= 'INDL' </span>
-<span id="cb3-6"><a href="#cb3-6"></a>and datafmt='STD' </span>
-<span id="cb3-7"><a href="#cb3-7"></a>and popsrc='D' </span>
-<span id="cb3-8"><a href="#cb3-8"></a>and consol='C' </span>
-<span id="cb3-9"><a href="#cb3-9"></a>and lnk.gvkey = cst.gvkey</span>
-<span id="cb3-10"><a href="#cb3-10"></a>and (&amp;beg_yr &lt;= fyear &lt;= &amp;end_yr) </span>
-<span id="cb3-11"><a href="#cb3-11"></a>and (linkdt &lt;= cst.datadate or linkdt = .B) </span>
-<span id="cb3-12"><a href="#cb3-12"></a>and (cst.datadate &lt;= linkenddt or linkenddt = .E);</span>
-<span id="cb3-13"><a href="#cb3-13"></a>quit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">create</span> <span class="kw">table</span> mydata <span class="kw">as</span> </span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">select</span> *</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">from</span> lnk, comp.funda (<span class="kw">keep</span>=gvkey fyear datadate indfmt datafmt popsrc consol sale) <span class="kw">as</span> cst</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">where</span> indfmt= <span class="st">'INDL'</span> </span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">and</span> datafmt=<span class="st">'STD'</span> </span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">and</span> popsrc=<span class="st">'D'</span> </span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">and</span> consol=<span class="st">'C'</span> </span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">and</span> lnk.gvkey = cst.gvkey</span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">and</span> (<span class="kw">&amp;beg_yr </span>&lt;= fyear &lt;= <span class="kw">&amp;end_yr)</span> </span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="kw">and</span> (linkdt &lt;= cst.datadate <span class="kw">or</span> linkdt = .B) </span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">and</span> (cst.datadate &lt;= linkenddt <span class="kw">or</span> linkenddt = .E);</span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="compustat-quarterly-and-crsp" class="level2">
 <h2 class="anchored" data-anchor-id="compustat-quarterly-and-crsp">Compustat Quarterly and CRSP</h2>
 <p>Example <code>ccmfundq.sas</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>proc sql;</span>
-<span id="cb4-2"><a href="#cb4-2"></a>create table mydata as </span>
-<span id="cb4-3"><a href="#cb4-3"></a>select *</span>
-<span id="cb4-4"><a href="#cb4-4"></a>from lnk, comp.fundq (keep=gvkey fyearq datadate indfmt datafmt popsrc consol saley saleq) as cst</span>
-<span id="cb4-5"><a href="#cb4-5"></a>where indfmt= 'INDL' </span>
-<span id="cb4-6"><a href="#cb4-6"></a>and datafmt='STD' </span>
-<span id="cb4-7"><a href="#cb4-7"></a>and popsrc='D' </span>
-<span id="cb4-8"><a href="#cb4-8"></a>and consol='C' </span>
-<span id="cb4-9"><a href="#cb4-9"></a>and lnk.gvkey = cst.gvkey</span>
-<span id="cb4-10"><a href="#cb4-10"></a>and (&amp;beg_yr &lt;= fyearq &lt;= &amp;end_yr) </span>
-<span id="cb4-11"><a href="#cb4-11"></a>and (linkdt &lt;= cst.datadate or linkdt = .B) </span>
-<span id="cb4-12"><a href="#cb4-12"></a>and (cst.datadate &lt;= linkenddt or linkenddt = .E);</span>
-<span id="cb4-13"><a href="#cb4-13"></a>quit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">create</span> <span class="kw">table</span> mydata <span class="kw">as</span> </span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">select</span> *</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">from</span> lnk, comp.fundq (<span class="kw">keep</span>=gvkey fyearq datadate indfmt datafmt popsrc consol saley saleq) <span class="kw">as</span> cst</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">where</span> indfmt= <span class="st">'INDL'</span> </span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">and</span> datafmt=<span class="st">'STD'</span> </span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">and</span> popsrc=<span class="st">'D'</span> </span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">and</span> consol=<span class="st">'C'</span> </span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">and</span> lnk.gvkey = cst.gvkey</span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">and</span> (<span class="kw">&amp;beg_yr </span>&lt;= fyearq &lt;= <span class="kw">&amp;end_yr)</span> </span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">and</span> (linkdt &lt;= cst.datadate <span class="kw">or</span> linkdt = .B) </span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">and</span> (cst.datadate &lt;= linkenddt <span class="kw">or</span> linkenddt = .E);</span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

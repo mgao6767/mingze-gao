@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -210,20 +244,20 @@ ul.task-list li input[type="checkbox"] {
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Using <code>intnx()</code>, we can derive the Friday of the week given a date, as shown below.</p>
-<pre class="sas"><code>proc sql;
-/* Compute weekly marekt return from daily data */
-create table mktret_weekly as 
-select distinct date, 
-  year(date) as Year,
-  week(date) as Week,
-  case when weekday(date)=6 then date
-  else intnx("week.6",date,1) end as FridayOfWeek format=date9.,
-  (exp(sum(log(1+sprtrn)))-1)*100 as mktret label="Weekly SP500 Index Return (%)"
-from crsp.dsi 
-where 
-  year(date) between &amp;startyear. and &amp;endyear.
-group by year(date), week(date) order by date;
-quit;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly marekt return from daily data */</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> mktret_weekly <span class="kw">as</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> <span class="fu">date</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">year</span>(<span class="fu">date</span>) <span class="kw">as</span> <span class="fu">Year</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  week(<span class="fu">date</span>) <span class="kw">as</span> Week,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  case when <span class="fu">weekday</span>(<span class="fu">date</span>)=<span class="dv">6</span> <span class="kw">then</span> <span class="fu">date</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> <span class="fu">intnx</span>(<span class="st">"week.6"</span>,<span class="fu">date</span>,<span class="dv">1</span>)<span class="kw"> end</span> <span class="kw">as</span> FridayOfWeek <span class="kw">format</span>=date9.,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+sprtrn)))-<span class="dv">1</span>)*<span class="dv">100</span> <span class="kw">as</span> mktret <span class="kw">label</span>=<span class="st">"Weekly SP500 Index Return (%)"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> crsp.dsi </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">year</span>(<span class="fu">date</span>) between <span class="kw">&amp;startyear.</span> <span class="kw">and</span> <span class="kw">&amp;endyear.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> <span class="fu">year</span>(<span class="fu">date</span>), week(<span class="fu">date</span>) <span class="kw">order</span> <span class="kw">by</span> <span class="fu">date</span>;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that <code>intnx("weekday.6", date, 0)</code> will give the <strong>last</strong> Friday, which is not what we want. We want the <strong>next</strong> Friday of the week for a given date, so we use <code>intnx("weekday.6", date, 1)</code>. The <code>case...when...</code> statement ensures that if the given date is already a Friday, we don’t go for the next one. Below is a sample output of the <code>mktret_weekly</code> table generated.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Example output of `mktret_weekly`">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -327,19 +361,19 @@ Example output of <code>mktret_weekly</code>
 </div>
 </div>
 <p>We can verify that the <code>FridayOfWeek</code> indeed gives the Friday of the week. Therefore, the final weekly dataset using Friday as the date identifier just need to keep <code>FridayOfWeek</code> and <code>mktret</code>.</p>
-<pre class="sas"><code>proc sql;
-/* Compute weekly marekt return from daily data */
-create table mktret_weekly as 
-select distinct
-  case when weekday(date)=6 then date else intnx("week.6",date,1) end 
-    as date format=date9. label="Friday of the Week",
-  (exp(sum(log(1+sprtrn)))-1)*100 
-    as mktret label="Weekly SP500 Index Return (%)"
-from crsp.dsi 
-where 
-  year(date) between &amp;startyear. and &amp;endyear.
-group by year(date), week(date) order by date;
-quit;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly marekt return from daily data */</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> mktret_weekly <span class="kw">as</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  case when <span class="fu">weekday</span>(<span class="fu">date</span>)=<span class="dv">6</span> <span class="kw">then</span> <span class="fu">date</span> <span class="kw">else</span> <span class="fu">intnx</span>(<span class="st">"week.6"</span>,<span class="fu">date</span>,<span class="dv">1</span>)<span class="kw"> end</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> <span class="fu">date</span> <span class="kw">format</span>=date9. <span class="kw">label</span>=<span class="st">"Friday of the Week"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+sprtrn)))-<span class="dv">1</span>)*<span class="dv">100</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> mktret <span class="kw">label</span>=<span class="st">"Weekly SP500 Index Return (%)"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> crsp.dsi </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">year</span>(<span class="fu">date</span>) between <span class="kw">&amp;startyear.</span> <span class="kw">and</span> <span class="kw">&amp;endyear.</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> <span class="fu">year</span>(<span class="fu">date</span>), week(<span class="fu">date</span>) <span class="kw">order</span> <span class="kw">by</span> <span class="fu">date</span>;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled" title="Example output of `mktret_weekly`">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -398,19 +432,19 @@ Example output of <code>mktret_weekly</code>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<pre class="sas"><code>%let startyear=1986;
-%let endyear=2019;
-
-proc sql;
-/* Compute weekly marekt return from daily data */
-create table mktret_weekly as 
-select distinct date, 
-  (exp(sum(log(1+sprtrn)))-1)*100 as mktret label="Weekly SP500 Index Return (%)"
-from crsp.dsi where year(date) between &amp;startyear. and &amp;endyear. 
-group by year(date), week(date) 
-having date=max(date) 
-order by date;
-quit;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> startyear=<span class="dv">1986</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> endyear=<span class="dv">2019</span>;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly marekt return from daily data */</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> mktret_weekly <span class="kw">as</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> <span class="fu">date</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+sprtrn)))-<span class="dv">1</span>)*<span class="dv">100</span> <span class="kw">as</span> mktret <span class="kw">label</span>=<span class="st">"Weekly SP500 Index Return (%)"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> crsp.dsi <span class="kw">where</span> <span class="fu">year</span>(<span class="fu">date</span>) between <span class="kw">&amp;startyear.</span> <span class="kw">and</span> <span class="kw">&amp;endyear.</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> <span class="fu">year</span>(<span class="fu">date</span>), week(<span class="fu">date</span>) </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">having</span> <span class="fu">date</span>=<span class="fu">max</span>(<span class="fu">date</span>) </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="fu">date</span>;</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note here that it’s tempting to use <code>having weekday(date)=6</code> to make sure the dates are all Friday. However, if Friday in a week is not the last trading day, then the weekly return will be missing. This is why here I use <code>date=max(date)</code> to ensure non-missing weekly returns. The date is the last trading day in any given week, consistent with the CRSP’s daily stock file.</p>
 <p>The caveat here is that since the dates are the weekly last trading days, when merged with other weekly datasets, you should be very careful about whether the other dataset is using Friday or the last trading day per week as its date variable.</p>
 </div>
@@ -420,23 +454,23 @@ quit;</code></pre>
 <section id="weekly-stock-return-from-daily-data" class="level3">
 <h3 class="anchored" data-anchor-id="weekly-stock-return-from-daily-data">Weekly stock return from daily data</h3>
 <p>Following the same logic, we can calculate the weekly stock returns from daily CRSP data, where dates are aligned to the Friday of the week.</p>
-<pre class="sas"><code>proc sql;
-/* Stocks (ordinary shares only) in the financial sector */
-create table stocks as select distinct permno from crsp.stocknames
-where shrcd in (10, 11) and floor(siccd/100) between 60 and 67;
-
-create table stockrets_weekly as 
-select distinct permno,
-  case when weekday(date)=6 then date else intnx("week.6",date,1) end 
-    as date format=date9. label="Friday of the Week",
-  (exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
-from crsp.dsf 
-where 
-  year(date) between &amp;startyear. and &amp;endyear.
-  and permno in (select * from stocks) 
-  and prc&gt;0 and not missing(ret)
-group by year(date), week(date), permno order by permno, date;
-quit;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Stocks (ordinary shares only) in the financial sector */</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> stocks <span class="kw">as</span> <span class="kw">select</span> <span class="kw">distinct</span> permno <span class="kw">from</span> crsp.stocknames</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> shrcd <span class="kw">in</span> (<span class="dv">10</span>, <span class="dv">11</span>) <span class="kw">and</span> <span class="fu">floor</span>(siccd/<span class="dv">100</span>) between <span class="dv">60</span> <span class="kw">and</span> <span class="dv">67</span>;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> stockrets_weekly <span class="kw">as</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> permno,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  case when <span class="fu">weekday</span>(<span class="fu">date</span>)=<span class="dv">6</span> <span class="kw">then</span> <span class="fu">date</span> <span class="kw">else</span> <span class="fu">intnx</span>(<span class="st">"week.6"</span>,<span class="fu">date</span>,<span class="dv">1</span>)<span class="kw"> end</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> <span class="fu">date</span> <span class="kw">format</span>=date9. <span class="kw">label</span>=<span class="st">"Friday of the Week"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+ret)))-<span class="dv">1</span>)*<span class="dv">100</span> <span class="kw">as</span> ret <span class="kw">label</span>=<span class="st">"Weekly Return (%)"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> crsp.dsf </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">year</span>(<span class="fu">date</span>) between <span class="kw">&amp;startyear.</span> <span class="kw">and</span> <span class="kw">&amp;endyear.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> permno <span class="kw">in</span> (<span class="kw">select</span> * <span class="kw">from</span> stocks) </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> prc&gt;<span class="dv">0</span> <span class="kw">and</span> <span class="kw">not</span> missing(ret)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> <span class="fu">year</span>(<span class="fu">date</span>), week(<span class="fu">date</span>), permno <span class="kw">order</span> <span class="kw">by</span> permno, <span class="fu">date</span>;</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="whats-wrong" class="level3">
 <h3 class="anchored" data-anchor-id="whats-wrong">What’s wrong?</h3>
@@ -495,52 +529,52 @@ The problem is that a week can span two calendar years.
 <section id="start-with-a-list-of-dates-slow-version" class="level3">
 <h3 class="anchored" data-anchor-id="start-with-a-list-of-dates-slow-version">1. Start with a list of dates (slow version)</h3>
 <p>Now we can write some correct code to compute the weekly returns. We’ll generate a series of Fridays first, then we merge based on the past 5 calendar days. This will ensure all trading days with non-missing data will be included in the weekly return calculation, and correct the mistake mentioned above.</p>
-<pre class="sas"><code>%let start_date = 01Jan1986;
-%let end_date   = 31Dec2019;
-
-/* Generate a series of Fridays */
-data fridays;
-date="&amp;start_date"d;
-do while (date&lt;="&amp;end_date"d);
-    if weekday(date)=6 then output;
-    date=intnx('day', date, 1, 's');
-end;
-format date date9.;
-run;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> start_date = <span class="dv">01</span>Jan1986;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> end_date   = <span class="dv">31</span>Dec2019;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">/* Generate a series of Fridays */</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> fridays;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span>=<span class="st">"&amp;start_date"</span>d;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">do</span> <span class="kw">while</span> (<span class="fu">date</span>&lt;=<span class="st">"&amp;end_date"</span>d);</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="fu">weekday</span>(<span class="fu">date</span>)=<span class="dv">6</span> <span class="kw">then</span> <span class="kw">output</span>;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">date</span>=<span class="fu">intnx</span>(<span class="st">'day'</span>, <span class="fu">date</span>, <span class="dv">1</span>, <span class="st">'s'</span>);</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> <span class="fu">date</span> date9.;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Weekly index return from daily data (as at Friday)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Weekly stock return from daily data (as at Friday)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<pre class="sas"><code>proc sql;
-/* Compute weekly index return from daily data */
-create table mktret_weekly as 
-select distinct a.date,
-  (exp(sum(log(1+sprtrn)))-1)*100 
-    as mktret label="Weekly SP500 Index Return (%)"
-from fridays as a left join crsp.dsi as dsi
-on dsi.date between intnx('day', a.date, -4) and a.date
-group by a.date
-order by a.date;
-quit;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly index return from daily data */</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> mktret_weekly <span class="kw">as</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> a.<span class="fu">date</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+sprtrn)))-<span class="dv">1</span>)*<span class="dv">100</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> mktret <span class="kw">label</span>=<span class="st">"Weekly SP500 Index Return (%)"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> fridays <span class="kw">as</span> a <span class="fu">left</span> join crsp.dsi <span class="kw">as</span> dsi</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">on</span> dsi.<span class="fu">date</span> between <span class="fu">intnx</span>(<span class="st">'day'</span>, a.<span class="fu">date</span>, -<span class="dv">4</span>) <span class="kw">and</span> a.<span class="fu">date</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> a.<span class="fu">date</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> a.<span class="fu">date</span>;</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Note that this version is inefficient and takes a long time to run.</p>
-<pre class="sas"><code>proc sql;
-/* Stocks (ordinary shares) in the financial sector (2-digit SIC=60-67) */
-create table stocks as select distinct permno from crsp.stocknames
-where shrcd in (10, 11) and floor(siccd/100) between 60 and 67;
-
-/* Compute weekly stock return from daily data */
-create table stockrets_weekly as 
-select distinct a.date, dsf.permno, dsf.hsiccd,
-  (exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
-from fridays as a left join crsp.dsf as dsf
-on dsf.date between intnx('day', a.date, -4) and a.date
-  and dsf.permno in (select * from stocks) 
-  and dsf.prc&gt;0 and not missing(dsf.ret)
-group by dsf.permno, a.date
-order by dsf.permno, a.date;
-quit;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Stocks (ordinary shares) in the financial sector (2-digit SIC=60-67) */</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> stocks <span class="kw">as</span> <span class="kw">select</span> <span class="kw">distinct</span> permno <span class="kw">from</span> crsp.stocknames</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> shrcd <span class="kw">in</span> (<span class="dv">10</span>, <span class="dv">11</span>) <span class="kw">and</span> <span class="fu">floor</span>(siccd/<span class="dv">100</span>) between <span class="dv">60</span> <span class="kw">and</span> <span class="dv">67</span>;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly stock return from daily data */</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> stockrets_weekly <span class="kw">as</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> a.<span class="fu">date</span>, dsf.permno, dsf.hsiccd,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+ret)))-<span class="dv">1</span>)*<span class="dv">100</span> <span class="kw">as</span> ret <span class="kw">label</span>=<span class="st">"Weekly Return (%)"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> fridays <span class="kw">as</span> a <span class="fu">left</span> join crsp.dsf <span class="kw">as</span> dsf</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">on</span> dsf.<span class="fu">date</span> between <span class="fu">intnx</span>(<span class="st">'day'</span>, a.<span class="fu">date</span>, -<span class="dv">4</span>) <span class="kw">and</span> a.<span class="fu">date</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> dsf.permno <span class="kw">in</span> (<span class="kw">select</span> * <span class="kw">from</span> stocks) </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> dsf.prc&gt;<span class="dv">0</span> <span class="kw">and</span> <span class="kw">not</span> missing(dsf.ret)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> dsf.permno, a.<span class="fu">date</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> dsf.permno, a.<span class="fu">date</span>;</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -548,20 +582,20 @@ quit;</code></pre>
 <section id="group-using-aligned-dates-fast-version-with-caveat" class="level3">
 <h3 class="anchored" data-anchor-id="group-using-aligned-dates-fast-version-with-caveat">2. Group using aligned dates (fast version with caveat)</h3>
 <p>This version uses a similar logic from the <a href="#weekly-stock-return-from-daily-data">previous incorrect one</a>, but it groups based on the aligned dates instead of <code>year(date)</code> and <code>week(date)</code>.</p>
-<pre class="sas"><code>proc sql;
-/* Compute weekly stock return from daily data */
-create table stockrets_weekly2 as 
-select distinct permno, hsiccd,
-  case when weekday(date)=6 then date else intnx("week.6",date,1) end 
-    as date format=date9. label="Friday of the Week",
-  (exp(sum(log(1+ret)))-1)*100 as ret label="Weekly Return (%)"
-from crsp.dsf (keep=permno date ret prc shrout hsiccd)
-where 
-  date between "01Jan1986"d and "31Dec2019"d
-  and permno in (select * from stocks) 
-  and prc&gt;0 and not missing(ret)
-group by permno, calculated date order by permno, date;
-quit;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> sql;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Compute weekly stock return from daily data */</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> stockrets_weekly2 <span class="kw">as</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="kw">distinct</span> permno, hsiccd,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  case when <span class="fu">weekday</span>(<span class="fu">date</span>)=<span class="dv">6</span> <span class="kw">then</span> <span class="fu">date</span> <span class="kw">else</span> <span class="fu">intnx</span>(<span class="st">"week.6"</span>,<span class="fu">date</span>,<span class="dv">1</span>)<span class="kw"> end</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> <span class="fu">date</span> <span class="kw">format</span>=date9. <span class="kw">label</span>=<span class="st">"Friday of the Week"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="dv">1</span>+ret)))-<span class="dv">1</span>)*<span class="dv">100</span> <span class="kw">as</span> ret <span class="kw">label</span>=<span class="st">"Weekly Return (%)"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> crsp.dsf (<span class="kw">keep</span>=permno <span class="fu">date</span> ret prc shrout hsiccd)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">date</span> between <span class="st">"01Jan1986"</span>d <span class="kw">and</span> <span class="st">"31Dec2019"</span>d</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> permno <span class="kw">in</span> (<span class="kw">select</span> * <span class="kw">from</span> stocks) </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">and</span> prc&gt;<span class="dv">0</span> <span class="kw">and</span> <span class="kw">not</span> missing(ret)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> permno, calculated <span class="fu">date</span> <span class="kw">order</span> <span class="kw">by</span> permno, <span class="fu">date</span>;</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Caveat">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

@@ -214,89 +214,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- more -->
 <section id="version-1-unknown-author" class="level2">
 <h2 class="anchored" data-anchor-id="version-1-unknown-author">Version 1 (Unknown Author)</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>/*****************************************</span>
-<span id="cb1-2"><a href="#cb1-2"></a>Author unknown - that is a pity because this macro is the best since sliced bread! </span>
-<span id="cb1-3"><a href="#cb1-3"></a>Trim or winsorize macro</span>
-<span id="cb1-4"><a href="#cb1-4"></a>* byvar = none for no byvar;</span>
-<span id="cb1-5"><a href="#cb1-5"></a>* type  = delete/winsor (delete will trim, winsor will winsorize;</span>
-<span id="cb1-6"><a href="#cb1-6"></a>*dsetin = dataset to winsorize/trim;</span>
-<span id="cb1-7"><a href="#cb1-7"></a>*dsetout = dataset to output with winsorized/trimmed values;</span>
-<span id="cb1-8"><a href="#cb1-8"></a>*byvar = subsetting variables to winsorize/trim on;</span>
-<span id="cb1-9"><a href="#cb1-9"></a>Sample usage:</span>
-<span id="cb1-10"><a href="#cb1-10"></a>%winsor(dsetin=work.myDsetIn, byvar=fyear, </span>
-<span id="cb1-11"><a href="#cb1-11"></a>        dsetout=work.myDsOut, vars=btm roa roe, type=winsor, pctl=1 99);</span>
-<span id="cb1-12"><a href="#cb1-12"></a>****************************************/</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">/*****************************************</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">Author unknown - that is a pity because this macro is the best since sliced bread! </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">Trim or winsorize macro</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">* byvar = none for no byvar;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">* type  = delete/winsor (delete will trim, winsor will winsorize;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">*dsetin = dataset to winsorize/trim;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">*dsetout = dataset to output with winsorized/trimmed values;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">*byvar = subsetting variables to winsorize/trim on;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">Sample usage:</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">%winsor(dsetin=work.myDsetIn, byvar=fyear, </span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">        dsetout=work.myDsOut, vars=btm roa roe, type=winsor, pctl=1 99);</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">****************************************/</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a> </span>
-<span id="cb1-14"><a href="#cb1-14"></a>%macro winsor(dsetin=, dsetout=, byvar=none, vars=, type=winsor, pctl=1 99);</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="kw">%macro</span> winsor(dsetin=, dsetout=, byvar=none, vars=, type=winsor, pctl=1 99);</span>
 <span id="cb1-15"><a href="#cb1-15"></a> </span>
-<span id="cb1-16"><a href="#cb1-16"></a>%if &amp;dsetout = %then %let dsetout = &amp;dsetin;</span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw">%if</span> <span class="kw">&amp;dsetout </span>= <span class="kw">%then</span> <span class="kw">%let</span> dsetout = <span class="kw">&amp;dsetin;</span></span>
 <span id="cb1-17"><a href="#cb1-17"></a>    </span>
-<span id="cb1-18"><a href="#cb1-18"></a>%let varL=;</span>
-<span id="cb1-19"><a href="#cb1-19"></a>%let varH=;</span>
-<span id="cb1-20"><a href="#cb1-20"></a>%let xn=1;</span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">%let</span> varL=;</span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="kw">%let</span> varH=;</span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">%let</span> xn=<span class="dv">1</span>;</span>
 <span id="cb1-21"><a href="#cb1-21"></a> </span>
-<span id="cb1-22"><a href="#cb1-22"></a>%do %until ( %scan(&amp;vars,&amp;xn)= );</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    %let token = %scan(&amp;vars,&amp;xn);</span>
-<span id="cb1-24"><a href="#cb1-24"></a>    %let varL = &amp;varL &amp;token.L;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>    %let varH = &amp;varH &amp;token.H;</span>
-<span id="cb1-26"><a href="#cb1-26"></a>    %let xn=%EVAL(&amp;xn + 1);</span>
-<span id="cb1-27"><a href="#cb1-27"></a>%end;</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="kw">%do</span> <span class="kw">%until</span> ( <span class="kw">%scan</span>(<span class="kw">&amp;vars,&amp;xn)</span>= );</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="kw">%let</span> token = <span class="kw">%scan</span>(<span class="kw">&amp;vars,&amp;xn)</span>;</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    <span class="kw">%let</span> varL = <span class="kw">&amp;varL &amp;token.</span>L;</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="kw">%let</span> varH = <span class="kw">&amp;varH &amp;token.</span>H;</span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="kw">%let</span> xn=<span class="kw">%EVAL</span>(<span class="kw">&amp;xn </span>+ <span class="dv">1</span>);</span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="kw">%end</span>;</span>
 <span id="cb1-28"><a href="#cb1-28"></a> </span>
-<span id="cb1-29"><a href="#cb1-29"></a>%let xn=%eval(&amp;xn-1);</span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="kw">%let</span> xn=<span class="kw">%eval</span>(<span class="kw">&amp;xn-</span><span class="dv">1</span>);</span>
 <span id="cb1-30"><a href="#cb1-30"></a> </span>
-<span id="cb1-31"><a href="#cb1-31"></a>data xtemp;</span>
-<span id="cb1-32"><a href="#cb1-32"></a>    set &amp;dsetin;</span>
-<span id="cb1-33"><a href="#cb1-33"></a>    run;</span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="kw">data</span> xtemp;</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw">set</span> <span class="kw">&amp;dsetin;</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="kw">    run</span>;</span>
 <span id="cb1-34"><a href="#cb1-34"></a> </span>
-<span id="cb1-35"><a href="#cb1-35"></a>%if &amp;byvar = none %then %do;</span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="kw">%if</span> <span class="kw">&amp;byvar </span>= none <span class="kw">%then</span> <span class="kw">%do</span>;</span>
 <span id="cb1-36"><a href="#cb1-36"></a> </span>
-<span id="cb1-37"><a href="#cb1-37"></a>    data xtemp;</span>
-<span id="cb1-38"><a href="#cb1-38"></a>        set xtemp;</span>
-<span id="cb1-39"><a href="#cb1-39"></a>        xbyvar = 1;</span>
-<span id="cb1-40"><a href="#cb1-40"></a>        run;</span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="kw">    data</span> xtemp;</span>
+<span id="cb1-38"><a href="#cb1-38"></a>        <span class="kw">set</span> xtemp;</span>
+<span id="cb1-39"><a href="#cb1-39"></a>        xbyvar = <span class="dv">1</span>;</span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="kw">        run</span>;</span>
 <span id="cb1-41"><a href="#cb1-41"></a> </span>
-<span id="cb1-42"><a href="#cb1-42"></a>    %let byvar = xbyvar;</span>
+<span id="cb1-42"><a href="#cb1-42"></a>    <span class="kw">%let</span> byvar = xbyvar;</span>
 <span id="cb1-43"><a href="#cb1-43"></a> </span>
-<span id="cb1-44"><a href="#cb1-44"></a>%end;</span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="kw">%end</span>;</span>
 <span id="cb1-45"><a href="#cb1-45"></a> </span>
-<span id="cb1-46"><a href="#cb1-46"></a>proc sort data = xtemp;</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    by &amp;byvar;</span>
-<span id="cb1-48"><a href="#cb1-48"></a>    run;</span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="kw">proc</span> sort<span class="kw"> data</span> = xtemp;</span>
+<span id="cb1-47"><a href="#cb1-47"></a>    <span class="kw">by</span> <span class="kw">&amp;byvar;</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="kw">    run</span>;</span>
 <span id="cb1-49"><a href="#cb1-49"></a> </span>
-<span id="cb1-50"><a href="#cb1-50"></a>proc univariate data = xtemp noprint;</span>
-<span id="cb1-51"><a href="#cb1-51"></a>    by &amp;byvar;</span>
-<span id="cb1-52"><a href="#cb1-52"></a>    var &amp;vars;</span>
-<span id="cb1-53"><a href="#cb1-53"></a>    output out = xtemp_pctl PCTLPTS = &amp;pctl PCTLPRE = &amp;vars PCTLNAME = L H;</span>
-<span id="cb1-54"><a href="#cb1-54"></a>    run;</span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="kw">proc</span> univariate<span class="kw"> data</span> = xtemp noprint;</span>
+<span id="cb1-51"><a href="#cb1-51"></a>    <span class="kw">by</span> <span class="kw">&amp;byvar;</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a>    <span class="fu">var</span> <span class="kw">&amp;vars;</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>    <span class="kw">output</span> out = xtemp_pctl PCTLPTS = <span class="kw">&amp;pctl </span>PCTLPRE = <span class="kw">&amp;vars </span>PCTLNAME = L H;</span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="kw">    run</span>;</span>
 <span id="cb1-55"><a href="#cb1-55"></a> </span>
-<span id="cb1-56"><a href="#cb1-56"></a>data &amp;dsetout;</span>
-<span id="cb1-57"><a href="#cb1-57"></a>    merge xtemp xtemp_pctl;</span>
-<span id="cb1-58"><a href="#cb1-58"></a>    by &amp;byvar;</span>
-<span id="cb1-59"><a href="#cb1-59"></a>    array trimvars{&amp;xn} &amp;vars;</span>
-<span id="cb1-60"><a href="#cb1-60"></a>    array trimvarl{&amp;xn} &amp;varL;</span>
-<span id="cb1-61"><a href="#cb1-61"></a>    array trimvarh{&amp;xn} &amp;varH;</span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="kw">data</span> <span class="kw">&amp;dsetout;</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>    <span class="kw">merge</span> xtemp xtemp_pctl;</span>
+<span id="cb1-58"><a href="#cb1-58"></a>    <span class="kw">by</span> <span class="kw">&amp;byvar;</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>    <span class="kw">array</span> trimvars{<span class="kw">&amp;xn}</span> <span class="kw">&amp;vars;</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>    <span class="kw">array</span> trimvarl{<span class="kw">&amp;xn}</span> <span class="kw">&amp;varL;</span></span>
+<span id="cb1-61"><a href="#cb1-61"></a>    <span class="kw">array</span> trimvarh{<span class="kw">&amp;xn}</span> <span class="kw">&amp;varH;</span></span>
 <span id="cb1-62"><a href="#cb1-62"></a> </span>
-<span id="cb1-63"><a href="#cb1-63"></a>    do xi = 1 to dim(trimvars);</span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="kw">    do</span> xi = <span class="dv">1</span> <span class="kw">to</span> <span class="fu">dim</span>(trimvars);</span>
 <span id="cb1-64"><a href="#cb1-64"></a> </span>
-<span id="cb1-65"><a href="#cb1-65"></a>        %if &amp;type = winsor %then %do;</span>
-<span id="cb1-66"><a href="#cb1-66"></a>            if not missing(trimvars{xi}) then do;</span>
-<span id="cb1-67"><a href="#cb1-67"></a>              if (trimvars{xi} &lt; trimvarl{xi}) then trimvars{xi} = trimvarl{xi};</span>
-<span id="cb1-68"><a href="#cb1-68"></a>              if (trimvars{xi} &gt; trimvarh{xi}) then trimvars{xi} = trimvarh{xi};</span>
-<span id="cb1-69"><a href="#cb1-69"></a>            end;</span>
-<span id="cb1-70"><a href="#cb1-70"></a>        %end;</span>
+<span id="cb1-65"><a href="#cb1-65"></a>        <span class="kw">%if</span> <span class="kw">&amp;type </span>= winsor <span class="kw">%then</span> <span class="kw">%do</span>;</span>
+<span id="cb1-66"><a href="#cb1-66"></a>            <span class="kw">if</span> <span class="kw">not</span> missing(trimvars{xi}) <span class="kw">then do</span>;</span>
+<span id="cb1-67"><a href="#cb1-67"></a>              <span class="kw">if</span> (trimvars{xi} &lt; trimvarl{xi}) <span class="kw">then</span> trimvars{xi} = trimvarl{xi};</span>
+<span id="cb1-68"><a href="#cb1-68"></a>              <span class="kw">if</span> (trimvars{xi} &gt; trimvarh{xi}) <span class="kw">then</span> trimvars{xi} = trimvarh{xi};</span>
+<span id="cb1-69"><a href="#cb1-69"></a><span class="kw">            end</span>;</span>
+<span id="cb1-70"><a href="#cb1-70"></a>        <span class="kw">%end</span>;</span>
 <span id="cb1-71"><a href="#cb1-71"></a> </span>
-<span id="cb1-72"><a href="#cb1-72"></a>        %else %do;</span>
-<span id="cb1-73"><a href="#cb1-73"></a>            if not missing(trimvars{xi}) then do;</span>
-<span id="cb1-74"><a href="#cb1-74"></a>              if (trimvars{xi} &lt; trimvarl{xi}) then delete;</span>
-<span id="cb1-75"><a href="#cb1-75"></a>              if (trimvars{xi} &gt; trimvarh{xi}) then delete;</span>
-<span id="cb1-76"><a href="#cb1-76"></a>            end;</span>
-<span id="cb1-77"><a href="#cb1-77"></a>        %end;</span>
+<span id="cb1-72"><a href="#cb1-72"></a>        <span class="kw">%else</span> <span class="kw">%do</span>;</span>
+<span id="cb1-73"><a href="#cb1-73"></a>            <span class="kw">if</span> <span class="kw">not</span> missing(trimvars{xi}) <span class="kw">then do</span>;</span>
+<span id="cb1-74"><a href="#cb1-74"></a>              <span class="kw">if</span> (trimvars{xi} &lt; trimvarl{xi}) <span class="kw">then</span> <span class="kw">delete</span>;</span>
+<span id="cb1-75"><a href="#cb1-75"></a>              <span class="kw">if</span> (trimvars{xi} &gt; trimvarh{xi}) <span class="kw">then</span> <span class="kw">delete</span>;</span>
+<span id="cb1-76"><a href="#cb1-76"></a><span class="kw">            end</span>;</span>
+<span id="cb1-77"><a href="#cb1-77"></a>        <span class="kw">%end</span>;</span>
 <span id="cb1-78"><a href="#cb1-78"></a> </span>
-<span id="cb1-79"><a href="#cb1-79"></a>    end;</span>
-<span id="cb1-80"><a href="#cb1-80"></a>    drop &amp;varL &amp;varH xbyvar xi;</span>
-<span id="cb1-81"><a href="#cb1-81"></a>    run;</span>
+<span id="cb1-79"><a href="#cb1-79"></a><span class="kw">    end</span>;</span>
+<span id="cb1-80"><a href="#cb1-80"></a>    <span class="kw">drop</span> <span class="kw">&amp;varL &amp;varH </span>xbyvar xi;</span>
+<span id="cb1-81"><a href="#cb1-81"></a><span class="kw">    run</span>;</span>
 <span id="cb1-82"><a href="#cb1-82"></a> </span>
-<span id="cb1-83"><a href="#cb1-83"></a>%mend winsor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-83"><a href="#cb1-83"></a><span class="kw">%mend</span> winsor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="version-2-wrds" class="level2">
 <h2 class="anchored" data-anchor-id="version-2-wrds">Version 2 (WRDS)</h2>
@@ -313,89 +313,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>/* ********************************************************************************* */</span>
-<span id="cb2-2"><a href="#cb2-2"></a>/* ******************** W R D S   R E S E A R C H   M A C R O S ******************** */</span>
-<span id="cb2-3"><a href="#cb2-3"></a>/* ********************************************************************************* */</span>
-<span id="cb2-4"><a href="#cb2-4"></a>/* WRDS Macro: WINSORIZE                                                             */</span>
-<span id="cb2-5"><a href="#cb2-5"></a>/* Summary   : Winsorizes or Trims Outliers                                          */</span>
-<span id="cb2-6"><a href="#cb2-6"></a>/* Date      : April 14, 2009                                                        */</span>
-<span id="cb2-7"><a href="#cb2-7"></a>/* Author    : Rabih Moussawi, WRDS                                                  */</span>
-<span id="cb2-8"><a href="#cb2-8"></a>/* Variables : - INSET and OUTSET are input and output datasets                      */</span>
-<span id="cb2-9"><a href="#cb2-9"></a>/*             - SORTVAR: sort variable used in ranking                              */</span>
-<span id="cb2-10"><a href="#cb2-10"></a>/*             - VARS: variables to trim and winsorize                               */</span>
-<span id="cb2-11"><a href="#cb2-11"></a>/*             - PERC1: trimming and winsorization percent, each tail (default=1%)   */</span>
-<span id="cb2-12"><a href="#cb2-12"></a>/*             - TRIM: trimming=1/winsorization=0, default=0                         */</span>
-<span id="cb2-13"><a href="#cb2-13"></a>/* ********************************************************************************* */</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sas number-lines code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">/* ********************************************************************************* */</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">/* ******************** W R D S   R E S E A R C H   M A C R O S ******************** */</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">/* ********************************************************************************* */</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">/* WRDS Macro: WINSORIZE                                                             */</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">/* Summary   : Winsorizes or Trims Outliers                                          */</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">/* Date      : April 14, 2009                                                        */</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">/* Author    : Rabih Moussawi, WRDS                                                  */</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">/* Variables : - INSET and OUTSET are input and output datasets                      */</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">/*             - SORTVAR: sort variable used in ranking                              */</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">/*             - VARS: variables to trim and winsorize                               */</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">/*             - PERC1: trimming and winsorization percent, each tail (default=1%)   */</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">/*             - TRIM: trimming=1/winsorization=0, default=0                         */</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">/* ********************************************************************************* */</span></span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a>%MACRO WINSORIZE (INSET=,OUTSET=,SORTVAR=,VARS=,PERC1=1,TRIM=0);</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">%MACRO</span> WINSORIZE (INSET=,OUTSET=,SORTVAR=,VARS=,PERC1=1,TRIM=0);</span>
 <span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a>/* List of all variables */</span>
-<span id="cb2-18"><a href="#cb2-18"></a>%let vars = %sysfunc(compbl(&amp;vars));</span>
-<span id="cb2-19"><a href="#cb2-19"></a>%let nvars = %nwords(&amp;vars);</span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">/* List of all variables */</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">%let</span> vars = <span class="kw">%sysfunc</span>(<span class="fu">compbl</span>(<span class="kw">&amp;vars)</span>);</span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="kw">%let</span> nvars = %nwords(&amp;vars);</span>
 <span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a>/* Display Output */</span>
-<span id="cb2-22"><a href="#cb2-22"></a>%put ### START.;</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">/* Display Output */</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">%put</span> ### START.;</span>
 <span id="cb2-23"><a href="#cb2-23"></a></span>
-<span id="cb2-24"><a href="#cb2-24"></a>/* Trimming / Winsorization Options */</span>
-<span id="cb2-25"><a href="#cb2-25"></a>%if &amp;trim=0 %then %put ### Winsorization; %else %put ### Trimming;</span>
-<span id="cb2-26"><a href="#cb2-26"></a>%put ### Number of Variables:  &amp;nvars;</span>
-<span id="cb2-27"><a href="#cb2-27"></a>%put ### List   of Variables:  &amp;vars;</span>
-<span id="cb2-28"><a href="#cb2-28"></a>options nonotes;</span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="co">/* Trimming / Winsorization Options */</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="kw">%if</span> <span class="kw">&amp;trim=</span><span class="dv">0</span> <span class="kw">%then</span> <span class="kw">%put</span> ### Winsorization; <span class="kw">%else</span> <span class="kw">%put</span> ### Trimming;</span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">%put</span> ### Number of Variables:  <span class="kw">&amp;nvars;</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="kw">%put</span> ### <span class="kw">List</span>   of Variables:  <span class="kw">&amp;vars;</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="kw">options</span> nonotes;</span>
 <span id="cb2-29"><a href="#cb2-29"></a></span>
-<span id="cb2-30"><a href="#cb2-30"></a>/* Ranking within &amp;sortvar levels */</span>
-<span id="cb2-31"><a href="#cb2-31"></a>%put ### Sorting... ;</span>
-<span id="cb2-32"><a href="#cb2-32"></a>proc sort data=&amp;inset; by &amp;sortvar; run;</span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="co">/* Ranking within &amp;sortvar levels */</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="kw">%put</span> ### Sorting... ;</span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="kw">proc</span> sort<span class="kw"> data</span>=<span class="kw">&amp;inset;</span> <span class="kw">by</span> <span class="kw">&amp;sortvar; run</span>;</span>
 <span id="cb2-33"><a href="#cb2-33"></a></span>
-<span id="cb2-34"><a href="#cb2-34"></a>/* 2-tail winsorization/trimming */</span>
-<span id="cb2-35"><a href="#cb2-35"></a>%let perc2 = %eval(100-&amp;perc1);</span>
+<span id="cb2-34"><a href="#cb2-34"></a><span class="co">/* 2-tail winsorization/trimming */</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a><span class="kw">%let</span> perc2 = <span class="kw">%eval</span>(<span class="dv">100</span>-<span class="kw">&amp;perc1)</span>;</span>
 <span id="cb2-36"><a href="#cb2-36"></a></span>
-<span id="cb2-37"><a href="#cb2-37"></a>%let var2 = %sysfunc(tranwrd(&amp;vars,%str( ),%str(__ )))__;</span>
-<span id="cb2-38"><a href="#cb2-38"></a>%let var_p1 = %sysfunc(tranwrd(&amp;vars,%str( ),%str(__&amp;perc1 )))__&amp;perc1 ;</span>
-<span id="cb2-39"><a href="#cb2-39"></a>%let var_p2 = %sysfunc(tranwrd(&amp;vars,%str( ),%str(__&amp;perc2 )))__&amp;perc2 ;</span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="kw">%let</span> var2 = <span class="kw">%sysfunc</span>(<span class="fu">tranwrd</span>(<span class="kw">&amp;vars,%str</span>( ),<span class="kw">%str</span>(__ )))__;</span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="kw">%let</span> var_p1 = <span class="kw">%sysfunc</span>(<span class="fu">tranwrd</span>(<span class="kw">&amp;vars,%str</span>( ),<span class="kw">%str</span>(__<span class="kw">&amp;perc1 </span>)))__<span class="kw">&amp;perc1 </span>;</span>
+<span id="cb2-39"><a href="#cb2-39"></a><span class="kw">%let</span> var_p2 = <span class="kw">%sysfunc</span>(<span class="fu">tranwrd</span>(<span class="kw">&amp;vars,%str</span>( ),<span class="kw">%str</span>(__<span class="kw">&amp;perc2 </span>)))__<span class="kw">&amp;perc2 </span>;</span>
 <span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a>/* Calculate upper and lower percentiles */</span>
-<span id="cb2-42"><a href="#cb2-42"></a>proc univariate data=&amp;inset noprint;</span>
-<span id="cb2-43"><a href="#cb2-43"></a>by &amp;sortvar;</span>
-<span id="cb2-44"><a href="#cb2-44"></a>var &amp;vars;</span>
-<span id="cb2-45"><a href="#cb2-45"></a>output out=_perc pctlpts=&amp;perc1 &amp;perc2 pctlpre=&amp;var2;</span>
-<span id="cb2-46"><a href="#cb2-46"></a>run;</span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co">/* Calculate upper and lower percentiles */</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="kw">proc</span> univariate<span class="kw"> data</span>=<span class="kw">&amp;inset </span>noprint;</span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="kw">by</span> <span class="kw">&amp;sortvar;</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="fu">var</span> <span class="kw">&amp;vars;</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="kw">output</span> out=_perc pctlpts=<span class="kw">&amp;perc1 &amp;perc2 </span>pctlpre=<span class="kw">&amp;var2;</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a><span class="kw">run</span>;</span>
 <span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a>%if &amp;trim=1 %then</span>
-<span id="cb2-49"><a href="#cb2-49"></a>%let condition = %str(if myvars(i)&gt;=perct2(i) or myvars(i)&lt;=perct1(i) then myvars(i)=. );</span>
-<span id="cb2-50"><a href="#cb2-50"></a>%else %let condition = %str(myvars(i)=min(perct2(i),max(perct1(i),myvars(i))) );</span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="kw">%if</span> <span class="kw">&amp;trim=</span><span class="dv">1</span> <span class="kw">%then</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="kw">%let</span> condition = <span class="kw">%str</span>(<span class="kw">if</span> myvars(i)&gt;=perct2(i) <span class="kw">or</span> myvars(i)&lt;=perct1(i) <span class="kw">then</span> myvars(i)=. );</span>
+<span id="cb2-50"><a href="#cb2-50"></a><span class="kw">%else</span> <span class="kw">%let</span> condition = <span class="kw">%str</span>(myvars(i)=<span class="fu">min</span>(perct2(i),<span class="fu">max</span>(perct1(i),myvars(i))) );</span>
 <span id="cb2-51"><a href="#cb2-51"></a></span>
-<span id="cb2-52"><a href="#cb2-52"></a>%if &amp;trim=0 %then %put ### Winsorizing at &amp;perc1.%... ;</span>
-<span id="cb2-53"><a href="#cb2-53"></a>%else %put ### Trimming at &amp;perc1.%... ;</span>
+<span id="cb2-52"><a href="#cb2-52"></a><span class="kw">%if</span> <span class="kw">&amp;trim=</span><span class="dv">0</span> <span class="kw">%then</span> <span class="kw">%put</span> ### Winsorizing at <span class="kw">&amp;perc1.</span>%... ;</span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="kw">%else</span> <span class="kw">%put</span> ### Trimming at <span class="kw">&amp;perc1.</span>%... ;</span>
 <span id="cb2-54"><a href="#cb2-54"></a></span>
-<span id="cb2-55"><a href="#cb2-55"></a>/* Save output with trimmed/winsorized variables */</span>
-<span id="cb2-56"><a href="#cb2-56"></a>data &amp;outset;</span>
-<span id="cb2-57"><a href="#cb2-57"></a>merge &amp;inset (in=a) _perc;</span>
-<span id="cb2-58"><a href="#cb2-58"></a>by &amp;sortvar;</span>
-<span id="cb2-59"><a href="#cb2-59"></a>if a;</span>
-<span id="cb2-60"><a href="#cb2-60"></a>array myvars {&amp;nvars} &amp;vars;</span>
-<span id="cb2-61"><a href="#cb2-61"></a>array perct1 {&amp;nvars} &amp;var_p1;</span>
-<span id="cb2-62"><a href="#cb2-62"></a>array perct2 {&amp;nvars} &amp;var_p2;</span>
-<span id="cb2-63"><a href="#cb2-63"></a>do i = 1 to &amp;nvars;</span>
-<span id="cb2-64"><a href="#cb2-64"></a>    if not missing(myvars(i)) then</span>
-<span id="cb2-65"><a href="#cb2-65"></a>    do;</span>
-<span id="cb2-66"><a href="#cb2-66"></a>    &amp;condition;</span>
-<span id="cb2-67"><a href="#cb2-67"></a>    end;</span>
-<span id="cb2-68"><a href="#cb2-68"></a>end;</span>
-<span id="cb2-69"><a href="#cb2-69"></a>drop i &amp;var_p1 &amp;var_p2;</span>
-<span id="cb2-70"><a href="#cb2-70"></a>run;</span>
+<span id="cb2-55"><a href="#cb2-55"></a><span class="co">/* Save output with trimmed/winsorized variables */</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a><span class="kw">data</span> <span class="kw">&amp;outset;</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a><span class="kw">merge</span> <span class="kw">&amp;inset </span>(<span class="kw">in</span>=a) _perc;</span>
+<span id="cb2-58"><a href="#cb2-58"></a><span class="kw">by</span> <span class="kw">&amp;sortvar;</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a><span class="kw">if</span> a;</span>
+<span id="cb2-60"><a href="#cb2-60"></a><span class="kw">array</span> myvars {<span class="kw">&amp;nvars}</span> <span class="kw">&amp;vars;</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a><span class="kw">array</span> perct1 {<span class="kw">&amp;nvars}</span> <span class="kw">&amp;var_p1;</span></span>
+<span id="cb2-62"><a href="#cb2-62"></a><span class="kw">array</span> perct2 {<span class="kw">&amp;nvars}</span> <span class="kw">&amp;var_p2;</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a><span class="kw">do</span> i = <span class="dv">1</span> <span class="kw">to</span> <span class="kw">&amp;nvars;</span></span>
+<span id="cb2-64"><a href="#cb2-64"></a>    <span class="kw">if</span> <span class="kw">not</span> missing(myvars(i)) <span class="kw">then</span></span>
+<span id="cb2-65"><a href="#cb2-65"></a><span class="kw">    do</span>;</span>
+<span id="cb2-66"><a href="#cb2-66"></a>    <span class="kw">&amp;condition;</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a><span class="kw">    end</span>;</span>
+<span id="cb2-68"><a href="#cb2-68"></a><span class="kw">end</span>;</span>
+<span id="cb2-69"><a href="#cb2-69"></a><span class="kw">drop</span> i <span class="kw">&amp;var_p1 &amp;var_p2;</span></span>
+<span id="cb2-70"><a href="#cb2-70"></a><span class="kw">run</span>;</span>
 <span id="cb2-71"><a href="#cb2-71"></a></span>
-<span id="cb2-72"><a href="#cb2-72"></a>/* House Cleaning */</span>
-<span id="cb2-73"><a href="#cb2-73"></a>proc sql; drop table _perc; quit;</span>
-<span id="cb2-74"><a href="#cb2-74"></a>options notes;</span>
+<span id="cb2-72"><a href="#cb2-72"></a><span class="co">/* House Cleaning */</span></span>
+<span id="cb2-73"><a href="#cb2-73"></a><span class="kw">proc</span> sql; <span class="kw">drop</span> <span class="kw">table</span> _perc; <span class="kw">quit</span>;</span>
+<span id="cb2-74"><a href="#cb2-74"></a><span class="kw">options</span> notes;</span>
 <span id="cb2-75"><a href="#cb2-75"></a></span>
-<span id="cb2-76"><a href="#cb2-76"></a>%put ### DONE . ; %put ;</span>
+<span id="cb2-76"><a href="#cb2-76"></a><span class="kw">%put</span> ### DONE . ; <span class="kw">%put</span> ;</span>
 <span id="cb2-77"><a href="#cb2-77"></a></span>
-<span id="cb2-78"><a href="#cb2-78"></a>%MEND WINSORIZE;</span>
+<span id="cb2-78"><a href="#cb2-78"></a><span class="kw">%MEND</span> WINSORIZE;</span>
 <span id="cb2-79"><a href="#cb2-79"></a></span>
-<span id="cb2-80"><a href="#cb2-80"></a>/* ********************************************************************************* */</span>
-<span id="cb2-81"><a href="#cb2-81"></a>/* *************  Material Copyright Wharton Research Data Services  *************** */</span>
-<span id="cb2-82"><a href="#cb2-82"></a>/* ****************************** All Rights Reserved ****************************** */</span>
-<span id="cb2-83"><a href="#cb2-83"></a>/* ********************************************************************************* */</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-80"><a href="#cb2-80"></a><span class="co">/* ********************************************************************************* */</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a><span class="co">/* *************  Material Copyright Wharton Research Data Services  *************** */</span></span>
+<span id="cb2-82"><a href="#cb2-82"></a><span class="co">/* ****************************** All Rights Reserved ****************************** */</span></span>
+<span id="cb2-83"><a href="#cb2-83"></a><span class="co">/* ********************************************************************************* */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
