@@ -17,3 +17,5 @@ resources_directories = ["specurve", "data", "utils", "apps"]
 for src in resources_directories:
     dst = os.path.join(OUTPUT_DIR, src)
     shutil.copytree(src, dst, dirs_exist_ok=True)
+
+shutil.copyfile("images/favicon.ico", os.path.join(OUTPUT_DIR, "favicon.ico"))
