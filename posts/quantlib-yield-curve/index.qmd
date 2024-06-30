@@ -1,0 +1,432 @@
+---
+title: QuantLib - Yield Curve
+date: 2024-06-30
+categories:
+  - Programming
+  - QuantLib
+code-annotations: hover
+---
+
+I'm using [`QuantLib`](https://www.quantlib.org/) to build a simulation software. This series will be a collection of notes for using `QuantLib` and C++ in financial instruments pricing, and perhaps some other random things.
+
+
+## Yield Curve
+
+### Flat Yield Curve
+
+The simplest yield curve is a flat one. Let's build one flat yield curve as at June 20, 2024, with an interest rate of 0.03 compounded annually.
+
+```cpp
+#include <iostream>
+#include <ql/quantlib.hpp>
+#include "utils.cpp" // <1>
+
+using namespace QuantLib;
+
+int main(int, char*[]) {
+  Date today = Date(20, June, 2024);  // Thursday
+  Rate interestRate = 0.03;
+
+  auto flatForwardRates = ext::make_shared<FlatForward>(
+      today, // <2>
+      interestRate, 
+      ActualActual(ActualActual::Bond), // <3>
+      Compounded, Annual);
+
+  RelinkableHandle<YieldTermStructure> flatTermStructure(flatForwardRates); // <4>
+
+  Table table({{"Date", "Time From Reference", "Zero Rate", "Discount Factor"}});
+
+  for (size_t dt = 0; dt < 10; dt++) { // <5>
+    Date date = today + dt;
+    Time time = flatTermStructure->timeFromReference(date);
+    std::ostringstream dateStream;
+    dateStream << date;
+    std::string dateStr = dateStream.str();
+    std::string timeElapsed = std::to_string(time);
+    std::string zeroRate =
+        std::to_string(flatTermStructure->zeroRate(time, Compounded, Annual));
+    std::string df = std::to_string(flatTermStructure->discount(date));
+
+    table.push_back({dateStr, timeElapsed, zeroRate, df});
+  }
+
+  const int columnWidth = 20;
+  printTableWithBorders(table, columnWidth);
+
+  return 0;
+}
+```
+
+1. See below for `utils.cpp`.
+2. Reference date for this (flat) yield curve.
+3. Day counter.
+4. Make a handle of the yield curve. This handle can be "relinked" to others.
+5. Data from this flat yield curve for the next 10 (calendar) days.
+
+The output below is as expected. Time since reference date is a fraction of year. The zero date (annually compounded) at any given date is 0.03.
+
+```txt
++--------------------+--------------------+--------------------+--------------------+
+|                Date| Time From Reference|           Zero Rate|     Discount Factor|
++--------------------+--------------------+--------------------+--------------------+
+|     June 20th, 2024|            0.000000|            0.030000|            1.000000|
+|     June 21st, 2024|            0.002740|            0.030000|            0.999919|
+|     June 22nd, 2024|            0.005479|            0.030000|            0.999838|
+|     June 23rd, 2024|            0.008219|            0.030000|            0.999757|
+|     June 24th, 2024|            0.010959|            0.030000|            0.999676|
+|     June 25th, 2024|            0.013699|            0.030000|            0.999595|
+|     June 26th, 2024|            0.016438|            0.030000|            0.999514|
+|     June 27th, 2024|            0.019178|            0.030000|            0.999433|
+|     June 28th, 2024|            0.021918|            0.030000|            0.999352|
+|     June 29th, 2024|            0.024658|            0.030000|            0.999271|
++--------------------+--------------------+--------------------+--------------------+
+```
+
+### Interpolated Yield Curve
+
+A more realistic case is that the yield curve is not flat. For example, the plot below shows the U.S. Treasury par yield curve rates at June 20, 2024. An inverted shape. Further, the curve is _not continuous_. We need to interpolate the curve to fill the gaps so that we can get the zero rate and discount factor for any given date, as at the reference date of the curve.
+
+::: {.column-margin}
+| Maturity | Yield |
+|----------|-------|
+| 1 Mo     | 5.42  |
+| 2 Mo     | 5.46  |
+| 3 Mo     | 5.5   |
+| 4 Mo     | 5.46  |
+| 6 Mo     | 5.37  |
+| 1 Yr     | 5.1   |
+| 2 Yr     | 4.7   |
+| 3 Yr     | 4.45  |
+| 5 Yr     | 4.26  |
+| 7 Yr     | 4.25  |
+| 10 Yr    | 4.25  |
+| 20 Yr    | 4.49  |
+| 30 Yr    | 4.39  |
+
+: U.S. Treasury par yield curve rates at June 20, 2024
+::: 
+
+```{ojs}
+//| echo: false
+data = FileAttachment("treasury-rates-2024-06-20.csv").csv({ typed: true })
+
+Plot.plot({
+  caption: "U.S. Treasury par yield curve rates at June 20, 2024. An inverted shape.",
+  x: {padding: 0.4, label: "Maturity"},
+  y: {padding: 0.4, label: "Yield (%)", domain: [0, 7]},
+  grid: true,
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    Plot.dot(data, {x: "Maturity", y: "Yield", stroke: "blue", sort: {x: null}}),
+  ]
+})
+```
+
+So, the purpose now is to build a yield curve using the given par rates for distinct maturities.
+
+::: {.callout-note}
+Specifically, Treasury securities with a maturity of 1 year and below are discounted securities, sometimes named __zero coupon bond (ZCB)__. Treasuries with longer maturities pay semiannual coupons. We need to make use of these facts when building the yield curve.
+:::
+
+The following is an example code that deliberately spells out everything.
+
+```c++
+#include <iostream>
+#include <ql/quantlib.hpp>
+
+#include "utils.cpp"
+
+using namespace QuantLib;
+
+int main(int, char *[]) {
+  Date today = Date(20, June, 2024);  // Thursday
+  Integer fixingDays = 0;
+  Integer settlementDays = 1;
+  Date settlementDate = today + settlementDays * Days;
+  Calendar calendar = UnitedStates(UnitedStates::GovernmentBond);
+  DayCounter zcBondsDayCounter = ActualActual(ActualActual::ISDA);
+
+  std::vector<ext::shared_ptr<RateHelper>> bondInstruments; // <1>
+
+  // ZCB
+  auto zcbRate1m = ext::make_shared<SimpleQuote>(.0542);
+  auto zcbRate2m = ext::make_shared<SimpleQuote>(.0546);
+  auto zcbRate3m = ext::make_shared<SimpleQuote>(.055);
+  auto zcbRate4m = ext::make_shared<SimpleQuote>(.0546);
+  auto zcbRate6m = ext::make_shared<SimpleQuote>(.0537);
+  auto zcbRate1y = ext::make_shared<SimpleQuote>(.051);
+
+  auto zcb1m = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate1m), 1 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+  auto zcb2m = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate2m), 2 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+  auto zcb3m = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate3m), 3 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+  auto zcb4m = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate4m), 4 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+  auto zcb6m = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate6m), 6 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+  auto zcb1y = ext::make_shared<DepositRateHelper>(
+      Handle<Quote>(zcbRate1y), 12 * Months, fixingDays, calendar,
+      ModifiedFollowing, true, zcBondsDayCounter);
+
+  bondInstruments.push_back(zcb1m); // <2>
+  bondInstruments.push_back(zcb2m);
+  bondInstruments.push_back(zcb3m);
+  bondInstruments.push_back(zcb4m);
+  bondInstruments.push_back(zcb6m);
+  bondInstruments.push_back(zcb1y);
+
+  // Coupon bonds
+  Real faceAmount = 100.0;
+
+  // Par yields so bond prices are 100
+  auto quote2yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote3yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote5yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote7yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote10yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote20yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+  auto quote30yr = ext::make_shared<SimpleQuote>(100.0); // <3>
+
+  RelinkableHandle<Quote> quoteHandle2yr; // <4>
+  RelinkableHandle<Quote> quoteHandle3yr; // <4>
+  RelinkableHandle<Quote> quoteHandle5yr; // <4>
+  RelinkableHandle<Quote> quoteHandle7yr; // <4>
+  RelinkableHandle<Quote> quoteHandle10yr; // <4>
+  RelinkableHandle<Quote> quoteHandle20yr; // <4>
+  RelinkableHandle<Quote> quoteHandle30yr; // <4>
+
+  quoteHandle2yr.linkTo(quote2yr);
+  quoteHandle3yr.linkTo(quote3yr);
+  quoteHandle5yr.linkTo(quote5yr);
+  quoteHandle7yr.linkTo(quote7yr);
+  quoteHandle10yr.linkTo(quote10yr);
+  quoteHandle20yr.linkTo(quote20yr);
+  quoteHandle30yr.linkTo(quote30yr);
+
+  Date issueDate = today;
+  // 2yr Treasury Note
+  Schedule schedule2yr(issueDate, issueDate + 2 * Years, Period(Semiannual), // <5>
+                       UnitedStates(UnitedStates::GovernmentBond), Following, // <5>
+                       Following, DateGeneration::Backward, false); // <5>
+
+  auto bond2yr = ext::make_shared<FixedRateBond>( // <6>
+      settlementDays, faceAmount, schedule2yr, std::vector<Real>(1, .047), // <6>
+      ActualActual(ActualActual::Bond)); // <6>
+
+  auto bondHelper2yr = ext::make_shared<BondHelper>(quoteHandle2yr, bond2yr); // <7>
+
+  // 3yr Treasury Note
+  Schedule schedule3yr(issueDate, issueDate + 3 * Years, Period(Semiannual),
+                       UnitedStates(UnitedStates::GovernmentBond), Following,
+                       Following, DateGeneration::Backward, false);
+
+  auto bond3yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule3yr, std::vector<Real>(1, .0445),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper3yr = ext::make_shared<BondHelper>(quoteHandle3yr, bond3yr);
+
+  // 5yr Treasury Note
+  Schedule schedule5yr(issueDate, issueDate + 5 * Years, Period(Semiannual),
+                       UnitedStates(UnitedStates::GovernmentBond), Following,
+                       Following, DateGeneration::Backward, false);
+
+  auto bond5yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule5yr, std::vector<Real>(1, .0426),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper5yr = ext::make_shared<BondHelper>(quoteHandle5yr, bond5yr);
+
+  // 7yr Treasury Note
+  Schedule schedule7yr(issueDate, issueDate + 7 * Years, Period(Semiannual),
+                       UnitedStates(UnitedStates::GovernmentBond), Following,
+                       Following, DateGeneration::Backward, false);
+
+  auto bond7yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule7yr, std::vector<Real>(1, .0425),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper7yr = ext::make_shared<BondHelper>(quoteHandle7yr, bond7yr);
+
+  // 10yr Treasury Bond
+  Schedule schedule10yr(issueDate, issueDate + 10 * Years, Period(Semiannual),
+                        UnitedStates(UnitedStates::GovernmentBond), Following,
+                        Following, DateGeneration::Backward, false);
+
+  auto bond10yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule10yr, std::vector<Real>(1, .0425),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper10yr = ext::make_shared<BondHelper>(quoteHandle10yr, bond10yr);
+
+  // 20yr Treasury Bond
+  Schedule schedule20yr(issueDate, issueDate + 20 * Years, Period(Semiannual),
+                        UnitedStates(UnitedStates::GovernmentBond), Following,
+                        Following, DateGeneration::Backward, false);
+
+  auto bond20yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule20yr, std::vector<Real>(1, .0449),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper20yr = ext::make_shared<BondHelper>(quoteHandle20yr, bond20yr);
+
+  // 30yr Treasury Bond
+  Schedule schedule30yr(issueDate, issueDate + 30 * Years, Period(Semiannual),
+                        UnitedStates(UnitedStates::GovernmentBond), Following,
+                        Following, DateGeneration::Backward, false);
+
+  auto bond30yr = ext::make_shared<FixedRateBond>(
+      settlementDays, faceAmount, schedule30yr, std::vector<Real>(1, .0439),
+      ActualActual(ActualActual::Bond));
+
+  auto bondHelper30yr = ext::make_shared<BondHelper>(quoteHandle30yr, bond30yr);
+
+  bondInstruments.push_back(bondHelper2yr); // <8>
+  bondInstruments.push_back(bondHelper3yr); // <8>
+  bondInstruments.push_back(bondHelper5yr); // <8>
+  bondInstruments.push_back(bondHelper7yr); // <8>
+  bondInstruments.push_back(bondHelper10yr); // <8>
+  bondInstruments.push_back(bondHelper20yr); // <8>
+  bondInstruments.push_back(bondHelper30yr); // <8>
+
+  // Curve building
+  DayCounter termStructureDayCounter = ActualActual(ActualActual::ISDA);
+  auto bondDiscountingTermStructure =
+      ext::make_shared<PiecewiseYieldCurve<Discount, LogLinear>>(
+          settlementDate, bondInstruments, termStructureDayCounter);
+
+  RelinkableHandle<YieldTermStructure> discountingTermStructure; // <9>
+  discountingTermStructure.linkTo(bondDiscountingTermStructure);
+
+  // Results
+
+  Table table(
+      {{"Date", "Time From Reference", "Zero Rate", "Discount Factor"}});
+
+  std::vector<int> months;
+
+  for (size_t dt = 0; dt < 12; dt++) {
+    months.push_back(dt);
+  }
+  for (size_t dt = 12; dt < 12 * 30 + 1; dt += 12) {
+    months.push_back(dt);
+  }
+
+  for (auto &dt : months) {
+    Date date = settlementDate + dt * Months;
+    Time time = discountingTermStructure->timeFromReference(date);
+    std::ostringstream dateStream;
+    dateStream << date;
+    std::string dateStr = dateStream.str();
+    std::string timeElapsed = std::to_string(time);
+    std::string zeroRate = std::to_string(
+        discountingTermStructure->zeroRate(time, Compounded, Annual, true));
+    std::string df = std::to_string(discountingTermStructure->discount(date));
+
+    table.push_back({dateStr, timeElapsed, zeroRate, df});
+  }
+
+  const int columnWidth = 20;
+  printTableWithBorders(table, columnWidth);
+
+  return 0;
+}
+```
+1. This vector of `RateHelper` is used to build the curve.
+2. The short end of the yield curve is based on deposit rates or ZCB rates.
+3. These are the market prices (quotes) of Treasury Notes/Bonds.
+4. Quote handle that can be relinked to different data sources.
+5. `Schedule` describes the (coupon) cash flow schedule.
+6. The bond specification.
+7. `BondHelper` associates the market price (quote) and the bond specification.
+8. The long end of the yield curve is based on Treasury coupon bonds.
+9. This `Relinkablehandle` is what we use.
+
+The output is as below. It is easy to tell that the zero rates are varying and interpolated from the known par yields.
+
+```txt
++--------------------+--------------------+--------------------+--------------------+
+|                Date| Time From Reference|           Zero Rate|     Discount Factor|
++--------------------+--------------------+--------------------+--------------------+
+|     June 21st, 2024|            0.000000|            0.055565|            1.000000|
+|     July 21st, 2024|            0.081967|            0.055565|            0.995577|
+|   August 21st, 2024|            0.166667|            0.055743|            0.991000|
+|September 21st, 2024|            0.251366|            0.056006|            0.986396|
+|  October 21st, 2024|            0.333333|            0.055739|            0.982082|
+| November 21st, 2024|            0.418033|            0.055132|            0.977816|
+| December 21st, 2024|            0.500000|            0.054630|            0.973756|
+|  January 21st, 2025|            0.584849|            0.053851|            0.969790|
+| February 21st, 2025|            0.669781|            0.053046|            0.965974|
+|    March 21st, 2025|            0.746493|            0.052476|            0.962540|
+|    April 21st, 2025|            0.831425|            0.051969|            0.958752|
+|      May 21st, 2025|            0.913616|            0.051567|            0.955101|
+|     June 21st, 2025|            0.998548|            0.051222|            0.951343|
+|     June 21st, 2026|            1.998548|            0.047458|            0.911499|
+|     June 21st, 2027|            2.998548|            0.044888|            0.876634|
+|     June 21st, 2028|            4.000000|            0.043644|            0.842926|
+|     June 21st, 2029|            4.998548|            0.042903|            0.810602|
+|     June 21st, 2030|            5.998548|            0.042862|            0.777438|
+|     June 21st, 2031|            6.998548|            0.042833|            0.745630|
+|     June 21st, 2032|            8.000000|            0.042847|            0.714883|
+|     June 21st, 2033|            8.998548|            0.042858|            0.685488|
+|     June 21st, 2034|            9.998548|            0.042869|            0.657250|
+|     June 21st, 2035|           10.998548|            0.043443|            0.626426|
+|     June 21st, 2036|           12.000000|            0.043923|            0.597007|
+|     June 21st, 2037|           12.998548|            0.044328|            0.569049|
+|     June 21st, 2038|           13.998548|            0.044675|            0.542362|
+|     June 21st, 2039|           14.998548|            0.044977|            0.516926|
+|     June 21st, 2040|           16.000000|            0.045241|            0.492649|
+|     June 21st, 2041|           16.998548|            0.045473|            0.469578|
+|     June 21st, 2042|           17.998548|            0.045680|            0.447556|
+|     June 21st, 2043|           18.998548|            0.045866|            0.426567|
+|     June 21st, 2044|           20.000000|            0.046033|            0.406533|
+|     June 21st, 2045|           20.998548|            0.045761|            0.390795|
+|     June 21st, 2046|           21.998548|            0.045513|            0.375644|
+|     June 21st, 2047|           22.998548|            0.045288|            0.361081|
+|     June 21st, 2048|           24.000000|            0.045080|            0.347062|
+|     June 21st, 2049|           24.998548|            0.044890|            0.333626|
+|     June 21st, 2050|           25.998548|            0.044715|            0.320692|
+|     June 21st, 2051|           26.998548|            0.044552|            0.308259|
+|     June 21st, 2052|           28.000000|            0.044401|            0.296291|
+|     June 21st, 2053|           28.998548|            0.044260|            0.284820|
+|     June 21st, 2054|           29.998548|            0.044129|            0.273778|
++--------------------+--------------------+--------------------+--------------------+
+```
+
+## Utils
+
+```cpp {filename="utils.cpp" code-fold="true"}
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <vector>
+
+typedef std::vector<std::vector<std::string>> Table;
+
+// Function to print a table with borders and a header line
+void printTableWithBorders(const Table& table, int colWidth) { 
+  auto printLine = [&](char c) {
+    std::cout << "+";
+    for (int i = 0; i < table[0].size(); ++i)
+      std::cout << std::string(colWidth, c) << "+";
+    std::cout << std::endl;
+  };
+  printLine('-');
+  for (size_t i = 0; i < table.size(); ++i) {
+    for (const auto& cell : table[i])
+      std::cout << "|" << std::setw(colWidth) << std::right << cell;
+    std::cout << "|\n";
+    if (i == 0) printLine('-');
+  }
+  printLine('-');
+}
+```
