@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.557">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mingze Gao">
+<meta name="dcterms.date" content="2024-06-30">
+
+<title>Mingze Gao - QuantLib - Yield Curve</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Mingze Gao - QuantLib - Yield Curve">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/quantlib-yield-curve/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#yield-curve" id="toc-yield-curve" class="nav-link active" data-scroll-target="#yield-curve">Yield Curve</a>
+  <ul class="collapse">
+  <li><a href="#flat-yield-curve" id="toc-flat-yield-curve" class="nav-link" data-scroll-target="#flat-yield-curve">Flat Yield Curve</a></li>
+  <li><a href="#interpolated-yield-curve" id="toc-interpolated-yield-curve" class="nav-link" data-scroll-target="#interpolated-yield-curve">Interpolated Yield Curve</a></li>
+  </ul></li>
+  <li><a href="#utils" id="toc-utils" class="nav-link" data-scroll-target="#utils">Utils</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">QuantLib - Yield Curve</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Programming</div>
+    <div class="quarto-category">QuantLib</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 30, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I’m using <a href="https://www.quantlib.org/"><code>QuantLib</code></a> to build a simulation software. This series will be a collection of notes for using <code>QuantLib</code> and C++ in financial instruments pricing, and perhaps some other random things.</p>
+<section id="yield-curve" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="yield-curve">Yield Curve</h2>
+<section id="flat-yield-curve" class="level3">
+<h3 class="anchored" data-anchor-id="flat-yield-curve">Flat Yield Curve</h3>
+<p>The simplest yield curve is a flat one. Let’s build one flat yield curve as at June 20, 2024, with an interest rate of 0.03 compounded annually.</p>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode cpp code-annotation-code code-with-copy code-annotated"><code class="sourceCode cpp"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ql/quantlib.hpp&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"utils.cpp"</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> QuantLib<span class="op">;</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">char</span><span class="op">*[])</span> <span class="op">{</span></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a>  Date today <span class="op">=</span> Date<span class="op">(</span><span class="dv">20</span><span class="op">,</span> June<span class="op">,</span> <span class="dv">2024</span><span class="op">);</span>  <span class="co">// Thursday</span></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a>  Rate interestRate <span class="op">=</span> <span class="fl">0.03</span><span class="op">;</span></span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> flatForwardRates <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FlatForward<span class="op">&gt;(</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>      today<span class="op">,</span></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>      interestRate<span class="op">,</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-14" class="code-annotation-target"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">),</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>      Compounded<span class="op">,</span> Annual<span class="op">);</span></span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-17" class="code-annotation-target"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>YieldTermStructure<span class="op">&gt;</span> flatTermStructure<span class="op">(</span>flatForwardRates<span class="op">);</span></span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19" aria-hidden="true" tabindex="-1"></a>  Table table<span class="op">({{</span><span class="st">"Date"</span><span class="op">,</span> <span class="st">"Time From Reference"</span><span class="op">,</span> <span class="st">"Zero Rate"</span><span class="op">,</span> <span class="st">"Discount Factor"</span><span class="op">}});</span></span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-21" class="code-annotation-target"><a href="#annotated-cell-1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> dt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> dt <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> dt<span class="op">++)</span> <span class="op">{</span></span>
+<span id="annotated-cell-1-22"><a href="#annotated-cell-1-22" aria-hidden="true" tabindex="-1"></a>    Date date <span class="op">=</span> today <span class="op">+</span> dt<span class="op">;</span></span>
+<span id="annotated-cell-1-23"><a href="#annotated-cell-1-23" aria-hidden="true" tabindex="-1"></a>    Time time <span class="op">=</span> flatTermStructure<span class="op">-&gt;</span>timeFromReference<span class="op">(</span>date<span class="op">);</span></span>
+<span id="annotated-cell-1-24"><a href="#annotated-cell-1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>ostringstream dateStream<span class="op">;</span></span>
+<span id="annotated-cell-1-25"><a href="#annotated-cell-1-25" aria-hidden="true" tabindex="-1"></a>    dateStream <span class="op">&lt;&lt;</span> date<span class="op">;</span></span>
+<span id="annotated-cell-1-26"><a href="#annotated-cell-1-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string dateStr <span class="op">=</span> dateStream<span class="op">.</span>str<span class="op">();</span></span>
+<span id="annotated-cell-1-27"><a href="#annotated-cell-1-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string timeElapsed <span class="op">=</span> <span class="bu">std::</span>to_string<span class="op">(</span>time<span class="op">);</span></span>
+<span id="annotated-cell-1-28"><a href="#annotated-cell-1-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string zeroRate <span class="op">=</span></span>
+<span id="annotated-cell-1-29"><a href="#annotated-cell-1-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>to_string<span class="op">(</span>flatTermStructure<span class="op">-&gt;</span>zeroRate<span class="op">(</span>time<span class="op">,</span> Compounded<span class="op">,</span> Annual<span class="op">));</span></span>
+<span id="annotated-cell-1-30"><a href="#annotated-cell-1-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string df <span class="op">=</span> <span class="bu">std::</span>to_string<span class="op">(</span>flatTermStructure<span class="op">-&gt;</span>discount<span class="op">(</span>date<span class="op">));</span></span>
+<span id="annotated-cell-1-31"><a href="#annotated-cell-1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-32"><a href="#annotated-cell-1-32" aria-hidden="true" tabindex="-1"></a>    table<span class="op">.</span>push_back<span class="op">({</span>dateStr<span class="op">,</span> timeElapsed<span class="op">,</span> zeroRate<span class="op">,</span> df<span class="op">});</span></span>
+<span id="annotated-cell-1-33"><a href="#annotated-cell-1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="annotated-cell-1-34"><a href="#annotated-cell-1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-35"><a href="#annotated-cell-1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">const</span> <span class="dt">int</span> columnWidth <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="annotated-cell-1-36"><a href="#annotated-cell-1-36" aria-hidden="true" tabindex="-1"></a>  printTableWithBorders<span class="op">(</span>table<span class="op">,</span> columnWidth<span class="op">);</span></span>
+<span id="annotated-cell-1-37"><a href="#annotated-cell-1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-38"><a href="#annotated-cell-1-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="annotated-cell-1-39"><a href="#annotated-cell-1-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">See below for <code>utils.cpp</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="12" data-code-annotation="2">Reference date for this (flat) yield curve.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="14" data-code-annotation="3">Day counter.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="17" data-code-annotation="4">Make a handle of the yield curve. This handle can be “relinked” to others.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="21" data-code-annotation="5">Data from this flat yield curve for the next 10 (calendar) days.</span>
+</dd>
+</dl>
+<p>The output below is as expected. Time since reference date is a fraction of year. The zero date (annually compounded) at any given date is 0.03.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>|                Date| Time From Reference|           Zero Rate|     Discount Factor|</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>|     June 20th, 2024|            0.000000|            0.030000|            1.000000|</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2024|            0.002740|            0.030000|            0.999919|</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>|     June 22nd, 2024|            0.005479|            0.030000|            0.999838|</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>|     June 23rd, 2024|            0.008219|            0.030000|            0.999757|</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>|     June 24th, 2024|            0.010959|            0.030000|            0.999676|</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>|     June 25th, 2024|            0.013699|            0.030000|            0.999595|</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>|     June 26th, 2024|            0.016438|            0.030000|            0.999514|</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>|     June 27th, 2024|            0.019178|            0.030000|            0.999433|</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>|     June 28th, 2024|            0.021918|            0.030000|            0.999352|</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>|     June 29th, 2024|            0.024658|            0.030000|            0.999271|</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interpolated-yield-curve" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="interpolated-yield-curve">Interpolated Yield Curve</h3>
+<p>A more realistic case is that the yield curve is not flat. For example, the plot below shows the U.S. Treasury par yield curve rates at June 20, 2024. An inverted shape. Further, the curve is <em>not continuous</em>. We need to interpolate the curve to fill the gaps so that we can get the zero rate and discount factor for any given date, as at the reference date of the curve.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<table class="table">
+<caption>U.S. Treasury par yield curve rates at June 20, 2024</caption>
+<thead>
+<tr class="header">
+<th>Maturity</th>
+<th>Yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 Mo</td>
+<td>5.42</td>
+</tr>
+<tr class="even">
+<td>2 Mo</td>
+<td>5.46</td>
+</tr>
+<tr class="odd">
+<td>3 Mo</td>
+<td>5.5</td>
+</tr>
+<tr class="even">
+<td>4 Mo</td>
+<td>5.46</td>
+</tr>
+<tr class="odd">
+<td>6 Mo</td>
+<td>5.37</td>
+</tr>
+<tr class="even">
+<td>1 Yr</td>
+<td>5.1</td>
+</tr>
+<tr class="odd">
+<td>2 Yr</td>
+<td>4.7</td>
+</tr>
+<tr class="even">
+<td>3 Yr</td>
+<td>4.45</td>
+</tr>
+<tr class="odd">
+<td>5 Yr</td>
+<td>4.26</td>
+</tr>
+<tr class="even">
+<td>7 Yr</td>
+<td>4.25</td>
+</tr>
+<tr class="odd">
+<td>10 Yr</td>
+<td>4.25</td>
+</tr>
+<tr class="even">
+<td>20 Yr</td>
+<td>4.49</td>
+</tr>
+<tr class="odd">
+<td>30 Yr</td>
+<td>4.39</td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="112" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 111;"><span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"treasury-rates-2024-06-20.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"U.S. Treasury par yield curve rates at June 20, 2024. An inverted shape."</span><span class="op">,</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">padding</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity"</span>}<span class="op">,</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">padding</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Yield (%)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">7</span>]}<span class="op">,</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Maturity"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Yield"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span> <span class="dt">sort</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="kw">null</span>}})<span class="op">,</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>So, the purpose now is to build a yield curve using the given par rates for distinct maturities.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Specifically, Treasury securities with a maturity of 1 year and below are discounted securities, sometimes named <strong>zero coupon bond (ZCB)</strong>. Treasuries with longer maturities pay semiannual coupons. We need to make use of these facts when building the yield curve.</p>
+</div>
+</div>
+<p>The following is an example code that deliberately spells out everything.</p>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode cpp code-annotation-code code-with-copy code-annotated"><code class="sourceCode cpp"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ql/quantlib.hpp&gt;</span></span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"utils.cpp"</span></span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> QuantLib<span class="op">;</span></span>
+<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">char</span> <span class="op">*[])</span> <span class="op">{</span></span>
+<span id="annotated-cell-4-9"><a href="#annotated-cell-4-9" aria-hidden="true" tabindex="-1"></a>  Date today <span class="op">=</span> Date<span class="op">(</span><span class="dv">20</span><span class="op">,</span> June<span class="op">,</span> <span class="dv">2024</span><span class="op">);</span>  <span class="co">// Thursday</span></span>
+<span id="annotated-cell-4-10"><a href="#annotated-cell-4-10" aria-hidden="true" tabindex="-1"></a>  Integer fixingDays <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="annotated-cell-4-11"><a href="#annotated-cell-4-11" aria-hidden="true" tabindex="-1"></a>  Integer settlementDays <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="annotated-cell-4-12"><a href="#annotated-cell-4-12" aria-hidden="true" tabindex="-1"></a>  Date settlementDate <span class="op">=</span> today <span class="op">+</span> settlementDays <span class="op">*</span> Days<span class="op">;</span></span>
+<span id="annotated-cell-4-13"><a href="#annotated-cell-4-13" aria-hidden="true" tabindex="-1"></a>  Calendar calendar <span class="op">=</span> UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">);</span></span>
+<span id="annotated-cell-4-14"><a href="#annotated-cell-4-14" aria-hidden="true" tabindex="-1"></a>  DayCounter zcBondsDayCounter <span class="op">=</span> ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>ISDA<span class="op">);</span></span>
+<span id="annotated-cell-4-15"><a href="#annotated-cell-4-15" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-16" class="code-annotation-target"><a href="#annotated-cell-4-16" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>ext<span class="op">::</span>shared_ptr<span class="op">&lt;</span>RateHelper<span class="op">&gt;&gt;</span> bondInstruments<span class="op">;</span></span>
+<span id="annotated-cell-4-17"><a href="#annotated-cell-4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-18"><a href="#annotated-cell-4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ZCB</span></span>
+<span id="annotated-cell-4-19"><a href="#annotated-cell-4-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate1m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.0542</span><span class="op">);</span></span>
+<span id="annotated-cell-4-20"><a href="#annotated-cell-4-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate2m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.0546</span><span class="op">);</span></span>
+<span id="annotated-cell-4-21"><a href="#annotated-cell-4-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate3m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.055</span><span class="op">);</span></span>
+<span id="annotated-cell-4-22"><a href="#annotated-cell-4-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate4m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.0546</span><span class="op">);</span></span>
+<span id="annotated-cell-4-23"><a href="#annotated-cell-4-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate6m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.0537</span><span class="op">);</span></span>
+<span id="annotated-cell-4-24"><a href="#annotated-cell-4-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcbRate1y <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">.051</span><span class="op">);</span></span>
+<span id="annotated-cell-4-25"><a href="#annotated-cell-4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-26"><a href="#annotated-cell-4-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb1m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-27"><a href="#annotated-cell-4-27" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate1m<span class="op">),</span> <span class="dv">1</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-28"><a href="#annotated-cell-4-28" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-29"><a href="#annotated-cell-4-29" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb2m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-30"><a href="#annotated-cell-4-30" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate2m<span class="op">),</span> <span class="dv">2</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-31"><a href="#annotated-cell-4-31" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-32"><a href="#annotated-cell-4-32" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb3m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-33"><a href="#annotated-cell-4-33" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate3m<span class="op">),</span> <span class="dv">3</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-34"><a href="#annotated-cell-4-34" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-35"><a href="#annotated-cell-4-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb4m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-36"><a href="#annotated-cell-4-36" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate4m<span class="op">),</span> <span class="dv">4</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-37"><a href="#annotated-cell-4-37" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-38"><a href="#annotated-cell-4-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb6m <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-39"><a href="#annotated-cell-4-39" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate6m<span class="op">),</span> <span class="dv">6</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-40"><a href="#annotated-cell-4-40" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-41"><a href="#annotated-cell-4-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> zcb1y <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>DepositRateHelper<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-42"><a href="#annotated-cell-4-42" aria-hidden="true" tabindex="-1"></a>      Handle<span class="op">&lt;</span>Quote<span class="op">&gt;(</span>zcbRate1y<span class="op">),</span> <span class="dv">12</span> <span class="op">*</span> Months<span class="op">,</span> fixingDays<span class="op">,</span> calendar<span class="op">,</span></span>
+<span id="annotated-cell-4-43"><a href="#annotated-cell-4-43" aria-hidden="true" tabindex="-1"></a>      ModifiedFollowing<span class="op">,</span> <span class="kw">true</span><span class="op">,</span> zcBondsDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-44"><a href="#annotated-cell-4-44" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-45" class="code-annotation-target"><a href="#annotated-cell-4-45" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb1m<span class="op">);</span></span>
+<span id="annotated-cell-4-46"><a href="#annotated-cell-4-46" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb2m<span class="op">);</span></span>
+<span id="annotated-cell-4-47"><a href="#annotated-cell-4-47" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb3m<span class="op">);</span></span>
+<span id="annotated-cell-4-48"><a href="#annotated-cell-4-48" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb4m<span class="op">);</span></span>
+<span id="annotated-cell-4-49"><a href="#annotated-cell-4-49" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb6m<span class="op">);</span></span>
+<span id="annotated-cell-4-50"><a href="#annotated-cell-4-50" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>zcb1y<span class="op">);</span></span>
+<span id="annotated-cell-4-51"><a href="#annotated-cell-4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-52"><a href="#annotated-cell-4-52" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Coupon bonds</span></span>
+<span id="annotated-cell-4-53"><a href="#annotated-cell-4-53" aria-hidden="true" tabindex="-1"></a>  Real faceAmount <span class="op">=</span> <span class="fl">100.0</span><span class="op">;</span></span>
+<span id="annotated-cell-4-54"><a href="#annotated-cell-4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-55"><a href="#annotated-cell-4-55" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Par yields so bond prices are 100</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3">3</button><span id="annotated-cell-4-56" class="code-annotation-target"><a href="#annotated-cell-4-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote2yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-57"><a href="#annotated-cell-4-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote3yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-58"><a href="#annotated-cell-4-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote5yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-59"><a href="#annotated-cell-4-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote7yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-60"><a href="#annotated-cell-4-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote10yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-61"><a href="#annotated-cell-4-61" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote20yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-62"><a href="#annotated-cell-4-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> quote30yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>SimpleQuote<span class="op">&gt;(</span><span class="fl">100.0</span><span class="op">);</span></span>
+<span id="annotated-cell-4-63"><a href="#annotated-cell-4-63" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4">4</button><span id="annotated-cell-4-64" class="code-annotation-target"><a href="#annotated-cell-4-64" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle2yr<span class="op">;</span></span>
+<span id="annotated-cell-4-65"><a href="#annotated-cell-4-65" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle3yr<span class="op">;</span></span>
+<span id="annotated-cell-4-66"><a href="#annotated-cell-4-66" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle5yr<span class="op">;</span></span>
+<span id="annotated-cell-4-67"><a href="#annotated-cell-4-67" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle7yr<span class="op">;</span></span>
+<span id="annotated-cell-4-68"><a href="#annotated-cell-4-68" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle10yr<span class="op">;</span></span>
+<span id="annotated-cell-4-69"><a href="#annotated-cell-4-69" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle20yr<span class="op">;</span></span>
+<span id="annotated-cell-4-70"><a href="#annotated-cell-4-70" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>Quote<span class="op">&gt;</span> quoteHandle30yr<span class="op">;</span></span>
+<span id="annotated-cell-4-71"><a href="#annotated-cell-4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-72"><a href="#annotated-cell-4-72" aria-hidden="true" tabindex="-1"></a>  quoteHandle2yr<span class="op">.</span>linkTo<span class="op">(</span>quote2yr<span class="op">);</span></span>
+<span id="annotated-cell-4-73"><a href="#annotated-cell-4-73" aria-hidden="true" tabindex="-1"></a>  quoteHandle3yr<span class="op">.</span>linkTo<span class="op">(</span>quote3yr<span class="op">);</span></span>
+<span id="annotated-cell-4-74"><a href="#annotated-cell-4-74" aria-hidden="true" tabindex="-1"></a>  quoteHandle5yr<span class="op">.</span>linkTo<span class="op">(</span>quote5yr<span class="op">);</span></span>
+<span id="annotated-cell-4-75"><a href="#annotated-cell-4-75" aria-hidden="true" tabindex="-1"></a>  quoteHandle7yr<span class="op">.</span>linkTo<span class="op">(</span>quote7yr<span class="op">);</span></span>
+<span id="annotated-cell-4-76"><a href="#annotated-cell-4-76" aria-hidden="true" tabindex="-1"></a>  quoteHandle10yr<span class="op">.</span>linkTo<span class="op">(</span>quote10yr<span class="op">);</span></span>
+<span id="annotated-cell-4-77"><a href="#annotated-cell-4-77" aria-hidden="true" tabindex="-1"></a>  quoteHandle20yr<span class="op">.</span>linkTo<span class="op">(</span>quote20yr<span class="op">);</span></span>
+<span id="annotated-cell-4-78"><a href="#annotated-cell-4-78" aria-hidden="true" tabindex="-1"></a>  quoteHandle30yr<span class="op">.</span>linkTo<span class="op">(</span>quote30yr<span class="op">);</span></span>
+<span id="annotated-cell-4-79"><a href="#annotated-cell-4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-80"><a href="#annotated-cell-4-80" aria-hidden="true" tabindex="-1"></a>  Date issueDate <span class="op">=</span> today<span class="op">;</span></span>
+<span id="annotated-cell-4-81"><a href="#annotated-cell-4-81" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2yr Treasury Note</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="5">5</button><span id="annotated-cell-4-82" class="code-annotation-target"><a href="#annotated-cell-4-82" aria-hidden="true" tabindex="-1"></a>  Schedule schedule2yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-83"><a href="#annotated-cell-4-83" aria-hidden="true" tabindex="-1"></a>                       UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-84"><a href="#annotated-cell-4-84" aria-hidden="true" tabindex="-1"></a>                       Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-85"><a href="#annotated-cell-4-85" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="6">6</button><span id="annotated-cell-4-86" class="code-annotation-target"><a href="#annotated-cell-4-86" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond2yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-87"><a href="#annotated-cell-4-87" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule2yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.047</span><span class="op">),</span></span>
+<span id="annotated-cell-4-88"><a href="#annotated-cell-4-88" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-89"><a href="#annotated-cell-4-89" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="7">7</button><span id="annotated-cell-4-90" class="code-annotation-target"><a href="#annotated-cell-4-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper2yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle2yr<span class="op">,</span> bond2yr<span class="op">);</span></span>
+<span id="annotated-cell-4-91"><a href="#annotated-cell-4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-92"><a href="#annotated-cell-4-92" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3yr Treasury Note</span></span>
+<span id="annotated-cell-4-93"><a href="#annotated-cell-4-93" aria-hidden="true" tabindex="-1"></a>  Schedule schedule3yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-94"><a href="#annotated-cell-4-94" aria-hidden="true" tabindex="-1"></a>                       UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-95"><a href="#annotated-cell-4-95" aria-hidden="true" tabindex="-1"></a>                       Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-96"><a href="#annotated-cell-4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-97"><a href="#annotated-cell-4-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond3yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-98"><a href="#annotated-cell-4-98" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule3yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0445</span><span class="op">),</span></span>
+<span id="annotated-cell-4-99"><a href="#annotated-cell-4-99" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-100"><a href="#annotated-cell-4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-101"><a href="#annotated-cell-4-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper3yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle3yr<span class="op">,</span> bond3yr<span class="op">);</span></span>
+<span id="annotated-cell-4-102"><a href="#annotated-cell-4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-103"><a href="#annotated-cell-4-103" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 5yr Treasury Note</span></span>
+<span id="annotated-cell-4-104"><a href="#annotated-cell-4-104" aria-hidden="true" tabindex="-1"></a>  Schedule schedule5yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-105"><a href="#annotated-cell-4-105" aria-hidden="true" tabindex="-1"></a>                       UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-106"><a href="#annotated-cell-4-106" aria-hidden="true" tabindex="-1"></a>                       Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-107"><a href="#annotated-cell-4-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-108"><a href="#annotated-cell-4-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond5yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-109"><a href="#annotated-cell-4-109" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule5yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0426</span><span class="op">),</span></span>
+<span id="annotated-cell-4-110"><a href="#annotated-cell-4-110" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-111"><a href="#annotated-cell-4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-112"><a href="#annotated-cell-4-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper5yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle5yr<span class="op">,</span> bond5yr<span class="op">);</span></span>
+<span id="annotated-cell-4-113"><a href="#annotated-cell-4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-114"><a href="#annotated-cell-4-114" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 7yr Treasury Note</span></span>
+<span id="annotated-cell-4-115"><a href="#annotated-cell-4-115" aria-hidden="true" tabindex="-1"></a>  Schedule schedule7yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">7</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-116"><a href="#annotated-cell-4-116" aria-hidden="true" tabindex="-1"></a>                       UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-117"><a href="#annotated-cell-4-117" aria-hidden="true" tabindex="-1"></a>                       Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-118"><a href="#annotated-cell-4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-119"><a href="#annotated-cell-4-119" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond7yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-120"><a href="#annotated-cell-4-120" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule7yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0425</span><span class="op">),</span></span>
+<span id="annotated-cell-4-121"><a href="#annotated-cell-4-121" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-122"><a href="#annotated-cell-4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-123"><a href="#annotated-cell-4-123" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper7yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle7yr<span class="op">,</span> bond7yr<span class="op">);</span></span>
+<span id="annotated-cell-4-124"><a href="#annotated-cell-4-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-125"><a href="#annotated-cell-4-125" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 10yr Treasury Bond</span></span>
+<span id="annotated-cell-4-126"><a href="#annotated-cell-4-126" aria-hidden="true" tabindex="-1"></a>  Schedule schedule10yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">10</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-127"><a href="#annotated-cell-4-127" aria-hidden="true" tabindex="-1"></a>                        UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-128"><a href="#annotated-cell-4-128" aria-hidden="true" tabindex="-1"></a>                        Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-129"><a href="#annotated-cell-4-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-130"><a href="#annotated-cell-4-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond10yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-131"><a href="#annotated-cell-4-131" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule10yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0425</span><span class="op">),</span></span>
+<span id="annotated-cell-4-132"><a href="#annotated-cell-4-132" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-133"><a href="#annotated-cell-4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-134"><a href="#annotated-cell-4-134" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper10yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle10yr<span class="op">,</span> bond10yr<span class="op">);</span></span>
+<span id="annotated-cell-4-135"><a href="#annotated-cell-4-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-136"><a href="#annotated-cell-4-136" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 20yr Treasury Bond</span></span>
+<span id="annotated-cell-4-137"><a href="#annotated-cell-4-137" aria-hidden="true" tabindex="-1"></a>  Schedule schedule20yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">20</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-138"><a href="#annotated-cell-4-138" aria-hidden="true" tabindex="-1"></a>                        UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-139"><a href="#annotated-cell-4-139" aria-hidden="true" tabindex="-1"></a>                        Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-140"><a href="#annotated-cell-4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-141"><a href="#annotated-cell-4-141" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond20yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-142"><a href="#annotated-cell-4-142" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule20yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0449</span><span class="op">),</span></span>
+<span id="annotated-cell-4-143"><a href="#annotated-cell-4-143" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-144"><a href="#annotated-cell-4-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-145"><a href="#annotated-cell-4-145" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper20yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle20yr<span class="op">,</span> bond20yr<span class="op">);</span></span>
+<span id="annotated-cell-4-146"><a href="#annotated-cell-4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-147"><a href="#annotated-cell-4-147" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 30yr Treasury Bond</span></span>
+<span id="annotated-cell-4-148"><a href="#annotated-cell-4-148" aria-hidden="true" tabindex="-1"></a>  Schedule schedule30yr<span class="op">(</span>issueDate<span class="op">,</span> issueDate <span class="op">+</span> <span class="dv">30</span> <span class="op">*</span> Years<span class="op">,</span> Period<span class="op">(</span>Semiannual<span class="op">),</span></span>
+<span id="annotated-cell-4-149"><a href="#annotated-cell-4-149" aria-hidden="true" tabindex="-1"></a>                        UnitedStates<span class="op">(</span>UnitedStates<span class="op">::</span>GovernmentBond<span class="op">),</span> Following<span class="op">,</span></span>
+<span id="annotated-cell-4-150"><a href="#annotated-cell-4-150" aria-hidden="true" tabindex="-1"></a>                        Following<span class="op">,</span> DateGeneration<span class="op">::</span>Backward<span class="op">,</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="annotated-cell-4-151"><a href="#annotated-cell-4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-152"><a href="#annotated-cell-4-152" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bond30yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>FixedRateBond<span class="op">&gt;(</span></span>
+<span id="annotated-cell-4-153"><a href="#annotated-cell-4-153" aria-hidden="true" tabindex="-1"></a>      settlementDays<span class="op">,</span> faceAmount<span class="op">,</span> schedule30yr<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Real<span class="op">&gt;(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">.0439</span><span class="op">),</span></span>
+<span id="annotated-cell-4-154"><a href="#annotated-cell-4-154" aria-hidden="true" tabindex="-1"></a>      ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>Bond<span class="op">));</span></span>
+<span id="annotated-cell-4-155"><a href="#annotated-cell-4-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-156"><a href="#annotated-cell-4-156" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondHelper30yr <span class="op">=</span> ext<span class="op">::</span>make_shared<span class="op">&lt;</span>BondHelper<span class="op">&gt;(</span>quoteHandle30yr<span class="op">,</span> bond30yr<span class="op">);</span></span>
+<span id="annotated-cell-4-157"><a href="#annotated-cell-4-157" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="8">8</button><span id="annotated-cell-4-158" class="code-annotation-target"><a href="#annotated-cell-4-158" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper2yr<span class="op">);</span></span>
+<span id="annotated-cell-4-159"><a href="#annotated-cell-4-159" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper3yr<span class="op">);</span></span>
+<span id="annotated-cell-4-160"><a href="#annotated-cell-4-160" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper5yr<span class="op">);</span></span>
+<span id="annotated-cell-4-161"><a href="#annotated-cell-4-161" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper7yr<span class="op">);</span></span>
+<span id="annotated-cell-4-162"><a href="#annotated-cell-4-162" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper10yr<span class="op">);</span></span>
+<span id="annotated-cell-4-163"><a href="#annotated-cell-4-163" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper20yr<span class="op">);</span></span>
+<span id="annotated-cell-4-164"><a href="#annotated-cell-4-164" aria-hidden="true" tabindex="-1"></a>  bondInstruments<span class="op">.</span>push_back<span class="op">(</span>bondHelper30yr<span class="op">);</span></span>
+<span id="annotated-cell-4-165"><a href="#annotated-cell-4-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-166"><a href="#annotated-cell-4-166" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Curve building</span></span>
+<span id="annotated-cell-4-167"><a href="#annotated-cell-4-167" aria-hidden="true" tabindex="-1"></a>  DayCounter termStructureDayCounter <span class="op">=</span> ActualActual<span class="op">(</span>ActualActual<span class="op">::</span>ISDA<span class="op">);</span></span>
+<span id="annotated-cell-4-168"><a href="#annotated-cell-4-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> bondDiscountingTermStructure <span class="op">=</span></span>
+<span id="annotated-cell-4-169"><a href="#annotated-cell-4-169" aria-hidden="true" tabindex="-1"></a>      ext<span class="op">::</span>make_shared<span class="op">&lt;</span>PiecewiseYieldCurve<span class="op">&lt;</span>Discount<span class="op">,</span> LogLinear<span class="op">&gt;&gt;(</span></span>
+<span id="annotated-cell-4-170"><a href="#annotated-cell-4-170" aria-hidden="true" tabindex="-1"></a>          settlementDate<span class="op">,</span> bondInstruments<span class="op">,</span> termStructureDayCounter<span class="op">);</span></span>
+<span id="annotated-cell-4-171"><a href="#annotated-cell-4-171" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="9">9</button><span id="annotated-cell-4-172" class="code-annotation-target"><a href="#annotated-cell-4-172" aria-hidden="true" tabindex="-1"></a>  RelinkableHandle<span class="op">&lt;</span>YieldTermStructure<span class="op">&gt;</span> discountingTermStructure<span class="op">;</span></span>
+<span id="annotated-cell-4-173"><a href="#annotated-cell-4-173" aria-hidden="true" tabindex="-1"></a>  discountingTermStructure<span class="op">.</span>linkTo<span class="op">(</span>bondDiscountingTermStructure<span class="op">);</span></span>
+<span id="annotated-cell-4-174"><a href="#annotated-cell-4-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-175"><a href="#annotated-cell-4-175" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Results</span></span>
+<span id="annotated-cell-4-176"><a href="#annotated-cell-4-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-177"><a href="#annotated-cell-4-177" aria-hidden="true" tabindex="-1"></a>  Table table<span class="op">(</span></span>
+<span id="annotated-cell-4-178"><a href="#annotated-cell-4-178" aria-hidden="true" tabindex="-1"></a>      <span class="op">{{</span><span class="st">"Date"</span><span class="op">,</span> <span class="st">"Time From Reference"</span><span class="op">,</span> <span class="st">"Zero Rate"</span><span class="op">,</span> <span class="st">"Discount Factor"</span><span class="op">}});</span></span>
+<span id="annotated-cell-4-179"><a href="#annotated-cell-4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-180"><a href="#annotated-cell-4-180" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> months<span class="op">;</span></span>
+<span id="annotated-cell-4-181"><a href="#annotated-cell-4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-182"><a href="#annotated-cell-4-182" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> dt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> dt <span class="op">&lt;</span> <span class="dv">12</span><span class="op">;</span> dt<span class="op">++)</span> <span class="op">{</span></span>
+<span id="annotated-cell-4-183"><a href="#annotated-cell-4-183" aria-hidden="true" tabindex="-1"></a>    months<span class="op">.</span>push_back<span class="op">(</span>dt<span class="op">);</span></span>
+<span id="annotated-cell-4-184"><a href="#annotated-cell-4-184" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="annotated-cell-4-185"><a href="#annotated-cell-4-185" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> dt <span class="op">=</span> <span class="dv">12</span><span class="op">;</span> dt <span class="op">&lt;</span> <span class="dv">12</span> <span class="op">*</span> <span class="dv">30</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> dt <span class="op">+=</span> <span class="dv">12</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="annotated-cell-4-186"><a href="#annotated-cell-4-186" aria-hidden="true" tabindex="-1"></a>    months<span class="op">.</span>push_back<span class="op">(</span>dt<span class="op">);</span></span>
+<span id="annotated-cell-4-187"><a href="#annotated-cell-4-187" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="annotated-cell-4-188"><a href="#annotated-cell-4-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-189"><a href="#annotated-cell-4-189" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span>dt <span class="op">:</span> months<span class="op">)</span> <span class="op">{</span></span>
+<span id="annotated-cell-4-190"><a href="#annotated-cell-4-190" aria-hidden="true" tabindex="-1"></a>    Date date <span class="op">=</span> settlementDate <span class="op">+</span> dt <span class="op">*</span> Months<span class="op">;</span></span>
+<span id="annotated-cell-4-191"><a href="#annotated-cell-4-191" aria-hidden="true" tabindex="-1"></a>    Time time <span class="op">=</span> discountingTermStructure<span class="op">-&gt;</span>timeFromReference<span class="op">(</span>date<span class="op">);</span></span>
+<span id="annotated-cell-4-192"><a href="#annotated-cell-4-192" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>ostringstream dateStream<span class="op">;</span></span>
+<span id="annotated-cell-4-193"><a href="#annotated-cell-4-193" aria-hidden="true" tabindex="-1"></a>    dateStream <span class="op">&lt;&lt;</span> date<span class="op">;</span></span>
+<span id="annotated-cell-4-194"><a href="#annotated-cell-4-194" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string dateStr <span class="op">=</span> dateStream<span class="op">.</span>str<span class="op">();</span></span>
+<span id="annotated-cell-4-195"><a href="#annotated-cell-4-195" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string timeElapsed <span class="op">=</span> <span class="bu">std::</span>to_string<span class="op">(</span>time<span class="op">);</span></span>
+<span id="annotated-cell-4-196"><a href="#annotated-cell-4-196" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string zeroRate <span class="op">=</span> <span class="bu">std::</span>to_string<span class="op">(</span></span>
+<span id="annotated-cell-4-197"><a href="#annotated-cell-4-197" aria-hidden="true" tabindex="-1"></a>        discountingTermStructure<span class="op">-&gt;</span>zeroRate<span class="op">(</span>time<span class="op">,</span> Compounded<span class="op">,</span> Annual<span class="op">,</span> <span class="kw">true</span><span class="op">));</span></span>
+<span id="annotated-cell-4-198"><a href="#annotated-cell-4-198" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>string df <span class="op">=</span> <span class="bu">std::</span>to_string<span class="op">(</span>discountingTermStructure<span class="op">-&gt;</span>discount<span class="op">(</span>date<span class="op">));</span></span>
+<span id="annotated-cell-4-199"><a href="#annotated-cell-4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-200"><a href="#annotated-cell-4-200" aria-hidden="true" tabindex="-1"></a>    table<span class="op">.</span>push_back<span class="op">({</span>dateStr<span class="op">,</span> timeElapsed<span class="op">,</span> zeroRate<span class="op">,</span> df<span class="op">});</span></span>
+<span id="annotated-cell-4-201"><a href="#annotated-cell-4-201" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="annotated-cell-4-202"><a href="#annotated-cell-4-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-203"><a href="#annotated-cell-4-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">const</span> <span class="dt">int</span> columnWidth <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="annotated-cell-4-204"><a href="#annotated-cell-4-204" aria-hidden="true" tabindex="-1"></a>  printTableWithBorders<span class="op">(</span>table<span class="op">,</span> columnWidth<span class="op">);</span></span>
+<span id="annotated-cell-4-205"><a href="#annotated-cell-4-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-206"><a href="#annotated-cell-4-206" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="annotated-cell-4-207"><a href="#annotated-cell-4-207" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="16" data-code-annotation="1">This vector of <code>RateHelper</code> is used to build the curve.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="45" data-code-annotation="2">The short end of the yield curve is based on deposit rates or ZCB rates.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="56,57,58,59,60,61,62" data-code-annotation="3">These are the market prices (quotes) of Treasury Notes/Bonds.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="64,65,66,67,68,69,70" data-code-annotation="4">Quote handle that can be relinked to different data sources.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="82,83,84" data-code-annotation="5"><code>Schedule</code> describes the (coupon) cash flow schedule.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="86,87,88" data-code-annotation="6">The bond specification.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="90" data-code-annotation="7"><code>BondHelper</code> associates the market price (quote) and the bond specification.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="158,159,160,161,162,163,164" data-code-annotation="8">The long end of the yield curve is based on Treasury coupon bonds.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="9">9</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="172" data-code-annotation="9">This <code>Relinkablehandle</code> is what we use.</span>
+</dd>
+</dl>
+<p>The output is as below. It is easy to tell that the zero rates are varying and interpolated from the known par yields.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>|                Date| Time From Reference|           Zero Rate|     Discount Factor|</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2024|            0.000000|            0.055565|            1.000000|</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>|     July 21st, 2024|            0.081967|            0.055565|            0.995577|</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>|   August 21st, 2024|            0.166667|            0.055743|            0.991000|</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>|September 21st, 2024|            0.251366|            0.056006|            0.986396|</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>|  October 21st, 2024|            0.333333|            0.055739|            0.982082|</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>| November 21st, 2024|            0.418033|            0.055132|            0.977816|</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>| December 21st, 2024|            0.500000|            0.054630|            0.973756|</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>|  January 21st, 2025|            0.584849|            0.053851|            0.969790|</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>| February 21st, 2025|            0.669781|            0.053046|            0.965974|</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>|    March 21st, 2025|            0.746493|            0.052476|            0.962540|</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>|    April 21st, 2025|            0.831425|            0.051969|            0.958752|</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>|      May 21st, 2025|            0.913616|            0.051567|            0.955101|</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2025|            0.998548|            0.051222|            0.951343|</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2026|            1.998548|            0.047458|            0.911499|</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2027|            2.998548|            0.044888|            0.876634|</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2028|            4.000000|            0.043644|            0.842926|</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2029|            4.998548|            0.042903|            0.810602|</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2030|            5.998548|            0.042862|            0.777438|</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2031|            6.998548|            0.042833|            0.745630|</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2032|            8.000000|            0.042847|            0.714883|</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2033|            8.998548|            0.042858|            0.685488|</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2034|            9.998548|            0.042869|            0.657250|</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2035|           10.998548|            0.043443|            0.626426|</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2036|           12.000000|            0.043923|            0.597007|</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2037|           12.998548|            0.044328|            0.569049|</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2038|           13.998548|            0.044675|            0.542362|</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2039|           14.998548|            0.044977|            0.516926|</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2040|           16.000000|            0.045241|            0.492649|</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2041|           16.998548|            0.045473|            0.469578|</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2042|           17.998548|            0.045680|            0.447556|</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2043|           18.998548|            0.045866|            0.426567|</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2044|           20.000000|            0.046033|            0.406533|</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2045|           20.998548|            0.045761|            0.390795|</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2046|           21.998548|            0.045513|            0.375644|</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2047|           22.998548|            0.045288|            0.361081|</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2048|           24.000000|            0.045080|            0.347062|</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2049|           24.998548|            0.044890|            0.333626|</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2050|           25.998548|            0.044715|            0.320692|</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2051|           26.998548|            0.044552|            0.308259|</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2052|           28.000000|            0.044401|            0.296291|</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2053|           28.998548|            0.044260|            0.284820|</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>|     June 21st, 2054|           29.998548|            0.044129|            0.273778|</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>+--------------------+--------------------+--------------------+--------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="utils" class="level2">
+<h2 class="anchored" data-anchor-id="utils">Utils</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>utils.cpp</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="utils.cpp" data-code-fold="true"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iomanip&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;&gt;</span> Table<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to print a table with borders and a header line</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printTableWithBorders<span class="op">(</span><span class="at">const</span> Table<span class="op">&amp;</span> table<span class="op">,</span> <span class="dt">int</span> colWidth<span class="op">)</span> <span class="op">{</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">auto</span> printLine <span class="op">=</span> <span class="op">[&amp;](</span><span class="dt">char</span> c<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"+"</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> table<span class="op">[</span><span class="dv">0</span><span class="op">].</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="bu">std::</span>string<span class="op">(</span>colWidth<span class="op">,</span> c<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="st">"+"</span><span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  printLine<span class="op">(</span><span class="ch">'-'</span><span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> table<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> cell <span class="op">:</span> table<span class="op">[</span>i<span class="op">])</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"|"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>setw<span class="op">(</span>colWidth<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>right <span class="op">&lt;&lt;</span> cell<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"|</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>i <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> printLine<span class="op">(</span><span class="ch">'-'</span><span class="op">);</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  printLine<span class="op">(</span><span class="ch">'-'</span><span class="op">);</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhdGEgPSBGaWxlQXR0YWNobWVudChcInRyZWFzdXJ5LXJhdGVzLTIwMjQtMDYtMjAuY3N2XCIpLmNzdih7IHR5cGVkOiB0cnVlIH0pXG5cblBsb3QucGxvdCh7XG4gIGNhcHRpb246IFwiVS5TLiBUcmVhc3VyeSBwYXIgeWllbGQgY3VydmUgcmF0ZXMgYXQgSnVuZSAyMCwgMjAyNC4gQW4gaW52ZXJ0ZWQgc2hhcGUuXCIsXG4gIHg6IHtwYWRkaW5nOiAwLjQsIGxhYmVsOiBcIk1hdHVyaXR5XCJ9LFxuICB5OiB7cGFkZGluZzogMC40LCBsYWJlbDogXCJZaWVsZCAoJSlcIiwgZG9tYWluOiBbMCwgN119LFxuICBncmlkOiB0cnVlLFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzBdKSxcbiAgICBQbG90LnJ1bGVYKFswXSksXG4gICAgUGxvdC5kb3QoZGF0YSwge3g6IFwiTWF0dXJpdHlcIiwgeTogXCJZaWVsZFwiLCBzdHJva2U6IFwiYmx1ZVwiLCBzb3J0OiB7eDogbnVsbH19KSxcbiAgXVxufSlcbiJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/quantlib-yield-curve";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © 2019 - 2024 Mingze Gao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
