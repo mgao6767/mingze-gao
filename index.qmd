@@ -1,5 +1,17 @@
 ---
 toc: false
+listing:
+  id: recent-posts-listings
+  contents: posts
+  sort-ui: false
+  filter-ui: false
+  sort: "date desc"
+  type: table
+  categories: false
+  fields: [date, title]
+  max-items: 5
+  exclude: 
+    title: "Blog"
 --- 
 
 # Mingze Gao
@@ -50,3 +62,12 @@ Some of his open-source works include, for example,
 I am seeking ideal candidates with a keen interest in financial intermediation and corporate finance. Priority will be given to students who have strong analytical skills and demonstrate proficiency in Stata, SAS, R, Python, and machine learning.
 
 If you are interested, please send your CV and research proposal to my email.
+
+## Recent posts
+
+I write about many topics, taking a random walk away finance. Some recent ones are listed below.
+
+::: {#recent-posts-listings}
+:::
+
+[Read more](posts/index.qmd){.btn .btn-outline-primary .btn role="button"} 
