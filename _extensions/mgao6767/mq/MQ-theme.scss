@@ -1,0 +1,232 @@
+$red:         #A6192E !default;
+$purple:      #80225F !default;
+$deep-red:    #76232F !default;
+$magenta:     #C6007E !default;
+$charcoal:    #373A36 !default;
+$bright-red:  #D6001C !default;
+$sand:        #D6D2C4 !default;
+$white:       #fff !default;
+$green:       #00AA4F !default;
+
+$colors: (
+  "red":        $red,
+  "purple":     $purple,
+  "deep-red":   $deep-red,
+  "magenta":    $magenta,
+  "charcoal":   $charcoal,
+  "bright-red": $bright-red,
+  "sand":       $sand,
+  "white":      $white,
+  "green":      $green
+) !default;
+
+$tabset-border-color: $sand;
+
+$mq-logo: "https://raw.githubusercontent.com/mgao6767/quarto-mq-revealjs-theme/main/_extensions/mq/MQ-logo-transparent.png";
+$mqbs-logo: "https://raw.githubusercontent.com/mgao6767/quarto-mq-revealjs-theme/main/_extensions/mq/MQBS-logo-transparent.png";
+
+
+/*-- scss:uses --*/
+
+/*-- scss:functions --*/
+
+/*-- scss:defaults --*/
+// Headings
+$headingTextTransform: uppercase;
+
+$body-bg:                   $white !default;
+$body-color:                $charcoal !default;
+
+$link-color:                              $red !default;
+
+$font-family-sans-serif:      Arial !default;
+$presentation-font-size-root: 2em !default;
+
+$presentation-title-slide-text-align: left;
+
+// Code Blocks
+$code-block-font-size: 70% !default;
+$code-block-bg:  #F5F5F5 !default;
+
+/* -- scss:mixins --*/
+
+/*-- scss:rules --*/
+
+.section-header-text{
+  font-size: 200% !important;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.section-subheader-text{
+  font-size: 100%;
+  color: $red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+// Macquarie Logo
+.slide-logo {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 5em;
+  right: 10px;
+  min-height: 5%;
+  max-height: 3em  !important;
+  height: 10%;
+  width: auto;
+  color: $white;
+}
+
+// Title
+
+#title-slide{
+  top: 3em !important;
+  font-size: 75% !important;
+  margin-top: 10vh;
+  
+  .quarto-title-authors {
+    display: flex;
+    justify-content: left;
+  
+  .quarto-title-author {
+      padding-left: 0em;
+      padding-right: 0em;
+      width: 100%;
+    }
+  }
+}
+
+.subtitle{
+  font-size: 100% !important;
+  color: $red;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.center{
+  background-color: $sand !important;
+}
+
+.reveal .slides h1{
+  text-transform: capitalize;
+}
+
+.reveal .slides h2{
+  text-transform: capitalize !important;
+  font-size: 3rem;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.reveal .slides h3 {
+  margin-top: -0.5em;
+  font-size: small;
+  margin-bottom: 1em;
+}
+
+.reveal .slides h2::before {
+  content:"";
+  position: absolute;
+  border-bottom: 0.05em solid $charcoal; /*use this to adjust underlin color and size*/
+  width:100%;  /*use this to adjust underline width*/
+  height:1.5em; /*use this to adjust underline position*/
+}
+
+.reveal .slides {
+  background-image: url($mq-logo), url($mqbs-logo);
+  background-position: top right, top left;
+  background-size: auto 7%, auto 6%; 
+  background-repeat: no-repeat, no-repeat;
+  padding-top: 7vh;
+}
+
+.reveal .slides h3{
+  text-transform: uppercase;
+  color: $red;
+  font-size: 100%;
+}
+
+.v-center-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.reveal .slides code{
+  color: $bright-red !important;
+}
+
+// Colours
+
+.red{
+  color: $red !important;
+}
+
+.purple{
+  color: $purple !important;
+}
+
+.deep-red{
+  color: $deep-red !important;
+}
+
+.magenta{
+  color: $magenta !important;
+}
+
+.charcoal{
+  color: $charcoal !important;
+}
+
+.bright-red{
+  color: $bright-red !important;
+}
+
+.sand{
+  color: $sand !important;
+}
+
+.white{
+  color: $white !important;
+}
+
+.green{
+  color: $green !important;
+}
+
+// Hover Text
+
+.hovertext {
+  position: relative;
+  border-bottom: 1px dotted $charcoal;
+}
+
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0.5;
+  width: 480px;
+  background-color: $charcoal;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  transition: opacity 1s ease-in-out;
+
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 110%;
+}
+
+.hovertext:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+strong {
+  color: $red;
+}

@@ -9,7 +9,6 @@ highlight-style: github
 code-block-bg: true
 
 bibliography: references.bib
-cap-location: margin
 
 language: 
   search-box-placeholder: Search
@@ -35,6 +34,8 @@ website:
         text: Research
       - href: posts/index.qmd
         text: Blog
+      # - href: teaching/index.qmd
+      #   text: Teaching
   page-footer: 
     left: "Copyright © 2019 - 2024 Mingze Gao" 
     right: 
@@ -74,3 +75,4 @@ format:
     code-copy: true
     syntax-definitions: 
       - syntax/sas.xml
+    cap-location: margin
