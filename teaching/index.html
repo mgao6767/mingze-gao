@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: ["listing-project","listing-highlight-style","listing-code-block-bg","listing-bibliography","listing-language","listing-website","listing-format","listing-title","listing-subtitle","listing-author","listing-institute","listing-date","listing-categories","listing-pdf-name","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -176,6 +176,10 @@ window.Quarto = {
     <a class="nav-link" href="../posts/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../teaching/index.html" aria-current="page"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -212,7 +216,7 @@ window.Quarto = {
 </header>
 
 
-<div id="listing-AFIN8003-2024S2" class="quarto-listing quarto-listing-container-table">
+<div id="listing-AFIN8003-2024S2" class="quarto-listing quarto-listing-container-custom">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
@@ -220,17 +224,23 @@ window.Quarto = {
 Date
 </th>
 <th>
-Title
+Slides
+</th>
+<th>
+PDF
 </th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="AFIN8003,2024S2" data-listing-date-sort="1721779200000" data-listing-file-modified-sort="1719983274956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3707" data-listing-title-sort="AFIN8003 Week 1 - Introduction" data-listing-filename-sort="index.qmd">
+<tr data-index="0" data-categories="AFIN8003,2024S2" data-listing-date-sort="1721779200000" data-listing-file-modified-sort="1719988329255" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3707">
 <td>
-<span class="listing-date">Jul 24, 2024</span>
+Jul 24, 2024
 </td>
 <td>
-<a href="../teaching/AFIN8003/2024S2/Week1/index.html" class="title listing-title">AFIN8003 Week 1 - Introduction</a>
+<a href="../teaching/AFIN8003/2024S2/Week1/index.html">AFIN8003 Week 1 - Introduction</a>
+</td>
+<td>
+<a href="../teaching/AFIN8003/2024S2/Week1/Week1.pdf">PDF</a>
 </td>
 </tr>
 </tbody>
