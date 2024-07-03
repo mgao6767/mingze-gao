@@ -1,0 +1,21 @@
+<table class="quarto-listing-table table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Slides</th>
+      <th>PDF</th>
+    </tr>
+  </thead>
+
+  <tbody class="list">
+    <% for (const item of items) { %>
+      <tr <%= metadataAttrs(item) %>>
+        <td><%= item.date %></td>
+        <td><a href="<%- item.path %>"><%= item.title %></a></td>
+        <% if (item['pdf-name']) { %>
+          <td><a href="<%- item.path.replace('index.qmd', item['pdf-name']) %>">PDF</a></td>
+        <% } %>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
