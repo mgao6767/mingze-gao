@@ -27,6 +27,9 @@ jobs:
       - run: pip install jupyter
       - run: pip install -r requirements.txt
 
+      - name: Install tinytex
+      - run: quarto install tinytex
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
