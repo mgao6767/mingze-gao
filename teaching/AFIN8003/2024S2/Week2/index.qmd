@@ -4,7 +4,7 @@ subtitle: "Banking and Financial Intermediation"
 author: "Dr. Mingze Gao"
 institute: "Department of Applied Finance"
 date: 2024-07-31
-draft: true
+draft: false
 categories:
     - AFIN8003
     - 2024S2
@@ -91,12 +91,14 @@ Before GFC, the banking regulations primarily focused on prudential regulations 
 - **Liquidity management**: enough liquid resources to meet immediate obligations.
 
 ::: {.fragment}
-Post-GFC, the banking regulations have expanded to include macroprudential regulations.
+Post-GFC, the banking regulations have _expanded_ to include macroprudential regulations.
 
 - **Systemic focus**: greater emphasis on understanding and mitigating systemic risks that could destabilize the entire financial system.
 - **Countercyclical policies**: measures introduced to mitigate the procyclical effects of previous regulatory approaches.
 - **Stress testing**: system-wide tests to assess the resilience of the financial system to shocks.
 :::
+
+# Risks of DIs
 
 ## Banking and trading books
 
@@ -111,8 +113,6 @@ A bank has a **banking book** and a **trading book**, two different ways to cate
 - **Trading book**
     - Assets and liabilities that the bank intends to trade actively.
     - The value and income from these assets are driven by market conditions and short-term price movements.
-
-# Risks of DIs
 
 ## What risks do banks face?
 
@@ -153,7 +153,7 @@ Major risks due to uncertainties in:
 
 Bonds, derivatives, investment securities, ...
 
-A bond's price is given by
+For example, a bond's price is given by
 
 $$
 P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
@@ -320,7 +320,9 @@ The Bank for International Settlements (BIS) established in 1930 is the principa
 
 - WW2 to 1970s: implementing and defending the Bretton Woods system.
 - 1970s to 80s: managing cross-border capital flows following oil crises and the international debt crisis.
-- 1988 Basel Capital Accord and Basel II revision of 2001 to 2006.
+- 1988 Basel Capital Accord and Basel II revision of 2001 to 2006: establishing and revising international standards for capital adequacy.
+- Post-GFC: **Basel III**, a set of reforms designed to improve the regulation, supervision, and risk management of banks.
+- Now: development of Basel IV (Basel 3.1).
 
 ## Banking regulators in Australia
 
@@ -335,7 +337,7 @@ The Council of Financial Regulators ([CFR](https://www.cfr.gov.au/)) coordinates
 
 ## Banking regulators in Australia - RBA
 
-![Evolution of the RBA](figures/evolution-of-the-bank.png){#fig-evolution-of-rba fig-align="center"}
+![Evolution of the RBA](./figures/evolution-of-the-bank.png){#fig-evolution-of-rba fig-align="center"}
 
 ## Banking regulators in Australia - RBA
 
@@ -348,15 +350,51 @@ The role and functions of the RBA explained by the Governor Michele Bullock [[Vi
 
 ## Banking regulators in Australia - APRA
 
+APRA, established in 1998, is an independent statutory authority that supervises institutions across banking, insurance and superannuation, and is accountable to the Australian Parliament.
+
+APRA's primary functions and objectives include:
+
+- **Prudential Supervision**: APRA sets prudential standards and practices for financial institutions to maintain stability and prevent systemic failures. This includes regulations on capital adequacy, risk management, and governance.
+- **Financial Stability**: APRA contributes to the overall stability of the financial system by monitoring and mitigating risks that could lead to financial crises.
+- **Protection of Depositors, Policyholders, and Superannuation Fund Members**: APRA ensures that institutions meet their financial promises to customers, protecting their interests and enhancing confidence in the financial system.
+
 ## Banking regulators in Australia - ASIC
+
+ASIC is Australia's corporate, markets, and financial services regulator.
+
+- Responsible for market integrity and consumer protection across the financial system.
+- Sets standards for financial market behaviour with the aim to protect investor and consumer confidence.
+- Administers the Corporations Law to promote honesty and fairness in companies and markets.
 
 ## Banking regulators in Australia - Treasury
 
+The Department of the Treasury (Treasury) also plays a role in the formulation and implementation of banking regulations in Australia.
+
+- **Policy Development**: Treasury works closely with regulatory bodies like the Reserve Bank of Australia (RBA), Australian Prudential Regulation Authority (APRA), and Australian Securities & Investments Commission (ASIC) to develop policies that ensure the stability and integrity of the banking system.
+- **Legislative Framework**: It is involved in drafting and implementing legislation related to banking regulation, such as the Banking Act and financial sector reforms.
+
 ## Banking regulators in the U.S.
+
+Some important ones include:
+
+- Federal Reserve System (The Fed): central bank of the United States.
+- Office of the Comptroller of the Currency (OCC): charters, regulates, and supervises all national banks and federal savings associations.
+- Federal Deposit Insurance Corporation (FDIC): insures deposits at banks and thrift institutions, supervises financial institutions, and manages receiverships of failed banks.
 
 ## Banking regulators in China
 
+Some important ones include:
+
+- People's Bank of China (PBOC): central bank of China.
+- National Administration of Financial Regulation (NAFR): established in May 2023, replaced the former China Banking and Insurance Regulatory Commission (CBIRC).
+
 ## Banking regulators in Europe
+
+Some important ones include:
+
+- European Central Bank (ECB): oversees monetary policy for the Eurozone and supervises significant banks within member states to ensure financial stability.
+- European Banking Authority (EBA): develops regulatory standards and guidelines to maintain the stability and integrity of the EU's banking sector, coordinating efforts among national regulators.
+- European Systemic Risk Board (ESRB): monitors and assesses systemic risks.
 
 # Finally...
 
@@ -367,6 +405,9 @@ The role and functions of the RBA explained by the Governor Michele Bullock [[Vi
 - Basel Framework - Risk-based Capital Requirements (RBC), [RBC25 Boundary between the banking book and the trading book](https://www.bis.org/basel_framework/chapter/RBC/25.htm)
 - [Banks' funding costs and lending rates](https://www.rba.gov.au/education/resources/explainers/banks-funding-costs-and-lending-rates.html)
 - [FDIC bank failures](https://www.fdic.gov/resources/resolutions/bank-failures/)
+- [About APRA](https://www.apra.gov.au/about-apra)
+- [ASIC website](https://asic.gov.au/)
+- [MoU between the Treasury and the APRA](https://www.apra.gov.au/sites/default/files/MoU-Treasury.pdf)
 
 
 ## References
