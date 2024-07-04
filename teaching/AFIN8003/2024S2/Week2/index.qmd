@@ -1,0 +1,413 @@
+---
+title: "AFIN8003 Week 2 - Risks and Regulation"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-07-31
+draft: false
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week2.pdf"
+# Custom fields
+pdf-name: "Week2.pdf"
+---
+
+# Introduction
+
+## Banks need regulation
+
+DIs (banks, interchangeably) are financial institutions chartered to take deposits from the public and grant loans simultaneously. They are necessary in an economy achieving efficient allocation of financial resources.
+
+However, we also note that 
+
+- the banking structure itself could cause financial fragility [@Diamond1983].
+- the collapse of bank credit contributes to economic crisis [@Bernanke1983].
+
+Therefore, bank failures have significant _negative externality_. As a result, banks are heavily regulated.
+
+## Banking regulations
+
+What types of regulations are needed or in place for banks?
+
+- entry and chartering
+- safety and soundness
+- credit allocation
+- consumer and investor protection
+- ...
+
+## An example: entry and chartering regulation
+
+Economic theories generally view competition as improving social welfare. But it is not necessarily true for the banking sector.
+
+- Consider the location model of @Salop1979.
+- Free entry leads to too many banks that is sub-optimal.
+- Increasing bank costs (e.g., higher reserve requirements) does not limit bank numbers.
+- Charters (business license) could help.
+- Chartering also helps with other regulations.
+
+## The GFC and the new banking regulatory landscape
+
+::: {.columns}
+:::: {.column width="30%"}
+![Impact of the Great Recession on GDP](./figures/great-recession-impact-on-gdp.png){#fig-gfc-impact .lightbox fig-align="center"}
+
+<!-- Source: https://www.cbpp.org/research/chart-book-the-legacy-of-the-great-recession -->
+::::
+
+:::: {.column width="60%"}
+- The Global Financial Crisis (2007-2009) caused the Great Recession that persistently undermines the economy.
+- The regulations were unable to prevent the collapse of the banking sector.
+- New regulatory framework, Basel III, established in response.
+::::
+::::
+
+## The new banking regulatory landscape
+
+Before GFC, the banking regulations primarily focused on prudential regulations concerning the risks of individual banks.
+
+- **Capital adequacy**: sufficient capital to cover potential losses.
+- **Risk management**: ability to manage various risks such as credit, market, and operational risks.
+- **Liquidity management**: enough liquid resources to meet immediate obligations.
+
+::: {.fragment}
+Post-GFC, the banking regulations have _expanded_ to include macroprudential regulations.
+
+- **Systemic focus**: greater emphasis on understanding and mitigating systemic risks that could destabilize the entire financial system.
+- **Countercyclical policies**: measures introduced to mitigate the procyclical effects of previous regulatory approaches.
+- **Stress testing**: system-wide tests to assess the resilience of the financial system to shocks.
+:::
+
+# Risks of DIs
+
+## Banking and trading books
+
+A bank has a **banking book** and a **trading book**, two different ways to categorize financial assets and liabilities, each governed by different management strategies and regulatory standards.[^1]
+
+[^1]: See suggested readings for the boundary between banking and trading books.
+
+- **Banking book**
+    - Assets and liabilities that the bank intends to hold for the long term.
+    - Primarily used for traditional banking activities, e.g., lending and taking deposits.
+
+- **Trading book**
+    - Assets and liabilities that the bank intends to trade actively.
+    - The value and income from these assets are driven by market conditions and short-term price movements.
+
+## What risks do banks face?
+
+The most simplified balance sheet of a bank:
+
+| Assets       | Liabilities and Equity |
+|--------------|------------------------|
+| Loans        | Deposits               |
+| Other assets | Other liabilities      |
+|              | Equity                 |
+
+: Typical balance sheet of a DI {#tbl-balance-sheet}
+
+- Risks on the assets side.
+- Risks on the liabilities and equity side.
+- Other risks beyond the balance sheet.
+
+## Risks on the assets side
+
+- **Loans**
+- **Other assets** (bonds, investment securities, derivatives)
+
+![Excerpt of CBA's 2023 balance sheet - assets](./figures/CBA-balance-sheet-2023.png){#fig-cba-balance-sheet fig-align="center"}
+
+## Risks on the assets side - loans
+
+Loans are often in the banking book and reported based on amortised book value.
+
+Major risks due to uncertainties in:
+
+- Borrower's creditworthiness, **credit risk**
+- Interest rate when rolling over / repricing the loans, **interest rate risk**
+- Exchange rate if loans are denominated in foreign currencies, **foreign exchange risk**
+- Ability to liquidate the loans, **liquidity risk**
+- ...
+
+## Risks on the assets side - other assets
+
+Bonds, derivatives, investment securities, ...
+
+For example, a bond's price is given by
+
+$$
+P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
+$${#eq-bond-pv}
+
+where $C$ is coupon payment, $F$ face value, $T$ maturity, and $r$ interest rate.
+
+Risks due to uncertainties in:
+
+- $C$ and $F$, **credit risk**
+- $r$, **interest rate risk**
+
+Many are on the trading book.
+
+- **Market risk**
+- **Liquidity risk**
+
+## Risks on the liabilities and equity side
+
+- **Deposits**
+- **Other liabilities** (primarily debts)
+
+![Excerpt of CBA's 2023 balance sheet - liabilities](figures/CBA-balance-sheet-liabilities-2023.png){#fig-cba-balance-sheet-liabilities fig-align="center"}
+
+## Risks on the liabilities and equity side - deposits
+
+::: {.columns}
+:::: {.column width="60%"}
+Deposits are the most important funding source of banks - 60% for Australian banks.
+
+- Non-interest bearing deposits.[^non-interest-bearing-deposits]
+- On-demand and short-term deposits.
+- Term deposits.
+- Certificates of deposits.
+
+Risks involved:
+
+- **Interest rate risk**
+- **Liquidity risk**
+- If foreign currencies, **foreign exchange risk**
+
+[^non-interest-bearing-deposits]: Check if your everyday transaction accounts earn you interest!
+::::
+
+:::: {.column width="40%"}
+![Funding composition of banks in Australia](./figures/funding-composition-of-banks-in-australia.png){#fig-bank-funding-comp fig-align="center" .lightbox}
+::::
+:::
+
+## Risks on the liabilities and equity side - debts
+
+Debts are also an important funding source of banks.
+
+- Account for about 30% of bank funding in Australia.
+
+Risks involved:
+
+- **Interest rate risk**
+- **Liquidity risk**
+- If foreign currencies, **foreign exchange risk**
+
+## Risks on the liabilities and equity side - equity
+
+Equity, assets value minus liabilities.
+
+- **Insolvency risk**
+- Manifestation of many other risks - a focus of banking regulations
+  - **Interest rate risk**: changing interest rates cause disproportionate changes in assets value and liabilities value.
+  - **Market risk**: losses from adverse changes in market conditions, such as interest rate fluctuations or stock market declines.
+  - **Credit risk**: high default rates on loans and other credit products can erode asset values.
+  - **Liquidity risk**: inability to convert assets into cash quickly without significant losses.
+  - **Operational risk**: losses stemming from failed internal processes, systems, human errors, or external events.
+  - **Concentration risk**: overexposure to a specific borrower, industry, or geographic region.
+
+## Risks beyond balance sheet
+
+Many other risks:
+
+- **ESG risk**
+- **Cybersecurity risk**
+  - UniSuper[^unisuper] [week-long service outage in May 2024](https://www.unisuper.com.au/about-us/media-centre/2024/a-joint-statement-from-unisuper-and-google-cloud).
+- ...
+
+[^unisuper]: Albeit not a DI.
+
+## Bank failure
+
+Bank failure occurs when a bank is unable to meet its obligations to its depositors or other creditors and either goes bankrupt or must be taken over by a financial regulatory body to avoid bankruptcy.
+
+![Bank failures in the US](./figures/bank-failures-by-year-us.png){#fig-bank-failure fig-align="center"}
+
+## Silicon Valley Bank (SVB) failure
+
+SVB's failure in March 2023 is the largest failure since GFC.
+
+- **Concentration risk**: highly concentrated client base primarily in the tech and VC sectors
+- **Interest rate risk**: a large amount of long-duration assets, like U.S. Treasury bonds and mortgage-backed securities, which decreased in value as interest rates rose sharply.
+- **Liquidity risk**: rising interest rates led to a mismatch in the liquidity profile as SVB’s assets (long-term bonds) lost value while liabilities (deposits) demanded immediate liquidity.
+- **Market risk**: capital raising through asset sales and stock offerings poorly received by the market.
+- **Bank run**: news of the bank's difficulties led to a rapid and large-scale withdrawal of deposits by clients, creating a classic bank run.
+
+## Bank risks - our approach
+
+In this course, we will examine bank risks one by one in a three-step framework:
+
+1. **Identify**: definition, source and nature
+2. **Measure**: ways to gauge the exposure
+3. **Manage**: strategies to mitigate
+
+# Regulations of DIs
+
+## Regulations of banks
+
+Failure of banks has significant negative externality.
+
+- Loss of deposits for savers
+- No credit supply for borrowers
+- Impact on real economy
+- Global Financial Crisis (GFC) 2007-2009
+
+Broadly, banking regulations can be classified into two aspects:
+
+- **Microprudential regulations**: safety and soundness of individual institutions
+- **Macroprudential regulations**: stability of the financial system
+
+The two aspects are not mutually exclusive, but complementary.
+
+# Prudential regulations
+
+## Microprudential regulations
+
+- **Focus**:
+  - Targets the safety and soundness of individual financial institutions.
+
+- **Objectives**:
+  - Prevent the failure of banks and other financial entities.
+  - Protect consumers’ deposits and maintain confidence in the financial system.
+
+- **Methods**:
+  - Setting capital adequacy requirements.
+  - Enforcing liquidity requirements to manage short-term obligations.
+  - Implementing risk management standards and supervisory review processes.
+  - Conducting regular inspections and audits of individual institutions.
+
+## Macroprudential regulations
+
+- **Focus**:
+  - Aims at the stability of the financial system as a whole.
+
+- **Objectives**:
+  - Prevent systemic risks and financial crises that affect the entire economy.
+  - Reduce financial system vulnerabilities from interconnectedness and procyclical tendencies.
+
+- **Methods**:
+  - Implementing caps on overall credit growth and sector-specific loan concentrations.
+  - Using stress tests that simulate adverse economic scenarios to gauge system-wide resilience.
+  - Applying countercyclical capital buffers that increase during economic booms and decrease during downturns.
+
+# Regulatory authorities
+
+## International banking regulatory framework
+
+The Bank for International Settlements (BIS) established in 1930 is the principal centre for international central bank cooperation.
+
+- WW2 to 1970s: implementing and defending the Bretton Woods system.
+- 1970s to 80s: managing cross-border capital flows following oil crises and the international debt crisis.
+- 1988 Basel Capital Accord and Basel II revision of 2001 to 2006: establishing and revising international standards for capital adequacy.
+- Post-GFC: **Basel III**, a set of reforms designed to improve the regulation, supervision, and risk management of banks.
+- Now: development of Basel IV (Basel 3.1).
+
+## Banking regulators in Australia
+
+The Council of Financial Regulators ([CFR](https://www.cfr.gov.au/)) coordinates main financial regulatory agencies in Australia, including:[^cfr]
+
+- Reserve Bank of Australia ([RBA](https://www.rba.gov.au/)), chairs the Council
+- Australian Prudential Regulation Authority ([APRA](https://www.apra.gov.au/))
+- Australian Securities & Investments Commission ([ASIC](https://asic.gov.au/))
+- Department of Treasury (the [Treasury](https://treasury.gov.au/))
+
+[^cfr]: CFR is non-statutory and has no regulatory functions.
+
+## Banking regulators in Australia - RBA
+
+![Evolution of the RBA](./figures/evolution-of-the-bank.png){#fig-evolution-of-rba fig-align="center"}
+
+## Banking regulators in Australia - RBA
+
+RBA is the **central bank** of Australia.
+
+- Its duty is to contribute to the stability of the currency, full employment, and the economic prosperity and welfare of the Australian people.
+- It does this by conducting monetary policy to meet an agreed inflation target, working to maintain a strong financial system and efficient payments system, and issuing the nation's banknotes.
+
+The role and functions of the RBA explained by the Governor Michele Bullock [[Video](https://youtu.be/J2CVhneEvj0)].
+
+## Banking regulators in Australia - APRA
+
+APRA, established in 1998, is an independent statutory authority that supervises institutions across banking, insurance and superannuation, and is accountable to the Australian Parliament.
+
+APRA's primary functions and objectives include:
+
+- **Prudential Supervision**: APRA sets prudential standards and practices for financial institutions to maintain stability and prevent systemic failures. This includes regulations on capital adequacy, risk management, and governance.
+- **Financial Stability**: APRA contributes to the overall stability of the financial system by monitoring and mitigating risks that could lead to financial crises.
+- **Protection of Depositors, Policyholders, and Superannuation Fund Members**: APRA ensures that institutions meet their financial promises to customers, protecting their interests and enhancing confidence in the financial system.
+
+## Banking regulators in Australia - ASIC
+
+ASIC is Australia's corporate, markets, and financial services regulator.
+
+- Responsible for market integrity and consumer protection across the financial system.
+- Sets standards for financial market behaviour with the aim to protect investor and consumer confidence.
+- Administers the Corporations Law to promote honesty and fairness in companies and markets.
+
+## Banking regulators in Australia - Treasury
+
+The Department of the Treasury (Treasury) also plays a role in the formulation and implementation of banking regulations in Australia.
+
+- **Policy Development**: Treasury works closely with regulatory bodies like the Reserve Bank of Australia (RBA), Australian Prudential Regulation Authority (APRA), and Australian Securities & Investments Commission (ASIC) to develop policies that ensure the stability and integrity of the banking system.
+- **Legislative Framework**: It is involved in drafting and implementing legislation related to banking regulation, such as the Banking Act and financial sector reforms.
+
+## Banking regulators in the U.S.
+
+Some important ones include:
+
+- Federal Reserve System (The Fed): central bank of the United States.
+- Office of the Comptroller of the Currency (OCC): charters, regulates, and supervises all national banks and federal savings associations.
+- Federal Deposit Insurance Corporation (FDIC): insures deposits at banks and thrift institutions, supervises financial institutions, and manages receiverships of failed banks.
+
+## Banking regulators in China
+
+Some important ones include:
+
+- People's Bank of China (PBOC): central bank of China.
+- National Administration of Financial Regulation (NAFR): established in May 2023, replaced the former China Banking and Insurance Regulatory Commission (CBIRC).
+
+## Banking regulators in Europe
+
+Some important ones include:
+
+- European Central Bank (ECB): oversees monetary policy for the Eurozone and supervises significant banks within member states to ensure financial stability.
+- European Banking Authority (EBA): develops regulatory standards and guidelines to maintain the stability and integrity of the EU's banking sector, coordinating efforts among national regulators.
+- European Systemic Risk Board (ESRB): monitors and assesses systemic risks.
+
+# Finally...
+
+## Suggested readings
+
+- [History of BIS](https://www.bis.org/about/history_newarrow.htm)
+- [Origins of the Reserve Bank of Australia](https://www.rba.gov.au/education/resources/explainers/origins-of-the-reserve-bank-of-australia.html)
+- Basel Framework - Risk-based Capital Requirements (RBC), [RBC25 Boundary between the banking book and the trading book](https://www.bis.org/basel_framework/chapter/RBC/25.htm)
+- [Banks' funding costs and lending rates](https://www.rba.gov.au/education/resources/explainers/banks-funding-costs-and-lending-rates.html)
+- [FDIC bank failures](https://www.fdic.gov/resources/resolutions/bank-failures/)
+- [About APRA](https://www.apra.gov.au/about-apra)
+- [ASIC website](https://asic.gov.au/)
+- [MoU between the Treasury and the APRA](https://www.apra.gov.au/sites/default/files/MoU-Treasury.pdf)
+
+
+## References
