@@ -153,6 +153,8 @@ Major risks due to uncertainties in:
 
 Bonds, derivatives, investment securities, ...
 
+::: {.columns}
+:::: {.column width="50%"}
 For example, a bond's price is given by
 
 $$
@@ -165,6 +167,54 @@ Risks due to uncertainties in:
 
 - $C$ and $F$, **credit risk**
 - $r$, **interest rate risk**
+::::
+
+:::: {.column width="50%"}
+::: {.content-hidden when-format="pdf"}
+```{ojs}
+//| echo: false
+ 
+viewof maturity4 = Inputs.range(
+  [1, 30], 
+  {value: 15, step: 1, label: "Maturity (years):"}
+)
+viewof couponRate4 = Inputs.range(
+    [0.01, 0.2],
+    {value: 0.05, step: 0.01, label:"Coupon rate:"}
+)
+d = {
+  const f = 100;
+  let c, m;
+  c = couponRate4;
+  m = maturity4;
+  function pv(c, f, t, r) {
+    return c * (1 - (1+r)**(-t)) / r + f / (1+r)**(t)
+  }
+  const prices = {"YTM": [], "Price": []};
+  let coupon = f * c;
+  for (let ytm = 0.01; ytm < 20; ytm++) {
+    let price = pv(coupon, f, m, ytm/100);
+    prices["YTM"].push(ytm);
+    prices["Price"].push(price);
+  }
+  return prices;
+}
+
+data4 = transpose(d)
+Plot.plot({
+  caption: "Assume $100 bond, annual coupons paid in arrears and effective annual discount rate.",
+  x: {padding: 0.4, label: "YTM (%)"},
+  grid: true,
+  marks: [
+    Plot.ruleY([0, 100]),
+    Plot.ruleX([0]),
+    Plot.lineY(data4, {x: "YTM", y: "Price", stroke: "blue"}),
+  ]
+})
+```
+:::
+::::
+:::
 
 Many are on the trading book.
 

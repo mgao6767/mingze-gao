@@ -10,10 +10,28 @@ listing:
   type: table
   categories: true
   fields: [date, title]
-comments: false
 author: ''
+comments:
+  giscus:
+    repo: mgao6767/mingze-gao
+    repo-id: MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=
+    category: Comments
+    category-id: DIC_kwDOEL_nPc4CgWgL
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
 ---
 
 
 ::: {#AFIN8003-2024S2}
+:::
+
+::: {.callout-note}
+These materials are prepared for my teaching at the [Macquarie Business School](https://www.mq.edu.au/macquarie-business-school).
+
+- The content may change before the actual delivery date to ensure the most up-to-date information is provided.
+- These materials are intended solely for educational purposes within the scope of this course. Unauthorized use, distribution, or reproduction of any part of this material is prohibited.
+- Additional resources and readings may be provided throughout the course to enhance learning experience.
+- Please provide any suggestions for improvement, which will be considered for future revisions.
 :::
