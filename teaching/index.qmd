@@ -10,8 +10,17 @@ listing:
   type: table
   categories: true
   fields: [date, title]
-comments: false
 author: ''
+comments:
+  giscus:
+    repo: mgao6767/mingze-gao
+    repo-id: MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=
+    category: Comments
+    category-id: DIC_kwDOEL_nPc4CgWgL
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
 ---
 
 
