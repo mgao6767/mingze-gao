@@ -12,7 +12,7 @@
 <script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.53">
+  <meta name="generator" content="quarto-1.5.47">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-07-31">
@@ -34,6 +34,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -356,6 +421,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <meta name="twitter:title" content="AFIN8003 Week 2 - Risks and Regulation – Mingze Gao">
 <meta name="twitter:description" content="Banking and Financial Intermediation">
 <meta name="twitter:card" content="summary">
@@ -364,7 +431,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../../../site_libs/quarto-contrib/quarto-project/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
   <h1 class="title">AFIN8003 Week 2 - Risks and Regulation</h1>
   <p class="subtitle">Banking and Financial Intermediation</p>
 
@@ -544,6 +611,8 @@ Figure&nbsp;2: Excerpt of CBA’s 2023 balance sheet - assets
 <section id="risks-on-the-assets-side---other-assets" class="slide level2">
 <h2>Risks on the assets side - other assets</h2>
 <p>Bonds, derivatives, investment securities, …</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>For example, a bond’s price is given by</p>
 <p><span id="eq-bond-pv"><span class="math display">\[
 P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
@@ -554,6 +623,85 @@ P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
 <li><span class="math inline">\(C\)</span> and <span class="math inline">\(F\)</span>, <strong>credit risk</strong></li>
 <li><span class="math inline">\(r\)</span>, <strong>interest rate risk</strong></li>
 </ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="177" data-source-offset="-3"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb1-177"><a></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-178"><a></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
+<span id="cb1-179"><a></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
+<span id="cb1-180"><a></a>)</span>
+<span id="cb1-181"><a></a>viewof couponRate4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-182"><a></a>    [<span class="fl">0.01</span><span class="op">,</span> <span class="fl">0.2</span>]<span class="op">,</span></span>
+<span id="cb1-183"><a></a>    {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span><span class="st">"Coupon rate:"</span>}</span>
+<span id="cb1-184"><a></a>)</span>
+<span id="cb1-185"><a></a>d <span class="op">=</span> {</span>
+<span id="cb1-186"><a></a>  <span class="kw">const</span> f <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb1-187"><a></a>  <span class="kw">let</span> c<span class="op">,</span> m<span class="op">;</span></span>
+<span id="cb1-188"><a></a>  c <span class="op">=</span> couponRate4<span class="op">;</span></span>
+<span id="cb1-189"><a></a>  m <span class="op">=</span> maturity4<span class="op">;</span></span>
+<span id="cb1-190"><a></a>  <span class="kw">function</span> <span class="fu">pv</span>(c<span class="op">,</span> f<span class="op">,</span> t<span class="op">,</span> r) {</span>
+<span id="cb1-191"><a></a>    <span class="cf">return</span> c <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> (<span class="dv">1</span><span class="op">+</span>r)<span class="op">**</span>(<span class="op">-</span>t)) <span class="op">/</span> r <span class="op">+</span> f <span class="op">/</span> (<span class="dv">1</span><span class="op">+</span>r)<span class="op">**</span>(t)</span>
+<span id="cb1-192"><a></a>  }</span>
+<span id="cb1-193"><a></a>  <span class="kw">const</span> prices <span class="op">=</span> {<span class="st">"YTM"</span><span class="op">:</span> []<span class="op">,</span> <span class="st">"Price"</span><span class="op">:</span> []}<span class="op">;</span></span>
+<span id="cb1-194"><a></a>  <span class="kw">let</span> coupon <span class="op">=</span> f <span class="op">*</span> c<span class="op">;</span></span>
+<span id="cb1-195"><a></a>  <span class="cf">for</span> (<span class="kw">let</span> ytm <span class="op">=</span> <span class="fl">0.01</span><span class="op">;</span> ytm <span class="op">&lt;</span> <span class="dv">20</span><span class="op">;</span> ytm<span class="op">++</span>) {</span>
+<span id="cb1-196"><a></a>    <span class="kw">let</span> price <span class="op">=</span> <span class="fu">pv</span>(coupon<span class="op">,</span> f<span class="op">,</span> m<span class="op">,</span> ytm<span class="op">/</span><span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb1-197"><a></a>    prices[<span class="st">"YTM"</span>]<span class="op">.</span><span class="fu">push</span>(ytm)<span class="op">;</span></span>
+<span id="cb1-198"><a></a>    prices[<span class="st">"Price"</span>]<span class="op">.</span><span class="fu">push</span>(price)<span class="op">;</span></span>
+<span id="cb1-199"><a></a>  }</span>
+<span id="cb1-200"><a></a>  <span class="cf">return</span> prices<span class="op">;</span></span>
+<span id="cb1-201"><a></a>}</span>
+<span id="cb1-202"><a></a></span>
+<span id="cb1-203"><a></a>data4 <span class="op">=</span> <span class="fu">transpose</span>(d)</span>
+<span id="cb1-204"><a></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-205"><a></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Assume $100 bond, annual coupons paid in arrears and effective annual discount rate."</span><span class="op">,</span></span>
+<span id="cb1-206"><a></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">padding</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"YTM (%)"</span>}<span class="op">,</span></span>
+<span id="cb1-207"><a></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-208"><a></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-209"><a></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>])<span class="op">,</span></span>
+<span id="cb1-210"><a></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb1-211"><a></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data4<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Price"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
+<span id="cb1-212"><a></a>  ]</span>
+<span id="cb1-213"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div></div>
 <p>Many are on the trading book.</p>
 <ul>
 <li><strong>Market risk</strong></li>
@@ -1080,6 +1228,17 @@ Salop, Steven C. 1979. <span>“Monopolistic Competition with Outside Goods.”<
         ]
       });
     </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IiBcclxudmlld29mIG1hdHVyaXR5NCA9IElucHV0cy5yYW5nZShcclxuICBbMSwgMzBdLCBcclxuICB7dmFsdWU6IDE1LCBzdGVwOiAxLCBsYWJlbDogXCJNYXR1cml0eSAoeWVhcnMpOlwifVxyXG4pXHJcbnZpZXdvZiBjb3Vwb25SYXRlNCA9IElucHV0cy5yYW5nZShcclxuICAgIFswLjAxLCAwLjJdLFxyXG4gICAge3ZhbHVlOiAwLjA1LCBzdGVwOiAwLjAxLCBsYWJlbDpcIkNvdXBvbiByYXRlOlwifVxyXG4pXHJcbmQgPSB7XHJcbiAgY29uc3QgZiA9IDEwMDtcclxuICBsZXQgYywgbTtcclxuICBjID0gY291cG9uUmF0ZTQ7XHJcbiAgbSA9IG1hdHVyaXR5NDtcclxuICBmdW5jdGlvbiBwdihjLCBmLCB0LCByKSB7XHJcbiAgICByZXR1cm4gYyAqICgxIC0gKDErcikqKigtdCkpIC8gciArIGYgLyAoMStyKSoqKHQpXHJcbiAgfVxyXG4gIGNvbnN0IHByaWNlcyA9IHtcIllUTVwiOiBbXSwgXCJQcmljZVwiOiBbXX07XHJcbiAgbGV0IGNvdXBvbiA9IGYgKiBjO1xyXG4gIGZvciAobGV0IHl0bSA9IDAuMDE7IHl0bSA8IDIwOyB5dG0rKykge1xyXG4gICAgbGV0IHByaWNlID0gcHYoY291cG9uLCBmLCBtLCB5dG0vMTAwKTtcclxuICAgIHByaWNlc1tcIllUTVwiXS5wdXNoKHl0bSk7XHJcbiAgICBwcmljZXNbXCJQcmljZVwiXS5wdXNoKHByaWNlKTtcclxuICB9XHJcbiAgcmV0dXJuIHByaWNlcztcclxufVxyXG5cclxuZGF0YTQgPSB0cmFuc3Bvc2UoZClcclxuUGxvdC5wbG90KHtcclxuICBjYXB0aW9uOiBcIkFzc3VtZSAkMTAwIGJvbmQsIGFubnVhbCBjb3Vwb25zIHBhaWQgaW4gYXJyZWFycyBhbmQgZWZmZWN0aXZlIGFubnVhbCBkaXNjb3VudCByYXRlLlwiLFxyXG4gIHg6IHtwYWRkaW5nOiAwLjQsIGxhYmVsOiBcIllUTSAoJSlcIn0sXHJcbiAgZ3JpZDogdHJ1ZSxcclxuICBtYXJrczogW1xyXG4gICAgUGxvdC5ydWxlWShbMCwgMTAwXSksXHJcbiAgICBQbG90LnJ1bGVYKFswXSksXHJcbiAgICBQbG90LmxpbmVZKGRhdGE0LCB7eDogXCJZVE1cIiwgeTogXCJQcmljZVwiLCBzdHJva2U6IFwiYmx1ZVwifSksXHJcbiAgXVxyXG59KVxyXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21hdHVyaXR5NCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjb3Vwb25SYXRlNCcpIn1dfQ==
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../teaching/AFIN8003/2024S2/Week2";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../../../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -1267,7 +1426,7 @@ Salop, Steven C. 1979. <span>“Monopolistic Competition with Outside Goods.”<
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
+    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
