@@ -1,31 +1,22 @@
 ---
 title: Teaching
-listing:
-  template: teaching.ejs
-  id: "AFIN8003-2024S2"
-  contents: AFIN8003/2024S2
-  sort-ui: false
-  filter-ui: false
-  sort: "date"
-  type: table
-  categories: true
-  fields: [date, title]
 author: ''
-comments:
-  giscus:
-    repo: mgao6767/mingze-gao
-    repo-id: MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=
-    category: Comments
-    category-id: DIC_kwDOEL_nPc4CgWgL
-    mapping: pathname
-    reactions-enabled: true
-    loading: lazy
-    input-position: top
 ---
 
 
-::: {#AFIN8003-2024S2}
-:::
+<!-- ::: {#AFIN8003-2024S2}
+::: -->
+## Session 2, 2024
+
+### AFIN8003 Banking and Financial Intermediation
+
+| Date         | Lecture                                                                                                                  | Workshop                                           |
+|--------------|--------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| Jul 24, 2024 | [Week 1 - Introduction](./AFIN8003/2024S2/Week1/index.qmd) ([PDF](./AFIN8003/2024S2/Week1/Week1.pdf))                    | [Workshop 1](./AFIN8003/2024S2/Week1/workshop.qmd) |
+| Jul 31, 2024 | [Week 2 - Risks and Regulation](./AFIN8003/2024S2/Week2/index.qmd) ([PDF](./AFIN8003/2024S2/Week2/Week2.pdf))            |                                                    |
+| Aug 7, 2024  | [Week 3 - Capital Management and Adequacy](./AFIN8003/2024S2/Week3/index.qmd) ([PDF](./AFIN8003/2024S2/Week3/Week3.pdf)) |                                                    |
+
+
 
 ::: {.callout-note}
 These materials are prepared for my teaching at the [Macquarie Business School](https://www.mq.edu.au/macquarie-business-school).
