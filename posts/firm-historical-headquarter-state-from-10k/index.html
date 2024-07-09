@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.47">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -273,7 +273,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode. <a href="../../data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip">hist_state_zipcode_from_8k_2004_2022.csv.zip</a></p>
+<p>In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode. <a href="../..\data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip">hist_state_zipcode_from_8k_2004_2022.csv.zip</a></p>
 </div>
 </div>
 <!-- more -->
@@ -472,7 +472,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>The result is a <code>historical_state.dta</code> Stata file like this:</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="../../images/historical_state.png" class="img-fluid figure-img"></p>
+<p><img src="../..\images/historical_state.png" class="img-fluid figure-img"></p>
 <figcaption class="margin-caption">Screenshot of <code>historical_state.dta</code> in Stata</figcaption>
 </figure>
 </div>
@@ -549,10 +549,10 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </section>
 <section id="data-available-for-download" class="level2">
 <h2 class="anchored" data-anchor-id="data-available-for-download">Data available for download</h2>
-<p>You can download the data I compiled here: <a href="../../data/download/corrected_hist_state_1969_2018.dta.zip">corrected_hist_state_1969_2018.dta.zip</a> (1MB).</p>
+<p>You can download the data I compiled here: <a href="../..\data/download/corrected_hist_state_1969_2018.dta.zip">corrected_hist_state_1969_2018.dta.zip</a> (1MB).</p>
 <section id="update" class="level3">
 <h3 class="anchored" data-anchor-id="update"><em><strong>2023 Update</strong></em></h3>
-<p>In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode. Data: <a href="../../data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip">hist_state_zipcode_from_8k_2004_2022.csv.zip</a></p>
+<p>In this update, I use 1,491,368 8-K filings of U.S. firms from 2004 to Dec 2022 and extract their HQ state and zipcode. Data: <a href="../..\data/download/hist_state_zipcode_from_8k_2004_2022.csv.zip">hist_state_zipcode_from_8k_2004_2022.csv.zip</a></p>
 <p>Specifically, I download all 8-K filings from EDGAR and run a script to extract business address from filing header into a database. If a firm reported different states in its filings in a given year, I keep the last one. The code is here at <a href="https://gist.github.com/mgao6767/137049c4b0d591ebfdf46e075999171d">GitHub</a>.</p>
 </section>
 </section>
