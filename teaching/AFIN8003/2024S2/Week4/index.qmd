@@ -1,0 +1,752 @@
+---
+title: "AFIN8003 Week 4 - Interest Rate Risk"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-08-14
+draft: true
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week4.pdf"
+# Custom fields
+pdf-name: "Week4.pdf"
+---
+
+# Interest rate risk
+
+## What is interest rate risk?
+
+::: {.callout-note title="Interest Rate Risk"}
+__Interest rate risk__ is the possibility of a financial loss due to changes in interest rates.
+:::
+
+Recall that in Week 1, we explained one of the key functions performed by financial institutions (especially depositary institutions) is __maturity transformation__. For DIs, they take short-term deposits from depositors and make long-term loans to borrowers.
+
+| Assets                       | Liabilities and Equity           |
+|------------------------------|----------------------------------|
+| Loans (relatively long-term) | Deposits (relatively short-term) |
+| Other assets                 | Other liabilities                |
+|                              | Equity                           |
+
+: Typical balance sheet of a DI {#tbl-balance-sheet}
+
+As a result,
+
+1. This maturity transformation means that FIs have __mismatches of maturities__ of their liabilities (e.g., deposits) and assets (e.g., loans).
+2. Maturity mismatch exposes FIs to (unexpected) interest rate changes:
+   1. refinancing and reinvestment risks
+   2. financial instruments have different levels of value sensitivity to interest rate changes
+3. Interest rate _is_ volatile and can be unexpected.
+
+## Maturity mismatch: refinancing risk
+
+Consider an example bank that has $2 million of 10-year fixed-rate loans and $1 million of 1-year fixed-rate term deposits now. The bank expects to have the same balance sheet in the future.
+
+What would happen in 1 year from now?
+
+- Term deposits mature. Some deposits may be withdrawn.
+- In this case, the bank needs to take additional deposits to maintain the size of balance sheet.
+- However, the interest rate (deposit rate) could be higher in the future, which means higher costs for the bank.
+
+This is a typical __refinancing risk__ - the costs of rolling over funds or re-borrowing funds will rise above the returns generated on investments.
+
+## Maturity mismatch: reinvestment risk
+
+Consider another example bank that has $2 million of 1-year fixed-rate loans and $1 million of 2-year fixed-rate term deposits now. The bank expects to have the same balance sheet in the future.
+
+What would happen in 1 year from now?
+
+- Loans mature.
+- In this case, the bank needs to reinvest into some other assets (e.g., make loans).
+- However, the interest rate (on the loan) could be lower in the future, which means reduced returns for the bank.
+
+This is a typical __reinvestment risk__ - the returns on funds to be reinvested will fall below the cost of funds.
+
+## Financial instruments' value sensitivity to interest rate
+
+The value of longer-maturity instruments typically is more sensitive to interest rate.
+
+::: {.columns}
+:::: {.column width="50%"}
+For example, a bond's price is given by
+
+$$
+P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
+$${#eq-bond-pv}
+
+where $C$ is coupon payment, $F$ face value, $T$ maturity, and $r$ interest rate.
+
+If a FI is financed by issuing long-term bonds and invests in short-term loans, given a change in interest rate, its liabilities' value would change by more than the change in its assets' value, thereby causing an impact on its net worth.
+::::
+
+:::: {.column width="50%"}
+::: {.content-hidden when-format="pdf"}
+```{ojs}
+//| echo: false
+ 
+viewof maturity4 = Inputs.range(
+  [1, 30], 
+  {value: 15, step: 1, label: "Maturity (years):"}
+)
+viewof couponRate4 = Inputs.range(
+    [0.01, 0.2],
+    {value: 0.05, step: 0.01, label:"Coupon rate:"}
+)
+d = {
+  const f = 100;
+  let c, m;
+  c = couponRate4;
+  m = maturity4;
+  function pv(c, f, t, r) {
+    return c * (1 - (1+r)**(-t)) / r + f / (1+r)**(t)
+  }
+  const prices = {"YTM": [], "Price": []};
+  let coupon = f * c;
+  for (let ytm = 0.01; ytm < 20; ytm++) {
+    let price = pv(coupon, f, m, ytm/100);
+    prices["YTM"].push(ytm);
+    prices["Price"].push(price);
+  }
+  return prices;
+}
+
+data4 = transpose(d)
+Plot.plot({
+  caption: "Assume $100 bond, annual coupons paid in arrears and effective annual discount rate.",
+  x: {padding: 0.4, label: "YTM (%)"},
+  grid: true,
+  marks: [
+    Plot.ruleY([0, 100]),
+    Plot.ruleX([0]),
+    Plot.lineY(data4, {x: "YTM", y: "Price", stroke: "blue"}),
+  ]
+})
+```
+:::
+::::
+:::
+
+## The level and movement of interest rates
+
+::: {.columns}
+:::: {.column width="50%"}
+The relative degree of interest rate volatility is directly linked to the monetary policy of the Reserve Bank of Australia (RBA).
+
+- For example, if RBA smooths or targets the level of interest rates, unexpected interest rate shocks and interest rate volatility tend to be small.
+- A change in approach from targeting interest rate (cash rate) goals towards CPI growth rate increased the interest rate volatility.
+
+No matter what, interest rate volatility exists and thus, the appropriate measurement of management of interest rate risk is important to every FI.
+::::
+
+:::: {.column width="50%"}
+![Australian inflation target](./figures/inflation-target.png){#fig-inflation-target .lightbox}
+::::
+:::
+
+## The level and movement of interest rates
+
+::: {.columns}
+:::: {.column width="50%"}
+![Australian cash rate target](./figures/australian-cash-rate.png){.lightbox #fig-cash-rate-target}
+::::
+
+:::: {.column width="50%"}
+![Australian cash rate target and 90-day bill yield](./figures/australian-cash-rate-and-90-day-bill-yield.png){.lightbox #fig-cash-rate-target-90d-bill-yield}
+::::
+:::
+
+## The level and movement of interest rates
+
+::: {.columns}
+:::: {.column width="50%"}
+![10-year Australian government bond yield](./figures/10-year-australian-government-bond-yield.png){.lightbox #fig-10yr-gov-bond-yield}
+::::
+
+:::: {.column width="50%"}
+![Policy interest rates](./figures/policy-interest-rates-g3.png){.lightbox #fig-policy-interest-rates}
+::::
+:::
+
+## The market is bad at guessing interest rates
+
+![The market does not always correctly forecast interest rates](./figures/bad-mkt-expections.png){.lightbox #fig-bad-mkt-expections}
+
+Image source: [Steven Desmyter](https://www.linkedin.com/posts/steven-desmyter-a211621_this-is-what-higher-for-longer-looks-like-activity-7123697175565348864-jFyq)
+
+# Measuring interest rate risk
+
+## An overview
+
+From here, we're to study specific models and technique for measuring FI's interest rate risk. However, it is helpful to first explain the general rule so to better understand the big picture.
+
+::: {.fragment}
+A risk causes an unwanted negative impact on a FI. To measure such risk, we need to specify a few things:
+
+- Which FI's characteristic are we concerned about? Income, net worth, or something else?
+- How sensitive is that FI's characteristic to this risk?
+- What is the potential size of this risk?
+- Is it based on book value or market value?
+- What is the time frame we are looking at?
+- ...
+:::
+
+## Interest rate risk models
+
+The rest of this lecture discusses two models for measuring interest rate risk with different focuses.
+
+|                             | Repricing model           | Duration model |
+|-----------------------------|---------------------------|----------------|
+| Which characteristic?       | Net interest income (NII) | Net worth      |
+| Sensitivity measurement?    | By assumption             | Duration       |
+| Size of risk?               | Flexible                  | Flexible       |
+| Book value or market value? | Book value                | Market value   |
+| Time frame?                 | Flexible                  | Flexible       |
+
+: A simple comparison of two interest rate risk models {#tbl-comparison-interest-rate-risk-models}
+
+# Repricing model
+
+## The repricing model
+
+- Repricing model is also known as the funding gap model.
+  - A book value accounting cash flow analysis of the __repricing gap__ between the interest income earned on an FI’s assets and the interest paid on its liabilities over some period.
+  - Focus on the changes of net interest income (NII).
+- A simple model used by small FIs. 
+- APRA requires smaller ADIs to use the repricing method to estimate interest rate exposures in their _banking book_ for capital adequacy purposes. 
+  - A revision has just been completed in early July, 2024, which will be effective in 2025.[^reading]
+
+[^reading]: See suggested readings.
+
+## Repricing gap, RSA and RSL
+
+__Repricing gap__ is the difference between rate-sensitive assets (__RSA__) and rate-sensitive liabilities (__RSL__).
+
+- RSA: assets whose interest rates will be repriced or changed over some future period (rate-sensitive assets)
+- RSL: liabilities whose interest rates will be repriced or changed over some future period (rate-sensitive liabilities)
+
+An asset (or liability) is "rate-sensitive" if it is repriced at or near current market interest rates within a certain time horizon (or maturity bucket). For example, 
+
+- a _variable-rate_ mortgage's interest rate may be reset every quarter based on the prevailing interest rate.
+- interest rate of term deposits are also adjusted frequently.[^example]
+
+[^example]: [Historical term deposit rates of Australian banks](https://www.finder.com.au/term-deposits/historical-term-deposit-rates)
+
+
+## Maturity (Tenor) buckets
+
+Under repricing model, banks report their repricing gaps for various maturity buckets. For example,
+
+1. One day (overnight).
+2. More than 1 day to 3 months.
+3. More than 3 months to 6 months.
+4. More than 6 months to 12 months.
+5. More than 1 year to 5 years.
+6. More than 5 years.
+
+::: {.callout-tip title="How to determine RSA/RSL for each bucket?"}
+Ask a simple question: Will or can this asset or liability have its interest rate changed within the maturity bucket? If the answer is yes, it is a rate-sensitive asset or liability. If the answer is no, it is not rate sensitive.
+:::
+
+## Maturity buckets and RSA/RSL
+
+Let's practice. Try to identify the one-year RSA and RSL given the following assets and liabilities of a bank.
+
+- Assets:
+  - [ ] 1-year consumer loans
+  - [ ] 2-year consumer loans
+  - [ ] 3-month Treasury bills
+  - [ ] 3-year Treasury bonds
+  - [ ] 20-year fixed rate mortgage
+  - [ ] 30-year floating rate mortgage (repriced every quarter)
+- Liabilities:
+  - [ ] demand deposits (non-interest-bearing)
+  - [ ] 3-month certificates of deposits (CDs)
+  - [ ] 6-month commercial papers
+  - [ ] 1-year term deposits
+  - [ ] 2-year term deposits
+
+
+## Repricing gaps
+
+|           |                            | **Assets** | **Liabilities** | **Gaps** | **Cumulative gap** |
+|-----------|----------------------------|------------|-----------------|----------|--------------------|
+| 1         | One day                    | 20         | 30              | -10      | -10                |
+| 2         | One day to three months    | 30         | 40              | -10      | -20                |
+| 3         | Three months to six months | 70         | 85              | -15      | -35                |
+| 4         | Six months to 12 months    | 90         | 70              | +20      | -15                |
+| 5         | One year to five years     | 40         | 30              | +10      | -5                 |
+| 6         | Over five years            | 10         | 5               | +5       | 0                  |
+| **Total** |                            | $260       | $260            |          |                    |
+
+: Repricing gaps (\$ millions) {#tbl-repricing-gaps}
+
+For example, a negative $10 million difference between its RSA and RSL being repriced in one day (one-day bucket).
+A rise in the overnight rate would lower the FI’s __net interest income__ since the FI has more rate-sensitive liabilities than assets in this bucket.
+
+- A refinancing risk given RSA < RSL. Increase in interest rate means more interest paid on liabilities than earned from assets.
+
+## The repricing model
+
+The repricing model can be used to estimate the change in the FI’s __net interest income__ in a particular repricing bucket if interest rates change.
+
+$$
+\Delta NII_i = (GAP_i) \times \Delta R_i = (RSA_i - RSL_i) \times \Delta R_i
+$$
+
+where:
+
+- $\Delta NII_i$ is the change in net interest income in the $i$th bucket.
+- $GAP_i$ is the dollar size of the gap between the book value of RSA and RSL in maturity bucket $i$.
+- $\Delta R_i$ is the change in the level of interest rates impacting assets and liabilities in the $i$th bucket.
+
+## The repricing model: examples
+
+::: {.callout-note title="One-day repricing gap"}
+In the first bucket of @tbl-repricing-gaps, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:
+
+$$
+\Delta NII_i = GAP_i \times \Delta R_i = -10 \text{ million} \times 0.01 = -100,000
+$$
+
+So, the repricing model suggests a loss of $100,000 in net interest income for the FI.
+:::
+
+::: {.callout-note title="One-year repricing gap"}
+It is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from @tbl-repricing-gaps.
+
+$$
+\Delta NII_i = CGAP_i \times \Delta R_i = -15 \text{ million} \times 0.01 = -150,000
+$$
+
+If the average interest rises by 1 percent, the model suggests a loss of $150,000 in net interest income.
+:::
+
+## The repricing model: examples
+
+Assume both RSAs and RSLs equal $155 million. Suppose that there is a general interest rate rise and that the rates on RSAs rise by 1.2 percent and rates on RSLs rise by only 1 percent. What is the resulting change in NII?
+
+::: {.fragment}
+$$
+\Delta NII_i = RSA_i \times \Delta R^A_i - RSL_i \times \Delta R^L_i = (\$155M \times 0.012) - (\$155M \times 0.01) = \$310,000
+$$
+:::
+
+Suppose the RSA is $155 million and the RSL is $140 million. Interest rates rise by 1.2% on RSAs and 1% on RSLs. What is the change in NII?
+
+::: {.fragment}
+$$
+\Delta NII_i = RSA_i \times \Delta R_i^A - RSL_i \times \Delta R_i^L = (\$155M \times 0.012) - (\$140M \times 0.01) = \$460,000
+$$
+:::
+
+## Real-world application of repricing model
+
+Let see a real-world application of repricing model by [Texas Capital Bank](https://investors.texascapitalbank.com/overview/default.aspx), a (relatively small) commercial bank headquartered in Dallas, Texas, United States.
+
+We can find its annual reports from SEC's [EDGAR](https://www.sec.gov/edgar/search/) system, which allows us to search for any corporate filings.
+
+- Its [most recent annual report](https://www.sec.gov/Archives/edgar/data/1077428/000107742824000040/tcbi-20231231.htm) is filed on 2024-02-13.
+- Check _Item 7A. Quantitative and qualitative disclosure about market risk_.
+
+## The repricing model: problems
+
+The repricing model is very simple and intuitive, but is NOT an accurate measure of interest rate risk. 
+
+Major shortcomings: 
+
+- It is over-aggregative.
+- It ignores the market value effects of interest rate changes: it focuses on the income and ignores the capital gains/losses.
+- It uses the banking book and hence book values of assets and liabilities.
+- It fails to deal with the problem of rate-insensitive asset and liability runoffs and prepayments.
+- It ignores cash flows from off-balance-sheet activities.
+
+
+# Duration model
+
+## Motivation
+
+In the early 2000s, the BIS issued a consultative document suggesting a standardized model be used by regulators in evaluating a bank’s interest rate risk exposure. The approach suggested is firmly based on market value accounting and the __duration gap model__.
+
+The duration gap (model):
+
+- considers market values and the maturity distributions of an FI’s assets and liabilities. 
+- considers the degree of leverage on an FI’s balance sheet.
+- considers the timing of the payment or arrival of cash flows on assets and liabilities. 
+- is a more comprehensive measure of an FI’s interest rate risk. 
+
+Bigger banks have adopted duration model as their primary measure of interest rate risk.[^bigbank]
+
+[^bigbank]: Biggest banks may be allowed to use their internal models subject to regulatory approval.
+
+## Duration
+
+The essence of duration gap model is the concept of __duration__, which is covered in introductory finance courses.
+
+Simply put, duration is the weighted-average time to maturity on the loan using the relative present values of the cash flows as weights.
+
+$$
+D = \sum_{t=1}^{N} w_t \times t
+$$
+
+where $D$ is the duration, and
+
+$$
+w_t = \frac{\text{PV of the cash flow at time } t}{\text{Total PV of all cash flows}}
+$$
+
+## Duration: example
+
+Consider the duration of a 3-year coupon bond with a face value of $1,000, a coupon rate of 5%, and a yield to maturity of 4%. The bond pays annual coupons.
+
+```{python}
+# | label: tbl-duration-example
+# | tbl-cap: Calculating the duration of a 3-year bond
+import pandas as pd
+
+# Parameters
+face_value, coupon_rate, yield_to_maturity, years = 1000, 0.05, 0.04, 3
+annual_coupon_payment = face_value * coupon_rate
+
+# Initialize and calculate values
+data = [
+    (t, annual_coupon_payment if t < years else annual_coupon_payment + face_value)
+    for t in range(1, years + 1)
+]
+total_pv = sum(payment / (1 + yield_to_maturity) ** t for t, payment in data)
+table = [
+    (
+        t,
+        payment,
+        pv := payment / (1 + yield_to_maturity) ** t,
+        weight := pv / total_pv,
+        t * weight,
+    )
+    for t, payment in data
+]
+
+# Create DataFrame
+df = pd.DataFrame(
+    table,
+    columns=[
+        "Time (Years)",
+        "Payment ($)",
+        "PV of Payment ($)",
+        "Weight (PV/Total PV)",
+        "Weighted Time",
+    ],
+)
+
+# Add totals row
+totals = df.sum(numeric_only=True)
+totals = pd.DataFrame(totals).T
+totals["Time (Years)"] = "Total"
+df = pd.concat([df, totals], ignore_index=True)
+
+df.style.highlight_max(["Weighted Time"]).format(precision=2).hide()
+```
+
+The bond's duration is 2.86 years.
+
+## Duration: another example
+
+Consider the duration of a 5-year coupon bond with a face value of $1,000, a coupon rate of 4%, and a yield to maturity of 6%. The bond pays annual coupons.
+
+```{python}
+# | label: tbl-duration-example-2
+# | tbl-cap: Calculating the duration of a 5-year bond
+import pandas as pd
+
+# Parameters
+face_value, coupon_rate, yield_to_maturity, years = 1000, 0.04, 0.06, 5
+annual_coupon_payment = face_value * coupon_rate
+
+# Initialize and calculate values
+data = [
+    (t, annual_coupon_payment if t < years else annual_coupon_payment + face_value)
+    for t in range(1, years + 1)
+]
+total_pv = sum(payment / (1 + yield_to_maturity) ** t for t, payment in data)
+table = [
+    (
+        t,
+        payment,
+        pv := payment / (1 + yield_to_maturity) ** t,
+        weight := pv / total_pv,
+        t * weight,
+    )
+    for t, payment in data
+]
+
+# Create DataFrame
+df = pd.DataFrame(
+    table,
+    columns=[
+        "Time (Years)",
+        "Payment ($)",
+        "PV of Payment ($)",
+        "Weight (PV/Total PV)",
+        "Weighted Time",
+    ],
+)
+
+# Add totals row
+totals = df.sum(numeric_only=True)
+totals = pd.DataFrame(totals).T
+totals["Time (Years)"] = "Total"
+df = pd.concat([df, totals], ignore_index=True)
+
+df.style.highlight_max(["Weighted Time"]).format(precision=2).hide()
+```
+
+The bond's duration is 4.61 years.
+
+
+## The economic meaning of duration
+
+We are interested in the sensitivity of bond price to interest rate.
+
+- That is, how much the price of a bond changes when the interest changes.
+
+Duration directly measures the interest rate sensitivity of an asset or liability:
+
+$$
+\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R
+$$ {#eq-duration-and-price}
+
+where
+
+- $\Delta P$ is the price change of assets or liabilities
+- $\Delta R$ is the change of interest rate
+- $MD$ is the __modified duration__ that equals to $\frac{D}{1+R}$
+
+The larger the numerical value of $D$, the more sensitive is the price of that asset or liability to changes or shocks in interest rates.
+
+::: {.callout-important}
+The relationship is only true for small changes in the yield.
+:::
+
+## The economic meaning of duration
+
+Why does it work?
+
+$$
+\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R
+$$
+
+- We can write out the price formula of a bond and take its partial derivative with respect to yield.
+- See my [detailed explanation here](https://mingze-gao.com/posts/fixed-income/bond-price-volatility/#measure-of-price-yield-sensitivity-duration).
+
+Why is it only true for small changes in the yield?
+
+- Because duration also changes as yield changes.
+- We assumed the duration is constant given a small $\Delta R$.
+
+## Duration and price changes: example
+
+Consider the previous example of a 5-year annual-coupon bond in @tbl-duration-example-2 with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.
+
+What is the price change if the interest rate (yield) decreases by 1 percent ($\Delta R=-0.01$)?
+
+::: {.callout-note}
+Recall @eq-duration-and-price that $\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R$.
+
+$$
+\text{Modified duration} = MD = \frac{D}{1+R} = \frac{4.61}{1+0.06} = 4.349
+$$
+
+So, we have
+
+$$
+\Delta P =  - MD \times P \times \Delta R = - 4.349 \times \$1000 \times (-0.01) = \$43.49
+$$
+
+That is, a one percentage point (100 basis points) decrease in yield would increase bond price by $43.49.
+
+Note that $MD\times P$ is also named "dollar duration", i.e., modified duration times the bond price.
+:::
+
+## Features of duration
+
+- Duration increases with the maturity of a fixed-income security, but at a decreasing rate.
+- Duration decreases as the yield on a security increases.
+- Duration decreases as the coupon or interest payment increases. 
+
+
+## Duration and interest rate risk management
+
+Now that we have refreshed our knowledge of duration, how is duration relevant in FI's interest rate risk management?
+
+Let's consider two cases.
+
+1. A single security.
+2. A portfolio of securities (e.g., the balance sheet).
+
+## Duration and interest rate risk management: single security
+
+Superannuation funds or insurers often have to make a specific amount of payment to their policyholders at a given future date. How to guarantee it? Investments may decrease in value if interest rate changes over the period.
+
+There are two options:
+
+1. Buy a zero-coupon bond which matures exactly when the payment is made in the future.
+2. Buy bond(s) with a _duration_ that matches the payment date.[^itworks]
+
+[^itworks]: We can show that its value at payment date is unaffected by interest rate changes.
+
+However,
+
+1. Option 1 is very difficult because there simply may not be any such zero-coupon bonds with desirable maturities.
+2. Option 2 is manageable and practical!
+
+## Duration and interest rate risk management: balance sheet
+
+Duration can be used to measure a financial institution's __duration gap__ to evaluate the FI's overall interest rate exposure.
+It is possible to calculate the duration of the asset portfolio and of the liability portfolio.
+
+- Duration of a portfolio is the weighted average duration of its components.
+
+::: {.columns}
+:::: {.column}
+Duration of assets portfolio:
+
+$$
+D_A = \sum_{i=1}^{N_A} w_{iA} \times D^A_i
+$$
+
+where $N_A$ is the total number of assets, $w_{iA}$ is the market value weight of asset $i$, $D^A_i$ is the duration of asset $i$.
+
+So, change of assets value for a given change in interest rate is 
+
+$$
+\Delta A = - D_A \times A \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-and-assets-value}
+::::
+
+:::: {.column}
+Duration of liabilities portfolio:
+
+$$
+D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
+$$
+
+where $N_L$ is the total number of liabilities, $w_{iL}$ is the market value weight of liability $i$, $D^L_i$ is the duration of liability $i$.
+
+So, change of liabilities for a given change in interest rate is 
+
+$$
+\Delta L = - D_L \times L \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-and-liabilities-value}
+::::
+:::
+
+
+## The duration model
+
+We know that total assets ($A$) is the sum of liabilities ($L$) and equity ($E$): $A=E+L$.
+
+Therefore, $E = A - L$, and $\Delta E = \Delta A - \Delta L$.
+
+Making use of the previous results @eq-duration-and-assets-value and @eq-duration-and-liabilities-value, we have 
+
+$$
+\Delta E = \left[- D_A \times A \times \frac{\Delta R}{1+R}\right] -  \left[- D_L \times L \times \frac{\Delta R}{1+R}\right]
+$$ {#eq-duration-model}
+
+If the level of interest and expected shock to interest rates are the same for both assets and liabilities, then:
+
+$$
+\Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-model-lev}
+
+where $k=\frac{L}{A}$ measures the FI's leverage.
+
+## The duration model
+
+Let's examine the duration model @eq-duration-model-lev:
+
+$$
+\Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
+$$
+
+The effect of interest rate changes on the market value of an FI's net worth breaks down into three effects:
+
+1. The __leverage-adjusted duration gap__: $(D_A-D_L k)$
+2. The size of the FI: $A$
+3. The size of the interest rate shock: $\frac{\Delta R}{1+R}$
+
+## The duration model: example
+
+Suppose a FI has total assets of $100 million and total liabilities of $90 million.
+
+Assume that the average duration of assets is 5 years, while the average duration of liabilities is 3 years. The current interest rate is 10%, but is expected to increase to 11% in the future.
+
+We can calculate the expected change in the FI's net worth as follows:
+
+$$
+\Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R} = -(5 - 3\times 0.9) \times \$100 \times \frac{0.01}{1+0.01} = -\$2.09
+$$
+
+This means that the FI could lose $2.09 million in net worth if interest rates rose by 1 per cent. 
+
+How can the FI manage the interest rate exposure?
+
+- Reduce $D_A$, and/or
+- Increase $D_L$, and/or
+- Increase leverage $k$, and/or
+- ...
+
+## Immunization and regulatory considerations
+
+Regulators, like APRA in Australia, require banks to hold a minimum amount of capital against their (risk-weighted) assets.
+
+- We have discussed [capital management and adequacy](https://mingze-gao.com/teaching/AFIN8003/2024S2/Week3/) last week.
+- The simplest ratio is: $\frac{E}{A}$.
+
+Thus, in order to comply with regulations, the aim of risk management should not be $\Delta E=0$ but $\Delta (\frac{E}{A}) = 0$.
+
+Instead of setting $D_A-D_L k=0$, the bank now needs to target $D_A-D_L=0$.
+
+## Difficulties in applying duration model
+
+- Duration matching can be costly.
+- Immunization is a dynamic problem.
+- Large interest rate changes can happen.
+- [Convexity](https://mingze-gao.com/posts/fixed-income/bond-price-volatility/#adjusting-for-convexity).
+
+
+# Finally...
+
+## Suggested readings
+
+- [Reporting Standard ARS 117.0 Repricing Analysis](https://www.apra.gov.au/sites/default/files/2024-07/Reporting%20Standard%20ARS%20117.0%20Repricing%20Analysis%20-%20Clean.pdf)
+- Repricing model's application - page 31 of the Westpac NZ Banking Group's [interim report March 2024](https://www.westpac.co.nz/assets/About-us/disclosure-statements/Documents/Westpac-NZ-Disclosure-Statement-March-2024.pdf).
+- Duration model's application - Table 25 of the FreddieMac's [quarterly report June 2023](https://www.sec.gov/Archives/edgar/data/1026214/000102621423000075/fmcc-20230630.htm).
+- If you need read more on fixed income securities, feel free to read some of my posts:
+  - [Introduction to fixed income securities](https://mingze-gao.com/posts/fixed-income/introduction/)
+  - [Bond price and yields](https://mingze-gao.com/posts/fixed-income/bond-prices-and-yields/)
+  - [Bond price volatility (sensitivity)](https://mingze-gao.com/posts/fixed-income/bond-price-volatility/)
+  - [Yield curve and term structure of interest rates](https://mingze-gao.com/posts/fixed-income/yield-curve/)
+
+## References
