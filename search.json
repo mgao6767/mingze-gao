@@ -2650,5 +2650,271 @@
     "title": "AFIN8003 Week 2 - Risks and Regulation",
     "section": "References",
     "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#what-is-interest-rate-risk",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#what-is-interest-rate-risk",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "What is interest rate risk?",
+    "text": "What is interest rate risk?\n\n\n\n\n\n\n\nInterest Rate Risk\n\n\nInterest rate risk is the possibility of a financial loss due to changes in interest rates.\n\n\n\n\nRecall that in Week 1, we explained one of the key functions performed by financial institutions (especially depositary institutions) is maturity transformation. For DIs, they take short-term deposits from depositors and make long-term loans to borrowers.\n\n\n\nTable 1: Typical balance sheet of a DI\n\n\n\n\n\nAssets\nLiabilities and Equity\n\n\n\n\nLoans (relatively long-term)\nDeposits (relatively short-term)\n\n\nOther assets\nOther liabilities\n\n\n\nEquity\n\n\n\n\n\n\nAs a result,\n\nThis maturity transformation means that FIs have mismatches of maturities of their liabilities (e.g., deposits) and assets (e.g., loans).\nMaturity mismatch exposes FIs to (unexpected) interest rate changes:\n\nrefinancing and reinvestment risks\nfinancial instruments have different levels of value sensitivity to interest rate changes\n\nInterest rate is volatile and can be unexpected."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-mismatch-refinancing-risk",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-mismatch-refinancing-risk",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Maturity mismatch: refinancing risk",
+    "text": "Maturity mismatch: refinancing risk\nConsider an example bank that has $2 million of 10-year fixed-rate loans and $1 million of 1-year fixed-rate term deposits now. The bank expects to have the same balance sheet in the future.\nWhat would happen in 1 year from now?\n\nTerm deposits mature. Some deposits may be withdrawn.\nIn this case, the bank needs to take additional deposits to maintain the size of balance sheet.\nHowever, the interest rate (deposit rate) could be higher in the future, which means higher costs for the bank.\n\nThis is a typical refinancing risk - the costs of rolling over funds or re-borrowing funds will rise above the returns generated on investments."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-mismatch-reinvestment-risk",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-mismatch-reinvestment-risk",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Maturity mismatch: reinvestment risk",
+    "text": "Maturity mismatch: reinvestment risk\nConsider another example bank that has $2 million of 1-year fixed-rate loans and $1 million of 2-year fixed-rate term deposits now. The bank expects to have the same balance sheet in the future.\nWhat would happen in 1 year from now?\n\nLoans mature.\nIn this case, the bank needs to reinvest into some other assets (e.g., make loans).\nHowever, the interest rate (on the loan) could be lower in the future, which means reduced returns for the bank.\n\nThis is a typical reinvestment risk - the returns on funds to be reinvested will fall below the cost of funds."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#financial-instruments-value-sensitivity-to-interest-rate",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#financial-instruments-value-sensitivity-to-interest-rate",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Financial instruments’ value sensitivity to interest rate",
+    "text": "Financial instruments’ value sensitivity to interest rate\nThe value of longer-maturity instruments typically is more sensitive to interest rate.\n\n\nFor example, a bond’s price is given by\n\\[\nP = \\sum_{t=1}^T\\frac{C}{(1+r)^t} + \\frac{F}{(1+r)^T}\n\\qquad(1)\\]\nwhere \\(C\\) is coupon payment, \\(F\\) face value, \\(T\\) maturity, and \\(r\\) interest rate.\nIf a FI is financed by issuing long-term bonds and invests in short-term loans, given a change in interest rate, its liabilities’ value would change by more than the change in its assets’ value, thereby causing an impact on its net worth.\n\n\n\nCode\nviewof maturity4 = Inputs.range(\n  [1, 30], \n  {value: 15, step: 1, label: \"Maturity (years):\"}\n)\nviewof couponRate4 = Inputs.range(\n    [0.01, 0.2],\n    {value: 0.05, step: 0.01, label:\"Coupon rate:\"}\n)\nd = {\n  const f = 100;\n  let c, m;\n  c = couponRate4;\n  m = maturity4;\n  function pv(c, f, t, r) {\n    return c * (1 - (1+r)**(-t)) / r + f / (1+r)**(t)\n  }\n  const prices = {\"YTM\": [], \"Price\": []};\n  let coupon = f * c;\n  for (let ytm = 0.01; ytm &lt; 20; ytm++) {\n    let price = pv(coupon, f, m, ytm/100);\n    prices[\"YTM\"].push(ytm);\n    prices[\"Price\"].push(price);\n  }\n  return prices;\n}\n\ndata4 = transpose(d)\nPlot.plot({\n  caption: \"Assume $100 bond, annual coupons paid in arrears and effective annual discount rate.\",\n  x: {padding: 0.4, label: \"YTM (%)\"},\n  grid: true,\n  marks: [\n    Plot.ruleY([0, 100]),\n    Plot.ruleX([0]),\n    Plot.lineY(data4, {x: \"YTM\", y: \"Price\", stroke: \"blue\"}),\n  ]\n})"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The level and movement of interest rates",
+    "text": "The level and movement of interest rates\n\n\nThe relative degree of interest rate volatility is directly linked to the monetary policy of the Reserve Bank of Australia (RBA).\n\nFor example, if RBA smooths or targets the level of interest rates, unexpected interest rate shocks and interest rate volatility tend to be small.\nA change in approach from targeting interest rate (cash rate) goals towards CPI growth rate increased the interest rate volatility.\n\nNo matter what, interest rate volatility exists and thus, the appropriate measurement of management of interest rate risk is important to every FI.\n\n\n\n\n\n\n\nFigure 1: Australian inflation target"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates-1",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates-1",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The level and movement of interest rates",
+    "text": "The level and movement of interest rates\n\n\n\n\n\n\n\n\nFigure 2: Australian cash rate target\n\n\n\n\n\n\n\n\n\n\nFigure 3: Australian cash rate target and 90-day bill yield"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates-2",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-level-and-movement-of-interest-rates-2",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The level and movement of interest rates",
+    "text": "The level and movement of interest rates\n\n\n\n\n\n\n\n\nFigure 4: 10-year Australian government bond yield\n\n\n\n\n\n\n\n\n\n\nFigure 5: Policy interest rates"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-market-is-bad-at-guessing-interest-rates",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-market-is-bad-at-guessing-interest-rates",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The market is bad at guessing interest rates",
+    "text": "The market is bad at guessing interest rates\n\n\n\n\n\n\nFigure 6: The market does not always correctly forecast interest rates\n\n\n\nImage source: Steven Desmyter"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#an-overview",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#an-overview",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "An overview",
+    "text": "An overview\nFrom here, we’re to study specific models and technique for measuring FI’s interest rate risk. However, it is helpful to first explain the general rule so to better understand the big picture.\n\nA risk causes an unwanted negative impact on a FI. To measure such risk, we need to specify a few things:\n\nWhich FI’s characteristic are we concerned about? Income, net worth, or something else?\nHow sensitive is that FI’s characteristic to this risk?\nWhat is the potential size of this risk?\nIs it based on book value or market value?\nWhat is the time frame we are looking at?\n…"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#interest-rate-risk-models",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#interest-rate-risk-models",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Interest rate risk models",
+    "text": "Interest rate risk models\nThe rest of this lecture discusses two models for measuring interest rate risk with different focuses.\n\n\n\nTable 2: A simple comparison of two interest rate risk models\n\n\n\n\n\n\n\n\n\n\n\nRepricing model\nDuration model\n\n\n\n\nWhich characteristic?\nNet interest income (NII)\nNet worth\n\n\nSensitivity measurement?\nBy assumption\nDuration\n\n\nSize of risk?\nFlexible\nFlexible\n\n\nBook value or market value?\nBook value\nMarket value\n\n\nTime frame?\nFlexible\nFlexible"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The repricing model",
+    "text": "The repricing model\n\nRepricing model is also known as the funding gap model.\n\nA book value accounting cash flow analysis of the repricing gap between the interest income earned on an FI’s assets and the interest paid on its liabilities over some period.\nFocus on the changes of net interest income (NII).\n\nA simple model used by small FIs.\nAPRA requires smaller ADIs to use the repricing method to estimate interest rate exposures in their banking book for capital adequacy purposes.\n\nA revision has just been completed in early July, 2024, which will be effective in 2025.1\n\n\nSee suggested readings."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#repricing-gap-rsa-and-rsl",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#repricing-gap-rsa-and-rsl",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Repricing gap, RSA and RSL",
+    "text": "Repricing gap, RSA and RSL\nRepricing gap is the difference between rate-sensitive assets (RSA) and rate-sensitive liabilities (RSL).\n\nRSA: assets whose interest rates will be repriced or changed over some future period (rate-sensitive assets)\nRSL: liabilities whose interest rates will be repriced or changed over some future period (rate-sensitive liabilities)\n\nAn asset (or liability) is “rate-sensitive” if it is repriced at or near current market interest rates within a certain time horizon (or maturity bucket). For example,\n\na variable-rate mortgage’s interest rate may be reset every quarter based on the prevailing interest rate.\ninterest rate of term deposits are also adjusted frequently.1\n\nHistorical term deposit rates of Australian banks"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-tenor-buckets",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-tenor-buckets",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Maturity (Tenor) buckets",
+    "text": "Maturity (Tenor) buckets\nUnder repricing model, banks report their repricing gaps for various maturity buckets. For example,\n\nOne day (overnight).\nMore than 1 day to 3 months.\nMore than 3 months to 6 months.\nMore than 6 months to 12 months.\nMore than 1 year to 5 years.\nMore than 5 years.\n\n\n\n\n\n\n\n\nHow to determine RSA/RSL for each bucket?\n\n\nAsk a simple question: Will or can this asset or liability have its interest rate changed within the maturity bucket? If the answer is yes, it is a rate-sensitive asset or liability. If the answer is no, it is not rate sensitive."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-buckets-and-rsarsl",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#maturity-buckets-and-rsarsl",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Maturity buckets and RSA/RSL",
+    "text": "Maturity buckets and RSA/RSL\nLet’s practice. Try to identify the one-year RSA and RSL given the following assets and liabilities of a bank.\n\nAssets:\n\n1-year consumer loans\n2-year consumer loans\n3-month Treasury bills\n3-year Treasury bonds\n20-year fixed rate mortgage\n30-year floating rate mortgage (repriced every quarter)\n\nLiabilities:\n\ndemand deposits (non-interest-bearing)\n3-month certificates of deposits (CDs)\n6-month commercial papers\n1-year term deposits\n2-year term deposits"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#repricing-gaps",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#repricing-gaps",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Repricing gaps",
+    "text": "Repricing gaps\n\n\n\nTable 3: Repricing gaps ($ millions)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAssets\nLiabilities\nGaps\nCumulative gap\n\n\n\n\n1\nOne day\n20\n30\n-10\n-10\n\n\n2\nOne day to three months\n30\n40\n-10\n-20\n\n\n3\nThree months to six months\n70\n85\n-15\n-35\n\n\n4\nSix months to 12 months\n90\n70\n+20\n-15\n\n\n5\nOne year to five years\n40\n30\n+10\n-5\n\n\n6\nOver five years\n10\n5\n+5\n0\n\n\nTotal\n\n$260\n$260\n\n\n\n\n\n\n\n\nFor example, a negative $10 million difference between its RSA and RSL being repriced in one day (one-day bucket). A rise in the overnight rate would lower the FI’s net interest income since the FI has more rate-sensitive liabilities than assets in this bucket.\n\nA refinancing risk given RSA &lt; RSL. Increase in interest rate means more interest paid on liabilities than earned from assets."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-1",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-1",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The repricing model",
+    "text": "The repricing model\nThe repricing model can be used to estimate the change in the FI’s net interest income in a particular repricing bucket if interest rates change.\n\\[\n\\Delta NII_i = (GAP_i) \\times \\Delta R_i = (RSA_i - RSL_i) \\times \\Delta R_i\n\\]\nwhere:\n\n\\(\\Delta NII_i\\) is the change in net interest income in the \\(i\\)th bucket.\n\\(GAP_i\\) is the dollar size of the gap between the book value of RSA and RSL in maturity bucket \\(i\\).\n\\(\\Delta R_i\\) is the change in the level of interest rates impacting assets and liabilities in the \\(i\\)th bucket."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-examples",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-examples",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The repricing model: examples",
+    "text": "The repricing model: examples\n\n\n\n\n\n\n\nOne-day repricing gap\n\n\nIn the first bucket of Table 3, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:\n\\[\n\\Delta NII_i = GAP_i \\times \\Delta R_i = -10 \\text{ million} \\times 0.01 = -100,000\n\\]\nSo, the repricing model suggests a loss of $100,000 in net interest income for the FI.\n\n\n\n\n\n\n\n\n\n\n\nOne-year repricing gap\n\n\nIt is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from Table 3.\n\\[\n\\Delta NII_i = CGAP_i \\times \\Delta R_i = -15 \\text{ million} \\times 0.01 = -150,000\n\\]\nIf the average interest rises by 1 percent, the model suggests a loss of $150,000 in net interest income."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-examples-1",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-examples-1",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The repricing model: examples",
+    "text": "The repricing model: examples\nAssume both RSAs and RSLs equal $155 million. Suppose that there is a general interest rate rise and that the rates on RSAs rise by 1.2 percent and rates on RSLs rise by only 1 percent. What is the resulting change in NII?\n\n\\[\n\\Delta NII_i = RSA_i \\times \\Delta R^A_i - RSL_i \\times \\Delta R^L_i = (\\$155M \\times 0.012) - (\\$155M \\times 0.01) = \\$310,000\n\\]\n\nSuppose the RSA is $155 million and the RSL is $140 million. Interest rates rise by 1.2% on RSAs and 1% on RSLs. What is the change in NII?\n\n\\[\n\\Delta NII_i = RSA_i \\times \\Delta R_i^A - RSL_i \\times \\Delta R_i^L = (\\$155M \\times 0.012) - (\\$140M \\times 0.01) = \\$460,000\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#real-world-application-of-repricing-model",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#real-world-application-of-repricing-model",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Real-world application of repricing model",
+    "text": "Real-world application of repricing model\nLet see a real-world application of repricing model by Texas Capital Bank, a (relatively small) commercial bank headquartered in Dallas, Texas, United States.\nWe can find its annual reports from SEC’s EDGAR system, which allows us to search for any corporate filings.\n\nIts most recent annual report is filed on 2024-02-13.\nCheck Item 7A. Quantitative and qualitative disclosure about market risk."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-problems",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-repricing-model-problems",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The repricing model: problems",
+    "text": "The repricing model: problems\nThe repricing model is very simple and intuitive, but is NOT an accurate measure of interest rate risk.\nMajor shortcomings:\n\nIt is over-aggregative.\nIt ignores the market value effects of interest rate changes: it focuses on the income and ignores the capital gains/losses.\nIt uses the banking book and hence book values of assets and liabilities.\nIt fails to deal with the problem of rate-insensitive asset and liability runoffs and prepayments.\nIt ignores cash flows from off-balance-sheet activities."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#motivation",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#motivation",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Motivation",
+    "text": "Motivation\nIn the early 2000s, the BIS issued a consultative document suggesting a standardized model be used by regulators in evaluating a bank’s interest rate risk exposure. The approach suggested is firmly based on market value accounting and the duration gap model.\nThe duration gap (model):\n\nconsiders market values and the maturity distributions of an FI’s assets and liabilities.\nconsiders the degree of leverage on an FI’s balance sheet.\nconsiders the timing of the payment or arrival of cash flows on assets and liabilities.\nis a more comprehensive measure of an FI’s interest rate risk.\n\nBigger banks have adopted duration model as their primary measure of interest rate risk.1\nBiggest banks may be allowed to use their internal models subject to regulatory approval."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration",
+    "text": "Duration\nThe essence of duration gap model is the concept of duration, which is covered in introductory finance courses.\nSimply put, duration is the weighted-average time to maturity on the loan using the relative present values of the cash flows as weights.\n\\[\nD = \\sum_{t=1}^{N} w_t \\times t\n\\]\nwhere \\(D\\) is the duration, and\n\\[\nw_t = \\frac{\\text{PV of the cash flow at time } t}{\\text{Total PV of all cash flows}}\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-example",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-example",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration: example",
+    "text": "Duration: example\nConsider the duration of a 3-year coupon bond with a face value of $1,000, a coupon rate of 5%, and a yield to maturity of 4%. The bond pays annual coupons.\n\n\nCode\nimport pandas as pd\n\n# Parameters\nface_value, coupon_rate, yield_to_maturity, years = 1000, 0.05, 0.04, 3\nannual_coupon_payment = face_value * coupon_rate\n\n# Initialize and calculate values\ndata = [\n    (t, annual_coupon_payment if t &lt; years else annual_coupon_payment + face_value)\n    for t in range(1, years + 1)\n]\ntotal_pv = sum(payment / (1 + yield_to_maturity) ** t for t, payment in data)\ntable = [\n    (\n        t,\n        payment,\n        pv := payment / (1 + yield_to_maturity) ** t,\n        weight := pv / total_pv,\n        t * weight,\n    )\n    for t, payment in data\n]\n\n# Create DataFrame\ndf = pd.DataFrame(\n    table,\n    columns=[\n        \"Time (Years)\",\n        \"Payment ($)\",\n        \"PV of Payment ($)\",\n        \"Weight (PV/Total PV)\",\n        \"Weighted Time\",\n    ],\n)\n\n# Add totals row\ntotals = df.sum(numeric_only=True)\ntotals = pd.DataFrame(totals).T\ntotals[\"Time (Years)\"] = \"Total\"\ndf = pd.concat([df, totals], ignore_index=True)\n\ndf.style.highlight_max([\"Weighted Time\"]).format(precision=2).hide()\n\n\n\n\nTable 4: Calculating the duration of a 3-year bond\n\n\n\n\n\n\n\n\nTime (Years)\nPayment ($)\nPV of Payment ($)\nWeight (PV/Total PV)\nWeighted Time\n\n\n\n\n1\n50.00\n48.08\n0.05\n0.05\n\n\n2\n50.00\n46.23\n0.04\n0.09\n\n\n3\n1050.00\n933.45\n0.91\n2.72\n\n\nTotal\n1150.00\n1027.75\n1.00\n2.86\n\n\n\n\n\n\n\n\nThe bond’s duration is 2.86 years."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-another-example",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-another-example",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration: another example",
+    "text": "Duration: another example\nConsider the duration of a 5-year coupon bond with a face value of $1,000, a coupon rate of 4%, and a yield to maturity of 6%. The bond pays annual coupons.\n\n\nCode\nimport pandas as pd\n\n# Parameters\nface_value, coupon_rate, yield_to_maturity, years = 1000, 0.04, 0.06, 5\nannual_coupon_payment = face_value * coupon_rate\n\n# Initialize and calculate values\ndata = [\n    (t, annual_coupon_payment if t &lt; years else annual_coupon_payment + face_value)\n    for t in range(1, years + 1)\n]\ntotal_pv = sum(payment / (1 + yield_to_maturity) ** t for t, payment in data)\ntable = [\n    (\n        t,\n        payment,\n        pv := payment / (1 + yield_to_maturity) ** t,\n        weight := pv / total_pv,\n        t * weight,\n    )\n    for t, payment in data\n]\n\n# Create DataFrame\ndf = pd.DataFrame(\n    table,\n    columns=[\n        \"Time (Years)\",\n        \"Payment ($)\",\n        \"PV of Payment ($)\",\n        \"Weight (PV/Total PV)\",\n        \"Weighted Time\",\n    ],\n)\n\n# Add totals row\ntotals = df.sum(numeric_only=True)\ntotals = pd.DataFrame(totals).T\ntotals[\"Time (Years)\"] = \"Total\"\ndf = pd.concat([df, totals], ignore_index=True)\n\ndf.style.highlight_max([\"Weighted Time\"]).format(precision=2).hide()\n\n\n\n\nTable 5: Calculating the duration of a 5-year bond\n\n\n\n\n\n\n\n\nTime (Years)\nPayment ($)\nPV of Payment ($)\nWeight (PV/Total PV)\nWeighted Time\n\n\n\n\n1\n40.00\n37.74\n0.04\n0.04\n\n\n2\n40.00\n35.60\n0.04\n0.08\n\n\n3\n40.00\n33.58\n0.04\n0.11\n\n\n4\n40.00\n31.68\n0.03\n0.14\n\n\n5\n1040.00\n777.15\n0.85\n4.24\n\n\nTotal\n1200.00\n915.75\n1.00\n4.61\n\n\n\n\n\n\n\n\nThe bond’s duration is 4.61 years."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-economic-meaning-of-duration",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-economic-meaning-of-duration",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The economic meaning of duration",
+    "text": "The economic meaning of duration\nWe are interested in the sensitivity of bond price to interest rate.\n\nThat is, how much the price of a bond changes when the interest changes.\n\nDuration directly measures the interest rate sensitivity of an asset or liability:\n\\[\n\\frac{\\Delta P}{P} = - D \\times \\frac{\\Delta R}{1+R} = - MD \\times \\Delta R\n\\qquad(2)\\]\nwhere\n\n\\(\\Delta P\\) is the price change of assets or liabilities\n\\(\\Delta R\\) is the change of interest rate\n\\(MD\\) is the modified duration that equals to \\(\\frac{D}{1+R}\\)\n\nThe larger the numerical value of \\(D\\), the more sensitive is the price of that asset or liability to changes or shocks in interest rates.\n\n\n\n\n\n\nImportant\n\n\nThe relationship is only true for small changes in the yield."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-economic-meaning-of-duration-1",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-economic-meaning-of-duration-1",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The economic meaning of duration",
+    "text": "The economic meaning of duration\nWhy does it work?\n\\[\n\\frac{\\Delta P}{P} = - D \\times \\frac{\\Delta R}{1+R} = - MD \\times \\Delta R\n\\]\n\nWe can write out the price formula of a bond and take its partial derivative with respect to yield.\nSee my detailed explanation here.\n\nWhy is it only true for small changes in the yield?\n\nBecause duration also changes as yield changes.\nWe assumed the duration is constant given a small \\(\\Delta R\\)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-price-changes-example",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-price-changes-example",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration and price changes: example",
+    "text": "Duration and price changes: example\nConsider the previous example of a 5-year annual-coupon bond in Table 5 with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.\nWhat is the price change if the interest rate (yield) decreases by 1 percent (\\(\\Delta R=-0.01\\))?\n\n\n\n\n\n\nNote\n\n\nRecall Equation 2 that \\(\\frac{\\Delta P}{P} = - D \\times \\frac{\\Delta R}{1+R} = - MD \\times \\Delta R\\).\n\\[\n\\text{Modified duration} = MD = \\frac{D}{1+R} = \\frac{4.61}{1+0.06} = 4.349\n\\]\nSo, we have\n\\[\n\\Delta P =  - MD \\times P \\times \\Delta R = - 4.349 \\times \\$1000 \\times (-0.01) = \\$43.49\n\\]\nThat is, a one percentage point (100 basis points) decrease in yield would increase bond price by $43.49.\nNote that \\(MD\\times P\\) is also named “dollar duration”, i.e., modified duration times the bond price."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#features-of-duration",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#features-of-duration",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Features of duration",
+    "text": "Features of duration\n\nDuration increases with the maturity of a fixed-income security, but at a decreasing rate.\nDuration decreases as the yield on a security increases.\nDuration decreases as the coupon or interest payment increases."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration and interest rate risk management",
+    "text": "Duration and interest rate risk management\nNow that we have refreshed our knowledge of duration, how is duration relevant in FI’s interest rate risk management?\nLet’s consider two cases.\n\nA single security.\nA portfolio of securities (e.g., the balance sheet)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management-single-security",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management-single-security",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration and interest rate risk management: single security",
+    "text": "Duration and interest rate risk management: single security\nSuperannuation funds or insurers often have to make a specific amount of payment to their policyholders at a given future date. How to guarantee it? Investments may decrease in value if interest rate changes over the period.\nThere are two options:\n\nBuy a zero-coupon bond which matures exactly when the payment is made in the future.\nBuy bond(s) with a duration that matches the payment date.1\n\nHowever,\n\nOption 1 is very difficult because there simply may not be any such zero-coupon bonds with desirable maturities.\nOption 2 is manageable and practical!\n\nWe can show that its value at payment date is unaffected by interest rate changes."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management-balance-sheet",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#duration-and-interest-rate-risk-management-balance-sheet",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Duration and interest rate risk management: balance sheet",
+    "text": "Duration and interest rate risk management: balance sheet\nDuration can be used to measure a financial institution’s duration gap to evaluate the FI’s overall interest rate exposure. It is possible to calculate the duration of the asset portfolio and of the liability portfolio.\n\nDuration of a portfolio is the weighted average duration of its components.\n\n\n\nDuration of assets portfolio:\n\\[\nD_A = \\sum_{i=1}^{N_A} w_{iA} \\times D^A_i\n\\]\nwhere \\(N_A\\) is the total number of assets, \\(w_{iA}\\) is the market value weight of asset \\(i\\), \\(D^A_i\\) is the duration of asset \\(i\\).\nSo, change of assets value for a given change in interest rate is\n\\[\n\\Delta A = - D_A \\times A \\times \\frac{\\Delta R}{1+R}\n\\qquad(3)\\]\n\nDuration of liabilities portfolio:\n\\[\nD_L = \\sum_{i=1}^{N_L} w_{iL} \\times D^L_i\n\\]\nwhere \\(N_L\\) is the total number of liabilities, \\(w_{iL}\\) is the market value weight of liability \\(i\\), \\(D^L_i\\) is the duration of liability \\(i\\).\nSo, change of liabilities for a given change in interest rate is\n\\[\n\\Delta L = - D_L \\times L \\times \\frac{\\Delta R}{1+R}\n\\qquad(4)\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The duration model",
+    "text": "The duration model\nWe know that total assets (\\(A\\)) is the sum of liabilities (\\(L\\)) and equity (\\(E\\)): \\(A=E+L\\).\nTherefore, \\(E = A - L\\), and \\(\\Delta E = \\Delta A - \\Delta L\\).\nMaking use of the previous results Equation 3 and Equation 4, we have\n\\[\n\\Delta E = \\left[- D_A \\times A \\times \\frac{\\Delta R}{1+R}\\right] -  \\left[- D_L \\times L \\times \\frac{\\Delta R}{1+R}\\right]\n\\qquad(5)\\]\nIf the level of interest and expected shock to interest rates are the same for both assets and liabilities, then:\n\\[\n\\Delta E = - (D_A - D_L k) \\times A \\times \\frac{\\Delta R}{1+R}\n\\qquad(6)\\]\nwhere \\(k=\\frac{L}{A}\\) measures the FI’s leverage."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model-1",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model-1",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The duration model",
+    "text": "The duration model\nLet’s examine the duration model Equation 6:\n\\[\n\\Delta E = - (D_A - D_L k) \\times A \\times \\frac{\\Delta R}{1+R}\n\\]\nThe effect of interest rate changes on the market value of an FI’s net worth breaks down into three effects:\n\nThe leverage-adjusted duration gap: \\((D_A-D_L k)\\)\nThe size of the FI: \\(A\\)\nThe size of the interest rate shock: \\(\\frac{\\Delta R}{1+R}\\)"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model-example",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#the-duration-model-example",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "The duration model: example",
+    "text": "The duration model: example\nSuppose a FI has total assets of $100 million and total liabilities of $90 million.\nAssume that the average duration of assets is 5 years, while the average duration of liabilities is 3 years. The current interest rate is 10%, but is expected to increase to 11% in the future.\nWe can calculate the expected change in the FI’s net worth as follows:\n\\[\n\\Delta E = - (D_A - D_L k) \\times A \\times \\frac{\\Delta R}{1+R} = -(5 - 3\\times 0.9) \\times \\$100 \\times \\frac{0.01}{1+0.01} = -\\$2.09\n\\]\nThis means that the FI could lose $2.09 million in net worth if interest rates rose by 1 per cent.\nHow can the FI manage the interest rate exposure?\n\nReduce \\(D_A\\), and/or\nIncrease \\(D_L\\), and/or\nIncrease leverage \\(k\\), and/or\n…"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#immunization-and-regulatory-considerations",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#immunization-and-regulatory-considerations",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Immunization and regulatory considerations",
+    "text": "Immunization and regulatory considerations\nRegulators, like APRA in Australia, require banks to hold a minimum amount of capital against their (risk-weighted) assets.\n\nWe have discussed capital management and adequacy last week.\nThe simplest ratio is: \\(\\frac{E}{A}\\).\n\nThus, in order to comply with regulations, the aim of risk management should not be \\(\\Delta E=0\\) but \\(\\Delta (\\frac{E}{A}) = 0\\).\nInstead of setting \\(D_A-D_L k=0\\), the bank now needs to target \\(D_A-D_L=0\\)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#difficulties-in-applying-duration-model",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#difficulties-in-applying-duration-model",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Difficulties in applying duration model",
+    "text": "Difficulties in applying duration model\n\nDuration matching can be costly.\nImmunization is a dynamic problem.\nLarge interest rate changes can happen.\nConvexity."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#suggested-readings",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#suggested-readings",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nReporting Standard ARS 117.0 Repricing Analysis\nRepricing model’s application - page 31 of the Westpac NZ Banking Group’s interim report March 2024.\nDuration model’s application - Table 25 of the FreddieMac’s quarterly report June 2023.\nIf you need read more on fixed income securities, feel free to read some of my posts:\n\nIntroduction to fixed income securities\nBond price and yields\nBond price volatility (sensitivity)\nYield curve and term structure of interest rates"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#references",
+    "href": "teaching/AFIN8003/2024S2/Week4/index.html#references",
+    "title": "AFIN8003 Week 4 - Interest Rate Risk",
+    "section": "References",
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   }
 ]
