@@ -1,0 +1,64 @@
+---
+title: Technology Diversity
+draft: true
+date: 2024-07-19
+tags:
+    - Python
+    - Stata
+    - Code
+categories:
+  - Research Notes
+---
+
+This posts constructs the __technology diversity__ measure as in @hsu_natural_2018.
+
+## Introduction
+
+In @hsu_natural_2018, a firm's technology diversity is measured by the concentration of its patents over a set of technology categories.
+Specifically, a firm-year's _technology diversity score_ is 1 minus the HHI based on the distribution of technology categories for which a firm's patents are filed in the most recent three years (i.e., 1 minus the sum of the squared percentages of patents in individual technology categories) multiplied by an adjustment factor that is the patent number divided by the patent number minus 1.[^adjfactor]
+
+[^adjfactor]: This adjustment factor aims to correct the downward bias of diversification measures when the number of patents is small, as suggested by @hall_2001.
+
+::: {.callout-note title="Example"}
+If a firm has the following patents in the most recent three years:
+
+| Patent | Technology Category |
+|--------|---------------------|
+| A      | X                   |
+| B      | Y                   |
+| C      | Y                   |
+
+The firm's 1 minus the HHI based on the distribution of technology categories is $1-[(\frac{1}{3})^2+(\frac{2}{3})^2]=0.444$.
+
+Given the adjustment factor, 0.444 is then multiplied by $\frac{3}{2}$ so that the diversity score is 0.667.
+:::
+
+In @hsu_natural_2018, a total of 6 technology categories is used: (a) chemical, (b) computer and communications, (c) drugs and medical, (d) electrical and electronics, (e) mechanical, and (f) others, as classified by @hall_2001.
+
+However, now is 2024, the patent classification systems have evolved into the [Cooperative Patent Classification (CPC)](https://www.uspto.gov/web/offices/pac/mpep/s905.html).
+With CPC, a patent's classification code may look like:  C07D 203/00. The first letter is the __Section Symbol__.
+
+| Letter | CPC Section                                                                                                                                                                                                                   | IPC Section                                                                   |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| A      | Human Necessities                                                                                                                                                                                                             | Human Necessities                                                             |
+| B      | Performing Operations; Transporting                                                                                                                                                                                           | Performing Operations; Transporting                                           |
+| C      | Chemistry; Metallurgy                                                                                                                                                                                                         | Chemistry; Metallurgy                                                         |
+| D      | Textiles; Paper                                                                                                                                                                                                               | Textiles; Paper                                                               |
+| E      | Fixed Construction                                                                                                                                                                                                            | Fixed Construction                                                            |
+| F      | Mechanical Engineering; Lighting; Heating; Weapons; Blasting Engines or Pumps                                                                                                                                                 | Mechanical Engineering; Lighting; Heating; Weapons; Blasting Engines or Pumps |
+| G      | Physics                                                                                                                                                                                                                       | Physics                                                                       |
+| H      | Electricity                                                                                                                                                                                                                   | Electricity                                                                   |
+| Y      | General Tagging of New Technological Developments; General Tagging of Cross-over technologies spanning over several sections of the IPC; technical subjects covered by former USPC cross reference art collections and digest |
+
+The next two is a 2-digit number for __Class__, followed by a single letter for __Subclass__. The remainder is __Main Group__ Symbol and __Subgroup__ Symbol.
+
+What best resembles @hsu_natural_2018 is the use of Section, or the first letter. Therefore, we will have a total of 9 technology categories whilst @hsu_natural_2018 have 6.
+
+## Patent data
+
+The goto source for U.S. firm's patent data is @kogan_technological_2017, which can be [download via GitHub](https://github.com/KPSS2017/Technological-Innovation-Resource-Allocation-and-Growth-Extended-Data). This well-known KPSS dataset contains many features and is more than enough for the calculation of technology diversity.
+
+Simply download and unzip the datasets and below is my code to produce the technology diversity measure.
+
+## Code
+
