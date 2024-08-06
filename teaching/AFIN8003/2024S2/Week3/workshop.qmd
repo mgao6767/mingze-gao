@@ -1,0 +1,41 @@
+---
+title: "AFIN8003 - Workshop 3"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-08-07
+draft: true
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop3.pdf"
+# Custom fields
+pdf-name: "Workshop3.pdf"
+include-answers: true
+---
+
+# Question 1
+
+This is question.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+This is answer.
+:::
+:::
+
+
