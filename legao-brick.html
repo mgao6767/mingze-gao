@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>LeGao to make your own LEGO Pixel Art – Mingze Gao</title>
+<title>legao-brick – Mingze Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,8 +78,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="LeGao to make your own LEGO Pixel Art – Mingze Gao">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Mingze Gao">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -137,94 +136,69 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">LeGao to make your own LEGO Pixel Art</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This app is still under development.</p>
-</div>
-</div>
-<p>Notably, all processing is now performed in your browser so no image will be uploaded anywhere.</p>
 
 
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeGao to make your own LEGO Pixel Art</title>
-        <style>
-        .canvas-container {
+    <title>Color Overlay on Brick Image</title>
+    <style>
+        .brick-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-wrap: wrap;
         }
-        #originalCanvas, #legoCanvas {
-            border: 1px solid black;
+        .brick-item {
             margin: 10px;
-                        width: 50%;
-            height: auto;
-        }
-        .control-panel {
-            margin: 20px 0;
-        }
-                #dropArea {
-            border: 2px dashed #ccc;
-            padding: 20px;
             text-align: center;
-            margin-bottom: 20px;
-        }
-        #dropArea.hover {
-            border-color: #000;
-        }
-        #download {
-            float: right;
         }
     </style>
 
 
-        <div id="dropArea">
-      <p><strong>Drop image here or click to select.</strong></p>
-      <p>Your image will NOT be uploaded. The processing is only done in your browser.</p>
-    </div>
-    <input style="display:none;" type="file" id="upload" accept="image/*">
-        <div class="control-panel">
-        <label for="thumbnailSize">Longest Dimension: <span id="sizeValue">50</span></label>
-        <input type="range" id="thumbnailSize" name="thumbnailSize" min="10" max="200" value="50">
-    </div>
-    <canvas id="thumbnailCanvas" style="display: none;"></canvas>
-        <div class="canvas-container">
-        <canvas id="originalCanvas"></canvas>
-        <canvas id="legoCanvas"></canvas>
-    </div>
-    <button id="download">Download Image</button>
+    <div class="brick-container" id="brickContainer"></div>
 
     <script>
         const brickImageUrl = 'https://raw.githubusercontent.com/mgao6767/legao/master/app/legao/1x1.png';
-        const defaultImageUrl = 'https://mingze-gao.com/images/AdrianAI.png';
+
+        const _palettes = {
+            'solid': {
+                '024': [0xfe, 0xc4, 0x01],
+                '106': [0xe7, 0x64, 0x19],
+                '021': [0xde, 0x01, 0x0e],
+                '221': [0xde, 0x38, 0x8b],
+                '023': [0x01, 0x58, 0xa8],
+                '028': [0x01, 0x7c, 0x29],
+                '119': [0x95, 0xb9, 0x0c],
+                '192': [0x5c, 0x1d, 0x0d],
+                '018': [0xd6, 0x73, 0x41],
+                '001': [0xf4, 0xf4, 0xf4],
+                '026': [0x02, 0x02, 0x02],
+                '226': [0xff, 0xff, 0x99],
+                '222': [0xee, 0x9d, 0xc3],
+                '212': [0x87, 0xc0, 0xea],
+                '037': [0x01, 0x96, 0x25],
+                '005': [0xd9, 0xbb, 0x7c],
+                '283': [0xf5, 0xc1, 0x89],
+                '208': [0xe4, 0xe4, 0xda],
+                '191': [0xf4, 0x9b, 0x01],
+                '124': [0x9c, 0x01, 0xc6],
+                '102': [0x48, 0x8c, 0xc6],
+                '135': [0x5f, 0x75, 0x8c],
+                '151': [0x60, 0x82, 0x66],
+                '138': [0x8d, 0x75, 0x53],
+                '038': [0xa8, 0x3e, 0x16],
+                '194': [0x9c, 0x92, 0x91],
+                '154': [0x80, 0x09, 0x1c],
+                '268': [0x2d, 0x16, 0x78],
+                '140': [0x01, 0x26, 0x42],
+                '141': [0x01, 0x35, 0x17],
+                '312': [0xaa, 0x7e, 0x56],
+                '199': [0x4d, 0x5e, 0x57],
+                '308': [0x31, 0x10, 0x07]
+            }
+        };
 
         function loadBrickImage(url) {
             return new Promise((resolve, reject) => {
@@ -236,180 +210,104 @@ Note
             });
         }
 
-        function createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor) {
-            // Create offscreen canvas for high-resolution image
-            const offscreenCanvas = document.createElement('canvas');
-            offscreenCanvas.width = thumbnailWidth * legoBlockSize * upscaleFactor;
-            offscreenCanvas.height = thumbnailHeight * legoBlockSize * upscaleFactor;
-            const offscreenCtx = offscreenCanvas.getContext('2d');
+        function createBrickCanvas(brickImg, color, colorName) {
+            const brickCanvasSize = 50; // Size for demonstration
+            const canvas = document.createElement('canvas');
+            canvas.width = brickCanvasSize;
+            canvas.height = brickCanvasSize;
+            const ctx = canvas.getContext('2d');
 
-            // Scale the context for sharpness
-            offscreenCtx.scale(upscaleFactor, upscaleFactor);
+            // Draw the brick image
+            ctx.drawImage(brickImg, 0, 0, brickCanvasSize, brickCanvasSize);
 
-            // Draw each pixel as a lego block on the offscreen canvas
-            for (let y = 0; y < thumbnailHeight; y++) {
-                for (let x = 0; x < thumbnailWidth; x++) {
-                    const index = (y * thumbnailWidth + x) * 4;
-                    const r = imageData[index];
-                    const g = imageData[index + 1];
-                    const b = imageData[index + 2];
-                    // Fixed alpha value to 0.7
-                    const a = 0.7;
+            // Apply color overlay
+            ctx.globalCompositeOperation = 'source-atop';
+            ctx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.7)`; // 70% opacity
+            ctx.fillRect(0, 0, brickCanvasSize, brickCanvasSize);
+            ctx.globalCompositeOperation = 'source-over';
 
-                    // Draw the colored brick on the offscreen canvas
-                    offscreenCtx.drawImage(brickImg, x * legoBlockSize, y * legoBlockSize, legoBlockSize, legoBlockSize);
+            // Create a container div for the brick canvas and label
+            const container = document.createElement('div');
+            container.className = 'brick-item';
 
-                    // Apply color overlay to the brick image
-                    offscreenCtx.globalCompositeOperation = 'source-atop';
-                    offscreenCtx.fillStyle = `rgba(${r},${g},${b},${a})`;
-                    offscreenCtx.fillRect(x * legoBlockSize, y * legoBlockSize, legoBlockSize, legoBlockSize);
-                    offscreenCtx.globalCompositeOperation = 'source-over';
-                }
-            }
+            // Create a label for the color
+            const label = document.createElement('div');
+            label.textContent = colorName;
 
-            return offscreenCanvas;
+            // Append the canvas and label to the container
+            container.appendChild(canvas);
+            container.appendChild(label);
+
+            return container;
         }
 
-        async function processImage(img, longestDimension) {
-            const aspectRatio = img.width / img.height;
-
-            let thumbnailWidth, thumbnailHeight;
-
-            if (img.width >= img.height) {
-                thumbnailWidth = longestDimension;
-                thumbnailHeight = Math.floor(longestDimension / aspectRatio);
-            } else {
-                thumbnailHeight = longestDimension;
-                thumbnailWidth = Math.floor(longestDimension * aspectRatio);
-            }
-
-            const thumbnailCanvas = document.getElementById('thumbnailCanvas');
-            const thumbnailCtx = thumbnailCanvas.getContext('2d');
-
-            // Set the canvas size to the desired thumbnail size
-            thumbnailCanvas.width = thumbnailWidth;
-            thumbnailCanvas.height = thumbnailHeight;
-
-            // Draw the image onto the canvas, resizing it
-            thumbnailCtx.drawImage(img, 0, 0, thumbnailWidth, thumbnailHeight);
-
-            // Get the pixel data of the thumbnail
-            const imageData = thumbnailCtx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
-
-            // Define the size of the lego blocks and upscale factor
-            const legoBlockSize = 20; // Size of the brick image
-            const upscaleFactor = 4;  // Increase to make the final image larger and sharper
-
-            // Load the brick image
+        async function displayAllBrickColors() {
             const brickImg = await loadBrickImage(brickImageUrl);
+            const brickContainer = document.getElementById('brickContainer');
 
-            // Create the high-resolution lego image on an offscreen canvas
-            const offscreenCanvas = createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor);
-
-            // Display the image on the on-screen canvas
-            const legoCanvas = document.getElementById('legoCanvas');
-            legoCanvas.width = thumbnailWidth * legoBlockSize;
-            legoCanvas.height = thumbnailHeight * legoBlockSize;
-            const legoCtx = legoCanvas.getContext('2d');
-
-            const scaleX = legoCanvas.width / (thumbnailWidth * legoBlockSize);
-            const scaleY = legoCanvas.height / (thumbnailHeight * legoBlockSize);
-            legoCtx.scale(scaleX, scaleY);
-            // legoCtx.drawImage(offscreenCanvas, 0, 0);
-            legoCtx.drawImage(offscreenCanvas, 0, 0, legoCanvas.width, legoCanvas.height);
-
-            // Display the original image on another canvas
-            const originalCanvas = document.getElementById('originalCanvas');
-            originalCanvas.width = legoCanvas.width;
-            originalCanvas.height = legoCanvas.height;
-            const originalCtx = originalCanvas.getContext('2d');
-
-            originalCtx.drawImage(img, 0, 0, originalCanvas.width, originalCanvas.height);
-
-            // Set up the download button
-            document.getElementById('download').onclick = function() {
-                const link = document.createElement('a');
-                link.download = 'legofied_image.png';
-                link.href = offscreenCanvas.toDataURL();
-                link.click();
-            };
+            for (const [colorCode, color] of Object.entries(_palettes['solid'])) {
+                const colorName = _color_names[colorCode] || `Color ${colorCode}`;
+                const brickCanvas = createBrickCanvas(brickImg, color, colorName);
+                brickContainer.appendChild(brickCanvas);
+            }
         }
 
-                function handleFiles(files) {
-            const file = files[0];
-            if (!file) {
-                return;
-            }
+        const _color_names = {
+            '001': 'white',
+            '005': 'brick-yellow',
+            '018': 'nougat',
+            '021': 'bright red',
+            '023': 'bright blue',
+            '024': 'bright yellow',
+            '026': 'black',
+            '028': 'dark green',
+            '037': 'bright green',
+            '038': 'dark orange',
+            '040': 'transparent',
+            '041': 'transparent red',
+            '042': 'transparent light blue',
+            '043': 'transparent blue',
+            '044': 'transparent yellow',
+            '047': 'transparent fluorescent reddish-orange',
+            '048': 'transparent green',
+            '049': 'transparent fluorescent green',
+            '102': 'medium blue',
+            '106': 'bright orange',
+            '111': 'transparent brown',
+            '113': 'transparent medium reddish-violet',
+            '119': 'bright yellowish-green',
+            '124': 'bright reddish-violet',
+            '126': 'transparent bright bluish-violet',
+            '131': 'silver',
+            '135': 'sand blue',
+            '138': 'sand yellow',
+            '140': 'earth blue',
+            '141': 'earth green',
+            '143': 'transparent fluorescent blue',
+            '148': 'metallic dark grey',
+            '151': 'sand green',
+            '154': 'dark red',
+            '182': 'transparent bright orange',
+            '191': 'flame yellowish orange',
+            '192': 'reddish brown',
+            '194': 'medium stone grey',
+            '199': 'dark stone grey',
+            '208': 'light stone grey',
+            '212': 'light royal blue',
+            '221': 'bright purple',
+            '222': 'light purple',
+            '226': 'cool yellow',
+            '268': 'medium lilac',
+            '283': 'light nougat',
+            '294': 'phosph. green',
+            '297': 'warm gold',
+            '308': 'dark brown',
+            '311': 'transparent bright green',
+            '312': 'medium nougat'
+        };
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const longestDimension = parseInt(document.getElementById('thumbnailSize').value, 10);
-                    processImage(img, longestDimension);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        async function loadDefaultImage() {
-            const img = new Image();
-            img.crossOrigin = 'Anonymous';
-            img.onload = function() {
-                const longestDimension = parseInt(document.getElementById('thumbnailSize').value, 10);
-                processImage(img, longestDimension);
-                const fileInput = document.getElementById('upload');
-                fileInput.files = img;
-            };
-            img.src = defaultImageUrl;
-        }
-
-        const dropArea = document.getElementById('dropArea');
-        const uploadInput = document.getElementById('upload');
-
-        dropArea.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            dropArea.classList.add('hover');
-        });
-
-        dropArea.addEventListener('dragleave', () => {
-            dropArea.classList.remove('hover');
-        });
-
-        dropArea.addEventListener('drop', (event) => {
-            event.preventDefault();
-            dropArea.classList.remove('hover');
-            if (event.dataTransfer.files.length > 0) {
-              const fileInput = document.getElementById('upload');
-              fileInput.files = event.dataTransfer.files;
-              handleFiles(event.dataTransfer.files);
-            }
-        });
-
-        dropArea.addEventListener('click', () => {
-            uploadInput.click();
-        });
-
-        uploadInput.addEventListener('change', (event) => {
-            handleFiles(event.target.files);
-        });
-
-        document.getElementById('thumbnailSize').addEventListener('input', function() {
-            document.getElementById('sizeValue').textContent = this.value;
-            const fileInput = document.getElementById('upload');
-            if (fileInput.files.length > 0) {
-                handleFiles(fileInput.files);
-            } else {
-                loadDefaultImage();
-            }
-        });
-
-
-        // Load the default image on page load
-        window.onload = loadDefaultImage;
+        displayAllBrickColors();
     </script>
-
 
 
 
