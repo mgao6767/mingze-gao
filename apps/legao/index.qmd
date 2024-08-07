@@ -53,6 +53,11 @@ Notably, all processing is now performed in your browser so no image will be upl
 		<div class="control-panel">
         <label for="thumbnailSize">Longest Dimension: <span id="sizeValue">50</span></label>
         <input type="range" id="thumbnailSize" name="thumbnailSize" min="10" max="200" value="50">
+        <div>
+            <label>
+                Use Color Palette <input type="checkbox" id="usePalette" checked>
+            </label>
+        </div>
     </div>
     <canvas id="thumbnailCanvas" style="display: none;"></canvas>
 		<div class="canvas-container">
@@ -60,10 +65,117 @@ Notably, all processing is now performed in your browser so no image will be upl
         <canvas id="legoCanvas"></canvas>
     </div>
     <button id="download">Download Image</button>
+    <div id="brickUsage"></div>
 
     <script>
         const brickImageUrl = 'https://raw.githubusercontent.com/mgao6767/legao/master/app/legao/1x1.png';
-        const defaultImageUrl = 'https://mingze-gao.com/images/AdrianAI.png';
+        const defaultImageUrl = 'https://cdn.shopify.com/s/files/1/0047/4231/6066/files/The_Scream_by_Edvard_Munch_1893_800x.png';
+
+        const colorPalette = {
+            '024': [0xfe, 0xc4, 0x01],
+            '106': [0xe7, 0x64, 0x19],
+            '021': [0xde, 0x01, 0x0e],
+            '221': [0xde, 0x38, 0x8b],
+            '023': [0x01, 0x58, 0xa8],
+            '028': [0x01, 0x7c, 0x29],
+            '119': [0x95, 0xb9, 0x0c],
+            '192': [0x5c, 0x1d, 0x0d],
+            '018': [0xd6, 0x73, 0x41],
+            '001': [0xf4, 0xf4, 0xf4],
+            '026': [0x02, 0x02, 0x02],
+            '226': [0xff, 0xff, 0x99],
+            '222': [0xee, 0x9d, 0xc3],
+            '212': [0x87, 0xc0, 0xea],
+            '037': [0x01, 0x96, 0x25],
+            '005': [0xd9, 0xbb, 0x7c],
+            '283': [0xf5, 0xc1, 0x89],
+            '208': [0xe4, 0xe4, 0xda],
+            '191': [0xf4, 0x9b, 0x01],
+            '124': [0x9c, 0x01, 0xc6],
+            '102': [0x48, 0x8c, 0xc6],
+            '135': [0x5f, 0x75, 0x8c],
+            '151': [0x60, 0x82, 0x66],
+            '138': [0x8d, 0x75, 0x53],
+            '038': [0xa8, 0x3e, 0x16],
+            '194': [0x9c, 0x92, 0x91],
+            '154': [0x80, 0x09, 0x1c],
+            '268': [0x2d, 0x16, 0x78],
+            '140': [0x01, 0x26, 0x42],
+            '141': [0x01, 0x35, 0x17],
+            '312': [0xaa, 0x7e, 0x56],
+            '199': [0x4d, 0x5e, 0x57],
+            '308': [0x31, 0x10, 0x07],
+            '044': [0xf9, 0xef, 0x69],
+            '182': [0xec, 0x76, 0x0e],
+            '047': [0xe7, 0x66, 0x48],
+            '041': [0xe0, 0x2a, 0x29],
+            '113': [0xee, 0x9d, 0xc3],
+            '126': [0x9c, 0x95, 0xc7],
+            '042': [0xb6, 0xe0, 0xea],
+            '043': [0x50, 0xb1, 0xe8],
+            '143': [0xce, 0xe3, 0xf6],
+            '048': [0x63, 0xb2, 0x6e],
+            '311': [0x99, 0xff, 0x66],
+            '049': [0xf1, 0xed, 0x5b],
+            '111': [0xa6, 0x91, 0x82],
+            '040': [0xee, 0xee, 0xee]
+        };
+
+        const colorNames = {
+            '001': 'white',
+            '005': 'brick-yellow',
+            '018': 'nougat',
+            '021': 'bright red',
+            '023': 'bright blue',
+            '024': 'bright yellow',
+            '026': 'black',
+            '028': 'dark green',
+            '037': 'bright green',
+            '038': 'dark orange',
+            '040': 'transparent',
+            '041': 'transparent red',
+            '042': 'transparent light blue',
+            '043': 'transparent blue',
+            '044': 'transparent yellow',
+            '047': 'transparent fluorescent reddish-orange',
+            '048': 'transparent green',
+            '049': 'transparent fluorescent green',
+            '102': 'medium blue',
+            '106': 'bright orange',
+            '111': 'transparent brown',
+            '113': 'transparent medium reddish-violet',
+            '119': 'bright yellowish-green',
+            '124': 'bright reddish-violet',
+            '126': 'transparent bright bluish-violet',
+            '131': 'silver',
+            '135': 'sand blue',
+            '138': 'sand yellow',
+            '140': 'earth blue',
+            '141': 'earth green',
+            '143': 'transparent fluorescent blue',
+            '148': 'metallic dark grey',
+            '151': 'sand green',
+            '154': 'dark red',
+            '182': 'transparent bright orange',
+            '191': 'flame yellowish orange',
+            '192': 'reddish brown',
+            '194': 'medium stone grey',
+            '199': 'dark stone grey',
+            '208': 'light stone grey',
+            '212': 'light royal blue',
+            '221': 'bright purple',
+            '222': 'light purple',
+            '226': 'cool yellow',
+            '268': 'medium lilac',
+            '283': 'light nougat',
+            '294': 'phosph. green',
+            '297': 'warm gold',
+            '308': 'dark brown',
+            '311': 'transparent bright green',
+            '312': 'medium nougat'
+        };
+
+        const colorArray = Object.entries(colorPalette).map(([code, rgb]) => ({ code, rgb }));
 
         function loadBrickImage(url) {
             return new Promise((resolve, reject) => {
@@ -75,7 +187,27 @@ Notably, all processing is now performed in your browser so no image will be upl
             });
         }
 
-        function createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor) {
+        function findClosestColor(r, g, b, palette) {
+            let closestColor = palette[0];
+            let minDistance = Number.MAX_VALUE;
+
+            palette.forEach(color => {
+                const distance = Math.sqrt(
+                    Math.pow(color.rgb[0] - r, 2) +
+                    Math.pow(color.rgb[1] - g, 2) +
+                    Math.pow(color.rgb[2] - b, 2)
+                );
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestColor = color;
+                }
+            });
+
+            return closestColor;
+        }
+
+        function createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor, usePalette) {
             // Create offscreen canvas for high-resolution image
             const offscreenCanvas = document.createElement('canvas');
             offscreenCanvas.width = thumbnailWidth * legoBlockSize * upscaleFactor;
@@ -84,29 +216,72 @@ Notably, all processing is now performed in your browser so no image will be upl
 
             // Scale the context for sharpness
             offscreenCtx.scale(upscaleFactor, upscaleFactor);
+            // Track brick usage
+            const brickUsage = {};
 
             // Draw each pixel as a lego block on the offscreen canvas
             for (let y = 0; y < thumbnailHeight; y++) {
                 for (let x = 0; x < thumbnailWidth; x++) {
                     const index = (y * thumbnailWidth + x) * 4;
-                    const r = imageData[index];
-                    const g = imageData[index + 1];
-                    const b = imageData[index + 2];
+                    let r = imageData[index];
+                    let g = imageData[index + 1];
+                    let b = imageData[index + 2];
                     // Fixed alpha value to 0.7
                     const a = 0.7;
+
+                    if (usePalette) {
+                        const closestColor = findClosestColor(r, g, b, colorArray);
+                        r = closestColor.rgb[0];
+                        g = closestColor.rgb[1];
+                        b = closestColor.rgb[2];
+                        colorKey = `${closestColor.code}`;
+                        name = colorNames[closestColor.code];
+                    } else {
+                        colorKey = `RGB(${r},${g},${b})`;;
+                        name = '';
+                    }
+                    colorRGB = `RGB(${r},${g},${b})`;
+                    colorRGBA = `RGBA(${r},${g},${b},${a})`;
+
+                    // Count the brick usage
+                    if (brickUsage[colorKey]) {
+                        brickUsage[colorKey].count++;
+                    } else {
+                        brickUsage[colorKey] = { 
+                            count: 1, 
+                            rgb: colorRGB, 
+                            name: name
+                        };
+                    }
 
                     // Draw the colored brick on the offscreen canvas
                     offscreenCtx.drawImage(brickImg, x * legoBlockSize, y * legoBlockSize, legoBlockSize, legoBlockSize);
 
                     // Apply color overlay to the brick image
                     offscreenCtx.globalCompositeOperation = 'source-atop';
-                    offscreenCtx.fillStyle = `rgba(${r},${g},${b},${a})`;
+                    offscreenCtx.fillStyle = colorRGBA;
                     offscreenCtx.fillRect(x * legoBlockSize, y * legoBlockSize, legoBlockSize, legoBlockSize);
                     offscreenCtx.globalCompositeOperation = 'source-over';
                 }
             }
 
-            return offscreenCanvas;
+            return { offscreenCanvas, brickUsage };
+        }
+
+        function displayBrickUsage(brickUsage) {
+            const brickUsageDiv = document.getElementById('brickUsage');
+            const sortedBrickUsage = Object.entries(brickUsage).sort((a, b) => b[1].count - a[1].count);
+
+            brickUsageDiv.innerHTML = '<h3>Bricks Used</h3><ul>' + 
+                sortedBrickUsage.map(([color, { count, rgb, name }]) => `
+                    <li>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 20px; height: 20px; background-color: ${rgb}; margin-right: 10px;"></div>
+                            ${rgb} ${name}: ${count}
+                        </div>
+                    </li>
+                `).join('') + 
+                '</ul>';
         }
 
         async function processImage(img, longestDimension) {
@@ -123,7 +298,7 @@ Notably, all processing is now performed in your browser so no image will be upl
             }
 
             const thumbnailCanvas = document.getElementById('thumbnailCanvas');
-            const thumbnailCtx = thumbnailCanvas.getContext('2d');
+            const thumbnailCtx = thumbnailCanvas.getContext('2d', { willReadFrequently: true });
 
             // Set the canvas size to the desired thumbnail size
             thumbnailCanvas.width = thumbnailWidth;
@@ -142,8 +317,15 @@ Notably, all processing is now performed in your browser so no image will be upl
             // Load the brick image
             const brickImg = await loadBrickImage(brickImageUrl);
 
+            // Check if the palette should be used
+            const usePalette = document.getElementById('usePalette').checked;
+
             // Create the high-resolution lego image on an offscreen canvas
-            const offscreenCanvas = createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor);
+            const { offscreenCanvas, brickUsage } = createLegoImage(thumbnailWidth, thumbnailHeight, imageData, brickImg, legoBlockSize, upscaleFactor, usePalette);
+
+            // Display the brick usage
+            displayBrickUsage(brickUsage);
+
 
             // Display the image on the on-screen canvas
             const legoCanvas = document.getElementById('legoCanvas');
@@ -174,7 +356,7 @@ Notably, all processing is now performed in your browser so no image will be upl
             };
         }
 
-				function handleFiles(files) {
+        function handleFiles(files) {
             const file = files[0];
             if (!file) {
                 return;
@@ -198,8 +380,6 @@ Notably, all processing is now performed in your browser so no image will be upl
             img.onload = function() {
                 const longestDimension = parseInt(document.getElementById('thumbnailSize').value, 10);
                 processImage(img, longestDimension);
-                const fileInput = document.getElementById('upload');
-                fileInput.files = img;
             };
             img.src = defaultImageUrl;
         }
@@ -236,6 +416,15 @@ Notably, all processing is now performed in your browser so no image will be upl
 
         document.getElementById('thumbnailSize').addEventListener('input', function() {
             document.getElementById('sizeValue').textContent = this.value;
+            const fileInput = document.getElementById('upload');
+            if (fileInput.files.length > 0) {
+                handleFiles(fileInput.files);
+            } else {
+                loadDefaultImage();
+            }
+        });
+
+        document.getElementById('usePalette').addEventListener('change', function() {
             const fileInput = document.getElementById('upload');
             if (fileInput.files.length > 0) {
                 handleFiles(fileInput.files);
