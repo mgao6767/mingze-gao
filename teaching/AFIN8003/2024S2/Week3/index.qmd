@@ -628,9 +628,9 @@ Second, calculate RWA.[^risk-weight]
 | OBS item                    | CEA | Risk weight | Risk-weighted value |
 |-----------------------------|-----|-------------|---------------------|
 | Two-year loan commitment    | 32  | 20%         | 6.4                 |
-| Standby letter of credit    | 10  | 20%         | 5                   |
+| Standby letter of credit    | 10  | 20%         | 2                   |
 | Commercial letter of credit | 10  | 75%         | 7.5                 |
-| __Total RWA__               |     |             | __18.9__            |
+| __Total RWA__               |     |             | __15.9__            |
 
 : Total RWA for OBS contingent guaranty contracts {#tbl-obs-contingencies}
 
@@ -683,9 +683,9 @@ Total RWA of the DI is the sum of on-balance-sheet and off-balance-sheet RWAs:
 |------------------------------------|-----------------|
 | On-balance-sheet                   | 76              |
 | Off-balance-sheet                  |                 |
-| - contingencies and guarantees     | 18.9            |
+| - contingencies and guarantees     | 15.9            |
 | - market contracts and derivatives | 5.5             |
-| Total RWA                          | __161.5__       |
+| Total RWA                          | __97.4__        |
 
 : Total RWA (on-and off-balance-sheet) {#tbl-rwa-all}
 
@@ -706,9 +706,9 @@ The DI's capital ratios are:
 
 $$
 \begin{aligned}
-\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}  = \frac{25}{161.5} = 15.48\% \ge 4.5\% \\
-\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{25+2}{161.5} = 16.72\% \ge 6\% \\
-\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{27+8}{161.5} = 21.67\% \ge 8\%
+\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}  = \frac{25}{97.4} = 25.67\% \ge 4.5\% \\
+\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{25+2}{97.4} = 27.72\% \ge 6\% \\
+\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{27+8}{97.4} = 35.93\% \ge 8\%
 \end{aligned}
 $$
 
@@ -789,22 +789,22 @@ We covered only the RWA for credit risk.
 
 ## Risk-based capital: beyond credit risk
 
-In the previous example, we have calculated that the DI's RWA (for credit risk) is $161.5 million.
+In the previous example, we have calculated that the DI's RWA (for credit risk) is $97.4 million.
 
 Now, suppose that we have also calculated that the DI's
 
 - RWA for market risk is $10.2 million, and 
 - RWA for operational risk is $9 million.
 
-The total RWA is $161.5 + $10.2 + $9 = $180.7 million.
+The total RWA is $97.4 + $10.2 + $9 = $116.6 million.
 
 The DI's capital ratios are actually:
 
 $$
 \begin{aligned}
-\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}  = \frac{25}{180.7} = 13.84\% \ge 4.5\% \\
-\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{25+2}{180.7} = 14.94\% \ge 6\% \\
-\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{27+8}{180.7} = 19.37\% \ge 8\%
+\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}  = \frac{25}{116.6} = 21.44\% \ge 4.5\% \\
+\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{25+2}{116.6} = 23.16\% \ge 6\% \\
+\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{27+8}{116.6} = 30.02\% \ge 8\%
 \end{aligned}
 $$
 
