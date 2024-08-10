@@ -196,6 +196,21 @@ No matter what, interest rate volatility exists and thus, the appropriate measur
 
 Image source: [Steven Desmyter](https://www.linkedin.com/posts/steven-desmyter-a211621_this-is-what-higher-for-longer-looks-like-activity-7123697175565348864-jFyq)
 
+## Interest rate risk and Basel framework
+
+As discussed last week, the three pillars of Basel framework (since Basel II) include:
+
+1. minimum capital requirements
+2. supervisory review
+3. effective use of disclosure (for market discipline)
+
+The Pillar 1 involves a capital adequacy framework surrounding minimum ratios of various capital (CET1, Tier 1, Total) to RWA.
+
+- The RWA is sum of RWAs for credit risk, market risk, and operational risk.
+- There is currently no "RWA for interest rate risk".
+
+The __Interest Rate Risk in the Banking Book (IRRBB)__ is part of the Basel capital framework's Pillar 2 (and Pillar 3).
+
 # Measuring interest rate risk
 
 ## An overview
@@ -740,7 +755,9 @@ Instead of setting $D_A-D_L k=0$, the bank now needs to target $D_A-D_L=0$.
 
 ## Suggested readings
 
-- [Reporting Standard ARS 117.0 Repricing Analysis](https://www.apra.gov.au/sites/default/files/2024-07/Reporting%20Standard%20ARS%20117.0%20Repricing%20Analysis%20-%20Clean.pdf)
+- [RBA Financial Stability Review October 2023 - Focus Topic: Interest Rate Risk](https://www.rba.gov.au/publications/fsr/2023/oct/focus-topic-interest-rate-risk.html).
+- [BIS Standards IRRBB](https://www.bis.org/bcbs/publ/d368.pdf).
+- [Reporting Standard ARS 117.0 Repricing Analysis](https://www.apra.gov.au/sites/default/files/2024-07/Reporting%20Standard%20ARS%20117.0%20Repricing%20Analysis%20-%20Clean.pdf).
 - Repricing model's application - page 31 of the Westpac NZ Banking Group's [interim report March 2024](https://www.westpac.co.nz/assets/About-us/disclosure-statements/Documents/Westpac-NZ-Disclosure-Statement-March-2024.pdf).
 - Duration model's application - Table 25 of the FreddieMac's [quarterly report June 2023](https://www.sec.gov/Archives/edgar/data/1026214/000102621423000075/fmcc-20230630.htm).
 - If you need read more on fixed income securities, feel free to read some of my posts:
