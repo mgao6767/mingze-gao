@@ -699,6 +699,21 @@ Figure&nbsp;6: The market does not always correctly forecast interest rates
 </figure>
 </div>
 <p>Image source: <a href="https://www.linkedin.com/posts/steven-desmyter-a211621_this-is-what-higher-for-longer-looks-like-activity-7123697175565348864-jFyq">Steven Desmyter</a></p>
+</section>
+<section id="interest-rate-risk-and-basel-framework" class="slide level2">
+<h2>Interest rate risk and Basel framework</h2>
+<p>As discussed last week, the three pillars of Basel framework (since Basel II) include:</p>
+<ol type="1">
+<li>minimum capital requirements</li>
+<li>supervisory review</li>
+<li>effective use of disclosure (for market discipline)</li>
+</ol>
+<p>The Pillar 1 involves a capital adequacy framework surrounding minimum ratios of various capital (CET1, Tier 1, Total) to RWA.</p>
+<ul>
+<li>The RWA is sum of RWAs for credit risk, market risk, and operational risk.</li>
+<li>There is currently no “RWA for interest rate risk”.</li>
+</ul>
+<p>The <strong>Interest Rate Risk in the Banking Book (IRRBB)</strong> is part of the Basel capital framework’s Pillar 2 (and Pillar 3).</p>
 </section></section>
 <section>
 <section id="measuring-interest-rate-risk" class="title-slide slide level1 center">
@@ -1127,49 +1142,49 @@ Table&nbsp;4: Calculating the duration of a 3-year bond
 <div aria-describedby="tbl-duration-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <style type="text/css">
-#T_e5803_row3_col4 {
+#T_5b0c0_row3_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_e5803" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_5b0c0" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_e5803_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_e5803_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_e5803_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_e5803_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_e5803_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_5b0c0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_5b0c0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_5b0c0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_5b0c0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_5b0c0_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_e5803_row0_col0" class="data row0 col0">1</td>
-<td id="T_e5803_row0_col1" class="data row0 col1">50.00</td>
-<td id="T_e5803_row0_col2" class="data row0 col2">48.08</td>
-<td id="T_e5803_row0_col3" class="data row0 col3">0.05</td>
-<td id="T_e5803_row0_col4" class="data row0 col4">0.05</td>
+<td id="T_5b0c0_row0_col0" class="data row0 col0">1</td>
+<td id="T_5b0c0_row0_col1" class="data row0 col1">50.00</td>
+<td id="T_5b0c0_row0_col2" class="data row0 col2">48.08</td>
+<td id="T_5b0c0_row0_col3" class="data row0 col3">0.05</td>
+<td id="T_5b0c0_row0_col4" class="data row0 col4">0.05</td>
 </tr>
 <tr class="even">
-<td id="T_e5803_row1_col0" class="data row1 col0">2</td>
-<td id="T_e5803_row1_col1" class="data row1 col1">50.00</td>
-<td id="T_e5803_row1_col2" class="data row1 col2">46.23</td>
-<td id="T_e5803_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_e5803_row1_col4" class="data row1 col4">0.09</td>
+<td id="T_5b0c0_row1_col0" class="data row1 col0">2</td>
+<td id="T_5b0c0_row1_col1" class="data row1 col1">50.00</td>
+<td id="T_5b0c0_row1_col2" class="data row1 col2">46.23</td>
+<td id="T_5b0c0_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_5b0c0_row1_col4" class="data row1 col4">0.09</td>
 </tr>
 <tr class="odd">
-<td id="T_e5803_row2_col0" class="data row2 col0">3</td>
-<td id="T_e5803_row2_col1" class="data row2 col1">1050.00</td>
-<td id="T_e5803_row2_col2" class="data row2 col2">933.45</td>
-<td id="T_e5803_row2_col3" class="data row2 col3">0.91</td>
-<td id="T_e5803_row2_col4" class="data row2 col4">2.72</td>
+<td id="T_5b0c0_row2_col0" class="data row2 col0">3</td>
+<td id="T_5b0c0_row2_col1" class="data row2 col1">1050.00</td>
+<td id="T_5b0c0_row2_col2" class="data row2 col2">933.45</td>
+<td id="T_5b0c0_row2_col3" class="data row2 col3">0.91</td>
+<td id="T_5b0c0_row2_col4" class="data row2 col4">2.72</td>
 </tr>
 <tr class="even">
-<td id="T_e5803_row3_col0" class="data row3 col0">Total</td>
-<td id="T_e5803_row3_col1" class="data row3 col1">1150.00</td>
-<td id="T_e5803_row3_col2" class="data row3 col2">1027.75</td>
-<td id="T_e5803_row3_col3" class="data row3 col3">1.00</td>
-<td id="T_e5803_row3_col4" class="data row3 col4">2.86</td>
+<td id="T_5b0c0_row3_col0" class="data row3 col0">Total</td>
+<td id="T_5b0c0_row3_col1" class="data row3 col1">1150.00</td>
+<td id="T_5b0c0_row3_col2" class="data row3 col2">1027.75</td>
+<td id="T_5b0c0_row3_col3" class="data row3 col3">1.00</td>
+<td id="T_5b0c0_row3_col4" class="data row3 col4">2.86</td>
 </tr>
 </tbody>
 </table>
@@ -1237,63 +1252,63 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 <div aria-describedby="tbl-duration-example-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <style type="text/css">
-#T_81f7a_row5_col4 {
+#T_0cfcc_row5_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_81f7a" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_0cfcc" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_81f7a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_81f7a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_81f7a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_81f7a_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_81f7a_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_0cfcc_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_0cfcc_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_0cfcc_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_0cfcc_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_0cfcc_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_81f7a_row0_col0" class="data row0 col0">1</td>
-<td id="T_81f7a_row0_col1" class="data row0 col1">40.00</td>
-<td id="T_81f7a_row0_col2" class="data row0 col2">37.74</td>
-<td id="T_81f7a_row0_col3" class="data row0 col3">0.04</td>
-<td id="T_81f7a_row0_col4" class="data row0 col4">0.04</td>
+<td id="T_0cfcc_row0_col0" class="data row0 col0">1</td>
+<td id="T_0cfcc_row0_col1" class="data row0 col1">40.00</td>
+<td id="T_0cfcc_row0_col2" class="data row0 col2">37.74</td>
+<td id="T_0cfcc_row0_col3" class="data row0 col3">0.04</td>
+<td id="T_0cfcc_row0_col4" class="data row0 col4">0.04</td>
 </tr>
 <tr class="even">
-<td id="T_81f7a_row1_col0" class="data row1 col0">2</td>
-<td id="T_81f7a_row1_col1" class="data row1 col1">40.00</td>
-<td id="T_81f7a_row1_col2" class="data row1 col2">35.60</td>
-<td id="T_81f7a_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_81f7a_row1_col4" class="data row1 col4">0.08</td>
+<td id="T_0cfcc_row1_col0" class="data row1 col0">2</td>
+<td id="T_0cfcc_row1_col1" class="data row1 col1">40.00</td>
+<td id="T_0cfcc_row1_col2" class="data row1 col2">35.60</td>
+<td id="T_0cfcc_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_0cfcc_row1_col4" class="data row1 col4">0.08</td>
 </tr>
 <tr class="odd">
-<td id="T_81f7a_row2_col0" class="data row2 col0">3</td>
-<td id="T_81f7a_row2_col1" class="data row2 col1">40.00</td>
-<td id="T_81f7a_row2_col2" class="data row2 col2">33.58</td>
-<td id="T_81f7a_row2_col3" class="data row2 col3">0.04</td>
-<td id="T_81f7a_row2_col4" class="data row2 col4">0.11</td>
+<td id="T_0cfcc_row2_col0" class="data row2 col0">3</td>
+<td id="T_0cfcc_row2_col1" class="data row2 col1">40.00</td>
+<td id="T_0cfcc_row2_col2" class="data row2 col2">33.58</td>
+<td id="T_0cfcc_row2_col3" class="data row2 col3">0.04</td>
+<td id="T_0cfcc_row2_col4" class="data row2 col4">0.11</td>
 </tr>
 <tr class="even">
-<td id="T_81f7a_row3_col0" class="data row3 col0">4</td>
-<td id="T_81f7a_row3_col1" class="data row3 col1">40.00</td>
-<td id="T_81f7a_row3_col2" class="data row3 col2">31.68</td>
-<td id="T_81f7a_row3_col3" class="data row3 col3">0.03</td>
-<td id="T_81f7a_row3_col4" class="data row3 col4">0.14</td>
+<td id="T_0cfcc_row3_col0" class="data row3 col0">4</td>
+<td id="T_0cfcc_row3_col1" class="data row3 col1">40.00</td>
+<td id="T_0cfcc_row3_col2" class="data row3 col2">31.68</td>
+<td id="T_0cfcc_row3_col3" class="data row3 col3">0.03</td>
+<td id="T_0cfcc_row3_col4" class="data row3 col4">0.14</td>
 </tr>
 <tr class="odd">
-<td id="T_81f7a_row4_col0" class="data row4 col0">5</td>
-<td id="T_81f7a_row4_col1" class="data row4 col1">1040.00</td>
-<td id="T_81f7a_row4_col2" class="data row4 col2">777.15</td>
-<td id="T_81f7a_row4_col3" class="data row4 col3">0.85</td>
-<td id="T_81f7a_row4_col4" class="data row4 col4">4.24</td>
+<td id="T_0cfcc_row4_col0" class="data row4 col0">5</td>
+<td id="T_0cfcc_row4_col1" class="data row4 col1">1040.00</td>
+<td id="T_0cfcc_row4_col2" class="data row4 col2">777.15</td>
+<td id="T_0cfcc_row4_col3" class="data row4 col3">0.85</td>
+<td id="T_0cfcc_row4_col4" class="data row4 col4">4.24</td>
 </tr>
 <tr class="even">
-<td id="T_81f7a_row5_col0" class="data row5 col0">Total</td>
-<td id="T_81f7a_row5_col1" class="data row5 col1">1200.00</td>
-<td id="T_81f7a_row5_col2" class="data row5 col2">915.75</td>
-<td id="T_81f7a_row5_col3" class="data row5 col3">1.00</td>
-<td id="T_81f7a_row5_col4" class="data row5 col4">4.61</td>
+<td id="T_0cfcc_row5_col0" class="data row5 col0">Total</td>
+<td id="T_0cfcc_row5_col1" class="data row5 col1">1200.00</td>
+<td id="T_0cfcc_row5_col2" class="data row5 col2">915.75</td>
+<td id="T_0cfcc_row5_col3" class="data row5 col3">1.00</td>
+<td id="T_0cfcc_row5_col4" class="data row5 col4">4.61</td>
 </tr>
 </tbody>
 </table>
@@ -1509,7 +1524,9 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 <section id="suggested-readings" class="slide level2">
 <h2>Suggested readings</h2>
 <ul>
-<li><a href="https://www.apra.gov.au/sites/default/files/2024-07/Reporting%20Standard%20ARS%20117.0%20Repricing%20Analysis%20-%20Clean.pdf">Reporting Standard ARS 117.0 Repricing Analysis</a></li>
+<li><a href="https://www.rba.gov.au/publications/fsr/2023/oct/focus-topic-interest-rate-risk.html">RBA Financial Stability Review October 2023 - Focus Topic: Interest Rate Risk</a>.</li>
+<li><a href="https://www.bis.org/bcbs/publ/d368.pdf">BIS Standards IRRBB</a>.</li>
+<li><a href="https://www.apra.gov.au/sites/default/files/2024-07/Reporting%20Standard%20ARS%20117.0%20Repricing%20Analysis%20-%20Clean.pdf">Reporting Standard ARS 117.0 Repricing Analysis</a>.</li>
 <li>Repricing model’s application - page 31 of the Westpac NZ Banking Group’s <a href="https://www.westpac.co.nz/assets/About-us/disclosure-statements/Documents/Westpac-NZ-Disclosure-Statement-March-2024.pdf">interim report March 2024</a>.</li>
 <li>Duration model’s application - Table 25 of the FreddieMac’s <a href="https://www.sec.gov/Archives/edgar/data/1026214/000102621423000075/fmcc-20230630.htm">quarterly report June 2023</a>.</li>
 <li>If you need read more on fixed income securities, feel free to read some of my posts:
@@ -1941,7 +1958,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
