@@ -9,7 +9,7 @@
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.54">
+  <meta name="generator" content="quarto-1.5.47">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-08-28">
@@ -31,7 +31,92 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
@@ -358,11 +443,854 @@ Dr.&nbsp;Mingze Gao
 
   <p class="date">2024-08-28</p>
 </section>
+<section>
 <section id="credit-risk-i-individual-loan-risk" class="title-slide slide level1 center">
-<h1>Credit risk I: Individual loan risk</h1>
+<h1>Credit Risk I: Individual Loan Risk</h1>
 
 </section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<p>In <a href="https://mingze-gao.com/teaching/AFIN8003/2024S2/Week3/">Week 3</a>, we discussed capital adequacy and the (Pillar 1 of Basel) minimum capital requirements, which involves the calculation of risk-weighted assets (RWA) that account for the various risks facing banks.</p>
+<p>As suggested by <a href="#/introduction" class="quarto-xref">Table&nbsp;1</a> below, <strong>credit risk</strong> is likely the most significant risk factor, the risk that the promised cash flows from loans and securities may not be paid in full (e.g., borrower defaults).</p>
+<div id="tbl-rwa-au-banks" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: RWA of Australian banks in 2023 (source: Capital IQ)
+</figcaption>
+<div aria-describedby="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CBA</th>
+<th>Westpac</th>
+<th>NAB</th>
+<th>ANZ</th>
+<th>Macquarie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RWA for credit risk</td>
+<td>362,869</td>
+<td>339,758</td>
+<td>355,554</td>
+<td>349,041</td>
+<td>97,485</td>
+</tr>
+<tr class="even">
+<td>RWA for market risk</td>
+<td>61,968</td>
+<td>51,676</td>
+<td>38,274</td>
+<td>41,967</td>
+<td>11,663</td>
+</tr>
+<tr class="odd">
+<td>RWA for operational risk</td>
+<td>43,155</td>
+<td>55,175</td>
+<td>41,178</td>
+<td>42,319</td>
+<td>15,828</td>
+</tr>
+<tr class="even">
+<td>Other RWA</td>
+<td>0</td>
+<td>4,809</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Total RWA</td>
+<td>467,992</td>
+<td>451,418</td>
+<td>435,006</td>
+<td>433,327</td>
+<td>124,976</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ul>
+<li>FIs (banks) transform financial claims of household savers (e.g., deposits) into claims (e.g., loans) issued to corporations, individuals and governments.</li>
+<li>FIs accept the credit risk on these loans in exchange for a fair return sufficient to cover the cost of funding to household savers and the credit risk involved in lending.</li>
+</ul>
+</section>
+<section id="introduction-contd" class="slide level2">
+<h2>Introduction (cont’d)</h2>
+<p>This week:</p>
+<ul>
+<li>approaches to analyzing and measuring the credit or default risk on <em>individual loans</em> (and bonds).</li>
+</ul>
+<p>Next week (after mid-term exam):</p>
+<ul>
+<li>methods for evaluating the risk of the <em>overall loan portfolio</em>, or loan concentration risk.</li>
+</ul>
+<p>Measurement of the credit risk on individual loans or bonds is crucial if an FI manager is to</p>
+<ol type="1">
+<li>price a loan or value a bond correctly, and</li>
+<li>set appropriate limits on the amount of credit extended to any one borrower or the loss exposure it accepts from any particular counterparty.</li>
+</ol>
+</section>
+<section id="importance-of-credit-risk-management" class="slide level2">
+<h2>Importance of credit risk management</h2>
+<p>Credit risk management is important because it involves the determination of many features of a loan (debt) instrument: interest rate, maturity, collateral requirement, and covenants.</p>
+<ul>
+<li>Inadequate credit risk management could lead to higher default rates and bank insolvency, especially when markets are competitive and margins are low.</li>
+</ul>
+<p>Default of one major borrower can have significant impact on value and reputation of many FIs.</p>
+<ul>
+<li>Direct impact on all lenders involved.</li>
+<li>Contagion or spill-over effect on other FIs in the financial system.</li>
+</ul>
+<p>Major economic or natural events can cause significant impact on many FIs loan portfolios.</p>
+<ul>
+<li>The 2007-09 subprime mortgage crisis.</li>
+<li>Floods, earthquakes, etc.</li>
+</ul>
+</section>
+<section id="credit-risk-related-events" class="slide level2">
+<h2>Credit risk-related events</h2>
+<p><strong>Subprime mortgage crisis</strong> and the resulting GFC 2007-09.</p>
+<ul>
+<li>Banks provided risky mortgages to subprime borrowers with poor credit.</li>
+<li>A housing boom led to speculative investments and rising home prices.</li>
+<li>Lenders bundled these mortgages into mortgage-backed securities (MBS) and sold them to investors.</li>
+<li>Many loans had adjustable rates, which increased over time, causing payment difficulties.</li>
+<li>Rising defaults led to a housing market collapse, triggering widespread financial losses.</li>
+<li>Banks and investors holding MBS faced a credit crisis, leading to bank failures and liquidity issues.</li>
+</ul>
+</section>
+<section id="credit-risk-related-events-contd" class="slide level2">
+<h2>Credit risk-related events (cont’d)</h2>
+<p><strong>U.S. student loan debt</strong> and its future?</p>
+<ul>
+<li>$1.73 trillion student loan debt as at September 2021, 7.8% is in default.</li>
+<li>1 out of 10 Americans has defaulted on a student loan.</li>
+<li>Personal consequences: homeownership, marriage, retirement savings, etc.</li>
+<li>Economic burden: loan defaults can weigh down the entire country.</li>
+</ul>
+</section>
+<section id="banks-in-australia-non-performing-assets" class="slide level2">
+<h2>Banks in Australia: non-performing assets</h2>
 
+<img data-src="./figures/banks-non-performing-assets-domestic.png" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">
+Figure&nbsp;1: Non-performing assets of banks in Australia
+</p></section>
+<section id="types-of-loans" class="slide level2">
+<h2>Types of loans</h2>
+<p>The loans made by FIs can be broadly categorized into:</p>
+<ol type="1">
+<li>Commercial and industrial (C&amp;I) loans</li>
+<li>Real estate loans</li>
+<li>Consumer (individual) loans</li>
+<li>Others</li>
+</ol>
+</section>
+<section id="types-of-loans-ci-loans" class="slide level2">
+<h2>Types of loans: C&amp;I loans</h2>
+<p>Commercial loans vary significantly in their features.</p>
+<ul>
+<li>Maturity, from a few weeks to years.</li>
+<li>Amount, from very small to millions or billions.</li>
+<li>Syndicated or not.
+<ul>
+<li>A syndicated loan is one provided by a group of FIs as opposed to a single lender.</li>
+</ul></li>
+<li>Secured or unsecured.</li>
+<li>Spot loans vs loan commitment.
+<ul>
+<li>Spot loan: a loan in which the loan amount is withdrawn immediately by the borrower.</li>
+<li>Loan commitment (or line of credit): a credit facility with a maximum size and a maximum period of time over which the borrower can withdraw funds.</li>
+</ul></li>
+</ul>
+</section>
+<section id="types-of-loans-real-estate-loans" class="slide level2">
+<h2>Types of loans: real estate loans</h2>
+<p>Real estate loans include residential loans (primarily mortgage loans) and commercial real estate loans.</p>
+<p>As with C&amp;I loans, residential mortgages differ widely in their characteristics:</p>
+<ul>
+<li>Loan size</li>
+<li>LTV (loan-to-value ratio): the ratio of the loan to the property’s price</li>
+<li>Maturity</li>
+<li>Mortgage interest rates and fees: adjustable-rate mortgages (ARMs) and fixed-rate mortgages</li>
+</ul>
+<p>Residential mortgages are typically very long-term loans with 20yrs+ maturity.</p>
+<ul>
+<li>Housing price can fall below the loan amount, causing defaults and eventually foreclosures.</li>
+</ul>
+</section>
+<section id="types-of-loans-consumer-loans" class="slide level2">
+<h2>Types of loans: consumer loans</h2>
+<p>Consumer (personal) loans include, for example, personal and auto loans.</p>
+<p>Credit cards are a type of consumer loan financing.</p>
+</section>
+<section id="types-of-loans-other-loans" class="slide level2">
+<h2>Types of loans: other loans</h2>
+<p>“Other loans” include a variety of borrowers and types, including for example</p>
+<ul>
+<li>farmers</li>
+<li>other banks</li>
+<li>nonbank FIs (e.g., broker margin loans)</li>
+<li>state and local governments</li>
+</ul>
+</section></section>
+<section>
+<section id="returns-on-a-loan" class="title-slide slide level1 center">
+<h1>Returns on a loan</h1>
+
+</section>
+<section id="calculating-the-return-on-a-loan" class="slide level2">
+<h2>Calculating the return on a loan</h2>
+<p>Once the decision to make a loan has been made, the pricing of the loan is an important aspect of credit risk management, which includes adjustments for the perceived credit risk of the borrower as well as any fees and collateral backing the loan.</p>
+<p>A traditional <strong>return on assets approach</strong> to calculate the return on a loan is explained here.</p>
+</section>
+<section id="contractually-promised-return-on-a-loan" class="slide level2">
+<h2>Contractually promised return on a loan</h2>
+<p>Factors affecting the promised loan return:</p>
+<ul>
+<li>Loan interest rate</li>
+<li>Credit risk premium</li>
+<li>Fees</li>
+<li>Collateral</li>
+<li>Non-price terms</li>
+</ul>
+</section>
+<section id="contractually-promised-return-on-a-loan-contd" class="slide level2">
+<h2>Contractually promised return on a loan (cont’d)</h2>
+<div class="columns">
+<div class="column">
+<p>Suppose that an FI makes a spot one-year $1 million loan. The loan rate may be set as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Base lending rate } BR &amp;= 8\% \\
+\text{+ Credit risk premium } \phi &amp;= 2\% \\
+BR + \phi &amp;= 10\%
+\end{aligned}
+\]</span></p>
+</div><div class="column">
+<p>The base lending rate (BR) reflects the FI’s weighted-average cost of capital (WACC) or its marginal cost of funds.</p>
+<ul>
+<li>For example, <a href="https://en.wikipedia.org/wiki/Libor">LIBOR</a>-the London Inter-Bank Offered Rate.</li>
+<li><a href="https://en.wikipedia.org/wiki/Libor_scandal">LIBOR manipulation scandal</a> led to its phasing out and replacement by more transparent and reliable rates like <a href="https://www.newyorkfed.org/markets/reference-rates/sofr">SOFR</a>-the Secured Overnight Financing Rate.</li>
+<li>The Australian equivalent is the <a href="https://www.asx.com.au/connectivity-and-data/information-services/benchmarks/benchmark-data/bbsw.html">Bank Bill Swap Rate (BBSW)</a>.</li>
+</ul>
+<p>The base lending rate could also reflect the <strong>prime lending rate</strong>, the interest rate that commercial banks charge their most creditworthy and low-risk corporate customers.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>LIBOR/SOFR (BBSW) more commonly used for short-term loans, while prime rates more for long-term loans.</p>
+</div>
+</div>
+</div>
+<p>A credit risk premium is added to the base lending rate.</p>
+</div></div>
+</section>
+<section id="contractually-promised-return-on-a-loan-contd-1" class="slide level2">
+<h2>Contractually promised return on a loan (cont’d)</h2>
+<p>Direct and indirect fees and charges:</p>
+<ol type="1">
+<li>Loan <strong>origination fee</strong> (<span class="math inline">\(f\)</span>) for processing the application.</li>
+<li><strong>Compensating balance</strong> requirement (<span class="math inline">\(b\)</span>) to be held as (demand) deposits.
+<ul>
+<li>A portion of the loan that the borrower must keep in a deposit account, typically earning little or no interest, which helps the bank secure funds and reduce the effective loan amount while still charging interest on the full loan value.</li>
+</ul></li>
+<li><strong>Reserve requirement</strong> (<span class="math inline">\(RR\)</span>) imposed by regulatory authority on the demand deposits.</li>
+</ol>
+<div title="Numeric example">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Numeric example</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>If a borrower takes a loan of $100,000 but must maintain a <em>compensating balance</em> of 10%, they need to keep $10,000 in a non-interest-bearing deposit account with the bank. Thus, they effectively receive $90,000 but pay interest on the full $100,000.</li>
+<li>The bank receives this $10,000 in deposits. Given a reserve requirement of 5%, the bank must keep <span class="math inline">\(\$10,000 \times 5\%=\$500\)</span> in reserve (cash or deposits with the central bank).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contractually-promised-return-on-a-loan-contd-2" class="slide level2">
+<h2>Contractually promised return on a loan (cont’d)</h2>
+<p>The gross return on loan (<span class="math inline">\(k\)</span>) per dollar lent is given by <span class="math display">\[
+1+k = 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]}
+\]</span></p>
+<div title="An annotated version of the formula">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>An annotated version of the formula</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math display">\[
+1+k=1+\frac{\overbrace{f+(BR+\phi)}^{\text{interest and fees earned}}}{\underbrace{1}_{\$1 \text{ loan}}-[\underbrace{b}_{\text{amount of loan deposited with the bank}}\times \underbrace{(1-RR)}_{\text{not reserved for regulatory compliance}}]}
+\]</span></p>
+<ul>
+<li>For every $1 the FI lends, it retains <span class="math inline">\(b\)</span> as compensating balance. The borrower receives <span class="math inline">\(1-b\)</span>.</li>
+<li>Since <span class="math inline">\(b\)</span> is held by the borrower at the FI as a demand deposit account, regulatory authority requires the bank to hold reserves at a rate <span class="math inline">\(RR\)</span> against the compensating balance.</li>
+<li>The net outflow by the bank per $1 of loans made is therefore <span class="math inline">\(1-[b(1-RR)]\)</span>, 1 minus the reserve-adjusted compensating balance requirement.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contractually-promised-return-on-a-loan-contd-3" class="slide level2">
+<h2>Contractually promised return on a loan (cont’d)</h2>
+<p>Suppose a bank does the following:</p>
+<ul>
+<li>Sets the loan rate on a prospective loan at 10% (where <span class="math inline">\(BR\)</span>=6% and <span class="math inline">\(\phi\)</span>=4%)</li>
+<li>Charges a 12.5 basis point (or 0.125%) loan origination fee <span class="math inline">\(f\)</span> to the borrower</li>
+<li>Imposes an 8% compensating balance requirement <span class="math inline">\(b\)</span> to be held as non-interest-bearing demand deposits</li>
+<li>Sets aside reserve, at a rate of 10% of deposits, held at the central bank (i.e.&nbsp;<span class="math inline">\(RR\)</span> is 10%)</li>
+</ul>
+<p>What is the contractually promised gross return on the loan? <span class="math display">\[
+\begin{aligned}
+1+k &amp;= 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]} \\
+1+k &amp;= 1+\frac{0.00125+(0.06+0.04)}{1-[0.08(1-0.1)]} \\
+1+k &amp;= 1+\frac{0.10125}{0.928} \\
+k &amp;= 10.91\%
+\end{aligned}
+\]</span></p>
+</section>
+<section id="some-notes" class="slide level2">
+<h2>Some notes</h2>
+<p>Since March 26, 2020, reserve requirements (<span class="math inline">\(RR\)</span>) are <a href="https://www.federalreserve.gov/monetarypolicy/reservereq.htm">eliminated for all depositary institutions</a> in the U.S.</p>
+<p>As commercial lending markets have become more competitive, both origination fees (<span class="math inline">\(f\)</span>) and compensating balances (<span class="math inline">\(b\)</span>) are becoming less important.</p>
+<p>As a result, the <em>credit risk premium</em> (<span class="math inline">\(\phi\)</span>) is the primary determinant for the promised return of a loan, once the base rate is set.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>To achieve a target promised gross return (<span class="math inline">\(k\)</span>) on a loan, an FI can use various combinations of fees, compensation balances, and risk margins.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-expected-return-on-a-loan" class="slide level2">
+<h2>The expected return on a loan</h2>
+<p>The promised return on a loan (<span class="math inline">\(k\)</span>) can differ from the <strong>expected return</strong> and the <em>actual return</em> on the loan because of default risk.</p>
+<p>At the time the loan is made, the expected return <span class="math inline">\(E(r)\)</span> per dollar lent is related to the promised return <span class="math inline">\(k\)</span> as follows: <span class="math display">\[
+1+E(r) = p(1+k) + (1-p)\times 0
+\]</span> where <span class="math inline">\(p\)</span> is the probability of complete repayment of the loan and <span class="math inline">\((1-p)\)</span> is the probability of default, in which case the FI receives nothing.<sup>1</sup> The expected return is a weighted average of:</p>
+<ul>
+<li>Full repayment: <span class="math inline">\((1+k)\)</span> with probability of <span class="math inline">\(p\)</span></li>
+<li>No repayment: 0 with probability of <span class="math inline">\((1-p)\)</span></li>
+</ul>
+<p>If <span class="math inline">\(p&lt;1\)</span>:</p>
+<ul>
+<li>Default risk exists</li>
+<li>FI needs to set risk premium</li>
+<li>FI needs to recognize that higher fees and charges might decrease <span class="math inline">\(p\)</span></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>In practice, the FI may recover part of the loan.</p></li></ol></aside></section>
+<section id="the-expected-return-on-a-loan-contd" class="slide level2">
+<h2>The expected return on a loan (cont’d)</h2>
+<p>Suppose a bank does the following:</p>
+<ul>
+<li>Sets the loan rate on a prospective loan at 10%</li>
+<li>Expects a probability of default of 5%</li>
+<li>Recovers nothing if the loan is defaulted</li>
+</ul>
+<p>What is the expected return on the loan?</p>
+<p>The probability of default <span class="math inline">\((1-p)=0.05\)</span>; loan rate is 10%. <span class="math display">\[
+\begin{aligned}
+1+E(r) &amp;= p(1+k) = (1-0.05)(1+0.1) = 1.045 \\
+  E(r) &amp;= 0.045
+\end{aligned}
+\]</span> Expected return on this loan is 4.5%.</p>
+</section>
+<section id="some-notes-1" class="slide level2">
+<h2>Some notes</h2>
+<p>FIs usually control credit risk along two dimensions:</p>
+<ol type="1">
+<li>the <em>price</em> or promised return dimension, and</li>
+<li>the <em>quantity</em> or credit availability dimension.</li>
+</ol>
+<p>The quantity dimension applies more in retail (e.g., consumer) loans.</p>
+<p>The price dimension applies more in wholesale (e.g., C&amp;I) loans.</p>
+</section></section>
+<section>
+<section id="retail-vs-wholesale-credit-decisions" class="title-slide slide level1 center">
+<h1>Retail vs wholesale credit decisions</h1>
+
+</section>
+<section id="retail" class="slide level2">
+<h2>Retail</h2>
+<p>Retail loans to household borrowers (consumers) tend to have smaller size and higher costs of information collection, and as a result, retail lending decisions tend to be “accept or reject” decisions.</p>
+<ul>
+<li>Borrowers of a similar loan product, regardless of their credit risk, are often charged the same credit risk premium.</li>
+</ul>
+<p>Retail customers are more likely to be sorted or rationed by loan quantity restrictions than by price (interest rate) differences.</p>
+<ul>
+<li>In finance words, an FI controls its credit risk at the retail level by <strong>credit rationing</strong>.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Residential mortgages are a good example. Two mortgage borrowers may pay the same mortgage rate while their LTVs are different.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="wholesale" class="slide level2">
+<h2>Wholesale</h2>
+<p>At the wholesale (C&amp;I) level, FIs use both interest rates and credit quantity to control credit risk.</p>
+<ul>
+<li>As long as they are compensated with sufficiently high credit risk premium, FIs may be willing to lend to high-risk wholesale borrowers.</li>
+<li>However, higher interest rates may increase the probability of borrower’s default, reducing expected return.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Another important consideration is that only high-risk borrowers may be willing to borrow at high interest rates. This is an “adverse selection” problem.</p>
+</div>
+</div>
+</div>
+<ul>
+<li>As a result, FIs may credit ration its wholesale loans beyond certain interest rate level. That is, the FI can establish an upper ceiling on the amount of loan it is willing to lend.</li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Sometimes, an FI can achieve a higher expected return on its loan portfolio if it cuts its loan rates.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="measurement-of-credit-risk" class="title-slide slide level1 center">
+<h1>Measurement of credit risk</h1>
+
+</section>
+<section id="it-is-all-about-information" class="slide level2">
+<h2>It is all about information</h2>
+<p>To calibrate the credit risk exposure, FIs need to estimate the borrower’s default probability, which largely depends on their ability to collect and analyze information, cost-efficiently.</p>
+<ul>
+<li>At the retail level, such information may be collected internally (e.g., past banking records) or externally (e.g., credit reports from rating agencies).
+<ul>
+<li>There are three main credit reporting bodies in Australia: Equifax, illion and Experian</li>
+</ul></li>
+<li>At the wholesale level, such information comes from multiple sources:
+<ul>
+<li>Large, public firms: financial statements, stock and bond prices, analysts’ reports, etc.</li>
+<li>Smaller, private firms: financial statements (if any)</li>
+</ul></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Advances in technologies make it easier to collect and analyze information of smaller borrowers.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="protection-against-credit-risk" class="slide level2">
+<h2>Protection against credit risk</h2>
+<p>Loan <strong>covenants</strong> are often used mitigate credit risk. Covenants are loan contract terms that restrict or encourage various actions to enhance the probability of repayment.</p>
+<ul>
+<li>For example, covenants may limit the type and amount of new debt, investments, and asset sales the borrower can undertake while the loan is outstanding.</li>
+<li>Financial covenants may restrict changes in the borrower’s financial ratios such as leverage or current ratio.</li>
+</ul>
+</section>
+<section id="example-loan-contract-covenants" class="slide level2">
+<h2>Example loan contract covenants</h2>
+<p><a href="https://www.sec.gov/Archives/edgar/data/716133/000095015717001389/ex10-1.htm">Credit Agreement, dated as of October 2, 2017, among Cincinnati Bell Inc.&nbsp;(borrower), Morgan Stanley Senior Funding Inc.&nbsp;(lead bank) and other lenders</a>.</p>
+<ul>
+<li>Article VII Affirmative Covenants</li>
+<li>Article VIII Negative Covenants</li>
+</ul>
+</section></section>
+<section>
+<section id="default-risk-models" class="title-slide slide level1 center">
+<h1>Default risk models</h1>
+
+</section>
+<section id="default-risk-models-1" class="slide level2">
+<h2>Default risk models</h2>
+<p>Many different qualitative and quantitative models are employed to assess the default risk on loans and bonds.</p>
+<ul>
+<li>They are not mutually exclusive.</li>
+<li>An FI manager may use both qualitative and quantitative models and use more than one model to reach a credit decision.</li>
+</ul>
+<p>A significant amount of investments into the development of highly effective credit risk models.</p>
+</section>
+<section id="qualitative-models" class="slide level2">
+<h2>Qualitative models</h2>
+<p>Borrower-specific factors are considered as well as market or systematic factors.</p>
+<p>Specific factors include:</p>
+<ul>
+<li>Reputation: <em>implicit contract</em></li>
+<li>Leverage (capital structure)</li>
+<li>Volatility of earnings</li>
+<li>Collateral</li>
+</ul>
+<p>Market-specific factors include:</p>
+<ul>
+<li>Business cycle</li>
+<li>Level of interest rates</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>A LOT more factors are considered in practice than we can discuss here.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="quantitative-models" class="slide level2">
+<h2>Quantitative models</h2>
+<p><strong>Credit scoring models</strong> use observed borrower characteristics to</p>
+<ol type="1">
+<li>either calculate a score representing the applicant’s default probability, or</li>
+<li>sort borrowers into different default risk classes.</li>
+</ol>
+<div class="columns">
+<div class="column">
+<p>Scoring models might help to:</p>
+<ul>
+<li>Establish factors that help to explain default risk</li>
+<li>Evaluate the relative importance of these factors</li>
+<li>Improve the pricing of default risk</li>
+<li>Sort out bad loan applicants</li>
+<li>More easily calculate reserve needs</li>
+</ul>
+</div><div class="column">
+<p>Three broad types</p>
+<ol type="1">
+<li>Linear probability models</li>
+<li>Logit models</li>
+<li>Linear discriminant analysis</li>
+</ol>
+</div></div>
+</section>
+<section id="credit-scoring-linear-probability-models" class="slide level2">
+<h2>Credit scoring: linear probability models</h2>
+<p>Uses past data, such as financial ratios, as inputs into a linear model to explain repayment experience on old loans.</p>
+<p><span class="math display">\[
+PD_i = \sum^n_{j=1} \beta_j X_{ij} + \text{error}
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(PD_i\)</span> is the probability of default of borrower <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\beta_j\)</span> is the estimated importance of the <span class="math inline">\(j\)</span>th variable (e.g, leverage)</li>
+<li><span class="math inline">\(X_{ij}\)</span> is a set of causal variables that reflect quantitative information about the <span class="math inline">\(i\)</span>th borrower</li>
+</ul>
+</section>
+<section id="credit-scoring-linear-probability-models-contd" class="slide level2">
+<h2>Credit scoring: linear probability models (cont’d)</h2>
+<p>Suppose there were two factors influencing the past default behaviour of borrowers: the leverage (D/E) and sales-asset ratio (S/A).</p>
+<p>Based on past default (repayment) experience, the linear probability model is estimated as:</p>
+<p><span class="math display">\[
+PD = 0.5\times \frac{D}{E} - 0.0525 \times \frac{S}{A}
+\]</span></p>
+<p>Assume a prospective borrower has a <span class="math inline">\(D/E\)</span> of 0.3 and an <span class="math inline">\(S/A\)</span> of 2. Its estimated default probability is <span class="math display">\[
+PD = 0.5\times 0.3 - 0.0525 \times 2 = 0.045
+\]</span></p>
+</section>
+<section id="credit-scoring-logit-models" class="slide level2">
+<h2>Credit scoring: logit models</h2>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>Linear probability model has a weakness being that the estimated probability may be smaller than 0 or larger than 1. This can be addressed by the logit model.</p>
+</div>
+</div>
+</div>
+<p>Essentially, this is done by plugging the estimated value of <span class="math inline">\(PD\)</span> from the linear probability model (in previous example, <span class="math inline">\(PD=0.045\)</span>), into the following formula:</p>
+<p><span class="math display">\[
+F(PD) = \frac{1}{1+e^{-PD}}
+\]</span> where <span class="math inline">\(F(PD)\)</span> is the logistically transformed value of <span class="math inline">\(PD\)</span>.</p>
+<ul>
+<li>Other alternatives include Probit and other variants with nonlinear indicator functions.</li>
+</ul>
+</section>
+<section id="credit-scoring-linear-discriminant-analysis" class="slide level2">
+<h2>Credit scoring: linear discriminant analysis</h2>
+<ul>
+<li>Linear probability and logit models estimate a default probability (a value from 0 to 1) if a loan is made.</li>
+<li>Discriminant models divide borrowers into high/low default risk classes based on observed characteristics.</li>
+</ul>
+<p>Altman’s Z score model for manufacturing firms:</p>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[
+Z = 1.2 X_1 + 1.4 X_2 + 3.3 X_3 + 0.6 X_4 + 1.0 X_5
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(X_1 = \text{Working capital / Total assets}\)</span>.</li>
+<li><span class="math inline">\(X_2 = \text{Retained earnings / Total assets}\)</span>.</li>
+<li><span class="math inline">\(X_3 = \text{Earnings before interest and taxes / Total assets}\)</span>.</li>
+<li><span class="math inline">\(X_4 = \text{Market value of equity / Book value of total liabilities}\)</span>.</li>
+<li><span class="math inline">\(X_5 = \text{Sales / Total assets}\)</span>.</li>
+</ul>
+</div><div class="column">
+<p>The classification:</p>
+<ul>
+<li>High default risk: <span class="math inline">\(Z&lt;1.81\)</span></li>
+<li>Indeterminant defaualt risk: <span class="math inline">\(1.81&lt;Z&lt;2.99\)</span></li>
+<li>Low default risk: <span class="math inline">\(Z&gt;2.99\)</span></li>
+</ul>
+</div></div>
+</section>
+<section id="weaknesses-of-credit-scoring-models" class="slide level2">
+<h2>Weaknesses of credit scoring models</h2>
+<ul>
+<li>Weights in any credit scoring model unlikely to be constant over longer periods of time</li>
+<li>Variables in any credit scoring model unlikely to be constant over longer periods of time</li>
+<li>Models ignore hard-to-quantify factors such as borrower reputation</li>
+<li>There is no centralised database on defaulted business loans for proprietary or other reasons</li>
+<li>Discriminant models make broad distinction between borrower categories, that is, good and bad borrowers, yet in the real world various gradations of default exist, from non-payment or delay of interest payments (nonperforming assets) to outright default on all promised interest and principal payments</li>
+<li>…</li>
+</ul>
+</section>
+<section id="newer-models-of-credit-risk-measurement-and-pricing" class="slide level2">
+<h2>Newer models of credit risk measurement and pricing</h2>
+<p>Newer credit risk models use finance theory and more widely available financial market data to make inference about default probabilities on debt and loan instruments.</p>
+<p>A lot of research is taking place and we consider a number of these newer approaches here, including</p>
+<ul>
+<li>Term structure of credit risk approach (also called reduced-form models)</li>
+<li>Mortality rate derivation of credit risk</li>
+<li>RAROC</li>
+<li>Option models (also called structural models since they are based on an economic model of why firms default)</li>
+</ul>
+</section>
+<section id="term-structure-derivation-of-credit-risk" class="slide level2">
+<h2>Term structure derivation of credit risk</h2>
+<p>A simple key idea: extract the <em>expected</em> default rates from the current term structure of interest rates.</p>
+<p>A risk-neutral FI would be indifferent between investing in a risk-free government bond and a risky corporate loan/bond.</p>
+<ul>
+<li>Risk-free return: <span class="math inline">\(1+i\)</span></li>
+<li>Corporate bond’s expected return: <span class="math inline">\(p(1+k)+(1-p)(1+k)\gamma\)</span></li>
+</ul>
+<p>where <span class="math inline">\(\gamma\)</span> is the recovery rate if the loan defaults.</p>
+<p>We can set <span class="math inline">\(p(1+k)+(1-p)(1+k)\gamma = 1 + i\)</span> and compute the <em>risk-neutral default probability</em> <span class="math inline">\((1-p)\)</span>.</p>
+<ul>
+<li>May be generalised to loans with any maturity or to adjust for varying default recovery rates.</li>
+<li>The loan can be assessed using the inferred probabilities from comparable quality bonds.</li>
+</ul>
+</section>
+<section id="mortality-rate-derivation-of-credit-risk" class="slide level2">
+<h2>Mortality rate derivation of credit risk</h2>
+<p>Rather than extracting <em>expected</em> default rates from the current term structure of interest rates, the probability of default is estimated from past data on defaults, similar to the process employed by insurance companies to price policies.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Insurance companies do not estimate an individual’s future health condition, but rather, use historic data to statistically examine a pool of people with similar characteristics (e.g., age, gender, medical history) to calculate the probability of mortality or other health-related risks over time.</p>
+</div>
+</div>
+</div>
+<p>For example, for grade B bonds, the <strong>marginal mortality rate (MMR)</strong> for the first year of issue is <span class="math display">\[
+MMR_1 = \frac{\text{Total value of grade B bonds default in year 1 of issue}}{\text{Total value of grade B bonds outstanding in year 1 of issue}}
+\]</span> We can similarly construct <span class="math inline">\(MMR_2\)</span>, <span class="math inline">\(MMR_3\)</span>, …, and construct a MMR curve.</p>
+<ul>
+<li>Mortality rate approach has a number of conceptual and applicability problems.</li>
+<li>Historic, backward-looking, sensitive to the period chosen for analysis.</li>
+</ul>
+</section>
+<section id="raroc" class="slide level2">
+<h2>RAROC</h2>
+<p>Risk-adjusted return on capital (RAROC) was pioneered by Bankers Trust (acquired by Deutsche bank in 1998).</p>
+<p><span class="math display">\[
+RAROC = \frac{\text{One-year net income on a loan}}{\text{Loan risk}}
+\]</span> where <span class="math display">\[
+\text{One-year net income on loan} = (\text{Spread} + \text{Fees}) \times \text{Dollar value of the loan outstanding}
+\]</span> and Loan risk can be measure by, for example, <em>duration</em>. <span class="math display">\[
+\frac{\Delta LN}{LN} = - D_{LN} \frac{\Delta R}{1+R}
+\]</span> so that <span class="math display">\[
+\underbrace{\Delta LN}_{\text{dollar risk exposure}} = - \underbrace{D_{LN}}_{\text{duration of loan}} \times \underbrace{LN}_{\text{loan amount}} \times \underbrace{\frac{\Delta R}{1+R}}_{\text{shock}}
+\]</span></p>
+<ul>
+<li>Loan approval if RAROC &gt; benchmark return on capital.</li>
+</ul>
+</section>
+<section id="option-models-of-default-risk" class="slide level2">
+<h2>Option models of default risk</h2>
+<p>Rationale:</p>
+<ul>
+<li>A borrower borrows to invest.</li>
+<li>If its investments are successful, the borrower repays.</li>
+<li>If its investments fail and the borrower cannot repay the lender,
+<ul>
+<li>The borrower has an <em>option to default</em> on its debt, simply turning any remaining assets over to the lender.</li>
+</ul></li>
+<li>The borrower’s (equity holders’) loss is capped due to limited liability.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The KMV Corporation<sup>1</sup> turned this relatively simple idea into a credit monitoring model.</p>
+<p>Many of the largest U.S. FIs are now using this model to determine the <strong>expected default frequency (EDF)</strong> of large corporations.</p>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>The KMV Corporation was purchased by Moody’s in 2002 and is now part of Moody’s Analytics Enterprise Risk Solutions.</p></li></ol></aside></section>
+<section id="option-models-of-default-risk-contd" class="slide level2">
+<h2>Option models of default risk (cont’d)</h2>
+<p>We can use option pricing models like <span class="citation" data-cites="merton_pricing_1974">Merton (<a href="#/references" role="doc-biblioref" onclick="">1974</a>)</span> and <span class="citation" data-cites="black_scholes_1973">Black and Scholes (<a href="#/references" role="doc-biblioref" onclick="">1973</a>)</span> to estimate default probability. The option valuation models can also be applied to calculate the default risk premium.</p>
+<p><span class="citation" data-cites="merton_pricing_1974">Merton (<a href="#/references" role="doc-biblioref" onclick="">1974</a>)</span> shows that the market value of risky loan made by a lender to a borrower is</p>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[
+L(\tau) = B e^{-i\tau} [(1/d) N(h_1) + N(h_2)]
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\tau\)</span> is the time remaining to loan maturity</li>
+<li><span class="math inline">\(i\)</span> is the risk-free rate</li>
+<li><span class="math inline">\(d\)</span> is the borrower’s leverage ratio measured as <span class="math inline">\(B e^{-i\tau} / A\)</span>, where <span class="math inline">\(A\)</span> is assets’ value</li>
+<li><span class="math inline">\(N(\cdot)\)</span> is the cumulative normal distribution function</li>
+</ul>
+</div><div class="column">
+<p><span class="math display">\[
+\begin{aligned}
+h_1 &amp;= - \frac{[\frac{1}{2} \sigma^2 \tau - \ln(d)]}{\sigma \sqrt{\tau}} \\
+h_2 &amp;= - \frac{[\frac{1}{2} \sigma^2 \tau + \ln(d)]}{\sigma \sqrt{\tau}}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\sigma^2\)</span> measures the asset risk of the borrower, which is the variance of the rate of change in the value of the underlying assets of the borrower</li>
+</ul>
+</div></div>
+<p>The equilibrium default risk premium (<span class="math inline">\(\phi\)</span>) that the borrower should be charged is</p>
+<p><span class="math display">\[
+\phi = k(\tau) - i = -\frac{1}{\tau} \ln [N(h_2)+(1/d) N(h_1)]
+\]</span></p>
+<ul>
+<li><span class="math inline">\(k(\tau)\)</span> is the contractually promised return</li>
+</ul>
+</section>
+<section id="option-models-of-default-risk-contd-1" class="slide level2">
+<h2>Option models of default risk (cont’d)</h2>
+<div id="cell-fig-edf" class="cell" data-fig-location="center" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a>mu <span class="op">=</span> <span class="dv">3</span>  <span class="co"># mean</span></span>
+<span id="cb1-5"><a></a>sigma <span class="op">=</span> <span class="dv">1</span>  <span class="co"># standard deviation</span></span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">300</span>)</span>
+<span id="cb1-8"><a></a>y <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> (np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi) <span class="op">*</span> sigma)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((x <span class="op">-</span> mu) <span class="op">/</span> sigma) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a>ax.plot(x, y, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a>x_fill <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.8</span>, <span class="dv">100</span>)</span>
+<span id="cb1-15"><a></a>y_fill <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> (np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi) <span class="op">*</span> sigma)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((x_fill <span class="op">-</span> mu) <span class="op">/</span> sigma) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb1-16"><a></a>ax.fill_between(x_fill, y_fill, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-17"><a></a></span>
+<span id="cb1-18"><a></a>ax.annotate(<span class="st">'Probability of default</span><span class="ch">\n</span><span class="st">(EDF)'</span>, xy<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.0</span>), xytext<span class="op">=</span>(<span class="fl">0.01</span>, <span class="fl">0.1</span>),</span>
+<span id="cb1-19"><a></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">'black'</span>, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-20"><a></a></span>
+<span id="cb1-21"><a></a>ax.annotate(<span class="st">'Market value at time 0'</span>, xy<span class="op">=</span>(<span class="dv">3</span>, <span class="fl">0.0</span>), xytext<span class="op">=</span>(<span class="dv">3</span>, <span class="fl">0.2</span>),</span>
+<span id="cb1-22"><a></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">'black'</span>, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-23"><a></a></span>
+<span id="cb1-24"><a></a><span class="co"># Set limits and labels</span></span>
+<span id="cb1-25"><a></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">6</span>])</span>
+<span id="cb1-26"><a></a>ax.set_ylim([<span class="dv">0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb1-27"><a></a>ax.set_xticklabels([])</span>
+<span id="cb1-28"><a></a>ax.set_yticklabels([])</span>
+<span id="cb1-29"><a></a>ax.set_xlabel(<span class="st">'Market value of assets at loan maturity'</span>)</span>
+<span id="cb1-30"><a></a>ax.set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb1-31"><a></a></span>
+<span id="cb1-32"><a></a><span class="co"># Show plot</span></span>
+<span id="cb1-33"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-edf" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-edf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-edf-output-1.png" width="642" height="490">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: EDF and assets value
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="finally" class="title-slide slide level1 center">
 <h1>Finally…</h1>
@@ -370,8 +1298,19 @@ Dr.&nbsp;Mingze Gao
 </section>
 <section id="suggested-readings" class="slide level2">
 <h2>Suggested readings</h2>
+<ul>
+<li><a href="https://www.rba.gov.au/mkt-operations/resources/interest-rate-benchmark-reform.html">RBA Interest Rate Benchmark Reform in Australia</a>.</li>
+<li><a href="https://www.rmahq.org/resources-content?topic=Credit%20Risk">Risk Management Association (RMA) content on credit risk</a>.
+<ul>
+<li>RMA provides average balance sheet and income data for more than 400 industries, common ratios computed for each size group and industry, five-year trend data, and financial statement data for more than 100,000 commercial borrowers.</li>
+</ul></li>
+</ul>
+<p>If you’re into Math and would like to see some code,</p>
+<ul>
+<li><a href="https://mingze-gao.com/posts/merton-dd/">Merton distance to default (DD)</a>.</li>
+</ul>
 </section>
-<section id="references" class="slide level2">
+<section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 <div class="quarto-auto-generated-content">
@@ -379,7 +1318,16 @@ Dr.&nbsp;Mingze Gao
 <p>AFIN8003 Banking and Financial Intermediation</p>
 </div>
 </div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-black_scholes_1973" class="csl-entry" role="listitem">
+Black, Fischer, and Myron Scholes. 1973. <span>“The Pricing of Options and Corporate Liabilities.”</span> <em>Journal of Political Economy</em> 81 (3): 637–54. <a href="http://www.jstor.org/stable/1831029">http://www.jstor.org/stable/1831029</a>.
+</div>
+<div id="ref-merton_pricing_1974" class="csl-entry" role="listitem">
+Merton, Robert C. 1974. <span>“On the <span>Pricing</span> of <span>Corporate</span> <span>Debt</span>: <span>The</span> <span>Risk</span> <span>Structure</span> of <span>Interest</span> <span>Rates</span>*.”</span> <em>The Journal of Finance</em> 29 (2): 449–70. <a href="https://doi.org/10.1111/j.1540-6261.1974.tb03058.x">https://doi.org/10.1111/j.1540-6261.1974.tb03058.x</a>.
+</div>
+</div>
 </section></section>
+
     </div>
   </div>
 
