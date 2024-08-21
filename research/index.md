@@ -61,7 +61,7 @@ cap-location: margin
 
 [Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756), with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
 
-- 17th International Behavioural Finance Conference.
+- FMA-Europe 2024, 17th International Behavioural Finance Conference.
 
 Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
