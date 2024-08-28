@@ -419,11 +419,11 @@ $$
 \begin{aligned}
 \text{DEAR} &= \left(\text{dollar market value of the position}\right) \times \left(\text{price sensitivity of the position}\right) \times \left(\text{potential adverse move}\right) \\
 &= \$1,000,000 \times 6.527 \times 0.00233 \\
-&= \$15,210
+&= \$15,207.91
 \end{aligned}
 $$
 
-That is, the potential daily loss in earnings on the $1 million position is $15,210 if the 1 bad day in 100 occurs tomorrow.
+That is, the potential daily loss in earnings on the $1 million position is $15,207.91 if the 1 bad day in 100 occurs tomorrow.
 
 
 ## VaR: RiskMetrics for FX
@@ -503,7 +503,7 @@ That is, the potential daily loss in earnings on the $1 million stock position i
 
 Now, we have calculated the individual DEAR for the three positions:
 
-1. Seven-year, zero-coupon bonds = $15,210
+1. Seven-year, zero-coupon bonds = $15,207.91
 2. Euro spot = $13,164
 3. Equities = $46,600
 
@@ -551,13 +551,13 @@ We will use the correlations to compute the aggregate DEAR (VaR).
 $$
 \begin{aligned}
 \text{DEAR (aggregate)} &= \sqrt{\text{D}_1^2 + \text{D}_2^2 + \text{D}_3^2 + 2 \cdot \text{D}_1 \cdot \text{D}_2 \cdot \rho_{12} + 2 \cdot \text{D}_1 \cdot \text{D}_3 \cdot \rho_{13} + 2 \cdot \text{D}_2 \cdot \text{D}_3 \cdot \rho_{23}} \\
- &= \sqrt{15210^2 + 13164^2 + 46600^2 + 2 \cdot 15210 \cdot 13164 \cdot (-0.2) 
- + 2 \cdot 15210 \cdot 46600 \cdot (0.4) + 2 \cdot 13164 \cdot 46600 \cdot (0.1)} \\
- &= 56433
+ &= \sqrt{15207.91^2 + 13164^2 + 46600^2 + 2 \cdot 15207.91 \cdot 13164 \cdot (-0.2) 
+ + 2 \cdot 15207.91 \cdot 46600 \cdot (0.4) + 2 \cdot 13164 \cdot 46600 \cdot (0.1)} \\
+ &= 56441.93
 \end{aligned}
 $$
 
-That is, this FI with the three positions in fixed-income securities, FX, and equities has an aggregate DEAR of $56,433.
+That is, this FI with the three positions in fixed-income securities, FX, and equities has an aggregate DEAR of $56,441.93.
 
 ## VaR: criticisms against RiskMetrics
 
