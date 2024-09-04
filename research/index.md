@@ -73,4 +73,7 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 
 ## ‍🎓 Student Supervision
 
+Students for whom I am the Associate Supervisor:
+
+- Tracy Wu, MRes student at Macquarie University, 2024 (co-supervision with Elizabeth Sheedy).
 - Meitong He, Honours student at University of Sydney, 2023 (co-supervision with Buhui Qiu). Graduated with First Class Honours.
