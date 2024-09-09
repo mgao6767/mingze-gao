@@ -1,0 +1,170 @@
+---
+title: PhDs.io
+date: 2024-09-09
+tags:
+    - Python
+categories:
+    - Programming
+---
+
+::: {.callout-tip title="A fast literature search engine."}
+Give it a try: [PhDs.io](https://phds.io).
+:::
+
+## Why I created PhDs.io
+
+When I first started my PhD study, one of the biggest challenges I faced was navigating the sheer volume of research papers in finance and related fields. It’s easy to feel overwhelmed when there are thousands of papers published every year. The time spent searching for quality references, vetting sources, and organizing findings can feel like a second job on top of research and teaching.
+
+That’s where the idea for [**PhDs.io**](https://phds.io) came from. I wanted to create a platform where finance researchers—whether they’re PhD students just starting out or seasoned academics—can find and access high-quality research without the headache. I envisioned a tool that makes it easy to discover research papers across finance, economics, accounting, and related fields. 
+
+But this project isn’t just for me or my peers. I also want to support the next generation of researchers who may not have the same level of experience. PhDs.io is my way of giving back to the community—creating something that can help those navigating the often confusing world of academic research.
+
+As for the future, my vision for PhDs.io goes beyond a mere repository of papers. I see it growing into a platform that offers personalized recommendations, connects researchers with similar interests, and even provides collaborative tools for teams working on interdisciplinary projects. It’s an ambitious goal, but one that I believe can make a meaningful impact in our field.
+
+This journey isn’t something I can do alone. The platform is currently supported by my own contributions, but as it expands, I hope others will see the value in what we’re building here and join the effort. Whether through financial support, collaborations, or just spreading the word, every little bit helps us move toward a better research experience for everyone.
+
+## This post
+
+In what follows, I explain a little bit of the development of [PhDs.io](https://phds.io), in case someone would like to build a similar or even better project.
+
+- This project is built with [KerkoApp](https://github.com/whiskyechobravo/kerkoapp), a web application that uses [Kerko](https://github.com/whiskyechobravo/kerko) to provide a user-friendly search and browsing interface for sharing a bibliography managed with the [Zotero](https://www.zotero.org/) reference manager.
+- KerkoApp is built in [Python](https://www.python.org/) with the [Flask](https://pypi.org/project/Flask/) framework. It is just a thin container around Kerko and, as such, inherits most of its features directly from Kerko. However, it adds support for [TOML](https://toml.io/) configuration files, allowing a good separation of configuration from code.
+
+In summary, I and my awesome contributors collectively maintain a [Zotero](https://www.zotero.org/) group library. We collect and organize high-quality research papers from within Zotero, which is then synced to my server that runs Kerko to serve the website to the public.
+
+## Deployment
+
+### Website
+
+Start with a fresh AWS EC2 instance. I'm using an ARM-based `t4g.small` running Ubuntu 24.04 LTS.
+
+```bash
+sudo apt update
+```
+
+Install `pip` and `venv`.
+
+```bash
+sudo apt install python3-pip python3-venv
+```
+
+Follow the [deployment guide of `kerko`](https://whiskyechobravo.github.io/kerko/latest/deploying/).
+
+::: {.callout-note}
+I use a modified version of [`kerkoapp`](https://github.com/whiskyechobravo/kerkoapp). So I install my fork not the original one. Use the following instead.
+
+```bash
+git clone https://github.com/mgao6767/phds.io.git ~/kerkoapp
+```
+:::
+
+### Enable SSL
+
+Use [Let's Encrypt](https://letsencrypt.org/) to obtain a free SSL certificate and configure Nginx to use it.
+
+Install Certbot and its Nginx plugin to automate SSL certificate generation.
+
+```bash
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+```
+
+Run Certbot to get a certificate for the domain. 
+
+```bash
+sudo certbot --nginx -d phds.io
+```
+
+Certbot will automatically configure Nginx to use SSL. Once Certbot has finished, verify Nginx configuration to ensure there are no errors.
+
+```bash
+sudo nginx -t
+```
+
+If everything is correct, reload Nginx:
+
+```bash
+sudo systemctl reload nginx
+```
+
+Let’s Encrypt certificates expire after 90 days, but Certbot takes care of the renewal automatically. Check the Certbot renewal process with:
+
+```bash
+sudo certbot renew --dry-run
+```
+
+This tests the automatic renewal without actually renewing the certificate.
+
+## Rate limit and IP blocking
+
+### Enable rate limiting in Nginx
+
+Nginx has built-in support for rate limiting based on IP addresses. This can help prevent individual users from overwhelming the server with too many requests in a short period.
+
+```bash
+sudo vim /etc/nginx/sites-available/kerkoapp.conf
+```
+
+Add the following in the `http` block:
+
+```conf
+http {
+    # Rate limiting: limit each IP to 5 requests per second with a burst of 12 requests.
+    limit_req_zone $binary_remote_addr zone=ip:10m rate=5r/s;
+    
+    server {
+        listen 80;
+        server_name phds.io;
+
+        location / {
+            # Apply rate limiting to all requests under this location
+            limit_req zone=ip burst=12 delay=8;
+
+            # Other configurations, such as proxy_pass, root, etc.
+            ...
+        }
+    }
+}
+```
+
+### Fail2Ban for IP blocking
+
+While Nginx's rate limiting helps to slow down abusive clients, use [Fail2Ban](https://github.com/fail2ban/fail2ban) to ban IPs that continuously exceed rate limits by monitoring Nginx logs.
+
+```bash
+sudo apt install fail2ban
+```
+
+Next, create a configuration file for Nginx rate limit monitoring. Open `/etc/fail2ban/jail.local`:
+
+```bash
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo vim /etc/fail2ban/jail.local
+```
+
+Enable `nginx-limit-req`.
+
+```ini
+[nginx-limit-req]
+enabled = true
+port    = http,https
+logpath = %(nginx_error_log)s
+```
+
+Edit the filter file for Fail2Ban if necessary:
+
+```bash
+sudo vim /etc/fail2ban/filter.d/nginx-limit-req.conf
+```
+
+Restart Fail2Ban to apply the changes:
+
+```bash
+sudo service fail2ban restart
+```
+
+Check `Fail2ban` logs:
+
+```bash
+tail -f /var/log/fail2ban.log
+```
