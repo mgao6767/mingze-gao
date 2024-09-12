@@ -335,7 +335,7 @@ The return and risk on loan 2 are:
 $$
 \begin{aligned}
 R_2 &= (0.045+0.015) - (0.02\times0.2) = 0.056 \\
-\sigma_1 &= \sqrt{0.02\times0.98} \times 0.2 = 0.028
+\sigma_2 &= \sqrt{0.02\times0.98} \times 0.2 = 0.028
 \end{aligned}
 $$
 :::
@@ -346,7 +346,7 @@ The return and risk of the portfolio are then:
 $$
 \begin{aligned}
 R_p &= 0.6\times 0.0625 + 0.4\times 0.056 = 0.0599 \text{ or } 5.99\%  \\
-\sigma_p^2 &= (0.6)^2(0.4265)^2 + (0.4)^2(0.028)^2 + 2(0.6)(0.4)(-0.25)(0.04265)(0.028) = 0.0006369 \\
+\sigma_p^2 &= (0.6)^2(0.04265)^2 + (0.4)^2(0.028)^2 + 2(0.6)(0.4)(-0.25)(0.04265)(0.028) = 0.0006369 \\
 \sigma_p &= \sqrt{0.0006369} = 0.0252 = 2.52\%
 \end{aligned}
 $$
