@@ -168,3 +168,26 @@ Check `Fail2ban` logs:
 ```bash
 tail -f /var/log/fail2ban.log
 ```
+
+Manual jail (ban forever). In `filer.d/manual.conf`:
+
+```conf
+[Definition]
+failregex = 
+ignoreregex = 
+```
+
+In `jail.d/custom.conf`:
+
+```conf
+[manual]
+banaction = %(banaction_allports)s
+bantime = -1
+enabled = true
+```
+
+To ban an ip:
+
+```bash
+fail2ban-client set manual banip 11.22.33.44
+```
