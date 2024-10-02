@@ -4,7 +4,7 @@ subtitle: "Banking and Financial Intermediation"
 author: "Dr. Mingze Gao"
 institute: "Department of Applied Finance"
 date: 2024-10-09
-draft: true
+draft: false
 categories:
     - AFIN8003
     - 2024S2
@@ -173,17 +173,17 @@ Since COVID-19, the RBA significantly adjusted its monetary operations, moving a
 - Standing Facility: Banks can still access liquidity via the RBA’s standing liquidity facility, where they can borrow overnight at a penalty rate if their ESA balances fall short.
 - Interbank Cash Market: Banks continue to borrow and lend among themselves in the interbank cash market to manage daily fluctuations in their ESA balances.
 - Repo Transactions in the Private Market. While the RBA no longer conducts open market repos, banks and other financial institutions still use repo transactions with each other as a way to manage liquidity and secure short-term funding. These private market repos are similar in structure to the RBA's past operations but are conducted bilaterally between financial institutions.
-- Liquidity Management via Government Bond Purchases: The RBA engaged in large-scale government bond purchases to inject liquidity into the financial system. This action increased the level of reserves in the banking system, reducing the immediate need for repo operations. Banks manage their liquidity more through excess reserves than through the previous need for constant repo transactions.
+- Liquidity Management via Government Bond Purchases: The RBA engaged in large-scale government bond purchases to inject liquidity into the financial system. This action increased the level of reserves in the banking system, reducing the immediate need for repo operations.
 
 # Liability-side liquidity and management
 
 ## Liability management
 
 - Close link to liquidity management
-- Overall aim of liability management: to construct a low-cost, low–withdrawal risk liability portfolio
+- Overall aim of liability management: to construct a low-cost and low–withdrawal-risk liability portfolio
 - Problems
-    - Low-cost liabilities often carry high withdrawal risk: demand deposits
-    - Low withdrawal risk often comes with high cost: certificates of deposit (CDs)
+    - Low-cost liabilities often carry high withdrawal risk: e.g., demand deposits
+    - Low withdrawal risk often comes with high cost: e.g., certificates of deposit (CDs)
 
 ::: {.content-hidden when-format="pdf"}
 ## Liability management (cont'd)
@@ -193,7 +193,7 @@ Deposit liabilities
 
 - Cheque account and other demand deposits
 - Savings account
-- Cash management account / investment savings accounts
+- Cash management account (CMA) / investment savings accounts
 - Fixed-term deposits
 - Negotiable certificates of deposits (NCDs)
 
@@ -208,21 +208,84 @@ Non-deposit liabilities
 - Commercial paper or promissory notes
 - Subordinated debt, medium-term notes and long-term borrowings
 
-## Choice of liability structure: deposits
+## Choice of liability structure
 
-- Current deposits or other at-call funds
+Now we turn to a more detailed discussion of the _withdrawal risk_ and _funding cost_ characteristics of the major liabilities of a modern DI.
+
+## Choice of liability structure: demand deposits
+
+Withdrawal risk:
+
 - High degree of withdrawal risk
-- Low cost
-    - Can recapture costs by charging fee such as cost per cheque cleared or electronic transaction.
+
+Costs:
+
+- Low
+- Since 1930, in U.S., demand deposits paid zero explicit interest!
+- Since 2011, such prohibition was repealed. DIs are now allowed but not required to interest on demand deposits. Few of them do.
+- This does not mean that demand deposits are _free_ to DIs.
+    - Services associated with providing checkable accounts consume costly labor and capital.
+    - Competition resulted in _implicit interest_.
+- DIs can recapture costs by charging fee such as cost per cheque cleared or electronic transaction.
+    - Depositors receives a "subsidy" when such fees do not fully cover the DI's cost of providing these services.
 
 $$
 \text{Average implicit interest rate (IIR)} = \frac{\text{DI's average management cost per account – average fees earned per account}}{\text{average annual size of account}}
 $$
 
+## Example: average implicit interest rate
+
+Suppose it costs a DI 15 cents to clear a cheque but it charges a fee of only 10 cents per cheque cleared. In this case, the customer receives a 5 cent subsidy per cheque. We can calculate implicit yields for each service, or an average implicit interest rate, for each current deposit account. 
+
+Suppose that:
+
+- DI’s average management costs per account per annum = $150
+- Average fees earned per account per annum = $100
+- Average annual size of account = $1200
+
+Then,
+
+$$
+\text{Average implicit interest rate (IIR)} = \frac{150-100}{1200} = 4.166\%
+$$
+
+## Example: gross interest rate
+
+Consider the following case:
+
+- A depositor holds on average $250 per month for the first three months of the year, $500 per month for the next three months, and $1000 per month for the final six months of the year in a demand deposit account. 
+- The account pays 5 per cent per annum if the minimum balance is $500 or more, and it pays no interest if the account falls below $500. 
+- The depositor makes an average of 50 internet transactions per month and pays a service fee of 10 cents for each transaction, although it costs the bank 15 cents to process each transaction. 
+
+The account holder’s gross interest return, consisting of implicit plus explicit interest, is:
+
+$$
+\begin{aligned}
+\text{Gross interest return} &= \text{Explicit interest} + \text{Implicit interest} \\
+&=\$500(0.05)(0.25)+\$1000(0.05)(0.5)+(\$0.15−\$0.10)(50)(12) \\
+&=\$6.25+\$25+\$30=\$61.25
+\end{aligned}
+$$
+
+Suppose the minimum balance was lowered from $500 to $250 and internet service fees were lowered from 10 cents to 5 cents per transaction. Then:
+
+$$
+\begin{aligned}
+\text{Gross interest return} &= \text{Explicit interest} + \text{Implicit interest} \\
+&=\$250(0.05)(0.25)+(\$500)(0.05)(0.25)+\$1000(0.05)(0.5)+(\$0.15−\$0.05)(50)(12) \\
+&=\$3.125+\$6.25+\$25+\$60 =\$94.375
+\end{aligned}
+$$
+
 ## Choice of liability structure: interest-bearing cheque accounts
+
+Withdrawal risk:
 
 - Lower degree of withdrawal risk compared to current accounts
     - Minimum balance requirements
+
+Costs:
+
 - Comparably higher cost: three pricing mechanisms
     - Implicit interest payments
     - Minimum balance requirements
@@ -231,15 +294,198 @@ $$
 
 ## Choice of liability structure: savings account
 
-## Choice of liability structure: investment savings account
+Withdrawal risk:
 
-## Choice of liability structure: term of fixed-term deposits
+- Lower withdrawal risk compared to cheque accounts  
+    - Restrictions on withdrawals (e.g., limited monthly withdrawals, notice period)
+    - Typically held for long-term savings purposes
+    - Fewer transactional services offered
+
+Costs:
+
+- Very small implicit interest payments
+- Explicit interest payments to account holders
+
+## Choice of liability structure: MMDAs
+
+In U.S., since 1982, DIs can use _money market deposit accounts (MMDAs)_ as an additional liability instrument.
+
+- Competition with money market mutual funds offered by groups such as Vanguard and Fidelity.
+- MMDAs are checkable but subject to restrictions.
+
+Withdrawal risk:
+
+- Lower due to the restrictions on checking and transfers
+
+Costs:
+
+- Higher explicit interest
+
+In Australia, BOQ together with DDH Graham offers MMDA. Cash management accounts (CMAs) are more popular.
+
+## Choice of liability structure: CMA / investment savings account
+
+Investment savings accounts (or cash management accounts) are high denomination savings accounts that have no specified maturity date but require high minimum balances (e.g. $10 000) and minimum transaction size (e.g. $500).
+
+- The funds are available on call.
+- Relatively low degree of withdrawal risk.
+- Costs: higher interest than basic savings accounts, mitigated by fees charged
+
+|                      | Cash Management Account (CMA)                         | Investment Savings Account (ISA)                                   |
+|----------------------|-------------------------------------------------------|--------------------------------------------------------------------|
+| Purpose              | Managing cash flow with frequent transactions         | Parking cash temporarily for investments                           |
+| Liquidity            | High liquidity with frequent access                   | Moderate liquidity; fewer withdrawal restrictions                  |
+| Interest Rate        | Lower interest rates due to focus on transactions     | Higher interest rates as a savings vehicle for investment purposes |
+| Transaction Features | Includes cheque books, debit cards, online banking    | Limited to transfers; no transactional features                    |
+| Target Audience      | Individuals or businesses needing to manage cash flow | Investors looking to earn interest on cash waiting to be invested  |
+
+## Choice of liability structure: term and fixed-time deposits / retail CDs
+
+Fixed-maturity instruments.
+
+Withdrawal risk:
+
+- Very low: early withdrawal penalties
+
+Costs:
+
+- High explicit interest
+
+::: {.callout-note}
+For example, Bank of America's [PDS](https://www.bankofamerica.com/salesservices/deposits/resources/deposit-agreements/?request_locale=en_US#page=9.68).
+:::
 
 ## Choice of liability structure: negotiable certificates of deposits (NCDs)
 
+Time deposits with fixed maturity and face values > $100 000 with varying maturities.
+
+Negotiable instruments: an instrument that can be sold in the secondary market thereby transferring ownership.
+
+- Low withdrawal risk
+- The rates are market driven => Comparatively lower cost due to generally high credit rating of issuer
+
+::: {.callout-note}
+Nowadays banks offer more comprehensive solutions. 
+
+For example, CBA offers ["Investment Guarantee"](https://www.commbank.com.au/personal/apply-online/download-printed-forms/ADB2665.pdf), a fixed term investment that is composed of a series of underlying securities, which are either a _bill of exchange (e.g., bank accepted bill)_ or a _NCD_.
+:::
+
 ## Choice of liability structure: non-deposit liabilities
 
-## Liquidity regulation
+Interbank funds
+
+- Short-term un-collateralised loans between FIs
+- Rollover risk
+- Cost: short-term money market rate
+
+Repurchase agreements (repos)
+
+- Collateralised interbank transactions
+- Highly liquid and flexible source of funds
+- Yield generally below the market interbank rate due to collateralised nature
+
+
+::: {.content-hidden when-format="pdf"}
+## Choice of liability structure: non-deposit liabilities (cont'd)
+:::
+
+Covered bonds
+
+- Bonds issued by a bank, backed by a pool of assets that remain on the balance sheet of the issuing bank
+- Available for Australian DIs after legislative change in 2011, with a cap at 8 per cent of DI assets.
+- Safest form of bank debt
+- Typically carry a higher credit rating than that of their issuer DI
+
+::: {.callout-note}
+Covered bond is more of a feature in Australia ([APS 121 Covered Bonds](https://www.legislation.gov.au/F2022L01566/latest/text)).
+
+For example, the [CBA's covered bonds program](https://www.commbank.com.au/about-us/investors/covered-bonds.html).
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Choice of liability structure: non-deposit liabilities (cont'd)
+:::
+
+Other Borrowing
+
+- Bank accepted bills (BAB)
+- Commercial bills (or non-bank bills)
+- Commercial paper or promissory notes
+- Subordinated debt, medium-term notes and long-term borrowings
+
+## Liability and liquidity management in insurance companies
+
+- Insurance companies require liquidity to meet claims and unexpected policy surrenders.
+- Ideally, liquidity is managed through premiums received on new and existing contracts.
+- High-frequency claims, like during a severe hurricane season, may force asset liquidation at lower-than-market value.
+- Diversifying risk in insurance contracts reduces liquidity risk (e.g., covering different types of disasters).
+- Insurers can hold marketable assets (e.g., government bonds, corporate bonds, stocks) to cover claim payments when premium income is insufficient.
+
+## Liability and liquidity management in other financial institutions
+
+- Securities firms, investment banks, and finance companies face liquidity risk if they rely on short-term financing (e.g., commercial paper, bank loans) and investors hesitate to roll over funds.
+
+For securities firms,
+
+- Main funding sources include repurchase agreements, bank loans, and short positions in securities.
+- Liquidity management requires enough cash and liquid resources to underwrite new securities and resell them to investors.
+
+For investment banks (and securities firms),
+
+- Liability management involves financing an inventory of securities to act as a market maker.
+
+For finance companies,
+
+- Main funding sources include commercial paper and long-term debt.
+- Need liquidity to fund loan requests and commitments promptly.
+
+# Liquidity regulation and depositor protection
+
+## Liquidity regulation in Australia
+
+- In Australia, liquidity requirements set out by APRA
+- APS 210 (released in 2000) aims to ensure sufficient liquidity in FIs to meet obligations as they fall due
+
+APRA determines whether an ADI is classified either (check suggested readings APS 210):
+
+- a liquidity coverage ratio (LCR) ADI (effective from 1 Jan 2015) or
+- an ADI subject to the minimum liquidity holdings (MLH) regime for the purpose of APS 210 (effective from 1 January 2014)
+
+## LCR ADI
+
+- The major and larger banks fall into the LCR group
+- An LCR ADI must undertake scenario analysis on a regular basis.
+- The scenarios must at a minimum include the LCR (from 1 January 2015) and the "going concern" scenario.
+- The LCR requirement aims to ensure that DIs maintain an adequate level of unencumbered high-quality liquid assets (HQLA) that can be readily converted into cash to meet its liquidity needs for a 30-day period under a significantly severe liquidity stress scenario.
+- An LCR ADI must also meet the NSFR requirements.
+
+## MLH ADI
+
+- Smaller ADIs fall in the MLH regime.
+- Required to maintain a minimum holding of 9% of its liabilities in specific liquid assets.
+- All debt securities must be eligible for repurchase agreement with the RBA and must not be subordinated.
+- An MLH ADI must ensure that it has the operational capacity to liquidate any securities held as liquid assets within two business days.
+- Practically, the ADIs in the MLH regime must set a trigger ratio above the 9 per cent minimum.
+
+## Depositor protection
+
+- Deposit Insurance is a mechanism designed to protect DIs from liquidity crises
+    - In the US, Federal Deposit Insurance Corporation (FDIC) was created in 1933 in wake of banking panics
+    - Many countries in the world have established an explicit deposit insurance scheme
+- In October 2008, Australia introduced the Financial Claims Scheme (FCS) as well as a temporary wholesale guarantee to provide explicit guarantee arrangements for Australian DI deposits and wholesale funding
+    - The FCS initially provided a guarantee of deposit balances up to $1 million per depositor per institution
+    - The new and permanent cap of $250 000 per person per institution was introduced from 1 February 2012
+    - APRA is responsible for the administration of the FCS
+
+## Other Australian depositor protection mechanisms
+
+- Guarantee scheme for large deposits and wholesale funding
+    - Guaranteed deposit balances greater than $1 million and funding instruments with a maturity of 5 years or less
+    - Available to branches of foreign-owned banks
+    - Closed in March 2010 after the recovery of global funding conditions
+- Financial Claims Scheme—Policyholders Compensation Facility
+    - Similar as FCS for DIs
+    - Available to general insurers authorised by APRA
 
 # Finally...
 
@@ -248,5 +494,7 @@ $$
 - [How RBA implements monetary policy](https://www.rba.gov.au/education/resources/explainers/how-rba-implements-monetary-policy.html).
 - [RBA Exchange Settlement Account Policy](https://www.rba.gov.au/payments-and-infrastructure/esa/).
 - [RBA Standing Facilities](https://www.rba.gov.au/mkt-operations/resources/tech-notes/standing-facilities.html).
+- [Covered bonds in Australia](https://www.rba.gov.au/publications/bulletin/2017/sep/pdf/bu-0917-7-covered-bonds-in-australia.pdf).
+- [Prudential Standard APS 210 Liquidity](https://www.apra.gov.au/sites/default/files/APS%2520210%2520FINAL.pdf).
 
 ## References
