@@ -7,12 +7,11 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
+  <meta name="generator" content="quarto-1.6.19">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-08-14">
@@ -100,7 +99,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-995d96e1867de668a58ac323349be995.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -1008,7 +1007,7 @@ Table&nbsp;3: Repricing gaps ($ millions)
 <p><strong>One-day repricing gap</strong></p>
 </div>
 <div class="callout-content">
-<p>In the first bucket of <a href="#/repricing-gaps" class="quarto-xref">Table&nbsp;3</a>, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:</p>
+<p>In the first bucket of <a href="#/tbl-repricing-gaps" class="quarto-xref">Table&nbsp;3</a>, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:</p>
 <p><span class="math display">\[
 \Delta NII_i = GAP_i \times \Delta R_i = -10 \text{ million} \times 0.01 = -100,000
 \]</span></p>
@@ -1027,7 +1026,7 @@ Table&nbsp;3: Repricing gaps ($ millions)
 <p><strong>One-year repricing gap</strong></p>
 </div>
 <div class="callout-content">
-<p>It is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from <a href="#/repricing-gaps" class="quarto-xref">Table&nbsp;3</a>.</p>
+<p>It is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from <a href="#/tbl-repricing-gaps" class="quarto-xref">Table&nbsp;3</a>.</p>
 <p><span class="math display">\[
 \Delta NII_i = CGAP_i \times \Delta R_i = -15 \text{ million} \times 0.01 = -150,000
 \]</span></p>
@@ -1159,49 +1158,49 @@ Table&nbsp;4: Calculating the duration of a 3-year bond
 <div aria-describedby="tbl-duration-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <style type="text/css">
-#T_0df3c_row3_col4 {
+#T_352c0_row3_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_0df3c" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_352c0" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_0df3c_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_0df3c_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_0df3c_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_0df3c_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_0df3c_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_352c0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_352c0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_352c0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_352c0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_352c0_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_0df3c_row0_col0" class="data row0 col0">1</td>
-<td id="T_0df3c_row0_col1" class="data row0 col1">50.00</td>
-<td id="T_0df3c_row0_col2" class="data row0 col2">48.08</td>
-<td id="T_0df3c_row0_col3" class="data row0 col3">0.05</td>
-<td id="T_0df3c_row0_col4" class="data row0 col4">0.05</td>
+<td id="T_352c0_row0_col0" class="data row0 col0">1</td>
+<td id="T_352c0_row0_col1" class="data row0 col1">50.00</td>
+<td id="T_352c0_row0_col2" class="data row0 col2">48.08</td>
+<td id="T_352c0_row0_col3" class="data row0 col3">0.05</td>
+<td id="T_352c0_row0_col4" class="data row0 col4">0.05</td>
 </tr>
 <tr class="even">
-<td id="T_0df3c_row1_col0" class="data row1 col0">2</td>
-<td id="T_0df3c_row1_col1" class="data row1 col1">50.00</td>
-<td id="T_0df3c_row1_col2" class="data row1 col2">46.23</td>
-<td id="T_0df3c_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_0df3c_row1_col4" class="data row1 col4">0.09</td>
+<td id="T_352c0_row1_col0" class="data row1 col0">2</td>
+<td id="T_352c0_row1_col1" class="data row1 col1">50.00</td>
+<td id="T_352c0_row1_col2" class="data row1 col2">46.23</td>
+<td id="T_352c0_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_352c0_row1_col4" class="data row1 col4">0.09</td>
 </tr>
 <tr class="odd">
-<td id="T_0df3c_row2_col0" class="data row2 col0">3</td>
-<td id="T_0df3c_row2_col1" class="data row2 col1">1050.00</td>
-<td id="T_0df3c_row2_col2" class="data row2 col2">933.45</td>
-<td id="T_0df3c_row2_col3" class="data row2 col3">0.91</td>
-<td id="T_0df3c_row2_col4" class="data row2 col4">2.72</td>
+<td id="T_352c0_row2_col0" class="data row2 col0">3</td>
+<td id="T_352c0_row2_col1" class="data row2 col1">1050.00</td>
+<td id="T_352c0_row2_col2" class="data row2 col2">933.45</td>
+<td id="T_352c0_row2_col3" class="data row2 col3">0.91</td>
+<td id="T_352c0_row2_col4" class="data row2 col4">2.72</td>
 </tr>
 <tr class="even">
-<td id="T_0df3c_row3_col0" class="data row3 col0">Total</td>
-<td id="T_0df3c_row3_col1" class="data row3 col1">1150.00</td>
-<td id="T_0df3c_row3_col2" class="data row3 col2">1027.75</td>
-<td id="T_0df3c_row3_col3" class="data row3 col3">1.00</td>
-<td id="T_0df3c_row3_col4" class="data row3 col4">2.86</td>
+<td id="T_352c0_row3_col0" class="data row3 col0">Total</td>
+<td id="T_352c0_row3_col1" class="data row3 col1">1150.00</td>
+<td id="T_352c0_row3_col2" class="data row3 col2">1027.75</td>
+<td id="T_352c0_row3_col3" class="data row3 col3">1.00</td>
+<td id="T_352c0_row3_col4" class="data row3 col4">2.86</td>
 </tr>
 </tbody>
 </table>
@@ -1269,63 +1268,63 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 <div aria-describedby="tbl-duration-example-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <style type="text/css">
-#T_6cb04_row5_col4 {
+#T_05c72_row5_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_6cb04" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_05c72" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_6cb04_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_6cb04_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_6cb04_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_6cb04_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_6cb04_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_05c72_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_05c72_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_05c72_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_05c72_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_05c72_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_6cb04_row0_col0" class="data row0 col0">1</td>
-<td id="T_6cb04_row0_col1" class="data row0 col1">40.00</td>
-<td id="T_6cb04_row0_col2" class="data row0 col2">37.74</td>
-<td id="T_6cb04_row0_col3" class="data row0 col3">0.04</td>
-<td id="T_6cb04_row0_col4" class="data row0 col4">0.04</td>
+<td id="T_05c72_row0_col0" class="data row0 col0">1</td>
+<td id="T_05c72_row0_col1" class="data row0 col1">40.00</td>
+<td id="T_05c72_row0_col2" class="data row0 col2">37.74</td>
+<td id="T_05c72_row0_col3" class="data row0 col3">0.04</td>
+<td id="T_05c72_row0_col4" class="data row0 col4">0.04</td>
 </tr>
 <tr class="even">
-<td id="T_6cb04_row1_col0" class="data row1 col0">2</td>
-<td id="T_6cb04_row1_col1" class="data row1 col1">40.00</td>
-<td id="T_6cb04_row1_col2" class="data row1 col2">35.60</td>
-<td id="T_6cb04_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_6cb04_row1_col4" class="data row1 col4">0.08</td>
+<td id="T_05c72_row1_col0" class="data row1 col0">2</td>
+<td id="T_05c72_row1_col1" class="data row1 col1">40.00</td>
+<td id="T_05c72_row1_col2" class="data row1 col2">35.60</td>
+<td id="T_05c72_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_05c72_row1_col4" class="data row1 col4">0.08</td>
 </tr>
 <tr class="odd">
-<td id="T_6cb04_row2_col0" class="data row2 col0">3</td>
-<td id="T_6cb04_row2_col1" class="data row2 col1">40.00</td>
-<td id="T_6cb04_row2_col2" class="data row2 col2">33.58</td>
-<td id="T_6cb04_row2_col3" class="data row2 col3">0.04</td>
-<td id="T_6cb04_row2_col4" class="data row2 col4">0.11</td>
+<td id="T_05c72_row2_col0" class="data row2 col0">3</td>
+<td id="T_05c72_row2_col1" class="data row2 col1">40.00</td>
+<td id="T_05c72_row2_col2" class="data row2 col2">33.58</td>
+<td id="T_05c72_row2_col3" class="data row2 col3">0.04</td>
+<td id="T_05c72_row2_col4" class="data row2 col4">0.11</td>
 </tr>
 <tr class="even">
-<td id="T_6cb04_row3_col0" class="data row3 col0">4</td>
-<td id="T_6cb04_row3_col1" class="data row3 col1">40.00</td>
-<td id="T_6cb04_row3_col2" class="data row3 col2">31.68</td>
-<td id="T_6cb04_row3_col3" class="data row3 col3">0.03</td>
-<td id="T_6cb04_row3_col4" class="data row3 col4">0.14</td>
+<td id="T_05c72_row3_col0" class="data row3 col0">4</td>
+<td id="T_05c72_row3_col1" class="data row3 col1">40.00</td>
+<td id="T_05c72_row3_col2" class="data row3 col2">31.68</td>
+<td id="T_05c72_row3_col3" class="data row3 col3">0.03</td>
+<td id="T_05c72_row3_col4" class="data row3 col4">0.14</td>
 </tr>
 <tr class="odd">
-<td id="T_6cb04_row4_col0" class="data row4 col0">5</td>
-<td id="T_6cb04_row4_col1" class="data row4 col1">1040.00</td>
-<td id="T_6cb04_row4_col2" class="data row4 col2">777.15</td>
-<td id="T_6cb04_row4_col3" class="data row4 col3">0.85</td>
-<td id="T_6cb04_row4_col4" class="data row4 col4">4.24</td>
+<td id="T_05c72_row4_col0" class="data row4 col0">5</td>
+<td id="T_05c72_row4_col1" class="data row4 col1">1040.00</td>
+<td id="T_05c72_row4_col2" class="data row4 col2">777.15</td>
+<td id="T_05c72_row4_col3" class="data row4 col3">0.85</td>
+<td id="T_05c72_row4_col4" class="data row4 col4">4.24</td>
 </tr>
 <tr class="even">
-<td id="T_6cb04_row5_col0" class="data row5 col0">Total</td>
-<td id="T_6cb04_row5_col1" class="data row5 col1">1200.00</td>
-<td id="T_6cb04_row5_col2" class="data row5 col2">915.75</td>
-<td id="T_6cb04_row5_col3" class="data row5 col3">1.00</td>
-<td id="T_6cb04_row5_col4" class="data row5 col4">4.61</td>
+<td id="T_05c72_row5_col0" class="data row5 col0">Total</td>
+<td id="T_05c72_row5_col1" class="data row5 col1">1200.00</td>
+<td id="T_05c72_row5_col2" class="data row5 col2">915.75</td>
+<td id="T_05c72_row5_col3" class="data row5 col3">1.00</td>
+<td id="T_05c72_row5_col4" class="data row5 col4">4.61</td>
 </tr>
 </tbody>
 </table>
@@ -1385,7 +1384,7 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 </section>
 <section id="duration-and-price-changes-example" class="slide level2">
 <h2>Duration and price changes: example</h2>
-<p>Consider the previous example of a 5-year annual-coupon bond in <a href="#/duration-another-example" class="quarto-xref">Table&nbsp;5</a> with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.</p>
+<p>Consider the previous example of a 5-year annual-coupon bond in <a href="#/tbl-duration-example-2" class="quarto-xref">Table&nbsp;5</a> with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.</p>
 <p>What is the price change if the interest rate (yield) decreases by 1 percent (<span class="math inline">\(\Delta R=-0.01\)</span>)?</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1396,7 +1395,7 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Recall <a href="#/the-economic-meaning-of-duration" class="quarto-xref">Equation&nbsp;2</a> that <span class="math inline">\(\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R\)</span>.</p>
+<p>Recall <a href="#/eq-duration-and-price" class="quarto-xref">Equation&nbsp;2</a> that <span class="math inline">\(\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R\)</span>.</p>
 <p><span class="math display">\[
 \text{Modified duration} = MD = \frac{D}{1+R} = \frac{4.61}{1+0.06} = 4.349
 \]</span></p>
@@ -1474,7 +1473,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 <h2>The duration model</h2>
 <p>We know that total assets (<span class="math inline">\(A\)</span>) is the sum of liabilities (<span class="math inline">\(L\)</span>) and equity (<span class="math inline">\(E\)</span>): <span class="math inline">\(A=E+L\)</span>.</p>
 <p>Therefore, <span class="math inline">\(E = A - L\)</span>, and <span class="math inline">\(\Delta E = \Delta A - \Delta L\)</span>.</p>
-<p>Making use of the previous results <a href="#/duration-and-interest-rate-risk-management-balance-sheet" class="quarto-xref">Equation&nbsp;3</a> and <a href="#/duration-and-interest-rate-risk-management-balance-sheet" class="quarto-xref">Equation&nbsp;4</a>, we have</p>
+<p>Making use of the previous results <a href="#/eq-duration-and-assets-value" class="quarto-xref">Equation&nbsp;3</a> and <a href="#/eq-duration-and-liabilities-value" class="quarto-xref">Equation&nbsp;4</a>, we have</p>
 <p><span id="eq-duration-model"><span class="math display">\[
 \Delta E = \left[- D_A \times A \times \frac{\Delta R}{1+R}\right] -  \left[- D_L \times L \times \frac{\Delta R}{1+R}\right]
 \qquad(5)\]</span></span></p>
@@ -1486,7 +1485,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 </section>
 <section id="the-duration-model-1" class="slide level2">
 <h2>The duration model</h2>
-<p>Let’s examine the duration model <a href="#/the-duration-model" class="quarto-xref">Equation&nbsp;6</a>:</p>
+<p>Let’s examine the duration model <a href="#/eq-duration-model-lev" class="quarto-xref">Equation&nbsp;6</a>:</p>
 <p><span class="math display">\[
 \Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
 \]</span></p>
@@ -1558,15 +1557,15 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 <section id="references" class="slide level2">
 <h2>References</h2>
 
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
-<p>AFIN8003 Banking and Financial Intermediation</p>
-</div>
-</div>
+
 </section></section>
 
     </div>
-  </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1751,7 +1750,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1975,7 +1974,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

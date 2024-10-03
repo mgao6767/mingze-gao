@@ -7,9 +7,8 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.19">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-08-21">
@@ -97,7 +96,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-995d96e1867de668a58ac323349be995.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -398,7 +397,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 <meta name="twitter:title" content="AFIN8003 Week 5 - Market Risk – Mingze Gao">
 <meta name="twitter:description" content="Banking and Financial Intermediation">
 <meta name="twitter:card" content="summary">
@@ -516,177 +514,8 @@ Dr.&nbsp;Mingze Gao
 <section id="introduction-contd" class="slide level2">
 <h2>Introduction (cont’d)</h2>
 <p>Intuitively, trading book includes assets, liabilities and derivatives that are actively traded in some financial markets and hence exposed to uncertainties of these markets.</p>
-<div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>flowchart LR</span>
-<span id="cb1-2"><a></a>    A[Bank] --&gt; B[Banking Book]</span>
-<span id="cb1-3"><a></a>    A --&gt; T[Trading Book]</span>
-<span id="cb1-4"><a></a>    subgraph Bond market</span>
-<span id="cb1-5"><a></a>      bonds[Bonds]</span>
-<span id="cb1-6"><a></a>    end</span>
-<span id="cb1-7"><a></a>    subgraph Commodity market</span>
-<span id="cb1-8"><a></a>      commd[Commodities]</span>
-<span id="cb1-9"><a></a>    end</span>
-<span id="cb1-10"><a></a>    subgraph FX market</span>
-<span id="cb1-11"><a></a>      fx[FX]</span>
-<span id="cb1-12"><a></a>    end</span>
-<span id="cb1-13"><a></a>    subgraph Derivative market</span>
-<span id="cb1-14"><a></a>      deriv[Derivatives]</span>
-<span id="cb1-15"><a></a>    end</span>
-<span id="cb1-16"><a></a>    T --&gt; bonds &amp; commd &amp; fx &amp; deriv</span>
-<span id="cb1-17"><a></a>    subgraph Market risk</span>
-<span id="cb1-18"><a></a>      M[Market condition]</span>
-<span id="cb1-19"><a></a>      bonds &amp; commd &amp; fx &amp; deriv -.- M</span>
-<span id="cb1-20"><a></a>      M -.- p[price] &amp; v[volatility] &amp; l[liquidity] &amp; i[interest rate] &amp; o[...]</span>
-<span id="cb1-21"><a></a>    end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 824.46875 586" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
-<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="subGraph4" class="cluster default flowchart-label"><rect height="570" width="341.5625" y="0" x="466.90625" ry="0" rx="0" style=""></rect><g transform="translate(598.0546875, 0)" class="cluster-label"><foreignobject height="19" width="79.265625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Market risk</span>
-</div>
-</foreignobject></g></g><g id="subGraph3" class="cluster default flowchart-label"><rect height="104" width="157.890625" y="432" x="259.015625" ry="0" rx="0" style=""></rect><g transform="translate(273.5078125, 432)" class="cluster-label"><foreignobject height="19" width="128.90625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Derivative market</span>
-</div>
-</foreignobject></g></g><g id="subGraph2" class="cluster default flowchart-label"><rect height="104" width="157.890625" y="308" x="259.015625" ry="0" rx="0" style=""></rect><g transform="translate(301.375, 308)" class="cluster-label"><foreignobject height="19" width="73.171875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">FX market</span>
-</div>
-</foreignobject></g></g><g id="subGraph1" class="cluster default flowchart-label"><rect height="104" width="157.890625" y="184" x="259.015625" ry="0" rx="0" style=""></rect><g transform="translate(269.515625, 184)" class="cluster-label"><foreignobject height="19" width="136.890625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Commodity market</span>
-</div>
-</foreignobject></g></g><g id="subGraph0" class="cluster default flowchart-label"><rect height="104" width="157.890625" y="60" x="259.015625" ry="0" rx="0" style=""></rect><g transform="translate(292.375, 60)" class="cluster-label"><foreignobject height="19" width="91.171875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Bond market</span>
-</div>
-</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" id="L-A-B-0" d="M44.73325892857143,213L49.65792410714286,208.83333333333334C54.582589285714285,204.66666666666666,64.43191964285715,196.33333333333334,73.52325148809524,192.16666666666666C82.61458333333333,188,90.94791666666667,188,95.11458333333333,188L99.28125,188"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-T" id="L-A-T-0" d="M44.73325892857143,247L49.65792410714286,251.16666666666666C54.582589285714285,255.33333333333334,64.43191964285715,263.6666666666667,73.79017857142857,267.8333333333333C83.1484375,272,92.015625,272,96.44921875,272L100.8828125,272"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-T LE-bonds" id="L-T-bonds-0" d="M162.634326171875,255L174.53120930989584,231.16666666666666C186.42809244791667,207.33333333333334,210.22185872395835,159.66666666666666,226.28540852864583,135.83333333333334C242.34895833333334,112,250.68229166666666,112,263.2747395833333,112C275.8671875,112,292.71875,112,301.14453125,112L309.5703125,112"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-T LE-commd" id="L-T-commd-0" d="M191.86349826388889,255L198.8888527199074,251.83333333333334C205.91420717592595,248.66666666666666,219.96491608796296,242.33333333333334,231.15693721064815,239.16666666666666C242.34895833333334,236,250.68229166666666,236,259.015625,236C267.3489583333333,236,275.6822916666667,236,279.8489583333333,236L284.015625,236"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-T LE-fx" id="L-T-fx-0" d="M169.5773259943182,289L180.31704249526516,300.8333333333333C191.05675899621212,312.6666666666667,212.5361919981061,336.3333333333333,227.44257516571972,348.1666666666667C242.34895833333334,360,250.68229166666666,360,265.3138020833333,360C279.9453125,360,300.875,360,311.33984375,360L321.8046875,360"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-T LE-deriv" id="L-T-deriv-0" d="M160.55288178066039,289L172.796672317217,321.5C185.04046285377362,354,209.5280439268868,419,225.93850113011004,451.5C242.34895833333334,484,250.68229166666666,484,260.1302083333333,484C269.578125,484,280.140625,484,285.421875,484L290.703125,484"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-bonds LE-M" id="L-bonds-M-0" d="M366.3515625,112L374.77734375,112C383.203125,112,400.0546875,112,412.6471354166667,112C425.2395833333333,112,433.5729166666667,112,441.90625,112C450.2395833333333,112,458.5729166666667,112,476.5857259114584,135.83333333333334C494.59853515624997,159.66666666666666,522.2908203124999,207.33333333333334,536.136962890625,231.16666666666666L549.98310546875,255"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-commd LE-M" id="L-commd-M-0" d="M391.90625,236L396.0729166666667,236C400.2395833333333,236,408.5729166666667,236,416.90625,236C425.2395833333333,236,433.5729166666667,236,441.90625,236C450.2395833333333,236,458.5729166666667,236,470.916015625,239.16666666666666C483.2591145833333,242.33333333333334,499.6119791666667,248.66666666666666,507.7884114583333,251.83333333333334L515.96484375,255"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-fx LE-M" id="L-fx-M-0" d="M354.1171875,360L364.58203125,360C375.046875,360,395.9765625,360,410.6080729166667,360C425.2395833333333,360,433.5729166666667,360,441.90625,360C450.2395833333333,360,458.5729166666667,360,475.2389618844697,348.1666666666667C491.9050071022727,336.3333333333333,516.9037642045454,312.6666666666667,529.4031427556818,300.8333333333333L541.9025213068181,289"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-deriv LE-M" id="L-deriv-M-0" d="M385.21875,484L390.5,484C395.78125,484,406.34375,484,415.7916666666667,484C425.2395833333333,484,433.5729166666667,484,441.90625,484C450.2395833333333,484,458.5729166666667,484,476.9894727790881,451.5C495.4060288915095,419,523.9058077830189,354,538.1556972287736,321.5L552.4055866745283,289"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-M LE-p" id="L-M-p-0" d="M567.0421164772728,255L581.3371803977274,221.16666666666666C595.6322443181818,187.33333333333334,624.2223721590909,119.66666666666667,647.2101444128788,85.83333333333333C670.1979166666666,52,687.5833333333334,52,696.2760416666666,52L704.96875,52"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-M LE-v" id="L-M-v-0" d="M571.478515625,255L585.0341796875,235.16666666666666C598.58984375,215.33333333333334,625.701171875,175.66666666666666,645.6474609375,155.83333333333334C665.59375,136,678.375,136,684.765625,136L691.15625,136"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-M LE-l" id="L-M-l-0" d="M627.8125,272L631.9791666666666,272C636.1458333333334,272,644.4791666666666,272,655.4322916666666,272C666.3854166666666,272,679.9583333333334,272,686.7447916666666,272L693.53125,272"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-M LE-i" id="L-M-i-0" d="M569.6137152777778,289L583.4801793981482,313.1666666666667C597.3466435185186,337.3333333333333,625.0795717592592,385.6666666666667,643.1127025462963,409.8333333333333C661.1458333333334,434,669.4791666666666,434,673.6458333333334,434L677.8125,434"></path><path style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-M LE-o" id="L-M-o-0" d="M566.2829649390244,289L580.7045541158536,327.1666666666667C595.126143292683,365.3333333333333,623.9693216463414,441.6666666666667,648.6435149898374,479.8333333333333C673.3177083333334,518,693.8229166666666,518,704.0755208333334,518L714.328125,518"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(559.859375, 272)" id="flowchart-M-63" class="node default default flowchart-label"><rect height="34" width="135.90625" y="-17" x="-67.953125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-60.453125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="120.90625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Market condition</span>
-</div>
-</foreignobject></g></g><g transform="translate(730.640625, 52)" id="flowchart-p-70" class="node default default flowchart-label"><rect height="34" width="51.34375" y="-17" x="-25.671875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-18.171875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="36.34375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">price</span>
-</div>
-</foreignobject></g></g><g transform="translate(730.640625, 136)" id="flowchart-v-71" class="node default default flowchart-label"><rect height="34" width="78.96875" y="-17" x="-39.484375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-31.984375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="63.96875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">volatility</span>
-</div>
-</foreignobject></g></g><g transform="translate(730.640625, 272)" id="flowchart-l-72" class="node default default flowchart-label"><rect height="34" width="74.21875" y="-17" x="-37.109375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-29.609375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="59.21875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">liquidity</span>
-</div>
-</foreignobject></g></g><g transform="translate(730.640625, 434)" id="flowchart-i-73" class="node default default flowchart-label"><rect height="34" width="105.65625" y="-17" x="-52.828125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.328125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="90.65625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">interest rate</span>
-</div>
-</foreignobject></g></g><g transform="translate(730.640625, 518)" id="flowchart-o-74" class="node default default flowchart-label"><rect height="34" width="32.625" y="-17" x="-16.3125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-8.8125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="17.625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">…</span>
-</div>
-</foreignobject></g></g><g transform="translate(337.9609375, 484)" id="flowchart-deriv-57" class="node default default flowchart-label"><rect height="34" width="94.515625" y="-17" x="-47.2578125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-39.7578125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="79.515625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Derivatives</span>
-</div>
-</foreignobject></g></g><g transform="translate(337.9609375, 360)" id="flowchart-fx-56" class="node default default flowchart-label"><rect height="34" width="32.3125" y="-17" x="-16.15625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-8.65625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="17.3125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">FX</span>
-</div>
-</foreignobject></g></g><g transform="translate(337.9609375, 236)" id="flowchart-commd-55" class="node default default flowchart-label"><rect height="34" width="107.890625" y="-17" x="-53.9453125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-46.4453125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="92.890625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Commodities</span>
-</div>
-</foreignobject></g></g><g transform="translate(337.9609375, 112)" id="flowchart-bonds-54" class="node default default flowchart-label"><rect height="34" width="56.78125" y="-17" x="-28.390625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-20.890625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="41.78125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Bonds</span>
-</div>
-</foreignobject></g></g><g transform="translate(24.640625, 230)" id="flowchart-A-50" class="node default default flowchart-label"><rect height="34" width="49.28125" y="-17" x="-24.640625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-17.140625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="34.28125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Bank</span>
-</div>
-</foreignobject></g></g><g transform="translate(154.1484375, 188)" id="flowchart-B-51" class="node default default flowchart-label"><rect height="34" width="109.734375" y="-17" x="-54.8671875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-47.3671875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="94.734375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Banking Book</span>
-</div>
-</foreignobject></g></g><g transform="translate(154.1484375, 272)" id="flowchart-T-53" class="node default default flowchart-label"><rect height="34" width="106.53125" y="-17" x="-53.265625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.765625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="91.53125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Trading Book</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./figures/fig-trading-book-market-risk.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="market-risk-exposure" class="slide level2">
 <h2>Market risk exposure</h2>
 <p>FIs are concerned about the potential impact of changing market conditions on their trading book and ultimately their net worth and solvency.</p>
@@ -719,45 +548,45 @@ Dr.&nbsp;Mingze Gao
 <div id="cell-fig-returns-VaR" class="cell" data-fig-location="center" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb2-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb2-6"><a></a></span>
-<span id="cb2-7"><a></a><span class="co"># Parameters</span></span>
-<span id="cb2-8"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Mean of returns</span></span>
-<span id="cb2-9"><a></a>sigma <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># Standard deviation of returns</span></span>
-<span id="cb2-10"><a></a>n <span class="op">=</span> <span class="dv">10000</span>  <span class="co"># Number of simulations</span></span>
-<span id="cb2-11"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span id="cb2-12"><a></a></span>
-<span id="cb2-13"><a></a><span class="co"># Simulate returns</span></span>
-<span id="cb2-14"><a></a>returns <span class="op">=</span> np.random.normal(mu, sigma, n)</span>
-<span id="cb2-15"><a></a></span>
-<span id="cb2-16"><a></a><span class="co"># Calculate VaR</span></span>
-<span id="cb2-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb2-18"><a></a></span>
-<span id="cb2-19"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
-<span id="cb2-20"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb2-21"><a></a></span>
-<span id="cb2-22"><a></a><span class="co"># Histogram data</span></span>
-<span id="cb2-23"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb2-24"><a></a></span>
-<span id="cb2-25"><a></a><span class="co"># Change color of bars</span></span>
-<span id="cb2-26"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
-<span id="cb2-27"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
-<span id="cb2-28"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
-<span id="cb2-29"><a></a>    <span class="cf">else</span>:</span>
-<span id="cb2-30"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
-<span id="cb2-31"><a></a></span>
-<span id="cb2-32"><a></a><span class="co"># Add VaR line</span></span>
-<span id="cb2-33"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-34"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR"</span>)</span>
-<span id="cb2-35"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
-<span id="cb2-36"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb2-37"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Returns"</span>])</span>
-<span id="cb2-38"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb2-39"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb1-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="co"># Parameters</span></span>
+<span id="cb1-8"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Mean of returns</span></span>
+<span id="cb1-9"><a></a>sigma <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># Standard deviation of returns</span></span>
+<span id="cb1-10"><a></a>n <span class="op">=</span> <span class="dv">10000</span>  <span class="co"># Number of simulations</span></span>
+<span id="cb1-11"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a><span class="co"># Simulate returns</span></span>
+<span id="cb1-14"><a></a>returns <span class="op">=</span> np.random.normal(mu, sigma, n)</span>
+<span id="cb1-15"><a></a></span>
+<span id="cb1-16"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb1-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb1-18"><a></a></span>
+<span id="cb1-19"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
+<span id="cb1-20"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-21"><a></a></span>
+<span id="cb1-22"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb1-23"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb1-24"><a></a></span>
+<span id="cb1-25"><a></a><span class="co"># Change color of bars</span></span>
+<span id="cb1-26"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb1-27"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb1-28"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb1-29"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb1-30"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb1-31"><a></a></span>
+<span id="cb1-32"><a></a><span class="co"># Add VaR line</span></span>
+<span id="cb1-33"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR"</span>)</span>
+<span id="cb1-35"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb1-36"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb1-37"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb1-38"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-39"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-returns-var" class="quarto-float quarto-figure quarto-figure-center">
@@ -787,44 +616,44 @@ Figure&nbsp;1: Distribution of expected returns and VaR
 <div id="cell-fig-returns-VaR-example-2" class="cell" data-fig-location="center" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># Simulate returns with a non-normal distribution (e.g., bimodal distribution)</span></span>
-<span id="cb3-2"><a></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="co"># Parameters for bimodal distribution</span></span>
-<span id="cb3-5"><a></a>n <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb3-6"><a></a>mu1, sigma1, weight1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span></span>
-<span id="cb3-7"><a></a>mu2, sigma2, weight2 <span class="op">=</span> <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.5</span></span>
-<span id="cb3-8"><a></a></span>
-<span id="cb3-9"><a></a><span class="co"># Generate bimodal returns</span></span>
-<span id="cb3-10"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, <span class="bu">int</span>(n <span class="op">*</span> weight1))</span>
-<span id="cb3-11"><a></a>returns2 <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n <span class="op">*</span> weight2))</span>
-<span id="cb3-12"><a></a>returns <span class="op">=</span> np.concatenate([returns1, returns2])</span>
-<span id="cb3-13"><a></a></span>
-<span id="cb3-14"><a></a><span class="co"># Calculate VaR</span></span>
-<span id="cb3-15"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.99</span></span>
-<span id="cb3-16"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb3-17"><a></a></span>
-<span id="cb3-18"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
-<span id="cb3-19"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb3-20"><a></a></span>
-<span id="cb3-21"><a></a><span class="co"># Histogram data</span></span>
-<span id="cb3-22"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb3-23"><a></a></span>
-<span id="cb3-24"><a></a><span class="co"># Change color of bars</span></span>
-<span id="cb3-25"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
-<span id="cb3-26"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
-<span id="cb3-27"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
-<span id="cb3-28"><a></a>    <span class="cf">else</span>:</span>
-<span id="cb3-29"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
-<span id="cb3-30"><a></a></span>
-<span id="cb3-31"><a></a><span class="co"># Add VaR line</span></span>
-<span id="cb3-32"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-33"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR (Non-Normal Distribution)"</span>)</span>
-<span id="cb3-34"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
-<span id="cb3-35"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb3-36"><a></a>plt.legend([<span class="st">"VaR at 99%"</span>, <span class="st">"Returns"</span>])</span>
-<span id="cb3-37"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-38"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Simulate returns with a non-normal distribution (e.g., bimodal distribution)</span></span>
+<span id="cb2-2"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="co"># Parameters for bimodal distribution</span></span>
+<span id="cb2-5"><a></a>n <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-6"><a></a>mu1, sigma1, weight1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span></span>
+<span id="cb2-7"><a></a>mu2, sigma2, weight2 <span class="op">=</span> <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.5</span></span>
+<span id="cb2-8"><a></a></span>
+<span id="cb2-9"><a></a><span class="co"># Generate bimodal returns</span></span>
+<span id="cb2-10"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, <span class="bu">int</span>(n <span class="op">*</span> weight1))</span>
+<span id="cb2-11"><a></a>returns2 <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n <span class="op">*</span> weight2))</span>
+<span id="cb2-12"><a></a>returns <span class="op">=</span> np.concatenate([returns1, returns2])</span>
+<span id="cb2-13"><a></a></span>
+<span id="cb2-14"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb2-15"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb2-16"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb2-17"><a></a></span>
+<span id="cb2-18"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
+<span id="cb2-19"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb2-20"><a></a></span>
+<span id="cb2-21"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb2-22"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb2-23"><a></a></span>
+<span id="cb2-24"><a></a><span class="co"># Change color of bars</span></span>
+<span id="cb2-25"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb2-26"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb2-27"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb2-28"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb2-29"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb2-30"><a></a></span>
+<span id="cb2-31"><a></a><span class="co"># Add VaR line</span></span>
+<span id="cb2-32"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-33"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR (Non-Normal Distribution)"</span>)</span>
+<span id="cb2-34"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb2-35"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb2-36"><a></a>plt.legend([<span class="st">"VaR at 99%"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb2-37"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-38"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-returns-var-example-2" class="quarto-float quarto-figure quarto-figure-center">
@@ -972,42 +801,42 @@ MD = \frac{D}{1+R} = \frac{7}{1+0.07243} = 6.527
 <div id="cell-fig-normal" class="cell" data-fig-location="center" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb4-4"><a></a></span>
-<span id="cb4-5"><a></a><span class="co"># Parameters for normal distribution</span></span>
-<span id="cb4-6"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mean</span></span>
-<span id="cb4-7"><a></a>sigma <span class="op">=</span> <span class="dv">10</span>  <span class="co"># standard deviation (10 bps)</span></span>
-<span id="cb4-8"><a></a></span>
-<span id="cb4-9"><a></a><span class="co"># Generate data</span></span>
-<span id="cb4-10"><a></a>x <span class="op">=</span> np.linspace(mu <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> sigma, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">1000</span>)</span>
-<span id="cb4-11"><a></a>y <span class="op">=</span> norm.pdf(x, mu, sigma)</span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="co"># Calculate the value at 2.33 standard deviations from the mean</span></span>
-<span id="cb4-14"><a></a>threshold <span class="op">=</span> mu <span class="op">+</span> <span class="fl">2.33</span> <span class="op">*</span> sigma</span>
-<span id="cb4-15"><a></a></span>
-<span id="cb4-16"><a></a><span class="co"># Plot normal distribution</span></span>
-<span id="cb4-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb4-18"><a></a>plt.plot(x, y, label<span class="op">=</span><span class="st">"Normal Distribution"</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>)</span>
-<span id="cb4-19"><a></a></span>
-<span id="cb4-20"><a></a><span class="co"># Fill the upper 1% area</span></span>
-<span id="cb4-21"><a></a>x_fill <span class="op">=</span> np.linspace(threshold, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">100</span>)</span>
-<span id="cb4-22"><a></a>y_fill <span class="op">=</span> norm.pdf(x_fill, mu, sigma)</span>
-<span id="cb4-23"><a></a>plt.fill_between(x_fill, y_fill, color<span class="op">=</span><span class="st">"#A6192E"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"Upper 1% Area"</span>)</span>
-<span id="cb4-24"><a></a></span>
-<span id="cb4-25"><a></a><span class="co"># Mark mean and threshold</span></span>
-<span id="cb4-26"><a></a>plt.axvline(mu, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Mean"</span>)</span>
-<span id="cb4-27"><a></a>plt.axvline(</span>
-<span id="cb4-28"><a></a>    threshold, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"2.33 Std Dev"</span></span>
-<span id="cb4-29"><a></a>)</span>
-<span id="cb4-30"><a></a></span>
-<span id="cb4-31"><a></a>plt.title(<span class="st">"Normal Distribution with Mean and 2.33 Standard Deviation"</span>)</span>
-<span id="cb4-32"><a></a>plt.xlabel(<span class="st">"Value (bps)"</span>)</span>
-<span id="cb4-33"><a></a>plt.ylabel(<span class="st">"Probability Density"</span>)</span>
-<span id="cb4-34"><a></a>plt.legend()</span>
-<span id="cb4-35"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-36"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="co"># Parameters for normal distribution</span></span>
+<span id="cb3-6"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mean</span></span>
+<span id="cb3-7"><a></a>sigma <span class="op">=</span> <span class="dv">10</span>  <span class="co"># standard deviation (10 bps)</span></span>
+<span id="cb3-8"><a></a></span>
+<span id="cb3-9"><a></a><span class="co"># Generate data</span></span>
+<span id="cb3-10"><a></a>x <span class="op">=</span> np.linspace(mu <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> sigma, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">1000</span>)</span>
+<span id="cb3-11"><a></a>y <span class="op">=</span> norm.pdf(x, mu, sigma)</span>
+<span id="cb3-12"><a></a></span>
+<span id="cb3-13"><a></a><span class="co"># Calculate the value at 2.33 standard deviations from the mean</span></span>
+<span id="cb3-14"><a></a>threshold <span class="op">=</span> mu <span class="op">+</span> <span class="fl">2.33</span> <span class="op">*</span> sigma</span>
+<span id="cb3-15"><a></a></span>
+<span id="cb3-16"><a></a><span class="co"># Plot normal distribution</span></span>
+<span id="cb3-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-18"><a></a>plt.plot(x, y, label<span class="op">=</span><span class="st">"Normal Distribution"</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>)</span>
+<span id="cb3-19"><a></a></span>
+<span id="cb3-20"><a></a><span class="co"># Fill the upper 1% area</span></span>
+<span id="cb3-21"><a></a>x_fill <span class="op">=</span> np.linspace(threshold, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">100</span>)</span>
+<span id="cb3-22"><a></a>y_fill <span class="op">=</span> norm.pdf(x_fill, mu, sigma)</span>
+<span id="cb3-23"><a></a>plt.fill_between(x_fill, y_fill, color<span class="op">=</span><span class="st">"#A6192E"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"Upper 1% Area"</span>)</span>
+<span id="cb3-24"><a></a></span>
+<span id="cb3-25"><a></a><span class="co"># Mark mean and threshold</span></span>
+<span id="cb3-26"><a></a>plt.axvline(mu, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Mean"</span>)</span>
+<span id="cb3-27"><a></a>plt.axvline(</span>
+<span id="cb3-28"><a></a>    threshold, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"2.33 Std Dev"</span></span>
+<span id="cb3-29"><a></a>)</span>
+<span id="cb3-30"><a></a></span>
+<span id="cb3-31"><a></a>plt.title(<span class="st">"Normal Distribution with Mean and 2.33 Standard Deviation"</span>)</span>
+<span id="cb3-32"><a></a>plt.xlabel(<span class="st">"Value (bps)"</span>)</span>
+<span id="cb3-33"><a></a>plt.ylabel(<span class="st">"Probability Density"</span>)</span>
+<span id="cb3-34"><a></a>plt.legend()</span>
+<span id="cb3-35"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-36"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center">
@@ -1373,53 +1202,53 @@ z_{M1} &amp; z_{M2} &amp; \cdots &amp; z_{MN}
 <div id="cell-fig-returns-monte-carlo" class="cell" data-fig-location="center" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="co"># Parameters</span></span>
-<span id="cb5-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-6"><a></a>n_assets <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb5-7"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb5-8"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span id="cb5-9"><a></a></span>
-<span id="cb5-10"><a></a><span class="co"># Mean returns and covariance matrix for the assets</span></span>
-<span id="cb5-11"><a></a>mean_returns <span class="op">=</span> np.array([<span class="fl">0.001</span>, <span class="fl">0.0012</span>, <span class="fl">0.0008</span>])  <span class="co"># Example mean returns</span></span>
-<span id="cb5-12"><a></a>cov_matrix <span class="op">=</span> np.array(</span>
-<span id="cb5-13"><a></a>    [</span>
-<span id="cb5-14"><a></a>        [<span class="fl">0.0001</span>, <span class="fl">0.00002</span>, <span class="fl">0.000015</span>],</span>
-<span id="cb5-15"><a></a>        [<span class="fl">0.00002</span>, <span class="fl">0.0001</span>, <span class="fl">0.000025</span>],</span>
-<span id="cb5-16"><a></a>        [<span class="fl">0.000015</span>, <span class="fl">0.000025</span>, <span class="fl">0.0001</span>],</span>
-<span id="cb5-17"><a></a>    ]</span>
-<span id="cb5-18"><a></a>)  <span class="co"># Example covariance matrix</span></span>
-<span id="cb5-19"><a></a></span>
-<span id="cb5-20"><a></a><span class="co"># Cholesky decomposition of the covariance matrix</span></span>
-<span id="cb5-21"><a></a>L <span class="op">=</span> np.linalg.cholesky(cov_matrix)</span>
-<span id="cb5-22"><a></a></span>
-<span id="cb5-23"><a></a><span class="co"># Generate standard normal random variables</span></span>
-<span id="cb5-24"><a></a>Z <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_scenarios, n_assets))</span>
-<span id="cb5-25"><a></a></span>
-<span id="cb5-26"><a></a><span class="co"># Simulate asset returns</span></span>
-<span id="cb5-27"><a></a>simulated_returns <span class="op">=</span> Z <span class="op">@</span> L.T <span class="op">+</span> mean_returns</span>
-<span id="cb5-28"><a></a></span>
-<span id="cb5-29"><a></a><span class="co"># Given weights</span></span>
-<span id="cb5-30"><a></a>weights <span class="op">=</span> np.array([<span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>])  <span class="co"># Example weights</span></span>
-<span id="cb5-31"><a></a></span>
-<span id="cb5-32"><a></a><span class="co"># Calculate portfolio returns</span></span>
-<span id="cb5-33"><a></a>portfolio_returns <span class="op">=</span> simulated_returns <span class="op">@</span> weights</span>
-<span id="cb5-34"><a></a></span>
-<span id="cb5-35"><a></a><span class="co"># Calculate VaR</span></span>
-<span id="cb5-36"><a></a>VaR <span class="op">=</span> np.percentile(portfolio_returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb5-37"><a></a></span>
-<span id="cb5-38"><a></a><span class="co"># Plotting the portfolio returns and VaR</span></span>
-<span id="cb5-39"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-40"><a></a>plt.hist(portfolio_returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb5-41"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb5-42"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR"</span>)</span>
-<span id="cb5-43"><a></a>plt.xlabel(<span class="st">"Portfolio Return"</span>)</span>
-<span id="cb5-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb5-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Portfolio Returns"</span>])</span>
-<span id="cb5-46"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-47"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb4-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-6"><a></a>n_assets <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-7"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb4-8"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb4-9"><a></a></span>
+<span id="cb4-10"><a></a><span class="co"># Mean returns and covariance matrix for the assets</span></span>
+<span id="cb4-11"><a></a>mean_returns <span class="op">=</span> np.array([<span class="fl">0.001</span>, <span class="fl">0.0012</span>, <span class="fl">0.0008</span>])  <span class="co"># Example mean returns</span></span>
+<span id="cb4-12"><a></a>cov_matrix <span class="op">=</span> np.array(</span>
+<span id="cb4-13"><a></a>    [</span>
+<span id="cb4-14"><a></a>        [<span class="fl">0.0001</span>, <span class="fl">0.00002</span>, <span class="fl">0.000015</span>],</span>
+<span id="cb4-15"><a></a>        [<span class="fl">0.00002</span>, <span class="fl">0.0001</span>, <span class="fl">0.000025</span>],</span>
+<span id="cb4-16"><a></a>        [<span class="fl">0.000015</span>, <span class="fl">0.000025</span>, <span class="fl">0.0001</span>],</span>
+<span id="cb4-17"><a></a>    ]</span>
+<span id="cb4-18"><a></a>)  <span class="co"># Example covariance matrix</span></span>
+<span id="cb4-19"><a></a></span>
+<span id="cb4-20"><a></a><span class="co"># Cholesky decomposition of the covariance matrix</span></span>
+<span id="cb4-21"><a></a>L <span class="op">=</span> np.linalg.cholesky(cov_matrix)</span>
+<span id="cb4-22"><a></a></span>
+<span id="cb4-23"><a></a><span class="co"># Generate standard normal random variables</span></span>
+<span id="cb4-24"><a></a>Z <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_scenarios, n_assets))</span>
+<span id="cb4-25"><a></a></span>
+<span id="cb4-26"><a></a><span class="co"># Simulate asset returns</span></span>
+<span id="cb4-27"><a></a>simulated_returns <span class="op">=</span> Z <span class="op">@</span> L.T <span class="op">+</span> mean_returns</span>
+<span id="cb4-28"><a></a></span>
+<span id="cb4-29"><a></a><span class="co"># Given weights</span></span>
+<span id="cb4-30"><a></a>weights <span class="op">=</span> np.array([<span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>])  <span class="co"># Example weights</span></span>
+<span id="cb4-31"><a></a></span>
+<span id="cb4-32"><a></a><span class="co"># Calculate portfolio returns</span></span>
+<span id="cb4-33"><a></a>portfolio_returns <span class="op">=</span> simulated_returns <span class="op">@</span> weights</span>
+<span id="cb4-34"><a></a></span>
+<span id="cb4-35"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb4-36"><a></a>VaR <span class="op">=</span> np.percentile(portfolio_returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-37"><a></a></span>
+<span id="cb4-38"><a></a><span class="co"># Plotting the portfolio returns and VaR</span></span>
+<span id="cb4-39"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-40"><a></a>plt.hist(portfolio_returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb4-41"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-42"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR"</span>)</span>
+<span id="cb4-43"><a></a>plt.xlabel(<span class="st">"Portfolio Return"</span>)</span>
+<span id="cb4-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb4-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Portfolio Returns"</span>])</span>
+<span id="cb4-46"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb4-47"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-returns-monte-carlo" class="quarto-float quarto-figure quarto-figure-center">
@@ -1448,70 +1277,70 @@ Figure&nbsp;4: Distributions of portfolio returns from Monte Carlo simulation
 <div id="cell-fig-returns-same-VaR-different-ES" class="cell" data-fig-location="center" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="co"># Parameters</span></span>
-<span id="cb6-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb6-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb6-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a><span class="co"># Distribution 1: Normal distribution</span></span>
-<span id="cb6-10"><a></a>mu1, sigma1 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
-<span id="cb6-11"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, n_scenarios)</span>
-<span id="cb6-12"><a></a>VaR1 <span class="op">=</span> np.percentile(returns1, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb6-13"><a></a></span>
-<span id="cb6-14"><a></a><span class="co"># Adjust Distribution 2: Mixture of normal distributions</span></span>
-<span id="cb6-15"><a></a>mu2, sigma2 <span class="op">=</span> <span class="fl">0.01</span>, <span class="fl">0.01</span></span>
-<span id="cb6-16"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.04</span>, <span class="fl">0.02</span></span>
-<span id="cb6-17"><a></a></span>
-<span id="cb6-18"><a></a><span class="co"># Create a mixture distribution that has the same VaR as Distribution 1</span></span>
-<span id="cb6-19"><a></a><span class="co"># Adjust the proportion and parameters of the extreme component to match the target VaR</span></span>
-<span id="cb6-20"><a></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb6-21"><a></a>    extreme_component <span class="op">=</span> np.random.normal(</span>
-<span id="cb6-22"><a></a>        extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.05</span>)</span>
-<span id="cb6-23"><a></a>    )</span>
-<span id="cb6-24"><a></a>    normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.95</span>))</span>
-<span id="cb6-25"><a></a>    returns2 <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
-<span id="cb6-26"><a></a>    VaR2 <span class="op">=</span> np.percentile(returns2, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb6-27"><a></a>    <span class="cf">if</span> <span class="bu">abs</span>(VaR2 <span class="op">-</span> VaR1) <span class="op">&lt;</span> <span class="fl">0.0001</span>:</span>
-<span id="cb6-28"><a></a>        <span class="cf">break</span></span>
-<span id="cb6-29"><a></a></span>
-<span id="cb6-30"><a></a><span class="co"># Calculate ES</span></span>
-<span id="cb6-31"><a></a>ES1 <span class="op">=</span> np.mean(returns1[returns1 <span class="op">&lt;=</span> VaR1])</span>
-<span id="cb6-32"><a></a>ES2 <span class="op">=</span> np.mean(returns2[returns2 <span class="op">&lt;=</span> VaR2])</span>
-<span id="cb6-33"><a></a></span>
-<span id="cb6-34"><a></a><span class="co"># Plot histograms</span></span>
-<span id="cb6-35"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb6-36"><a></a></span>
-<span id="cb6-37"><a></a><span class="co"># Plot for Distribution 1</span></span>
-<span id="cb6-38"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb6-39"><a></a>plt.hist(returns1, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb6-40"><a></a>plt.axvline(VaR1, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-41"><a></a>plt.axvline(ES1, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-42"><a></a>plt.title(<span class="st">"Distribution 1 (Normal)"</span>)</span>
-<span id="cb6-43"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
-<span id="cb6-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb6-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
-<span id="cb6-46"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-47"><a></a></span>
-<span id="cb6-48"><a></a><span class="co"># Plot for Distribution 2</span></span>
-<span id="cb6-49"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb6-50"><a></a>plt.hist(returns2, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb6-51"><a></a>plt.axvline(VaR2, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-52"><a></a>plt.axvline(ES2, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-53"><a></a>plt.title(<span class="st">"Distribution 2 (Mixture)"</span>)</span>
-<span id="cb6-54"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
-<span id="cb6-55"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb6-56"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
-<span id="cb6-57"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-58"><a></a></span>
-<span id="cb6-59"><a></a>plt.tight_layout()</span>
-<span id="cb6-60"><a></a>plt.show()</span>
-<span id="cb6-61"><a></a></span>
-<span id="cb6-62"><a></a><span class="bu">print</span>(<span class="ss">f"Left: 95% VaR=</span><span class="sc">{</span>VaR1<span class="sc">:.5f}</span><span class="ss">; Right: 95% VaR=</span><span class="sc">{</span>VaR2<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
-<span id="cb6-63"><a></a><span class="bu">print</span>(<span class="ss">f"Left: Average loss beyond VaR is </span><span class="sc">{</span>ES1<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
-<span id="cb6-64"><a></a><span class="bu">print</span>(<span class="ss">f"Right: Average loss beyond VaR is </span><span class="sc">{</span>ES2<span class="sc">:.5f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb5-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb5-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># Distribution 1: Normal distribution</span></span>
+<span id="cb5-10"><a></a>mu1, sigma1 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
+<span id="cb5-11"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, n_scenarios)</span>
+<span id="cb5-12"><a></a>VaR1 <span class="op">=</span> np.percentile(returns1, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a><span class="co"># Adjust Distribution 2: Mixture of normal distributions</span></span>
+<span id="cb5-15"><a></a>mu2, sigma2 <span class="op">=</span> <span class="fl">0.01</span>, <span class="fl">0.01</span></span>
+<span id="cb5-16"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.04</span>, <span class="fl">0.02</span></span>
+<span id="cb5-17"><a></a></span>
+<span id="cb5-18"><a></a><span class="co"># Create a mixture distribution that has the same VaR as Distribution 1</span></span>
+<span id="cb5-19"><a></a><span class="co"># Adjust the proportion and parameters of the extreme component to match the target VaR</span></span>
+<span id="cb5-20"><a></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb5-21"><a></a>    extreme_component <span class="op">=</span> np.random.normal(</span>
+<span id="cb5-22"><a></a>        extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-23"><a></a>    )</span>
+<span id="cb5-24"><a></a>    normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.95</span>))</span>
+<span id="cb5-25"><a></a>    returns2 <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
+<span id="cb5-26"><a></a>    VaR2 <span class="op">=</span> np.percentile(returns2, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-27"><a></a>    <span class="cf">if</span> <span class="bu">abs</span>(VaR2 <span class="op">-</span> VaR1) <span class="op">&lt;</span> <span class="fl">0.0001</span>:</span>
+<span id="cb5-28"><a></a>        <span class="cf">break</span></span>
+<span id="cb5-29"><a></a></span>
+<span id="cb5-30"><a></a><span class="co"># Calculate ES</span></span>
+<span id="cb5-31"><a></a>ES1 <span class="op">=</span> np.mean(returns1[returns1 <span class="op">&lt;=</span> VaR1])</span>
+<span id="cb5-32"><a></a>ES2 <span class="op">=</span> np.mean(returns2[returns2 <span class="op">&lt;=</span> VaR2])</span>
+<span id="cb5-33"><a></a></span>
+<span id="cb5-34"><a></a><span class="co"># Plot histograms</span></span>
+<span id="cb5-35"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb5-36"><a></a></span>
+<span id="cb5-37"><a></a><span class="co"># Plot for Distribution 1</span></span>
+<span id="cb5-38"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb5-39"><a></a>plt.hist(returns1, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb5-40"><a></a>plt.axvline(VaR1, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-41"><a></a>plt.axvline(ES1, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-42"><a></a>plt.title(<span class="st">"Distribution 1 (Normal)"</span>)</span>
+<span id="cb5-43"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb5-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb5-46"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-47"><a></a></span>
+<span id="cb5-48"><a></a><span class="co"># Plot for Distribution 2</span></span>
+<span id="cb5-49"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb5-50"><a></a>plt.hist(returns2, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb5-51"><a></a>plt.axvline(VaR2, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-52"><a></a>plt.axvline(ES2, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-53"><a></a>plt.title(<span class="st">"Distribution 2 (Mixture)"</span>)</span>
+<span id="cb5-54"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb5-55"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-56"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb5-57"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-58"><a></a></span>
+<span id="cb5-59"><a></a>plt.tight_layout()</span>
+<span id="cb5-60"><a></a>plt.show()</span>
+<span id="cb5-61"><a></a></span>
+<span id="cb5-62"><a></a><span class="bu">print</span>(<span class="ss">f"Left: 95% VaR=</span><span class="sc">{</span>VaR1<span class="sc">:.5f}</span><span class="ss">; Right: 95% VaR=</span><span class="sc">{</span>VaR2<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb5-63"><a></a><span class="bu">print</span>(<span class="ss">f"Left: Average loss beyond VaR is </span><span class="sc">{</span>ES1<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb5-64"><a></a><span class="bu">print</span>(<span class="ss">f"Right: Average loss beyond VaR is </span><span class="sc">{</span>ES2<span class="sc">:.5f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-returns-same-var-different-es" class="quarto-float quarto-figure quarto-figure-center">
@@ -1548,51 +1377,51 @@ ES(c) = \frac{1}{1-c}\int_c^1 VaR(c)du
 <div id="cell-fig-returns-ES" class="cell" data-fig-location="center" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-3"><a></a></span>
-<span id="cb8-4"><a></a><span class="co"># Parameters</span></span>
-<span id="cb8-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb8-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb8-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span id="cb8-8"><a></a></span>
-<span id="cb8-9"><a></a><span class="co"># Adjust Distribution: Mixture of normal distributions</span></span>
-<span id="cb8-10"><a></a>mu2, sigma2 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
-<span id="cb8-11"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.02</span></span>
-<span id="cb8-12"><a></a></span>
-<span id="cb8-13"><a></a><span class="co"># Create a mixture distribution that has the desired VaR</span></span>
-<span id="cb8-14"><a></a>extreme_component <span class="op">=</span> np.random.normal(extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.1</span>))</span>
-<span id="cb8-15"><a></a>normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.9</span>))</span>
-<span id="cb8-16"><a></a>returns <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
-<span id="cb8-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
-<span id="cb8-18"><a></a></span>
-<span id="cb8-19"><a></a><span class="co"># Calculate ES</span></span>
-<span id="cb8-20"><a></a>ES <span class="op">=</span> np.mean(returns[returns <span class="op">&lt;=</span> VaR])</span>
-<span id="cb8-21"><a></a></span>
-<span id="cb8-22"><a></a><span class="co"># Plot histogram</span></span>
-<span id="cb8-23"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb8-24"><a></a></span>
-<span id="cb8-25"><a></a><span class="co"># Histogram data</span></span>
-<span id="cb8-26"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb8-27"><a></a></span>
-<span id="cb8-28"><a></a><span class="co"># Highlight bars below VaR</span></span>
-<span id="cb8-29"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
-<span id="cb8-30"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
-<span id="cb8-31"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
-<span id="cb8-32"><a></a>    <span class="cf">else</span>:</span>
-<span id="cb8-33"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
-<span id="cb8-34"><a></a></span>
-<span id="cb8-35"><a></a><span class="co"># Add VaR and ES lines</span></span>
-<span id="cb8-36"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"VaR at 95%"</span>)</span>
-<span id="cb8-37"><a></a>plt.axvline(ES, color<span class="op">=</span><span class="st">"purple"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"ES"</span>)</span>
-<span id="cb8-38"><a></a></span>
-<span id="cb8-39"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR and ES"</span>)</span>
-<span id="cb8-40"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
-<span id="cb8-41"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb8-42"><a></a>plt.legend()</span>
-<span id="cb8-43"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb8-44"><a></a></span>
-<span id="cb8-45"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb7-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb7-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb7-8"><a></a></span>
+<span id="cb7-9"><a></a><span class="co"># Adjust Distribution: Mixture of normal distributions</span></span>
+<span id="cb7-10"><a></a>mu2, sigma2 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
+<span id="cb7-11"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.02</span></span>
+<span id="cb7-12"><a></a></span>
+<span id="cb7-13"><a></a><span class="co"># Create a mixture distribution that has the desired VaR</span></span>
+<span id="cb7-14"><a></a>extreme_component <span class="op">=</span> np.random.normal(extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.1</span>))</span>
+<span id="cb7-15"><a></a>normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.9</span>))</span>
+<span id="cb7-16"><a></a>returns <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
+<span id="cb7-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb7-18"><a></a></span>
+<span id="cb7-19"><a></a><span class="co"># Calculate ES</span></span>
+<span id="cb7-20"><a></a>ES <span class="op">=</span> np.mean(returns[returns <span class="op">&lt;=</span> VaR])</span>
+<span id="cb7-21"><a></a></span>
+<span id="cb7-22"><a></a><span class="co"># Plot histogram</span></span>
+<span id="cb7-23"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-24"><a></a></span>
+<span id="cb7-25"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb7-26"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb7-27"><a></a></span>
+<span id="cb7-28"><a></a><span class="co"># Highlight bars below VaR</span></span>
+<span id="cb7-29"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb7-30"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb7-31"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb7-32"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb7-33"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb7-34"><a></a></span>
+<span id="cb7-35"><a></a><span class="co"># Add VaR and ES lines</span></span>
+<span id="cb7-36"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"VaR at 95%"</span>)</span>
+<span id="cb7-37"><a></a>plt.axvline(ES, color<span class="op">=</span><span class="st">"purple"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"ES"</span>)</span>
+<span id="cb7-38"><a></a></span>
+<span id="cb7-39"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR and ES"</span>)</span>
+<span id="cb7-40"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb7-41"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb7-42"><a></a>plt.legend()</span>
+<span id="cb7-43"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-44"><a></a></span>
+<span id="cb7-45"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-returns-es" class="quarto-float quarto-figure quarto-figure-center">
@@ -1757,15 +1586,15 @@ Figure&nbsp;6: Distribution of expected returns and ES
 <section id="references" class="slide level2">
 <h2>References</h2>
 
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
-<p>AFIN8003 Banking and Financial Intermediation</p>
-</div>
-</div>
+
 </section></section>
 
     </div>
-  </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1950,7 +1779,7 @@ Figure&nbsp;6: Distribution of expected returns and ES
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

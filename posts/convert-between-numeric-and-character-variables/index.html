@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.6.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d47cc04af4a00a95d69709d991db911b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -227,31 +227,31 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <section id="numeric-to-character" class="level2">
 <h2 class="anchored" data-anchor-id="numeric-to-character">Numeric to Character</h2>
 <p>Assume there’s an imported dataset named <code>filings</code>, where <code>cik</code> is stored as a numeric variable as shown below:</p>
-<table class="table">
+<table>
 <thead>
-<tr class="header">
+<tr>
 <th>cik</th>
 <th>file_type</th>
 <th>date</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1000229</td>
 <td>8-K</td>
 <td>2011-09-30</td>
 </tr>
-<tr class="even">
+<tr>
 <td>100591</td>
 <td>8-K</td>
 <td>2006-05-11</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>100826</td>
 <td>8-K</td>
 <td>2009-06-30</td>
 </tr>
-<tr class="even">
+<tr>
 <td>93542</td>
 <td>8-K</td>
 <td>2007-01-25</td>
@@ -277,31 +277,31 @@ Tip
 </div>
 </div>
 <p>The generated <code>cik_char</code> variable is of format and informat <code>$10.</code>, and the dataset becomes:</p>
-<table class="table">
+<table>
 <thead>
-<tr class="header">
+<tr>
 <th>cik_char</th>
 <th>file_type</th>
 <th>date</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>0001000229</td>
 <td>8-K</td>
 <td>2011-09-30</td>
 </tr>
-<tr class="even">
+<tr>
 <td>0000100591</td>
 <td>8-K</td>
 <td>2006-05-11</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>0000100826</td>
 <td>8-K</td>
 <td>2009-06-30</td>
 </tr>
-<tr class="even">
+<tr>
 <td>0000093542</td>
 <td>8-K</td>
 <td>2007-01-25</td>

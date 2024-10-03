@@ -7,9 +7,8 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.19">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-09-11">
@@ -117,7 +116,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-995d96e1867de668a58ac323349be995.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -418,7 +417,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 <meta name="twitter:title" content="AFIN8003 Week 8 - Credit Risk II: Loan Portfolio and Concentration Risk – Mingze Gao">
 <meta name="twitter:description" content="Banking and Financial Intermediation">
 <meta name="twitter:card" content="summary">
@@ -540,7 +538,7 @@ Table&nbsp;1: Example loan migration matrix
 </div>
 </figure>
 </div>
-<p><a href="#/simple-model-migration-analysis" class="quarto-xref">Table&nbsp;1</a>, for example, shows the <em>transition probabilities</em> of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.</p>
+<p><a href="#/tbl-migration-matrix" class="quarto-xref">Table&nbsp;1</a>, for example, shows the <em>transition probabilities</em> of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.</p>
 <div class="fragment">
 <ul>
 <li>The probability of AAA-rated loan at the start of a year being downgraded to BBB to B by the year’s end is 0.10.</li>
@@ -857,7 +855,7 @@ R_i = AIS_i - E(L_i) = AIS_i - (EDF_i\times LGD_i)
 <h2>Moody’s Analytics RiskFrontier Model (cont’d)</h2>
 <p>To measure the unobservable default risk correlation between any two borrowers, the Moody’s Analytics <strong>Global Correlation Model</strong> (GCORR) uses the systematic asset return components of the two borrowers and calculates a correlation that is based on a factor model rather than direct historical observations.</p>
 
-<img data-src="./figures/GCorr-corporate-factor-structure.png" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">
+<img data-src="./figures/GCorr-corporate-factor-structure.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-gcorr"><p class="caption">
 Figure&nbsp;2: GCorr Corporate Factor Structure
 </p><p><a href="#/fig-gcorr" class="quarto-xref">Figure&nbsp;2</a> provides a visual representation of the Moody’s Analytics GCorr Corporate factor structure.</p>
 </section>
@@ -1019,7 +1017,7 @@ Table&nbsp;3: Allocation of the Loan Portfolio to Different Sectors (in percenta
 </section>
 <section id="partial-application-of-portfolio-theory-loan-volume-based-models-contd-1" class="slide level2">
 <h2>Partial application of portfolio theory: Loan volume-based models (cont’d)</h2>
-<p>Refer to <a href="#/partial-application-of-portfolio-theory-loan-volume-based-models" class="quarto-xref">Table&nbsp;3</a>. We get the deviation of Bank A’s loan portfolio allocation as follows:</p>
+<p>Refer to <a href="#/tbl-loan-allocation" class="quarto-xref">Table&nbsp;3</a>. We get the deviation of Bank A’s loan portfolio allocation as follows:</p>
 <p><span class="math display">\[
 \begin{aligned}
 (X_{1A}-X_1)^2 &amp;= (0.65-0.45)^2 = 0.04 \\
@@ -1187,58 +1185,10 @@ Table&nbsp;4: Payment pattern on a credit forward contract
 <h2>Credit swaps: total return swaps</h2>
 <p>A <strong>total return swap</strong> involves <em>swapping</em> an obligation to pay interest at a specified fixed or floating rate <em>for</em> payments representing the total return on a loan or a bond (interest and principal value changes) of a specified amount.</p>
 <p>The figure below illustrates a total return swap.<sup>1</sup></p>
-<div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a></a>graph LR</span>
-<span id="cb2-2"><a></a>    A[Other FI]</span>
-<span id="cb2-3"><a></a>    B[FI lender]</span>
-<span id="cb2-4"><a></a>    B -- Loan --&gt; C[Customer]</span>
-<span id="cb2-5"><a></a>    subgraph Total Return Swap</span>
-<span id="cb2-6"><a></a>    B -- "$f+{(P_T-P_0)}/{P_0}$" --&gt; A</span>
-<span id="cb2-7"><a></a>    A -- 1-year LIBOR --&gt; B</span>
-<span id="cb2-8"><a></a>    end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 592.0625 136.5" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
-<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="subGraph0" class="cluster default flowchart-label"><rect height="120.5" width="409.265625" y="0" x="0" ry="0" rx="0" style=""></rect><g transform="translate(139.953125, 0)" class="cluster-label"><foreignobject height="19" width="129.359375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Total Return Swap</span>
-</div>
-</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-C" id="L-B-C-0" d="M384.265625,60.25L388.4322916666667,60.25C392.5989583333333,60.25,400.9322916666667,60.25,412.0859375,60.25C423.2395833333333,60.25,437.2135416666667,60.25,451.1875,60.25C465.1614583333333,60.25,479.1354166666667,60.25,486.1223958333333,60.25L493.109375,60.25"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-A" id="L-B-A-0" d="M305.546875,65.6212957900492L288.2916666666667,67.976079825041C271.0364583333333,70.3308638600328,236.52604166666666,75.0404319300164,202.015625,74.99649694523656C167.50520833333334,74.95256196045669,132.99479166666666,70.1551239209134,115.73958333333333,67.75640490114175L98.484375,65.35768588137009"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" id="L-A-B-0" d="M98.484375,55.14231411862991L115.73958333333333,52.74359509885826C132.99479166666666,50.34487607908661,167.50520833333334,45.5474380395433,202.015625,45.50350305476345C236.52604166666666,45.4595680699836,271.0364583333333,50.1691361399672,288.2916666666667,52.523920174958995L305.546875,54.87870420995079"></path></g><g class="edgeLabels"><g transform="translate(451.1875, 60.25)" class="edgeLabel"><g transform="translate(-16.921875, -9.5)" class="label"><foreignobject height="19" width="33.84375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel">Loan</span>
-</div>
-</foreignobject></g></g><g transform="translate(202.015625, 79.75)" class="edgeLabel"><g transform="translate(-78.53125, -9.5)" class="label"><foreignobject height="19" width="157.0625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"><span class="math inline">\(f+{(P_T-P_0)}/{P_0}\)</span></span>
-</div>
-</foreignobject></g></g><g transform="translate(202.015625, 40.75)" class="edgeLabel"><g transform="translate(-46.015625, -9.5)" class="label"><foreignobject height="19" width="92.03125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel">1-year LIBOR</span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(61.7421875, 60.25)" id="flowchart-A-16" class="node default default flowchart-label"><rect height="34" width="73.484375" y="-17" x="-36.7421875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-29.2421875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="58.484375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Other FI</span>
-</div>
-</foreignobject></g></g><g transform="translate(344.90625, 60.25)" id="flowchart-B-17" class="node default default flowchart-label"><rect height="34" width="78.71875" y="-17" x="-39.359375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-31.859375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="63.71875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">FI lender</span>
-</div>
-</foreignobject></g></g><g transform="translate(534.5859375, 60.25)" id="flowchart-C-19" class="node default default flowchart-label"><rect height="34" width="82.953125" y="-17" x="-41.4765625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-33.9765625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="67.953125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Customer</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./figures/fig-trs.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 <p>The FI lender pays a fixed annual rate <span class="math inline">\(f\)</span> plus changes in the market value of the loan and receives a variable rate payment (e.g., 1-year LIBOR).</p>
 <ul>
@@ -1250,83 +1200,83 @@ Table&nbsp;4: Payment pattern on a credit forward contract
 <div id="cell-fig-trs" class="cell" data-fig-location="center" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a>np.random.seed(<span class="dv">8003</span>)</span>
-<span id="cb3-5"><a></a><span class="co"># Parameters for the TRS</span></span>
-<span id="cb3-6"><a></a>notional <span class="op">=</span> <span class="dv">1_000_000</span>  <span class="co"># Notional amount (1 million)</span></span>
-<span id="cb3-7"><a></a>fixed_rate <span class="op">=</span> <span class="fl">0.03</span>  <span class="co"># Fixed annual rate paid by the TRS receiver (3%)</span></span>
-<span id="cb3-8"><a></a>asset_volatility <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Volatility of the asset's return (10%)</span></span>
-<span id="cb3-9"><a></a>years <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Time period of the TRS (5 years)</span></span>
-<span id="cb3-10"><a></a>periods_per_year <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Payments per year (quarterly)</span></span>
-<span id="cb3-11"><a></a></span>
-<span id="cb3-12"><a></a></span>
-<span id="cb3-13"><a></a><span class="co"># Generate the timeline for TRS payments</span></span>
-<span id="cb3-14"><a></a><span class="kw">def</span> generate_trs_timeline(</span>
-<span id="cb3-15"><a></a>    notional, fixed_rate, asset_volatility, years, periods_per_year<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb3-16"><a></a>):</span>
-<span id="cb3-17"><a></a>    <span class="co"># Set up the timeline with quarterly periods</span></span>
-<span id="cb3-18"><a></a>    total_periods <span class="op">=</span> periods_per_year <span class="op">*</span> years</span>
-<span id="cb3-19"><a></a>    time_points <span class="op">=</span> np.arange(<span class="dv">1</span>, total_periods <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> periods_per_year</span>
-<span id="cb3-20"><a></a></span>
-<span id="cb3-21"><a></a>    <span class="co"># Calculate the periodic fixed payment amount (quarterly)</span></span>
-<span id="cb3-22"><a></a>    periodic_fixed_payment <span class="op">=</span> (</span>
-<span id="cb3-23"><a></a>        <span class="op">-</span>notional <span class="op">*</span> fixed_rate <span class="op">/</span> periods_per_year</span>
-<span id="cb3-24"><a></a>    )  <span class="co"># Fixed payment made by TRS receiver</span></span>
-<span id="cb3-25"><a></a></span>
-<span id="cb3-26"><a></a>    <span class="co"># Simulate random returns on the asset</span></span>
-<span id="cb3-27"><a></a>    asset_returns <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>asset_volatility, size<span class="op">=</span>total_periods)</span>
-<span id="cb3-28"><a></a></span>
-<span id="cb3-29"><a></a>    <span class="co"># Initialize lists to store the results</span></span>
-<span id="cb3-30"><a></a>    total_returns <span class="op">=</span> np.zeros(total_periods)</span>
-<span id="cb3-31"><a></a>    payments <span class="op">=</span> np.zeros(total_periods)</span>
-<span id="cb3-32"><a></a></span>
-<span id="cb3-33"><a></a>    <span class="cf">for</span> period <span class="kw">in</span> <span class="bu">range</span>(total_periods):</span>
-<span id="cb3-34"><a></a>        <span class="co"># Total return on the asset (positive or negative)</span></span>
-<span id="cb3-35"><a></a>        total_return <span class="op">=</span> notional <span class="op">*</span> asset_returns[period]</span>
-<span id="cb3-36"><a></a>        total_returns[period] <span class="op">=</span> total_return</span>
-<span id="cb3-37"><a></a></span>
-<span id="cb3-38"><a></a>        <span class="co"># Net payment for the TRS receiver (positive if receiving total return, minus fixed payment)</span></span>
-<span id="cb3-39"><a></a>        payments[period] <span class="op">=</span> total_return <span class="op">+</span> periodic_fixed_payment</span>
-<span id="cb3-40"><a></a></span>
-<span id="cb3-41"><a></a>    <span class="cf">return</span> time_points, payments, total_returns</span>
-<span id="cb3-42"><a></a></span>
-<span id="cb3-43"><a></a></span>
-<span id="cb3-44"><a></a><span class="co"># Simulate TRS payments with different asset volatilities</span></span>
-<span id="cb3-45"><a></a>volatilities <span class="op">=</span> [<span class="fl">0.05</span>]  <span class="co"># Different volatilities to simulate</span></span>
-<span id="cb3-46"><a></a>simulations <span class="op">=</span> {}</span>
-<span id="cb3-47"><a></a></span>
-<span id="cb3-48"><a></a><span class="cf">for</span> vol <span class="kw">in</span> volatilities:</span>
-<span id="cb3-49"><a></a>    timeline, payments, total_returns <span class="op">=</span> generate_trs_timeline(</span>
-<span id="cb3-50"><a></a>        notional, fixed_rate, vol, years, periods_per_year</span>
-<span id="cb3-51"><a></a>    )</span>
-<span id="cb3-52"><a></a>    simulations[vol] <span class="op">=</span> payments</span>
-<span id="cb3-53"><a></a></span>
-<span id="cb3-54"><a></a><span class="co"># Plot the timelines as bar charts</span></span>
-<span id="cb3-55"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb3-56"><a></a>bar_width <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Width of each bar</span></span>
-<span id="cb3-57"><a></a></span>
-<span id="cb3-58"><a></a><span class="co"># Generate bar charts for each volatility</span></span>
-<span id="cb3-59"><a></a><span class="cf">for</span> idx, (vol, payments) <span class="kw">in</span> <span class="bu">enumerate</span>(simulations.items()):</span>
-<span id="cb3-60"><a></a>    plt.bar(</span>
-<span id="cb3-61"><a></a>        timeline <span class="op">+</span> idx <span class="op">*</span> bar_width <span class="op">*</span> <span class="fl">0.1</span>,</span>
-<span id="cb3-62"><a></a>        payments,</span>
-<span id="cb3-63"><a></a>        width<span class="op">=</span>bar_width,</span>
-<span id="cb3-64"><a></a>        color<span class="op">=</span><span class="st">"#A6192E"</span>,</span>
-<span id="cb3-65"><a></a>        label<span class="op">=</span><span class="ss">f"Volatility: </span><span class="sc">{</span>vol<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">%"</span>,</span>
-<span id="cb3-66"><a></a>    )</span>
-<span id="cb3-67"><a></a></span>
-<span id="cb3-68"><a></a><span class="co"># Customize the plot</span></span>
-<span id="cb3-69"><a></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>years<span class="sc">}</span><span class="ss">-Year Total Return Swap Payments Example"</span>)</span>
-<span id="cb3-70"><a></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
-<span id="cb3-71"><a></a>plt.ylabel(<span class="st">"Net Payment Amount ($)"</span>)</span>
-<span id="cb3-72"><a></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-73"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-74"><a></a>plt.legend()</span>
-<span id="cb3-75"><a></a></span>
-<span id="cb3-76"><a></a><span class="co"># Show the plot</span></span>
-<span id="cb3-77"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>np.random.seed(<span class="dv">8003</span>)</span>
+<span id="cb2-5"><a></a><span class="co"># Parameters for the TRS</span></span>
+<span id="cb2-6"><a></a>notional <span class="op">=</span> <span class="dv">1_000_000</span>  <span class="co"># Notional amount (1 million)</span></span>
+<span id="cb2-7"><a></a>fixed_rate <span class="op">=</span> <span class="fl">0.03</span>  <span class="co"># Fixed annual rate paid by the TRS receiver (3%)</span></span>
+<span id="cb2-8"><a></a>asset_volatility <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Volatility of the asset's return (10%)</span></span>
+<span id="cb2-9"><a></a>years <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Time period of the TRS (5 years)</span></span>
+<span id="cb2-10"><a></a>periods_per_year <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Payments per year (quarterly)</span></span>
+<span id="cb2-11"><a></a></span>
+<span id="cb2-12"><a></a></span>
+<span id="cb2-13"><a></a><span class="co"># Generate the timeline for TRS payments</span></span>
+<span id="cb2-14"><a></a><span class="kw">def</span> generate_trs_timeline(</span>
+<span id="cb2-15"><a></a>    notional, fixed_rate, asset_volatility, years, periods_per_year<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb2-16"><a></a>):</span>
+<span id="cb2-17"><a></a>    <span class="co"># Set up the timeline with quarterly periods</span></span>
+<span id="cb2-18"><a></a>    total_periods <span class="op">=</span> periods_per_year <span class="op">*</span> years</span>
+<span id="cb2-19"><a></a>    time_points <span class="op">=</span> np.arange(<span class="dv">1</span>, total_periods <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> periods_per_year</span>
+<span id="cb2-20"><a></a></span>
+<span id="cb2-21"><a></a>    <span class="co"># Calculate the periodic fixed payment amount (quarterly)</span></span>
+<span id="cb2-22"><a></a>    periodic_fixed_payment <span class="op">=</span> (</span>
+<span id="cb2-23"><a></a>        <span class="op">-</span>notional <span class="op">*</span> fixed_rate <span class="op">/</span> periods_per_year</span>
+<span id="cb2-24"><a></a>    )  <span class="co"># Fixed payment made by TRS receiver</span></span>
+<span id="cb2-25"><a></a></span>
+<span id="cb2-26"><a></a>    <span class="co"># Simulate random returns on the asset</span></span>
+<span id="cb2-27"><a></a>    asset_returns <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>asset_volatility, size<span class="op">=</span>total_periods)</span>
+<span id="cb2-28"><a></a></span>
+<span id="cb2-29"><a></a>    <span class="co"># Initialize lists to store the results</span></span>
+<span id="cb2-30"><a></a>    total_returns <span class="op">=</span> np.zeros(total_periods)</span>
+<span id="cb2-31"><a></a>    payments <span class="op">=</span> np.zeros(total_periods)</span>
+<span id="cb2-32"><a></a></span>
+<span id="cb2-33"><a></a>    <span class="cf">for</span> period <span class="kw">in</span> <span class="bu">range</span>(total_periods):</span>
+<span id="cb2-34"><a></a>        <span class="co"># Total return on the asset (positive or negative)</span></span>
+<span id="cb2-35"><a></a>        total_return <span class="op">=</span> notional <span class="op">*</span> asset_returns[period]</span>
+<span id="cb2-36"><a></a>        total_returns[period] <span class="op">=</span> total_return</span>
+<span id="cb2-37"><a></a></span>
+<span id="cb2-38"><a></a>        <span class="co"># Net payment for the TRS receiver (positive if receiving total return, minus fixed payment)</span></span>
+<span id="cb2-39"><a></a>        payments[period] <span class="op">=</span> total_return <span class="op">+</span> periodic_fixed_payment</span>
+<span id="cb2-40"><a></a></span>
+<span id="cb2-41"><a></a>    <span class="cf">return</span> time_points, payments, total_returns</span>
+<span id="cb2-42"><a></a></span>
+<span id="cb2-43"><a></a></span>
+<span id="cb2-44"><a></a><span class="co"># Simulate TRS payments with different asset volatilities</span></span>
+<span id="cb2-45"><a></a>volatilities <span class="op">=</span> [<span class="fl">0.05</span>]  <span class="co"># Different volatilities to simulate</span></span>
+<span id="cb2-46"><a></a>simulations <span class="op">=</span> {}</span>
+<span id="cb2-47"><a></a></span>
+<span id="cb2-48"><a></a><span class="cf">for</span> vol <span class="kw">in</span> volatilities:</span>
+<span id="cb2-49"><a></a>    timeline, payments, total_returns <span class="op">=</span> generate_trs_timeline(</span>
+<span id="cb2-50"><a></a>        notional, fixed_rate, vol, years, periods_per_year</span>
+<span id="cb2-51"><a></a>    )</span>
+<span id="cb2-52"><a></a>    simulations[vol] <span class="op">=</span> payments</span>
+<span id="cb2-53"><a></a></span>
+<span id="cb2-54"><a></a><span class="co"># Plot the timelines as bar charts</span></span>
+<span id="cb2-55"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb2-56"><a></a>bar_width <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Width of each bar</span></span>
+<span id="cb2-57"><a></a></span>
+<span id="cb2-58"><a></a><span class="co"># Generate bar charts for each volatility</span></span>
+<span id="cb2-59"><a></a><span class="cf">for</span> idx, (vol, payments) <span class="kw">in</span> <span class="bu">enumerate</span>(simulations.items()):</span>
+<span id="cb2-60"><a></a>    plt.bar(</span>
+<span id="cb2-61"><a></a>        timeline <span class="op">+</span> idx <span class="op">*</span> bar_width <span class="op">*</span> <span class="fl">0.1</span>,</span>
+<span id="cb2-62"><a></a>        payments,</span>
+<span id="cb2-63"><a></a>        width<span class="op">=</span>bar_width,</span>
+<span id="cb2-64"><a></a>        color<span class="op">=</span><span class="st">"#A6192E"</span>,</span>
+<span id="cb2-65"><a></a>        label<span class="op">=</span><span class="ss">f"Volatility: </span><span class="sc">{</span>vol<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">%"</span>,</span>
+<span id="cb2-66"><a></a>    )</span>
+<span id="cb2-67"><a></a></span>
+<span id="cb2-68"><a></a><span class="co"># Customize the plot</span></span>
+<span id="cb2-69"><a></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>years<span class="sc">}</span><span class="ss">-Year Total Return Swap Payments Example"</span>)</span>
+<span id="cb2-70"><a></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
+<span id="cb2-71"><a></a>plt.ylabel(<span class="st">"Net Payment Amount ($)"</span>)</span>
+<span id="cb2-72"><a></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-73"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-74"><a></a>plt.legend()</span>
+<span id="cb2-75"><a></a></span>
+<span id="cb2-76"><a></a><span class="co"># Show the plot</span></span>
+<span id="cb2-77"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-trs" class="quarto-float quarto-figure quarto-figure-center">
@@ -1350,144 +1300,92 @@ Figure&nbsp;3: Total Return Swap Payments Example
 <li>If default, the counterparty makes the default payment</li>
 <li>If not default, the FI receives nothing from the counterparty.</li>
 </ul>
-<div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>graph LR</span>
-<span id="cb4-2"><a></a>    A[Other FI]</span>
-<span id="cb4-3"><a></a>    B[FI lender]</span>
-<span id="cb4-4"><a></a>    B -- Loan --&gt; C[Customer]</span>
-<span id="cb4-5"><a></a>    subgraph Pure Credit Swap</span>
-<span id="cb4-6"><a></a>    B -- Fee --&gt; A</span>
-<span id="cb4-7"><a></a>    A -. Default payment .-&gt; B</span>
-<span id="cb4-8"><a></a>    end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 554.796875 136.5" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-2" height="480">
-<style>#mermaid-figure-2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-2 .error-icon{fill:#552222;}#mermaid-figure-2 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-2 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-2 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-2 .marker.cross{stroke:#333333;}#mermaid-figure-2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-2 .cluster-label text{fill:#333;}#mermaid-figure-2 .cluster-label span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 .label text,#mermaid-figure-2 span,#mermaid-figure-2 p{fill:#333;color:#333;}#mermaid-figure-2 .node rect,#mermaid-figure-2 .node circle,#mermaid-figure-2 .node ellipse,#mermaid-figure-2 .node polygon,#mermaid-figure-2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-2 .flowchart-label text{text-anchor:middle;}#mermaid-figure-2 .node .label{text-align:center;}#mermaid-figure-2 .node.clickable{cursor:pointer;}#mermaid-figure-2 .arrowheadPath{fill:#333333;}#mermaid-figure-2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-2 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-2 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-2 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-2 .cluster text{fill:#333;}#mermaid-figure-2 .cluster span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="subGraph0" class="cluster default flowchart-label"><rect height="120.5" width="372" y="0" x="0" ry="0" rx="0" style=""></rect><g transform="translate(124.2421875, 0)" class="cluster-label"><foreignobject height="19" width="123.515625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Pure Credit Swap</span>
-</div>
-</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-C" id="L-B-C-0" d="M347,60.25L351.1666666666667,60.25C355.3333333333333,60.25,363.6666666666667,60.25,374.8203125,60.25C385.9739583333333,60.25,399.9479166666667,60.25,413.921875,60.25C427.8958333333333,60.25,441.8697916666667,60.25,448.8567708333333,60.25L455.84375,60.25"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-A" id="L-B-A-0" d="M268.28125,66.42673687519648L254.13151041666666,68.6472807293304C239.98177083333334,70.86782458346433,211.68229166666666,75.30891229173216,183.3828125,75.2611356577479C155.08333333333334,75.21335902376364,126.78385416666667,70.6767180475273,112.63411458333333,68.40839755940912L98.484375,66.14007707129095"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;stroke-width:2px;stroke-dasharray:3;" class="edge-thickness-normal edge-pattern-dotted flowchart-link LS-A LE-B" id="L-A-B-0" d="M98.484375,54.359922928709054L112.63411458333333,52.09160244059088C126.78385416666667,49.823281952472705,155.08333333333334,45.286640976236356,183.3828125,45.2388643422521C211.68229166666666,45.191087708267844,239.98177083333334,49.63217541653568,254.13151041666666,51.8527192706696L268.28125,54.07326312480352"></path></g><g class="edgeLabels"><g transform="translate(413.921875, 60.25)" class="edgeLabel"><g transform="translate(-16.921875, -9.5)" class="label"><foreignobject height="19" width="33.84375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel">Loan</span>
-</div>
-</foreignobject></g></g><g transform="translate(183.3828125, 79.75)" class="edgeLabel"><g transform="translate(-12.9296875, -9.5)" class="label"><foreignobject height="19" width="25.859375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel">Fee</span>
-</div>
-</foreignobject></g></g><g transform="translate(183.3828125, 40.75)" class="edgeLabel"><g transform="translate(-59.8984375, -9.5)" class="label"><foreignobject height="19" width="119.796875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel">Default payment</span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(61.7421875, 60.25)" id="flowchart-A-16" class="node default default flowchart-label"><rect height="34" width="73.484375" y="-17" x="-36.7421875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-29.2421875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="58.484375">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Other FI</span>
-</div>
-</foreignobject></g></g><g transform="translate(307.640625, 60.25)" id="flowchart-B-17" class="node default default flowchart-label"><rect height="34" width="78.71875" y="-17" x="-39.359375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-31.859375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="63.71875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">FI lender</span>
-</div>
-</foreignobject></g></g><g transform="translate(497.3203125, 60.25)" id="flowchart-C-19" class="node default default flowchart-label"><rect height="34" width="82.953125" y="-17" x="-41.4765625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-33.9765625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="67.953125">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Customer</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./figures/fig-pure-credit-swap.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="credit-swaps-pure-credit-swaps-contd" class="slide level2">
 <h2>Credit swaps: pure credit swaps (cont’d)</h2>
 <div id="cell-fig-pure-cds" class="cell" data-fig-location="center" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a>np.random.seed(<span class="dv">8003</span>)</span>
-<span id="cb5-5"><a></a><span class="co"># Parameters for the CDS</span></span>
-<span id="cb5-6"><a></a>notional <span class="op">=</span> <span class="dv">1_000_000</span>  <span class="co"># Notional amount (1 million)</span></span>
-<span id="cb5-7"><a></a>cds_spread <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># Annual CDS spread (2%)</span></span>
-<span id="cb5-8"><a></a>recovery_rate <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># Recovery rate in case of default (10%)</span></span>
-<span id="cb5-9"><a></a>years <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Time period of the CDS (5 years)</span></span>
-<span id="cb5-10"><a></a>periods_per_year <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Payments per year (quarterly)</span></span>
-<span id="cb5-11"><a></a></span>
-<span id="cb5-12"><a></a></span>
-<span id="cb5-13"><a></a><span class="co"># Generate the timeline for CDS payments</span></span>
-<span id="cb5-14"><a></a><span class="kw">def</span> generate_cds_timeline(</span>
-<span id="cb5-15"><a></a>    notional, cds_spread, default_probability, recovery_rate, years, periods_per_year<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb5-16"><a></a>):</span>
-<span id="cb5-17"><a></a>    <span class="co"># Set up the timeline with quarterly periods</span></span>
-<span id="cb5-18"><a></a>    total_periods <span class="op">=</span> periods_per_year <span class="op">*</span> years</span>
-<span id="cb5-19"><a></a>    time_points <span class="op">=</span> np.arange(<span class="dv">1</span>, total_periods <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> periods_per_year</span>
-<span id="cb5-20"><a></a></span>
-<span id="cb5-21"><a></a>    <span class="co"># Calculate the periodic payment amount (quarterly)</span></span>
-<span id="cb5-22"><a></a>    periodic_payment <span class="op">=</span> (</span>
-<span id="cb5-23"><a></a>        <span class="op">-</span>notional <span class="op">*</span> cds_spread <span class="op">/</span> periods_per_year</span>
-<span id="cb5-24"><a></a>    )  <span class="co"># Negative for payments</span></span>
-<span id="cb5-25"><a></a></span>
-<span id="cb5-26"><a></a>    <span class="co"># Initialize lists to store the results</span></span>
-<span id="cb5-27"><a></a>    payments <span class="op">=</span> np.zeros(total_periods)</span>
-<span id="cb5-28"><a></a></span>
-<span id="cb5-29"><a></a>    <span class="co"># Simulate payments and default events</span></span>
-<span id="cb5-30"><a></a>    <span class="cf">for</span> period <span class="kw">in</span> <span class="bu">range</span>(total_periods):</span>
-<span id="cb5-31"><a></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> default_probability <span class="op">/</span> periods_per_year:</span>
-<span id="cb5-32"><a></a>            <span class="co"># Default occurs at this period</span></span>
-<span id="cb5-33"><a></a>            default_loss <span class="op">=</span> notional <span class="op">*</span> (</span>
-<span id="cb5-34"><a></a>                <span class="dv">1</span> <span class="op">-</span> recovery_rate</span>
-<span id="cb5-35"><a></a>            )  <span class="co"># Positive for the payment received on default</span></span>
-<span id="cb5-36"><a></a>            payments[period] <span class="op">=</span> default_loss</span>
-<span id="cb5-37"><a></a>            payments[period <span class="op">+</span> <span class="dv">1</span> :] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># No more payments after default</span></span>
-<span id="cb5-38"><a></a>            <span class="cf">break</span></span>
-<span id="cb5-39"><a></a>        <span class="cf">else</span>:</span>
-<span id="cb5-40"><a></a>            <span class="co"># Regular payment</span></span>
-<span id="cb5-41"><a></a>            payments[period] <span class="op">=</span> periodic_payment</span>
-<span id="cb5-42"><a></a></span>
-<span id="cb5-43"><a></a>    <span class="cf">return</span> time_points, payments</span>
-<span id="cb5-44"><a></a></span>
-<span id="cb5-45"><a></a></span>
-<span id="cb5-46"><a></a><span class="co"># Simulate multiple series with different default probabilities</span></span>
-<span id="cb5-47"><a></a>default_probabilities <span class="op">=</span> [<span class="fl">0.02</span>, <span class="fl">0.1</span>]  <span class="co"># Different default probabilities</span></span>
-<span id="cb5-48"><a></a>colors <span class="op">=</span> [<span class="st">"#D6D2C4"</span>, <span class="st">"#A6192E"</span>]</span>
-<span id="cb5-49"><a></a></span>
-<span id="cb5-50"><a></a>simulations <span class="op">=</span> {}</span>
-<span id="cb5-51"><a></a></span>
-<span id="cb5-52"><a></a><span class="co"># Generate timelines for each default probability</span></span>
-<span id="cb5-53"><a></a><span class="cf">for</span> prob <span class="kw">in</span> default_probabilities:</span>
-<span id="cb5-54"><a></a>    timeline, payments <span class="op">=</span> generate_cds_timeline(</span>
-<span id="cb5-55"><a></a>        notional, cds_spread, prob, recovery_rate, years, periods_per_year</span>
-<span id="cb5-56"><a></a>    )</span>
-<span id="cb5-57"><a></a>    simulations[prob] <span class="op">=</span> payments</span>
-<span id="cb5-58"><a></a></span>
-<span id="cb5-59"><a></a><span class="co"># Plot the timelines as bar charts</span></span>
-<span id="cb5-60"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb5-61"><a></a>bar_width <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Width of each bar</span></span>
-<span id="cb5-62"><a></a></span>
-<span id="cb5-63"><a></a><span class="co"># Generate bar charts for each probability</span></span>
-<span id="cb5-64"><a></a><span class="cf">for</span> idx, (prob, payments) <span class="kw">in</span> <span class="bu">enumerate</span>(simulations.items()):</span>
-<span id="cb5-65"><a></a>    plt.bar(</span>
-<span id="cb5-66"><a></a>        timeline <span class="op">+</span> idx <span class="op">*</span> bar_width <span class="op">*</span> <span class="fl">0.1</span>,</span>
-<span id="cb5-67"><a></a>        payments,</span>
-<span id="cb5-68"><a></a>        width<span class="op">=</span>bar_width,</span>
-<span id="cb5-69"><a></a>        color<span class="op">=</span>colors[idx],</span>
-<span id="cb5-70"><a></a>        label<span class="op">=</span><span class="ss">f"Default Probability: </span><span class="sc">{</span>prob<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">%"</span>,</span>
-<span id="cb5-71"><a></a>    )</span>
-<span id="cb5-72"><a></a></span>
-<span id="cb5-73"><a></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>years<span class="sc">}</span><span class="ss">-Year Pure CDS Payments Example"</span>)</span>
-<span id="cb5-74"><a></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
-<span id="cb5-75"><a></a>plt.ylabel(<span class="st">"Payment Amount ($)"</span>)</span>
-<span id="cb5-76"><a></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-77"><a></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-78"><a></a>plt.legend()</span>
-<span id="cb5-79"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>np.random.seed(<span class="dv">8003</span>)</span>
+<span id="cb3-5"><a></a><span class="co"># Parameters for the CDS</span></span>
+<span id="cb3-6"><a></a>notional <span class="op">=</span> <span class="dv">1_000_000</span>  <span class="co"># Notional amount (1 million)</span></span>
+<span id="cb3-7"><a></a>cds_spread <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># Annual CDS spread (2%)</span></span>
+<span id="cb3-8"><a></a>recovery_rate <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># Recovery rate in case of default (10%)</span></span>
+<span id="cb3-9"><a></a>years <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Time period of the CDS (5 years)</span></span>
+<span id="cb3-10"><a></a>periods_per_year <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Payments per year (quarterly)</span></span>
+<span id="cb3-11"><a></a></span>
+<span id="cb3-12"><a></a></span>
+<span id="cb3-13"><a></a><span class="co"># Generate the timeline for CDS payments</span></span>
+<span id="cb3-14"><a></a><span class="kw">def</span> generate_cds_timeline(</span>
+<span id="cb3-15"><a></a>    notional, cds_spread, default_probability, recovery_rate, years, periods_per_year<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb3-16"><a></a>):</span>
+<span id="cb3-17"><a></a>    <span class="co"># Set up the timeline with quarterly periods</span></span>
+<span id="cb3-18"><a></a>    total_periods <span class="op">=</span> periods_per_year <span class="op">*</span> years</span>
+<span id="cb3-19"><a></a>    time_points <span class="op">=</span> np.arange(<span class="dv">1</span>, total_periods <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> periods_per_year</span>
+<span id="cb3-20"><a></a></span>
+<span id="cb3-21"><a></a>    <span class="co"># Calculate the periodic payment amount (quarterly)</span></span>
+<span id="cb3-22"><a></a>    periodic_payment <span class="op">=</span> (</span>
+<span id="cb3-23"><a></a>        <span class="op">-</span>notional <span class="op">*</span> cds_spread <span class="op">/</span> periods_per_year</span>
+<span id="cb3-24"><a></a>    )  <span class="co"># Negative for payments</span></span>
+<span id="cb3-25"><a></a></span>
+<span id="cb3-26"><a></a>    <span class="co"># Initialize lists to store the results</span></span>
+<span id="cb3-27"><a></a>    payments <span class="op">=</span> np.zeros(total_periods)</span>
+<span id="cb3-28"><a></a></span>
+<span id="cb3-29"><a></a>    <span class="co"># Simulate payments and default events</span></span>
+<span id="cb3-30"><a></a>    <span class="cf">for</span> period <span class="kw">in</span> <span class="bu">range</span>(total_periods):</span>
+<span id="cb3-31"><a></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> default_probability <span class="op">/</span> periods_per_year:</span>
+<span id="cb3-32"><a></a>            <span class="co"># Default occurs at this period</span></span>
+<span id="cb3-33"><a></a>            default_loss <span class="op">=</span> notional <span class="op">*</span> (</span>
+<span id="cb3-34"><a></a>                <span class="dv">1</span> <span class="op">-</span> recovery_rate</span>
+<span id="cb3-35"><a></a>            )  <span class="co"># Positive for the payment received on default</span></span>
+<span id="cb3-36"><a></a>            payments[period] <span class="op">=</span> default_loss</span>
+<span id="cb3-37"><a></a>            payments[period <span class="op">+</span> <span class="dv">1</span> :] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># No more payments after default</span></span>
+<span id="cb3-38"><a></a>            <span class="cf">break</span></span>
+<span id="cb3-39"><a></a>        <span class="cf">else</span>:</span>
+<span id="cb3-40"><a></a>            <span class="co"># Regular payment</span></span>
+<span id="cb3-41"><a></a>            payments[period] <span class="op">=</span> periodic_payment</span>
+<span id="cb3-42"><a></a></span>
+<span id="cb3-43"><a></a>    <span class="cf">return</span> time_points, payments</span>
+<span id="cb3-44"><a></a></span>
+<span id="cb3-45"><a></a></span>
+<span id="cb3-46"><a></a><span class="co"># Simulate multiple series with different default probabilities</span></span>
+<span id="cb3-47"><a></a>default_probabilities <span class="op">=</span> [<span class="fl">0.02</span>, <span class="fl">0.1</span>]  <span class="co"># Different default probabilities</span></span>
+<span id="cb3-48"><a></a>colors <span class="op">=</span> [<span class="st">"#D6D2C4"</span>, <span class="st">"#A6192E"</span>]</span>
+<span id="cb3-49"><a></a></span>
+<span id="cb3-50"><a></a>simulations <span class="op">=</span> {}</span>
+<span id="cb3-51"><a></a></span>
+<span id="cb3-52"><a></a><span class="co"># Generate timelines for each default probability</span></span>
+<span id="cb3-53"><a></a><span class="cf">for</span> prob <span class="kw">in</span> default_probabilities:</span>
+<span id="cb3-54"><a></a>    timeline, payments <span class="op">=</span> generate_cds_timeline(</span>
+<span id="cb3-55"><a></a>        notional, cds_spread, prob, recovery_rate, years, periods_per_year</span>
+<span id="cb3-56"><a></a>    )</span>
+<span id="cb3-57"><a></a>    simulations[prob] <span class="op">=</span> payments</span>
+<span id="cb3-58"><a></a></span>
+<span id="cb3-59"><a></a><span class="co"># Plot the timelines as bar charts</span></span>
+<span id="cb3-60"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb3-61"><a></a>bar_width <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Width of each bar</span></span>
+<span id="cb3-62"><a></a></span>
+<span id="cb3-63"><a></a><span class="co"># Generate bar charts for each probability</span></span>
+<span id="cb3-64"><a></a><span class="cf">for</span> idx, (prob, payments) <span class="kw">in</span> <span class="bu">enumerate</span>(simulations.items()):</span>
+<span id="cb3-65"><a></a>    plt.bar(</span>
+<span id="cb3-66"><a></a>        timeline <span class="op">+</span> idx <span class="op">*</span> bar_width <span class="op">*</span> <span class="fl">0.1</span>,</span>
+<span id="cb3-67"><a></a>        payments,</span>
+<span id="cb3-68"><a></a>        width<span class="op">=</span>bar_width,</span>
+<span id="cb3-69"><a></a>        color<span class="op">=</span>colors[idx],</span>
+<span id="cb3-70"><a></a>        label<span class="op">=</span><span class="ss">f"Default Probability: </span><span class="sc">{</span>prob<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">%"</span>,</span>
+<span id="cb3-71"><a></a>    )</span>
+<span id="cb3-72"><a></a></span>
+<span id="cb3-73"><a></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>years<span class="sc">}</span><span class="ss">-Year Pure CDS Payments Example"</span>)</span>
+<span id="cb3-74"><a></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
+<span id="cb3-75"><a></a>plt.ylabel(<span class="st">"Payment Amount ($)"</span>)</span>
+<span id="cb3-76"><a></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-77"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-78"><a></a>plt.legend()</span>
+<span id="cb3-79"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-pure-cds" class="quarto-float quarto-figure quarto-figure-center">
@@ -1517,11 +1415,7 @@ Figure&nbsp;4: Pure CDS Payments Example
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
-<p>AFIN8003 Banking and Financial Intermediation</p>
-</div>
-</div>
+
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-saunders_financial_2023" class="csl-entry" role="listitem">
 Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financial <span>Institutions</span> <span>Management</span> <span>ISE</span></em>. 11th ed. McGraw Hill.
@@ -1530,7 +1424,11 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
 </section></section>
 
     </div>
-  </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1715,7 +1613,7 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
