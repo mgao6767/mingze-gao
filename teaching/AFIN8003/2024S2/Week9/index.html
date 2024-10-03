@@ -7,8 +7,9 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.19">
+<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-10-02">
@@ -116,7 +117,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-995d96e1867de668a58ac323349be995.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -530,14 +531,14 @@ Dr.&nbsp;Mingze Gao
 <h2>Liability-side liquidity risk (cont’d)</h2>
 <p>For CBA, cash and liquid assets account for 9.3% of total assets.</p>
 
-<img data-src="./figures/CBA-balance-sheet-2023.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-cba-balance-sheet"><p class="caption">
+<img data-src="./figures/CBA-balance-sheet-2023.png" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">
 Figure&nbsp;1: Excerpt of CBA’s 2023 balance sheet - assets
 </p></section>
 <section id="liability-side-liquidity-risk-contd-1" class="slide level2">
 <h2>Liability-side liquidity risk (cont’d)</h2>
 <p>For CBA, deposits and other public borrowings account for 73.25% of total liabilities.</p>
 
-<img data-src="figures/CBA-balance-sheet-liabilities-2023.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-cba-balance-sheet-liabilities"><p class="caption">
+<img data-src="figures/CBA-balance-sheet-liabilities-2023.png" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">
 Figure&nbsp;2: Excerpt of CBA’s 2023 balance sheet - liabilities
 </p></section>
 <section id="liability-side-liquidity-risk-contd-2" class="slide level2">
@@ -618,7 +619,7 @@ Figure&nbsp;3: A hypothetical distribution of net deposit drains
 </div>
 </div>
 </div><div class="column">
-<p>Consider a probability distribution of net deposit drains that is assumed to be strongly peaked at the 5 percent net deposit withdrawal level, as shown in <a href="#/fig-net-deposit-drains-positive" class="quarto-xref">Figure&nbsp;3</a>.</p>
+<p>Consider a probability distribution of net deposit drains that is assumed to be strongly peaked at the 5 percent net deposit withdrawal level, as shown in <a href="#/net-deposit-drains" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <ul>
 <li>This DI expects approximately 5 percent of its net deposit funds to be withdrawn on any given day with the highest probability.</li>
 <li>A <em>positive</em> net drain on deposits, so its new deposit funds and other cash flows are expected to be insufficient to offset deposit withdrawals.</li>
@@ -668,7 +669,7 @@ Figure&nbsp;4: Another hypothetical distribution of net deposit drains
 </div>
 </div>
 </div><div class="column">
-<p>Consider another probability distribution of net deposit drains that is assumed to be strongly peaked at the -2 percent net deposit withdrawal level, as shown in <a href="#/fig-net-deposit-drains-negative" class="quarto-xref">Figure&nbsp;4</a>.</p>
+<p>Consider another probability distribution of net deposit drains that is assumed to be strongly peaked at the -2 percent net deposit withdrawal level, as shown in <a href="#/net-deposit-drains-contd" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <ul>
 <li>A <em>negative</em> net drain on deposits, so its new deposit funds and other cash flows are expected to be larger than deposit withdrawals.</li>
 </ul>
@@ -2000,7 +2001,11 @@ $$ -->
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
-
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-acharya_why_2024" class="csl-entry" role="listitem">
 Acharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. <span>“Why <span>Did</span> <span>Bank</span> <span>Stocks</span> <span>Crash</span> During <span>COVID</span>-19?”</span> <em>The Review of Financial Studies</em> 37 (9): 2627–84. <a href="https://doi.org/10.1093/rfs/hhae028">https://doi.org/10.1093/rfs/hhae028</a>.
@@ -2012,11 +2017,7 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
 </section></section>
 
     </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
-<p>AFIN8003 Banking and Financial Intermediation</p>
-</div>
-</div></div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -2201,7 +2202,7 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

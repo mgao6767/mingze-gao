@@ -7,8 +7,9 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.19">
+<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-09-11">
@@ -116,7 +117,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-995d96e1867de668a58ac323349be995.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -538,7 +539,7 @@ Table&nbsp;1: Example loan migration matrix
 </div>
 </figure>
 </div>
-<p><a href="#/tbl-migration-matrix" class="quarto-xref">Table&nbsp;1</a>, for example, shows the <em>transition probabilities</em> of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.</p>
+<p><a href="#/simple-model-migration-analysis" class="quarto-xref">Table&nbsp;1</a>, for example, shows the <em>transition probabilities</em> of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.</p>
 <div class="fragment">
 <ul>
 <li>The probability of AAA-rated loan at the start of a year being downgraded to BBB to B by the year’s end is 0.10.</li>
@@ -855,7 +856,7 @@ R_i = AIS_i - E(L_i) = AIS_i - (EDF_i\times LGD_i)
 <h2>Moody’s Analytics RiskFrontier Model (cont’d)</h2>
 <p>To measure the unobservable default risk correlation between any two borrowers, the Moody’s Analytics <strong>Global Correlation Model</strong> (GCORR) uses the systematic asset return components of the two borrowers and calculates a correlation that is based on a factor model rather than direct historical observations.</p>
 
-<img data-src="./figures/GCorr-corporate-factor-structure.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-gcorr"><p class="caption">
+<img data-src="./figures/GCorr-corporate-factor-structure.png" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">
 Figure&nbsp;2: GCorr Corporate Factor Structure
 </p><p><a href="#/fig-gcorr" class="quarto-xref">Figure&nbsp;2</a> provides a visual representation of the Moody’s Analytics GCorr Corporate factor structure.</p>
 </section>
@@ -1017,7 +1018,7 @@ Table&nbsp;3: Allocation of the Loan Portfolio to Different Sectors (in percenta
 </section>
 <section id="partial-application-of-portfolio-theory-loan-volume-based-models-contd-1" class="slide level2">
 <h2>Partial application of portfolio theory: Loan volume-based models (cont’d)</h2>
-<p>Refer to <a href="#/tbl-loan-allocation" class="quarto-xref">Table&nbsp;3</a>. We get the deviation of Bank A’s loan portfolio allocation as follows:</p>
+<p>Refer to <a href="#/partial-application-of-portfolio-theory-loan-volume-based-models" class="quarto-xref">Table&nbsp;3</a>. We get the deviation of Bank A’s loan portfolio allocation as follows:</p>
 <p><span class="math display">\[
 \begin{aligned}
 (X_{1A}-X_1)^2 &amp;= (0.65-0.45)^2 = 0.04 \\
@@ -1415,7 +1416,11 @@ Figure&nbsp;4: Pure CDS Payments Example
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
-
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-saunders_financial_2023" class="csl-entry" role="listitem">
 Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financial <span>Institutions</span> <span>Management</span> <span>ISE</span></em>. 11th ed. McGraw Hill.
@@ -1424,11 +1429,7 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
 </section></section>
 
     </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
-<p>AFIN8003 Banking and Financial Intermediation</p>
-</div>
-</div></div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1613,7 +1614,7 @@ Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

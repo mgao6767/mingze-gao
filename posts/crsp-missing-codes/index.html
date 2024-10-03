@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.19">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d47cc04af4a00a95d69709d991db911b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,7 +188,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 
 
 <p>A note on the missing codes in CRSP.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Source: <a href="https://wrds-www.wharton.upenn.edu/demo/crsp/form/">https://wrds-www.wharton.upenn.edu/demo/crsp/form/</a></p></div></div><table>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Source: <a href="https://wrds-www.wharton.upenn.edu/demo/crsp/form/">https://wrds-www.wharton.upenn.edu/demo/crsp/form/</a></p></div></div><table class="table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 9%">
@@ -196,7 +196,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <col style="width: 71%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Variable Name</th>
 <th>C/Fortran Value</th>
 <th>SAS Missing Code</th>
@@ -204,109 +204,109 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>RET</code></td>
 <td>-44.0</td>
 <td>.E</td>
 <td>No valid comparison for an excess return</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-55.0</td>
 <td>.D</td>
 <td>No listing information</td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>-66.0</td>
 <td>.C</td>
 <td>No valid previous price</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-77.0</td>
 <td>.B</td>
 <td>Off-exchange</td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>-88.0</td>
 <td>.A</td>
 <td>Out of Range</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-99.0</td>
 <td>.</td>
 <td>No valid price</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>DLRET</code></td>
 <td>-55.0</td>
 <td>.S</td>
 <td>CRSP has no source to establish a value after delisting</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-66.0</td>
 <td>.T</td>
 <td>More than 10 trading periods between a security’s last price and its first available price on a new exchange</td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>-88.0</td>
 <td>.A</td>
 <td>Security is still active</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-99.0</td>
 <td>.P</td>
 <td>Security trades on a new exchange after delisting, but CRSP currently h as no sources to gather price information</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>DLRETX</code></td>
 <td>-55.0</td>
 <td>.S</td>
 <td>CRSP has no source to establish a value after delisting</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-66.0</td>
 <td>.T</td>
 <td>More than 10 trading periods between a security’s last price and its first available price on a new exchange</td>
 </tr>
-<tr>
+<tr class="odd">
 <td></td>
 <td>-88.0</td>
 <td>.A</td>
 <td>Security is still active</td>
 </tr>
-<tr>
+<tr class="even">
 <td></td>
 <td>-99.0</td>
 <td>.P</td>
 <td>Security trades on a new exchange after delisting, but CRSP currently has no sources to gather price information</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>DCLRDT</code></td>
 <td>0</td>
 <td>.</td>
 <td>Declaration date cannot be found</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>TRTSCD</code></td>
 <td>0</td>
 <td>.</td>
 <td>Unknown trading status of the issue</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>NMSIND</code></td>
 <td>0</td>
 <td>.</td>
 <td>Unknown whether or not the issue is a member of the Nasdaq National Market</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>VOL</code></td>
 <td>-99.0</td>
 <td>.</td>

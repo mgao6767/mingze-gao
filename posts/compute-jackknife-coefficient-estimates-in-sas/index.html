@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.19">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -92,10 +92,10 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d47cc04af4a00a95d69709d991db911b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -278,51 +278,51 @@ window.Quarto = {
 <section id="variable-definition" class="level2">
 <h2 class="anchored" data-anchor-id="variable-definition">Variable Definition</h2>
 <p>Let’s start with some variable definitions to help with the explanation.</p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 34%">
 <col style="width: 65%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Variable</th>
 <th>Definition</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(b(i)\)</span></td>
 <td>the parameter estimates after deleting the <span class="math inline">\(i\)</span>th observation</td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\(s^2(i)\)</span></td>
 <td>the variance estimate after deleting the <span class="math inline">\(i\)</span>th observation</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(X(i)\)</span></td>
 <td>the <span class="math inline">\(X\)</span> matrix without the <span class="math inline">\(i\)</span>th observation</td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\(\hat{y}(i)\)</span></td>
 <td>the <span class="math inline">\(i\)</span>th value predicted without using the <span class="math inline">\(i\)</span>th observation</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(r_i = y_i - \hat{y}_i\)</span></td>
 <td>the <span class="math inline">\(i\)</span>th residual</td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\(h_i = x_i(X'X)^{-1}x_i'\)</span></td>
 <td>the <span class="math inline">\(i\)</span>th diagonal of the projection matrix for the predictor space, also called the hat matrix</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(RStudent =\frac{r_i}{s(i) \sqrt{1-h_i}}\)</span></td>
 <td>studentized residual</td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\((X'X)_{jj}\)</span></td>
 <td>the <span class="math inline">\((j,j)\)</span>th element of <span class="math inline">\((X'X)^{-1}\)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(DFBeta_j = \frac{b_{j} - b_{(i)j}}{s(i)\sqrt{(X'X)_{jj}}}\)</span></td>
 <td>the scaled measures of the change in the <span class="math inline">\(j\)</span>th parameter estimate calculated by deleting the <span class="math inline">\(i\)</span>th observation</td>
 </tr>
@@ -340,46 +340,46 @@ window.Quarto = {
 <p>Hence,</p>
 <p><span class="math display">\[b_{(i)j} = b_j - DFBeta_j \times \frac{r_i}{RStudent\times \sqrt{1-h_i}} \sqrt{(X'X)_{jj}}\]</span></p>
 <p>The good thing is that <code>PROC REG</code> produces the coefficient estimate <span class="math inline">\(b_j\)</span> for <span class="math inline">\(j=1,2,...K\)</span>, where <span class="math inline">\(K\)</span> is the number of coefficients, and the <code>INFLUENCE</code> and <code>I</code> options produce the remaining statistics just enough to compute <span class="math inline">\(b(i)\)</span>:</p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 11%">
 <col style="width: 62%">
 <col style="width: 25%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Variable</th>
 <th>Option in <code>PROC REG</code> or <code>MODEL</code> statement</th>
 <th>Name in the output dataset</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(b_j\)</span></td>
 <td><code>Outest=</code> option in <code>PROC REG</code></td>
 <td><code>&lt;jthVariable&gt;</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\(r_i\)</span></td>
 <td><code>OutputStatistics=</code> from <code>INFLUENCE</code> option in <code>MODEL</code> statement</td>
 <td><code>Residual</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(RStudent\)</span></td>
 <td><code>OutputStatistics=</code> from <code>INFLUENCE</code> option in <code>MODEL</code> statement</td>
 <td><code>RStudent</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\(h_i\)</span></td>
 <td><code>OutputStatistics=</code> from <code>INFLUENCE</code> option in <code>MODEL</code> statement</td>
 <td><code>HatDiagnol</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><span class="math inline">\(DFBeta_j\)</span></td>
 <td><code>OutputStatistics=</code> from <code>INFLUENCE</code> option in <code>MODEL</code> statement</td>
 <td><code>DFB_&lt;jthVariable&gt;</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><span class="math inline">\((X'X)_{jj}\)</span></td>
 <td><code>InvXPX=</code> from <code>I</code> option in <code>MODEL</code> statement</td>
 <td><code>&lt;jthVariable&gt;</code></td>

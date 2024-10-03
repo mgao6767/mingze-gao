@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.19">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-6f7931aacaeb22aa467d6667c6f1725d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-d47cc04af4a00a95d69709d991db911b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -542,7 +542,7 @@ Quick notes on the coupon effect
 <section id="par-yields-to-zero-rates" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="par-yields-to-zero-rates">Par yields to zero rates</h3>
 <p>Suppose at the end of the day, we observe the following par yields:</p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 35%">
@@ -550,7 +550,7 @@ Quick notes on the coupon effect
 <col style="width: 15%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Maturity</th>
 <th>Type</th>
 <th>Par Yield</th>
@@ -558,55 +558,55 @@ Quick notes on the coupon effect
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>6 months</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{0.5yr}=1.05\%\)</span></td>
 <td>1.05%</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>1 year</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{1yr}=1.2\%\)</span></td>
 <td>1.2%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1.5 years</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{1.5yr}=1.5\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>2 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{2yr}=2.2\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>2.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{2.5yr}=2.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>3 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{3yr}=2.8\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{3.5yr}=3\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{4yr}=3.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>…</td>
 <td></td>
 <td></td>
@@ -621,7 +621,7 @@ Quick notes on the coupon effect
 P(\text{1.5yr } y_{1.5}\% \text{ TNote}) = \frac{0.5\times y_{1.5}}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_{1.5}}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_{1.5}+100}{(1+\frac{\color{red}r_{1.5}}{2})^3} = 100
 \]</span></p>
 <p>Since there is only one unknown, we can solve for the 1.5-year spot rate (zero rate) <span class="math inline">\({\color{red}r_{1.5}}\)</span>. In this example, the value of <span class="math inline">\(\color{green}r_{1.5}=1.5026\%\)</span></p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 32%">
@@ -629,7 +629,7 @@ P(\text{1.5yr } y_{1.5}\% \text{ TNote}) = \frac{0.5\times y_{1.5}}{1+\frac{r_{0
 <col style="width: 20%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Maturity</th>
 <th>Type</th>
 <th>Par Yield</th>
@@ -637,55 +637,55 @@ P(\text{1.5yr } y_{1.5}\% \text{ TNote}) = \frac{0.5\times y_{1.5}}{1+\frac{r_{0
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>6 months</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{0.5yr}=1.05\%\)</span></td>
 <td>1.05%</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>1 year</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{1yr}=1.2\%\)</span></td>
 <td>1.2%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1.5 years</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{1.5yr}=1.5\%\)</span></td>
 <td><span class="math inline">\(\color{green}r_{1.5}=1.5026\%\)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>2 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{2yr}=2.2\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>2.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{2.5yr}=2.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>3 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{3yr}=2.8\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{3.5yr}=3\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{4yr}=3.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>…</td>
 <td></td>
 <td></td>
@@ -699,7 +699,7 @@ P(\text{1.5yr } y_{1.5}\% \text{ TNote}) = \frac{0.5\times y_{1.5}}{1+\frac{r_{0
 P(\text{2yr } y_2\% \text{ TNote}) = \frac{0.5\times y_2}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_2}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_2}{(1+\frac{\color{green}r_{1.5}}{2})^3} +\frac{0.5\times y_2+100}{(1+\frac{\color{red}r_{2}}{2})^4}=100
 \]</span></p>
 <p>We can solve for the 2-year spot rate (zero rate) <span class="math inline">\({\color{red}r_{2}}\)</span>. It turns out that in this example, <span class="math inline">\({\color{green}r_{2}=2.2146\%}\)</span>.</p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 32%">
@@ -707,7 +707,7 @@ P(\text{2yr } y_2\% \text{ TNote}) = \frac{0.5\times y_2}{1+\frac{r_{0.5}}{2}} +
 <col style="width: 20%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Maturity</th>
 <th>Type</th>
 <th>Par Yield</th>
@@ -715,55 +715,55 @@ P(\text{2yr } y_2\% \text{ TNote}) = \frac{0.5\times y_2}{1+\frac{r_{0.5}}{2}} +
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>6 months</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{0.5yr}=1.05\%\)</span></td>
 <td>1.05%</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>1 year</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{1yr}=1.2\%\)</span></td>
 <td>1.2%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1.5 years</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{1.5yr}=1.5\%\)</span></td>
 <td><span class="math inline">\(\color{green}r_{1.5}=1.5026\%\)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>2 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{2yr}=2.2\%\)</span></td>
 <td><span class="math inline">\({\color{green}r_{2}=2.2146\%}\)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>2.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{2.5yr}=2.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>3 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{3yr}=2.8\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{3.5yr}=3\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{4yr}=3.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>…</td>
 <td></td>
 <td></td>
@@ -777,7 +777,7 @@ P(\text{2yr } y_2\% \text{ TNote}) = \frac{0.5\times y_2}{1+\frac{r_{0.5}}{2}} +
 P(\text{2.5yr } y_{2.5}\% \text{ TNote}) = \frac{0.5\times y_{2.5}}{1+\frac{r_{0.5}}{2}} + \frac{0.5\times y_{2.5}}{(1+\frac{r_{1}}{2})^2} + \frac{0.5\times y_{2.5}}{(1+\frac{\color{green}r_{1.5}}{2})^3} +\frac{0.5\times y_{2.5}}{(1+\frac{\color{green}r_{2}}{2})^4} + \frac{0.5\times y_{2.5}+100}{(1+\frac{\color{red}r_{2.5}}{2})^4}=100
 \]</span></p>
 <p>We can solve for the 2.5-year spot rate (zero rate) <span class="math inline">\({\color{red}r_{2.5}}\)</span>. It turns out that in this example, <span class="math inline">\({\color{green}r_{2.5}=2.4176\%}\)</span>.</p>
-<table>
+<table class="table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 32%">
@@ -785,7 +785,7 @@ P(\text{2.5yr } y_{2.5}\% \text{ TNote}) = \frac{0.5\times y_{2.5}}{1+\frac{r_{0
 <col style="width: 20%">
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Maturity</th>
 <th>Type</th>
 <th>Par Yield</th>
@@ -793,55 +793,55 @@ P(\text{2.5yr } y_{2.5}\% \text{ TNote}) = \frac{0.5\times y_{2.5}}{1+\frac{r_{0
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>6 months</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{0.5yr}=1.05\%\)</span></td>
 <td>1.05%</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>1 year</strong></td>
 <td><strong>TBill</strong> (no coupon)</td>
 <td><span class="math inline">\(y_{1yr}=1.2\%\)</span></td>
 <td>1.2%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1.5 years</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{1.5yr}=1.5\%\)</span></td>
 <td><span class="math inline">\(\color{green}r_{1.5}=1.5026\%\)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>2 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{2yr}=2.2\%\)</span></td>
 <td><span class="math inline">\({\color{green}r_{2}=2.2146\%}\)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>2.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{2.5yr}=2.4\%\)</span></td>
 <td><span class="math inline">\({\color{green}r_{2.5}=2.4176\%}\)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>3 year</strong></td>
 <td><strong>TNote</strong></td>
 <td><span class="math inline">\(y_{3yr}=2.8\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3.5 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{3.5yr}=3\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>4 year</td>
 <td>Hypothetical TNote</td>
 <td><span class="math inline">\(y_{4yr}=3.4\%\)</span></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>…</td>
 <td></td>
 <td></td>
