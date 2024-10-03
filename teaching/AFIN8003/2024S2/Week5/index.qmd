@@ -66,29 +66,7 @@ __Market risk__ is uncertainty of an FI’s earnings on its trading portfolio ca
 
 Intuitively, trading book includes assets, liabilities and derivatives that are actively traded in some financial markets and hence exposed to uncertainties of these markets.
 
-```{mermaid}
-flowchart LR
-    A[Bank] --> B[Banking Book]
-    A --> T[Trading Book]
-    subgraph Bond market
-      bonds[Bonds]
-    end
-    subgraph Commodity market
-      commd[Commodities]
-    end
-    subgraph FX market
-      fx[FX]
-    end
-    subgraph Derivative market
-      deriv[Derivatives]
-    end
-    T --> bonds & commd & fx & deriv
-    subgraph Market risk
-      M[Market condition]
-      bonds & commd & fx & deriv -.- M
-      M -.- p[price] & v[volatility] & l[liquidity] & i[interest rate] & o[...]
-    end
-```
+![](./figures/fig-trading-book-market-risk.png){fig-align="center"}
 
 ## Market risk exposure
 

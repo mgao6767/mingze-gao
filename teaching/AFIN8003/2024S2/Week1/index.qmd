@@ -195,14 +195,7 @@ We start this banking course by studying the importance of banks in improving th
 ### The @Diamond1983 model
 :::
 
-```{mermaid}
-%%| echo: false
-%%| label: fig-economy-without-fi
-%%| fig-cap: "A simple diagram of an economy without financial intermediaries"
-graph LR
-    A["Households (savers)"]  -- cash --> B["Firms (borrowers)"]
-    B -- "financial claims (debt or equity)" --> A
-```
+![A simple diagram of an economy without financial intermediaries](./figures/fig-economy-without-fi.png){#fig-economy-without-fi fig-align="center"}
 
 Some _frictions_ render this setup unappealing.
 
@@ -256,17 +249,7 @@ Not bothered by math, the implications are:
 ### The @Diamond1983 model
 :::
 
-```{mermaid}
-%%| echo: false
-%%| label: fig-maturity-transformation
-%%| fig-cap: "A simple diagram of bank's maturity transformation"
-graph LR
-    A1["Saver 1"]  -- "short-term deposits" --> B["Bank"]
-    A2["Saver 2"]  -- "short-term deposits" --> B
-    A3["Saver 3"]  -- "short-term deposits" --> B
-    B -- "long-term loans" --> F1["Borrower 1"]
-    B -- "long-term loans" --> F2["Borrower 2"]
-```
+![A simple diagram of bank's maturity transformation](./figures/fig-maturity-transformation.png){#fig-maturity-transformation fig-align="center"}
 
 - This structure, however, gives rise to _bank runs_ where everyone withdraws at $t=1$.
     - The Silicon Valley Bank (SVB) failure in March 2023 is a typical bank run.
@@ -309,17 +292,7 @@ Banks are also better positioned to mitigate informational frictions in the mark
 - Total monitoring costs is $nmK$ if savers individually monitor, but
 - $mK$ if the bank acts as the monitor on behalf of savers.
 
-```{mermaid}
-%%| echo: false
-%%| label: fig-diamond-1984
-%%| fig-cap: "A simple diagram of bank as delegated monitor"
-graph LR
-    A1["Saver 1"]  -- "1/m" --> B["Bank"]
-    A2["Saver ..."]  -- "1/m" --> B
-    A3["Saver nm"]  -- "1/m" --> B
-    B -- "1" --> F1["Borrower 1"]
-    B -- "1" --> F2["Borrower 2"]
-```
+![A simple diagram of bank as delegated monitor](./figures/fig-diamond-1984.png){#fig-diamond-1984 fig-align="center"}
 
 ## Banks as delegated monitor
 

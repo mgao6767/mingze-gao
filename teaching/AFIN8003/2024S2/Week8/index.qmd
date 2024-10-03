@@ -526,16 +526,7 @@ The figure below illustrates a total return swap.[^error3]
 
 [^error3]: In the textbook @saunders_financial_2023, Figure 25-4 incorrectly has $f-\frac{P_t-P_0}{P_0}$.
 
-```{mermaid}
-graph LR
-    A[Other FI]
-    B[FI lender]
-    B -- Loan --> C[Customer]
-    subgraph Total Return Swap
-    B -- "$f+{(P_T-P_0)}/{P_0}$" --> A
-    A -- 1-year LIBOR --> B
-    end
-```
+![](./figures/fig-trs.png){fig-align="center"}
 
 The FI lender pays a fixed annual rate $f$ plus changes in the market value of the loan and receives a variable rate payment (e.g., 1-year LIBOR).
 
@@ -636,16 +627,7 @@ Similar to buying an insurance:
 - If default, the counterparty makes the default payment
 - If not default, the FI receives nothing from the counterparty.
 
-```{mermaid}
-graph LR
-    A[Other FI]
-    B[FI lender]
-    B -- Loan --> C[Customer]
-    subgraph Pure Credit Swap
-    B -- Fee --> A
-    A -. Default payment .-> B
-    end
-```
+![](./figures/fig-pure-credit-swap.png){fig-align="center"}
 
 ## Credit swaps: pure credit swaps (cont'd)
 
