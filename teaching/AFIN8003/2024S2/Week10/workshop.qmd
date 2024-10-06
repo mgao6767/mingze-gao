@@ -1,0 +1,259 @@
+---
+title: "AFIN8003 - Workshop 10"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-10-09
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop10.pdf"
+# Custom fields
+pdf-name: "Workshop10.pdf"
+include-answers: false
+---
+
+# MCQ
+
+1. The cost of holding reserves that pay no interest at the central bank is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] buffer reserves
+   - [ ] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] buffer reserves
+   - [x] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+   :::
+
+2. A deep market is an important consideration in the management of FI liquidity in that:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [ ] the FI will need to be able to sell short-term assets quickly to convert to cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [x] the FI will need to be able to sell short-term assets quickly to convert to cash
+   :::
+
+3. Which of the following is a determinant of an FI's optimal liquid asset ratio?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [x] All of the listed options are correct.
+   :::
+
+4. A facility that allows a DI to utilise RBA repos, in order to obtain liquidity overnight to fund its liquidity settlement needs, is called a(n):
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] RBA repurchase agreement
+   - [ ] overnight repurchase agreement
+   - [ ] intra-day repurchase agreement
+   - [ ] committed liquidity facility
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] RBA repurchase agreement
+   - [x] overnight repurchase agreement
+   - [ ] intra-day repurchase agreement
+   - [ ] committed liquidity facility
+   :::
+
+5. Covered bonds are:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+   :::
+
+6. What is the primary method of meeting cash demands in modern financial institutions?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [ ] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [x] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+   :::
+
+7. A high quality liquid asset (HQLA) must be:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [ ] unencumbered and easily and immediately able to be converted into cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [x] unencumbered and easily and immediately able to be converted into cash
+   :::
+
+8. Governments seek to protect depositors more than other DI creditors because:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [x] All of the listed options are correct.
+   :::
+
+9. Which of the following instruments is considered a low-cost liability but carries high withdrawal risk?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [ ] Demand deposits
+   - [ ] Savings accounts
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [x] Demand deposits
+   - [ ] Savings accounts
+   :::
+
+# Short answer questions
+
+## Q1
+
+An FI has estimated the following annual costs for its demand deposits: 
+
+- management cost per account = $140, 
+- average account size = $1500,
+- average number of cheques processed per account per month = 75, 
+- cost of clearing a cheque = $0.10, 
+- fees charged to customer per cheque= $0.05, and 
+- average fee charged per customer per month = $8.
+
+(a) What is the implicit interest cost of demand deposits for the FI?
+(b) If the FI has to keep an average of 8 per cent of demand deposits as required reserves with the RBA paying no interest, what is the implicit interest cost of demand deposits for the FI?
+(c) What should be the per-cheque fee charged to customers to reduce the implicit interest costs to 3 per cent? Ignore the reserve requirements.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+    - Cost of clearing cheques = $0.10 × 75 × 12 = $90
+    - Cost of managing each account = $140
+    - Per cheque fee per account = $0.05 × 75 × 12 = –$45
+    - Fee received per account = $8 × 12 = –$96
+    - Total cost per account = $89
+    - Return=$89/$1500=5.933%
+
+(b)
+    If the bank has to keep 8 per cent as reserves, its use of funds is limited to 0.92 × $1500 per account or $1380. 
+    The average (imputed) interest cost = $89/$1380 = 6.45 per cent.
+
+(c)
+    - For an average imputed interest cost of 3 per cent, the total cost per account = 1500 × 0.03 = $45. 
+    - This means that the total cost per account should be decreased by $44 ($89 – $45) and the per-cheque fee charged to customers should be increased to $89 ($45 + $44). 
+    - Thus, the fee per-cheque should be raised to $89/(75 × 12) = $0.0989 per cheque.
+:::
+:::
+
+## Q2
+
+A cheque account requires a minimum balance of $750 for interest to be earned at an annual rate of 4 per cent. An account holder has maintained an average balance of $500 for the first six months and $1000 for the remaining six months. The account holder writes an average of 60 cheques per month and pays $0.02 per cheque, although it costs the bank $0.05 to clear a cheque.
+
+(a) What average return does the account holder earn on the cheque account?
+(b) What is the average return if the bank lowers the minimum balance to $400?
+(c) What is the average return if the bank pays interest only on the amount in excess of $400? Assume that the minimum required balance is $400.
+(d) How much should the bank increase its cheque fee to the account holder to ensure that the average interest it pays on this account is 5 per cent? Assume that the minimum required balance is $750.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+    - Gross interest return = explicit interest return + implicit interest return
+    - Interest earned by account holder ($500 × 0.00 × 6/12) + ($1000 × 0.04 × 6/12) = $20
+    - Implicit fee earned on cheques ($0.05 – $0.02) × 60 × 12 = $21.60
+    - Average deposit maintained during the year (6/12 × 500) + (6/12 × 1000) = $750
+    - Average interest earned = $41.60/750 = 5.55 per cent
+
+(b)
+    - If the minimum balance requirement is lowered to $400, the account holder earns an extra $500 × 0.04 × 6/12 = $10 in interest. 
+    - The average interest earned = $51.60/750 = 6.88 per cent.
+
+(c)
+    - If the bank only pays interest on balances in excess of $400, the explicit interest earned = ($100 × 0.04 × 6/12) + ($600 × 0.04 × 6/12) =$2 + $12 = $14.
+    - The implicit fee earned on cheques = $21.60, and the average interest earned = $35.60/$750 = 4.75 per cent
+
+(d)
+    - Interest earned (both explicit and implicit) = $750 × 0.05 = $37.50. Fees to be earned through cheque clearing = $37.50 – $20 = $17.50.
+    - Fee subsidy per cheque = 17.50/(60 × 12) = $0.0243. So, the bank should charge $0.05 – $0.0243 = $0.0257 per cheque.
+:::
+:::
+
+# Extra
+
+## Q1
+
+How can liquidity and interest rate risk management objectives conflict in a DI? Where possible, provide examples. Are these conflicts resolvable? Explain
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Liquidity risk and interest rate risk are usually closely linked in a DI. For example, a DI that runs a positive or negative duration gap to take advantage of expected interest rate movements may suffer an increase in liquidity risk if the gamble proves wrong and, as a result of losses on the interest rate mismatch, there is an increase in withdrawals by depositors. Alternatively, a DI that acts to immunise the value of equity against interest rate risk may find that this has created potential liquidity problems in terms of an imbalance between cash inflows and outflows as the maturities of assets and liabilities are mismatched to achieve a zero duration gap. Similarly, a DI that issues long-term fixed-rate paper to secure funds and reduce liquidity risk may find that this impacts adversely on the interest rate risk position of the DI if the DIhas a zero or negative duration gap before the funds are issued, or if managers expect falling interest rates in the short term.
+
+To resolve these conflicts DI managers need to be aware of the interactive nature of interest rate and liquidity risks (as well as other balance sheet risks) when formulating risk management strategies. For example, if the goals of matched asset/liability maturities and a zero duration gap are incompatible, managers need to amend these goals or set in place secondary strategies to deal with any risks that may be increased.Here such a strategy might be to increase standby credit arrangements with other DIs to deal with potential cash imbalances arising from the policy of equity immunisation against interest rate risk.
+:::
+:::
+
+## Q2
+
+How do deposit insurance and deposit guarantees help mitigate the problem of bank runs and what schemes are available in Australia to protect DI deposits?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Bank runs are costly to society since they create liquidity problems and can have a contagion effect. Because of the first-come, first-served nature of deposit liabilities, DI depositors have incentives to run on the DI if they are concerned about solvency. As a result of the external cost of runs on the safety and soundness of the entire banking system, governments have put into place safety nets using deposit insurance/guarantees to remove the incentives to undertake DI runs. The primary pieces of this safety net are the Financial Claims Scheme which guarantees deposits of Australian dollar deposits in authorised DIs up to $250 000 per depositor per institution. Deposit insurance and other guarantee programs provide assurance that funds are safe even in cases when the FI is in financial distress.
+:::
+:::
