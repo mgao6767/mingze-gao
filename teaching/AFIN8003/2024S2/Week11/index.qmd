@@ -1,0 +1,259 @@
+---
+title: "AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-10-09
+draft: true
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week11.pdf"
+# Custom fields
+pdf-name: "Week11.pdf"
+---
+
+# Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk
+
+## Introduction
+
+# Sovereign risk
+
+
+# Foreign exchange risk
+
+## Foreign exchange rates
+
+A foreign exchange (FX) rate is the price at which one currency (e.g., the U.S. dollar) can be exchanged for another currency (e.g., the Australian dollar).
+
+Two basic types of FX transactions:
+
+1. __Spot FX transactions__ involve the immediate settlement, or exchange, of currencies at the current (spot) exchange rate.
+2. __Forward FX transactions__ involve the exchange of currencies at a specified exchange rate (i.e., the forward exchange rate) which is settled at some specified date in the future.
+
+## Source of FX risk exposure
+
+Assets and liabilities denominated in foreign currencies
+
+- making foreign currency loans
+- issuing foreign currency-denominated debt
+
+The trading of foreign currencies involves
+
+- purchase and sale of currencies to complete international transactions
+- facilitating positions in foreign real and financial investments
+- accommodating hedging activities
+- speculation
+
+Substantial risk arises via open positions (unhedged positions).
+
+## FX exposure
+
+An FI’s overall FX exposure in any given currency can be measured by the net position exposure, which is measured in local currency as
+
+$$
+\begin{aligned}
+\text{Net exposure}_i &= (\text{FX assets}_i - \text{FX liabilities}_i) + (\text{FX bought}_i - \text{FX sold}_i) \\
+&=\text{Net foreign assets}_i + \text{Net FX bought}_i
+\end{aligned}
+$$
+
+where $i$ represents the $i$th currency.
+
+::: {.fragment}
+FI could match its foreign currency assets to its liabilities in a given currency and match buys and sells in its trading book in that foreign currency
+
+- reduce its foreign exchange net exposure to zero and thus avoid FX risk.
+
+Financial holding companies can aggregate their foreign exchange exposure through their banking, insurance and funds management businesses under one umbrella
+
+- allows them to reduce their net foreign exchange exposure across all units.
+:::
+
+## FX rate volatility and FX exposure
+
+We can measure the potential size of an FI’s FX exposure as:
+
+$$
+\begin{aligned}
+\text{Dollar loss/gains in currency } i &= \text{Net exposure in foreign currency } i \text{ measured in local currency} \\
+&\times \text{Shock (volatility) to the exchange rate of local currency to foreign currency } i
+\end{aligned}
+$$
+
+- Greater exposure to a foreign currency combined with greater volatility of the foreign currency implies greater _daily earnings at risk (DEAR)_.
+- Reason for FX volatility: fluctuations in the demand for and supply of a country's currency
+
+::: {.content-hidden when-format="pdf"}
+## FX rate volatility and FX exposure (cont'd)
+:::
+
+::: {.content-hidden when-format="pdf"}
+$$
+\begin{aligned}
+\text{Dollar loss/gains in currency } i &= \text{Net exposure in foreign currency } i \text{ measured in local currency} \\
+&\times \text{Shock (volatility) to the exchange rate of local currency to foreign currency } i
+\end{aligned}
+$$
+:::
+
+::: {.callout-note title="Example"}
+On September 8, 2024, an Australian FI has a net exposure to New Zealand dollar (NZD) of NZD$1,000,000. The exchange rate of AUD to NZD was 1.08 AUD/NZD.
+
+It is now October 8, 2024, and the exchange rate becomes 1.10 AUD/NZD. The AUD has _depreciated_ in value relative to the NZD. Calculate the FI's dollar loss/gain for this shock to the AUD/NZD exchange rate. 
+
+- The AUD value of the NZD position on September 8 is $\$1,000,000\times 1.08=\$1,080,000$.
+- The AUD value of the NZD position on October 8 is $\$1,000,000\times 1.10=\$1,100,000$.
+- The gain from the net long position in NZD is $\$1,100,000-\$1,080,000=\$20,000$.
+
+Or, the dollar loss/gain is
+
+$\text{NZD}\$1,000,000 \times (1.10 - 1.08) = \text{AUD}\$20,000$.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## FX rate volatility and FX exposure (cont'd)
+:::
+
+The FI has a €2.0 million long trading position in spot euros at the close of business on a particular day. The exchange rate is €0.80/\$1, or \$1.25/€, at the daily close. Looking back at the daily changes in the exchange rate of the euro to dollars for the past year, the FI finds that the volatility or standard deviation ($\sigma$) of the spot exchange rate was 50 basis points (bp). What is the DEAR?
+
+::: {.fragment}
+$$
+\text{DEAR} = \text{Dollar value of position} \times \text{FX volatility}
+$$
+
+- Dollar value of position = €2.0 x 1.25 $/€ = $2.5 million
+- FX volatility = 2.33$\sigma$ = 2.33 x 0.005 = 0.01165
+- DEAR = $2,500,000 x 0.01165 = $29,125
+:::
+
+## Interaction of interest rate, inflation, and exchange rates
+
+- Global financial markets are increasingly interconnected, so are interest rates, inflation, and foreign exchange rates.
+- We now explore how inflation in one country affects its foreign currency exchange rates, focusing on __purchasing power parity (PPP)__.
+- Next, we examine the relationship between domestic/foreign interest rates and spot/forward foreign exchange rates, known as __interest rate parity (IRP)__.
+
+## Purchasing Power Parity
+
+Nominal interest rate $R$ is basically the sum of inflation $i$ and real interest rate $r$: 
+
+For two countries, e.g., Australia (AU) and United States (US), we have:
+
+$$
+\begin{aligned}
+R_{AU} &= i_{AU} + r_{AU} \\
+R_{US} &= i_{US} + r_{US} 
+\end{aligned}
+$$
+
+Assuming real interest rates are equal across countries: $r_{AU}=r_{US}$, then
+
+$$
+R_{AU} - R_{US} = i_{AU} - i_{US}
+$$
+
+That is, the (nominal) interest rate spread between Australia and the United States represents the difference in inflation rates between the two countries.
+
+::: {.callout-important}
+When inflation rates and/or interest rates change, foreign exchange rates (without government control) should adjust to account for relative differences in the price levels (inflation) between the two countries.
+:::
+
+The Purchasing Power Parity (PPP) is one theory explaining how this adjustment takes place.
+
+::: {.content-hidden when-format="pdf"}
+## Purchasing Power Parity (cont'd)
+:::
+
+Let's think of an example to illustrate the idea of PPP.
+
+- Imagine you have $1 and can buy one candy in the U.S. Now, let's say in Japan, 100 yen also buys one candy. 
+- **If $1 is worth 100 yen**, things are "balanced".
+- But if candy's price in Japan increases to 150 yen (inflation in Japan), your $1 won’t buy as much candy anymore. 
+
+PPP states that, in different countries, the same money should buy the same amount of goods and services. So, when prices change, the money's value changes, too, to keep things fair.
+
+- The relative value of money is the exchange rate!
+
+::: {.content-hidden when-format="pdf"}
+## Purchasing Power Parity (cont'd)
+:::
+
+::: {.callout-tip}
+The PPP says that the most important factor determining exchange rates is the price differences drive trade flows and thus demand for and supplies of currencies.
+:::
+
+Specifically, the PPP theorem states that the change in the exchange rate between two countries’ currencies is proportional to the difference in the inflation rates in the two countries. That is:
+
+$$
+i_{domestic} - i_{foreign} = \frac{\Delta S_{domestic/foreign}}{S_{domestic/foreign}}
+$$
+
+where
+
+- $S_{domestic/foreign}$ is the spot exchange rate of the domestic currency for the foreign currency
+- $\Delta S_{domestic/foreign}$ is the change in the one-period spot exchange rate
+
+::: {.content-hidden when-format="pdf"}
+## Purchasing Power Parity (cont'd)
+:::
+
+Suppose that the current spot exchange rate of Australian dollars for Chinese yuan, $S_{AUD/CNY}$, is 0.17 (i.e. 0.17 dollars, or 17 cents is equal to 1 yuan). The price of Chinese-produced goods increases by 10 per cent (i.e. inflation in China $i_C$, is 10 per cent), and the Australian price index increases by 4 per cent (i.e. inflation in Australia, $i_{AUS}$, is 4 per cent). What will be the change of the exchange rate?
+
+According to PPP:
+
+$$
+i_{AUS} - i_{C} = \frac{\Delta S_{AUD/CNY}}{S_{AUD/CNY}}
+$$
+
+So that
+
+$$
+0.04 - 0.1 = \frac{\Delta S_{AUD/CNY}}{0.17}
+$$
+
+Solving the equation, we get $\Delta S_{AUD/CNY} = −0.0102$. Thus, it costs 1.02 cents less to receive a yuan. The Chinese yuan depreciates in value by 6 per cent against the Australian dollar as a result of its higher relative inflation rate. In other words, a 6 per cent fall in the yuan’s value translates into a new exchange rate of 0.1598 dollars per yuan.
+
+
+::: {.content-hidden when-format="pdf"}
+## Purchasing Power Parity (cont'd)
+:::
+
+The theory behind purchasing power parity is the __law of one price__, an economic concept which states that in an efficient market, if countries produce a good or service that is identical to that in other countries, that good or service must have a single price, no matter where it is purchased.
+
+
+
+## Interest Rate Parity
+
+
+
+# Off-balance-sheet risk
+
+
+# Finally...
+
+## Suggested readings
+
+
+## References
