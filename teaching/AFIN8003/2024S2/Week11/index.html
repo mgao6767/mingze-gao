@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Dr.&nbsp;Mingze Gao">
+  <meta name="dcterms.date" content="2024-10-16">
+  <title>Mingze Gao – AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta name="twitter:title" content="AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk – Mingze Gao">
+<meta name="twitter:description" content="Banking and Financial Intermediation">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+  <h1 class="title">AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk</h1>
+  <p class="subtitle">Banking and Financial Intermediation</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mingze Gao 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Applied Finance
+          </p>
+    </div>
+</div>
+
+  <p class="date">2024-10-16</p>
+</section>
+<section>
+<section id="sovereign-risk-foreign-exchange-risk-and-off-balance-sheet-risk" class="title-slide slide level1 center">
+<h1>Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk</h1>
+
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li><p><strong>Foreign Exchange Risk</strong>: Also known as currency risk, this is the potential for losses due to changes in exchange rates. It affects businesses and financial institutions involved in cross-border transactions, as fluctuations can alter the value of foreign-denominated assets, liabilities, or revenues.</p></li>
+<li><p><strong>Sovereign Risk</strong>: This risk arises when a government defaults on its debt or restricts its residents from fulfilling international debt obligations. It reflects the political and economic stability of a country, impacting investors and financial institutions with exposure to that country’s assets.</p></li>
+<li><p><strong>Off-Balance-Sheet Risk</strong>: These are risks associated with contingent liabilities or commitments that do not appear on the balance sheet. Common examples include guarantees, derivatives, and letters of credit, which can lead to substantial losses if the underlying exposures materialize.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="foreign-exchange-risk" class="title-slide slide level1 center">
+<h1>Foreign exchange risk</h1>
+
+</section>
+<section id="foreign-exchange-rates" class="slide level2">
+<h2>Foreign exchange rates</h2>
+<p>A foreign exchange (FX) rate is the price at which one currency (e.g., the U.S. dollar) can be exchanged for another currency (e.g., the Australian dollar).</p>
+<p>Two basic types of FX transactions:</p>
+<ol type="1">
+<li><strong>Spot FX transactions</strong> involve the immediate settlement, or exchange, of currencies at the current (spot) exchange rate.</li>
+<li><strong>Forward FX transactions</strong> involve the exchange of currencies at a specified exchange rate (i.e., the forward exchange rate) which is settled at some specified date in the future.</li>
+</ol>
+</section>
+<section id="source-of-fx-risk-exposure" class="slide level2">
+<h2>Source of FX risk exposure</h2>
+<p>Assets and liabilities denominated in foreign currencies</p>
+<ul>
+<li>making foreign currency loans</li>
+<li>issuing foreign currency-denominated debt</li>
+</ul>
+<p>The trading of foreign currencies involves</p>
+<ul>
+<li>purchase and sale of currencies to complete international transactions</li>
+<li>facilitating positions in foreign real and financial investments</li>
+<li>accommodating hedging activities</li>
+<li>speculation</li>
+</ul>
+<p>Substantial risk arises via open positions (unhedged positions).</p>
+</section>
+<section id="fx-exposure" class="slide level2">
+<h2>FX exposure</h2>
+<p>An FI’s overall FX exposure in any given currency can be measured by the net position exposure, which is measured in local currency as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Net exposure}_i &amp;= (\text{FX assets}_i - \text{FX liabilities}_i) + (\text{FX bought}_i - \text{FX sold}_i) \\
+&amp;=\text{Net foreign assets}_i + \text{Net FX bought}_i
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(i\)</span> represents the <span class="math inline">\(i\)</span>th currency.</p>
+<div class="fragment">
+<p>FI could match its foreign currency assets to its liabilities in a given currency and match buys and sells in its trading book in that foreign currency</p>
+<ul>
+<li>reduce its foreign exchange net exposure to zero and thus avoid FX risk.</li>
+</ul>
+<p>Financial holding companies can aggregate their foreign exchange exposure through their banking, insurance and funds management businesses under one umbrella</p>
+<ul>
+<li>allows them to reduce their net foreign exchange exposure across all units.</li>
+</ul>
+</div>
+</section>
+<section id="fx-rate-volatility-and-fx-exposure" class="slide level2">
+<h2>FX rate volatility and FX exposure</h2>
+<p>We can measure the potential size of an FI’s FX exposure as:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Dollar loss/gains in currency } i &amp;= \text{Net exposure in foreign currency } i \text{ measured in local currency} \\
+&amp;\times \text{Shock (volatility) to the exchange rate of local currency to foreign currency } i
+\end{aligned}
+\]</span></p>
+<ul>
+<li>Greater exposure to a foreign currency combined with greater volatility of the foreign currency implies greater <em>daily earnings at risk (DEAR)</em>.</li>
+<li>Reason for FX volatility: fluctuations in the demand for and supply of a country’s currency</li>
+</ul>
+</section>
+<section id="fx-rate-volatility-and-fx-exposure-contd" class="slide level2">
+<h2>FX rate volatility and FX exposure (cont’d)</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Dollar loss/gains in currency } i &amp;= \text{Net exposure in foreign currency } i \text{ measured in local currency} \\
+&amp;\times \text{Shock (volatility) to the exchange rate of local currency to foreign currency } i
+\end{aligned}
+\]</span></p>
+<div title="Example">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Example</strong></p>
+</div>
+<div class="callout-content">
+<p>On September 8, 2024, an Australian FI has a net exposure to New Zealand dollar (NZD) of NZD$1,000,000. The exchange rate of AUD to NZD was 1.08 AUD/NZD.</p>
+<p>It is now October 8, 2024, and the exchange rate becomes 1.10 AUD/NZD. The AUD has <em>depreciated</em> in value relative to the NZD. Calculate the FI’s dollar loss/gain for this shock to the AUD/NZD exchange rate.</p>
+<ul>
+<li>The AUD value of the NZD position on September 8 is <span class="math inline">\(\$1,000,000\times 1.08=\$1,080,000\)</span>.</li>
+<li>The AUD value of the NZD position on October 8 is <span class="math inline">\(\$1,000,000\times 1.10=\$1,100,000\)</span>.</li>
+<li>The gain from the net long position in NZD is <span class="math inline">\(\$1,100,000-\$1,080,000=\$20,000\)</span>.</li>
+</ul>
+<p>Or, the dollar loss/gain is</p>
+<p><span class="math inline">\(\text{NZD}\$1,000,000 \times (1.10 - 1.08) = \text{AUD}\$20,000\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="fx-rate-volatility-and-fx-exposure-contd-1" class="slide level2">
+<h2>FX rate volatility and FX exposure (cont’d)</h2>
+<p>The FI has a €2.0 million long trading position in spot euros at the close of business on a particular day. The exchange rate is €0.80/$1, or $1.25/€, at the daily close. Looking back at the daily changes in the exchange rate of the euro to dollars for the past year, the FI finds that the volatility or standard deviation (<span class="math inline">\(\sigma\)</span>) of the spot exchange rate was 50 basis points (bp). What is the DEAR?</p>
+<div class="fragment">
+<p><span class="math display">\[
+\text{DEAR} = \text{Dollar value of position} \times \text{FX volatility}
+\]</span></p>
+<ul>
+<li>Dollar value of position = €2.0 x 1.25 $/€ = $2.5 million</li>
+<li>FX volatility = 2.33<span class="math inline">\(\sigma\)</span> = 2.33 x 0.005 = 0.01165</li>
+<li>DEAR = $2,500,000 x 0.01165 = $29,125</li>
+</ul>
+</div>
+</section>
+<section id="interaction-of-interest-rate-inflation-and-exchange-rates" class="slide level2">
+<h2>Interaction of interest rate, inflation, and exchange rates</h2>
+<ul>
+<li>Global financial markets are increasingly interconnected, so are interest rates, inflation, and foreign exchange rates.</li>
+<li>We now explore how inflation in one country affects its foreign currency exchange rates, focusing on <strong>purchasing power parity (PPP)</strong>.</li>
+<li>Next, we examine the relationship between domestic/foreign interest rates and spot/forward foreign exchange rates, known as <strong>interest rate parity (IRP)</strong>.</li>
+</ul>
+</section>
+<section id="purchasing-power-parity" class="slide level2">
+<h2>Purchasing Power Parity</h2>
+<p>Nominal interest rate <span class="math inline">\(R\)</span> is basically the sum of inflation <span class="math inline">\(i\)</span> and real interest rate <span class="math inline">\(r\)</span>:</p>
+<p>For two countries, e.g., Australia (AU) and United States (US), we have:</p>
+<p><span class="math display">\[
+\begin{aligned}
+R_{AU} &amp;= i_{AU} + r_{AU} \\
+R_{US} &amp;= i_{US} + r_{US}
+\end{aligned}
+\]</span></p>
+<p>Assuming real interest rates are equal across countries: <span class="math inline">\(r_{AU}=r_{US}\)</span>, then</p>
+<p><span class="math display">\[
+R_{AU} - R_{US} = i_{AU} - i_{US}
+\]</span></p>
+<p>That is, the (nominal) interest rate spread between Australia and the United States represents the difference in inflation rates between the two countries.</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>When inflation rates and/or interest rates change, foreign exchange rates (without government control) should adjust to account for relative differences in the price levels (inflation) between the two countries.</p>
+</div>
+</div>
+</div>
+<p>The Purchasing Power Parity (PPP) is one theory explaining how this adjustment takes place.</p>
+</section>
+<section id="purchasing-power-parity-contd" class="slide level2">
+<h2>Purchasing Power Parity (cont’d)</h2>
+<p>Let’s think of an example to illustrate the idea of PPP.</p>
+<ul>
+<li>Imagine you have $1 and can buy one candy in the U.S. Now, let’s say in Japan, 100 yen also buys one candy.</li>
+<li><strong>If $1 is worth 100 yen</strong>, things are “balanced”.</li>
+<li>But if candy’s price in Japan increases to 150 yen (inflation in Japan), your $1 won’t buy as much candy anymore.</li>
+</ul>
+<p>PPP states that, in different countries, the same money should buy the same amount of goods and services. So, when prices change, the money’s value changes, too, to keep things fair.</p>
+<ul>
+<li>The relative value of money is the exchange rate!</li>
+</ul>
+</section>
+<section id="purchasing-power-parity-contd-1" class="slide level2">
+<h2>Purchasing Power Parity (cont’d)</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>The PPP says that the most important factor determining exchange rates is the price differences drive trade flows and thus demand for and supplies of currencies.</p>
+</div>
+</div>
+</div>
+<p>Specifically, the PPP theorem states that the change in the exchange rate between two countries’ currencies is proportional to the difference in the inflation rates in the two countries. That is:</p>
+<p><span class="math display">\[
+i_{domestic} - i_{foreign} = \frac{\Delta S_{domestic/foreign}}{S_{domestic/foreign}}
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(S_{domestic/foreign}\)</span> is the spot exchange rate of the domestic currency for the foreign currency</li>
+<li><span class="math inline">\(\Delta S_{domestic/foreign}\)</span> is the change in the one-period spot exchange rate</li>
+</ul>
+</section>
+<section id="purchasing-power-parity-contd-2" class="slide level2">
+<h2>Purchasing Power Parity (cont’d)</h2>
+<p>Suppose that the current spot exchange rate of Australian dollars for Chinese yuan, <span class="math inline">\(S_{AUD/CNY}\)</span>, is 0.17 (i.e.&nbsp;0.17 dollars, or 17 cents is equal to 1 yuan). The price of Chinese-produced goods increases by 10 per cent (i.e.&nbsp;inflation in China <span class="math inline">\(i_C\)</span>, is 10 per cent), and the Australian price index increases by 4 per cent (i.e.&nbsp;inflation in Australia, <span class="math inline">\(i_{AUS}\)</span>, is 4 per cent). What will be the change of the exchange rate?</p>
+<p>According to PPP:</p>
+<p><span class="math display">\[
+i_{AUS} - i_{C} = \frac{\Delta S_{AUD/CNY}}{S_{AUD/CNY}}
+\]</span></p>
+<p>So that</p>
+<p><span class="math display">\[
+0.04 - 0.1 = \frac{\Delta S_{AUD/CNY}}{0.17}
+\]</span></p>
+<p>Solving the equation, we get <span class="math inline">\(\Delta S_{AUD/CNY} = −0.0102\)</span>. Thus, it costs 1.02 cents less to receive a yuan. The Chinese yuan depreciates in value by 6 per cent against the Australian dollar as a result of its higher relative inflation rate. In other words, a 6 per cent fall in the yuan’s value translates into a new exchange rate of 0.1598 dollars per yuan.</p>
+</section>
+<section id="purchasing-power-parity-contd-3" class="slide level2">
+<h2>Purchasing Power Parity (cont’d)</h2>
+<p>The theory behind purchasing power parity is the <strong>law of one price</strong>, an economic concept which states that in an efficient market, if countries produce a good or service that is identical to that in other countries, that good or service must have a single price, no matter where it is purchased.</p>
+</section>
+<section id="interest-rate-parity" class="slide level2">
+<h2>Interest Rate Parity</h2>
+<p>To illustrate (covered) <strong>interest rate parity (IRP)</strong>, let’s consider two investment strategies.</p>
+<p>Strategy 1: Domestic Investment</p>
+<ul>
+<li>You invest $1 domestically at an interest rate <span class="math inline">\(r_d\)</span> for one period.</li>
+<li>After one period, your investment grows to <span class="math inline">\(1 + r_d\)</span>.</li>
+</ul>
+<p>Strategy 2: Foreign Investment with Forward Contract</p>
+<ul>
+<li>You convert $1 into foreign currency at the current spot exchange rate <span class="math inline">\(S\)</span>, which gives <span class="math inline">\(1/S\)</span> foreign currency.</li>
+<li>You then invest the foreign currency amount in a foreign asset at the interest rate <span class="math inline">\(r_f\)</span> for one period.</li>
+<li>After one period, this investment grows to <span class="math inline">\((1 + r_f)\)</span>.</li>
+<li>You lock in the forward exchange rate <span class="math inline">\(F\)</span> now to convert the foreign currency back to domestic currency after one period.</li>
+</ul>
+<p>For these two strategies to have the same return (and eliminate arbitrage opportunities), the returns on both should be equivalent when the foreign investment is converted back using the forward rate. This gives us the CIRP condition:</p>
+<p><span class="math display">\[
+1 + r_d = \frac{(1 + r_f) \cdot F}{S}
+\]</span></p>
+<p>Rearranging, we can see the relation between interest rates and the forward rate:</p>
+<p><span class="math display">\[
+F = S \cdot \frac{1 + r_d}{1 + r_f}
+\]</span></p>
+</section>
+<section id="interest-rate-parity-contd" class="slide level2">
+<h2>Interest Rate Parity (cont’d)</h2>
+<p>Assume the interest rate on Australian dollar securities at time <span class="math inline">\(t\)</span> equals 5 per cent and the interest rate on euro loans at time <span class="math inline">\(t\)</span> is 10 per cent. Further, suppose the $/€ spot exchange rate (<span class="math inline">\(S_t\)</span>) at time t is $0.60/€1 and the future exchange rate (<span class="math inline">\(F_t\)</span>) is $0.55/€1. If the spot exchange rate rises to $0.65/€1, what is the change on the forward exchange rate?</p>
+<div class="fragment">
+<div class="columns">
+<div class="column">
+<p>To find the change in the forward exchange rate due to a change in the spot exchange rate, we can start by using the IRP condition:</p>
+<p><span class="math display">\[
+F_t = S_t \cdot \frac{1 + r_d}{1 + r_f}
+\]</span></p>
+<ul>
+<li>Domestic interest rate (Australia), <span class="math inline">\(r_d = 5\% = 0.05\)</span></li>
+<li>Foreign interest rate (Euro), <span class="math inline">\(r_f = 10\% = 0.10\)</span></li>
+<li>Initial spot exchange rate, <span class="math inline">\(S_t = 0.60\)</span> AUD/EUR</li>
+<li>Initial forward exchange rate, <span class="math inline">\(F_t = 0.55\)</span> AUD/EUR</li>
+<li>New spot exchange rate, <span class="math inline">\(S'_t = 0.65\)</span> AUD/EUR</li>
+</ul>
+<p>Let’s calculate the new forward rate using CIRP, then we’ll find the change in the forward rate.</p>
+</div><div class="column">
+<p>Step 1: Calculate the New Forward Rate <span class="math inline">\(F'_t\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+F'_t &amp;= S'_t \cdot \frac{1 + r_d}{1 + r_f} \\
+     &amp;= 0.65 \cdot \frac{1 + 0.05}{1 + 0.10} \\
+     &amp;\approx 0.6205 \text{ AUD/EUR}
+\end{aligned}
+\]</span></p>
+<p>Step 2: Calculate the Change in the Forward Rate</p>
+<p>Now, find the change between the new forward rate and the initial forward rate:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Delta F_t &amp;= F'_t - F_t \\
+           &amp;= 0.6205 - 0.55 \\
+           &amp;\approx 0.0705 \text{ AUD/EUR}
+\end{aligned}
+\]</span></p>
+<p>The forward exchange rate increases by approximately 0.0704 AUD/EUR as a result of the rise in the spot exchange rate.</p>
+</div></div>
+</div>
+</section>
+<section id="managing-fx-risk" class="slide level2">
+<h2>Managing FX risk</h2>
+<p>On-balance-sheet hedging</p>
+<ul>
+<li>Requires duration matching to control exposure to foreign interest rate risk</li>
+<li>A direct match of foreign assets and liabilities can result in positive profits for the FI</li>
+</ul>
+<p>Off-balance-sheet hedging</p>
+<ul>
+<li>Uses forwards, futures, options and swaps</li>
+<li>Example: hedging with forwards allows FI to offset uncertainty regarding the future spot rate on a currency</li>
+</ul>
+</section></section>
+<section>
+<section id="sovereign-risk" class="title-slide slide level1 center">
+<h1>Sovereign risk</h1>
+
+</section>
+<section id="introduction-to-sovereign-risk" class="slide level2">
+<h2>Introduction to sovereign risk</h2>
+<ul>
+<li>Mismatches in the size and maturities of foreign assets and liabilities expose FIs to FX risk.</li>
+<li>Beyond FX risk, holding assets in a foreign country also exposes FIs to country or <strong>sovereign risk</strong>.
+<ul>
+<li>e.g., when the foreign corporation may be unable to repay the principal or interest on a loan even if it would like to.</li>
+<li>the government of the country in which a borrower is headquartered may prohibit or limit debt payments
+<ul>
+<li>foreign currency shortages, adverse political reasons, and more.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="credit-risk-vs-sovereign-risk" class="slide level2">
+<h2>Credit risk vs sovereign risk</h2>
+<ul>
+<li><p><strong>Credit Risk</strong>: This is the risk that a borrower (like a domestic firm) might refuse or be unable to repay its debt. If this happens, lenders can negotiate loan restructuring or, ultimately, pursue bankruptcy proceedings to recover assets. This type of risk is typically manageable through legal proceedings within the borrower’s own country.</p></li>
+<li><p><strong>Sovereign Risk</strong>: This arises when a government (such as the Greek government) intervenes, restricting a domestic corporation from repaying its foreign debts, regardless of the corporation’s financial health. Unlike credit risk, sovereign risk is largely out of the borrower’s control and independent of the borrower’s creditworthiness. In cases of sovereign risk, international lenders have limited legal options, as there’s no global court to enforce debt repayment or asset liquidation against a sovereign state.</p></li>
+</ul>
+<div class="fragment">
+<p>Therefore, lending decisions to parties in foreign countries require two steps:</p>
+<ol type="1">
+<li>credit quality assessment of borrower</li>
+<li>sovereign risk quality assessment of country</li>
+</ol>
+</div>
+</section>
+<section id="forms-of-sovereign-risk" class="slide level2">
+<h2>Forms of sovereign risk</h2>
+<p>A sovereign country’s (negative) decisions on its debt obligations or the obligations of its public and private organizations may take two forms: <strong>repudiation</strong> and <strong>restructuring</strong>.</p>
+<ol type="1">
+<li>Debt repudiation
+<ul>
+<li>An outright cancellation of all a borrower’s current and future foreign debt and equity obligations</li>
+<li>In 1996, World Bank, IMF and major governments around the world forgave the debt of the world’s poorest, most heavily indebted countries (HIPCs)</li>
+<li>By 2021, 36 countries had received debt relief under the HIPC initiative, 30 of them in Africa, which totaled a reduction of $76 billion on their outstanding debt</li>
+</ul></li>
+<li>Debt restructuring
+<ul>
+<li>Change the contractual terms of a loan, such as maturity and interest payment
+<ul>
+<li>Delay the payment</li>
+<li>Pay less interest</li>
+</ul></li>
+<li>Most common form of sovereign risk</li>
+</ul></li>
+</ol>
+</section>
+<section id="repudiation-vs-restructuring" class="slide level2">
+<h2>Repudiation vs restructuring</h2>
+<p>Repudiation was more common before World War II, while post World War II, restructuring is more likely.</p>
+<ul>
+<li>One reason is that most postwar international debt has been <strong>bank loans</strong>, while before the war it was mostly <strong>foreign bonds</strong>.</li>
+<li>Bondholders are diverse - hard to reach an agreement to changes in the contractual terms on a bond.</li>
+<li>Fewer FIs involved in international lending syndicates.</li>
+<li>Many international loan contracts contain “cross-default” provisions: one loan default automatically triggers all loans’ default to prevent a country from selectively defaulting.</li>
+<li>Bank bailouts for large banks create (mis)incentives.</li>
+</ul>
+</section>
+<section id="country-risk-evaluation" class="slide level2">
+<h2>Country risk evaluation</h2>
+<p>An FI can rely on both outside evaluation services or develop its internal evaluation models for sovereign risk.</p>
+<ul>
+<li>Outside Evaluation Models
+<ul>
+<li>The Euromoney Country Risk Index</li>
+<li>The Institutional Investor Credit Ratings</li>
+<li>OECD Country Risk Classifications</li>
+</ul></li>
+<li>Internal Evaluation Models
+<ul>
+<li>Statistical models</li>
+</ul></li>
+</ul>
+</section>
+<section id="statistical-models-for-country-risk-evaluation" class="slide level2">
+<h2>Statistical models for country risk evaluation</h2>
+<p>Most common form of country risk assessment scoring models based on economical factors</p>
+<ol type="1">
+<li>pick a set of variables that may be important in explaining restructuring probabilities</li>
+<li>develop the scoring model</li>
+</ol>
+<p>Commonly used economic ratios:</p>
+<ol type="1">
+<li>Total debt service ratio (TDSR)</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+TDSR &amp;= \frac{\text{Total debt service}}{\text{Exports}} \\
+     &amp;= \frac{\text{Interest} + \text{amortisation on debt}}{\text{Exports}} \\
+\end{aligned}
+\]</span></p>
+<p>A country’s exports are its primary way of generating dollars and other currencies.</p>
+<ul>
+<li>The higher the ratio, the higher sovereign risk.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Check data at <a href="https://databank.worldbank.org/source/world-development-indicators#">World Bank’s DataBank</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-models-for-country-risk-evaluation-contd" class="slide level2">
+<h2>Statistical models for country risk evaluation (cont’d)</h2>
+<ol start="2" type="1">
+<li>Import ratio (IR)</li>
+</ol>
+<p><span class="math display">\[
+IR = \frac{\text{Total imports}}{\text{Total FX reserves}}
+\]</span></p>
+<p>Imports to meet demands - sometimes even food is a vital import - requires FX reserves.</p>
+<ul>
+<li>The higher the ratio, the higher sovereign risk.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>In 2020, Greece’s IR was 626% while China’s IR aws 70%. Greece imported more goods and services than it had serves to pay for them.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-models-for-country-risk-evaluation-contd-1" class="slide level2">
+<h2>Statistical models for country risk evaluation (cont’d)</h2>
+<ol start="3" type="1">
+<li>Investment ratio (INVR)</li>
+</ol>
+<p><span class="math display">\[
+INVR = \frac{\text{Real investment}}{\text{GDP}}
+\]</span></p>
+<ul>
+<li>The higher the ratio, the lower sovereign risk (arguable).</li>
+</ul>
+</section>
+<section id="statistical-models-for-country-risk-evaluation-contd-2" class="slide level2">
+<h2>Statistical models for country risk evaluation (cont’d)</h2>
+<ol start="4" type="1">
+<li>Variance of export revenue (VAREX)</li>
+</ol>
+<p><span class="math display">\[
+VAREX = \sigma^2_{ER}
+\]</span></p>
+<ul>
+<li>The higher the variance, the higher sovereign risk.</li>
+</ul>
+</section>
+<section id="statistical-models-for-country-risk-evaluation-contd-3" class="slide level2">
+<h2>Statistical models for country risk evaluation (cont’d)</h2>
+<ol start="5" type="1">
+<li>Domestic money supply growth (MG)</li>
+</ol>
+<p><span class="math display">\[
+MG = \frac{\Delta M}{M}
+\]</span></p>
+<ul>
+<li>Weaken local currency by pushing up inflation rate.</li>
+<li>The higher the growth, the higher sovereign risk.</li>
+</ul>
+</section>
+<section id="statistical-models-for-country-risk-evaluation-contd-4" class="slide level2">
+<h2>Statistical models for country risk evaluation (cont’d)</h2>
+<p>Develop a scoring model <span class="math inline">\(f\)</span> as a function of the chosen economic variables:</p>
+<p><span class="math display">\[
+p = f(TDSR, IR, INVR, VAREX, MG, \dots)
+\]</span></p>
+<p>where <span class="math inline">\(p\)</span> can be the probability of restructuring.</p>
+</section></section>
+<section>
+<section id="off-balance-sheet-risk" class="title-slide slide level1 center">
+<h1>Off-balance-sheet risk</h1>
+
+</section>
+<section id="off-balance-sheet-obs-activities" class="slide level2">
+<h2>Off-balance-sheet (OBS) activities</h2>
+<p>OBS items are “off-balance-sheet” as they appear frequently as footnotes to financial statements.</p>
+<p>In economics terms, OBS items are <strong>contingent assets and liabilities</strong> that affect the future shape of an FI’s balance sheet. They potentially can produce positive or negative future cash flows for an FI.</p>
+<ul>
+<li>The true picture of net worth should include market value of on- and off-balance-sheet activities.</li>
+</ul>
+<p>Incentives to increase OBS activities:</p>
+<ul>
+<li>Generate additional income</li>
+<li>Avoid regulatory costs or taxes
+<ul>
+<li>Reserve requirements</li>
+<li>Deposit insurance premiums</li>
+<li>Capital adequacy requirements</li>
+</ul></li>
+</ul>
+</section>
+<section id="major-types-of-obs-activities" class="slide level2">
+<h2>Major types of OBS activities</h2>
+<ul>
+<li>Loan commitment: Contractual commitment to make a loan up to a stated amount at a given interest rate in the future.</li>
+<li>Letters of credit: Contingent guarantees sold by an FI to underwrite the performance of the buyer of the guaranty.</li>
+<li>Derivative contract: Agreement between two parties to exchange a standard quantity of an asset at a predetermined price at a specified date in the future.</li>
+<li>When-issued trading: Trading in securities prior to their actual issue.</li>
+<li>Loans sold: Loans originated by an FI and then sold to other investors that (in some cases) can be returned to the originating institution in the future if the credit quality of the loans deteriorates.</li>
+</ul>
+</section>
+<section id="loan-commitments" class="slide level2">
+<h2>Loan commitments</h2>
+<ul>
+<li>Commitment to make a loan up to a stated amount at a given interest rate in the future</li>
+<li>Nowadays very popular, sometimes more so than spot loans</li>
+<li>Charge up-front fee and back-end fee</li>
+</ul>
+<p>The <strong>upfront fee</strong> applies on the whole commitment size and the <strong>back-end fee</strong> applies on any unused balances at the end of the period.</p>
+<div title="Example of the fees">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Example of the fees</strong></p>
+</div>
+<div class="callout-content">
+<p>Suppose an FI gives an one-year $10 million loan commitment to a firm with an upfront fee of 1/8% and back-end fee of 1/4%.</p>
+<p>The upfront fee is <span class="math inline">\(\$10,000,000 \times 1/8\% = \$12,500\)</span>.</p>
+<p>If the firm takes down only $8 million over the year, the back-end fee is <span class="math inline">\(\$10,000,000\times 1/4\% = \$5,000\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="loan-commitments-contd" class="slide level2">
+<h2>Loan commitments (cont’d)</h2>
+<div class="columns">
+<div class="column">
+<p>For a one-year loan commitment, let:</p>
+<ul>
+<li>Base rate <span class="math inline">\(BR=12\%\)</span></li>
+<li>Risk premium <span class="math inline">\(\phi=2\%\)</span></li>
+<li>Upfront fee <span class="math inline">\(f_1=1/8\%\)</span></li>
+<li>Back-end fee <span class="math inline">\(f_2=1/4\%\)</span></li>
+<li>Compensating balance <span class="math inline">\(b=10\%\)</span></li>
+<li>Reserve requirements <span class="math inline">\(RR=10\%\)</span></li>
+<li>Average takedown rate <span class="math inline">\(td=75\%\)</span></li>
+</ul>
+</div><div class="column">
+<p>Then, the promised return <span class="math inline">\(1+k\)</span> of the loan commitment is</p>
+<p><span class="math display">\[
+\begin{aligned}
+1+k &amp;= 1+ \frac{f_1+f_2(1-td) + (BR+\phi) td}{td - b\times td (1-RR)} \\
+    &amp;= 1+ \frac{0.00125+0.0025(1-0.75) + (0.12+0.02) 0.75}{0.75 - 0.1\times 0.75 (1-0.1)} \\
+    &amp;= 1.1566
+\end{aligned}
+\]</span></p>
+<p>So <span class="math inline">\(k=15.66\%\)</span>.</p>
+</div></div>
+</section>
+<section id="risks-associated-with-loan-commitments" class="slide level2">
+<h2>Risks associated with loan commitments</h2>
+<ul>
+<li>Interest rate risk
+<ul>
+<li>On fixed-rate loan commitments the bank is exposed to interest rate risk</li>
+<li>On floating-rate commitments, there is still exposure to basis risk</li>
+</ul></li>
+<li>Draw-down risk
+<ul>
+<li>Uncertainty of timing of draw-downs exposes bank to risk</li>
+<li>Back-end fees are intended to reduce this risk</li>
+</ul></li>
+<li>Credit risk
+<ul>
+<li>Credit rating of the borrower may deteriorate over the life of the commitment</li>
+<li>Addressed through ‘adverse material change in conditions’ clause</li>
+</ul></li>
+<li>Aggregate funding risk
+<ul>
+<li>During a credit crunch, bank may find it difficult to meet all of the commitments (compare to externality effect)</li>
+<li>Bank may need to adjust its risk profile on the balance sheet in order to guard against future draw-downs on loan commitments</li>
+</ul></li>
+</ul>
+</section>
+<section id="letter-of-credit" class="slide level2">
+<h2>Letter of credit</h2>
+<ol type="1">
+<li>Documentary (Commercial) letters of credit (LCs)
+<ul>
+<li>Contingent guarantees to underwrite the trade or commercial performance</li>
+<li>Widely used in both domestic and international trade</li>
+</ul></li>
+</ol>
+
+<img data-src="./figures/fig-lc.png" class="r-stretch quarto-figure-center"><p class="caption">Commercial LC</p><ol start="2" type="1">
+<li>Standby letters of credit (SLCs)
+<ul>
+<li>Cover contingencies potentially more severe and less predictable than those covered by LCs</li>
+</ul></li>
+</ol>
+</section>
+<section id="risks-associated-with-letters-of-credit" class="slide level2">
+<h2>Risks associated with letters of credit</h2>
+<p>The buyer of the LC may fail to perform as promised under the contractual obligation</p>
+<ul>
+<li>During the GFC, many US firms were unable to pay their maturing commercial paper (CP) obligations in the US. The amount of potential defaults would have crippled already liquidity-strapped FIs that had written standby letters of credit backing the CP issues.</li>
+<li>In response, the US Federal Reserve Board (central bank) announced a support mechanism for the CP market to provide liquidity to short-term funding markets, through which the Federal Reserve purchased CPs.</li>
+<li>Thus rather than having to draw on FI letters of credit to pay the CP liabilities, the US government bailed out these securities and the FIs that were backing them.</li>
+</ul>
+</section>
+<section id="derivative-contract" class="slide level2">
+<h2>Derivative contract</h2>
+<ul>
+<li>FIs can be either
+<ul>
+<li>users of derivative contracts for hedging and other purposes, or</li>
+<li>dealers that act as counterparties in trades with customers for a fee</li>
+</ul></li>
+<li>In Australia, most banks act in both capacities</li>
+<li>Futures, forwards, swaps and options
+<ul>
+<li>Forward contracts involve substantial counterparty risk</li>
+<li>Other derivatives create far less default risk</li>
+<li>Market risk</li>
+</ul></li>
+</ul>
+</section>
+<section id="sale-of-when-issued-securities" class="slide level2">
+<h2>Sale of when-issued securities</h2>
+<ul>
+<li>Commitments to buy and sell securities before they are issued: ‘when issued (WI) trading’</li>
+<li>Example: new issue of T-Notes announced by RBA</li>
+<li>Banks who bid in the T-Notes auction can trade them before the announcement of the successful bidders through forward sales.</li>
+<li>FIs may sell the yet-to-be-issued Treasury securities for forward delivery to customers in the secondary market at a margin above the price they expect to pay at the tender.</li>
+<li>Risk of ‘over-commitment’</li>
+</ul>
+</section>
+<section id="loans-sold" class="slide level2">
+<h2>Loans sold</h2>
+<ul>
+<li>FI originates loans and sells them to outside investors</li>
+<li>Potential outside investors
+<ul>
+<li>Other banks</li>
+<li>Insurance companies</li>
+<li>Unit trusts</li>
+<li>Corporations</li>
+</ul></li>
+<li>Loans sold are an indication of FIs moving from asset-transformers to brokers</li>
+<li>Recourse:the ability to put an asset or loan back to the seller should the credit quality of that asset deteriorate
+<ul>
+<li>‘No recourse’: loan buyer bears all default risk if loan goes bad</li>
+<li>With recourse: long-term contingent credit risk for loan seller</li>
+</ul></li>
+</ul>
+</section>
+<section id="role-of-obs-activities-in-reducing-risk" class="slide level2">
+<h2>Role of OBS activities in reducing risk</h2>
+<ul>
+<li>OBS activities are not always risk-increasing activities</li>
+<li>In many cases they are hedging activities designed to mitigate exposure to interest rate risk, foreign exchange risk etc.</li>
+<li>OBS activities can decrease an FI’s insolvency risk</li>
+<li>OBS activities are frequently a source of fee income, especially for the largest, most credit-worthy banks</li>
+</ul>
+</section></section>
+<section>
+<section id="finally" class="title-slide slide level1 center">
+<h1>Finally…</h1>
+
+</section>
+<section id="suggested-readings" class="slide level2">
+<h2>Suggested readings</h2>
+</section>
+<section id="references" class="slide level2">
+<h2>References</h2>
+
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
