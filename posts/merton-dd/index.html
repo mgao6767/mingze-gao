@@ -386,6 +386,9 @@ DD=\frac{\ln(V/F)+ (\mu-0.5\sigma_V^2)T}{\sigma_V\sqrt{T}}
 <h3 class="anchored" data-anchor-id="my-code">My code</h3>
 <p>Based on the original SAS code in <span class="citation" data-cites="bharath_forecasting_2008">Bharath and Shumway (<a href="#ref-bharath_forecasting_2008" role="doc-biblioref">2008</a>)</span>, I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I’ve corrected the above issues.</p>
 <script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
+<p><strong>Note</strong>:</p>
+<p>The interest rate data from FRB on WRDS stopped in April 2020. See <a href="https://wrds-www.wharton.upenn.edu/pages/get-data/federal-reserve-bank-reports/">here</a>.</p>
+<p>To get estimates post 2020, we need to manually collect interest rate (3-month Treasury Bill) data and upload to WRDS. Then modify the relevant code, e.g.&nbsp;from line 96 to 117.</p>
 
 
 
