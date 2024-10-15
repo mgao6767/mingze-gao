@@ -4,7 +4,7 @@ subtitle: "Banking and Financial Intermediation"
 author: "Dr. Mingze Gao"
 institute: "Department of Applied Finance"
 date: 2024-10-23
-draft: true
+draft: false
 categories:
     - AFIN8003
     - 2024S2
@@ -196,8 +196,198 @@ Apart from credit risk management, there are some other reasons for FIs to sell 
 __Asset securitisation__ is another mechanism to manage credit risk, interest rate risk, liquidity and more.
 
 - It is the process of packaging loans or other assets into newly created securities and selling these asset-backed securities (ABS) to investors.
+- Two basic mechanisms of securitisation, but both involve the creation of off-balance-sheet subsidiaries:
+    - special-purpose vehicle (SPV, aka special-purpose entity, SPE)
+    - structured investment vehicle (SIV)
 
-## Mechanism
+The mechanism is:
+
+1. The loans are transferred from the originating FI to the SPV or SIV.
+2. The SPV or SIV securitizes the loans (either directly or through the issuance of asset-backed commercial paper) and then sells the resulting asset-backed securities to investors.
+3. The proceeds of the asset-backed security sale are paid to the FI that originates the loans.
+
+## Securitisation via SPV
+
+1. Bank pools loans and sells them to a SPV.
+2. SPV packages the loans, creates new securities backed by cash flows from the underlying pool, and sells them to investors.
+3. SPV earns fees from the creation and servicing of these securities.
+4. SPV ceases to exist when underlying loans mature.
+
+::: {.callout-note}
+The underlying loans belong to the ultimate investors in these ABS.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Securitisation via SPV (cont'd)
+:::
+
+![The Traditional Securitization Process Using a Special-Purpose Vehicle](./figures/SPV.png){fig-align="center"}
+
+## Securitisation via SIV
+
+1. Bank pools loans and sells them to a SIV.
+2. SIV manages the loans and sells commercial paper (or bonds) to investors.
+3. SIV earns fees and the expected spreads between loan returns and costs paid for the commercial paper (or bonds).
+4. SIV continues to exist!
+
+::: {.callout-note}
+The underlying loans belong to the SIV.
+:::
+
+__SIV acts like a traditional bank__: hold loans until maturity and issue __short-term__ debt instruments.
+
+- SIV cannot take deposits.
+- SIV faces run risk.
+
+::: {.content-hidden when-format="pdf"}
+## Securitisation via SIV (cont'd)
+:::
+
+![Securitization Process Using a Structured Investment Vehicle](./figures/SIV.png){fig-align="center"}
+
+## Three major forms of securitisation
+
+The major forms of asset securitisation are:
+
+1. the pass-through security, 
+2. the collateralized mortgage obligation (CMO), and 
+3. the mortgage-backed bond (MBB).
+
+## Pass-through security
+
+Pass-through securities "pass through" payments by underlying borrowers (e.g., household borrowers of mortgages) to secondary market investors holding an interest in the mortgage pool.
+
+- Each pass-through security represents a fractional ownership share in a mortgage pool.
+- 1% ownership is entitled to 1% share of the principal and interest payment made over the life of mortgages underlying the pool.
+- Prepayment risk.
+
+::: {.callout-note}
+Pass-throughs are the primary mechanism for securitisation.
+:::
+
+## Collateralized Mortgage Obligation (CMO)
+
+CMO is a second and growing securitisation mechanism.
+
+- CMO repackages the cash flows from mortgages differently to create a multi-class pass-through.
+- Each bond class (tranche) has a different guaranteed coupon.
+- But the allocation of early cash flows from mortgage prepayments has an pre-specified order, thereby mitigating prepayment risk.
+
+
+::: {.content-hidden when-format="pdf"}
+## Collateralized Mortgage Obligation (CMO) (cont'd)
+:::
+
+__Class A__
+
+- Prepayment used to first retire principal of Class A.
+- Minimum prepayment protection.
+- Shortest average life.
+- Depositary institutions are large buyers.
+
+__Class B__
+
+- Some prepayment protection.
+- Expected durations from five to seven years.
+- Pension funds and life insurance companies are primary buyers.
+
+__Class C__
+
+- Long expected duration.
+- Attractive to insurance companies and pension funds seeking long-duration assets.
+
+
+## Mortgage-Backed Bond (MBB) and Covered Bond
+
+MBB or covered bonds are the third securitisation vehicle.
+
+They differ from pass-throughs and CMOs in two main aspects:
+
+1. MBBs normally remain on the balance sheet.
+2. No direct link between cash flows on the underlying assets and the cash flows on the bond vehicles.
+
+::: {.callout-note}
+Underlying mortgages are more of _collateral_ for the MBBs.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Mortgage-Backed Bond (MBB) and Covered Bond (cont'd)
+:::
+
+The process involved:
+
+1. The FI segregates a group of mortgage assets on its balance sheet and pledges (covers) this group as collateral against the MBB issue.
+2. A trustee normally monitors the segregation of assets and makes sure that the market value of the collateral exceeds the principal owed to MBB holders. 
+3. As a result, FIs back most MBB issues by __excess collateral__.
+4. This excess collateral ensures that these bonds can be sold with a high credit rating (can be even higher than the FI itself).
+
+## The goods and bads about MBB and covered bond
+
+However, MBBs are less appealing to FIs for a number of reasons:
+
+1. The underlying mortgages remain on the FI's balance sheet.
+2. Excess collateral exacerbates the size of mortgages tied up on the FI's balance sheet.
+3. The FI remains liable for capital adequacy and reserve requirement taxes due to these mortgages staying on balance sheet.
+
+::: {.content-hidden when-format="pdf"}
+## The goods and bads about MBB and covered bond (cont'd)
+:::
+
+::: {.callout-caution}
+But FIs issuing MBBs could gain at the cost of taxpayers' money (deposit insurance)! Let's see why.
+:::
+
+Consider an FI with $20 million in long-term mortgages as assets financed with $10 million in short-term uninsured deposits and $10 million in insured deposits. 
+
+|       Assets         |        |     Liabilities      |        |
+|----------------------|--------|----------------------|--------|
+| Long-term mortgages  | $20    | Insured deposits     | $10    |
+|                      |        | Uninsured deposits   | $10    |
+|                      | $20    |                      | $20    |
+
+- A positive duration gap: interest rate risk and more.
+- Uninsured depositors are likely demand higher interest rate for their deposits.
+- Insured depositors may demand interest rate marginally above the risk-free rate (since their deposits are fully insured).
+
+::: {.content-hidden when-format="pdf"}
+## The goods and bads about MBB and covered bond (cont'd)
+:::
+
+To lower the duration gap and funding cost, the FI may choose securitisation via MBB issue.
+
+- Pledge $12 million of the mortgages as collateral backing a $10 million long-term MBB issue.
+- This excess collateralization reduces the required yield on the MBB, to maybe even lower than the interest rate for uninsured deposits.
+- The FI can use the proceeds to retire the $10 million of uninsured deposits.
+
+| Assets                                            |     | Liabilities      |     |
+|---------------------------------------------------|-----|------------------|-----|
+| Collateral (market value of segregated mortgages) | $12 | MBB issue        | $10 |
+| Other mortgages                                   | 8   | Insured deposits | $10 |
+|                                                   | $20 |                  | $20 |
+
+::: {.callout-important}
+The $10 million insured deposits are now backed only by $8 million in unpledged assets!!
+:::
+
+## Securitisation of non-mortgage assets
+
+The major use of the three securitisation vehicles (pass-throughs, CMOs and MBBs) packages fixed-rate mortgages. But securitisation can also be applied for other assets:
+
+- Automobile loans.
+- Credit card receivables (certificates of amortizing revolving debts).
+- Small business loans guaranteed by the Small Business Administration.
+- Junk bonds.
+- Adjustable rate mortgages.
+- Commercial and industrial loans [collateralized loan obligations (CLOs)].
+- __Leveraged loans (CLOs)__.
+
+## Leveraged loans via CLOs
+
+- In September 2018, the Federal Reserve highlighted leveraged loans as a financial stability risk, with similar warnings from the Bank of England, IMF, and BIS.
+- The U.S. leveraged loan market doubled in six years, with high-risk loans (debt over five times EBITDA) making up half of new corporate issuances, surpassing pre-crisis levels.
+- Rising interest rates led money managers to invest heavily in leveraged loans via CLOs, expanding the market to $1.3 trillion—equivalent to the 2007 subprime mortgage market.
+- Investor demand led to weaker protections on loans to junk-rated companies, with 86% now __"covenant-lite"__, compared to less than 25% in 2006-2007 [@berlin_concentration_2020].
+- The rating quality of leveraged loans declined, with over 60% rated B2 or lower by 2021, yet CLOs still purchase 60-70% of these syndicated loans.
 
 
 # Finally...
@@ -205,6 +395,7 @@ __Asset securitisation__ is another mechanism to manage credit risk, interest ra
 ## Suggested readings
 
 - [Loan Syndications and Trading Association (LSTA)](https://www.lsta.org/).
+- Berlin, M., Nini, G., & Yu, E. G. (2020). [Concentration of control rights in leveraged loan syndicates](https://phds.io/papers/?all=covenant+lite). _Journal of Financial Economics_, 137, 249–271.
 - Irani, R. M., Iyer, R., Meisenzahl, R. R., & Peydró, J.-L. (2021). [The Rise of Shadow Banking: Evidence from Capital Regulation](https://phds.io/papers/?title=The+Rise+of+Shadow+Banking:+Evidence+from+Capital+Regulation). _The Review of Financial Studies_, 34, 2181–2235..
 
 ## References
