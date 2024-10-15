@@ -171,3 +171,9 @@ A copy of this version can be found here on [GitHub](https://gist.github.com/mga
 Based on the original SAS code in @bharath_forecasting_2008, I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I've corrected the above issues.
 
 <script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
+
+__Note__:
+
+The interest rate data from FRB on WRDS stopped in April 2020. See [here](https://wrds-www.wharton.upenn.edu/pages/get-data/federal-reserve-bank-reports/).
+
+To get estimates post 2020, we need to manually collect interest rate (3-month Treasury Bill) data and upload to WRDS. Then modify the relevant code, e.g. from line 96 to 117.
