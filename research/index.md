@@ -57,7 +57,7 @@ cap-location: margin
 
 [Catering to Environmental Premium in Green Venture Financing](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222), with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
-- AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
+- RBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
 
 [Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756), with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
 
@@ -65,7 +65,7 @@ cap-location: margin
 
 Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
-- FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
+- MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
 Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
 
