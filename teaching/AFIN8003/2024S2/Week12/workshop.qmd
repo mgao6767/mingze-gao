@@ -1,0 +1,373 @@
+---
+title: "AFIN8003 - Workshop 12"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-10-23
+categories:
+    - AFIN8003
+    - 2024S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop12.pdf"
+# Custom fields
+pdf-name: "Workshop12.pdf"
+include-answers: false
+---
+
+# MCQ
+
+1. The originate-to-distribute model involves:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Making loans and holding them until maturity, then reissuing.
+   - [ ] Making loans, selling loans and securitizing, then using proceeds to originate new loans.
+   - [ ] Making loans and securitizing them without selling.
+   - [ ] Making loans and keeping all loans on the balance sheet without further distribution.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Making loans and holding them until maturity, then reissuing.
+   - [x] Making loans, selling loans and securitizing, then using proceeds to originate new loans.
+   - [ ] Making loans and securitizing them without selling.
+   - [ ] Making loans and keeping all loans on the balance sheet without further distribution.
+   :::
+
+
+2. In a loan sale without recourse, the selling financial institution (FI):
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Retains liability if the loan defaults.
+   - [ ] Has no liability if the loan defaults.
+   - [ ] Shares liability with the buyer.
+   - [ ] Provides additional collateral in case of loan default.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Retains liability if the loan defaults.
+   - [x] Has no liability if the loan defaults.
+   - [ ] Shares liability with the buyer.
+   - [ ] Provides additional collateral in case of loan default.
+   :::
+
+3. Traditional short-term loan sales typically:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Are secured by assets and issued for terms longer than 3 years.
+   - [ ] Are secured, short-term, and tied to the commercial paper rate.
+   - [ ] Are unsecured, long-term, and tied to the LIBOR rate.
+   - [ ] Are distressed loans with significant covenant protection.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Are secured by assets and issued for terms longer than 3 years.
+   - [x] Are secured, short-term, and tied to the commercial paper rate.
+   - [ ] Are unsecured, long-term, and tied to the LIBOR rate.
+   - [ ] Are distressed loans with significant covenant protection.
+   :::
+
+4. A distinguishing feature of leveraged loans is that they:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Have short maturities and fixed interest rates.
+   - [ ] Are always issued at a premium to the face value.
+   - [ ] Often have higher spreads and strong covenant protection.
+   - [ ] Are only issued to investment-grade borrowers.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Have short maturities and fixed interest rates.
+   - [ ] Are always issued at a premium to the face value.
+   - [x] Often have higher spreads and strong covenant protection.
+   - [ ] Are only issued to investment-grade borrowers.
+   :::
+
+5. Loan sales by "Assignment" involve:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Transferring only part of the loan rights to the buyer.
+   - [ ] Transferring all rights and claims on the borrower to the buyer.
+   - [ ] Allowing the buyer to control the original credit agreement.
+   - [ ] Keeping ownership with the seller.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Transferring only part of the loan rights to the buyer.
+   - [x] Transferring all rights and claims on the borrower to the buyer.
+   - [ ] Allowing the buyer to control the original credit agreement.
+   - [ ] Keeping ownership with the seller.
+   :::
+
+6. Typical buyers in the bank loan sales market include:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Only other commercial banks.
+   - [ ] Primarily government agencies and investment banks.
+   - [ ] Investment banks, insurance companies, vulture funds, and pension funds.
+   - [ ] Only foreign banks and mutual funds.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Only other commercial banks.
+   - [ ] Primarily government agencies and investment banks.
+   - [x] Investment banks, insurance companies, vulture funds, and pension funds.
+   - [ ] Only foreign banks and mutual funds.
+   :::
+
+7. In a "Participation" loan sale contract, the buyer:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Holds a direct claim on the borrower.
+   - [ ] Gains full control over loan contract terms.
+   - [ ] Assumes risk both from the borrower and the selling FI.
+   - [ ] Becomes the primary creditor.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Holds a direct claim on the borrower.
+   - [ ] Gains full control over loan contract terms.
+   - [x] Assumes risk both from the borrower and the selling FI.
+   - [ ] Becomes the primary creditor.
+   :::
+
+8. Financial institutions sell loans to achieve which of the following?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Shift credit risk and reduce liabilities.
+   - [ ] Earn fee income, reduce reserve requirements, and improve liquidity.
+   - [ ] Expand lending portfolios by originating new loans.
+   - [ ] Avoid compliance with Basel III capital requirements.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Shift credit risk and reduce liabilities.
+   - [x] Earn fee income, reduce reserve requirements, and improve liquidity.
+   - [ ] Expand lending portfolios by originating new loans.
+   - [ ] Avoid compliance with Basel III capital requirements.
+   :::
+
+9. A typical seller in the loan sales market is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Vulture funds.
+   - [ ] Bank loan mutual funds.
+   - [ ] Major money center banks.
+   - [ ] Domestic insurance companies.
+   :::
+
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Vulture funds.
+   - [ ] Bank loan mutual funds.
+   - [x] Major money center banks.
+   - [ ] Domestic insurance companies.
+   :::
+
+10. Asset securitisation is primarily aimed at managing:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Credit risk and market risk.
+    - [ ] Interest rate risk, credit risk, and liquidity.
+    - [ ] Only liquidity risk.
+    - [ ] Operational risk and liquidity.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Credit risk and market risk.
+    - [x] Interest rate risk, credit risk, and liquidity.
+    - [ ] Only liquidity risk.
+    - [ ] Operational risk and liquidity.
+    :::
+
+11. In a securitisation process, a special-purpose vehicle (SPV) or structured investment vehicle (SIV) is used to:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Ensure loans remain on the originating FI’s balance sheet.
+    - [ ] Securitize loans and issue asset-backed securities to investors.
+    - [ ] Manage loan defaults on the FI’s behalf.
+    - [ ] Act as a bank for short-term lending.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Ensure loans remain on the originating FI’s balance sheet.
+    - [x] Securitize loans and issue asset-backed securities to investors.
+    - [ ] Manage loan defaults on the FI’s behalf.
+    - [ ] Act as a bank for short-term lending.
+    :::
+
+12. In the securitisation process via SPV, the SPV:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Holds loans until maturity and issues short-term debt.
+    - [ ] Packages loans, creates new securities, and sells them to investors.
+    - [ ] Manages loans indefinitely.
+    - [ ] Faces run risk similar to banks.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Holds loans until maturity and issues short-term debt.
+    - [x] Packages loans, creates new securities, and sells them to investors.
+    - [ ] Manages loans indefinitely.
+    - [ ] Faces run risk similar to banks.
+    :::
+
+13. Which of the following is the primary form of securitisation that involves passing payments from borrowers directly to investors?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Pass-through security.
+    - [ ] Collateralized mortgage obligation (CMO).
+    - [ ] Mortgage-backed bond (MBB).
+    - [ ] Structured investment vehicle (SIV).
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [x] Pass-through security.
+    - [ ] Collateralized mortgage obligation (CMO).
+    - [ ] Mortgage-backed bond (MBB).
+    - [ ] Structured investment vehicle (SIV).
+    :::
+
+14. Collateralized Mortgage Obligations (CMOs) differ from pass-through securities because they:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Guarantee higher returns for all investors.
+    - [ ] Allocate prepayments in a specified order across different tranches.
+    - [ ] Are held on the originating FI’s balance sheet.
+    - [ ] Are primarily issued by commercial banks.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Guarantee higher returns for all investors.
+    - [x] Allocate prepayments in a specified order across different tranches.
+    - [ ] Are held on the originating FI’s balance sheet.
+    - [ ] Are primarily issued by commercial banks.
+    :::
+
+15. Which of the following investors typically buys the Class A tranche in a CMO?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Insurance companies seeking long-duration assets.
+    - [ ] Depositary institutions due to its short average life.
+    - [ ] Pension funds seeking medium-term investments.
+    - [ ] Hedge funds looking for distressed assets.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Insurance companies seeking long-duration assets.
+    - [x] Depositary institutions due to its short average life.
+    - [ ] Pension funds seeking medium-term investments.
+    - [ ] Hedge funds looking for distressed assets.
+    :::
+
+16. Mortgage-backed bonds (MBBs) differ from pass-throughs and CMOs in that they:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Are linked directly to underlying mortgage cash flows.
+    - [ ] Involve excess collateral and remain on the balance sheet.
+    - [ ] Provide investors a fractional ownership in the mortgage pool.
+    - [ ] Require no excess collateral.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Are linked directly to underlying mortgage cash flows.
+    - [x] Involve excess collateral and remain on the balance sheet.
+    - [ ] Provide investors a fractional ownership in the mortgage pool.
+    - [ ] Require no excess collateral.
+    :::
+
+17. What is a primary disadvantage for financial institutions (FIs) issuing mortgage-backed bonds (MBBs)?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] MBBs are linked directly to the underlying mortgage cash flows.
+    - [ ] MBBs attract investors seeking high-risk returns.
+    - [ ] Underlying mortgages stay on the FI’s balance sheet, impacting capital requirements.
+    - [ ] FIs cannot gain from deposit insurance when issuing MBBs.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] MBBs are linked directly to the underlying mortgage cash flows.
+    - [ ] MBBs attract investors seeking high-risk returns.
+    - [x] Underlying mortgages stay on the FI’s balance sheet, impacting capital requirements.
+    - [ ] FIs cannot gain from deposit insurance when issuing MBBs.
+    :::
+
+18. In September 2018, leveraged loans were flagged as a financial stability risk due to:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] A low demand for leveraged loans from investors.
+    - [ ] Increasing protections on loans issued to junk-rated companies.
+    - [ ] High-risk loans and significant growth in the leveraged loan market.
+    - [ ] The rising credit ratings of leveraged loans.
+    :::
+
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] A low demand for leveraged loans from investors.
+    - [ ] Increasing protections on loans issued to junk-rated companies.
+    - [x] High-risk loans and significant growth in the leveraged loan market.
+    - [ ] The rising credit ratings of leveraged loans.
+    :::
+
+# Exercise
+
+Go to the FDIC website at [https://www.fdic.gov/buying/historical/index.html](https://www.fdic.gov/buying/historical/index.html). From there, click on “Closed Loan Sales,” and then click on “Find” to get information on recent loan sales by banks. What percentage of the current year’s loan sales consisted of performing versus nonperforming loans? Calculate the average percentage loss on these sales.
+
+
+# Short answer questions
+
+## Q1
+
+An FI is planning the purchase of a $5 million loan to raise the existing average duration of its assets from 3.5 years to 5 years. It currently has total assets worth $20 million, $5 million in cash (0 duration) and $15 million in loans. All the loans are fairly priced.
+
+(a) Assuming it uses the cash to purchase the loan, should it purchase the loan if its duration is seven years?
+(b) What asset duration loans should it purchase in order to raise its average duration to five years?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+
+    The duration of the existing loan is:
+    0 + $15m/$20m(X) = 3.5 years, so existing loan's duration = 4.667 years
+
+    If it purchases $5 million of loans with an average duration of 7 years, its portfolio duration will increase to $5m/$20m(7) +$15m/$20m(4.667) = 5.25 years. In this case, the average duration will be above 5 years. The FI may be better off seeking another loan with a slightly lower duration.
+
+(b) 
+
+    The FI should seek to purchase a loan of duration $D$:
+
+    $5m/$20m(D) + $15m/$20m(4.667 years) = 5 years, so D = 6 years.
+:::
+:::
+
+## Q2
+
+How does an FI use securitization to manage interest rate, credit, and liquidity risks? Summarize how each of the possible methods of securitization products affects the balance sheet and profitability of an FI in the management of these risks.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Financial institutions (FIs) use securitisation to manage interest rate, credit, and liquidity risks by converting assets, primarily loans, into securities that can be sold to investors, transferring various risks off their balance sheets.
+
+1. **Interest Rate Risk**: Securitisation allows FIs to remove interest-sensitive assets from their balance sheets, reducing their exposure to fluctuations in interest rates. For example:
+   - **Pass-through securities** transfer the interest rate risk directly to investors, as payments from underlying borrowers pass through to security holders.
+   - **Collateralized Mortgage Obligations (CMOs)** provide structured risk management by dividing cash flows into tranches with varying levels of protection against prepayment risk, allowing FIs to mitigate exposure to interest rate changes more strategically.
+
+2. **Credit Risk**: By selling loans to a special-purpose vehicle (SPV) or structured investment vehicle (SIV), FIs transfer credit risk to investors who purchase the resulting asset-backed securities (ABS). The loans are now on the balance sheets of the SPV/SIV, isolating the FI from borrower default risk. (On the other hand, loans underlying Mortgage-Backed Bonds (MBBs) remain on the FI’s balance sheet. Excess collateral is used to reduce credit risks for MBB investors.)
+
+3. **Liquidity Risk**: Securitisation enhances liquidity by converting illiquid loans into marketable securities that provide immediate cash inflows. Products like **pass-throughs** and **CMOs** generate funds that can be reinvested or used for other obligations, improving the FI’s ability to meet cash flow needs. The SPV-based model ensures that assets are moved off the FI’s balance sheet, while SIVs manage liquidity by issuing short-term debt (e.g., commercial paper) supported by loan returns.
+
+Balance Sheet and Profitability Impact:
+
+- **Off-Balance-Sheet Treatment**: Pass-through securities and CMOs, transferred to an SPV/SIV, reduce the asset base and free up capital, potentially lowering regulatory capital requirements and improving return on equity.
+- **Profitability**: Fee income from originating, structuring, and servicing securitised products boosts non-interest income, while risk reduction in interest rate and credit exposure contributes to more stable profitability. However, MBBs, which remain on the balance sheet, increase collateral requirements and may add to regulatory capital obligations, impacting net profits.
+:::
+:::
