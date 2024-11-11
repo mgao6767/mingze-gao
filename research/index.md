@@ -58,6 +58,7 @@ cap-location: margin
 [Catering to Environmental Premium in Green Venture Financing](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222), with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
 - RBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.
+- [Podcast](https://www.dropbox.com/scl/fi/zn2ahdzvyu4jg5gwr8kcu/Catering-to-Environmental-Premium-in-Green-Venture-Financing.wav?rlkey=p9lvr0xjomf8qbr737zy8mizd&st=05vizcv2&dl=0) by NotebookLM.
 
 [Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756), with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
 
