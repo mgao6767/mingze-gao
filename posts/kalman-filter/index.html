@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mingze Gao">
+<meta name="dcterms.date" content="2024-11-28">
+
+<title>Kalman Filter – Mingze Gao</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Kalman Filter – Mingze Gao">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/kalman-filter/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intuition" id="toc-intuition" class="nav-link active" data-scroll-target="#intuition">Intuition</a></li>
+  <li><a href="#a-more-elaborated-presentation" id="toc-a-more-elaborated-presentation" class="nav-link" data-scroll-target="#a-more-elaborated-presentation">A more elaborated presentation</a>
+  <ul class="collapse">
+  <li><a href="#the-setup" id="toc-the-setup" class="nav-link" data-scroll-target="#the-setup">The setup</a></li>
+  <li><a href="#predicting-the-state" id="toc-predicting-the-state" class="nav-link" data-scroll-target="#predicting-the-state">Predicting the state</a></li>
+  <li><a href="#state-update" id="toc-state-update" class="nav-link" data-scroll-target="#state-update">State update</a></li>
+  <li><a href="#kalman-gain" id="toc-kalman-gain" class="nav-link" data-scroll-target="#kalman-gain">Kalman gain</a></li>
+  <li><a href="#variance-update" id="toc-variance-update" class="nav-link" data-scroll-target="#variance-update">Variance update</a></li>
+  </ul></li>
+  <li><a href="#kalman-filter" id="toc-kalman-filter" class="nav-link" data-scroll-target="#kalman-filter">Kalman filter</a>
+  <ul class="collapse">
+  <li><a href="#state-space" id="toc-state-space" class="nav-link" data-scroll-target="#state-space">State space</a></li>
+  <li><a href="#measurement-space" id="toc-measurement-space" class="nav-link" data-scroll-target="#measurement-space">Measurement space</a></li>
+  <li><a href="#prediction-step" id="toc-prediction-step" class="nav-link" data-scroll-target="#prediction-step">Prediction step</a></li>
+  <li><a href="#update-step" id="toc-update-step" class="nav-link" data-scroll-target="#update-step">Update step</a></li>
+  <li><a href="#updated-covariance" id="toc-updated-covariance" class="nav-link" data-scroll-target="#updated-covariance">Updated covariance</a></li>
+  </ul></li>
+  <li><a href="#estimation-of-the-kalman-filter" id="toc-estimation-of-the-kalman-filter" class="nav-link" data-scroll-target="#estimation-of-the-kalman-filter">Estimation of the Kalman filter</a>
+  <ul class="collapse">
+  <li><a href="#general-steps" id="toc-general-steps" class="nav-link" data-scroll-target="#general-steps">General steps</a></li>
+  <li><a href="#example-and-code" id="toc-example-and-code" class="nav-link" data-scroll-target="#example-and-code">Example and code</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Kalman Filter</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Teaching Notes</div>
+    <div class="quarto-category">Research Notes</div>
+    <div class="quarto-category">Programming</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 28, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is a note as I study and understand Kalman filter. It does NOT derive Kalman filter but explains it to the best of my ability. A handwritten Python code to estimate Kalman filter is provided because I’d like to practice its implementation, but I recommend using established program/software for better numerical stability and performance.</p>
+<section id="intuition" class="level2">
+<h2 class="anchored" data-anchor-id="intuition">Intuition</h2>
+<p>Imagine we are estimating the <em>true inflation rate</em>, <span class="math inline">\(x_t\)</span>, a state of the economy that is unobservable. We rely on two pieces of information:</p>
+<ol type="1">
+<li><strong>A prediction using past information</strong> <span class="math inline">\(\hat{x}_{t|t-1}\)</span>: Based on a model that projects inflation trends.</li>
+<li><strong>A new observation</strong> <span class="math inline">\(z_t\)</span>: A noisy indicator like a market survey or a bond yield linked to inflation.</li>
+</ol>
+<p>But both have limitations. The model’s predication can be uncertain, and the observation includes noise. A naturally simple yet elegant solution would be to combine the two by <strong>weighing them based on their accuracy</strong>, therefore updating the estimate of the true inflation rate <span class="math inline">\(\hat{x}_{t|t}\)</span>:</p>
+<p><span id="eq-weighted-average"><span class="math display">\[
+\hat{x}_{t|t} = (1-w_t) \hat{x}_{t|t-1} + w_t z_t,
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(w_t\in[0,1]\)</span> represents the weight given to new measurement <span class="math inline">\(z_t\)</span>.</p>
+<p>It’s almost surely that we will place more weights on whichever component that is more precise!</p>
+<ul>
+<li><span class="math inline">\(w_t \to 1\)</span> if our measurement <span class="math inline">\(z_t\)</span> is known to be very good, but the model’s prediction is not.</li>
+<li><span class="math inline">\(w_t \to 0\)</span> if our measurement <span class="math inline">\(z_t\)</span> is very noisy, but the model’s prediction is quite accurate.</li>
+</ul>
+<p>In this way, <span class="math inline">\(w_t\)</span> dynamically adjusts how much weight to give each source based on their relative uncertainties. As a result, the updated estimate <span class="math inline">\(\hat{x}_{t|t}\)</span> optimally combines the predicted state and the noisy observation, improving our estimate of the true inflation rate over time.</p>
+<p>Also, we can rearrange <a href="#eq-weighted-average" class="quarto-xref">Equation&nbsp;1</a> to get <span id="eq-intuition"><span class="math display">\[
+\hat{x}_{t|t} = \hat{x}_{t|t-1} + w_t (z_t - \hat{x}_{t|t-1}).
+\tag{2}\]</span></span></p>
+<p>This means that the updated estimate is our best model estimate based on past information plus an adjustment for the difference between the observation and the model estimate.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that, however, the measurement <span class="math inline">\(z_t\)</span> does NOT necessarily have the same scale as the state <span class="math inline">\(x_t\)</span>.</p>
+<p>In our example, the true inflation rate may be an annualized percentage, but our measurement could be, for instance, the proportion of survey responses that believe inflation is higher than target, or even the trading volume of Bitcoin! Therefore they are not directly comparable such that <span class="math inline">\((z_t - \hat{x}_{t|t-1})\)</span> is not necessarily correct. In practice, we need to account for this difference and will discuss it below.</p>
+</div>
+</div>
+</section>
+<section id="a-more-elaborated-presentation" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="a-more-elaborated-presentation">A more elaborated presentation</h2>
+<p>Now let’s move on to a more elaborated presentation and proceed to the basic Kalman filter. For pedagogical simplicity, we start with a univariate (or 1-dimensional) case, i.e., there is only one unobservable state variable <span class="math inline">\(x_t\)</span> and we observe one indicator <span class="math inline">\(z_t\)</span>.</p>
+<section id="the-setup" class="level3">
+<h3 class="anchored" data-anchor-id="the-setup">The setup</h3>
+<p>First, there are two equations, namely the state transition equation <a href="#eq-transition-equation" class="quarto-xref">Equation&nbsp;3</a> and the measurement equation <a href="#eq-measurement-equation" class="quarto-xref">Equation&nbsp;4</a>.</p>
+<ol type="1">
+<li><p><strong>State transition equation</strong>:</p>
+<p>This equation reflects our <em>model</em>, or how we perceive the unobservable state to evolve over time. However, there is some uncertainty <span class="math inline">\(\omega_t\)</span>. <span id="eq-transition-equation"><span class="math display">\[
+x_t = F_t x_{t-1} + \omega_t
+\tag{3}\]</span></span></p>
+<ul>
+<li><span class="math inline">\(x_t\)</span>: The unobserved true state (e.g., the true inflation rate).<br>
+</li>
+<li><span class="math inline">\(F_t\)</span>: The factor linking the previous state <span class="math inline">\(x_{t-1}\)</span> to the current state.<br>
+</li>
+<li><span class="math inline">\(\omega_t\)</span>: Process noise (uncertainty in the model), <span class="math inline">\(\omega_t \sim  \mathcal{N}(0, Q_t)\)</span>.</li>
+</ul></li>
+<li><p><strong>Measurement equation</strong>:</p>
+<p>This equation describes how our observed measurement is related to unobservable true state. Because it is a measurement, there is also uncertainty or noise <span class="math inline">\(u_t\)</span>. <span id="eq-measurement-equation"><span class="math display">\[
+z_t = H_t x_t + u_t
+\tag{4}\]</span></span></p>
+<ul>
+<li><span class="math inline">\(z_t\)</span>: The observed measurement (e.g., a survey or bond yield).<br>
+</li>
+<li><span class="math inline">\(H_t\)</span>: The factor linking the true state <span class="math inline">\(x_t\)</span> to the observation.<br>
+</li>
+<li><span class="math inline">\(u_t\)</span>: Measurement noise (error in the observed data), <span class="math inline">\(u_t \sim \mathcal{N}(0, R_t)\)</span>.</li>
+</ul></li>
+</ol>
+<p>We assume the process noise <span class="math inline">\(\omega_t\)</span> and measurement noise <span class="math inline">\(u_t\)</span> are independent.</p>
+</section>
+<section id="predicting-the-state" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="predicting-the-state">Predicting the state</h3>
+<p>At time <span class="math inline">\(t\)</span>, we can use the model <a href="#eq-transition-equation" class="quarto-xref">Equation&nbsp;3</a> to make a prediction of the true state based on the previous best estimate <span class="math inline">\(\hat{x}_{t-1|t-1}\)</span> which yields <span class="math inline">\(\hat{x}_{t|t-1}\)</span>:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span id="eq-predicted-state"><span class="math display">\[
+\hat{x}_{t|t-1} = F_t \hat{x}_{t-1|t-1}.
+\tag{5}\]</span></span> - <span class="math inline">\(\hat{x}_{t-1|t-1}\)</span>: The previous best (updated) estimate of the state.<br>
+- <span class="math inline">\(\hat{x}_{t|t-1}\)</span>: The model’s prediction for the current state.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Note that the uncertainty <span class="math inline">\(w_t\)</span> has a zero mean.</p></div></div><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When making model prediction at <span class="math inline">\(t\)</span>, we use the <em>updated estimate</em> at time <span class="math inline">\(t-1\)</span>, i.e., <span class="math inline">\(\hat{x}_{t-1|t-1}\)</span>.</p>
+<p>This should not be confused with the <em>model estimate</em> before updating at <span class="math inline">\(t-1\)</span>, i.e., <span class="math inline">\(\hat{x}_{t-1|t-2}\)</span>, which is the model prediction at <span class="math inline">\(t-1\)</span> using information from <span class="math inline">\(t-2\)</span>.</p>
+</div>
+</div>
+<p>While the state evolves predictably through <span class="math inline">\(F_t\)</span>, the process uncertainty <span class="math inline">\(\omega_t\)</span> adds noise. Given that it has a zero mean, it does not shift the model prediction, but increases the uncertainty.</p>
+<p>Let <span class="math inline">\(P_{t|t}\)</span> denote the variance of the prediction at <span class="math inline">\(t\)</span>, the uncertainty (variance) in this prediction is:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span id="eq-predicted-state-uncertainty"><span class="math display">\[
+\text{Variance of predicted state} = P_{t|t-1} = F_t^2 P_{t-1|t-1} + Q_t.
+\tag{6}\]</span></span> - <span class="math inline">\(P_{t-1|t-1}\)</span>: Variance of the previous estimate.<br>
+- <span class="math inline">\(Q_t\)</span>: Variance of the process noise <span class="math inline">\(\omega_t\)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Note that <span class="math inline">\(\text{Var}(aX) = a^2 \text{Var}(X)\)</span>.</p></div></div></section>
+<section id="state-update" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-update">State update</h3>
+<p>Also at time <span class="math inline">\(t\)</span>, we can observe <span class="math inline">\(z_t\)</span> which is a noisy measurement of the unobservable true state <span class="math inline">\(x_t\)</span>. Our goal is to combine the predicted state <span class="math inline">\(\hat{x}_{t|t-1}\)</span> and the new observation <span class="math inline">\(z_t\)</span> to get the best estimate of the true state <span class="math inline">\(\hat{x}_{t|t}\)</span>.</p>
+<p>When the measurement <span class="math inline">\(z_t\)</span> is received, it provides new information about the state <span class="math inline">\(x_t\)</span>. The difference between the observed measurement and the predicted measurement is called the <strong>innovation</strong>: <span id="eq-innovation"><span class="math display">\[
+\text{Innovation} = z_t - H_t \hat{x}_{t|t-1}.
+\tag{7}\]</span></span> where <span class="math inline">\(H_t \hat{x}_{t|t-1}\)</span> is the predicted measurement based on the predicted state.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;As discussed earlier, because the measurement does not necessarily have the same scale as the state, we cannot directly use <span class="math inline">\((z_t - \hat{x}_{t|t-1})\)</span> as the innovation. Note that in <a href="#eq-measurement-equation" class="quarto-xref">Equation&nbsp;4</a>, <span class="math inline">\(H_t\)</span> is used to map the state to the measurement space.</p></div></div><p>This term quantifies how much the measurement differs from what the model expects. However, it is noisy, and its uncertainty is: <span id="eq-measurement-uncertainty"><span class="math display">\[
+\text{Variance of innovation} = R_t,
+\tag{8}\]</span></span> where <span class="math inline">\(R_t\)</span> is the variance of the measurement noise <span class="math inline">\(u_t\)</span>.</p>
+<p>From the intuition section, we know that the updated state estimate <span class="math inline">\(\hat{x}_{t|t}\)</span> should take the form of <span id="eq-state-update"><span class="math display">\[
+\hat{x}_{t|t} = \hat{x}_{t|t-1} + k_t (z_t - H_t \hat{x}_{t|t-1}),
+\tag{9}\]</span></span> where <span class="math inline">\(k_t\)</span> is a factor deciding how much weight to give the innovation based on its reliability.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Kalman Gain">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kalman Gain
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This <span class="math inline">\(k_t\)</span> is called <strong>Kalman Gain</strong> and determines how much to trust the new measurement versus the prediction.</p>
+<p>It is very much similar to the weight <span class="math inline">\(w_t\)</span> we had earlier in <a href="#eq-weighted-average" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-intuition" class="quarto-xref">Equation&nbsp;2</a>. This change of notation is to highlight that it takes into account that the estimated state does not necessarily have the same scale as the innovation (difference in actual and predicted measurements).</p>
+<p>For example, the estimated inflation is an annualized percentage, but our measurement could be the frequency of newspapers mentioning the word “inflation” or even the trading volume of Bitcoin.</p>
+</div>
+</div>
+</section>
+<section id="kalman-gain" class="level3">
+<h3 class="anchored" data-anchor-id="kalman-gain">Kalman gain</h3>
+<p>The Kalman gain <span class="math inline">\(k_t\)</span> determines how much weight to give the measurement relative to the prediction. It is derived to minimize the variance of the updated state estimate <span class="math inline">\(\hat{x}_{t|t}\)</span>, and it is computed as: <span id="eq-kalman-gain"><span class="math display">\[
+k_t = \frac{P_{t|t-1} H_t}{H_t^2 P_{t|t-1} + R_t}.
+\tag{10}\]</span></span></p>
+<ul>
+<li><span class="math inline">\(P_{t|t-1}\)</span> is the variance of the predicted state as in <a href="#eq-predicted-state-uncertainty" class="quarto-xref">Equation&nbsp;6</a>.</li>
+<li><span class="math inline">\(H_t\)</span> is the scaling factor that maps the state to the measurement space, which appears in <a href="#eq-measurement-equation" class="quarto-xref">Equation&nbsp;4</a>.</li>
+<li><span class="math inline">\(R_t\)</span> is the variance of innovation as in <a href="#eq-measurement-uncertainty" class="quarto-xref">Equation&nbsp;8</a>.</li>
+</ul>
+<p>So, the numerator <span class="math inline">\(P_{t|t-1} H_t\)</span> maps the predicted state uncertainty into the measurement space. It reflects how much of the measurement uncertainty comes from the state prediction. The denominator <span class="math inline">\(H_t^2 P_{t|t-1} + R_t\)</span> is the total uncertainty in the measurement, combining both predicted uncertainty and measurement noise.</p>
+<p>Therefore,</p>
+<ul>
+<li>If the measurement noise <span class="math inline">\(R_t\)</span> is small, the Kalman gain <span class="math inline">\(k_t\)</span> is larger, so we trust the measurement more.<br>
+</li>
+<li>If the predicted uncertainty <span class="math inline">\(P_{t|t-1}\)</span> is large, <span class="math inline">\(k_t\)</span> is also larger, prioritizing the new measurement.<br>
+</li>
+<li>Conversely, if <span class="math inline">\(R_t\)</span> is large (noisy measurement), <span class="math inline">\(k_t\)</span> is small, favoring the prediction.</li>
+</ul>
+</section>
+<section id="variance-update" class="level3">
+<h3 class="anchored" data-anchor-id="variance-update">Variance update</h3>
+<p>Further, new measurement not only helps us to update and refine our estimate of the state, it can also reduce the uncertainty of our estimation. Once Kalman gain <span class="math inline">\(k_t\)</span> is computed, the variance of the updated state estimate is <span id="eq-variance-update"><span class="math display">\[
+\text{Variance of updated estimate} = P_{t|t} = (1 - k_t H_t) P_{t|t-1}.
+\tag{11}\]</span></span> This formula reflects the reduction in uncertainty after incorporating the new measurement.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Why $k_t$ and $k_t H_t$ show up in different places? A ChatGPT answer">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why <span class="math inline">\(k_t\)</span> and <span class="math inline">\(k_t H_t\)</span> show up in different places? A ChatGPT answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In state update <a href="#eq-state-update" class="quarto-xref">Equation&nbsp;9</a>, <span class="math inline">\(k_t\)</span> is used for adjustment. In variance update <a href="#eq-variance-update" class="quarto-xref">Equation&nbsp;11</a>, <span class="math inline">\(k_t H_t\)</span> is used. The difference arises because state updates and uncertainty updates deal with different quantities:</p>
+<ol type="1">
+<li><strong>State Update</strong>: The correction is applied directly to the predicted state. <span class="math inline">\(k_t\)</span> alone is sufficient because it determines how much of the innovation (in measurement space) should influence the state estimate.</li>
+<li><strong>Variance Update</strong>: The correction adjusts the uncertainty in the predicted state. <span class="math inline">\(k_t H_t\)</span> is needed because uncertainty is transformed differently — it depends on both the Kalman gain and how strongly the state affects the measurement (via <span class="math inline">\(H_t\)</span>).</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="kalman-filter" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="kalman-filter">Kalman filter</h2>
+<p>Now I’m changing to matrix notations to allow for multiple states and measurements.</p>
+<p>To begin with, a system’s internal dynamics and observed outputs can be treated separately in systems theory and Kalman filter.</p>
+<section id="state-space" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="state-space">State space</h3>
+<p>The state space represents the system’s internal, unobserved dynamics — the variables we want to estimate but cannot directly measure. These are often called <em>hidden states</em> or <em>latent states</em>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Suppose we are tracking the true inflation rate. This is the “state” of the system. It evolves over time due to economic forces, but we cannot observe it directly.</p></div></div><p>The state equation describes how the state evolves over time, often including random noise to reflect uncertainty: <span class="math display">\[
+X_t = F_t X_{t-1} + \omega_t
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X_t\)</span>: the vector of true states at time <span class="math inline">\(t\)</span>.</li>
+<li><span class="math inline">\(F_t\)</span>: the transition factor describing how the states evolve.</li>
+<li><span class="math inline">\(\omega_t\)</span>: process noise with a zero mean and covariance matrix <span class="math inline">\(Q_t\)</span>.</li>
+</ul>
+<p>The state space contains all the information needed to describe the system’s internal behavior.</p>
+</section>
+<section id="measurement-space" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="measurement-space">Measurement space</h3>
+<p>The measurement space is the observable part of the system — the variables we can measure directly, but which may be noisy or indirectly related to the state.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Suppose we measure inflation using a price index. This is the “measurement” and is influenced by the true inflation rate, but it also includes random noise.</p></div></div><p>The measurement equation describes how observed measurements are related to unobservable states: <span class="math display">\[
+Z_t = H_t X_t + u_t
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Z_t\)</span>: the observed measurement at time <span class="math inline">\(t\)</span>.</li>
+<li><span class="math inline">\(H_t\)</span>: the relationship between the state and the measurement (e.g., scaling factor).</li>
+<li><span class="math inline">\(u_t\)</span>: measurement noise with a mean of zero and covariance matrix <span class="math inline">\(R_t\)</span>.</li>
+</ul>
+<p>The measurement space is what we observe directly but may not fully capture the true state due to noise or incomplete representation.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Kalman filter in a nutshell">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kalman filter in a nutshell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Kalman filter works by reconciling the <strong>state space</strong> (hidden, unobservable variables) with the <strong>measurement space</strong> (noisy observations) to improve our estimate of the state. It does so through two main steps:</p>
+<ol type="1">
+<li><strong>Prediction</strong>: Uses the state equation to estimate the next state and its uncertainty, based on prior information.</li>
+<li><strong>Update</strong>: Refines this estimate by incorporating new observations from the measurement equation, weighing them based on their accuracy.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="prediction-step" class="level3">
+<h3 class="anchored" data-anchor-id="prediction-step">Prediction step</h3>
+<p>In the prediction step, the Kalman filter estimates the state <span class="math inline">\(X_t\)</span> at time <span class="math inline">\(t\)</span> based on the previous state <span class="math inline">\(X_{t-1}\)</span>:</p>
+<p><span class="math display">\[
+\hat{X}_{t|t-1} = F_t \hat{X}_{t-1|t-1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\hat{X}_{t|t-1}\)</span>: the predicted state based on the system’s dynamics, or <em>a prior state estimate</em> before incorporating new measurement.</li>
+</ul>
+<p>The associated uncertainty (variance) in the prediction is updated as: <span class="math display">\[
+P_{t|t-1} = F_t P_{t-1|t-1} F_t^\top + Q_t
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P_{t|t-1}\)</span>: the predicted covariance matrix of the state.</li>
+</ul>
+</section>
+<section id="update-step" class="level3">
+<h3 class="anchored" data-anchor-id="update-step">Update step</h3>
+<p>The update step adjusts the predicted state <span class="math inline">\(\hat{X}_{t|t-1}\)</span> using new observations <span class="math inline">\(Z_t\)</span> to compute the updated state <span class="math inline">\(\hat{X}_{t|t}\)</span>, or <em>a posterior state estimate</em>: <span class="math display">\[
+\hat{X}_{t|t} = \hat{X}_{t|t-1} + K_t \big(Z_t - H_t \hat{X}_{t|t-1} \big)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Z_t - H_t \hat{X}_{t|t-1}\)</span>: the <strong>innovation</strong> or measurement residual, representing the difference between the actual and predicted measurement.</li>
+<li><span class="math inline">\(K_t\)</span>: the <strong>Kalman gain</strong>, which determines how much weight is given to the innovation.</li>
+</ul>
+<p>The Kalman gain is computed as: <span class="math display">\[
+K_t = P_{t|t-1} H_t^\top \big(H_t P_{t|t-1} H_t^\top + R_t \big)^{-1}
+\]</span></p>
+</section>
+<section id="updated-covariance" class="level3">
+<h3 class="anchored" data-anchor-id="updated-covariance">Updated covariance</h3>
+<p>Once the state is updated, the covariance of the state estimate <span class="math inline">\(P_{t|t}\)</span> is also revised: <span class="math display">\[
+P_{t|t} = \big(I - K_t H_t \big) P_{t|t-1}
+\]</span></p>
+<p>Here, <span class="math inline">\(I - K_t H_t\)</span> scales the uncertainty reduction, where <span class="math inline">\(K_t H_t\)</span>: accounts for how much the measurement improves the state estimate.</p>
+<p>This ensures that the updated covariance reflects the combined effect of the prediction and measurement steps.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Recursive nature of the Kalman filter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recursive nature of the Kalman filter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Kalman filter is recursive, meaning it processes data one step at a time, making it computationally efficient. Each new measurement refines the state estimate and covariance, which are then used for the next prediction.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="estimation-of-the-kalman-filter" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="estimation-of-the-kalman-filter">Estimation of the Kalman filter</h2>
+<section id="general-steps" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="general-steps">General steps</h3>
+<p>After we have parameterized the system, using the Kalman filter to estimate states means that we are to estimate:</p>
+<ol type="1">
+<li><span class="math inline">\(F_t\)</span>: State transition matrix</li>
+<li><span class="math inline">\(H_t\)</span>: Measurement matrix</li>
+<li><span class="math inline">\(Q_t\)</span>: Covariance of process noise</li>
+<li><span class="math inline">\(R_t\)</span>: Covariance of measurement noise</li>
+</ol>
+<p>Additionally, we need to set an initial state estimate:</p>
+<ol type="1">
+<li>Initial state estimate <span class="math inline">\(\hat{X}_{0|0}\)</span>: the starting point of the state variable chosen based on prior knowledge or historical averages.</li>
+<li>Initial covariance matrix <span class="math inline">\(P_{0|0}\)</span>.</li>
+</ol>
+<p>In some cases, <span class="math inline">\(F_t, H_t, Q_t, R_t\)</span> can be directly specified based on domain knowledge or theoretical models. More often, we use <strong>Maximum Likelihood Estimation (MLE)</strong> to estimate noise covariances <span class="math inline">\(Q_t\)</span> and <span class="math inline">\(R_t\)</span>, which involves:</p>
+<ol type="1">
+<li><strong>Forward filtering</strong>:
+<ul>
+<li>Apply the Kalman filter to compute the likelihood of observed data at each time step.</li>
+<li>The likelihood depends on the measurement residual <span class="math inline">\(z_t - H_t \hat{X}_{t|t-1}\)</span> and its variance <span class="math inline">\(S_t = H_t P_{t|t-1} H_t^\top + R_t\)</span>.</li>
+</ul>
+The log-likelihood is given by: <span class="math display">\[
+\log L = -\frac{1}{2} \sum_{t=1}^T \Big[N \log (2\pi) + \log |S_t| + (z_t - H_t \hat{X}_{t|t-1})^\top S_t^{-1} (z_t - H_t \hat{X}_{t|t-1}) \Big]
+\]</span> where <span class="math inline">\(N\)</span> is the dimension of observation.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;For example, a system’s unobservable true states may be 10-dimensional or it has 10 state variables at any given time. Our measurement or observation may be 5-dimensional, i.e., we observe 5 different metrics of the system. In this case, <span class="math inline">\(N=5\)</span>.</p></div></div><ol start="2" type="1">
+<li><strong>Parameter optimization</strong>:
+<ul>
+<li>Adjust <span class="math inline">\(Q_t\)</span> and <span class="math inline">\(R_t\)</span> to maximize <span class="math inline">\(\log L\)</span>.</li>
+<li>Numerical optimization methods like gradient ascent or expectation-maximization (EM) are commonly used.</li>
+</ul></li>
+</ol>
+</section>
+<section id="example-and-code" class="level3">
+<h3 class="anchored" data-anchor-id="example-and-code">Example and code</h3>
+<p>Suppose we model a 1-D true state <span class="math inline">\(X_t\)</span> using a random walk: <span class="math display">\[
+X_t = X_{t-1} + \omega_t, \quad \omega_t \sim \mathcal{N}(0, Q)
+\]</span></p>
+<p>And the 1-D observation <span class="math inline">\(Z_t\)</span> as: <span class="math display">\[
+Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
+\]</span></p>
+<p>Steps to estimate <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span>:</p>
+<ol type="1">
+<li>Start with initial guesses for <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span>.</li>
+<li>Run the Kalman filter to compute the likelihood of observed <span class="math inline">\(Z_t\)</span> values.</li>
+<li>Adjust <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> to maximize the likelihood.</li>
+</ol>
+<p>Here’s a handwritten simple example for MLE in Python:</p>
+<div id="8581fc5a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> det, inv</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1024</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dim_x <span class="op">=</span> <span class="dv">1</span> <span class="co"># Number of unobservable true states</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dim_z <span class="op">=</span> <span class="dv">1</span> <span class="co"># Dimension of observations</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Number of time steps</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.array([[<span class="fl">1.0</span>]])  <span class="co"># State transition</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.array([[<span class="fl">1.0</span>]])  <span class="co"># Observation model</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> np.array([[<span class="fl">0.5</span>]])  <span class="co"># Process noise covariance</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.array([[<span class="fl">1.0</span>]])  <span class="co"># Measurement noise covariance</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate true states and noisy observations</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.zeros((dim_x, n_steps))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.zeros((dim_z, n_steps))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    X[:,t] <span class="op">=</span> F <span class="op">@</span> X[:,t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> rng.multivariate_normal(np.zeros(dim_x), Q)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    Z[:,t] <span class="op">=</span> H <span class="op">@</span> X[:,t] <span class="op">+</span> rng.multivariate_normal(np.zeros(dim_z), R)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the Kalman filter functions</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kalman_predict(x, P, F, Q):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    x_pred <span class="op">=</span> F <span class="op">@</span> x</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    P_pred <span class="op">=</span> F <span class="op">@</span> P <span class="op">@</span> F.T <span class="op">+</span> Q</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_pred, P_pred</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kalman_update(x_pred, P_pred, z, H, R):</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> H <span class="op">@</span> P_pred <span class="op">@</span> H.T <span class="op">+</span> R</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> P_pred <span class="op">@</span> H.T <span class="op">@</span> inv(S)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    x_upd <span class="op">=</span> x_pred <span class="op">+</span> K <span class="op">@</span> (z <span class="op">-</span> H <span class="op">@</span> x_pred)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    P_upd <span class="op">=</span> (np.eye(<span class="bu">len</span>(P_pred)) <span class="op">-</span> K <span class="op">@</span> H) <span class="op">@</span> P_pred</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_upd, P_upd, S</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_kalman_filter(Q, R, F, H, x0, P0, Z):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> np.array([[Q]])  <span class="co"># Process noise covariance</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.array([[R]])  <span class="co"># Measurement noise covariance</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    x, P <span class="op">=</span> x0, P0</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    log_likelihood <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    log_2pi <span class="op">=</span> np.log(<span class="dv">2</span> <span class="op">*</span> np.pi)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> z <span class="kw">in</span> Z[<span class="dv">0</span>,:]:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        x_pred, P_pred <span class="op">=</span> kalman_predict(x, P, F, Q)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        x, P, S <span class="op">=</span> kalman_update(x_pred, P_pred, z, H, R)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        innovation <span class="op">=</span> z <span class="op">-</span> H <span class="op">@</span> x_pred</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        l <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> (dim_z <span class="op">*</span> log_2pi <span class="op">+</span> np.log(det(S)) <span class="op">+</span> innovation.T <span class="op">@</span> inv(S) <span class="op">@</span> innovation)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        log_likelihood <span class="op">+=</span> l</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>log_likelihood  <span class="co"># Negative log-likelihood to minimize</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Define objective function for parameter estimation</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(params, F, H, x, P, Z):</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    Q, R <span class="op">=</span> params</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> run_kalman_filter(Q, R, F, H, x, P, Z)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial guess for the parameters: [Q, R]</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>initial_params <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.1</span>]</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.array([[<span class="dv">0</span>]])  <span class="co"># Initial state estimate</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>P0 <span class="op">=</span> np.array([[<span class="dv">1</span>]])  <span class="co"># Initial covariance</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimize the log-likelihood with bounds to ensure Q and R are positive</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    objective,</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    initial_params,</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    args<span class="op">=</span>(F, H, x0, P0, Z,),</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'L-BFGS-B'</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>[(<span class="fl">1e-5</span>, <span class="va">None</span>), (<span class="fl">1e-5</span>, <span class="va">None</span>)]</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>estimated_Q, estimated_R <span class="op">=</span> result.x</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the Kalman filter with the estimated parameters</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>estimated_Q <span class="op">=</span> np.array([[estimated_Q]])</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>estimated_R <span class="op">=</span> np.array([[estimated_R]])</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>x_est <span class="op">=</span> np.zeros((dim_x, n_steps))</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>P_est <span class="op">=</span> np.zeros((dim_x, dim_x, n_steps))</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>x, P <span class="op">=</span> x0, P0</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(n_steps):</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    x_pred, P_pred <span class="op">=</span> kalman_predict(x, P, F, estimated_Q)</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    x, P, _ <span class="op">=</span> kalman_update(x_pred, P_pred, Z[:,t], H, estimated_R)</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    x_est[:,t] <span class="op">=</span> x</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    P_est[:,:,t] <span class="op">=</span> P</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the true states and estimates</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>plt.plot(Z[<span class="dv">0</span>], <span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Observations'</span>, color<span class="op">=</span><span class="st">'b'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>plt.plot(X[<span class="dv">0</span>], label<span class="op">=</span><span class="st">'True State'</span>, color<span class="op">=</span><span class="st">'b'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>plt.plot(x_est[<span class="dv">0</span>], label<span class="op">=</span><span class="st">'Estimated State'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time step'</span>)</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Kalman Filter: True State, Observations, and Estimated State'</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'True Q: </span><span class="sc">{</span>Q[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'True R: </span><span class="sc">{</span>R[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.90</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'Estimated Q: </span><span class="sc">{</span>estimated_Q[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.85</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'Estimated R: </span><span class="sc">{</span>estimated_R[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.80</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-2-output-1.png" class="figure-img" width="733" height="523"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © 2019 - 2024 Mingze Gao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
