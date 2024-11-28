@@ -319,6 +319,8 @@ Steps to estimate $Q$ and $R$:
 2. Run the Kalman filter to compute the likelihood of observed $Z_t$ values.
 3. Adjust $Q$ and $R$ to maximize the likelihood.
 
+#### Python
+
 Here's a handwritten simple example for MLE in Python:
 
 ```{python}
@@ -422,3 +424,14 @@ plt.annotate(f'Estimated R: {estimated_R[0,0]:.2f}', xy=(0.05, 0.80), xycoords='
 plt.show()
 ```
 
+#### Matlab
+
+I also tested 3 ways of estimating the parameters of Kalman filter in Matlab.
+
+1. Handwritten.
+2. `ss` model with handwritten log-likelihood.
+3. `ssm` model without handwritten log-likelihood.
+
+Results of estimates are basically the same. So I guess I can comfortably use my handwritten ones since they are easier to understand and extend if for example noises are correlated.
+
+<script src="https://gist.github.com/mgao6767/fd2aeffa0762ac3b36a141a08e8eb542.js"></script>
