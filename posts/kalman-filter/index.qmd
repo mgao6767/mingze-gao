@@ -1,0 +1,424 @@
+---
+title: Kalman Filter
+date: 2024-11-28
+tags: 
+  - Python
+  - Kalman Filter
+  - Econometrics
+categories: 
+  - Teaching Notes
+  - Research Notes
+  - Programming
+---
+
+This is a note as I study and understand Kalman filter. It does NOT derive Kalman filter but explains it to the best of my ability. A handwritten Python code to estimate Kalman filter is provided because I'd like to practice its implementation, but I recommend using established program/software for better numerical stability and performance.
+
+## Intuition
+
+Imagine we are estimating the *true inflation rate*, $x_t$, a state of the economy that is unobservable. We rely on two pieces of information:
+
+1. **A prediction using past information** $\hat{x}_{t|t-1}$: Based on a model that projects inflation trends.
+2. **A new observation** $z_t$: A noisy indicator like a market survey or a bond yield linked to inflation.
+
+But both have limitations. The model's predication can be uncertain, and the observation includes noise. A naturally simple yet elegant solution would be to combine the two by **weighing them based on their accuracy**, therefore updating the estimate of the true inflation rate $\hat{x}_{t|t}$:  
+
+$$
+\hat{x}_{t|t} = (1-w_t) \hat{x}_{t|t-1} + w_t z_t,
+$$ {#eq-weighted-average}
+
+where $w_t\in[0,1]$ represents the weight given to new measurement $z_t$.
+
+It's almost surely that we will place more weights on whichever component that is more precise!
+
+- $w_t \to 1$ if our measurement $z_t$ is known to be very good, but the model's prediction is not. 
+- $w_t \to 0$ if our measurement $z_t$ is very noisy, but the model's prediction is quite accurate. 
+
+In this way, $w_t$ dynamically adjusts how much weight to give each source based on their relative uncertainties. As a result, the updated estimate $\hat{x}_{t|t}$ optimally combines the predicted state and the noisy observation, improving our estimate of the true inflation rate over time.
+
+Also, we can rearrange @eq-weighted-average to get
+$$
+\hat{x}_{t|t} = \hat{x}_{t|t-1} + w_t (z_t - \hat{x}_{t|t-1}).
+$$ {#eq-intuition}
+
+This means that the updated estimate is our best model estimate based on past information plus an adjustment for the difference between the observation and the model estimate.
+
+::: {.callout-caution}
+Note that, however, the measurement $z_t$ does NOT necessarily have the same scale as the state $x_t$.
+
+In our example, the true inflation rate may be an annualized percentage, but our measurement could be, for instance, the proportion of survey responses that believe inflation is higher than target, or even the trading volume of Bitcoin! Therefore they are not directly comparable such that $(z_t - \hat{x}_{t|t-1})$ is not necessarily correct. In practice, we need to account for this difference and will discuss it below. 
+:::
+
+## A more elaborated presentation
+
+Now let's move on to a more elaborated presentation and proceed to the basic Kalman filter. For pedagogical simplicity, we start with a univariate (or 1-dimensional) case, i.e., there is only one unobservable state variable $x_t$ and we observe one indicator $z_t$.
+
+### The setup
+
+First, there are two equations, namely the state transition equation @eq-transition-equation and the measurement equation @eq-measurement-equation.
+
+1. **State transition equation**:  
+
+   This equation reflects our _model_, or how we perceive the unobservable state to evolve over time. However, there is some uncertainty $\omega_t$.
+   $$
+   x_t = F_t x_{t-1} + \omega_t
+   $$ {#eq-transition-equation}
+   - $x_t$: The unobserved true state (e.g., the true inflation rate).  
+   - $F_t$: The factor linking the previous state $x_{t-1}$ to the current state.  
+   - $\omega_t$: Process noise (uncertainty in the model), $\omega_t \sim  \mathcal{N}(0, Q_t)$.
+
+2. **Measurement equation**:  
+
+   This equation describes how our observed measurement is related to unobservable true state. Because it is a measurement, there is also uncertainty or noise $u_t$.
+   $$
+   z_t = H_t x_t + u_t
+   $$ {#eq-measurement-equation}
+   - $z_t$: The observed measurement (e.g., a survey or bond yield).  
+   - $H_t$: The factor linking the true state $x_t$ to the observation.  
+   - $u_t$: Measurement noise (error in the observed data), $u_t \sim \mathcal{N}(0, R_t)$.
+
+We assume the process noise $\omega_t$ and measurement noise $u_t$ are independent.
+
+### Predicting the state
+
+At time $t$, we can use the model @eq-transition-equation to make a prediction of the true state based on the previous best estimate $\hat{x}_{t-1|t-1}$ which yields $\hat{x}_{t|t-1}$:[^zero-mean]
+$$
+\hat{x}_{t|t-1} = F_t \hat{x}_{t-1|t-1}.
+$$ {#eq-predicted-state}
+- $\hat{x}_{t-1|t-1}$: The previous best (updated) estimate of the state.  
+- $\hat{x}_{t|t-1}$: The model's prediction for the current state.  
+
+[^zero-mean]: Note that the uncertainty $w_t$ has a zero mean.
+
+::: {.callout-note}
+When making model prediction at $t$, we use the _updated estimate_ at time $t-1$, i.e., $\hat{x}_{t-1|t-1}$. 
+
+This should not be confused with the _model estimate_ before updating at $t-1$, i.e., $\hat{x}_{t-1|t-2}$, which is the model prediction at $t-1$ using information from $t-2$.
+:::
+
+While the state evolves predictably through $F_t$, the process uncertainty $\omega_t$ adds noise. Given that it has a zero mean, it does not shift the model prediction, but increases the uncertainty. 
+
+Let $P_{t|t}$ denote the variance of the prediction at $t$, the uncertainty (variance) in this prediction is:[^variance]
+$$
+\text{Variance of predicted state} = P_{t|t-1} = F_t^2 P_{t-1|t-1} + Q_t.
+$$ {#eq-predicted-state-uncertainty}
+- $P_{t-1|t-1}$: Variance of the previous estimate.  
+- $Q_t$: Variance of the process noise $\omega_t$.
+
+[^variance]: Note that $\text{Var}(aX) = a^2 \text{Var}(X)$.
+
+### State update
+
+Also at time $t$, we can observe $z_t$ which is a noisy measurement of the unobservable true state $x_t$. Our goal is to combine the predicted state $\hat{x}_{t|t-1}$ and the new observation $z_t$ to get the best estimate of the true state $\hat{x}_{t|t}$.
+
+When the measurement $z_t$ is received, it provides new information about the state $x_t$. The difference between the observed measurement and the predicted measurement is called the **innovation**:
+$$
+\text{Innovation} = z_t - H_t \hat{x}_{t|t-1}.
+$$ {#eq-innovation}
+where $H_t \hat{x}_{t|t-1}$ is the predicted measurement based on the predicted state.[^measurement-space]
+
+[^measurement-space]: As discussed earlier, because the measurement does not necessarily have the same scale as the state, we cannot directly use $(z_t - \hat{x}_{t|t-1})$ as the innovation. Note that in @eq-measurement-equation, $H_t$ is used to map the state to the measurement space.
+
+This term quantifies how much the measurement differs from what the model expects. However, it is noisy, and its uncertainty is:
+$$
+\text{Variance of innovation} = R_t,
+$$ {#eq-measurement-uncertainty}
+where $R_t$ is the variance of the measurement noise $u_t$.
+
+From the intuition section, we know that the updated state estimate $\hat{x}_{t|t}$ should take the form of
+$$
+\hat{x}_{t|t} = \hat{x}_{t|t-1} + k_t (z_t - H_t \hat{x}_{t|t-1}),
+$$ {#eq-state-update}
+where $k_t$ is a factor deciding how much weight to give the innovation based on its reliability.
+
+::: {.callout-tip title="Kalman Gain"}
+This $k_t$ is called **Kalman Gain** and determines how much to trust the new measurement versus the prediction.
+
+It is very much similar to the weight $w_t$ we had earlier in @eq-weighted-average and @eq-intuition. This change of notation is to highlight that it takes into account that the estimated state does not necessarily have the same scale as the innovation (difference in actual and predicted measurements).
+
+For example, the estimated inflation is an annualized percentage, but our measurement could be the frequency of newspapers mentioning the word "inflation" or even the trading volume of Bitcoin.
+:::
+
+### Kalman gain
+
+The Kalman gain $k_t$ determines how much weight to give the measurement relative to the prediction. It is derived to minimize the variance of the updated state estimate $\hat{x}_{t|t}$, and it is computed as:
+$$
+k_t = \frac{P_{t|t-1} H_t}{H_t^2 P_{t|t-1} + R_t}.
+$$ {#eq-kalman-gain}
+
+- $P_{t|t-1}$ is the variance of the predicted state as in @eq-predicted-state-uncertainty.
+- $H_t$ is the scaling factor that maps the state to the measurement space, which appears in @eq-measurement-equation.
+- $R_t$ is the variance of innovation as in @eq-measurement-uncertainty.
+
+So, the numerator $P_{t|t-1} H_t$ maps the predicted state uncertainty into the measurement space. It reflects how much of the measurement uncertainty comes from the state prediction. The denominator $H_t^2 P_{t|t-1} + R_t$ is the total uncertainty in the measurement, combining both predicted uncertainty and measurement noise.
+
+Therefore,
+
+- If the measurement noise $R_t$ is small, the Kalman gain $k_t$ is larger, so we trust the measurement more.  
+- If the predicted uncertainty $P_{t|t-1}$ is large, $k_t$ is also larger, prioritizing the new measurement.  
+- Conversely, if $R_t$ is large (noisy measurement), $k_t$ is small, favoring the prediction.
+
+### Variance update
+
+Further, new measurement not only helps us to update and refine our estimate of the state, it can also reduce the uncertainty of our estimation. Once Kalman gain $k_t$ is computed, the variance of the updated state estimate is
+$$
+\text{Variance of updated estimate} = P_{t|t} = (1 - k_t H_t) P_{t|t-1}.
+$$ {#eq-variance-update}
+This formula reflects the reduction in uncertainty after incorporating the new measurement.
+
+::: {.callout-note title="Why $k_t$ and $k_t H_t$ show up in different places? A ChatGPT answer"}
+In state update @eq-state-update, $k_t$ is used for adjustment. In variance update @eq-variance-update, $k_t H_t$ is used.
+The difference arises because state updates and uncertainty updates deal with different quantities:
+
+1. **State Update**: The correction is applied directly to the predicted state. $k_t$ alone is sufficient because it determines how much of the innovation (in measurement space) should influence the state estimate.
+2. **Variance Update**: The correction adjusts the uncertainty in the predicted state. $k_t H_t$ is needed because uncertainty is transformed differently — it depends on both the Kalman gain and how strongly the state affects the measurement (via $H_t$).
+:::
+
+## Kalman filter
+
+Now I'm changing to matrix notations to allow for multiple states and measurements.
+
+To begin with, a system's internal dynamics and observed outputs can be treated separately in systems theory and Kalman filter.
+
+### State space
+
+The state space represents the system's internal, unobserved dynamics — the variables we want to estimate but cannot directly measure. These are often called _hidden states_ or _latent states_.[^example-of-state]
+
+[^example-of-state]: Suppose we are tracking the true inflation rate. This is the "state" of the system. It evolves over time due to economic forces, but we cannot observe it directly.
+
+The state equation describes how the state evolves over time, often including random noise to reflect uncertainty:
+$$
+X_t = F_t X_{t-1} + \omega_t
+$$
+
+- $X_t$: the vector of true states at time $t$.
+- $F_t$: the transition factor describing how the states evolve.
+- $\omega_t$: process noise with a zero mean and covariance matrix $Q_t$.
+
+The state space contains all the information needed to describe the system's internal behavior.
+
+### Measurement space
+
+The measurement space is the observable part of the system — the variables we can measure directly, but which may be noisy or indirectly related to the state.[^example-of-measurement]
+
+[^example-of-measurement]: Suppose we measure inflation using a price index. This is the "measurement" and is influenced by the true inflation rate, but it also includes random noise.
+
+The measurement equation describes how observed measurements are related to unobservable states:
+$$
+Z_t = H_t X_t + u_t
+$$
+
+- $Z_t$: the observed measurement at time $t$.
+- $H_t$: the relationship between the state and the measurement (e.g., scaling factor).
+- $u_t$: measurement noise with a mean of zero and covariance matrix $R_t$.
+
+The measurement space is what we observe directly but may not fully capture the true state due to noise or incomplete representation.
+
+::: {.callout-tip title="Kalman filter in a nutshell"}
+The Kalman filter works by reconciling the **state space** (hidden, unobservable variables) with the **measurement space** (noisy observations) to improve our estimate of the state. It does so through two main steps:
+
+1. **Prediction**: Uses the state equation to estimate the next state and its uncertainty, based on prior information.
+2. **Update**: Refines this estimate by incorporating new observations from the measurement equation, weighing them based on their accuracy.
+:::
+
+### Prediction step
+
+In the prediction step, the Kalman filter estimates the state $X_t$ at time $t$ based on the previous state $X_{t-1}$:
+
+$$
+\hat{X}_{t|t-1} = F_t \hat{X}_{t-1|t-1}
+$$
+
+- $\hat{X}_{t|t-1}$: the predicted state based on the system's dynamics, or _a prior state estimate_ before incorporating new measurement.
+
+The associated uncertainty (variance) in the prediction is updated as:
+$$
+P_{t|t-1} = F_t P_{t-1|t-1} F_t^\top + Q_t
+$$
+
+- $P_{t|t-1}$: the predicted covariance matrix of the state.
+
+### Update step
+
+The update step adjusts the predicted state $\hat{X}_{t|t-1}$ using new observations $Z_t$ to compute the updated state $\hat{X}_{t|t}$, or _a posterior state estimate_:
+$$
+\hat{X}_{t|t} = \hat{X}_{t|t-1} + K_t \big(Z_t - H_t \hat{X}_{t|t-1} \big)
+$$
+
+- $Z_t - H_t \hat{X}_{t|t-1}$: the **innovation** or measurement residual, representing the difference between the actual and predicted measurement.
+- $K_t$: the **Kalman gain**, which determines how much weight is given to the innovation.
+
+The Kalman gain is computed as:
+$$
+K_t = P_{t|t-1} H_t^\top \big(H_t P_{t|t-1} H_t^\top + R_t \big)^{-1}
+$$
+
+### Updated covariance
+
+Once the state is updated, the covariance of the state estimate $P_{t|t}$ is also revised:
+$$
+P_{t|t} = \big(I - K_t H_t \big) P_{t|t-1}
+$$
+
+Here, $I - K_t H_t$ scales the uncertainty reduction, where $K_t H_t$: accounts for how much the measurement improves the state estimate.
+
+This ensures that the updated covariance reflects the combined effect of the prediction and measurement steps.
+
+::: {.callout-note title="Recursive nature of the Kalman filter"}
+The Kalman filter is recursive, meaning it processes data one step at a time, making it computationally efficient. Each new measurement refines the state estimate and covariance, which are then used for the next prediction.
+:::
+
+## Estimation of the Kalman filter
+
+### General steps
+
+After we have parameterized the system, using the Kalman filter to estimate states means that we are to estimate:
+
+1. $F_t$: State transition matrix
+2. $H_t$: Measurement matrix
+3. $Q_t$: Covariance of process noise
+4. $R_t$: Covariance of measurement noise
+
+Additionally, we need to set an initial state estimate:
+
+1. Initial state estimate $\hat{X}_{0|0}$: the starting point of the state variable chosen based on prior knowledge or historical averages.
+2. Initial covariance matrix $P_{0|0}$. 
+
+In some cases, $F_t, H_t, Q_t, R_t$ can be directly specified based on domain knowledge or theoretical models. More often, we use **Maximum Likelihood Estimation (MLE)** to estimate noise covariances $Q_t$ and $R_t$, which involves:
+
+1. **Forward filtering**:
+   - Apply the Kalman filter to compute the likelihood of observed data at each time step.
+   - The likelihood depends on the measurement residual $z_t - H_t \hat{X}_{t|t-1}$ and its variance $S_t = H_t P_{t|t-1} H_t^\top + R_t$.
+
+   The log-likelihood is given by:
+   $$
+   \log L = -\frac{1}{2} \sum_{t=1}^T \Big[N \log (2\pi) + \log |S_t| + (z_t - H_t \hat{X}_{t|t-1})^\top S_t^{-1} (z_t - H_t \hat{X}_{t|t-1}) \Big]
+   $$
+   where $N$ is the dimension of observation.[^dim-obs]
+
+[^dim-obs]: For example, a system's unobservable true states may be 10-dimensional or it has 10 state variables at any given time. Our measurement or observation may be 5-dimensional, i.e., we observe 5 different metrics of the system. In this case, $N=5$.
+
+2. **Parameter optimization**:
+   - Adjust $Q_t$ and $R_t$ to maximize $\log L$.
+   - Numerical optimization methods like gradient ascent or expectation-maximization (EM) are commonly used.
+
+### Example and code
+
+Suppose we model a 1-D true state $X_t$ using a random walk:
+$$
+X_t = X_{t-1} + \omega_t, \quad \omega_t \sim \mathcal{N}(0, Q)
+$$
+
+And the 1-D observation $Z_t$ as:
+$$
+Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
+$$
+
+Steps to estimate $Q$ and $R$:
+
+1. Start with initial guesses for $Q$ and $R$.
+2. Run the Kalman filter to compute the likelihood of observed $Z_t$ values.
+3. Adjust $Q$ and $R$ to maximize the likelihood.
+
+Here's a handwritten simple example for MLE in Python:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy.linalg import det, inv
+from scipy.optimize import minimize
+
+rng = np.random.default_rng(1024)
+
+# Simulate data
+dim_x = 1 # Number of unobservable true states
+dim_z = 1 # Dimension of observations
+n_steps = 100  # Number of time steps
+F = np.array([[1.0]])  # State transition
+H = np.array([[1.0]])  # Observation model
+Q = np.array([[0.5]])  # Process noise covariance
+R = np.array([[1.0]])  # Measurement noise covariance
+
+# Generate true states and noisy observations
+X = np.zeros((dim_x, n_steps))
+Z = np.zeros((dim_z, n_steps))
+for t in range(1, n_steps):
+    X[:,t] = F @ X[:,t-1] + rng.multivariate_normal(np.zeros(dim_x), Q)
+    Z[:,t] = H @ X[:,t] + rng.multivariate_normal(np.zeros(dim_z), R)
+
+# Define the Kalman filter functions
+def kalman_predict(x, P, F, Q):
+    x_pred = F @ x
+    P_pred = F @ P @ F.T + Q
+    return x_pred, P_pred
+
+def kalman_update(x_pred, P_pred, z, H, R):
+    S = H @ P_pred @ H.T + R
+    K = P_pred @ H.T @ inv(S)
+    x_upd = x_pred + K @ (z - H @ x_pred)
+    P_upd = (np.eye(len(P_pred)) - K @ H) @ P_pred
+    return x_upd, P_upd, S
+
+def run_kalman_filter(Q, R, F, H, x0, P0, Z):
+    Q = np.array([[Q]])  # Process noise covariance
+    R = np.array([[R]])  # Measurement noise covariance
+    x, P = x0, P0
+
+    log_likelihood = 0
+    log_2pi = np.log(2 * np.pi)
+    for z in Z[0,:]:
+        x_pred, P_pred = kalman_predict(x, P, F, Q)
+        x, P, S = kalman_update(x_pred, P_pred, z, H, R)
+        innovation = z - H @ x_pred
+        l = -0.5 * (dim_z * log_2pi + np.log(det(S)) + innovation.T @ inv(S) @ innovation)
+        log_likelihood += l
+    return -log_likelihood  # Negative log-likelihood to minimize
+
+# Define objective function for parameter estimation
+def objective(params, F, H, x, P, Z):
+    Q, R = params
+    return run_kalman_filter(Q, R, F, H, x, P, Z)
+
+# Initial guess for the parameters: [Q, R]
+initial_params = [0.1, 0.1]
+x0 = np.array([[0]])  # Initial state estimate
+P0 = np.array([[1]])  # Initial covariance
+
+# Minimize the log-likelihood with bounds to ensure Q and R are positive
+result = minimize(
+    objective,
+    initial_params,
+    args=(F, H, x0, P0, Z,),
+    method='L-BFGS-B',
+    bounds=[(1e-5, None), (1e-5, None)]
+)
+
+estimated_Q, estimated_R = result.x
+
+# Run the Kalman filter with the estimated parameters
+estimated_Q = np.array([[estimated_Q]])
+estimated_R = np.array([[estimated_R]])
+x_est = np.zeros((dim_x, n_steps))
+P_est = np.zeros((dim_x, dim_x, n_steps))
+x, P = x0, P0
+for t in range(n_steps):
+    x_pred, P_pred = kalman_predict(x, P, F, estimated_Q)
+    x, P, _ = kalman_update(x_pred, P_pred, Z[:,t], H, estimated_R)
+    x_est[:,t] = x
+    P_est[:,:,t] = P
+
+# Plot the true states and estimates
+plt.figure(figsize=(9, 6))
+plt.plot(Z[0], 'o', label='Observations', color='b', alpha=0.3)
+plt.plot(X[0], label='True State', color='b', linestyle='dashed')
+plt.plot(x_est[0], label='Estimated State', color='r')
+plt.xlabel('Time step')
+plt.ylabel('Value')
+plt.legend()
+plt.title('Kalman Filter: True State, Observations, and Estimated State')
+plt.annotate(f'True Q: {Q[0,0]:.2f}', xy=(0.05, 0.95), xycoords='axes fraction', fontsize=12, verticalalignment='top')
+plt.annotate(f'True R: {R[0,0]:.2f}', xy=(0.05, 0.90), xycoords='axes fraction', fontsize=12, verticalalignment='top')
+plt.annotate(f'Estimated Q: {estimated_Q[0,0]:.2f}', xy=(0.05, 0.85), xycoords='axes fraction', fontsize=12, verticalalignment='top')
+plt.annotate(f'Estimated R: {estimated_R[0,0]:.2f}', xy=(0.05, 0.80), xycoords='axes fraction', fontsize=12, verticalalignment='top')
+plt.show()
+```
+
