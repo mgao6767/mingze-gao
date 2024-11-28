@@ -592,8 +592,10 @@ Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
 <li>Run the Kalman filter to compute the likelihood of observed <span class="math inline">\(Z_t\)</span> values.</li>
 <li>Adjust <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> to maximize the likelihood.</li>
 </ol>
+<section id="python" class="level4">
+<h4 class="anchored" data-anchor-id="python">Python</h4>
 <p>Here’s a handwritten simple example for MLE in Python:</p>
-<div id="8581fc5a" class="cell" data-execution_count="1">
+<div id="452b5142" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> det, inv</span>
@@ -700,8 +702,20 @@ Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
 </div>
 </div>
 </div>
+</section>
+<section id="matlab" class="level4">
+<h4 class="anchored" data-anchor-id="matlab">Matlab</h4>
+<p>I also tested 3 ways of estimating the parameters of Kalman filter in Matlab.</p>
+<ol type="1">
+<li>Handwritten.</li>
+<li><code>ss</code> model with handwritten log-likelihood.</li>
+<li><code>ssm</code> model without handwritten log-likelihood.</li>
+</ol>
+<p>Results of estimates are basically the same. So I guess I can comfortably use my handwritten ones since they are easier to understand and extend if for example noises are correlated.</p>
+<script src="https://gist.github.com/mgao6767/fd2aeffa0762ac3b36a141a08e8eb542.js"></script>
 
 
+</section>
 </section>
 </section>
 
