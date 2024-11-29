@@ -1,0 +1,150 @@
+---
+title: Kalman Filter with Correlated Shocks
+date: 2024-11-29
+draft: true
+tags: 
+  - Kalman Filter
+  - Econometrics
+categories: 
+  - Research Notes
+---
+
+@gryglewicz_understanding_2022 present a state space cashflow model with correlated permanent and short-term shocks and derive a novel Kalman filter to estimate the model parameters. This post summarizes the model.[^note]
+
+[^note]: The notation in this post follows that in @gryglewicz_understanding_2022.
+
+## Setup
+
+Suppose there is a group of $N$ firms. There is an unobservable asset productivity process $X_t$ of the group, and we observe $N$ firms' cash flows in each time $t$ over $T$ periods. Some shocks can permanently affect firm cash flows by affecting the productivity of assets, while some __correlated__ shocks only affect cash flows in the short term. The model consists the following transition and measurement equations:
+
+$$
+\begin{align}
+X_t &= (1+\mu) X_{t-1} + \sigma_P X_{t-1} \varepsilon_t^P \\
+Z_{it} &= X_t + \sigma_{A} X_{t-1} \varepsilon_{it}^A,
+\end{align}
+$$ {#eq-setup}
+
+where
+
+- $X_t$ is the unobservable asset productivity with constant growth rate $\mu$ and volatility $\sigma_P>0$.
+- $Z_{it}$ is the operating cash flow of firm $i$ with short-term volatility $\sigma_A>0$.
+- $\varepsilon_t^P$ is the permanent shock to asset productivity.
+- $\varepsilon_{it}^A$ is the short-term shock to cash flows.
+
+Short-term and permanent shocks have a correlation $\rho$ and the short-term shock can be written as
+
+$$
+\varepsilon_{it}^A = \rho \varepsilon_t^P + \sqrt{1-\rho^2} \varepsilon_{it}^T,
+$$ {#eq-short-term-shock}
+
+where
+
+- $\varepsilon_{it}^T\sim \mathcal{N}(0,1)$ is a purely transitory shock uncorrelated with the permanent shock $\varepsilon_t^P\sim \mathcal{N}(0,1)$.
+
+The model parameters we are interested in are $\mu$, $\sigma_P$, $\sigma_A$, and $\rho$.
+
+This setup implies that all $N$ firms share the same asset productivity and the same correlation between permanent and short-term shocks due to econometric limitations. In @gryglewicz_understanding_2022, all firms in the universe are assigned to groups based on some common characteristics and each group contains $N=10$ firms. Therefore, we can estimate the model parameters for each group, achieving granularity in the results.
+
+### State space model
+
+Using standard notation in state space models, have
+
+$$
+\begin{align}
+X_t &= \Phi X_{t-1} + \omega_t \\
+Z_t &= H X_t + u_t,
+\end{align}
+$$ {#eq-state-space-model}
+
+where
+
+- $X_t$ is the latent asset productivity process, an $1\times 1$ matrix (or a scalar if we prefer).
+- $Z_t$ is the observed $N$-dimensional vector of firms' operating cash flows.
+- $\Phi$ is $(1+\mu)$, an $1\times 1$ matrix.
+- $H$ is $\mathbf{1}$, an $N$-dimensional vector of ones.
+- $\omega_t$ is the transition shock, $1\times 1$ matrix.
+- $u_t$ is the measurement error, $N\times 1$ matrix.
+
+Importantly, 
+
+- $\omega_t = \sigma_P X_{t-1} \varepsilon_t^P \sim \mathcal{N}(0, Q_t)$.
+- $u_t = \sigma_A X_{t-1} \left(\rho \varepsilon_t^P \mathbf{1} + \sqrt{1-\rho^2} \varepsilon_t^T \right) \sim \mathcal{N}(\mathbf{0}, \Omega_t)$
+
+The (co)variance of the shocks are, respectively,
+
+- $Q_t=\sigma_P^2 X_{t-1}^2$.
+- $\Omega_t = \sigma_A^2 X_{t-1}^2 \left(\rho^2 \mathbf{1}\mathbf{1}' + (1-\rho)^2 \mathbfit{I}_N \right)$, $\mathbfit{I}_N$ is identity matrix.
+
+Because $\omega_t$ and $u_t$ are correlated, we transform the measurement equation so that the transformed measurement error is uncorrelated to the shock in the state equation. Specifically, the measurement equation is transformed to
+$$
+\begin{align}
+Z_t &= H X_t + u_t + J(X_t - \Phi X_{t-1} - \omega_t) \\
+    &= (H+J) X_t - J \Phi X_{t-1} + u_t - J \omega_t  \\
+    &= H^* X_t + \Phi^* X_{t-1} + u_t^*,
+\end{align}
+$$ {#eq-measurement-equation-transformed}
+
+where $J = \rho \sigma_A / \sigma_P \mathbf{1}$ is an $N\times 1$ matrix as shown in @gryglewicz_understanding_2022, and obviously
+
+- $H^* = H + J$, an $N\times 1$ matrix.
+- $\Phi^* = - J \Phi$, an $N\times 1$ matrix.. 
+- $u_t^* = u_t - J \omega_t$, an $N\times 1$ matrix..
+
+## Generalized Kalman filter
+
+Kalman filter is re-derived because $X_{t-1}$ shows up in the transformed measurement equation @eq-measurement-equation-transformed.
+
+### Prediction step
+
+In the prediction step, the _a prior_ state estimate $\hat{X}_{t|t-1}$ and its variance $V_{t|t-1}$ are given by[^no-transpose]
+
+[^no-transpose]: The second $\Phi$ needs not a transposition since it's $1\times 1$.
+
+$$
+\begin{align}
+\hat{X}_{t|t-1} &= \Phi \hat{X}_{t-1} \\
+V_{t|t-1} &= \Phi V_{t-1} \Phi + Q_t.
+\end{align}
+$$ {#eq-prediction-step}
+
+The predicted measurement is given by
+
+$$
+\hat{Z}_{t|t-1} = H \hat{X}_{t|t-1} + \Phi^* \hat{X}_{t-1}.
+$$ {#eq-predicted-measurement}
+
+The total error covariance matrix is given by
+
+$$
+F_{t|t-1} = H^* V_{t|t-1} H^{*\top} + \Phi^* V_{t-1} \Phi^{*\top} + \Omega_t^*.
+$$ {#eq-aprior-error-cov}
+
+### Update step
+
+In the update step, the _a posterior_ state estimate $\hat{X}_t$ and variance $V_t$ are refined as
+
+$$
+\begin{align}
+\hat{X}_t &= \hat{X}_{t|t-1} + K_t^\top (Z_t - \hat{Z}_{t|t-1}) \\
+V_t &= V_{t|t-1} - 2 V_{t|t-1} H^{*\top} K_t + K_t^\top F_{t|t-1} K_t,
+\end{align}
+$$ {#eq-update-step}
+
+where $K_t$ is the Kalman gain, an $N\times 1$ vector, and is given by
+
+$$
+K_t^\top = V_{t|t-1} H^{*\top} F_{t|t-1}^{-1}.
+$$ {#eq-kalman-gain}
+
+## Parameter estimation
+
+Model estimation is achieved by maximizing the log-likelihood of cash flows data of $N$ firms over $T$ periods with respect to the model parameters $\mu$, $\sigma_P$, $\sigma_A$, and $\rho$. The log-likelihood is given by
+
+$$
+\mathcal{L} = \sum_{t=1}^T -\frac{1}{2}\left[N \log(2\pi) + \log \lvert F_{t|t-1} \rvert + (Z_t - \hat{Z}_{t|t-1})^\top F_{t|t-1}^{-1} (Z_t - \hat{Z}_{t|t-1}) \right].
+$$ {#eq-loglikelihood}
+
+Then the usual coding procedure follows. The starting value of the state process $X$ is set to the average of cash flows[^cf] at $t=1$, but should be optimized during the likelihood search.
+
+[^cf]: Cash flows are standardized by initial assets.
+
