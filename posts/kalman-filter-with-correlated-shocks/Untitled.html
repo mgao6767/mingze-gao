@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mingze Gao">
 
-<title>Mingze Gao</title>
+<title>untitled – Mingze Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +21,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,80 +101,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-recent-posts-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      page: 30,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-recent-posts-listings'] = new List('listing-recent-posts-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
-
-<script type="text/javascript">
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
-</script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 <meta name="twitter:title" content="Mingze Gao">
-<meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/kalman-filter-with-correlated-shocks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -151,8 +116,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/favicon.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -162,23 +127,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv/index.html"> 
+    <a class="nav-link" href="../../cv/index.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research/index.html"> 
+    <a class="nav-link" href="../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/index.html"> 
+    <a class="nav-link" href="../../posts/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./teaching/index.html"> 
+    <a class="nav-link" href="../../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
@@ -197,153 +162,191 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+</div>
 
 
-
-
-<section id="mingze-gao" class="level1 page-columns page-full">
-<h1>Mingze Gao</h1>
-<p><a href="https://mingze-gao.com">Mingze Gao</a>, aka <a href="https://adrian-gao.com">Adrian</a>, is a <strong>Lecturer in Finance</strong> at the Macquarie Business School (MQBS). He is previously a Postdoctoral Research Fellow at the University of Sydney Business School. With a focus on banking and corporate finance, his work has been published at journals including <em>Journal of Banking &amp; Finance</em>, <em>Finance Research Letters</em>, and/or presented at conferences such as WFA, SFS Cavalcade, EFA (poster), FMA, FIRN, and AFBC. He also serves as an ad hoc referee at ABDC-A*/A journals. He is an academic member of the Faculty Board of MQBS.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src=".\images/AdrianAI.png" class="img-fluid"></p>
-</div></div><p><a href=".\cv.pdf">CV</a>, <a href="https://scholar.google.com/citations?user=5n1YYx0AAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a>, <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2999772">SSRN</a>, and <a href="https://researchers.mq.edu.au/en/persons/mingze-gao">Faculty Profile</a>.</p>
-<p>Some of his open-source works include, for example,</p>
-<ul>
-<li><a href="https://phds.io">phds.io</a>, a literature search engine targeting top finance and econ journals.</li>
-<li><a href="https://frds.io">frds</a>, a Python library for financial research.</li>
-<li><a href="https://github.com/mgao6767/specurve">specurve</a>, a Stata command for specification curve analysis.</li>
-<li><a href="https://github.com/mgao6767/edgar-analyzer">edgar-analyzer</a>, a CLI tool to download SEC filings from EDGAR.</li>
-<li><a href="https://github.com/mgao6767/mktstructure">mktstructure</a> - a CLI tool to download Refinitiv Tick History data and compute some measures.</li>
-</ul>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<ul>
-<li>2017 - 2021 <strong>Ph.D.</strong> in Finance, University of Sydney</li>
-<li>2022 - 2023 <strong>Graduate Certificate</strong> in Computing, University of New South Wales</li>
-<li>2016 - 2016 <strong>B.Com (Honours)</strong> in Finance, University of Sydney</li>
-<li>2013 - 2015 <strong>B.Com</strong> in Econometrics and Finance, University of Sydney</li>
-</ul>
-</section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<ul>
-<li>Office: Room 554, 4 Eastern Road, Macquarie University.</li>
-<li>Email: <a href="mailto:mingze.gao@mq.edu.au">mingze.gao@mq.edu.au</a></li>
-</ul>
-</section>
-<section id="news" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="news">News</h2>
-<ul>
-<li>2024-11-30: A new working paper on <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427">AI adoption disparity and supply chain dynamics</a> uploaded to SSRN.</li>
-<li>2024-09-09: <a href="https://phds.io">PhDs.io</a> has been moved to a more powerful server with performance upgrade and a redesign.</li>
-</ul>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<form action="https://phds.io/papers/" method="post" role="search" class="form mb-2">
-  <div class="form">
-        <div class="col">
-            <input class="form-control" id="keywords" maxlength="1000" name="keywords" placeholder="Search for..." type="search" value="">
-        </div>
-        <input type="hidden" name="scope" value="all">
-        <div class="col mt-2">
-            <button id="submit" type="submit" class="btn btn-outline-primary" title="Search" aria-label="Search">
-              Search on PhDs.io
-            </button>
-        </div>
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
-</form>
-</div></div><ul>
-<li>2024-08-08: Invited by the Brattle Group and recorded a podcast on our award-winning paper. It’s now available on <a href="https://apple.co/3SG6Mw8">Apple Podcasts</a> and <a href="https://spoti.fi/3Aeg9gf">Spotify</a>.</li>
-<li>2024-07-26: Super excited to receive the MQBS Early Career Researcher Support Scheme 2025-2026!</li>
-<li>2024-06-18: Glad to receive the Data Horizons Research Funding 2024 at the Macquarie University. Great team work!</li>
-<li>2024-02-07: My paper <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677">“Borrower Technology Similarity and Bank Loan Contracting”</a> with Yunying Huang, Steven Ongena and Eliza Wu has been accepted for presentation at the <strong>SFS Cavalcade 2024</strong>.</li>
-<li>2024-01-02: My new position as a <strong>Lecturer in Finance</strong> at the Macquarie Business School starts!</li>
-<li>2023-11-23: Incredibly honoured to receive the <strong>FIRN 2023 The Brattle Group Best Paper Award</strong> for my paper <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418">“Lone (Loan) Wolf Pack Risk”</a> with Iftekhar Hasan, Buhui Qiu and Eliza Wu.</li>
-<li>2023-11-21: Glad to present and discuss at the 2023 FIRN Annual Meeting held at Hobart!</li>
-<li>2023-10-24: I made my own literature search engine <a href="https://phds.io">PhDs.io</a>. First version is online.</li>
-<li>2023-09-18: I had the privilege of serving as a discussant at the 2023 FIRN-ANU Banking and Financial Stability Conference.</li>
-<li>2023-08-16: My paper <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677">“Borrower Technology Similarity and Bank Loan Contracting”</a> with Yunying Huang, Steven Ongena and Eliza Wu has been selected as a <strong>semifinalist for the Best Paper Awards of FMA Annual Meeting 2023</strong>. Winners TBA.</li>
-<li>2023-07-27: I will join Macquarie University as a Lecturer in Finance. Contract signed. Starting January 2024.</li>
-<li>2023-06-27: I presented my paper <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418">“Lone (Loan) Wolf Pack Risk”</a> at the <strong>WFA 2023</strong> at San Francisco.</li>
-</ul>
-</section>
-<section id="mresphd-students" class="level2">
-<h2 class="anchored" data-anchor-id="mresphd-students">MRes/PhD students</h2>
-<p>I am seeking ideal candidates with a keen interest in financial intermediation and corporate finance. Priority will be given to students who have strong analytical skills and demonstrate proficiency in Stata, SAS, R, Python, and machine learning.</p>
-<p>If you are interested, please send your CV and research proposal to my email.</p>
-</section>
-<section id="recent-posts" class="level2">
-<h2 class="anchored" data-anchor-id="recent-posts">Recent posts</h2>
-<p>I write about many topics, taking a random walk away finance. Some recent ones are listed below.</p>
-<div id="listing-recent-posts-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Teaching Notes,Research Notes,Programming" data-listing-date-sort="1732712400000" data-listing-file-modified-sort="1732838371905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3034" data-listing-title-sort="Kalman Filter" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Nov 28, 2024</span>
-</td>
-<td>
-<a href="./posts/kalman-filter/index.html" class="title listing-title">Kalman Filter</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Programming" data-listing-date-sort="1725804000000" data-listing-file-modified-sort="1726438504082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="887" data-listing-title-sort="PhDs.io" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Sep 9, 2024</span>
-</td>
-<td>
-<a href="./posts/phds.io/index.html" class="title listing-title">PhDs.io</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Research Notes" data-listing-date-sort="1721397600000" data-listing-file-modified-sort="1725767990680" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3852" data-listing-title-sort="Technology Diversity" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jul 20, 2024</span>
-</td>
-<td>
-<a href="./posts/technology-diversity/index.html" class="title listing-title">Technology Diversity</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="Programming,QuantLib" data-listing-date-sort="1719669600000" data-listing-file-modified-sort="1719746320934" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4384" data-listing-title-sort="QuantLib - Yield Curve" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jun 30, 2024</span>
-</td>
-<td>
-<a href="./posts/quantlib-yield-curve/index.html" class="title listing-title">QuantLib - Yield Curve</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Research Notes" data-listing-date-sort="1703077200000" data-listing-file-modified-sort="1719529789214" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368" data-listing-title-sort="Identify Retail Investors" data-listing-filename-sort="index.md">
-<td>
-<span class="listing-date">Dec 21, 2023</span>
-</td>
-<td>
-<a href="./posts/identify-retail-investors/index.html" class="title listing-title">Identify Retail Investors</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="60b89927-86f3-40ec-87a3-ccf9c37641ed" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> det, inv</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1024</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dim_x <span class="op">=</span> <span class="dv">1</span> <span class="co"># Number of unobservable true states</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dim_z <span class="op">=</span> N <span class="op">=</span> <span class="dv">1</span> <span class="co"># Dimension of observations</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">50</span> <span class="co"># Number of time steps</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sigma_P <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sigma_A <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> np.array([<span class="dv">1</span> <span class="op">+</span> mu])</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.ones(N)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> (rho <span class="op">*</span> sigma_A <span class="op">/</span> sigma_P) <span class="op">*</span> np.ones(N)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize arrays to store results</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.zeros((T, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># Latent states</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.zeros((T, N, <span class="dv">1</span>))  <span class="co"># Observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5ba10987-d142-4ff7-8a71-083bcf679a3f" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">0</span>] <span class="op">=</span> [[<span class="fl">0.1</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> sigma_P <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> X[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw correlated shocks</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    eps_p <span class="op">=</span> rng.multivariate_normal(np.zeros(dim_x), Q)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    eps_t <span class="op">=</span> rng.multivariate_normal(np.zeros(N), np.eye(N))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    eps_a <span class="op">=</span> (rho <span class="op">*</span> eps_p <span class="op">*</span> np.ones(N) <span class="op">+</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> rho<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> eps_t)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    omega_t <span class="op">=</span> sigma_P <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">*</span> eps_p</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    u_t <span class="op">=</span> sigma_A <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">*</span> eps_a</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    X[t] <span class="op">=</span> Phi <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> omega_t</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    Z[t] <span class="op">=</span> H <span class="op">*</span> X[t] <span class="op">+</span> u_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6b55229b-f147-4432-a2b9-d3a4998042ba" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array([[[0.        ]],
+
+       [[0.1069862 ]],
+
+       [[0.09658417]],
+
+       [[0.10162606]],
+
+       [[0.11163061]],
+
+       [[0.09552293]],
+
+       [[0.09715052]],
+
+       [[0.10320404]],
+
+       [[0.10795983]],
+
+       [[0.11017883]],
+
+       [[0.12494482]],
+
+       [[0.09858851]],
+
+       [[0.09146421]],
+
+       [[0.12035397]],
+
+       [[0.09826277]],
+
+       [[0.11115327]],
+
+       [[0.11178658]],
+
+       [[0.12131182]],
+
+       [[0.14279028]],
+
+       [[0.11859269]],
+
+       [[0.11734677]],
+
+       [[0.1390189 ]],
+
+       [[0.14132014]],
+
+       [[0.12558381]],
+
+       [[0.13063038]],
+
+       [[0.13586277]],
+
+       [[0.11939417]],
+
+       [[0.12835277]],
+
+       [[0.1207393 ]],
+
+       [[0.15439756]],
+
+       [[0.12968978]],
+
+       [[0.12484662]],
+
+       [[0.11837315]],
+
+       [[0.15241113]],
+
+       [[0.14756227]],
+
+       [[0.1388225 ]],
+
+       [[0.15544603]],
+
+       [[0.11273526]],
+
+       [[0.13560096]],
+
+       [[0.13479933]],
+
+       [[0.14093893]],
+
+       [[0.1407997 ]],
+
+       [[0.12905683]],
+
+       [[0.14377008]],
+
+       [[0.14310837]],
+
+       [[0.16388099]],
+
+       [[0.13305551]],
+
+       [[0.13846484]],
+
+       [[0.16617996]],
+
+       [[0.13496046]]])</code></pre>
 </div>
 </div>
-<p><a href="./posts/index.html" class="btn btn-outline-primary" role="button">Read more</a></p>
 
 
-
-</section>
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -766,6 +769,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
