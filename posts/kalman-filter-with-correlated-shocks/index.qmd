@@ -113,11 +113,21 @@ $$
 \hat{Z}_{t|t-1} = H \hat{X}_{t|t-1} + \Phi^* \hat{X}_{t-1}.
 $$ {#eq-predicted-measurement}
 
-The total error covariance matrix is given by
+::: {.callout-note}
+In @gryglewicz_understanding_2022, this is the Equation A7. I feel like it should be
+
+$$
+\hat{Z}_{t|t-1} = H^* \hat{X}_{t|t-1} + \Phi^* \hat{X}_{t-1}.
+$$
+:::
+
+The total error covariance matrix is given by[^new]
 
 $$
 F_{t|t-1} = H^* V_{t|t-1} H^{*\top} + \Phi^* V_{t-1} \Phi^{*\top} + \Omega_t^*.
 $$ {#eq-aprior-error-cov}
+
+[^new]: The formula of $\Omega_t^*$ is not shown in @gryglewicz_understanding_2022. It should be the covariance of $u_t^* = u_t - J \omega_t = \sigma_A X_{t-1} \sqrt{1-\rho^2} \varepsilon_t^T$, hence $\Omega_t^* = \sigma_A^2 X_{t-1}^2 (1-\rho^2) \mathbfit{I}_N$.
 
 ### Update step
 
