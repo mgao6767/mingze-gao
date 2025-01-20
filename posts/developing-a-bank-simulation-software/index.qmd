@@ -1,0 +1,312 @@
+---
+title: "Developing a Bank Simulation Software"
+date: 2025-01-20
+draft: true 
+categories:
+    - Programming
+    - Teaching Notes
+---
+
+In 2025, I plan to incorporate [BRMS (Bank Risk Management Simulation)](https://github.com/mgao6767/brms/) into my teaching to provide students with a hands-on approach to understanding bank risk and financial intermediation. The project aims to feature 
+
+- **Bank Accounting** – Automate a bank’s accounting system with ledger maintenance and report generation.
+- **Regulatory Capital & Liquidity** – Compute Basel III capital ratios, LCR, and NSFR.
+- **Scenario-Based Risk Management** – Simulate shocks across credit, market, and liquidity risks.
+- **Strategic Decision-Making** – Allow users to adjust lending, funding, and risk strategies.
+- **Education & Professional Training** – Enable students and banks to enhance learning and training.
+- **GUI & API** - Support both graphical user interface and programming access.
+
+In this post, I’ll demonstrate the current capabilities of BRMS. Along the way, I’ll touch on key aspects of bank accounting, provide some example code, and showcase outputs.
+
+## Simple banking book accounting
+
+To begin with, a simple bank has just been established with shareholders' contribution of $10,000. Its balance sheet is shown as below.
+
+```{python}
+# | code-fold: true
+# | code-summary: A new bank has just been established.
+# | panel: center
+import datetime
+from brms.accounting.account import AccountBalances
+from brms.accounting.report import Report
+from brms.accounting.statement_viewer import HTMLStatementViewer
+from brms.models.bank import Bank
+
+
+bank = Bank()
+balances = AccountBalances(
+    {
+        bank.chart_of_accounts.cash_account: 10_000,
+        bank.chart_of_accounts.equity_account: 10_000,
+    },
+)
+bank.initialize(balances)
+viewer = HTMLStatementViewer(jupyter=True, hide_zero_balance_accounts=True)
+
+today = datetime.date(2025, 1, 20)
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+### Customer deposit
+
+Now some customers have made some deposits, for example:
+
+- Customer A deposits $60,000.
+- Customer B deposits $40,000.
+- Customer C deposits $20,000.
+
+Notably, customer deposits are the bank's _liability_. We see an increase in both the bank's total assets and total liabilities, while total shareholders' equity remains unchanged.
+
+```{python}
+# | code-fold: true
+# | code-summary: Some customers have made deposits.
+# | panel: center
+from brms.instruments.deposit import Deposit
+from brms.models.transaction import DepositTransaction
+
+customer_A_deposit = Deposit(value=60_000)
+customer_B_deposit = Deposit(value=40_000)
+customer_C_deposit = Deposit(value=20_000)
+# fmt: off
+tx_deposit1 = DepositTransaction(bank, customer_A_deposit, today, description="Customer A's deposit")
+tx_deposit2 = DepositTransaction(bank, customer_B_deposit, today, description="Customer B's deposit")
+tx_deposit3 = DepositTransaction(bank, customer_C_deposit, today, description="Customer C's deposit")
+# fmt: on
+bank.process_transaction(tx_deposit1)
+bank.process_transaction(tx_deposit2)
+bank.process_transaction(tx_deposit3)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+### Deposit withdraw
+
+Depositors can also withdraw from the bank. If Customer C has withdrawn all of their deposits, we see a decrease of cash and deposits.
+
+```{python}
+# | code-fold: true
+# | code-summary: Customer C has withdrawn their deposits.
+# | panel: center
+from brms.models.transaction import DepositWithdrawTransaction
+
+# fmt: off
+tx_deposit_withdraw = DepositWithdrawTransaction(bank, customer_C_deposit, today, description="Customer C withdraw")
+# fmt: on
+bank.process_transaction(tx_deposit_withdraw)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+
+### Loan disbursement
+
+Of course, the typical business of a bank is to make loans. Let's assume the bank has made an (interest-only) loan of $80,000 to some borrowers.
+
+```{python}
+# | code-fold: true
+# | code-summary: The bank has made some loans.
+# | panel: center
+from brms.instruments.base import Instrument
+from brms.instruments.mock import MockInstrument
+from brms.models.transaction import LoanDisbursementTransaction
+
+(loan := MockInstrument("A loan")).value = 80_000
+# fmt: off
+tx_loan = LoanDisbursementTransaction(bank, loan, today, description="Loan made to a borrower")
+# fmt: on
+bank.process_transaction(tx_loan)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+
+### Interest paid on deposits
+
+After some time (e.g., a month), the bank may need to pay interest on customers' deposits, e.g., $100.
+
+::: {.callout-tip}
+__Income Statement__ is included given that we'd like to know the profit and loss (P&L) of the bank over the period.
+:::
+
+```{python}
+# | code-fold: true
+# | code-summary: If the bank has only paid interest on deposits over the month...
+# | panel: center
+from brms.models.transaction import InterestPaidOnDepositTransaction
+
+today = today + datetime.timedelta(days=31)
+
+# fmt: off
+tx_interest_paid = InterestPaidOnDepositTransaction(bank, 100, today, description="Interest paid on deposits")
+# fmt: on
+bank.process_transaction(tx_interest_paid)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+If the bank has only paid interest on deposits over this period, it surely has a net loss or negative profit as shown above. However, it is more reasonable that the bank also has earned some profits during the same time, especially because it has made some loans.
+
+### Loan interest income
+
+Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $800.
+
+```{python}
+# | code-fold: true
+# | code-summary: ... if the bank has also earned interest from loans over the month.
+# | panel: center
+from brms.models.transaction import LoanInterestPaymentTransaction
+
+# fmt: off
+tx_interest_earned = LoanInterestPaymentTransaction(bank, 800, today, description="Interest earned from loans")
+# fmt: on
+bank.process_transaction(tx_interest_earned)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+Overall, the bank has a net profit of $700. We can observe that the bank's __Retained Earnings__ has increased by $700, too.
+
+## Intermediate trading book accounting
+
+Those transactions and non-transactions above all occur to the bank's __banking book__. 
+
+However, a bank also has a __trading book__ that holds securities for short-term trading P&L purposes. These instruments are named __Fair Value Through Profit and Loss (FVTPL)__.
+
+Accounting for trading book securities is relatively easy.
+
+### FVTPL security purchase
+
+Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $10,000.
+
+```{python}
+# | code-fold: true
+# | code-summary: The bank has purchased some FVTPL securities.
+# | panel: center
+from brms.models.base import BookType
+from brms.models.transaction import SecurityPurchaseFVTPLTransaction
+
+fvtpl_security = MockInstrument("A FVTPL Security", BookType.TRADING_BOOK)
+fvtpl_security.value = 1_0000
+# fmt: off
+tx_fvtpl_purchase = SecurityPurchaseFVTPLTransaction(bank, fvtpl_security, today, description="Purchase a FVTPL security")
+# fmt: on
+bank.process_transaction(tx_fvtpl_purchase)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+The fair value of the security is recorded on the balance sheet under the _Assets at FVTPL_ account.
+
+### FVTPL security marking to market
+
+The _fair value_ of FVTPL security is _marked to market_ periodically, e.g., daily. This ensures consistency in that they are held for trading P&N in the first place.
+
+#### Unrealized trading loss
+
+If the market value of the security went down by 5% ($500) the next day, we need to recognize this _unrealized trading loss_ in the Income Statement.
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security is marked to market with an unrealized trading loss.
+# | panel: center
+from brms.instruments.mock import MockValuationVisitor
+from brms.models.base import BookType
+from brms.models.transaction import SecurityMarkToMarketFVTPLTransaction
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went down by 5%
+new_fvtpl_instrument_value = fvtpl_security.value * 0.95
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+# fmt: off
+tx_fvtpl_marked_down = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (down)")
+# fmt: on
+bank.process_transaction(tx_fvtpl_marked_down)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+::: {.callout-important}
+Usually, financial reports are generated at a period's end, such as quarter's end or year's end. What's shown here should be viewed as _what if we close the bank's accounting ledger at this time and generate the reports?_
+
+If we were to generate the balance sheet now, such net trading loss would reduce the bank's retained earnings.
+:::
+
+#### Unrealized trading gain
+
+The day after, if the market value of the security went up by 10% ($950), we need to recognize this _unrealized trading gain_.
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security is marked to market with an unrealized trading gain.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 10%
+new_fvtpl_instrument_value = fvtpl_security.value * 1.1
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+# fmt: off
+tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+# fmt: on
+bank.process_transaction(tx_fvtpl_marked_up)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+Again, if we were to close the bank's accounting ledger now and check its balance sheet, we will see changes of the bank's retained earnings.
+
+### FVTPL security sale
+
+The next day, if the bank sold the security at the prevailing market price (assumed 2% up), we recognize _realized trading gain_.
+
+Tracking the P&L of this particular FVTPL security, 
+
+1. On day 1, we had a loss of $500 ($10,000 * 0.95 = $9,500).
+2. On day 2, we had a gain of $950 ($9,500 * 1.1 = $10,450).
+3. On day 3, we had a gain of $209 ($10,450 * 1.02 = $10,659).
+
+The total P&L from this security is therefore a net gain of $659, which shows up in the Income Statement. 
+
+::: {.callout-note}
+Because of the sale, the unrealized trading gain/loss associated with this security must be reclassified to realized gain/loss.
+:::
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security is sold.
+# | panel: center
+from brms.models.transaction import SecuritySaleFVTPLTransaction
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 2%
+new_fvtpl_instrument_value = fvtpl_security.value * 1.02
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+# fmt: off
+tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank, fvtpl_security, today, description="Sale of FVTPL security (net gain)")
+# fmt: on
+bank.process_transaction(tx_fvtpl_marked_up)
+bank.process_transaction(tx_fvtpl_sale)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+Compare this balance sheet to the one before the bank purchased this FVTPL security, the retained earnings increased by exactly $659.
