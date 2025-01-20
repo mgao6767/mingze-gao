@@ -1,7 +1,7 @@
 ---
 title: "Developing a Bank Simulation Software"
 date: 2025-01-20
-draft: true 
+draft: false
 categories:
     - Programming
     - Teaching Notes
@@ -298,10 +298,11 @@ new_fvtpl_instrument_value = fvtpl_security.value * 1.02
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 # fmt: off
 tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
-tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank, fvtpl_security, today, description="Sale of FVTPL security (net gain)")
-# fmt: on
 bank.process_transaction(tx_fvtpl_marked_up)
+# Sale transaction should be created after the previous transaction has been processed
+tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank, fvtpl_security, today, description="Sale of FVTPL security (net gain)")
 bank.process_transaction(tx_fvtpl_sale)
+# fmt: on
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
 report.print_income_statement()
@@ -310,3 +311,140 @@ report.print_balance_sheet()
 ```
 
 Compare this balance sheet to the one before the bank purchased this FVTPL security, the retained earnings increased by exactly $659.
+
+## Intermediate banking book accounting
+
+Apart from loans, a bank's banking book contains other assets that are held mostly for interest income. However, depending on whether the bank intends to hold them until maturity, these non-loan banking book assets can be either:
+
+1. __Fair Value Through Other Comprehensive Income (FVOCI)__, or
+2. __At Amortized Cost__ or Held to Maturity (HTM).
+
+For example, Treasury bonds, corporate bonds, MBS, etc., are usually FVOCI or HTM banking book assets.
+
+### FVOCI security purchase
+
+FVOCI assets in the banking book are typically debt securities that:
+
+- Earn interest income for the bank.
+- Can be sold before maturity but are _not actively traded_ like FVTPL securities.
+- Experience fair value changes that are recorded in __Accumulated Other Comprehensive Income (AOCI)__ instead of directly impacting net income.
+- Upon sale, unrealized gains/losses from AOCI are transferred to Net Income.
+
+Assume that the bank now purchased a Treasury bond at a fair value of $30,000. The bank may sell the bond before it matures, and hence classify it as a FVOCI asset on the banking book.
+
+```{python}
+# | code-fold: true
+# | code-summary: The bank has purchased some FVOCI securities.
+# | panel: center
+from brms.models.transaction import SecurityPurchaseFVOCITransaction
+
+fvoci_security = MockInstrument("A Treausy bond (FVOCI)", BookType.BANKING_BOOK)
+fvoci_security.value = 30_000
+# fmt: off
+tx_fvoci_purchase = SecurityPurchaseFVOCITransaction(bank, fvoci_security, today, description="Purchase a FVOCI security")
+# fmt: on
+bank.process_transaction(tx_fvoci_purchase)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+
+The fair value of the security is recorded on the balance sheet under the _Investment Securities at FVOCI_ account.
+
+### FVOCI security marking to market
+
+#### Unrealized gain
+
+Similarly, the next day, we need to mark to market the FVOCI security to ensure its fair value is correctly accounted for. Suppose that its market value went up by 5% ($600 = $30,000*5%).
+
+It is important to note that FVOCI security's fair value changes affect AOCI, an equity account. It does not affect Income Statement P&L untill it's eventually sold.
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security is marked to market with an unrealized gain.
+# | panel: center
+from brms.models.transaction import SecurityMarkToMarketFVOCITransaction
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 2%
+new_fvoci_instrument_value = fvoci_security.value * 1.02
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+# fmt: off
+tx_fvoci_marked_up = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+# fmt: on
+bank.process_transaction(tx_fvoci_marked_up)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+::: {.callout-important}
+Because FVOCI's (even unrealized) gain increases AOCI, and AOCI is part of a bank's CET1 capital, FVOCI's fair value movement can cause volatility in the bank's regulatory capital ratios.
+:::
+
+#### Unrealized loss
+
+If the market value of the security went down by 2% ($612=$30,600*2%) the next day, we recognize this _unrealized OCI loss_ of AOCI.
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security is marked to market with an unrealized trading loss.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVOCI security went down by 2%
+new_fvoci_instrument_value = fvoci_security.value * 0.98
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+# fmt: off
+tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVTPL security (down)")
+# fmt: on
+bank.process_transaction(tx_fvoci_marked_down)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+### FVOCI security sale
+
+The next day, if the bank sold the FVOCI security at the prevailing market price (assumed 2% down), we recognize _realized OCI loss_.
+
+Tracking the AOCI gain/loss of this particular FVOCI security, 
+
+1. On day 1, we had a gain of $600.
+2. On day 2, we had a loss of $612.
+3. On day 3, we had a loss of $599.76.
+
+The total net loss of this security is therefore $611.76.
+
+Now that the FVOCI security is sold, its gain/loss is moved from AOCI to Income Statement as _Investment Income (FVOCI)_. When P&L accounts of income statement are closed, the net gain/loss of Investment Income (FVOCI) changes the bank's retained earnings.
+
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security is sold.
+# | panel: center
+from brms.models.transaction import SecuritySaleFVOCITransaction
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVOCI security went down by 2%
+new_fvoci_instrument_value = fvoci_security.value * 0.98
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+# fmt: off
+tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVOCI security (down)")
+bank.process_transaction(tx_fvoci_marked_down)
+# Sale transaction should be created after the previous transaction has been processed
+tx_fvoci_sale = SecuritySaleFVOCITransaction(bank, fvoci_security, today, description="Sale of FVOCI security (net loss)")
+bank.process_transaction(tx_fvoci_sale)
+# fmt: on
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_income_statement()
+print("-" * 80)
+report.print_balance_sheet()
+```
+
+## Short summary
+
+As shown above, at the moment BRMS can provide a flexible accounting framework to address basic banking transactions and non-transactions. This provides the foundation for scaling up. Next, I will implement various instruments and pricing mechanisms. With the implementation of scenario simulation, it will then be capable of automated accounting and financial performance monitoring.  
