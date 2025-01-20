@@ -452,7 +452,7 @@ z_{2,t}
 <p><a href="https://frds.io/algorithms/garch-ccc/"><code>frds.algorithms.GARCHModel_CCC</code></a> is my implementation. Specifically, I estimate all the GARCH-DCC parameters simultaneously via maximizing the log-likelihood.</p>
 <p><strong>General steps are</strong>:</p>
 <ol type="1">
-<li>Use <code>frds.algorithms.GARCHModel</code> to estimate the <a href="../..\algorithms/garch">GARCH</a> model for each of the returns.</li>
+<li>Use <code>frds.algorithms.GARCHModel</code> to estimate the <a href="../../algorithms/garch">GARCH</a> model for each of the returns.</li>
 <li>Use the standardized residuals from the estimated GARCH models to compute the correlation coefficient.</li>
 <li>Use as starting values the estimated parameters from above in optimizing the log-likelihood function.</li>
 </ol>

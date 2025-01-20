@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mingze Gao">
+<meta name="dcterms.date" content="2025-01-20">
+
+<title>Developing a Bank Simulation Software – Mingze Gao</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Developing a Bank Simulation Software – Mingze Gao">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/developing-a-bank-simulation-software/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simple-banking-book-accounting" id="toc-simple-banking-book-accounting" class="nav-link active" data-scroll-target="#simple-banking-book-accounting">Simple banking book accounting</a>
+  <ul class="collapse">
+  <li><a href="#customer-deposit" id="toc-customer-deposit" class="nav-link" data-scroll-target="#customer-deposit">Customer deposit</a></li>
+  <li><a href="#deposit-withdraw" id="toc-deposit-withdraw" class="nav-link" data-scroll-target="#deposit-withdraw">Deposit withdraw</a></li>
+  <li><a href="#loan-disbursement" id="toc-loan-disbursement" class="nav-link" data-scroll-target="#loan-disbursement">Loan disbursement</a></li>
+  <li><a href="#interest-paid-on-deposits" id="toc-interest-paid-on-deposits" class="nav-link" data-scroll-target="#interest-paid-on-deposits">Interest paid on deposits</a></li>
+  <li><a href="#loan-interest-income" id="toc-loan-interest-income" class="nav-link" data-scroll-target="#loan-interest-income">Loan interest income</a></li>
+  </ul></li>
+  <li><a href="#intermediate-trading-book-accounting" id="toc-intermediate-trading-book-accounting" class="nav-link" data-scroll-target="#intermediate-trading-book-accounting">Intermediate trading book accounting</a>
+  <ul class="collapse">
+  <li><a href="#fvtpl-security-purchase" id="toc-fvtpl-security-purchase" class="nav-link" data-scroll-target="#fvtpl-security-purchase">FVTPL security purchase</a></li>
+  <li><a href="#fvtpl-security-marking-to-market" id="toc-fvtpl-security-marking-to-market" class="nav-link" data-scroll-target="#fvtpl-security-marking-to-market">FVTPL security marking to market</a></li>
+  <li><a href="#fvtpl-security-sale" id="toc-fvtpl-security-sale" class="nav-link" data-scroll-target="#fvtpl-security-sale">FVTPL security sale</a></li>
+  </ul></li>
+  <li><a href="#intermediate-banking-book-accounting" id="toc-intermediate-banking-book-accounting" class="nav-link" data-scroll-target="#intermediate-banking-book-accounting">Intermediate banking book accounting</a>
+  <ul class="collapse">
+  <li><a href="#fvoci-security-purchase" id="toc-fvoci-security-purchase" class="nav-link" data-scroll-target="#fvoci-security-purchase">FVOCI security purchase</a></li>
+  <li><a href="#fvoci-security-marking-to-market" id="toc-fvoci-security-marking-to-market" class="nav-link" data-scroll-target="#fvoci-security-marking-to-market">FVOCI security marking to market</a></li>
+  <li><a href="#fvoci-security-sale" id="toc-fvoci-security-sale" class="nav-link" data-scroll-target="#fvoci-security-sale">FVOCI security sale</a></li>
+  </ul></li>
+  <li><a href="#short-summary" id="toc-short-summary" class="nav-link" data-scroll-target="#short-summary">Short summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Developing a Bank Simulation Software</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Programming</div>
+    <div class="quarto-category">Teaching Notes</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In 2025, I plan to incorporate <a href="https://github.com/mgao6767/brms/">BRMS (Bank Risk Management Simulation)</a> into my teaching to provide students with a hands-on approach to understanding bank risk and financial intermediation. The project aims to feature</p>
+<ul>
+<li><strong>Bank Accounting</strong> – Automate a bank’s accounting system with ledger maintenance and report generation.</li>
+<li><strong>Regulatory Capital &amp; Liquidity</strong> – Compute Basel III capital ratios, LCR, and NSFR.</li>
+<li><strong>Scenario-Based Risk Management</strong> – Simulate shocks across credit, market, and liquidity risks.</li>
+<li><strong>Strategic Decision-Making</strong> – Allow users to adjust lending, funding, and risk strategies.</li>
+<li><strong>Education &amp; Professional Training</strong> – Enable students and banks to enhance learning and training.</li>
+<li><strong>GUI &amp; API</strong> - Support both graphical user interface and programming access.</li>
+</ul>
+<p>In this post, I’ll demonstrate the current capabilities of BRMS. Along the way, I’ll touch on key aspects of bank accounting, provide some example code, and showcase outputs.</p>
+<section id="simple-banking-book-accounting" class="level2">
+<h2 class="anchored" data-anchor-id="simple-banking-book-accounting">Simple banking book accounting</h2>
+<p>To begin with, a simple bank has just been established with shareholders’ contribution of $10,000. Its balance sheet is shown as below.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="5db69b74" class="cell panel-center" data-execution_count="1">
+<details class="code-fold">
+<summary>A new bank has just been established.</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.account <span class="im">import</span> AccountBalances</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.report <span class="im">import</span> Report</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.statement_viewer <span class="im">import</span> HTMLStatementViewer</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.bank <span class="im">import</span> Bank</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>bank <span class="op">=</span> Bank()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>balances <span class="op">=</span> AccountBalances(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.cash_account: <span class="dv">10_000</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.equity_account: <span class="dv">10_000</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>bank.initialize(balances)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>viewer <span class="op">=</span> HTMLStatementViewer(jupyter<span class="op">=</span><span class="va">True</span>, hide_zero_balance_accounts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> datetime.date(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">               Balance Sheet               </span>
+<span style="font-weight: bold"> Assets                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+   Cash and Cash Equivalents   <span style="color: #008000; text-decoration-color: #008000"> $10,000.00 </span>
+<span style="font-weight: bold"> Total assets                  </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $10,000.00 </span>
+<span style="font-weight: bold"> Liabilities                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+<span style="font-weight: bold"> Total liabilities             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">      $0.00 </span>
+<span style="font-weight: bold"> Net assets                    </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $10,000.00 </span>
+<span style="font-weight: bold"> Shareholders' equity          </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+   Shareholders' Equity        <span style="color: #008000; text-decoration-color: #008000"> $10,000.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity    </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $10,000.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                           Date: 2025-01-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<section id="customer-deposit" class="level3">
+<h3 class="anchored" data-anchor-id="customer-deposit">Customer deposit</h3>
+<p>Now some customers have made some deposits, for example:</p>
+<ul>
+<li>Customer A deposits $60,000.</li>
+<li>Customer B deposits $40,000.</li>
+<li>Customer C deposits $20,000.</li>
+</ul>
+<p>Notably, customer deposits are the bank’s <em>liability</em>. We see an increase in both the bank’s total assets and total liabilities, while total shareholders’ equity remains unchanged.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="fe1af7ef" class="cell panel-center" data-execution_count="2">
+<details class="code-fold">
+<summary>Some customers have made deposits.</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.deposit <span class="im">import</span> Deposit</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositTransaction</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>customer_A_deposit <span class="op">=</span> Deposit(value<span class="op">=</span><span class="dv">60_000</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>customer_B_deposit <span class="op">=</span> Deposit(value<span class="op">=</span><span class="dv">40_000</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>customer_C_deposit <span class="op">=</span> Deposit(value<span class="op">=</span><span class="dv">20_000</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tx_deposit1 <span class="op">=</span> DepositTransaction(bank, customer_A_deposit, today, description<span class="op">=</span><span class="st">"Customer A's deposit"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tx_deposit2 <span class="op">=</span> DepositTransaction(bank, customer_B_deposit, today, description<span class="op">=</span><span class="st">"Customer B's deposit"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tx_deposit3 <span class="op">=</span> DepositTransaction(bank, customer_C_deposit, today, description<span class="op">=</span><span class="st">"Customer C's deposit"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_deposit1)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_deposit2)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_deposit3)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000"> $130,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $130,000.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $120,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $120,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $120,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-01-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="deposit-withdraw" class="level3">
+<h3 class="anchored" data-anchor-id="deposit-withdraw">Deposit withdraw</h3>
+<p>Depositors can also withdraw from the bank. If Customer C has withdrawn all of their deposits, we see a decrease of cash and deposits.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="66a61c62" class="cell panel-center" data-execution_count="3">
+<details class="code-fold">
+<summary>Customer C has withdrawn their deposits.</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositWithdrawTransaction</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tx_deposit_withdraw <span class="op">=</span> DepositWithdrawTransaction(bank, customer_C_deposit, today, description<span class="op">=</span><span class="st">"Customer C withdraw"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_deposit_withdraw)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000"> $110,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,000.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-01-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="loan-disbursement" class="level3">
+<h3 class="anchored" data-anchor-id="loan-disbursement">Loan disbursement</h3>
+<p>Of course, the typical business of a bank is to make loans. Let’s assume the bank has made an (interest-only) loan of $80,000 to some borrowers.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="cb7ff1b6" class="cell panel-center" data-execution_count="4">
+<details class="code-fold">
+<summary>The bank has made some loans.</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.base <span class="im">import</span> Instrument</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockInstrument</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> LoanDisbursementTransaction</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>(loan <span class="op">:=</span> MockInstrument(<span class="st">"A loan"</span>)).value <span class="op">=</span> <span class="dv">80_000</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tx_loan <span class="op">=</span> LoanDisbursementTransaction(bank, loan, today, description<span class="op">=</span><span class="st">"Loan made to a borrower"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_loan)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $30,000.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,000.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,000.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-01-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="interest-paid-on-deposits" class="level3">
+<h3 class="anchored" data-anchor-id="interest-paid-on-deposits">Interest paid on deposits</h3>
+<p>After some time (e.g., a month), the bank may need to pay interest on customers’ deposits, e.g., $100.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Income Statement</strong> is included given that we’d like to know the profit and loss (P&amp;L) of the bank over the period.</p>
+</div>
+</div>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="036a418b" class="cell panel-center" data-execution_count="5">
+<details class="code-fold">
+<summary>If the bank has only paid interest on deposits over the month…</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> InterestPaidOnDepositTransaction</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">31</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>tx_interest_paid <span class="op">=</span> InterestPaidOnDepositTransaction(bank, <span class="dv">100</span>, today, description<span class="op">=</span><span class="st">"Interest paid on deposits"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_interest_paid)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">        Income Statement         </span>
+<span style="font-weight: bold"> Income               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">     $0.00 </span>
+<span style="font-weight: bold"> Expense              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense   <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> </span><span style="color: #800000; text-decoration-color: #800000; font-weight: bold">($100.00)</span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                 Date: 2025-02-20</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $29,900.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $109,900.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $9,900.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000"> </span><span style="color: #800000; text-decoration-color: #800000">  ($100.00)</span><span style="color: #008000; text-decoration-color: #008000"> </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $9,900.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>If the bank has only paid interest on deposits over this period, it surely has a net loss or negative profit as shown above. However, it is more reasonable that the bank also has earned some profits during the same time, especially because it has made some loans.</p>
+</section>
+<section id="loan-interest-income" class="level3">
+<h3 class="anchored" data-anchor-id="loan-interest-income">Loan interest income</h3>
+<p>Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $800.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="c2c08018" class="cell panel-center" data-execution_count="6">
+<details class="code-fold">
+<summary>… if the bank has also earned interest from loans over the month.</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> LoanInterestPaymentTransaction</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tx_interest_earned <span class="op">=</span> LoanInterestPaymentTransaction(bank, <span class="dv">800</span>, today, description<span class="op">=</span><span class="st">"Interest earned from loans"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_interest_earned)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">       Income Statement        </span>
+<span style="font-weight: bold"> Income               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $800.00 </span>
+   Interest Income    <span style="color: #008000; text-decoration-color: #008000"> $800.00 </span>
+<span style="font-weight: bold"> Expense              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100.00 </span>
+   Interest Expense   <span style="color: #008000; text-decoration-color: #008000"> $100.00 </span>
+<span style="font-weight: bold"> Profit               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $700.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">               Date: 2025-02-20</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $30,700.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,700.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,700.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">     $700.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,700.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>Overall, the bank has a net profit of $700. We can observe that the bank’s <strong>Retained Earnings</strong> has increased by $700, too.</p>
+</section>
+</section>
+<section id="intermediate-trading-book-accounting" class="level2">
+<h2 class="anchored" data-anchor-id="intermediate-trading-book-accounting">Intermediate trading book accounting</h2>
+<p>Those transactions and non-transactions above all occur to the bank’s <strong>banking book</strong>.</p>
+<p>However, a bank also has a <strong>trading book</strong> that holds securities for short-term trading P&amp;L purposes. These instruments are named <strong>Fair Value Through Profit and Loss (FVTPL)</strong>.</p>
+<p>Accounting for trading book securities is relatively easy.</p>
+<section id="fvtpl-security-purchase" class="level3">
+<h3 class="anchored" data-anchor-id="fvtpl-security-purchase">FVTPL security purchase</h3>
+<p>Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $10,000.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="02acc843" class="cell panel-center" data-execution_count="7">
+<details class="code-fold">
+<summary>The bank has purchased some FVTPL securities.</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.base <span class="im">import</span> BookType</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecurityPurchaseFVTPLTransaction</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fvtpl_security <span class="op">=</span> MockInstrument(<span class="st">"A FVTPL Security"</span>, BookType.TRADING_BOOK)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fvtpl_security.value <span class="op">=</span> <span class="dv">1_0000</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>tx_fvtpl_purchase <span class="op">=</span> SecurityPurchaseFVTPLTransaction(bank, fvtpl_security, today, description<span class="op">=</span><span class="st">"Purchase a FVTPL security"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvtpl_purchase)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $20,700.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Assets at FVTPL                        <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,700.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,700.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">     $700.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,700.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-20</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>The fair value of the security is recorded on the balance sheet under the <em>Assets at FVTPL</em> account.</p>
+</section>
+<section id="fvtpl-security-marking-to-market" class="level3">
+<h3 class="anchored" data-anchor-id="fvtpl-security-marking-to-market">FVTPL security marking to market</h3>
+<p>The <em>fair value</em> of FVTPL security is <em>marked to market</em> periodically, e.g., daily. This ensures consistency in that they are held for trading P&amp;N in the first place.</p>
+<section id="unrealized-trading-loss" class="level4">
+<h4 class="anchored" data-anchor-id="unrealized-trading-loss">Unrealized trading loss</h4>
+<p>If the market value of the security went down by 5% ($500) the next day, we need to recognize this <em>unrealized trading loss</em> in the Income Statement.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="e6f439ea" class="cell panel-center" data-execution_count="8">
+<details class="code-fold">
+<summary>The FVTPL security is marked to market with an unrealized trading loss.</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockValuationVisitor</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.base <span class="im">import</span> BookType</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecurityMarkToMarketFVTPLTransaction</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVTPL security went down by 5%</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>new_fvtpl_instrument_value <span class="op">=</span> fvtpl_security.value <span class="op">*</span> <span class="fl">0.95</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvtpl_instrument_value)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>tx_fvtpl_marked_down <span class="op">=</span> SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVTPL security (down)"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvtpl_marked_down)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">              Income Statement              </span>
+<span style="font-weight: bold"> Income                          </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $300.00 </span>
+   Interest Income               <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)        <span style="color: #008000; text-decoration-color: #008000"> </span><span style="color: #800000; text-decoration-color: #800000">($500.00)</span><span style="color: #008000; text-decoration-color: #008000"> </span>
+     Unrealized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+<span style="font-weight: bold"> Expense                         </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense              <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                          </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $200.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                            Date: 2025-02-21</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $20,700.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Assets at FVTPL                        <span style="color: #008000; text-decoration-color: #008000">   $9,500.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,200.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,200.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">     $200.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,200.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-21</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usually, financial reports are generated at a period’s end, such as quarter’s end or year’s end. What’s shown here should be viewed as <em>what if we close the bank’s accounting ledger at this time and generate the reports?</em></p>
+<p>If we were to generate the balance sheet now, such net trading loss would reduce the bank’s retained earnings.</p>
+</div>
+</div>
+</section>
+<section id="unrealized-trading-gain" class="level4">
+<h4 class="anchored" data-anchor-id="unrealized-trading-gain">Unrealized trading gain</h4>
+<p>The day after, if the market value of the security went up by 10% ($950), we need to recognize this <em>unrealized trading gain</em>.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="9d1358e5" class="cell panel-center" data-execution_count="9">
+<details class="code-fold">
+<summary>The FVTPL security is marked to market with an unrealized trading gain.</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVTPL security went up by 10%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>new_fvtpl_instrument_value <span class="op">=</span> fvtpl_security.value <span class="op">*</span> <span class="fl">1.1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvtpl_instrument_value)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>tx_fvtpl_marked_up <span class="op">=</span> SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVTPL security (up)"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvtpl_marked_up)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">              Income Statement              </span>
+<span style="font-weight: bold"> Income                          </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,250.00 </span>
+   Interest Income               <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)        <span style="color: #008000; text-decoration-color: #008000">   $450.00 </span>
+     Unrealized Trading Gain     <span style="color: #008000; text-decoration-color: #008000">   $950.00 </span>
+     Unrealized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+<span style="font-weight: bold"> Expense                         </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense              <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                          </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,150.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                            Date: 2025-02-22</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $20,700.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Assets at FVTPL                        <span style="color: #008000; text-decoration-color: #008000">  $10,450.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $111,150.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,150.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">   $1,150.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,150.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-22</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>Again, if we were to close the bank’s accounting ledger now and check its balance sheet, we will see changes of the bank’s retained earnings.</p>
+</section>
+</section>
+<section id="fvtpl-security-sale" class="level3">
+<h3 class="anchored" data-anchor-id="fvtpl-security-sale">FVTPL security sale</h3>
+<p>The next day, if the bank sold the security at the prevailing market price (assumed 2% up), we recognize <em>realized trading gain</em>.</p>
+<p>Tracking the P&amp;L of this particular FVTPL security,</p>
+<ol type="1">
+<li>On day 1, we had a loss of $500 ($10,000 * 0.95 = $9,500).</li>
+<li>On day 2, we had a gain of $950 ($9,500 * 1.1 = $10,450).</li>
+<li>On day 3, we had a gain of $209 ($10,450 * 1.02 = $10,659).</li>
+</ol>
+<p>The total P&amp;L from this security is therefore a net gain of $659, which shows up in the Income Statement.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because of the sale, the unrealized trading gain/loss associated with this security must be reclassified to realized gain/loss.</p>
+</div>
+</div>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="b6e0678f" class="cell panel-center" data-execution_count="10">
+<details class="code-fold">
+<summary>The FVTPL security is sold.</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecuritySaleFVTPLTransaction</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVTPL security went up by 2%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>new_fvtpl_instrument_value <span class="op">=</span> fvtpl_security.value <span class="op">*</span> <span class="fl">1.02</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvtpl_instrument_value)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>tx_fvtpl_marked_up <span class="op">=</span> SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVTPL security (up)"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvtpl_marked_up)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sale transaction should be created after the previous transaction has been processed</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>tx_fvtpl_sale <span class="op">=</span> SecuritySaleFVTPLTransaction(bank, fvtpl_security, today, description<span class="op">=</span><span class="st">"Sale of FVTPL security (net gain)"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvtpl_sale)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">             Income Statement             </span>
+<span style="font-weight: bold"> Income                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,459.00 </span>
+   Interest Income             <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)      <span style="color: #008000; text-decoration-color: #008000">   $659.00 </span>
+     Realized Trading Gain     <span style="color: #008000; text-decoration-color: #008000"> $1,159.00 </span>
+     Realized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+<span style="font-weight: bold"> Expense                       </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense            <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,359.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                          Date: 2025-02-23</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $31,359.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $111,359.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,359.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,359.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-23</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>Compare this balance sheet to the one before the bank purchased this FVTPL security, the retained earnings increased by exactly $659.</p>
+</section>
+</section>
+<section id="intermediate-banking-book-accounting" class="level2">
+<h2 class="anchored" data-anchor-id="intermediate-banking-book-accounting">Intermediate banking book accounting</h2>
+<p>Apart from loans, a bank’s banking book contains other assets that are held mostly for interest income. However, depending on whether the bank intends to hold them until maturity, these non-loan banking book assets can be either:</p>
+<ol type="1">
+<li><strong>Fair Value Through Other Comprehensive Income (FVOCI)</strong>, or</li>
+<li><strong>At Amortized Cost</strong> or Held to Maturity (HTM).</li>
+</ol>
+<p>For example, Treasury bonds, corporate bonds, MBS, etc., are usually FVOCI or HTM banking book assets.</p>
+<section id="fvoci-security-purchase" class="level3">
+<h3 class="anchored" data-anchor-id="fvoci-security-purchase">FVOCI security purchase</h3>
+<p>FVOCI assets in the banking book are typically debt securities that:</p>
+<ul>
+<li>Earn interest income for the bank.</li>
+<li>Can be sold before maturity but are <em>not actively traded</em> like FVTPL securities.</li>
+<li>Experience fair value changes that are recorded in <strong>Accumulated Other Comprehensive Income (AOCI)</strong> instead of directly impacting net income.</li>
+<li>Upon sale, unrealized gains/losses from AOCI are transferred to Net Income.</li>
+</ul>
+<p>Assume that the bank now purchased a Treasury bond at a fair value of $30,000. The bank may sell the bond before it matures, and hence classify it as a FVOCI asset on the banking book.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="7a67fd49" class="cell panel-center" data-execution_count="11">
+<details class="code-fold">
+<summary>The bank has purchased some FVOCI securities.</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecurityPurchaseFVOCITransaction</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>fvoci_security <span class="op">=</span> MockInstrument(<span class="st">"A Treausy bond (FVOCI)"</span>, BookType.BANKING_BOOK)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fvoci_security.value <span class="op">=</span> <span class="dv">30_000</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>tx_fvoci_purchase <span class="op">=</span> SecurityPurchaseFVOCITransaction(bank, fvoci_security, today, description<span class="op">=</span><span class="st">"Purchase a FVOCI security"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvoci_purchase)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Investment Securities                  <span style="color: #008000; text-decoration-color: #008000">  $30,000.00 </span>
+     Investment Securities at FVOCI       <span style="color: #008000; text-decoration-color: #008000">  $30,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $111,359.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,359.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,359.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-23</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>The fair value of the security is recorded on the balance sheet under the <em>Investment Securities at FVOCI</em> account.</p>
+</section>
+<section id="fvoci-security-marking-to-market" class="level3">
+<h3 class="anchored" data-anchor-id="fvoci-security-marking-to-market">FVOCI security marking to market</h3>
+<section id="unrealized-gain" class="level4">
+<h4 class="anchored" data-anchor-id="unrealized-gain">Unrealized gain</h4>
+<p>Similarly, the next day, we need to mark to market the FVOCI security to ensure its fair value is correctly accounted for. Suppose that its market value went up by 5% ($600 = $30,000*5%).</p>
+<p>It is important to note that FVOCI security’s fair value changes affect AOCI, an equity account. It does not affect Income Statement P&amp;L untill it’s eventually sold.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="f6f61568" class="cell panel-center" data-execution_count="12">
+<details class="code-fold">
+<summary>The FVOCI security is marked to market with an unrealized gain.</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecurityMarkToMarketFVOCITransaction</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVTPL security went up by 2%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>new_fvoci_instrument_value <span class="op">=</span> fvoci_security.value <span class="op">*</span> <span class="fl">1.02</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvoci_instrument_value)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tx_fvoci_marked_up <span class="op">=</span> SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVTPL security (up)"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvoci_marked_up)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">             Income Statement             </span>
+<span style="font-weight: bold"> Income                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,459.00 </span>
+   Interest Income             <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)      <span style="color: #008000; text-decoration-color: #008000">   $659.00 </span>
+     Realized Trading Gain     <span style="color: #008000; text-decoration-color: #008000"> $1,159.00 </span>
+     Realized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+<span style="font-weight: bold"> Expense                       </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense            <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,359.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                          Date: 2025-02-24</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Investment Securities                  <span style="color: #008000; text-decoration-color: #008000">  $30,600.00 </span>
+     Investment Securities at FVOCI       <span style="color: #008000; text-decoration-color: #008000">  $30,600.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $111,959.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,959.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Accumulated OCI                        <span style="color: #008000; text-decoration-color: #008000">     $600.00 </span>
+     Unrealized OCI Gain                  <span style="color: #008000; text-decoration-color: #008000">     $600.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,959.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-24</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because FVOCI’s (even unrealized) gain increases AOCI, and AOCI is part of a bank’s CET1 capital, FVOCI’s fair value movement can cause volatility in the bank’s regulatory capital ratios.</p>
+</div>
+</div>
+</section>
+<section id="unrealized-loss" class="level4">
+<h4 class="anchored" data-anchor-id="unrealized-loss">Unrealized loss</h4>
+<p>If the market value of the security went down by 2% ($612=$30,600*2%) the next day, we recognize this <em>unrealized OCI loss</em> of AOCI.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="83772d1a" class="cell panel-center" data-execution_count="13">
+<details class="code-fold">
+<summary>The FVOCI security is marked to market with an unrealized trading loss.</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVOCI security went down by 2%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>new_fvoci_instrument_value <span class="op">=</span> fvoci_security.value <span class="op">*</span> <span class="fl">0.98</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvoci_instrument_value)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>tx_fvoci_marked_down <span class="op">=</span> SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVTPL security (down)"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvoci_marked_down)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">             Income Statement             </span>
+<span style="font-weight: bold"> Income                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,459.00 </span>
+   Interest Income             <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)      <span style="color: #008000; text-decoration-color: #008000">   $659.00 </span>
+     Realized Trading Gain     <span style="color: #008000; text-decoration-color: #008000"> $1,159.00 </span>
+     Realized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+<span style="font-weight: bold"> Expense                       </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense            <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $1,359.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                          Date: 2025-02-25</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+   Investment Securities                  <span style="color: #008000; text-decoration-color: #008000">  $29,988.00 </span>
+     Investment Securities at FVOCI       <span style="color: #008000; text-decoration-color: #008000">  $29,988.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $111,347.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,347.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Accumulated OCI                        <span style="color: #008000; text-decoration-color: #008000"> </span><span style="color: #800000; text-decoration-color: #800000">   ($12.00)</span><span style="color: #008000; text-decoration-color: #008000"> </span>
+     Unrealized OCI Gain                  <span style="color: #008000; text-decoration-color: #008000">     $600.00 </span>
+     Unrealized OCI Loss                  <span style="color: #008000; text-decoration-color: #008000">     $612.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">   $1,359.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $11,347.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-25</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fvoci-security-sale" class="level3">
+<h3 class="anchored" data-anchor-id="fvoci-security-sale">FVOCI security sale</h3>
+<p>The next day, if the bank sold the FVOCI security at the prevailing market price (assumed 2% down), we recognize <em>realized OCI loss</em>.</p>
+<p>Tracking the AOCI gain/loss of this particular FVOCI security,</p>
+<ol type="1">
+<li>On day 1, we had a gain of $600.</li>
+<li>On day 2, we had a loss of $612.</li>
+<li>On day 3, we had a loss of $599.76.</li>
+</ol>
+<p>The total net loss of this security is therefore $611.76.</p>
+<p>Now that the FVOCI security is sold, its gain/loss is moved from AOCI to Income Statement as <em>Investment Income (FVOCI)</em>. When P&amp;L accounts of income statement are closed, the net gain/loss of Investment Income (FVOCI) changes the bank’s retained earnings.</p>
+<div class="panel-center panel-grid">
+<div class="g-col-24 g-col-lg-20 g-start-lg-2">
+<div id="5ae52d58" class="cell panel-center" data-execution_count="14">
+<details class="code-fold">
+<summary>The FVOCI security is sold.</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecuritySaleFVOCITransaction</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume that the market value of the FVOCI security went down by 2%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>new_fvoci_instrument_value <span class="op">=</span> fvoci_security.value <span class="op">*</span> <span class="fl">0.98</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvoci_instrument_value)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>tx_fvoci_marked_down <span class="op">=</span> SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description<span class="op">=</span><span class="st">"Mark to market a FVOCI security (down)"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvoci_marked_down)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sale transaction should be created after the previous transaction has been processed</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>tx_fvoci_sale <span class="op">=</span> SecuritySaleFVOCITransaction(bank, fvoci_security, today, description<span class="op">=</span><span class="st">"Sale of FVOCI security (net loss)"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>bank.process_transaction(tx_fvoci_sale)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: on</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>report.print_income_statement()</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">             Income Statement             </span>
+<span style="font-weight: bold"> Income                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $847.24 </span>
+   Interest Income             <span style="color: #008000; text-decoration-color: #008000">   $800.00 </span>
+   Trading Income (FVTPL)      <span style="color: #008000; text-decoration-color: #008000">   $659.00 </span>
+     Realized Trading Gain     <span style="color: #008000; text-decoration-color: #008000"> $1,159.00 </span>
+     Realized Trading Loss     <span style="color: #008000; text-decoration-color: #008000">   $500.00 </span>
+   Investment Income (FVOCI)   <span style="color: #008000; text-decoration-color: #008000"> </span><span style="color: #800000; text-decoration-color: #800000">($611.76)</span><span style="color: #008000; text-decoration-color: #008000"> </span>
+     Realized OCI Gain         <span style="color: #008000; text-decoration-color: #008000">   $600.00 </span>
+     Realized OCI Loss         <span style="color: #008000; text-decoration-color: #008000"> $1,211.76 </span>
+<span style="font-weight: bold"> Expense                       </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $100.00 </span>
+   Interest Expense            <span style="color: #008000; text-decoration-color: #008000">   $100.00 </span>
+<span style="font-weight: bold"> Profit                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">   $747.24 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                          Date: 2025-02-26</span>
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                     Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000">  $30,747.24 </span>
+   Loans and Advances                     <span style="color: #008000; text-decoration-color: #008000">  $80,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $110,747.24 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $100,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $100,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,747.24 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">             </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000">  $10,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">     $747.24 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">  $10,747.24 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                       Date: 2025-02-26</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="short-summary" class="level2">
+<h2 class="anchored" data-anchor-id="short-summary">Short summary</h2>
+<p>As shown above, at the moment BRMS can provide a flexible accounting framework to address basic banking transactions and non-transactions. This provides the foundation for scaling up. Next, I will implement various instruments and pricing mechanisms. With the implementation of scenario simulation, it will then be capable of automated accounting and financial performance monitoring.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © 2019 - 2024 Mingze Gao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
