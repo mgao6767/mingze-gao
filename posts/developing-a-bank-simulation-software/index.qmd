@@ -69,9 +69,9 @@ customer_A_deposit = Deposit(value=60_000)
 customer_B_deposit = Deposit(value=40_000)
 customer_C_deposit = Deposit(value=20_000)
 # fmt: off
-tx_deposit1 = DepositTransaction(bank, customer_A_deposit, today, description="Customer A's deposit")
-tx_deposit2 = DepositTransaction(bank, customer_B_deposit, today, description="Customer B's deposit")
-tx_deposit3 = DepositTransaction(bank, customer_C_deposit, today, description="Customer C's deposit")
+tx_deposit1 = DepositTransaction(bank=bank, instrument=customer_A_deposit, date=today, description="Customer A's deposit")
+tx_deposit2 = DepositTransaction(bank=bank, instrument=customer_B_deposit, date=today, description="Customer B's deposit")
+tx_deposit3 = DepositTransaction(bank=bank, instrument=customer_C_deposit, date=today, description="Customer C's deposit")
 # fmt: on
 bank.process_transaction(tx_deposit1)
 bank.process_transaction(tx_deposit2)
@@ -92,7 +92,7 @@ Depositors can also withdraw from the bank. If Customer C has withdrawn all of t
 from brms.models.transaction import DepositWithdrawTransaction
 
 # fmt: off
-tx_deposit_withdraw = DepositWithdrawTransaction(bank, customer_C_deposit, today, description="Customer C withdraw")
+tx_deposit_withdraw = DepositWithdrawTransaction(bank=bank, instrument=customer_C_deposit, date=today, description="Customer C withdraw")
 # fmt: on
 bank.process_transaction(tx_deposit_withdraw)
 
@@ -115,7 +115,7 @@ from brms.models.transaction import LoanDisbursementTransaction
 
 (loan := MockInstrument("A loan")).value = 80_000
 # fmt: off
-tx_loan = LoanDisbursementTransaction(bank, loan, today, description="Loan made to a borrower")
+tx_loan = LoanDisbursementTransaction(bank=bank, instrument=loan, date=today, description="Loan made to a borrower")
 # fmt: on
 bank.process_transaction(tx_loan)
 
@@ -136,12 +136,13 @@ __Income Statement__ is included given that we'd like to know the profit and los
 # | code-fold: true
 # | code-summary: If the bank has only paid interest on deposits over the month...
 # | panel: center
+from brms.instruments.cash import Cash
 from brms.models.transaction import InterestPaidOnDepositTransaction
 
 today = today + datetime.timedelta(days=31)
 
 # fmt: off
-tx_interest_paid = InterestPaidOnDepositTransaction(bank, 100, today, description="Interest paid on deposits")
+tx_interest_paid = InterestPaidOnDepositTransaction(bank=bank, instrument=Cash(value=100), date=today, description="Interest paid on deposits")
 # fmt: on
 bank.process_transaction(tx_interest_paid)
 
@@ -164,7 +165,7 @@ Suppose that over the 1-month period, the bank has earned some interest income f
 from brms.models.transaction import LoanInterestPaymentTransaction
 
 # fmt: off
-tx_interest_earned = LoanInterestPaymentTransaction(bank, 800, today, description="Interest earned from loans")
+tx_interest_earned = LoanInterestPaymentTransaction(bank=bank, instrument=Cash(value=800), date=today, description="Interest earned from loans")
 # fmt: on
 bank.process_transaction(tx_interest_earned)
 
@@ -198,7 +199,7 @@ from brms.models.transaction import SecurityPurchaseFVTPLTransaction
 fvtpl_security = MockInstrument("A FVTPL Security", BookType.TRADING_BOOK)
 fvtpl_security.value = 1_0000
 # fmt: off
-tx_fvtpl_purchase = SecurityPurchaseFVTPLTransaction(bank, fvtpl_security, today, description="Purchase a FVTPL security")
+tx_fvtpl_purchase = SecurityPurchaseFVTPLTransaction(bank=bank, instrument=fvtpl_security, date=today, description="Purchase a FVTPL security")
 # fmt: on
 bank.process_transaction(tx_fvtpl_purchase)
 
@@ -229,7 +230,7 @@ today = today + datetime.timedelta(days=1)
 new_fvtpl_instrument_value = fvtpl_security.value * 0.95
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 # fmt: off
-tx_fvtpl_marked_down = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (down)")
+tx_fvtpl_marked_down = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (down)")
 # fmt: on
 bank.process_transaction(tx_fvtpl_marked_down)
 
@@ -258,7 +259,7 @@ today = today + datetime.timedelta(days=1)
 new_fvtpl_instrument_value = fvtpl_security.value * 1.1
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 # fmt: off
-tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
 # fmt: on
 bank.process_transaction(tx_fvtpl_marked_up)
 
@@ -297,10 +298,10 @@ today = today + datetime.timedelta(days=1)
 new_fvtpl_instrument_value = fvtpl_security.value * 1.02
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 # fmt: off
-tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank, fvtpl_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
 bank.process_transaction(tx_fvtpl_marked_up)
 # Sale transaction should be created after the previous transaction has been processed
-tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank, fvtpl_security, today, description="Sale of FVTPL security (net gain)")
+tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank=bank, instrument=fvtpl_security, date=today, description="Sale of FVTPL security (net gain)")
 bank.process_transaction(tx_fvtpl_sale)
 # fmt: on
 
@@ -341,7 +342,7 @@ from brms.models.transaction import SecurityPurchaseFVOCITransaction
 fvoci_security = MockInstrument("A Treausy bond (FVOCI)", BookType.BANKING_BOOK)
 fvoci_security.value = 30_000
 # fmt: off
-tx_fvoci_purchase = SecurityPurchaseFVOCITransaction(bank, fvoci_security, today, description="Purchase a FVOCI security")
+tx_fvoci_purchase = SecurityPurchaseFVOCITransaction(bank=bank, instrument=fvoci_security, date=today, description="Purchase a FVOCI security")
 # fmt: on
 bank.process_transaction(tx_fvoci_purchase)
 
@@ -370,7 +371,7 @@ today = today + datetime.timedelta(days=1)
 new_fvoci_instrument_value = fvoci_security.value * 1.02
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
 # fmt: off
-tx_fvoci_marked_up = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVTPL security (up)")
+tx_fvoci_marked_up = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
 # fmt: on
 bank.process_transaction(tx_fvoci_marked_up)
 
@@ -397,7 +398,7 @@ today = today + datetime.timedelta(days=1)
 new_fvoci_instrument_value = fvoci_security.value * 0.98
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
 # fmt: off
-tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVTPL security (down)")
+tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (down)")
 # fmt: on
 bank.process_transaction(tx_fvoci_marked_down)
 
@@ -432,10 +433,10 @@ today = today + datetime.timedelta(days=1)
 new_fvoci_instrument_value = fvoci_security.value * 0.98
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
 # fmt: off
-tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank, fvoci_security, valuation_visitor, today, description="Mark to market a FVOCI security (down)")
+tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVOCI security (down)")
 bank.process_transaction(tx_fvoci_marked_down)
 # Sale transaction should be created after the previous transaction has been processed
-tx_fvoci_sale = SecuritySaleFVOCITransaction(bank, fvoci_security, today, description="Sale of FVOCI security (net loss)")
+tx_fvoci_sale = SecuritySaleFVOCITransaction(bank=bank, instrument=fvoci_security, date=today, description="Sale of FVOCI security (net loss)")
 bank.process_transaction(tx_fvoci_sale)
 # fmt: on
 
