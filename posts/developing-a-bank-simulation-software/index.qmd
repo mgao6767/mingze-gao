@@ -1,6 +1,7 @@
 ---
 title: "Developing a Bank Simulation Software"
 date: 2025-01-20
+date-modified: 2025-02-12
 draft: false
 categories:
     - Programming
@@ -62,17 +63,33 @@ Notably, customer deposits are the bank's _liability_. We see an increase in bot
 # | code-fold: true
 # | code-summary: Some customers have made deposits.
 # | panel: center
-from brms.instruments.deposit import Deposit
-from brms.models.transaction import DepositTransaction
+from brms.instruments.factory import InstrumentFactory
+from brms.models.transaction import TransactionFactory, TransactionType
 
-customer_A_deposit = Deposit(value=60_000)
-customer_B_deposit = Deposit(value=40_000)
-customer_C_deposit = Deposit(value=20_000)
-# fmt: off
-tx_deposit1 = DepositTransaction(bank=bank, instrument=customer_A_deposit, date=today, description="Customer A's deposit")
-tx_deposit2 = DepositTransaction(bank=bank, instrument=customer_B_deposit, date=today, description="Customer B's deposit")
-tx_deposit3 = DepositTransaction(bank=bank, instrument=customer_C_deposit, date=today, description="Customer C's deposit")
-# fmt: on
+customer_A_deposit = InstrumentFactory.create_deposit(value=60_000)
+customer_B_deposit = InstrumentFactory.create_deposit(value=40_000)
+customer_C_deposit = InstrumentFactory.create_deposit(value=20_000)
+tx_deposit1 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_A_deposit,
+    transaction_date=today,
+    description="Customer A's Deposits",
+)
+tx_deposit2 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_B_deposit,
+    transaction_date=today,
+    description="Customer B's Deposits",
+)
+tx_deposit3 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_C_deposit,
+    transaction_date=today,
+    description="Customer C's Deposits",
+)
 bank.process_transaction(tx_deposit1)
 bank.process_transaction(tx_deposit2)
 bank.process_transaction(tx_deposit3)
@@ -91,9 +108,13 @@ Depositors can also withdraw from the bank. If Customer C has withdrawn all of t
 # | panel: center
 from brms.models.transaction import DepositWithdrawTransaction
 
-# fmt: off
-tx_deposit_withdraw = DepositWithdrawTransaction(bank=bank, instrument=customer_C_deposit, date=today, description="Customer C withdraw")
-# fmt: on
+tx_deposit_withdraw = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_WITHDRAWAL,
+    instrument=customer_C_deposit,
+    transaction_date=today,
+    description="Customer C withdraw",
+)
 bank.process_transaction(tx_deposit_withdraw)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -115,7 +136,13 @@ from brms.models.transaction import LoanDisbursementTransaction
 
 (loan := MockInstrument("A loan")).value = 80_000
 # fmt: off
-tx_loan = LoanDisbursementTransaction(bank=bank, instrument=loan, date=today, description="Loan made to a borrower")
+tx_loan = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.LOAN_DISBURSEMENT,
+    instrument=loan,
+    transaction_date=today,
+    description="Loan made to a borrower",
+)
 # fmt: on
 bank.process_transaction(tx_loan)
 
@@ -141,9 +168,13 @@ from brms.models.transaction import InterestPaidOnDepositTransaction
 
 today = today + datetime.timedelta(days=31)
 
-# fmt: off
-tx_interest_paid = InterestPaidOnDepositTransaction(bank=bank, instrument=Cash(value=100), date=today, description="Interest paid on deposits")
-# fmt: on
+tx_interest_paid = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.INTEREST_PAID_ON_DEPOSIT,
+    instrument=Cash(value=100),
+    transaction_date=today,
+    description="Interest paid on deposits",
+)
 bank.process_transaction(tx_interest_paid)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -162,11 +193,13 @@ Suppose that over the 1-month period, the bank has earned some interest income f
 # | code-fold: true
 # | code-summary: ... if the bank has also earned interest from loans over the month.
 # | panel: center
-from brms.models.transaction import LoanInterestPaymentTransaction
-
-# fmt: off
-tx_interest_earned = LoanInterestPaymentTransaction(bank=bank, instrument=Cash(value=800), date=today, description="Interest earned from loans")
-# fmt: on
+tx_interest_earned = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.LOAN_INTEREST_PAYMENT,
+    instrument=Cash(value=800),
+    transaction_date=today,
+    description="Interest earned from loans",
+)
 bank.process_transaction(tx_interest_earned)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -194,13 +227,16 @@ Assume that the bank just purchased a FVTPL security for its trading book at its
 # | code-summary: The bank has purchased some FVTPL securities.
 # | panel: center
 from brms.models.base import BookType
-from brms.models.transaction import SecurityPurchaseFVTPLTransaction
 
 fvtpl_security = MockInstrument("A FVTPL Security", BookType.TRADING_BOOK)
 fvtpl_security.value = 1_0000
-# fmt: off
-tx_fvtpl_purchase = SecurityPurchaseFVTPLTransaction(bank=bank, instrument=fvtpl_security, date=today, description="Purchase a FVTPL security")
-# fmt: on
+tx_fvtpl_purchase = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_PURCHASE_TRADING,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    description="Purchase a FVTPL security",
+)
 bank.process_transaction(tx_fvtpl_purchase)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -222,16 +258,19 @@ If the market value of the security went down by 5% ($500) the next day, we need
 # | code-summary: The FVTPL security is marked to market with an unrealized trading loss.
 # | panel: center
 from brms.instruments.mock import MockValuationVisitor
-from brms.models.base import BookType
-from brms.models.transaction import SecurityMarkToMarketFVTPLTransaction
 
 today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went down by 5%
 new_fvtpl_instrument_value = fvtpl_security.value * 0.95
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
-# fmt: off
-tx_fvtpl_marked_down = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (down)")
-# fmt: on
+tx_fvtpl_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
 bank.process_transaction(tx_fvtpl_marked_down)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -258,9 +297,14 @@ today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went up by 10%
 new_fvtpl_instrument_value = fvtpl_security.value * 1.1
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
-# fmt: off
-tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
-# fmt: on
+tx_fvtpl_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
 bank.process_transaction(tx_fvtpl_marked_up)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -291,17 +335,28 @@ Because of the sale, the unrealized trading gain/loss associated with this secur
 # | code-fold: true
 # | code-summary: The FVTPL security is sold.
 # | panel: center
-from brms.models.transaction import SecuritySaleFVTPLTransaction
-
 today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went up by 2%
 new_fvtpl_instrument_value = fvtpl_security.value * 1.02
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
-# fmt: off
-tx_fvtpl_marked_up = SecurityMarkToMarketFVTPLTransaction(bank=bank, instrument=fvtpl_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
+tx_fvtpl_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
 bank.process_transaction(tx_fvtpl_marked_up)
 # Sale transaction should be created after the previous transaction has been processed
-tx_fvtpl_sale = SecuritySaleFVTPLTransaction(bank=bank, instrument=fvtpl_security, date=today, description="Sale of FVTPL security (net gain)")
+tx_fvtpl_sale = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_SALE_TRADING,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Sale of FVTPL security (net gain)",
+)
 bank.process_transaction(tx_fvtpl_sale)
 # fmt: on
 
@@ -337,13 +392,15 @@ Assume that the bank now purchased a Treasury bond at a fair value of $30,000. T
 # | code-fold: true
 # | code-summary: The bank has purchased some FVOCI securities.
 # | panel: center
-from brms.models.transaction import SecurityPurchaseFVOCITransaction
-
 fvoci_security = MockInstrument("A Treausy bond (FVOCI)", BookType.BANKING_BOOK)
 fvoci_security.value = 30_000
-# fmt: off
-tx_fvoci_purchase = SecurityPurchaseFVOCITransaction(bank=bank, instrument=fvoci_security, date=today, description="Purchase a FVOCI security")
-# fmt: on
+tx_fvoci_purchase = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_PURCHASE_FVOCI,
+    instrument=fvoci_security,
+    transaction_date=today,
+    description="Purchase a FVOCI security",
+)
 bank.process_transaction(tx_fvoci_purchase)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -364,15 +421,18 @@ It is important to note that FVOCI security's fair value changes affect AOCI, an
 # | code-fold: true
 # | code-summary: The FVOCI security is marked to market with an unrealized gain.
 # | panel: center
-from brms.models.transaction import SecurityMarkToMarketFVOCITransaction
-
 today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went up by 2%
 new_fvoci_instrument_value = fvoci_security.value * 1.02
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
-# fmt: off
-tx_fvoci_marked_up = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (up)")
-# fmt: on
+tx_fvoci_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
 bank.process_transaction(tx_fvoci_marked_up)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -397,9 +457,14 @@ today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVOCI security went down by 2%
 new_fvoci_instrument_value = fvoci_security.value * 0.98
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
-# fmt: off
-tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVTPL security (down)")
-# fmt: on
+tx_fvoci_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
 bank.process_transaction(tx_fvoci_marked_down)
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
@@ -432,13 +497,24 @@ today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVOCI security went down by 2%
 new_fvoci_instrument_value = fvoci_security.value * 0.98
 valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
-# fmt: off
-tx_fvoci_marked_down = SecurityMarkToMarketFVOCITransaction(bank=bank, instrument=fvoci_security, valuation_visitor=valuation_visitor, date=today, description="Mark to market a FVOCI security (down)")
+tx_fvoci_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
 bank.process_transaction(tx_fvoci_marked_down)
 # Sale transaction should be created after the previous transaction has been processed
-tx_fvoci_sale = SecuritySaleFVOCITransaction(bank=bank, instrument=fvoci_security, date=today, description="Sale of FVOCI security (net loss)")
+tx_fvoci_sale = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_SALE_FVOCI,
+    instrument=fvoci_security,
+    transaction_date=today,
+    description="Sale of FVOCI security (net loss)",
+)
 bank.process_transaction(tx_fvoci_sale)
-# fmt: on
 
 report = Report(ledger=bank.ledger, viewer=viewer, date=today)
 report.print_income_statement()
