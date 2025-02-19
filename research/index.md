@@ -41,8 +41,7 @@ cap-location: margin
 
 🆕 [Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Jiaying Li and Ruiqi Mao.
 
-- A simple model and empirical evidence suggest a positive assortative matching of suppliers and customers in AI adoption.
-- A structural model estimation shows that such matching enhances total economic surplus.
+- Nordic Initiative for Corporate Economics (NICE) 2025 (_invited_).
 
 [Borrower Technology Similarity and Bank Loan Contracting](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
