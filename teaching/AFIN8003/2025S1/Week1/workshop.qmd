@@ -1,0 +1,98 @@
+---
+title: "AFIN8003 - Workshop 1"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-02-27
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop1.pdf"
+# Custom fields
+pdf-name: "Workshop1.pdf"
+---
+
+# Bank balance sheet
+
+We will get familiar with the balance sheet of depositary institutions and conduct some very basic financial analysis on an Australian bank. Specifically, we use the [National Bank of Australia (NAB)](https://nab.com.au) as an example. Its financial results are publicly available at [its website](https://www.nab.com.au/about-us/shareholder-centre/financial-disclosures-and-reporting/financial-results). However, to make our lives a bit easier, pre-compiled balance sheet data is available on iLearn.
+
+- Visit AFIN8003 course page on [iLearn](https://ilearn.mq.edu.au/).
+- Under Week 1, find and download the Excel spreadsheet `SPGlobal_NAB.xls`.
+
+::: {.callout-note}
+The spreadsheet "Balance Sheet" contains the bank's balance sheet data for the past five financial years (FY) from FY2019 to FY2023. Now, use the provided data and your own research, try to answer the following questions. Unless specified otherwise, use the bank's data as at the end of FY2023.
+:::
+
+## Financial period
+
+1. When is the bank's financial period ended?
+2. Does the financial period's end align with Australia's financial year's end?
+
+## Bank assets
+
+1. What is the bank's total assets? When answering this question, make sure you have also reported the currency and unit.
+2. What is the largest asset item for the bank? (Cash, investment securities, trading securities, gross loans, or other asset items?)
+3. What is the proportion of the bank's gross loans relative to its total assets?
+4. What is the second largest asset item for the bank?
+
+## Bank liabilities
+
+1. What is the bank's total liabilities?
+2. What is the largest liability item for the bank? (Interest-bearing deposits, non-interest-bearing deposits, short-term borrowings, or long-term borrowings?)
+3. What is the proportion of the bank's total deposits relative to its total liabilities?
+
+## Bank equity
+
+1. What is the bank's total equity?
+2. What is the bank's total common equity?
+
+## More ratios
+
+1. What is the ratio of the bank's gross loans to total deposits?
+2. Is the ratio larger or smaller than 100\%?
+3. Why do you think that a bank can lend more than the total deposits it takes?
+
+# Loan and Deposit Composition
+
+Now, switch to the sheet "Loan and Deposit Composition", which contains a breakdown of the composition of the bank's loans and deposits.
+
+## Composition of loans
+
+1. Which type of loans does the bank lend the most? Is it commercial loans, commercial mortgages, residential mortgages, consumer loans, or other loans?
+2. What is the ratio of total real estate loans to total loans?
+
+## Composition of deposits
+
+1. How much demand deposits does the bank have?
+2. Check in the sheet "Balance Sheet" how much non-interest-bearing deposits the bank has. Are demand deposits interest-bearing?
+
+# Questions and Problems
+
+1. Explain the maturity transformation function of banks.
+2. Explain how financial institutions act as delegated monitors.
+
+# Extra
+
+::: {.callout-note}
+This section provides additional resources which are not required in this workshop. However, you are encouraged to read and/or attempt the materials to further your understanding.
+:::
+
+On May 2, 2024, NAB announced its 2024 Half Year results.[^note] The webcast can be publicly accessed on [its website](https://www.nab.com.au/about-us/shareholder-centre/financial-disclosures-and-reporting/investor-briefings-and-presentations). The complete earnings call transcript can be found on iLearn.
+
+[^note]: Note that the financial period of NAB starts October 1.
+
+1. Listen to or read the transcript of the Q&A section. What do analysts care about?
