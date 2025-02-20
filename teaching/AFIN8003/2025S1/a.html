@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Mingze Gao">
-<meta name="dcterms.date" content="2024-08-07">
+<meta name="dcterms.date" content="2025-01-20">
 
-<title>AFIN8003 - Workshop 3 – Mingze Gao</title>
+<title>Financial Accounting for Banks – Mingze Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,26 +22,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<link href="../../../../images/favicon.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,52 +111,30 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
-<link rel="stylesheet" href="../../../../styles.css">
-<meta name="twitter:title" content="AFIN8003 - Workshop 3 – Mingze Gao">
-<meta name="twitter:description" content="Banking and Financial Intermediation">
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+<meta name="quarto:status" content="draft">
+
+
+<link rel="stylesheet" href="../../../styles.css">
+<meta name="twitter:title" content="Financial Accounting for Banks – Mingze Gao">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/favicon.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -132,24 +144,28 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../cv/index.html"> 
+    <a class="nav-link" href="../../../cv/index.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../research/index.html"> 
+    <a class="nav-link" href="../../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../posts/index.html"> 
+    <a class="nav-link" href="../../../posts/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../teaching/index.html"> 
+    <a class="nav-link" href="../../../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -167,32 +183,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recap" id="toc-recap" class="nav-link active" data-scroll-target="#recap">Recap</a></li>
-  <li><a href="#question-1---appetizers" id="toc-question-1---appetizers" class="nav-link" data-scroll-target="#question-1---appetizers">Question 1 - Appetizers</a></li>
-  <li><a href="#question-2---capital-buffers" id="toc-question-2---capital-buffers" class="nav-link" data-scroll-target="#question-2---capital-buffers">Question 2 - Capital buffers</a></li>
-  <li><a href="#question-3---rwa-rwa-rwa" id="toc-question-3---rwa-rwa-rwa" class="nav-link" data-scroll-target="#question-3---rwa-rwa-rwa">Question 3 - RWA! RWA! RWA!</a>
-  <ul class="collapse">
-  <li><a href="#a-bank-without-off-balance-sheet-activities" id="toc-a-bank-without-off-balance-sheet-activities" class="nav-link" data-scroll-target="#a-bank-without-off-balance-sheet-activities">A bank without off-balance-sheet activities</a></li>
-  <li><a href="#a-bank-with-off-balance-sheet-activities" id="toc-a-bank-with-off-balance-sheet-activities" class="nav-link" data-scroll-target="#a-bank-with-off-balance-sheet-activities">A bank with off-balance-sheet activities</a>
-  <ul class="collapse">
-  <li><a href="#contingencies-and-guarantees" id="toc-contingencies-and-guarantees" class="nav-link" data-scroll-target="#contingencies-and-guarantees">Contingencies and guarantees</a></li>
-  <li><a href="#market-contracts-and-derivatives" id="toc-market-contracts-and-derivatives" class="nav-link" data-scroll-target="#market-contracts-and-derivatives">Market contracts and derivatives</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Workshop3.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AFIN8003 - Workshop 3</h1>
-<p class="subtitle lead">Banking and Financial Intermediation</p>
+<h1 class="title">Financial Accounting for Banks</h1>
   <div class="quarto-categories">
     <div class="quarto-category">AFIN8003</div>
-    <div class="quarto-category">2024S2</div>
+    <div class="quarto-category">2025S1</div>
   </div>
   </div>
 
@@ -217,7 +220,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 7, 2024</p>
+      <p class="date">January 20, 2025</p>
     </div>
   </div>
   
@@ -229,246 +232,65 @@ window.Quarto = {
 </header>
 
 
-<p>Welcome to this workshop on assessing banks’ capital adequacy. Our primary objective is to ensure you gain a comprehensive understanding of how capital ratios are determined taking into account both on-balance-sheet and off-balance-sheet activities. While the questions may seem straightforward, they are designed to effectively achieve this goal. Through a series of targeted questions and practical exercises, we aim to demystify the complexities of capital adequacy and provide you with the tools needed to apply these concepts effectively.</p>
-<section id="recap" class="level1">
-<h1>Recap</h1>
-<p>Under Basel III, depositary institutions (DIs) calculate and monitor four capital ratios:</p>
-<ol type="1">
-<li><p><strong>Common equity Tier 1 (CET1) risk-based capital ratio</strong> <span id="eq-cet1-capital-ratio"><span class="math display">\[
-\text{CET1 capital ratio} = \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}
-\tag{1}\]</span></span></p></li>
-<li><p><strong>Tier 1 risk-based capital ratio</strong> <span id="eq-tier1-capital-ratio"><span class="math display">\[
-\text{Tier 1 capital ratio} = \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}}
-\tag{2}\]</span></span></p></li>
-<li><p><strong>Total risk-based capital ratio</strong> <span id="eq-total-capital-ratio"><span class="math display">\[
-\text{Total capital ratio} = \frac{\text{Total capital}}{\text{Risk-weighted assets}}
-\tag{3}\]</span></span></p></li>
-<li><p><strong>Tier 1 leverage ratio</strong> <span id="eq-tier1-leverage-ratio"><span class="math display">\[
-\text{Tier 1 leverage ratio} = \frac{\text{Tier 1 capital}}{\text{Total exposure}}
-\tag{4}\]</span></span></p></li>
-</ol>
-</section>
-<section id="question-1---appetizers" class="level1">
-<h1>Question 1 - Appetizers</h1>
-<p>Suppose a bank has CET1 capital of $100 million, Tier 1 capital of $120 million, total capital of $200 million. The bank uses IRB and calculates its risk-weighted assets (RWA) to be $2,000 million.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> What are the bank’s CET1 capital ratio, Tier 1 capital ratio, and total capital ratio?</p>
-<p>Given the calculated capital ratios, does the bank meet the minimum required capital adequacy ratios?</p>
-</section>
-<section id="question-2---capital-buffers" class="level1">
-<h1>Question 2 - Capital buffers</h1>
-<p>Meeting the minimum required capital adequacy ratios is nothing to be proud of, because in practice there are also capital buffers applied.</p>
-<p>Suppose now a <strong>Capital Conversion Buffer</strong> of 2.5% applies, while the <strong>Countercyclical Capital Buffer (CCyB)</strong> is lifted<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, does the bank in Question 1 still have sufficient capital? If not, what would be the consequences?</p>
-<p>Let’s now assess another bank that reports a CET1 capital ratio of 8%. With a Capital Conversion Buffer of 2.5%, does the bank have sufficient CET1 capital? What if there is also a CCyB of 1.5%?</p>
-</section>
-<section id="question-3---rwa-rwa-rwa" class="level1">
-<h1>Question 3 - RWA! RWA! RWA!</h1>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>An example balance sheet.</p>
+<div id="170c5eaf" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.bank <span class="im">import</span> Bank</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.account <span class="im">import</span> AccountBalances</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.report <span class="im">import</span> Report</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.accounting.statement_viewer <span class="im">import</span> HTMLStatementViewer</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.bank <span class="im">import</span> Bank</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>bank <span class="op">=</span> Bank()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>balances <span class="op">=</span> AccountBalances(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.cash_account: <span class="dv">22500</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.equity_account: <span class="dv">30000</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.customer_deposits_account: <span class="dv">10000</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.ppe_account: <span class="dv">10000</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        bank.chart_of_accounts.retained_earnings_account: <span class="dv">2500</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>bank.initialize(balances)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>date <span class="op">=</span> datetime.date(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> Report(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ledger<span class="op">=</span>bank.ledger,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    viewer<span class="op">=</span>HTMLStatementViewer(jupyter<span class="op">=</span><span class="va">True</span>, hide_zero_balance_accounts<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    date<span class="op">=</span>date,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                    Balance Sheet                     </span>
+<span style="font-weight: bold"> Assets                                   </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+   Cash and Cash Equivalents              <span style="color: #008000; text-decoration-color: #008000"> $22,500.00 </span>
+   Property, Plant and Equipment          <span style="color: #008000; text-decoration-color: #008000"> $10,000.00 </span>
+<span style="font-weight: bold"> Total assets                             </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $32,500.00 </span>
+<span style="font-weight: bold"> Liabilities                              </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+   Deposits and Other Public Borrowings   <span style="color: #008000; text-decoration-color: #008000"> $10,000.00 </span>
+     Deposits                             <span style="color: #008000; text-decoration-color: #008000"> $10,000.00 </span>
+<span style="font-weight: bold"> Total liabilities                        </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $10,000.00 </span>
+<span style="font-weight: bold"> Net assets                               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $22,500.00 </span>
+<span style="font-weight: bold"> Shareholders' equity                     </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">            </span>
+   Shareholders' Equity                   <span style="color: #008000; text-decoration-color: #008000"> $30,000.00 </span>
+   Retained Earnings                      <span style="color: #008000; text-decoration-color: #008000">  $2,500.00 </span>
+<span style="font-weight: bold"> Total shareholders' equity               </span><span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> $32,500.00 </span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">                                      Date: 2025-01-20</span>
+</pre>
 </div>
-<div class="callout-title-container flex-fill">
-Important
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that when calculating capital ratios in <a href="#eq-cet1-capital-ratio" class="quarto-xref">Equation&nbsp;1</a>, <a href="#eq-tier1-capital-ratio" class="quarto-xref">Equation&nbsp;2</a>, and <a href="#eq-total-capital-ratio" class="quarto-xref">Equation&nbsp;3</a>, the denominator RWA should be the sum of three components: RWA for credit risk, RWA for market risk, and RWA for operational risk.</p>
-</div>
-</div>
-<p>In this course, we covered the calculation of RWA (for credit risk). This question aims to progressively examine your skills to compute RWA.</p>
-<section id="a-bank-without-off-balance-sheet-activities" class="level2">
-<h2 class="anchored" data-anchor-id="a-bank-without-off-balance-sheet-activities">A bank without off-balance-sheet activities</h2>
-<p>Suppose that Bank of Adrianland has no off-balance-sheet activities. The following table lists its assets, values, as well as the associated risk weights. Complete the table by filling the last column, then calculate the total RWA.</p>
-<table class="table">
-<colgroup>
-<col style="width: 48%">
-<col style="width: 12%">
-<col style="width: 14%">
-<col style="width: 24%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Asset type</th>
-<th>$ million</th>
-<th>Risk weight</th>
-<th>Risk-weighted value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Cash, Treasury Bonds and deposits at RBA</td>
-<td>10</td>
-<td>0%</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Local government bonds, AA-</td>
-<td>20</td>
-<td>20%</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Loans to other Australian banks, BBB+</td>
-<td>10</td>
-<td>100%</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Standard eligible residential mortgages</td>
-<td>50</td>
-<td>35%</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Corporate loans, BB- to BBB+</td>
-<td>20</td>
-<td>100%</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Corporate loans, B+ or lower</td>
-<td>20</td>
-<td>150%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="a-bank-with-off-balance-sheet-activities" class="level2">
-<h2 class="anchored" data-anchor-id="a-bank-with-off-balance-sheet-activities">A bank with off-balance-sheet activities</h2>
-<p>Suppose now that Bank of Adrianland has off-balance-sheet activities. Its RWA should include both on-balance-sheet and off-balance-sheet components.</p>
-<p>Two categories of off-balance-sheet activities receive different treatments for RWA calculation.</p>
-<section id="contingencies-and-guarantees" class="level3">
-<h3 class="anchored" data-anchor-id="contingencies-and-guarantees">Contingencies and guarantees</h3>
-<p>The following table lists the bank’s off-balance-sheet contingencies and guarantees. Complete the table by filling the columns CEA (credit equivalent amount) and Risk-weighted value. Calculate the RWA from off-balance-sheet contingencies and guarantees.</p>
-<table class="table">
-<colgroup>
-<col style="width: 32%">
-<col style="width: 18%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 14%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>OBS item</th>
-<th>Face value ($M)</th>
-<th>CCF</th>
-<th>CEA</th>
-<th>Risk weight</th>
-<th>Risk-weighted value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Loan commitment</td>
-<td>100</td>
-<td>0.4</td>
-<td></td>
-<td>20%</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Standby letter of credit</td>
-<td>20</td>
-<td>1</td>
-<td></td>
-<td>20%</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Commercial letter of credit</td>
-<td>30</td>
-<td>0.2</td>
-<td></td>
-<td>75%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="market-contracts-and-derivatives" class="level3">
-<h3 class="anchored" data-anchor-id="market-contracts-and-derivatives">Market contracts and derivatives</h3>
-<p>The following table lists the bank’s off-balance-sheet market contracts and derivatives. Complete the table by filling the columns Potential exposure and Current exposure. Calculate the RWA from off-balance-sheet market contracts and derivatives.</p>
-<section id="calculation-of-potential-exposure" class="level4">
-<h4 class="anchored" data-anchor-id="calculation-of-potential-exposure">Calculation of potential exposure</h4>
-<table class="table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 19%">
-<col style="width: 37%">
-<col style="width: 19%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type of Contract</th>
-<th>Notional Principal</th>
-<th>Potential Exposure Conversion Factor</th>
-<th>Potential Exposure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3yr interest rate swap</td>
-<td>$100 m</td>
-<td>0.005</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>2yr FX forward</td>
-<td>$ 80 m</td>
-<td>0.05</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="calculation-of-current-exposure" class="level4">
-<h4 class="anchored" data-anchor-id="calculation-of-current-exposure">Calculation of current exposure</h4>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Type of Contract</th>
-<th>Replacement Cost</th>
-<th>Current Exposure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3yr interest rate swap</td>
-<td>-$5 m</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>2yr FX forward</td>
-<td>$3 m</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="calculation-of-cea-and-rwa" class="level4">
-<h4 class="anchored" data-anchor-id="calculation-of-cea-and-rwa">Calculation of CEA and RWA</h4>
-<p>Now, given the potential exposure and current exposure, calculate the CEA and finally RWA.</p>
-</section>
-</section>
-</section>
-</section>
-<section id="extra" class="level1">
-<h1>Extra</h1>
-<p>Consider the Bank of Adrianland in Question 3. If it has both on-balance-sheet and off-balance-sheet items as specified in Question 3, what is the bank’s total RWA?</p>
 
 
 </section>
 
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Recall that large banks can use their <strong>Internal Ratings-Based (IRB)</strong> models to calculate RWA, subject to regulatory approval. In this case, we don’t bother computing RWA ourselves (as an outsider).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Basically it means that the current CCyB is 0%. CCyB is likely set to zero during periods of economic downturn or recession, regulatory authorities may set the CCyB to zero to reduce the capital requirements for banks. This is done to encourage lending and support economic activity.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
