@@ -74,6 +74,7 @@ Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Ya
 
 Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
 
+- _Reject & Resubmit_ at the _Review of Corporate Finance Studies_.
 - FMA 2022, FIRN 2022.
 
 ## ‍🎓 Student Supervision
