@@ -1,0 +1,286 @@
+---
+title: "AFIN8003 - Workshop 3"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-03-20
+draft: false
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop3.pdf"
+# Custom fields
+pdf-name: "Workshop3.pdf"
+include-answers: false
+---
+
+Welcome to this workshop on assessing banks' capital adequacy. Our primary objective is to ensure you gain a comprehensive understanding of how capital ratios are determined taking into account both on-balance-sheet and off-balance-sheet activities. While the questions may seem straightforward, they are designed to effectively achieve this goal. Through a series of targeted questions and practical exercises, we aim to demystify the complexities of capital adequacy and provide you with the tools needed to apply these concepts effectively.
+
+# Recap
+
+Under Basel III, depositary institutions (DIs) calculate and monitor four capital ratios:
+
+1. __Common equity Tier 1 (CET1) risk-based capital ratio__
+$$
+\text{CET1 capital ratio} = \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}
+$${#eq-cet1-capital-ratio}
+
+2. __Tier 1 risk-based capital ratio__
+$$
+\text{Tier 1 capital ratio} = \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}}
+$${#eq-tier1-capital-ratio}
+
+3. __Total risk-based capital ratio__
+$$
+\text{Total capital ratio} = \frac{\text{Total capital}}{\text{Risk-weighted assets}}
+$${#eq-total-capital-ratio}
+
+4. __Tier 1 leverage ratio__
+$$
+\text{Tier 1 leverage ratio} = \frac{\text{Tier 1 capital}}{\text{Total exposure}}
+$${#eq-tier1-leverage-ratio}
+
+# Question 1 - Appetizers
+
+Suppose a bank has CET1 capital of $100 million, Tier 1 capital of $120 million, total capital of $200 million. The bank uses IRB and calculates its risk-weighted assets (RWA) to be $2,000 million.[^IRB] What are the bank's CET1 capital ratio, Tier 1 capital ratio, and total capital ratio?
+
+[^IRB]: Recall that large banks can use their __Internal Ratings-Based (IRB)__ models to calculate RWA, subject to regulatory approval. In this case, we don't bother computing RWA ourselves (as an outsider).
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+This is a very simple question. Given that we have all the information needed, we can make use of @eq-cet1-capital-ratio, @eq-tier1-capital-ratio, and @eq-total-capital-ratio.
+
+$$
+\begin{aligned}
+\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}} = \frac{100}{2000} = 5\% \\
+\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{120}{2000} = 6\% \\
+\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{200}{2000} = 10\%
+\end{aligned}
+$$
+:::
+:::
+
+Given the calculated capital ratios, does the bank meet the minimum required capital adequacy ratios?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Note that the minimum required capital ratios for CET1, Tier 1, and total capital are, respectively, 4.5%, 6%, and 8%.
+We can compare the calculated capital ratios to the required ratios to conclude whether the bank has met the minimum capital adequacy requirement. In this question, all three capital ratios are at or above the minimum required levels.
+:::
+:::
+
+# Question 2 - Capital buffers
+
+Meeting the minimum required capital adequacy ratios is nothing to be proud of, because in practice there are also capital buffers applied.
+
+Suppose now a __Capital Conversion Buffer__ of 2.5% applies, while the __Countercyclical Capital Buffer (CCyB)__ is lifted[^lifted], does the bank in Question 1 still have sufficient capital? If not, what would be the consequences?
+
+[^lifted]: Basically it means that the current CCyB is 0%. CCyB is likely set to zero during periods of economic downturn or recession, regulatory authorities may set the CCyB to zero to reduce the capital requirements for banks. This is done to encourage lending and support economic activity. 
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Capital Conversion Buffer (CCB) applies on the CET1 capital. A 2.5% CCB means that the required CET1 capital ratio is 2.5 percentage points higher than the minimum required level (4.5%). As a result, the required CET1 capital ratio becomes
+$$
+\begin{aligned}
+\text{Required CET1 capital ratio} &= \text{minimum requirement} + \text{CCB} \\
+&= 4.5\% + 2.5\% \\
+&= 7\%
+\end{aligned}
+$$
+
+Given that the bank's CET1 capital ratio is only 5%, smaller than 7%, the bank does not meet the capital adequacy requirement!
+When a bank fails to meet capital adequacy requirements, constraints are imposed on the bank’s capital distributions (e.g. dividends and bonuses).
+:::
+:::
+
+Let's now assess another bank that reports a CET1 capital ratio of 8%. With a Capital Conversion Buffer of 2.5%, does the bank have sufficient CET1 capital? What if there is also a CCyB of 1.5%?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Since this bank's CET1 capital ratio is 8%, larger than 7%, the bank has sufficient CET1 capital.
+
+With a CCyB of 1.5%, the required CET1 capital ratio increases further and in addition to capital conversion buffer. Specifically, the required CET1 capital ratio is
+$$
+\begin{aligned}
+\text{Required CET1 capital ratio} &= \text{minimum requirement} + \text{CCB} + \text{CCyB} \\
+&= 4.5\% + 2.5\% + 1.5\% \\
+&= 8.5\%
+\end{aligned}
+$$
+
+Therefore, this bank's CET1 capital ratio of 8% is below the required level of 8.5%.
+:::
+:::
+
+# Question 3 - RWA! RWA! RWA!
+
+::: {.callout-important}
+Note that when calculating capital ratios in @eq-cet1-capital-ratio, @eq-tier1-capital-ratio, and @eq-total-capital-ratio, the denominator RWA should be the sum of three components: RWA for credit risk, RWA for market risk, and RWA for operational risk. 
+:::
+
+In this course, we covered the calculation of RWA (for credit risk). This question aims to progressively examine your skills to compute RWA.
+
+## A bank without off-balance-sheet activities
+
+Suppose that Bank of Adrianland has no off-balance-sheet activities. The following table lists its assets, values, as well as the associated risk weights. Complete the table by filling the last column, then calculate the total RWA.
+
+| Asset type                               | $ million | Risk weight | Risk-weighted value |
+|------------------------------------------|-----------|-------------|---------------------|
+| Cash, Treasury Bonds and deposits at RBA | 10        | 0%          |                     |
+| Local government bonds, AA-              | 20        | 20%         |                     |
+| Loans to other Australian banks, BBB+    | 10        | 100%        |                     |
+| Standard eligible residential mortgages  | 50        | 35%         |                     |
+| Corporate loans, BB- to BBB+             | 20        | 100%        |                     |
+| Corporate loans, B+ or lower             | 20        | 150%        |                     |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Recall that for on-balance-sheet assets, the calculation of RWA is relatively straightforward. Each asset has a risk weight, and the RWA is simply the weighted-average asset.
+
+The last column "risk-weighted value" for each asset equals the dollar amount multiplied by the corresponding risk weight.
+
+| Asset type                               | $ million | Risk weight | Risk-weighted value |
+|------------------------------------------|-----------|-------------|---------------------|
+| Cash, Treasury Bonds and deposits at RBA | 10        | 0%          | 0                   |
+| Local government bonds, AA-              | 20        | 20%         | 4                   |
+| Loans to other Australian banks, BBB+    | 10        | 100%        | 10                  |
+| Standard eligible residential mortgages  | 50        | 35%         | 17.5                |
+| Corporate loans, BB- to BBB+             | 20        | 100%        | 20                  |
+| Corporate loans, B+ or lower             | 20        | 150%        | 30                  |
+
+The total RWA (on-balance-sheet assets) equals
+$$
+0+4+10+17.5+20+30 = 81.5 \text{ million dollars}
+$$
+:::
+:::
+
+## A bank with off-balance-sheet activities
+
+Suppose now that Bank of Adrianland has off-balance-sheet activities. Its RWA should include both on-balance-sheet and off-balance-sheet components.
+
+Two categories of off-balance-sheet activities receive different treatments for RWA calculation.
+
+### Contingencies and guarantees
+
+The following table lists the bank's off-balance-sheet contingencies and guarantees. Complete the table by filling the columns CEA (credit equivalent amount) and Risk-weighted value. Calculate the RWA from off-balance-sheet contingencies and guarantees. 
+
+| OBS item                    | Face value ($M) | CCF | CEA | Risk weight | Risk-weighted value |
+|-----------------------------|-----------------|-----|-----|-------------|---------------------|
+| Loan commitment             | 100             | 0.4 |     | 20%         |                     |
+| Standby letter of credit    | 20              | 1   |     | 20%         |                     |
+| Commercial letter of credit | 30              | 0.2 |     | 75%         |                     |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+
+CEA is simply the face value multiplied by the __credit conversion factor (CCF)__.
+Risk-weighted value is CEA multiplied by the corresponding risk weight.
+
+| OBS item                    | Face value ($M) | CCF | CEA | Risk weight | Risk-weighted value |
+|-----------------------------|-----------------|-----|-----|-------------|---------------------|
+| Loan commitment             | 100             | 0.4 | 40  | 20%         | 8                   |
+| Standby letter of credit    | 20              | 1   | 20  | 20%         | 4                   |
+| Commercial letter of credit | 30              | 0.2 | 6   | 75%         | 4.5                 |
+
+Finally, RWA from contingencies and guarantees is the sum of risk-weighted values:
+$$
+\text{RWA (contingencies and guarantees)} = 8 + 4 + 4.5 = 16.5 \text{ million dollars}
+$$
+:::
+:::
+
+### Market contracts and derivatives
+
+The following table lists the bank's off-balance-sheet market contracts and derivatives. Complete the table by filling the columns Potential exposure and Current exposure. Calculate the RWA from off-balance-sheet market contracts and derivatives. 
+
+#### Calculation of potential exposure
+
+| Type of Contract       | Notional Principal | Potential Exposure Conversion Factor | Potential Exposure |
+|------------------------|--------------------|--------------------------------------|--------------------|
+| 3yr interest rate swap | $100 m             | 0.005                                |                    |
+| 2yr FX forward         | $ 80 m             | 0.05                                 |                    |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Potential exposure is the notional principal multiplied by the potential exposure conversion factor.
+
+| Type of Contract       | Notional Principal | Potential Exposure Conversion Factor | Potential Exposure |
+|------------------------|--------------------|--------------------------------------|--------------------|
+| 3yr interest rate swap | $100 m             | 0.005                                | $0.5 m             |
+| 2yr FX forward         | $ 80 m             | 0.05                                 | $4 m               |
+:::
+:::
+
+#### Calculation of current exposure
+
+| Type of Contract       | Replacement Cost | Current Exposure |
+|------------------------|------------------|------------------|
+| 3yr interest rate swap | -$5 m            |                  |
+| 2yr FX forward         | $3 m             |                  |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+Current exposure equals the replacement cost if the replacement cost is positive and zero if the replacement cost is negative, i.e.,
+$$
+\text{Current exposure} = \text{Max}(0, \text{replacement cost})
+$$
+
+Therefore,
+
+| Type of Contract       | Replacement Cost | Current Exposure |
+|------------------------|------------------|------------------|
+| 3yr interest rate swap | -$5 m            | 0                |
+| 2yr FX forward         | $3 m             | $3 m             |
+:::
+:::
+
+#### Calculation of CEA and RWA
+
+Now, given the potential exposure and current exposure, calculate the CEA and finally RWA.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+CEA equals the sum of potential exposure and current exposure.
+
+| Type of Contract       | Potential Exposure | Current Exposure | CEA    |
+|------------------------|--------------------|------------------|--------|
+| 3yr interest rate swap | $0.5 m             | 0                | $0.5 m |
+| 2yr FX forward         | $4 m               | $3 m             | $7 m   |
+
+The RWA using 100% risk weight is $0.5+7=7.5$ million dollars.
+:::
+:::
+
+# Extra
+
+Consider the Bank of Adrianland in Question 3. If it has both on-balance-sheet and off-balance-sheet items as specified in Question 3, what is the bank's total RWA?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution"}
+
+Total RWA is the sum of on-balance-sheet and off-balance-sheet RWAs:
+
+| Category                           | RWA ($ million) |
+|------------------------------------|-----------------|
+| On-balance-sheet                   | 81.5            |
+| Off-balance-sheet                  |                 |
+| - contingencies and guarantees     | 16.5            |
+| - market contracts and derivatives | 7.5             |
+| Total RWA                          | __105.5__       |
+:::
+:::
