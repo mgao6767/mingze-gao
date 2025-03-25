@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Dr.&nbsp;Mingze Gao (MQBS) and David Chan (ASX)">
+  <meta name="dcterms.date" content="2025-03-27">
+  <title>Mingze Gao – AFIN8003 Week 5 - Market Risk</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta name="twitter:title" content="AFIN8003 Week 5 - Market Risk – Mingze Gao">
+<meta name="twitter:description" content="Banking and Financial Intermediation">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+  <h1 class="title">AFIN8003 Week 5 - Market Risk</h1>
+  <p class="subtitle">Banking and Financial Intermediation</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mingze Gao (MQBS) and David Chan (ASX) 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-03-27</p>
+</section>
+<section>
+<section id="guest-lecturer" class="title-slide slide level1 center">
+<h1>Guest lecturer</h1>
+
+</section>
+<section id="david-chan" class="slide level2">
+<h2>David Chan</h2>
+<p>David Chan has over 25 years’ experience in financial markets and is currently at ASX as <strong>Senior Manager Clearing Risk Data Analytics &amp; Framework</strong>. In this role, David is responsible for the development of data &amp; risk analytics platform, clearing risk management monitoring &amp; review framework.</p>
+<p>Prior to joining ASX, David was <strong>Executive Manager Strategic Risk Oversight</strong> at Commonwealth Bank of Australia, with responsibility for oversight trading book for Global Markets. In this role, David covered a range of asset classes including FX, rates, equities, and commodities with a special focus on XVA portfolio and capital optimization.</p>
+<p>Prior to working at Commonwealth Bank, David held a number of senior risk management, finance and operations roles at Agricultural Bank of China International, Mirae Asset and JP Morgan in Hong Kong and Sydney.</p>
+<p>David’s expertise across sell side and buy side trading, treasury management, asset management, financing and prime brokerage. With strong interest in financial products and hedge strategies, portfolio management &amp; optimization, forecasting and predictive analysis, unauthorised trading oversight.</p>
+<p>David holds a Bachelor’s degree in Computing Studies from Hong Kong Polytechnic University and a Master of Applied Finance from the University of Melbourne.</p>
+</section></section>
+<section>
+<section id="market-risk" class="title-slide slide level1 center">
+<h1>Market risk</h1>
+
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<p>In last week, we discussed <a href="https://mingze-gao.com/teaching/AFIN8003/2025S1/Week4/">interest rate risk</a>: changes in interest rates could affect a FI’s income and net worth.</p>
+<ul>
+<li>Interest rate changes affect <em>mostly</em> the <strong>banking book</strong>.</li>
+<li>The <strong>trading book</strong> is exposed to <strong>market risk</strong>.</li>
+</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 47%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Assets</th>
+<th>Liabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Banking book</strong></td>
+<td>Cash</td>
+<td>Deposits</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Loans</td>
+<td>Other liabilities</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Other assets</td>
+<td>Capital</td>
+</tr>
+<tr class="even">
+<td><strong>Trading book</strong></td>
+<td>Bonds (long)</td>
+<td>Bonds (short)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Commodities (long)</td>
+<td>Commodities (short)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>FX (long)</td>
+<td>FX (short)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Equities (long)</td>
+<td>Equities (short)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Mortgage-backed securities (long)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Derivatives<sup>1</sup> (long)</td>
+<td>Derivatives (short)</td>
+</tr>
+</tbody>
+</table>
+<div title="Market Risk">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Market Risk</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Market risk</strong> is uncertainty of an FI’s earnings on its trading portfolio caused by changes, particularly extreme changes, in market conditions such as the price of an asset, interest rates, market volatility, and market liquidity.</p>
+</div>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Derivatives are off-balance-sheet.</p></li></ol></aside></section>
+<section id="introduction-contd" class="slide level2">
+<h2>Introduction (cont’d)</h2>
+<p>Intuitively, trading book includes assets, liabilities and derivatives that are actively traded in some financial markets and hence exposed to uncertainties of these markets.</p>
+
+<img data-src="./figures/fig-trading-book-market-risk.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="market-risk-exposure" class="slide level2">
+<h2>Market risk exposure</h2>
+<p>FIs are concerned about the potential impact of changing market conditions on their trading book and ultimately their net worth and solvency.</p>
+<p>A natural question becomes:</p>
+<blockquote>
+<p>How to quantify such impact? What is the <strong>potential change in value</strong> of trading portfolio for a given period?</p>
+</blockquote>
+<p>More specifically,</p>
+<ol type="1">
+<li>What is the worst loss we can expect not to exceed with a given confidence level over a specific time horizon?</li>
+<li>What is the expected loss when losses exceed a certain level over a specific time horizon?</li>
+</ol>
+<p>Answering these questions leads to the development of two important concepts for measuring market risk exposure:</p>
+<ol type="1">
+<li>Value at Risk (VaR).</li>
+<li>Expected Shortfall (ES).</li>
+</ol>
+<p>We start with the concept of Value at Risk (VaR), then discuss its limitations and the use of Expected Shortfall (ES).</p>
+</section></section>
+<section>
+<section id="value-at-risk-var" class="title-slide slide level1 center">
+<h1>Value at Risk (VaR)</h1>
+
+</section>
+<section id="concept-of-var" class="slide level2">
+<h2>Concept of VaR</h2>
+<p>Suppose we know the distribution of an asset’s returns over a specific period (in the future), then for a given confidence level <span class="math inline">\(c\in[0,1]\)</span> (e.g., <span class="math inline">\(c=0.95\)</span>), we can partition the distribution into two parts: one (in red) that represents a proportion of <span class="math inline">\((1-c)\)</span> of the distribution and the other (in blue) accounting the remaining <span class="math inline">\(c\)</span> proportion.</p>
+<div class="columns">
+<div class="column">
+<div id="cell-fig-returns-VaR" class="cell" data-fig-location="center" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb1-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="co"># Parameters</span></span>
+<span id="cb1-8"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Mean of returns</span></span>
+<span id="cb1-9"><a></a>sigma <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># Standard deviation of returns</span></span>
+<span id="cb1-10"><a></a>n <span class="op">=</span> <span class="dv">10000</span>  <span class="co"># Number of simulations</span></span>
+<span id="cb1-11"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a><span class="co"># Simulate returns</span></span>
+<span id="cb1-14"><a></a>returns <span class="op">=</span> np.random.normal(mu, sigma, n)</span>
+<span id="cb1-15"><a></a></span>
+<span id="cb1-16"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb1-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb1-18"><a></a></span>
+<span id="cb1-19"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
+<span id="cb1-20"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-21"><a></a></span>
+<span id="cb1-22"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb1-23"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb1-24"><a></a></span>
+<span id="cb1-25"><a></a><span class="co"># Change color of bars</span></span>
+<span id="cb1-26"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb1-27"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb1-28"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb1-29"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb1-30"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb1-31"><a></a></span>
+<span id="cb1-32"><a></a><span class="co"># Add VaR line</span></span>
+<span id="cb1-33"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR"</span>)</span>
+<span id="cb1-35"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb1-36"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb1-37"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb1-38"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-39"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-returns-var" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-var-output-1.png" width="816" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of expected returns and VaR
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p>Therefore, the cutoff value of returns that separates the two parts defines:</p>
+<ul>
+<li>a minimum return that we are confident 95% of the time, or</li>
+<li><strong>a maximum loss that we are confident 95% of the time</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section id="another-example-of-var" class="slide level2">
+<h2>Another example of VaR</h2>
+<p>This VaR concept does not depend on the shape of return distribution.</p>
+<p>For example, below we have an interestingly shaped return distribution. Given a confidence level of 99%, we can find the 99% VaR.</p>
+<div id="cell-fig-returns-VaR-example-2" class="cell" data-fig-location="center" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Simulate returns with a non-normal distribution (e.g., bimodal distribution)</span></span>
+<span id="cb2-2"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="co"># Parameters for bimodal distribution</span></span>
+<span id="cb2-5"><a></a>n <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-6"><a></a>mu1, sigma1, weight1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.5</span></span>
+<span id="cb2-7"><a></a>mu2, sigma2, weight2 <span class="op">=</span> <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.5</span></span>
+<span id="cb2-8"><a></a></span>
+<span id="cb2-9"><a></a><span class="co"># Generate bimodal returns</span></span>
+<span id="cb2-10"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, <span class="bu">int</span>(n <span class="op">*</span> weight1))</span>
+<span id="cb2-11"><a></a>returns2 <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n <span class="op">*</span> weight2))</span>
+<span id="cb2-12"><a></a>returns <span class="op">=</span> np.concatenate([returns1, returns2])</span>
+<span id="cb2-13"><a></a></span>
+<span id="cb2-14"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb2-15"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb2-16"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb2-17"><a></a></span>
+<span id="cb2-18"><a></a><span class="co"># Plot histogram with different colors for bars below and above VaR</span></span>
+<span id="cb2-19"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb2-20"><a></a></span>
+<span id="cb2-21"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb2-22"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb2-23"><a></a></span>
+<span id="cb2-24"><a></a><span class="co"># Change color of bars</span></span>
+<span id="cb2-25"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb2-26"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb2-27"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb2-28"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb2-29"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb2-30"><a></a></span>
+<span id="cb2-31"><a></a><span class="co"># Add VaR line</span></span>
+<span id="cb2-32"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-33"><a></a>plt.title(<span class="st">"Simulated Distribution of Returns with VaR (Non-Normal Distribution)"</span>)</span>
+<span id="cb2-34"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb2-35"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb2-36"><a></a>plt.legend([<span class="st">"VaR at 99%"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb2-37"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-38"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-returns-var-example-2" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-var-example-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-var-example-2-output-1.png" width="816" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-var-example-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of expected returns and VaR (another example)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>From the plot, we can say that 99% of the time, the asset’s return will be in the blue region, which means that it will not fall below the 99% VaR (recall that VaR is a cutoff value).</p>
+</section>
+<section id="models-for-computing-var" class="slide level2">
+<h2>Models for computing VaR</h2>
+<p>Over the years, many models have been developed to compute VaR.</p>
+<p>This is because we do not have the return distribution of trading portfolio over a specific period in the future.</p>
+<ul>
+<li>If we do, then VaR is unambiguous.</li>
+</ul>
+<p>Therefore, different assumptions lead to different models and approaches. We are interested in three in this course:</p>
+<ol type="1">
+<li>RiskMetrics (variance-covariance approach)</li>
+<li>Historic or back simulation</li>
+<li>Monte Carlo simulation</li>
+</ol>
+</section>
+<section id="var-riskmetrics" class="slide level2">
+<h2>VaR: RiskMetrics</h2>
+<blockquote>
+<p>“At close of business each day tell me what the market risks are across all businesses and locations”</p>
+<p>Sir Dennis Weatherstone, 1989, former chairman of J.P. Morgan &amp; Co., now JPMorgan Chase.</p>
+</blockquote>
+<div class="fragment">
+<p>Managers at JPM needs to respond with <em>“I am X% sure that the FI will not lose more than $VAR in the next T days.”</em></p>
+<p>Basically, the FI manager wants a single dollar number that tells him or her the FI’s market risk exposure over the next days—especially if those days turn out to be extremely “bad” days.</p>
+</div>
+<div class="fragment">
+<ul>
+<li>A very difficult task given that in 1994, JPMorgan had 14 active trading locations with 120 independent units trading fixed-income securities, foreign exchange, commodities, derivatives, emerging-market securities, and proprietary assets.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>JPMorgan developed <strong>RiskMetrics</strong> model.</li>
+</ul>
+</div>
+</section>
+<section id="var-riskmetrics-contd" class="slide level2">
+<h2>VaR: RiskMetrics (cont’d)</h2>
+<p>In a nutshell, we are concerned about the market risk exposure on a daily basis. Market risk exposure over longer periods, under some assumptions, can be viewed as a simple transformation from the daily exposure.</p>
+<p>The market risk is measured by the <strong>daily earnings at risk (DEAR)</strong>: <span class="math display">\[
+\text{DEAR} = \left(\text{dollar market value of the position}\right) \times \left(\text{price sensitivity of the position}\right) \times \left(\text{potential adverse move}\right)
+\]</span></p>
+<p>Since price sensitivity multiplied by adverse move measures the degree of price volatility of an asset, we can write this equation as: <span class="math display">\[
+\text{DEAR} = \left(\text{dollar market value of the position}\right) \times \left(\text{price volatility}\right)
+\]</span></p>
+<div title="Dear DEAR and VaR">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Dear DEAR and VaR</strong></p>
+</div>
+<div class="callout-content">
+<p>DEAR is basically 1-day dollar VaR in the context of RiskMetrics model.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>If we assume that shocks are independent, daily volatility is approximately constant, and that the FI holds this asset for <span class="math inline">\(N\)</span> number of days, then the <span class="math inline">\(N\)</span>-day VaR is related to DEAR by: <span class="math display">\[
+N\text{-day VaR} = \left(\text{DEAR}\right) \times \sqrt{N}
+\]</span></p>
+</div>
+</section>
+<section id="var-riskmetrics-contd-1" class="slide level2">
+<h2>VaR: RiskMetrics (cont’d)</h2>
+<p>Next, we will apply RiskMetrics model on:</p>
+<ol type="1">
+<li>fixed-income securities</li>
+<li>foreign exchange (FX)</li>
+<li>equities</li>
+</ol>
+<p>Afterwards, we will study how to compute portfolio VaR.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Recall that we need a single number across all asset classes for the aggregate market risk exposure. Aggregation is necessary.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="var-riskmetrics-for-fixed-income-securities" class="slide level2">
+<h2>VaR: RiskMetrics for fixed-income securities</h2>
+<p>Suppose an FI has a $1 million market value position in zero-coupon bonds of 7 years to maturity with a face value of $1,631,483. Today’s yield on these bonds is 7.243%.</p>
+<blockquote>
+<p>How to estimates its DEAR? Some additional assumptions are required.</p>
+</blockquote>
+<div class="fragment">
+<p>Checking the formula: <span class="math display">\[
+\text{DEAR} = \left(\text{dollar market value of the position}\right) \times \left(\text{price sensitivity of the position}\right) \times \left(\text{potential adverse move}\right)
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Of these three components:</p>
+<ul>
+<li>dollar market value of the position is $1 million.</li>
+<li>price sensitivity of bonds (w.r.t. yield) is measured by (modified) <strong>duration</strong> (recall last week’s material). <span class="math display">\[
+MD = \frac{D}{1+R} = \frac{7}{1+0.07243} = 6.527
+\]</span></li>
+<li>potential adverse move (in yield) depends on <strong>the assumption of yield distribution</strong> and our chosen <strong>confidence level</strong>.</li>
+</ul>
+</div>
+</section>
+<section id="var-riskmetrics-for-fixed-income-securities-contd" class="slide level2">
+<h2>VaR: RiskMetrics for fixed-income securities (cont’d)</h2>
+<p>In terms of the “potential adverse move in yield”, let’s assume we are concerned about bad yield changes such that there is only a 1% chance that the yield changes will exceed this amount.<sup>1</sup></p>
+<p>Note that bond prices decrease with yields. So, we want to know:</p>
+<ul>
+<li>the “maximum upward change in the 7-year rates” (over a day) with a 1% possibility.</li>
+</ul>
+<p>With RiskMetrics, we assume that changes in (7-year) yields follow a <a href="https://en.wikipedia.org/wiki/Normal_distribution">Normal distribution</a>. We further assume that<sup>2</sup></p>
+<ul>
+<li>the mean <span class="math inline">\(\mu\)</span> of daily changes in yield is 0bps.</li>
+<li>the standard deviation <span class="math inline">\(\sigma\)</span> of daily changes in yield is 10bps.</li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>In other words, we set a confidence level of 99%.</p></li><li id="fn3"><p>These come from some sophisticated estimations.</p></li></ol></aside></section>
+<section id="var-riskmetrics-for-fixed-income-securities-contd-1" class="slide level2">
+<h2>VaR: RiskMetrics for fixed-income securities (cont’d)</h2>
+<div class="columns">
+<div class="column">
+<p>Therefore, we can get distribution of daily changes in (7-year) yields as below.</p>
+<div id="cell-fig-normal" class="cell" data-fig-location="center" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="co"># Parameters for normal distribution</span></span>
+<span id="cb3-6"><a></a>mu <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mean</span></span>
+<span id="cb3-7"><a></a>sigma <span class="op">=</span> <span class="dv">10</span>  <span class="co"># standard deviation (10 bps)</span></span>
+<span id="cb3-8"><a></a></span>
+<span id="cb3-9"><a></a><span class="co"># Generate data</span></span>
+<span id="cb3-10"><a></a>x <span class="op">=</span> np.linspace(mu <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> sigma, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">1000</span>)</span>
+<span id="cb3-11"><a></a>y <span class="op">=</span> norm.pdf(x, mu, sigma)</span>
+<span id="cb3-12"><a></a></span>
+<span id="cb3-13"><a></a><span class="co"># Calculate the value at 2.33 standard deviations from the mean</span></span>
+<span id="cb3-14"><a></a>threshold <span class="op">=</span> mu <span class="op">+</span> <span class="fl">2.33</span> <span class="op">*</span> sigma</span>
+<span id="cb3-15"><a></a></span>
+<span id="cb3-16"><a></a><span class="co"># Plot normal distribution</span></span>
+<span id="cb3-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-18"><a></a>plt.plot(x, y, label<span class="op">=</span><span class="st">"Normal Distribution"</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>)</span>
+<span id="cb3-19"><a></a></span>
+<span id="cb3-20"><a></a><span class="co"># Fill the upper 1% area</span></span>
+<span id="cb3-21"><a></a>x_fill <span class="op">=</span> np.linspace(threshold, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma, <span class="dv">100</span>)</span>
+<span id="cb3-22"><a></a>y_fill <span class="op">=</span> norm.pdf(x_fill, mu, sigma)</span>
+<span id="cb3-23"><a></a>plt.fill_between(x_fill, y_fill, color<span class="op">=</span><span class="st">"#A6192E"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"Upper 1% Area"</span>)</span>
+<span id="cb3-24"><a></a></span>
+<span id="cb3-25"><a></a><span class="co"># Mark mean and threshold</span></span>
+<span id="cb3-26"><a></a>plt.axvline(mu, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Mean"</span>)</span>
+<span id="cb3-27"><a></a>plt.axvline(</span>
+<span id="cb3-28"><a></a>    threshold, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"2.33 Std Dev"</span></span>
+<span id="cb3-29"><a></a>)</span>
+<span id="cb3-30"><a></a></span>
+<span id="cb3-31"><a></a>plt.title(<span class="st">"Normal Distribution with Mean and 2.33 Standard Deviation"</span>)</span>
+<span id="cb3-32"><a></a>plt.xlabel(<span class="st">"Value (bps)"</span>)</span>
+<span id="cb3-33"><a></a>plt.ylabel(<span class="st">"Probability Density"</span>)</span>
+<span id="cb3-34"><a></a>plt.legend()</span>
+<span id="cb3-35"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-36"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-normal-output-1.png" width="829" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Normal distribution of changes in 7-year yields
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p>The good mathematical property of normal distribution allows us to know that the upper 1% area is separated from the lower 99% by the value <span class="math inline">\(\mu+2.33\sigma\)</span>.</p>
+<p>Since <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=10\text{bps}\)</span>, the cutoff value is <span class="math inline">\(2.33\sigma=23.3\text{bps}\)</span>.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>It means that, we are 99% confident that the maximum daily upward (adverse) change in (7-year) yields is 23.3 basis points (bps).</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="var-riskmetrics-for-fixed-income-securities-contd-2" class="slide level2">
+<h2>VaR: RiskMetrics for fixed-income securities (cont’d)</h2>
+<p>Now we can put everything together.</p>
+<p><span class="math display">\[
+\text{DEAR} = \left(\text{dollar market value of the position}\right) \times \left(\text{price sensitivity of the position}\right) \times \left(\text{potential adverse move}\right)
+\]</span></p>
+<p>Of these three components:</p>
+<ul>
+<li>dollar market value of the position is $1 million.</li>
+<li>price sensitivity of bonds (w.r.t. yield) as measured by modified duration is 6.527.</li>
+<li>potential adverse move (in yield) is 23.3bps or 0.00233%.</li>
+</ul>
+<p>So,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{DEAR} &amp;= \left(\text{dollar market value of the position}\right) \times \left(\text{price sensitivity of the position}\right) \times \left(\text{potential adverse move}\right) \\
+&amp;= \$1,000,000 \times 6.527 \times 0.00233 \\
+&amp;= \$15,207.91
+\end{aligned}
+\]</span></p>
+<p>That is, the potential daily loss in earnings on the $1 million position is $15,207.91 if the 1 bad day in 100 occurs tomorrow.</p>
+</section>
+<section id="var-riskmetrics-for-fx" class="slide level2">
+<h2>VaR: RiskMetrics for FX</h2>
+<p>The method of DEAR calculation for FX is largely the same.</p>
+<p><span class="math display">\[
+\text{DEAR} = \left(\text{dollar market value of the position}\right) \times \left(\text{price volatility}\right)
+\]</span></p>
+<p>Suppose the FI had a €800,000 trading position in spot euros at the close of business today. The current exchange rate is €0.8/$1 (or $1.25/€1).</p>
+<ul>
+<li>Dollar market value of the position is <span class="math inline">\(€800,000 \times \$1.25/€1=\$1 \text{ million}\)</span>.</li>
+<li>Suppose that we find the standard deviation of changes in daily exchange rate is 56.5bps, and mean change is 0.</li>
+<li>Again with a 99% confidence level, the potential adverse move is <span class="math inline">\(2.33\times 56.5\text{bps}=131.645\text{bps}\)</span>.</li>
+</ul>
+<p>As a result,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{DEAR} &amp;= \left(\text{dollar market value of the position}\right) \times \left(\text{price volatility}\right) \\
+&amp;= \$1,000,000 \times 0.0131645 \\
+&amp;= \$13,164
+\end{aligned}
+\]</span></p>
+<p>This is the potential daily earnings exposure to adverse euro to dollar exchange rate changes for the FI from the €800,000 spot currency holdings.</p>
+</section>
+<section id="var-riskmetrics-for-equities" class="slide level2">
+<h2>VaR: RiskMetrics for equities</h2>
+<p>Fundamentally, there is nothing different when applying RiskMetrics DEAR on equity positions.</p>
+<p>Recall that the Capital Market Pricing Model (CAPM) states that for an individual stock <span class="math inline">\(i\)</span>, its total risk is its systematic risk plus indiosyncratic (unsystematic) risk.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Total risk} &amp;= \text{systematic risk} + \text{unsystematic risk} \\
+\sigma^2_{it} &amp;= \beta^2_{i} \sigma^2_{mt} + \sigma^2_{eit}
+\end{aligned}
+\]</span></p>
+<p>Systematic risk reflects the co-movement of that stock with the market portfolio reflected by the stock’s beta (<span class="math inline">\(\beta_i\)</span>) and the volatility of the market portfolio (<span class="math inline">\(\sigma_{mt}\)</span>), while unsystematic risk is specific to the firm itself (<span class="math inline">\(\sigma_{eit}\)</span>).</p>
+<p>In a very well diversified portfolio, unsystematic risk can be largely diversified away (i.e., will equal zero), leaving behind systematic (undiversifiable) market risk.</p>
+<p>If an FI’s equity portfolio largely replicate the market portfolio (index), its beta equals 1 and its standard deviation will be equal to the standard deviation of the market portfolio.</p>
+</section>
+<section id="var-riskmetrics-for-equities-contd" class="slide level2">
+<h2>VaR: RiskMetrics for equities (cont’d)</h2>
+<p>Suppose the FI holds a $1 million equity portfolio that reflects a market index, then the DEAR of the portfolio is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{DEAR} &amp;= \left(\text{dollar market value of the position}\right) \times \left(\text{stock market return volatility}\right) \\
+&amp;= \$1,000,000 \times 2.33\sigma_{m} \\
+\end{aligned}
+\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Here, we’ve assumed that the daily returns follow a normal distribution and the mean daily return is 0. Further, we’ve assumed a 99% confidence level.</p>
+</div>
+</div>
+</div>
+<p>If we find that standard deviation of daily returns <span class="math inline">\(\sigma_m\)</span> is 200bps, then <span class="math inline">\(2.33\sigma_m=466\text{bps}\)</span>. This means that we believe that the adverse change in the daily returns of stock market could exceed 466bps only 1% of the time. As such,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{DEAR} &amp;= \left(\text{dollar market value of the position}\right) \times \left(\text{stock market return volatility}\right) \\
+&amp;= \$1,000,000 \times 0.0466 \\
+&amp;= \$46,600
+\end{aligned}
+\]</span></p>
+<p>That is, the potential daily loss in earnings on the $1 million stock position is $46,600 if the 1 bad day in 100 occurs tomorrow.</p>
+</section>
+<section id="var-portfolio-aggregation" class="slide level2">
+<h2>VaR: portfolio aggregation</h2>
+<p>Now, we have calculated the individual DEAR for the three positions:</p>
+<ol type="1">
+<li>Seven-year, zero-coupon bonds = $15,207.91</li>
+<li>Euro spot = $13,164</li>
+<li>Equities = $46,600</li>
+</ol>
+<p>Yet the manager needs <em>a single number</em> aggregating all positions.</p>
+<blockquote>
+<p>Can we add up the individual DEARs and report it?</p>
+</blockquote>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>NO. We cannot sum individual DEAR (or VaR) to compute the aggregate VaR.</p>
+</div>
+</div>
+</div>
+<p>If you recall, earlier when we introduce the difference models for calculating VaR, we mentioned that RiskMetrics is sometimes all called the “variance-covariance approach”.</p>
+<ul>
+<li>So far, we have only used the “variance” (standard deviation of potential changes), but not the “covariance”!</li>
+<li>Asset shocks (adverse moves) very often are <em>correlated</em>.</li>
+</ul>
+</div>
+</section>
+<section id="var-portfolio-aggregation-contd" class="slide level2">
+<h2>VaR: portfolio aggregation (cont’d)</h2>
+<p>In the case of three individual positions, taking into account correlations, the aggregate DEAR is computed as</p>
+<p><span class="math display">\[
+\text{DEAR (aggregate)} = \sqrt{\text{D}_1^2 + \text{D}_2^2 + \text{D}_3^2 \\
++ 2 \cdot \text{D}_1 \cdot \text{D}_2 \cdot \rho_{12} + 2 \cdot \text{D}_1 \cdot \text{D}_3 \cdot \rho_{13} + 2 \cdot \text{D}_2 \cdot \text{D}_3 \cdot \rho_{23}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\text{D}_1, \text{D}_2, \text{D}_3\)</span> are the DEARs for the three individual positions.</li>
+<li><span class="math inline">\(\rho_{12}, \rho_{13}, \rho_{23}\)</span> are the correlation coefficients between the pairs of positions.</li>
+</ul>
+</section>
+<section id="var-portfolio-aggregation-contd-1" class="slide level2">
+<h2>VaR: portfolio aggregation (cont’d)</h2>
+<p>Suppose we have the following correlation matrix for the daily changes in 7-year rates, changes in euro/dollar spot exchange rates, and changes in equity market returns.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 16%">
+<col style="width: 28%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>7-Year Rates</th>
+<th>Euro/Dollar Spot Rates</th>
+<th>Equity Market Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7-Year Rates</td>
+<td>1.0</td>
+<td>-0.2</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>Euro/Dollar Spot Rates</td>
+<td></td>
+<td>1.0</td>
+<td>0.1</td>
+</tr>
+<tr class="odd">
+<td>Equity Market Returns</td>
+<td></td>
+<td></td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>We will use the correlations to compute the aggregate DEAR (VaR).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{DEAR (aggregate)} &amp;= \sqrt{\text{D}_1^2 + \text{D}_2^2 + \text{D}_3^2 + 2 \cdot \text{D}_1 \cdot \text{D}_2 \cdot \rho_{12} + 2 \cdot \text{D}_1 \cdot \text{D}_3 \cdot \rho_{13} + 2 \cdot \text{D}_2 \cdot \text{D}_3 \cdot \rho_{23}} \\
+&amp;= \sqrt{15207.91^2 + 13164^2 + 46600^2 + 2 \cdot 15207.91 \cdot 13164 \cdot (-0.2)
++ 2 \cdot 15207.91 \cdot 46600 \cdot (0.4) + 2 \cdot 13164 \cdot 46600 \cdot (0.1)} \\
+&amp;= 56441.93
+\end{aligned}
+\]</span></p>
+<p>That is, this FI with the three positions in fixed-income securities, FX, and equities has an aggregate DEAR of $56,441.93.</p>
+</section>
+<section id="var-criticisms-against-riskmetrics" class="slide level2">
+<h2>VaR: criticisms against RiskMetrics</h2>
+<p>Obviously, the assumption of all assets’ returns (or changes) follow a normal distribution is not ideal.</p>
+<ul>
+<li>Some assets’ returns are known to have skewness.</li>
+<li>Empirically, asset returns have long tails.</li>
+</ul>
+<p>Moreover, calculating covariances is practically challenging.</p>
+<ul>
+<li>With <span class="math inline">\(N\)</span> assets, there are <span class="math inline">\(\frac{N(N-1)}{2}\)</span> covariances to compute.</li>
+</ul>
+<p><span class="math display">\[
+\begin{bmatrix}
+\sigma_{1}^2 &amp; \sigma_{12} &amp; \sigma_{13} &amp; \cdots &amp; \sigma_{1N} \\
+\sigma_{21} &amp; \sigma_{2}^2 &amp; \sigma_{23} &amp; \cdots &amp; \sigma_{2N} \\
+\sigma_{31} &amp; \sigma_{32} &amp; \sigma_{3}^2 &amp; \cdots &amp; \sigma_{3N} \\
+\vdots      &amp; \vdots      &amp; \vdots      &amp; \ddots &amp; \vdots      \\
+\sigma_{N1} &amp; \sigma_{N2} &amp; \sigma_{N3} &amp; \cdots &amp; \sigma_{N}^2 \\
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li>An equity portfolio of 500 stocks suggests a total of 124,750 covariance items.</li>
+<li>There are also many more fixed-income securities, etc.</li>
+</ul>
+</section>
+<section id="var-historic-or-back-simulation" class="slide level2">
+<h2>VaR: historic or back simulation</h2>
+<p>Many FIs have developed market risk models that employed a historic or back simulation approach.</p>
+<p>Essential idea is to revalue current asset portfolio on basis of past actual prices (returns).</p>
+<p>Simply put, this approach is to</p>
+<ol type="1">
+<li>Collect the past 500 days’ actual prices (returns).</li>
+<li>Revalue the asset using the 1% worst case, i.e., the portfolio is revalued as the 5th lowest value out of 500.</li>
+</ol>
+</section>
+<section id="var-historic-or-back-simulation-contd" class="slide level2">
+<h2>VaR: historic or back simulation (cont’d)</h2>
+<p>The advantages of historic approach are that</p>
+<ol type="1">
+<li>it is simple,</li>
+<li>it does not require that asset returns be normally distributed, and</li>
+<li>it does not require that the correlations or standard deviations of asset returns be calculated.</li>
+</ol>
+<p>However,</p>
+<ol type="1">
+<li>500 observations is not very many from a statistical standpoint.</li>
+<li>Increasing the number of observations by going back further in time is not desirable.
+<ul>
+<li>As one goes back further in time, past observations may become decreasingly relevant in predicting VaR in the future.</li>
+</ul></li>
+</ol>
+<p>How to improve?</p>
+<ul>
+<li>Could weight recent observations more heavily and go further back.</li>
+<li>Could generate additional observations (Monte Carlo simulation)!</li>
+</ul>
+</section>
+<section id="var-monte-carlo-simulation" class="slide level2">
+<h2>VaR: Monte Carlo simulation</h2>
+<p>The Monte Carlo simulation approach of calculating a portfolio’s VaR can be summarized as</p>
+<ol type="1">
+<li><strong>Generate Random Scenarios</strong>:
+<ul>
+<li>Use statistical methods to simulate a large number of possible future returns for each asset in the portfolio, reflecting their expected returns, volatilities, and correlations.</li>
+</ul></li>
+<li><strong>Construct Portfolio Returns</strong>:
+<ul>
+<li>Aggregate the simulated asset returns to calculate the portfolio return for each scenario, considering the weights of each asset in the portfolio.</li>
+</ul></li>
+<li><strong>Determine VaR</strong>:
+<ul>
+<li>Analyze the distribution of simulated portfolio returns and identify the threshold loss value that will not be exceeded with a specified confidence level (e.g., 95% or 99%). This threshold is the Value at Risk (VaR).</li>
+</ul></li>
+</ol>
+</section>
+<section id="var-monte-carlo-simulation-contd" class="slide level2">
+<h2>VaR: Monte Carlo simulation (cont’d)</h2>
+<p>Suppose we have a portfolio of <span class="math inline">\(N\)</span> assets. Therefore, we have a vector of these assets’ returns <span class="math inline">\(\mu\)</span> and their covariance matrix <span class="math inline">\(\Sigma\)</span>:</p>
+<p><span class="math display">\[
+\mu = \begin{bmatrix}
+\mu_1 \\
+\mu_2 \\
+\vdots \\
+\mu_N
+\end{bmatrix}, \quad
+\Sigma = \begin{bmatrix}
+\sigma_{1}^2 &amp; \sigma_{12} &amp; \cdots &amp; \sigma_{1N} \\
+\sigma_{21} &amp; \sigma_{2}^2 &amp; \cdots &amp; \sigma_{2N} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\sigma_{N1} &amp; \sigma_{N2} &amp; \cdots &amp; \sigma_{N}^2
+\end{bmatrix}
+\]</span></p>
+<p>We apply <a href="https://en.wikipedia.org/wiki/Cholesky_decomposition">Cholesky Decomposition</a> on the covariance matrix <span class="math inline">\(\Sigma\)</span> to get a lower triangular matrix <span class="math inline">\(L\)</span> and its transpose <span class="math inline">\(L'\)</span>, such that <span class="math display">\[
+\Sigma = L L'
+\]</span></p>
+<p>Next, we generate standard normal random variable, <span class="math inline">\(Z\)</span>, where <span class="math inline">\(M\)</span> is the number of scenarios: <span class="math display">\[
+Z = \begin{bmatrix}
+z_{11} &amp; z_{12} &amp; \cdots &amp; z_{1N} \\
+z_{21} &amp; z_{22} &amp; \cdots &amp; z_{2N} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+z_{M1} &amp; z_{M2} &amp; \cdots &amp; z_{MN}
+\end{bmatrix}
+\]</span></p>
+<p>The simulated asset returns are given by <span class="math inline">\(\mu + Z L'\)</span></p>
+</section>
+<section id="var-monte-carlo-simulation-contd-1" class="slide level2">
+<h2>VaR: Monte Carlo simulation (cont’d)</h2>
+<p>With the simulated asset returns for <span class="math inline">\(M\)</span> scenarios, we can compute the portfolio return in these <span class="math inline">\(M\)</span> scenarios.</p>
+<ul>
+<li>This leads to a distribution of potential portfolio returns, which enables the calculation of VaR.</li>
+</ul>
+</section>
+<section id="var-monte-carlo-simulation-example" class="slide level2">
+<h2>VaR: Monte Carlo simulation (example)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Number of Assets: 3</li>
+<li>Mean Returns
+<ul>
+<li>Asset 1: 0.10% per period</li>
+<li>Asset 2: 0.12% per period</li>
+<li>Asset 3: 0.08% per period</li>
+</ul></li>
+<li>Covariance Matrix <span class="math inline">\(\Sigma\)</span> <span class="math display">\[
+\Sigma = \begin{bmatrix}
+0.0001 &amp; 0.00002 &amp; 0.000015 \\
+0.00002 &amp; 0.0001 &amp; 0.000025 \\
+0.000015 &amp; 0.000025 &amp; 0.0001
+\end{bmatrix}
+\]</span></li>
+<li>Portfolio Weights:
+<ul>
+<li>Asset 1: 40%</li>
+<li>Asset 2: 30%</li>
+<li>Asset 3: 30%</li>
+</ul></li>
+<li>Simulation Parameters:
+<ul>
+<li>Number of Scenarios: 10,000</li>
+<li>Confidence Level: 95%</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<div id="cell-fig-returns-monte-carlo" class="cell" data-fig-location="center" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb4-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-6"><a></a>n_assets <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-7"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb4-8"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb4-9"><a></a></span>
+<span id="cb4-10"><a></a><span class="co"># Mean returns and covariance matrix for the assets</span></span>
+<span id="cb4-11"><a></a>mean_returns <span class="op">=</span> np.array([<span class="fl">0.001</span>, <span class="fl">0.0012</span>, <span class="fl">0.0008</span>])  <span class="co"># Example mean returns</span></span>
+<span id="cb4-12"><a></a>cov_matrix <span class="op">=</span> np.array(</span>
+<span id="cb4-13"><a></a>    [</span>
+<span id="cb4-14"><a></a>        [<span class="fl">0.0001</span>, <span class="fl">0.00002</span>, <span class="fl">0.000015</span>],</span>
+<span id="cb4-15"><a></a>        [<span class="fl">0.00002</span>, <span class="fl">0.0001</span>, <span class="fl">0.000025</span>],</span>
+<span id="cb4-16"><a></a>        [<span class="fl">0.000015</span>, <span class="fl">0.000025</span>, <span class="fl">0.0001</span>],</span>
+<span id="cb4-17"><a></a>    ]</span>
+<span id="cb4-18"><a></a>)  <span class="co"># Example covariance matrix</span></span>
+<span id="cb4-19"><a></a></span>
+<span id="cb4-20"><a></a><span class="co"># Cholesky decomposition of the covariance matrix</span></span>
+<span id="cb4-21"><a></a>L <span class="op">=</span> np.linalg.cholesky(cov_matrix)</span>
+<span id="cb4-22"><a></a></span>
+<span id="cb4-23"><a></a><span class="co"># Generate standard normal random variables</span></span>
+<span id="cb4-24"><a></a>Z <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_scenarios, n_assets))</span>
+<span id="cb4-25"><a></a></span>
+<span id="cb4-26"><a></a><span class="co"># Simulate asset returns</span></span>
+<span id="cb4-27"><a></a>simulated_returns <span class="op">=</span> Z <span class="op">@</span> L.T <span class="op">+</span> mean_returns</span>
+<span id="cb4-28"><a></a></span>
+<span id="cb4-29"><a></a><span class="co"># Given weights</span></span>
+<span id="cb4-30"><a></a>weights <span class="op">=</span> np.array([<span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>])  <span class="co"># Example weights</span></span>
+<span id="cb4-31"><a></a></span>
+<span id="cb4-32"><a></a><span class="co"># Calculate portfolio returns</span></span>
+<span id="cb4-33"><a></a>portfolio_returns <span class="op">=</span> simulated_returns <span class="op">@</span> weights</span>
+<span id="cb4-34"><a></a></span>
+<span id="cb4-35"><a></a><span class="co"># Calculate VaR</span></span>
+<span id="cb4-36"><a></a>VaR <span class="op">=</span> np.percentile(portfolio_returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-37"><a></a></span>
+<span id="cb4-38"><a></a><span class="co"># Plotting the portfolio returns and VaR</span></span>
+<span id="cb4-39"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-40"><a></a>plt.hist(portfolio_returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb4-41"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-42"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR"</span>)</span>
+<span id="cb4-43"><a></a>plt.xlabel(<span class="st">"Portfolio Return"</span>)</span>
+<span id="cb4-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb4-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"Portfolio Returns"</span>])</span>
+<span id="cb4-46"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb4-47"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-returns-monte-carlo" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-monte-carlo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-monte-carlo-output-1.png" width="816" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-monte-carlo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Distributions of portfolio returns from Monte Carlo simulation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="expected-shortfall-es" class="title-slide slide level1 center">
+<h1>Expected Shortfall (ES)</h1>
+
+</section>
+<section id="why-var-could-be-misleading" class="slide level2">
+<h2>Why VaR could be misleading?</h2>
+<p>VaR tells the FI manager the loss at a particular point on the probability distribution (i.e., 99th percentile).</p>
+<p>It, however, fails to incorporate information regarding the shape of the probability distribution below that particular point.</p>
+<div id="cell-fig-returns-same-VaR-different-ES" class="cell" data-fig-location="center" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb5-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb5-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># Distribution 1: Normal distribution</span></span>
+<span id="cb5-10"><a></a>mu1, sigma1 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
+<span id="cb5-11"><a></a>returns1 <span class="op">=</span> np.random.normal(mu1, sigma1, n_scenarios)</span>
+<span id="cb5-12"><a></a>VaR1 <span class="op">=</span> np.percentile(returns1, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a><span class="co"># Adjust Distribution 2: Mixture of normal distributions</span></span>
+<span id="cb5-15"><a></a>mu2, sigma2 <span class="op">=</span> <span class="fl">0.01</span>, <span class="fl">0.01</span></span>
+<span id="cb5-16"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.04</span>, <span class="fl">0.02</span></span>
+<span id="cb5-17"><a></a></span>
+<span id="cb5-18"><a></a><span class="co"># Create a mixture distribution that has the same VaR as Distribution 1</span></span>
+<span id="cb5-19"><a></a><span class="co"># Adjust the proportion and parameters of the extreme component to match the target VaR</span></span>
+<span id="cb5-20"><a></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb5-21"><a></a>    extreme_component <span class="op">=</span> np.random.normal(</span>
+<span id="cb5-22"><a></a>        extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-23"><a></a>    )</span>
+<span id="cb5-24"><a></a>    normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.95</span>))</span>
+<span id="cb5-25"><a></a>    returns2 <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
+<span id="cb5-26"><a></a>    VaR2 <span class="op">=</span> np.percentile(returns2, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-27"><a></a>    <span class="cf">if</span> <span class="bu">abs</span>(VaR2 <span class="op">-</span> VaR1) <span class="op">&lt;</span> <span class="fl">0.0001</span>:</span>
+<span id="cb5-28"><a></a>        <span class="cf">break</span></span>
+<span id="cb5-29"><a></a></span>
+<span id="cb5-30"><a></a><span class="co"># Calculate ES</span></span>
+<span id="cb5-31"><a></a>ES1 <span class="op">=</span> np.mean(returns1[returns1 <span class="op">&lt;=</span> VaR1])</span>
+<span id="cb5-32"><a></a>ES2 <span class="op">=</span> np.mean(returns2[returns2 <span class="op">&lt;=</span> VaR2])</span>
+<span id="cb5-33"><a></a></span>
+<span id="cb5-34"><a></a><span class="co"># Plot histograms</span></span>
+<span id="cb5-35"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb5-36"><a></a></span>
+<span id="cb5-37"><a></a><span class="co"># Plot for Distribution 1</span></span>
+<span id="cb5-38"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb5-39"><a></a>plt.hist(returns1, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb5-40"><a></a>plt.axvline(VaR1, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-41"><a></a>plt.axvline(ES1, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-42"><a></a>plt.title(<span class="st">"Distribution 1 (Normal)"</span>)</span>
+<span id="cb5-43"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb5-44"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-45"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb5-46"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-47"><a></a></span>
+<span id="cb5-48"><a></a><span class="co"># Plot for Distribution 2</span></span>
+<span id="cb5-49"><a></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb5-50"><a></a>plt.hist(returns2, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, color<span class="op">=</span><span class="st">"#D6D2C4"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb5-51"><a></a>plt.axvline(VaR2, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-52"><a></a>plt.axvline(ES2, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-53"><a></a>plt.title(<span class="st">"Distribution 2 (Mixture)"</span>)</span>
+<span id="cb5-54"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb5-55"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb5-56"><a></a>plt.legend([<span class="st">"VaR at 95%"</span>, <span class="st">"ES"</span>, <span class="st">"Returns"</span>])</span>
+<span id="cb5-57"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-58"><a></a></span>
+<span id="cb5-59"><a></a>plt.tight_layout()</span>
+<span id="cb5-60"><a></a>plt.show()</span>
+<span id="cb5-61"><a></a></span>
+<span id="cb5-62"><a></a><span class="bu">print</span>(<span class="ss">f"Left: 95% VaR=</span><span class="sc">{</span>VaR1<span class="sc">:.5f}</span><span class="ss">; Right: 95% VaR=</span><span class="sc">{</span>VaR2<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb5-63"><a></a><span class="bu">print</span>(<span class="ss">f"Left: Average loss beyond VaR is </span><span class="sc">{</span>ES1<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb5-64"><a></a><span class="bu">print</span>(<span class="ss">f"Right: Average loss beyond VaR is </span><span class="sc">{</span>ES2<span class="sc">:.5f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-returns-same-var-different-es" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-same-var-different-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-same-var-different-es-output-1.png" width="1331" height="566">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-same-var-different-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Distributions with same VaR but different ES
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Left: 95% VaR=-0.01655; Right: 95% VaR=-0.01654
+Left: Average loss beyond VaR is -0.02075
+Right: Average loss beyond VaR is -0.04258</code></pre>
+</div>
+</div>
+</section>
+<section id="es-conditional-var" class="slide level2">
+<h2>ES: conditional VaR</h2>
+<p>The drawbacks of VaR became painfully evident during the financial crisis as asset returns plummeted into the fat-tail region of non-normally shaped distributions.</p>
+<p>FI managers and regulators were forced to recognize that VaR projections of possible losses far underestimated actual losses on extreme bad days.</p>
+<p>Now, regulators have replaced VaR with the <strong>expected shortfall (ES)</strong> measure as the main measure of market risk.</p>
+<p>Expected shortfall, aka “conditional VaR”, estimates the expected value of losses beyond a given confidence level—that is, it is the average of VaRs beyond a given confidence level.</p>
+</section>
+<section id="es-definition" class="slide level2">
+<h2>ES: definition</h2>
+<p>For a given confidence level <span class="math inline">\(c\)</span> and a continuous probability distribution, ES can be calculated as <span class="math display">\[
+ES(c) = \frac{1}{1-c}\int_c^1 VaR(c)du
+\]</span></p>
+<p>That is, for a confidence level of, say, 95% (i.e., <span class="math inline">\(c\)</span>), we measure the area under the probability distribution from the 95th to 100th percentile.</p>
+<div id="cell-fig-returns-ES" class="cell" data-fig-location="center" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="co"># Parameters</span></span>
+<span id="cb7-5"><a></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-6"><a></a>n_scenarios <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb7-7"><a></a>confidence_level <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb7-8"><a></a></span>
+<span id="cb7-9"><a></a><span class="co"># Adjust Distribution: Mixture of normal distributions</span></span>
+<span id="cb7-10"><a></a>mu2, sigma2 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.01</span></span>
+<span id="cb7-11"><a></a>extreme_mu, extreme_sigma <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.02</span></span>
+<span id="cb7-12"><a></a></span>
+<span id="cb7-13"><a></a><span class="co"># Create a mixture distribution that has the desired VaR</span></span>
+<span id="cb7-14"><a></a>extreme_component <span class="op">=</span> np.random.normal(extreme_mu, extreme_sigma, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.1</span>))</span>
+<span id="cb7-15"><a></a>normal_component <span class="op">=</span> np.random.normal(mu2, sigma2, <span class="bu">int</span>(n_scenarios <span class="op">*</span> <span class="fl">0.9</span>))</span>
+<span id="cb7-16"><a></a>returns <span class="op">=</span> np.concatenate([extreme_component, normal_component])</span>
+<span id="cb7-17"><a></a>VaR <span class="op">=</span> np.percentile(returns, (<span class="dv">1</span> <span class="op">-</span> confidence_level) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb7-18"><a></a></span>
+<span id="cb7-19"><a></a><span class="co"># Calculate ES</span></span>
+<span id="cb7-20"><a></a>ES <span class="op">=</span> np.mean(returns[returns <span class="op">&lt;=</span> VaR])</span>
+<span id="cb7-21"><a></a></span>
+<span id="cb7-22"><a></a><span class="co"># Plot histogram</span></span>
+<span id="cb7-23"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-24"><a></a></span>
+<span id="cb7-25"><a></a><span class="co"># Histogram data</span></span>
+<span id="cb7-26"><a></a>n, bins, patches <span class="op">=</span> plt.hist(returns, bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb7-27"><a></a></span>
+<span id="cb7-28"><a></a><span class="co"># Highlight bars below VaR</span></span>
+<span id="cb7-29"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(patches)):</span>
+<span id="cb7-30"><a></a>    <span class="cf">if</span> bins[i] <span class="op">&lt;</span> VaR:</span>
+<span id="cb7-31"><a></a>        patches[i].set_facecolor(<span class="st">"#A6192E"</span>)</span>
+<span id="cb7-32"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb7-33"><a></a>        patches[i].set_facecolor(<span class="st">"#D6D2C4"</span>)</span>
+<span id="cb7-34"><a></a></span>
+<span id="cb7-35"><a></a><span class="co"># Add VaR and ES lines</span></span>
+<span id="cb7-36"><a></a>plt.axvline(VaR, color<span class="op">=</span><span class="st">"#A6192E"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"VaR at 95%"</span>)</span>
+<span id="cb7-37"><a></a>plt.axvline(ES, color<span class="op">=</span><span class="st">"purple"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"ES"</span>)</span>
+<span id="cb7-38"><a></a></span>
+<span id="cb7-39"><a></a>plt.title(<span class="st">"Simulated Portfolio Returns with VaR and ES"</span>)</span>
+<span id="cb7-40"><a></a>plt.xlabel(<span class="st">"Return"</span>)</span>
+<span id="cb7-41"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb7-42"><a></a>plt.legend()</span>
+<span id="cb7-43"><a></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-44"><a></a></span>
+<span id="cb7-45"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-returns-es" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-es-output-1.png" width="825" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Distribution of expected returns and ES
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="es-advantages-and-potential-problems" class="slide level2">
+<h2>ES: advantages and (potential) problems</h2>
+<p>ES is the average of losses that occur beyond the VaR level. It provides a better risk assessment by considering the tail of the loss distribution.</p>
+<p>In addition, an important advantage of ES over VaR is that ES is additive.</p>
+<ul>
+<li>This means that the ES of a portfolio equals the sum of individual assets’ ESs.</li>
+<li>The same does not hold true for VaR: recall that we have to consider covariances.</li>
+</ul>
+<p>Potential issues with the use of ES include:</p>
+<ul>
+<li>Estimation challenges, model dependency, computational complexity.</li>
+</ul>
+</section></section>
+<section>
+<section id="bis-regulatory-models" class="title-slide slide level1 center">
+<h1>BIS regulatory models</h1>
+
+</section>
+<section id="bis-regulatory-models-1" class="slide level2">
+<h2>BIS regulatory models</h2>
+<p>Two major ways of calculating market risk exposures and capital requirements:</p>
+<ul>
+<li>The BIS standardized framework</li>
+<li>Banks’ internal model approach (IMA), to be approved by regulatory supervisors
+<ul>
+<li>e.g., RiskMetrics, back simulation, Monte Carlo, etc.</li>
+<li>models based on expected shortfall<sup>1</sup></li>
+</ul></li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Note that the ultimate objective of measuring market risk exposure is to determine the appropriate capital requirement.</p>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>In Basel III, market risk measurement is shifted from VaR to ES. However, its implementation varies across countries.</p></li></ol></aside></section>
+<section id="basel-iii-and-its-implementation" class="slide level2">
+<h2>Basel III and its implementation</h2>
+<p>With Basel III <em>now</em> being implemented by countries, the market risk measures are shifting from VaR to ES.</p>
+<p>The implementation is planned to be phased in over five year since January, 2023.</p>
+<p>In UK and US, the implementation is set to be applicable in 2025.</p>
+<p>In Australia, APRA is reviewing the currently in force <strong>Prudential Standard APS 116 Capital Adequacy: Market Risk</strong>.</p>
+<ul>
+<li>As at the time of this lecture, APRA will delay the effective dates of APS 116 from 2025 to 2026.</li>
+<li>That is, currently, Australian banks using IMA measure market risks based on VaR.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Globally, banks are in need of talents with specialized knowledge in the field!</p>
+</div>
+</div>
+</div>
+</section>
+<section id="regulatory-model-standardized-framework" class="slide level2">
+<h2>Regulatory model: standardized framework</h2>
+<p>The standardized framework is primarily designed for (smaller) banks that do not use internal models.</p>
+<ul>
+<li>Calculation is more formulaic and prescriptive, focusing on specific risk weights and capital charges for different types of assets and market risks.</li>
+</ul>
+<p>The standardized approach capital requirement is the simple sum of three components:</p>
+<ol type="1">
+<li>the capital requirement under the sensitivities-based method,</li>
+<li>the default risk capital (DRC) requirement, and</li>
+<li>the residual risk add-on (RRAO).</li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>For a detailed description, see MAR21, MAR22, and MAR23 in <a href="https://www.bis.org/bcbs/publ/d457.pdf">BIS Minimum capital requirements for market risk</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="regulatory-model-ima" class="slide level2">
+<h2>Regulatory model: IMA</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Banks’ IMA for market risk currently is based on VaR, but very soon (in the coming years) will be based on ES. Therefore, only the proposed ES-based IMA will be briefly explained here.</p>
+</div>
+</div>
+</div>
+<p>General steps:</p>
+<ol type="1">
+<li>Calculation of expected shortfall</li>
+<li>Calculation of capital requirement for modellable risk factors</li>
+<li>Calculation of capital requirement for non-modellable risk factors</li>
+<li>Calculation of default risk capital requirement</li>
+<li>Calculation of capital requirement for model-ineligible trading desks</li>
+<li>Aggregation of capital requirement</li>
+</ol>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>For a detailed description, see MAR33 in <a href="https://www.bis.org/bcbs/publ/d457.pdf">BIS Minimum capital requirements for market risk</a>.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="finally" class="title-slide slide level1 center">
+<h1>Finally…</h1>
+
+</section>
+<section id="suggested-readings" class="slide level2">
+<h2>Suggested readings</h2>
+<ul>
+<li><a href="https://www.bis.org/bcbs/publ/d457_inbrief.pdf">BIS The market risk framework in brief</a></li>
+<li><a href="https://www.bis.org/bcbs/publ/d457.pdf">BIS Minimum capital requirements for market risk</a></li>
+<li><a href="https://www.apra.gov.au/sites/default/files/141120-APS-116_0.pdf">APRA Prudential Standard APS 116 Capital Adequacy: Market Risk</a></li>
+<li><a href="https://www.apra.gov.au/information-paper-apra%E2%80%99s-policy-priorities">APRA’s Policy Priorities</a></li>
+<li><a href="https://www.bankofengland.co.uk/prudential-regulation/publication/2022/november/implementation-of-the-basel-3-1-standards/market-risk">Bank of England Implementation of the Basel 3.1 standards: Market risk</a></li>
+</ul>
+</section>
+<section id="references" class="slide level2">
+<h2>References</h2>
+
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div>
+</section></section>
+
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

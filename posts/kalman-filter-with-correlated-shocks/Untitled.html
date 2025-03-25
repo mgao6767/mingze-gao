@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dr.&nbsp;Mingze Gao">
-<meta name="dcterms.date" content="2024-08-21">
+<meta name="author" content="Mingze Gao">
 
-<title>AFIN8003 - Workshop 5 – Mingze Gao</title>
+<title>untitled – Mingze Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,26 +21,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<link href="../../../../images/favicon.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,21 +101,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
-
-<script type="text/javascript">
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
-</script>
 
 
-<link rel="stylesheet" href="../../../../styles.css">
-<meta name="twitter:title" content="AFIN8003 - Workshop 5 – Mingze Gao">
-<meta name="twitter:description" content="Banking and Financial Intermediation">
-<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Mingze Gao">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/kalman-filter-with-correlated-shocks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -92,8 +116,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/favicon.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -103,24 +127,28 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../cv/index.html"> 
+    <a class="nav-link" href="../../cv/index.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../research/index.html"> 
+    <a class="nav-link" href="../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../posts/index.html"> 
+    <a class="nav-link" href="../../posts/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../teaching/index.html"> 
+    <a class="nav-link" href="../../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -133,34 +161,15 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#mcq" id="toc-mcq" class="nav-link active" data-scroll-target="#mcq">MCQ</a></li>
-  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short answer questions</a>
-  <ul class="collapse">
-  <li><a href="#q1" id="toc-q1" class="nav-link" data-scroll-target="#q1">Q1</a></li>
-  <li><a href="#q2---dear" id="toc-q2---dear" class="nav-link" data-scroll-target="#q2---dear">Q2 - DEAR</a></li>
-  <li><a href="#q3---var-and-es" id="toc-q3---var-and-es" class="nav-link" data-scroll-target="#q3---var-and-es">Q3 - VaR and ES</a></li>
-  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
-  </ul></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Workshop5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AFIN8003 - Workshop 5</h1>
-<p class="subtitle lead">Banking and Financial Intermediation</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">AFIN8003</div>
-    <div class="quarto-category">2024S2</div>
-  </div>
-  </div>
+</div>
 
 
 <div class="quarto-title-meta-author">
@@ -168,11 +177,11 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Dr.&nbsp;Mingze Gao </p>
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            Department of Applied Finance
+            Macquarie University
           </p>
       </div>
   </div>
@@ -180,12 +189,6 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <div class="quarto-title-meta">
 
       
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 21, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -195,163 +198,155 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </header>
 
 
-<section id="mcq" class="level1">
-<h1>MCQ</h1>
-<ol type="1">
-<li><p>The risk related to the uncertainty of an FI’s earnings on its trading portfolio caused by changes in market conditions is:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">liquidity risk</label></li>
-<li><label><input type="checkbox">interest rate risk</label></li>
-<li><label><input type="checkbox">credit risk</label></li>
-<li><label><input type="checkbox">market risk</label></li>
-</ul></li>
-<li><p>The establishment of economically logical position minimums and maximums per security trader, as part of market risk management, is known as:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">management information</label></li>
-<li><label><input type="checkbox">performance evaluation</label></li>
-<li><label><input type="checkbox">setting limits</label></li>
-<li><label><input type="checkbox">resource allocation</label></li>
-</ul></li>
-<li><p>Market risk, as measured by daily earnings at risk (DEAR), includes which of the following components?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">potential adverse move in yield</label></li>
-<li><label><input type="checkbox">price sensitivity of the position</label></li>
-<li><label><input type="checkbox">dollar market value of the position</label></li>
-<li><label><input type="checkbox">All of the listed options are correct.</label></li>
-</ul></li>
-<li><p>Price volatility includes which of the following components?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">potential adverse move in yield and price sensitivity of the position</label></li>
-<li><label><input type="checkbox">potential favourable move in yield and price sensitivity of the position</label></li>
-<li><label><input type="checkbox">potential adverse move in yield and dollar market value of the position</label></li>
-<li><label><input type="checkbox">potential favourable move in yield and dollar market value of the position</label></li>
-</ul></li>
-<li><p>A firm has $21 500 daily earnings at risk for seven days. What is its seven day market value at risk?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">$56 884</label></li>
-<li><label><input type="checkbox">$150 500</label></li>
-<li><label><input type="checkbox">$1026</label></li>
-<li><label><input type="checkbox">$388</label></li>
-</ul></li>
-<li><p>Which of the following is often criticised for its need to assume a normal or symmetric distribution for all asset returns?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">back simulation</label></li>
-<li><label><input type="checkbox">RiskMetrics</label></li>
-<li><label><input type="checkbox">Monte Carlo simulation</label></li>
-<li><label><input type="checkbox">CreditMetrics</label></li>
-</ul></li>
-<li><p>The expected shortfall (ES) approach to measuring market risk has the advantage that it:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">measures tail risk precisely</label></li>
-<li><label><input type="checkbox">is less comprehensive than VAR</label></li>
-<li><label><input type="checkbox">will not be considered in Basel III</label></li>
-<li><label><input type="checkbox">measures credit risk</label></li>
-</ul></li>
-</ol>
-</section>
-<section id="short-answer-questions" class="level1">
-<h1>Short answer questions</h1>
-<section id="q1" class="level2">
-<h2 class="anchored" data-anchor-id="q1">Q1</h2>
-<p>The mean change in the daily yields of a 15-year, zero-coupon bond has been 5 basis points (bp) over the past year with a standard deviation of 15 bp. Use these data and assume the yield changes are normally distributed.</p>
-<ol type="a">
-<li>What is the highest yield change expected if a 99 per cent confidence limit is required; that is, adverse moves will not occur more than one day in 100?</li>
-<li>What is the highest yield change expected if a 95 per cent confidence limit is required?</li>
-</ol>
-</section>
-<section id="q2---dear" class="level2">
-<h2 class="anchored" data-anchor-id="q2---dear">Q2 - DEAR</h2>
-<p>Bank Alpha has an inventory of AAA-rated, 15-year zero-coupon bonds with a face value of $400 million. The bonds are currently yielding 9.5% in the over-the-counter market.</p>
-<ol type="a">
-<li>What is the modified duration of these bonds?</li>
-<li>What is the price volatility if the potential adverse move in yields is 25 basis points?</li>
-<li>What is the DEAR?</li>
-<li>If the price volatility is based on a 99% confidence limit and a mean historical change in daily yields of 0.0%, what is the implied standard deviation of daily yield changes?</li>
-</ol>
-</section>
-<section id="q3---var-and-es" class="level2">
-<h2 class="anchored" data-anchor-id="q3---var-and-es">Q3 - VaR and ES</h2>
-<p>Consider the following discrete probability distribution of payoffs for two securities, A and B, held in the trading portfolio of an FI:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Probability</th>
-<th>A</th>
-<th>Probability</th>
-<th>B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>50%</td>
-<td>$80m</td>
-<td>50%</td>
-<td>$80m</td>
-</tr>
-<tr class="even">
-<td>49%</td>
-<td>$60m</td>
-<td>49%</td>
-<td>$68m</td>
-</tr>
-<tr class="odd">
-<td>1%</td>
-<td>-$740m</td>
-<td>0.6%</td>
-<td>-$740m</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td>0.4%</td>
-<td>-$1393m</td>
-</tr>
-</tbody>
-</table>
-<p>Which of the two securities will add more market risk to the FI’s trading portfolio according to the VaR and ES measures?</p>
-</section>
-<section id="extra" class="level2">
-<h2 class="anchored" data-anchor-id="extra">Extra</h2>
-<p>Today is August 21, 2024. Suppose you are the head of risk management of a financial institution (FI) that engages in fixed-income securities investment. The FI is financed by long-term borrowings and equity. The balance sheet (in millions) of the FI today is as below.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Assets</th>
-<th></th>
-<th>Liabilities and Equity</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Treasury bonds</td>
-<td>$300</td>
-<td>Long-term borrowings</td>
-<td>$350</td>
-</tr>
-<tr class="even">
-<td>Corporate bonds</td>
-<td>$200</td>
-<td>Equity</td>
-<td>$150</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>$500</td>
-<td>Total</td>
-<td>$500</td>
-</tr>
-</tbody>
-</table>
-<p>The risk management team estimates that the standard deviation of the Treasury bonds’ daily returns is 2% and the standard deviation of the corporate bonds’ daily returns is 5%. The mean return of both bonds is 0%. The correlation between the daily returns of Treasury and corporate bonds is estimated to be 0.7.</p>
-<ol type="a">
-<li>What is the 5-day Value at Risk (VaR) of the bond portfolio at a 99% confidence level? Assume that returns follow a normal distribution.</li>
-<li>How to interpret the calculated VaR from (a)? What is conditional VaR or Expected Shortfall?</li>
-</ol>
+<div id="60b89927-86f3-40ec-87a3-ccf9c37641ed" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> det, inv</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1024</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dim_x <span class="op">=</span> <span class="dv">1</span> <span class="co"># Number of unobservable true states</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dim_z <span class="op">=</span> N <span class="op">=</span> <span class="dv">1</span> <span class="co"># Dimension of observations</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">50</span> <span class="co"># Number of time steps</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sigma_P <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sigma_A <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> np.array([<span class="dv">1</span> <span class="op">+</span> mu])</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.ones(N)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> (rho <span class="op">*</span> sigma_A <span class="op">/</span> sigma_P) <span class="op">*</span> np.ones(N)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize arrays to store results</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.zeros((T, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># Latent states</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.zeros((T, N, <span class="dv">1</span>))  <span class="co"># Observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5ba10987-d142-4ff7-8a71-083bcf679a3f" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">0</span>] <span class="op">=</span> [[<span class="fl">0.1</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> sigma_P <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> X[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw correlated shocks</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    eps_p <span class="op">=</span> rng.multivariate_normal(np.zeros(dim_x), Q)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    eps_t <span class="op">=</span> rng.multivariate_normal(np.zeros(N), np.eye(N))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    eps_a <span class="op">=</span> (rho <span class="op">*</span> eps_p <span class="op">*</span> np.ones(N) <span class="op">+</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> rho<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> eps_t)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    omega_t <span class="op">=</span> sigma_P <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">*</span> eps_p</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    u_t <span class="op">=</span> sigma_A <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">*</span> eps_a</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    X[t] <span class="op">=</span> Phi <span class="op">*</span> X[t <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> omega_t</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    Z[t] <span class="op">=</span> H <span class="op">*</span> X[t] <span class="op">+</span> u_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6b55229b-f147-4432-a2b9-d3a4998042ba" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array([[[0.        ]],
+
+       [[0.1069862 ]],
+
+       [[0.09658417]],
+
+       [[0.10162606]],
+
+       [[0.11163061]],
+
+       [[0.09552293]],
+
+       [[0.09715052]],
+
+       [[0.10320404]],
+
+       [[0.10795983]],
+
+       [[0.11017883]],
+
+       [[0.12494482]],
+
+       [[0.09858851]],
+
+       [[0.09146421]],
+
+       [[0.12035397]],
+
+       [[0.09826277]],
+
+       [[0.11115327]],
+
+       [[0.11178658]],
+
+       [[0.12131182]],
+
+       [[0.14279028]],
+
+       [[0.11859269]],
+
+       [[0.11734677]],
+
+       [[0.1390189 ]],
+
+       [[0.14132014]],
+
+       [[0.12558381]],
+
+       [[0.13063038]],
+
+       [[0.13586277]],
+
+       [[0.11939417]],
+
+       [[0.12835277]],
+
+       [[0.1207393 ]],
+
+       [[0.15439756]],
+
+       [[0.12968978]],
+
+       [[0.12484662]],
+
+       [[0.11837315]],
+
+       [[0.15241113]],
+
+       [[0.14756227]],
+
+       [[0.1388225 ]],
+
+       [[0.15544603]],
+
+       [[0.11273526]],
+
+       [[0.13560096]],
+
+       [[0.13479933]],
+
+       [[0.14093893]],
+
+       [[0.1407997 ]],
+
+       [[0.12905683]],
+
+       [[0.14377008]],
+
+       [[0.14310837]],
+
+       [[0.16388099]],
+
+       [[0.13305551]],
+
+       [[0.13846484]],
+
+       [[0.16617996]],
+
+       [[0.13496046]]])</code></pre>
+</div>
+</div>
 
 
-</section>
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -774,6 +769,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="mgao6767/mingze-gao" data-repo-id="MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=" data-category="Comments" data-category-id="DIC_kwDOEL_nPc4CgWgL" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
