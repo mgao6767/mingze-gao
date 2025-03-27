@@ -1,0 +1,739 @@
+---
+title: "AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-04-03
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week6.pdf"
+# Custom fields
+pdf-name: "Week6.pdf"
+---
+
+# Credit Risk I: Individual Loan Risk
+
+## Introduction
+
+In [Week 3](https://mingze-gao.com/teaching/AFIN8003/2025S1/Week3/), we discussed capital adequacy and the (Pillar 1 of Basel) minimum capital requirements, which involves the calculation of risk-weighted assets (RWA) that account for the various risks facing banks.
+
+As suggested by @tbl-rwa-au-banks below, __credit risk__ is likely the most significant risk factor, the risk that the promised cash flows from loans and securities may not be paid in full (e.g., borrower defaults).
+
+|                          | CBA     | Westpac | NAB     | ANZ     | Macquarie |
+|--------------------------|---------|---------|---------|---------|-----------|
+| RWA for credit risk      | 362,869 | 339,758 | 355,554 | 349,041 |    97,485 |
+| RWA for market risk      |  61,968 |  51,676 |  38,274 |  41,967 |    11,663 |
+| RWA for operational risk |  43,155 |  55,175 |  41,178 |  42,319 |    15,828 |
+| Other RWA                |       0 |   4,809 |       0 |       0 |         0 |
+| Total RWA                | 467,992 | 451,418 | 435,006 | 433,327 |   124,976 |
+
+: RWA of Australian banks in 2023 (source: Capital IQ) {#tbl-rwa-au-banks}
+
+- FIs (banks) transform financial claims of household savers (e.g., deposits) into claims (e.g., loans) issued to corporations, individuals and governments.
+- FIs accept the credit risk on these loans in exchange for a fair return sufficient to cover the cost of funding to household savers and the credit risk involved in lending.
+
+::: {.content-hidden when-format="pdf"}
+## Introduction (cont'd)
+:::
+
+This week: 
+
+- approaches to analyzing and measuring the credit or default risk on _individual loans_ (and bonds). 
+ 
+Next week:
+
+- methods for evaluating the risk of the _overall loan portfolio_, or loan concentration risk.
+
+Measurement of the credit risk on individual loans or bonds is crucial if an FI manager is to
+
+1. price a loan or value a bond correctly, and 
+2. set appropriate limits on the amount of credit extended to any one borrower or the loss exposure it accepts from any particular counterparty.
+
+## Importance of credit risk management
+
+Credit risk management is important because it involves the determination of many features of a loan (debt) instrument: interest rate, maturity, collateral requirement, and covenants.
+
+- Inadequate credit risk management could lead to higher default rates and bank insolvency, especially when markets are competitive and margins are low.
+
+Default of one major borrower can have significant impact on value and reputation of many FIs.
+
+- Direct impact on all lenders involved.
+- Contagion or spill-over effect on other FIs in the financial system.
+
+Major economic or natural events can cause significant impact on many FIs loan portfolios.
+
+- The 2007-09 subprime mortgage crisis.
+- Floods, earthquakes, etc.
+
+## Credit risk-related events 
+
+__Subprime mortgage crisis__ and the resulting GFC 2007-09.
+
+- Banks provided risky mortgages to subprime borrowers with poor credit.
+- A housing boom led to speculative investments and rising home prices.
+- Lenders bundled these mortgages into mortgage-backed securities (MBS) and sold them to investors.
+- Many loans had adjustable rates, which increased over time, causing payment difficulties.
+- Rising defaults led to a housing market collapse, triggering widespread financial losses.
+- Banks and investors holding MBS faced a credit crisis, leading to bank failures and liquidity issues.
+
+::: {.content-hidden when-format="pdf"}
+## Credit risk-related events (cont'd)
+:::
+
+__U.S. student loan debt__ and its future?
+
+- $1.73 trillion student loan debt as at September 2021, 7.8% is in default. 
+- 1 out of 10 Americans has defaulted on a student loan.
+- Personal consequences: homeownership, marriage, retirement savings, etc.
+- Economic burden: loan defaults can weigh down the entire country.
+
+## Banks in Australia: non-performing assets
+
+![Non-performing assets of banks in Australia](./figures/banks-non-performing-assets-domestic.png){#fig-bank-npa fig-align="center"}
+
+## Types of loans
+
+The loans made by FIs can be broadly categorized into:
+
+1. Commercial and industrial (C&I) loans
+2. Real estate loans
+3. Consumer (individual) loans
+4. Others
+
+## Types of loans: C&I loans
+
+Commercial loans vary significantly in their features.
+
+- Maturity, from a few weeks to years.
+- Amount, from very small to millions or billions.
+- Syndicated or not.
+    - A syndicated loan is one provided by a group of FIs as opposed to a single lender.
+- Secured or unsecured.
+- Spot loans vs loan commitment.
+    - Spot loan: a loan in which the loan amount is withdrawn immediately by the borrower.
+    - Loan commitment (or line of credit): a credit facility with a maximum size and a maximum period of time over which the borrower can withdraw funds.
+
+## Types of loans: real estate loans
+
+Real estate loans include residential loans (primarily mortgage loans) and commercial real estate loans.
+
+As with C&I loans, residential mortgages differ widely in their characteristics:
+
+- Loan size
+- LTV (loan-to-value ratio): the ratio of the loan to the property's price
+- Maturity
+- Mortgage interest rates and fees: adjustable-rate mortgages (ARMs) and fixed-rate mortgages
+
+Residential mortgages are typically very long-term loans with 20yrs+ maturity.
+
+- Housing price can fall below the loan amount, causing defaults and eventually foreclosures.
+
+## Types of loans: consumer loans
+
+Consumer (personal) loans include, for example, personal and auto loans.
+
+Credit cards are a type of consumer loan financing.
+
+## Types of loans: other loans
+
+"Other loans" include a variety of borrowers and types, including for example
+
+- farmers
+- other banks
+- nonbank FIs (e.g., broker margin loans)
+- state and local governments
+
+# Returns on a loan
+
+## Calculating the return on a loan
+
+Once the decision to make a loan has been made, the pricing of the loan is an important aspect of credit risk management, which includes adjustments for the perceived credit risk of the borrower as well as any fees and collateral backing the loan.
+
+A traditional __return on assets approach__ to calculate the return on a loan is explained here.
+
+## Contractually promised return on a loan
+
+Factors affecting the promised loan return:
+
+- Loan interest rate
+- Credit risk premium
+- Fees
+- Collateral
+- Non-price terms
+
+::: {.content-hidden when-format="pdf"}
+## Contractually promised return on a loan (cont'd)
+:::
+
+::: {.columns}
+:::: {.column}
+Suppose that an FI makes a spot one-year $1 million loan. The loan rate may be set as
+
+$$
+\begin{aligned}
+\text{Base lending rate } BR &= 8\% \\
+\text{+ Credit risk premium } \phi &= 2\% \\
+ BR + \phi &= 10\%
+\end{aligned}
+$$
+::::
+:::: {.column}
+The base lending rate (BR) reflects the FI's weighted-average cost of capital (WACC) or its marginal cost of funds.
+
+- For example, [LIBOR](https://en.wikipedia.org/wiki/Libor)-the London Inter-Bank Offered Rate.
+- [LIBOR manipulation scandal](https://en.wikipedia.org/wiki/Libor_scandal) led to its phasing out and replacement by more transparent and reliable rates like [SOFR](https://www.newyorkfed.org/markets/reference-rates/sofr)-the Secured Overnight Financing Rate.
+- The Australian equivalent is the [Bank Bill Swap Rate (BBSW)](https://www.asx.com.au/connectivity-and-data/information-services/benchmarks/benchmark-data/bbsw.html).
+
+The base lending rate could also reflect the **prime lending rate**, the interest rate that commercial banks charge their most creditworthy and low-risk corporate customers.
+
+::: {.callout-note}
+LIBOR/SOFR (BBSW) more commonly used for short-term loans, while prime rates more for long-term loans.
+:::
+
+A credit risk premium is added to the base lending rate.
+::::
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Contractually promised return on a loan (cont'd)
+:::
+
+Direct and indirect fees and charges:
+
+1. Loan __origination fee__ ($f$) for processing the application.
+2. __Compensating balance__ requirement ($b$) to be held as (demand) deposits.
+    - A portion of the loan that the borrower must keep in a deposit account, typically earning little or no interest, which helps the bank secure funds and reduce the effective loan amount while still charging interest on the full loan value.
+3. __Reserve requirement__ ($RR$) imposed by regulatory authority on the demand deposits.
+
+::: {.callout-note title="Numeric example"}
+- If a borrower takes a loan of $100,000 but must maintain a _compensating balance_ of 10%, they need to keep $10,000 in a non-interest-bearing deposit account with the bank. Thus, they effectively receive $90,000 but pay interest on the full $100,000.
+- The bank receives this \$10,000 in deposits. Given a reserve requirement of 5%, the bank must keep $\$10,000 \times 5\%=\$500$ in reserve (cash or deposits with the central bank).
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Contractually promised return on a loan (cont'd)
+:::
+
+The gross return on loan ($k$) per dollar lent is given by
+$$
+1+k = 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]}
+$$
+
+::: {.callout-tip title="An annotated version of the formula"}
+
+$$
+1+k=1+\frac{\overbrace{f+(BR+\phi)}^{\text{interest and fees earned}}}{\underbrace{1}_{\$1 \text{ loan}}-[\underbrace{b}_{\text{amount of loan deposited with the bank}}\times \underbrace{(1-RR)}_{\text{not reserved for regulatory compliance}}]}
+$$
+
+- For every $1 the FI lends, it retains $b$ as compensating balance. The borrower receives $1-b$.
+- Since $b$ is held by the borrower at the FI as a demand deposit account, regulatory authority requires the bank to hold reserves at a rate $RR$ against the compensating balance.
+- The net outflow by the bank per $1 of loans made is therefore $1-[b(1-RR)]$, 1 minus the reserve-adjusted compensating balance requirement.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Contractually promised return on a loan (cont'd)
+:::
+
+Suppose a bank does the following:
+
+- Sets the loan rate on a prospective loan at 10% (where $BR$=6% and $\phi$=4%)
+- Charges a 12.5 basis point (or 0.125%) loan origination fee $f$ to the borrower
+- Imposes an 8% compensating balance requirement $b$ to be held as non-interest-bearing demand deposits
+- Sets aside reserve, at a rate of 10% of deposits, held at the central bank (i.e. $RR$ is 10%)
+
+What is the contractually promised gross return on the loan?
+$$
+\begin{aligned}
+1+k &= 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]} \\
+1+k &= 1+\frac{0.00125+(0.06+0.04)}{1-[0.08(1-0.1)]} \\
+1+k &= 1+\frac{0.10125}{0.928} \\
+k &= 10.91\%
+\end{aligned}
+$$
+
+## Some notes
+
+Since March 26, 2020, reserve requirements ($RR$) are [eliminated for all depositary institutions](https://www.federalreserve.gov/monetarypolicy/reservereq.htm) in the U.S.
+
+As commercial lending markets have become more competitive, both origination fees ($f$) and compensating balances ($b$) are becoming less important.
+
+As a result, the _credit risk premium_ ($\phi$) is the primary determinant for the promised return of a loan, once the base rate is set.
+
+::: {.callout-note}
+To achieve a target promised gross return ($k$) on a loan, an FI can use various combinations of fees, compensation balances, and risk margins.
+:::
+
+## The expected return on a loan
+
+The promised return on a loan ($k$) can differ from the __expected return__ and the _actual return_ on the loan because of default risk.
+
+At the time the loan is made, the expected return $E(r)$ per dollar lent is related to the promised return $k$ as follows:
+$$
+1+E(r) = p(1+k) + (1-p)\times 0
+$$
+where $p$ is the probability of complete repayment of the loan and $(1-p)$ is the probability of default, in which case the FI receives nothing.[^recovery]
+The expected return is a weighted average of:
+
+- Full repayment: $(1+k)$ with probability of $p$
+- No repayment: 0 with probability of $(1-p)$
+
+[^recovery]: In practice, the FI may recover part of the loan.
+
+If $p<1$:
+
+- Default risk exists
+- FI needs to set risk premium
+- FI needs to recognize that higher fees and charges might decrease $p$
+
+::: {.content-hidden when-format="pdf"}
+## The expected return on a loan (cont'd)
+:::
+
+Suppose a bank does the following:
+
+- Sets the loan rate on a prospective loan at 10%
+- Expects a probability of default of 5%
+- Recovers nothing if the loan is defaulted
+
+What is the expected return on the loan?
+
+The probability of default $(1-p)=0.05$; loan rate is 10%.
+$$
+\begin{aligned}
+1+E(r) &= p(1+k) = (1-0.05)(1+0.1) = 1.045 \\
+  E(r) &= 0.045
+\end{aligned}
+$$
+Expected return on this loan is 4.5%.
+
+## Some notes 
+
+FIs usually control credit risk along two dimensions:
+
+1. the _price_ or promised return dimension, and
+2. the _quantity_ or credit availability dimension.
+
+The quantity dimension applies more in retail (e.g., consumer) loans.
+
+The price dimension applies more in wholesale (e.g., C&I) loans.
+
+# Retail vs wholesale credit decisions
+
+## Retail
+
+Retail loans to household borrowers (consumers) tend to have smaller size and higher costs of information collection, and as a result, retail lending decisions tend to be "accept or reject" decisions.
+
+- Borrowers of a similar loan product, regardless of their credit risk, are often charged the same credit risk premium.
+
+Retail customers are more likely to be sorted or rationed by loan quantity restrictions than by price (interest rate) differences.
+
+- In finance words, an FI controls its credit risk at the retail level by __credit rationing__.
+
+::: {.callout-note}
+Residential mortgages are a good example. Two mortgage borrowers may pay the same mortgage rate while their LTVs are different.
+:::
+
+## Wholesale
+
+At the wholesale (C&I) level, FIs use both interest rates and credit quantity to control credit risk.
+
+- As long as they are compensated with sufficiently high credit risk premium, FIs may be willing to lend to high-risk wholesale borrowers.
+- However, higher interest rates may increase the probability of borrower's default, reducing expected return.
+
+::: {.callout-note}
+Another important consideration is that only high-risk borrowers may be willing to borrow at high interest rates. This is an "adverse selection" problem.
+:::
+
+- As a result, FIs may credit ration its wholesale loans beyond certain interest rate level. That is, the FI can establish an upper ceiling on the amount of loan it is willing to lend.
+
+::: {.callout-tip}
+Sometimes, an FI can achieve a higher expected return on its loan portfolio if it cuts its loan rates.
+:::
+
+# Measurement of credit risk
+
+## It is all about information
+
+To calibrate the credit risk exposure, FIs need to estimate the borrower's default probability, which largely depends on their ability to collect and analyze information, cost-efficiently.
+
+- At the retail level, such information may be collected internally (e.g., past banking records) or externally (e.g., credit reports from rating agencies).
+    - There are three main credit reporting bodies in Australia: Equifax, illion and Experian
+- At the wholesale level, such information comes from multiple sources:
+    - Large, public firms: financial statements, stock and bond prices, analysts' reports, etc.
+    - Smaller, private firms: financial statements (if any)
+
+::: {.callout-note}
+Advances in technologies make it easier to collect and analyze information of smaller borrowers.
+:::
+
+## Protection against credit risk
+
+Loan __covenants__ are often used mitigate credit risk. Covenants are loan contract terms that restrict or encourage various actions to enhance the probability of repayment.
+
+- For example, covenants may limit the type and amount of new debt, investments, and asset sales the borrower can undertake while the loan is outstanding. 
+- Financial covenants may restrict changes in the borrower's financial ratios such as leverage or current ratio.
+
+## Example loan contract covenants
+
+[Credit Agreement, dated as of October 2, 2017, among Cincinnati Bell Inc. (borrower), Morgan Stanley Senior Funding Inc. (lead bank) and other lenders](https://www.sec.gov/Archives/edgar/data/716133/000095015717001389/ex10-1.htm).
+
+- Article VII Affirmative Covenants
+- Article VIII Negative Covenants
+
+# Default risk models
+
+## Default risk models
+
+Many different qualitative and quantitative models are employed to assess the default risk on loans and bonds.
+
+- They are not mutually exclusive. 
+- An FI manager may use both qualitative and quantitative models and use more than one model to reach a credit decision.
+
+A significant amount of investments into the development of highly effective credit risk models.
+
+## Qualitative models
+
+Borrower-specific factors are considered as well as market or systematic factors.
+
+Specific factors include:
+
+- Reputation: _implicit contract_
+- Leverage (capital structure)
+- Volatility of earnings
+- Collateral
+
+Market-specific factors include:
+
+- Business cycle
+- Level of interest rates
+
+::: {.callout-note}
+A LOT more factors are considered in practice than we can discuss here.
+:::
+
+## Quantitative models
+
+__Credit scoring models__ use observed borrower characteristics to
+
+1. either calculate a score representing the applicant's default probability, or
+2. sort borrowers into different default risk classes.
+
+::: {.columns}
+:::: {.column}
+Scoring models might help to:
+
+- Establish factors that help to explain default risk
+- Evaluate the relative importance of these factors
+- Improve the pricing of default risk
+- Sort out bad loan applicants
+- More easily calculate reserve needs
+::::
+:::: {.column}
+Three broad types
+
+1. Linear probability models
+2. Logit models
+3. Linear discriminant analysis
+::::
+:::
+
+## Credit scoring: linear probability models
+
+Uses past data, such as financial ratios, as inputs into a linear model to explain repayment experience on old loans.
+
+$$
+PD_i = \sum^n_{j=1} \beta_j X_{ij} + \text{error}
+$$
+where
+
+- $PD_i$ is the probability of default of borrower $i$
+- $\beta_j$ is the estimated importance of the $j$th variable (e.g, leverage)
+- $X_{ij}$ is a set of causal variables that reflect quantitative information about the $i$th borrower
+
+::: {.content-hidden when-format="pdf"}
+## Credit scoring: linear probability models (cont'd)
+:::
+
+Suppose there were two factors influencing the past default behaviour of borrowers: the leverage (D/E) and sales-asset ratio (S/A). 
+
+Based on past default (repayment) experience, the linear probability model is estimated as:
+
+$$
+PD = 0.5\times \frac{D}{E} - 0.0525 \times \frac{S}{A}
+$$
+
+Assume a prospective borrower has a $D/E$ of 0.3 and an $S/A$ of 2. Its estimated default probability is
+$$
+PD = 0.5\times 0.3 - 0.0525 \times 2 = 0.045
+$$
+
+## Credit scoring: logit models
+
+::: {.callout-caution}
+Linear probability model has a weakness being that the estimated probability may be smaller than 0 or larger than 1.
+This can be addressed by the logit model.
+:::
+
+Essentially, this is done by plugging the estimated value of $PD$ from the linear probability model (in previous example, $PD=0.045$), into the following formula:
+
+$$
+F(PD) = \frac{1}{1+e^{-PD}}
+$$
+where $F(PD)$ is the logistically transformed value of $PD$.
+
+- Other alternatives include Probit and other variants with nonlinear indicator functions.
+
+## Credit scoring: linear discriminant analysis
+
+- Linear probability and logit models estimate a default probability (a value from 0 to 1) if a loan is made.
+- Discriminant models divide borrowers into high/low default risk classes based on observed characteristics.
+
+Altman's Z score model for manufacturing firms:
+
+::: {.columns}
+:::: {.column}
+$$
+Z = 1.2 X_1 + 1.4 X_2 + 3.3 X_3 + 0.6 X_4 + 1.0 X_5
+$$
+where
+
+- $X_1 = \text{Working capital / Total assets}$.
+- $X_2 = \text{Retained earnings / Total assets}$.
+- $X_3 = \text{Earnings before interest and taxes / Total assets}$.
+- $X_4 = \text{Market value of equity / Book value of total liabilities}$.
+- $X_5 = \text{Sales / Total assets}$.
+::::
+
+:::: {.column}
+The classification:
+
+- High default risk: $Z<1.81$
+- Indeterminant defaualt risk: $1.81<Z<2.99$ 
+- Low default risk: $Z>2.99$
+::::
+:::
+
+## Weaknesses of credit scoring models
+
+- Weights in any credit scoring model unlikely to be constant over longer periods of time
+- Variables in any credit scoring model unlikely to be constant over longer periods of time
+- Models ignore hard-to-quantify factors such as borrower reputation
+- There is no centralised database on defaulted business loans for proprietary or other reasons
+- Discriminant models make broad distinction between borrower categories, that is, good and bad borrowers, yet in the real world various gradations of default exist, from non-payment or delay of interest payments (nonperforming assets) to outright default on all promised interest and principal payments
+- ...
+
+## Newer models of credit risk measurement and pricing
+
+Newer credit risk models use finance theory and more widely available financial market data to make inference about default probabilities on debt and loan instruments.
+
+A lot of research is taking place and we consider a number of these newer approaches here, including
+
+- Term structure of credit risk approach (also called reduced-form models)
+- Mortality rate derivation of credit risk
+- RAROC
+- Option models (also called structural models since they are based on an economic model of why firms default)
+
+## Term structure derivation of credit risk
+
+A simple key idea: extract the _expected_ default rates from the current term structure of interest rates.
+
+A risk-neutral FI would be indifferent between investing in a risk-free government bond and a risky corporate loan/bond.
+
+- Risk-free return: $1+i$
+- Corporate bond's expected return: $p(1+k)+(1-p)(1+k)\gamma$
+
+where $\gamma$ is the recovery rate if the loan defaults.
+
+We can set $p(1+k)+(1-p)(1+k)\gamma = 1 + i$ and compute the _risk-neutral default probability_ $(1-p)$.
+
+- May be generalised to loans with any maturity or to adjust for varying default recovery rates.
+- The loan can be assessed using the inferred probabilities from comparable quality bonds.
+
+
+## Mortality rate derivation of credit risk
+
+Rather than extracting _expected_ default rates from the current term structure of interest rates, the probability of default is estimated from past data on defaults, similar to the process employed by insurance companies to price policies.
+
+::: {.callout-tip}
+Insurance companies do not estimate an individual's future health condition, but rather, use historic data to statistically examine a pool of people with similar characteristics (e.g., age, gender, medical history) to calculate the probability of mortality or other health-related risks over time.
+:::
+
+For example, for grade B bonds, the __marginal mortality rate (MMR)__ for the first year of issue is 
+$$
+MMR_1 = \frac{\text{Total value of grade B bonds default in year 1 of issue}}{\text{Total value of grade B bonds outstanding in year 1 of issue}}
+$$
+We can similarly construct $MMR_2$, $MMR_3$, ..., and construct a MMR curve.
+
+- Mortality rate approach has a number of conceptual and applicability problems.
+- Historic, backward-looking, sensitive to the period chosen for analysis.
+
+## RAROC
+
+Risk-adjusted return on capital (RAROC) was pioneered by Bankers Trust (acquired by Deutsche bank in 1998).
+
+$$
+RAROC = \frac{\text{One-year net income on a loan}}{\text{Loan risk}}
+$$
+where
+$$
+\text{One-year net income on loan} = (\text{Spread} + \text{Fees}) \times \text{Dollar value of the loan outstanding}
+$$
+and Loan risk can be measure by, for example, _duration_.
+$$
+\frac{\Delta LN}{LN} = - D_{LN} \frac{\Delta R}{1+R}
+$$
+so that
+$$
+\underbrace{\Delta LN}_{\text{dollar risk exposure}} = - \underbrace{D_{LN}}_{\text{duration of loan}} \times \underbrace{LN}_{\text{loan amount}} \times \underbrace{\frac{\Delta R}{1+R}}_{\text{shock}}
+$$
+
+- Loan approval if RAROC > benchmark return on capital.
+ 
+## Option models of default risk
+
+Rationale:
+
+- A borrower borrows to invest.
+- If its investments are successful, the borrower repays.
+- If its investments fail and the borrower cannot repay the lender,
+  - The borrower has an _option to default_ on its debt, simply turning any remaining assets over to the lender.
+- The borrower's (equity holders') loss is capped due to limited liability.
+
+::: {.callout-note}
+The KMV Corporation[^kmv] turned this relatively simple idea into a credit monitoring model. 
+
+Many of the largest U.S. FIs are now using this model to determine the __expected default frequency (EDF)__ of large corporations.
+
+[^kmv]: The KMV Corporation was purchased by Moody’s in 2002 and is now part of Moody’s Analytics Enterprise Risk Solutions.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Option models of default risk (cont'd)
+:::
+
+We can use option pricing models like @merton_pricing_1974 and @black_scholes_1973 to estimate default probability. The option valuation models can also be applied to calculate the default risk premium.
+
+@merton_pricing_1974 shows that the market value of risky loan made by a lender to a borrower is
+
+::: {.columns}
+:::: {.column}
+$$
+L(\tau) = B e^{-i\tau} [(1/d) N(h_1) + N(h_2)]
+$$
+where
+
+- $\tau$ is the time remaining to loan maturity
+- $i$ is the risk-free rate
+- $d$ is the borrower's leverage ratio measured as $B e^{-i\tau} / A$, where $A$ is assets' value
+- $N(\cdot)$ is the cumulative normal distribution function
+::::
+:::: {.column}
+
+$$
+\begin{aligned}
+h_1 &= - \frac{[\frac{1}{2} \sigma^2 \tau - \ln(d)]}{\sigma \sqrt{\tau}} \\
+h_2 &= - \frac{[\frac{1}{2} \sigma^2 \tau + \ln(d)]}{\sigma \sqrt{\tau}} 
+\end{aligned}
+$$
+
+- $\sigma^2$ measures the asset risk of the borrower, which is the variance of the rate of change in the value of the underlying assets of the borrower
+::::
+:::
+
+The equilibrium default risk premium ($\phi$) that the borrower should be charged is
+
+$$
+\phi = k(\tau) - i = -\frac{1}{\tau} \ln [N(h_2)+(1/d) N(h_1)]
+$$
+
+- $k(\tau)$ is the contractually promised return 
+
+::: {.content-hidden unless-format="pdf"}
+::: {.callout-note}
+Note that in Example 10-8 of the textbook @saunders_financial_2023, $h_1$ should read 
+
+$$
+h_1 = - \frac{[\frac{1}{2} (0.12)^2 (1) - \ln(0.9)]}{0.12} = -0.0938
+$$
+:::
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Option models of default risk (cont'd)
+:::
+
+```{python}
+# | label: fig-edf
+# | fig-cap: "EDF and assets value"
+# | fig-location: center
+import matplotlib.pyplot as plt
+import numpy as np
+
+mu = 3  # mean
+sigma = 1  # standard deviation
+
+x = np.linspace(0, 6, 300)
+y = (1 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+fig, ax = plt.subplots(figsize=(8, 6))
+
+ax.plot(x, y, color='blue')
+
+x_fill = np.linspace(0, 0.8, 100)
+y_fill = (1 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * ((x_fill - mu) / sigma) ** 2)
+ax.fill_between(x_fill, y_fill, color='blue', alpha=0.3)
+
+ax.annotate('Probability of default\n(EDF)', xy=(0.5, 0.0), xytext=(0.01, 0.1),
+            arrowprops=dict(facecolor='black', arrowstyle='->'), fontsize=12)
+
+ax.annotate('Market value at time 0', xy=(3, 0.0), xytext=(3, 0.2),
+            arrowprops=dict(facecolor='black', arrowstyle='->'), fontsize=12)
+
+# Set limits and labels
+ax.set_xlim([0, 6])
+ax.set_ylim([0, 0.5])
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+ax.set_xlabel('Market value of assets at loan maturity')
+ax.set_ylabel('Probability')
+
+# Show plot
+plt.show()
+```
+
+# Finally...
+
+## Suggested readings
+
+- [RBA Interest Rate Benchmark Reform in Australia](https://www.rba.gov.au/mkt-operations/resources/interest-rate-benchmark-reform.html).
+- [Risk Management Association (RMA) content on credit risk](https://www.rmahq.org/resources-content?topic=Credit%20Risk).
+    - RMA provides average balance sheet and income data for more than 400 industries, common ratios computed for each size group and industry, five-year trend data, and financial statement data for more than 100,000 commercial borrowers.
+
+If you're into Math and would like to see some code,
+
+- [Merton distance to default (DD)](https://mingze-gao.com/posts/merton-dd/).
+
+## References
