@@ -1,0 +1,253 @@
+---
+title: "AFIN8003 - Workshop 5"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2024-04-03
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop5.pdf"
+# Custom fields
+pdf-name: "Workshop5.pdf"
+include-answers: false
+---
+
+In this workshop, we will work together on some example questions to review the key concepts covered last week in the guest lecture on Market Risk. Then we will work on some simple cases in Excel to prepare for your individual assignment.
+
+# Key concepts of market risk
+
+Refer to the [lecture slides](https://mingze-gao.com/teaching/AFIN8003/2025S1/Week5/).
+
+# MCQ
+
+1. The risk related to the uncertainty of an FI's earnings on its trading portfolio caused by changes in market conditions is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [ ] credit risk
+   - [ ] market risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [ ] credit risk
+   - [x] market risk
+   :::
+
+1. Market risk, as measured by daily earnings at risk (DEAR), includes which of the following components?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] potential adverse move in yield
+   - [ ] price sensitivity of the position
+   - [ ] dollar market value of the position
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] potential adverse move in yield
+   - [ ] price sensitivity of the position
+   - [ ] dollar market value of the position
+   - [x] All of the listed options are correct.
+   :::
+
+1. Price volatility includes which of the following components?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] potential adverse move in yield and price sensitivity of the position
+   - [ ] potential favourable move in yield and price sensitivity of the position
+   - [ ] potential adverse move in yield and dollar market value of the position
+   - [ ] potential favourable move in yield and dollar market value of the position
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] potential adverse move in yield and price sensitivity of the position
+   - [ ] potential favourable move in yield and price sensitivity of the position
+   - [ ] potential adverse move in yield and dollar market value of the position
+   - [ ] potential favourable move in yield and dollar market value of the position
+   :::
+
+1. Which of the following is often criticised for its need to assume a normal or symmetric distribution for all asset returns?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] back simulation
+   - [ ] RiskMetrics
+   - [ ] Monte Carlo simulation
+   - [ ] CreditMetrics
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] back simulation
+   - [x] RiskMetrics
+   - [ ] Monte Carlo simulation
+   - [ ] CreditMetrics
+   :::
+
+1. The expected shortfall (ES) approach to measuring market risk has the advantage that it:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] measures tail risk precisely
+   - [ ] is less comprehensive than VAR
+   - [ ] will not be considered in Basel III
+   - [ ] measures credit risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] measures tail risk precisely
+   - [ ] is less comprehensive than VAR
+   - [ ] will not be considered in Basel III
+   - [ ] measures credit risk
+   :::
+
+# Short answer questions
+
+## Q1
+
+The mean change in the daily yields of a 15-year, zero-coupon bond has been 5 basis points (bp) over the past year with a standard deviation of 15 bp. Use these data and assume the yield changes are normally distributed.
+
+(a) What is the highest yield change expected if a 99 per cent confidence limit is required; that is, adverse moves will not occur more than one day in 100?
+(b) What is the highest yield change expected if a 95 per cent confidence limit is required?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+The 99 per cent confidence level will represent adverse moves that not occur more than 1 day in 100. If we assume it is normally distributed, then it is 2.33 $\sigma$
+In this example, it means $2.33\times 15 = 34.95$ bps. Thus, the maximum adverse yield change expected for this zero-coupon bond is an increase of 39.95 (=5+34.95) basis points, or 0.3995 per cent, in interest rates.
+
+(b)
+If a 95 per cent confidence limit is required, then 95 per cent of the area will be 1.645 standard deviations (1.645 $\sigma$) from the mean. Thus, the maximum adverse yield change expected for this zero-coupon bond is an increase of 29.675 basis points (5+1.645 × 15) in interest rates.
+:::
+:::
+
+## Q2 - DEAR
+
+Bank Alpha has an inventory of AAA-rated, 15-year zero-coupon bonds with a face value of $400 million. The bonds are currently yielding 9.5% in the over-the-counter market.
+
+(a) What is the modified duration of these bonds?
+(b) What is the price volatility if the potential adverse move in yields is 25 basis points?
+(c) What is the DEAR?
+(d) If the price volatility is based on a 99% confidence limit and a mean historical change in daily yields of 0.0%, what is the implied standard deviation of daily yield changes?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+Modified duration is
+$$
+MD = \frac{D}{1+R} = \frac{15}{1+0.095} = 13.6986 \text{ years}
+$$
+
+(b)
+Price volatility is
+$$
+MD \times \text{potential adverse move in yield} = 13.6986 \times 0.0025 = 0.03425
+$$
+
+(c)
+   Daily earnings at risk (DEAR) is the product of dollar value of position and price volatility.
+
+   Dollar value of position is $400/(1+0.095)^{15}=\$ 102.5293 \text{ million}$
+
+   $$
+   DEAR = \$ 102.5293 \text{ million} \times 0.03425 = \$ 3.5116 \text{ million}
+   $$
+
+(d)
+If it is normally distributed, 99% confidence level is 2.33$\sigma$, 25 basis points = $2.33 \sigma$, 
+so $\sigma = 0.0025/2.33 = 0.001073$ or 10.73 basis points.
+:::
+:::
+
+## Q3 - VaR and ES
+
+Consider the following discrete probability distribution of payoffs for two securities, A and B, held in the trading portfolio of an FI:
+
+| Probability | A      | Probability | B       |
+|-------------|--------|-------------|---------|
+| 50%         | $80m   | 50%         | $80m    |
+| 49%         | $60m   | 49%         | $68m    |
+| 1%          | -$740m | 0.6%        | -$740m  |
+|             |        | 0.4%        | -$1393m |
+
+Which of the two securities will add more market risk to the FI's trading portfolio according to the VaR and ES measures?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+- The expected return on security A = 0.50($80m) + 0.49($60m) + 0.01(–$740m) = $62m
+- The expected return on security B = 0.50($80m) + 0.49($68m) + 0.0040(–$740m) + 0.0060(–$1393m) = $62m
+- For a 99% confidence level, $VaR_A= VaR_B = –\$740m$
+- For a 99% confidence level, $ES_A= –\$740m$, while $ES_B= 0.40(–\$740m) + 0.60(–\$1393m) = –\$1131.8m$
+
+While the VaR is identical for both securities, the ES finds that security B has the potential to subject the FI to much greater losses than security A. 
+
+Specifically, if tomorrow is a bad day, VaR finds that there is a 1% probability that the FI’s losses will exceed $740 million on either security. 
+
+However, if tomorrow is a bad day, ES finds that there is a 1% probability that the FI’s losses will exceed $740 million if security A is in its trading portfolio, but losses will exceed $1131.8 million if security B is in its trading portfolio.
+:::
+:::
+
+## Extra
+
+Today is April 1, 2025. Suppose you are the head of risk management of a financial institution (FI) that engages in fixed-income securities investment. The FI is financed by long-term borrowings and equity. The balance sheet (in millions) of the FI today is as below.
+
+| Assets          |      | Liabilities and Equity |      |
+|-----------------|------|------------------------|------|
+| Treasury bonds  | $300 | Long-term borrowings   | $350 |
+| Corporate bonds | $200 | Equity                 | $150 |
+| Total           | $500 | Total                  | $500 |
+
+The risk management team estimates that the standard deviation of the Treasury bonds’ daily returns is 2% and the standard deviation of the corporate bonds’ daily returns is 5%. The mean return of both bonds is 0%. The correlation between the daily returns of Treasury and corporate bonds is estimated to be 0.7.
+
+(a) What is the 5-day Value at Risk (VaR) of the bond portfolio at a 99% confidence level? Assume that returns follow a normal distribution.
+(b) How to interpret the calculated VaR from (a)? What is conditional VaR or Expected Shortfall?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+The bond portfolio’s VaR needs the standard deviation of the portfolio’s daily returns.
+
+$$
+\sigma_P^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2 \rho w_1 w_2 \sigma_1 \sigma_2
+$$
+where $w$ is the weight based on bond value and $\rho$ is the correlation.
+
+$w_1=\frac{300}{500}=0.6$, and $w_2=\frac{200}{500}=0.4$.
+
+The variance of the portfolio's daily returns is
+$$
+\sigma_P^2 = 0.6^2\times 0.02^2 + 0.4^2\times 0.05^2 + 2\times 0.7\times 0.4\times 0.6\times 0.02\times 0.05
+$$
+and hence $\sigma_P=0.02966$.
+
+The 1-day 99% VaR is
+$$
+0.02966\times 2.33 \times \$500 = \$34.5539 \text{ million}
+$$
+
+The 5-day 99% VaR is
+$$
+\$34.5539 \times \sqrt{5} = \$77.2649 \text{ million}
+$$
+
+A 5-day 99% Value at Risk (VaR) represents the maximum potential loss that a portfolio or investment could incur over a 5-day period with a confidence level of 99%. In this case, $77.2649 million.
+:::
+:::
+
+# VaR and ES calculation in Excel
+
+Download the Excel spreadsheet `Workshop5.xlsx` on iLearn.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Solution is available on iLearn.
+:::
+:::
