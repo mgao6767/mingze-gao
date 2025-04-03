@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-17cf1aa965d7a3061eaf472c0fafa655.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +80,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="Research – Mingze Gao">
 <meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mingze-gao.com/images/specification-curve-of-oc.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -209,9 +210,9 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </section>
 <section id="working-papers" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="working-papers">📝 Working Papers</h2>
-<p>🆕 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427">Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics</a>, with Jiaying Li and Ruiqi Mao.</p>
+<p>🆕 <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427">Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics</a>, with Giacinta Cestone, Jiaying Li and Ruiqi Mao.</p>
 <ul>
-<li>Nordic Initiative for Corporate Economics (NICE) 2025 (<em>invited</em>).</li>
+<li>Nordic Initiative for Corporate Economics (NICE) 2025 (<em>invited</em>), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).</li>
 </ul>
 <p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677">Borrower Technology Similarity and Bank Loan Contracting</a>, with Yunying Huang, Steven Ongena and Eliza Wu.</p>
 <ul>
@@ -346,8 +347,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -458,7 +457,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
