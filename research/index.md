@@ -39,9 +39,9 @@ cap-location: margin
 
 ## 📝 Working Papers
 
-🆕 [Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Jiaying Li and Ruiqi Mao.
+🆕 [Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Giacinta Cestone, Jiaying Li and Ruiqi Mao.
 
-- Nordic Initiative for Corporate Economics (NICE) 2025 (_invited_).
+- Nordic Initiative for Corporate Economics (NICE) 2025 (_invited_), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).
 
 [Borrower Technology Similarity and Bank Loan Contracting](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
