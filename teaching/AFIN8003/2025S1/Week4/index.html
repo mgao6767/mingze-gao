@@ -7,11 +7,12 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2025-03-20">
@@ -99,7 +100,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-7437a3b463e712511602132d7dac6268.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -115,6 +116,204 @@
   <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -809,7 +1008,7 @@ Table&nbsp;3: Repricing gaps ($ millions)
 <p><strong>One-day repricing gap</strong></p>
 </div>
 <div class="callout-content">
-<p>In the first bucket of <a href="#/tbl-repricing-gaps" class="quarto-xref">Table&nbsp;3</a>, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:</p>
+<p>In the first bucket of <a href="#/repricing-gaps" class="quarto-xref">Table&nbsp;3</a>, if the gap is negative $10 million and overnight interest rate rises by 1 percent, the annualized change in the FI’s future NII is:</p>
 <p><span class="math display">\[
 \Delta NII_i = GAP_i \times \Delta R_i = -10 \text{ million} \times 0.01 = -100,000
 \]</span></p>
@@ -828,7 +1027,7 @@ Table&nbsp;3: Repricing gaps ($ millions)
 <p><strong>One-year repricing gap</strong></p>
 </div>
 <div class="callout-content">
-<p>It is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from <a href="#/tbl-repricing-gaps" class="quarto-xref">Table&nbsp;3</a>.</p>
+<p>It is common to also estimate the one-year (cumulative) repricing gap, which is -$15 million from <a href="#/repricing-gaps" class="quarto-xref">Table&nbsp;3</a>.</p>
 <p><span class="math display">\[
 \Delta NII_i = CGAP_i \times \Delta R_i = -15 \text{ million} \times 0.01 = -150,000
 \]</span></p>
@@ -960,49 +1159,49 @@ Table&nbsp;4: Calculating the duration of a 3-year bond
 <div aria-describedby="tbl-duration-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <style type="text/css">
-#T_f7a89_row3_col4 {
+#T_b8848_row3_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_f7a89" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_b8848" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_f7a89_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_f7a89_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_f7a89_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_f7a89_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_f7a89_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_b8848_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_b8848_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_b8848_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_b8848_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_b8848_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_f7a89_row0_col0" class="data row0 col0">1</td>
-<td id="T_f7a89_row0_col1" class="data row0 col1">50.00</td>
-<td id="T_f7a89_row0_col2" class="data row0 col2">48.08</td>
-<td id="T_f7a89_row0_col3" class="data row0 col3">0.05</td>
-<td id="T_f7a89_row0_col4" class="data row0 col4">0.05</td>
+<td id="T_b8848_row0_col0" class="data row0 col0">1</td>
+<td id="T_b8848_row0_col1" class="data row0 col1">50.00</td>
+<td id="T_b8848_row0_col2" class="data row0 col2">48.08</td>
+<td id="T_b8848_row0_col3" class="data row0 col3">0.05</td>
+<td id="T_b8848_row0_col4" class="data row0 col4">0.05</td>
 </tr>
 <tr class="even">
-<td id="T_f7a89_row1_col0" class="data row1 col0">2</td>
-<td id="T_f7a89_row1_col1" class="data row1 col1">50.00</td>
-<td id="T_f7a89_row1_col2" class="data row1 col2">46.23</td>
-<td id="T_f7a89_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_f7a89_row1_col4" class="data row1 col4">0.09</td>
+<td id="T_b8848_row1_col0" class="data row1 col0">2</td>
+<td id="T_b8848_row1_col1" class="data row1 col1">50.00</td>
+<td id="T_b8848_row1_col2" class="data row1 col2">46.23</td>
+<td id="T_b8848_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_b8848_row1_col4" class="data row1 col4">0.09</td>
 </tr>
 <tr class="odd">
-<td id="T_f7a89_row2_col0" class="data row2 col0">3</td>
-<td id="T_f7a89_row2_col1" class="data row2 col1">1050.00</td>
-<td id="T_f7a89_row2_col2" class="data row2 col2">933.45</td>
-<td id="T_f7a89_row2_col3" class="data row2 col3">0.91</td>
-<td id="T_f7a89_row2_col4" class="data row2 col4">2.72</td>
+<td id="T_b8848_row2_col0" class="data row2 col0">3</td>
+<td id="T_b8848_row2_col1" class="data row2 col1">1050.00</td>
+<td id="T_b8848_row2_col2" class="data row2 col2">933.45</td>
+<td id="T_b8848_row2_col3" class="data row2 col3">0.91</td>
+<td id="T_b8848_row2_col4" class="data row2 col4">2.72</td>
 </tr>
 <tr class="even">
-<td id="T_f7a89_row3_col0" class="data row3 col0">Total</td>
-<td id="T_f7a89_row3_col1" class="data row3 col1">1150.00</td>
-<td id="T_f7a89_row3_col2" class="data row3 col2">1027.75</td>
-<td id="T_f7a89_row3_col3" class="data row3 col3">1.00</td>
-<td id="T_f7a89_row3_col4" class="data row3 col4">2.86</td>
+<td id="T_b8848_row3_col0" class="data row3 col0">Total</td>
+<td id="T_b8848_row3_col1" class="data row3 col1">1150.00</td>
+<td id="T_b8848_row3_col2" class="data row3 col2">1027.75</td>
+<td id="T_b8848_row3_col3" class="data row3 col3">1.00</td>
+<td id="T_b8848_row3_col4" class="data row3 col4">2.86</td>
 </tr>
 </tbody>
 </table>
@@ -1070,63 +1269,63 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 <div aria-describedby="tbl-duration-example-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <style type="text/css">
-#T_289f7_row5_col4 {
+#T_d3677_row5_col4 {
   background-color: yellow;
 }
 </style>
 
-<table id="T_289f7" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
+<table id="T_d3677" class="do-not-create-environment cell caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_289f7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
-<th id="T_289f7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
-<th id="T_289f7_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
-<th id="T_289f7_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
-<th id="T_289f7_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
+<th id="T_d3677_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Time (Years)</th>
+<th id="T_d3677_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Payment ($)</th>
+<th id="T_d3677_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">PV of Payment ($)</th>
+<th id="T_d3677_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Weight (PV/Total PV)</th>
+<th id="T_d3677_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Weighted Time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_289f7_row0_col0" class="data row0 col0">1</td>
-<td id="T_289f7_row0_col1" class="data row0 col1">40.00</td>
-<td id="T_289f7_row0_col2" class="data row0 col2">37.74</td>
-<td id="T_289f7_row0_col3" class="data row0 col3">0.04</td>
-<td id="T_289f7_row0_col4" class="data row0 col4">0.04</td>
+<td id="T_d3677_row0_col0" class="data row0 col0">1</td>
+<td id="T_d3677_row0_col1" class="data row0 col1">40.00</td>
+<td id="T_d3677_row0_col2" class="data row0 col2">37.74</td>
+<td id="T_d3677_row0_col3" class="data row0 col3">0.04</td>
+<td id="T_d3677_row0_col4" class="data row0 col4">0.04</td>
 </tr>
 <tr class="even">
-<td id="T_289f7_row1_col0" class="data row1 col0">2</td>
-<td id="T_289f7_row1_col1" class="data row1 col1">40.00</td>
-<td id="T_289f7_row1_col2" class="data row1 col2">35.60</td>
-<td id="T_289f7_row1_col3" class="data row1 col3">0.04</td>
-<td id="T_289f7_row1_col4" class="data row1 col4">0.08</td>
+<td id="T_d3677_row1_col0" class="data row1 col0">2</td>
+<td id="T_d3677_row1_col1" class="data row1 col1">40.00</td>
+<td id="T_d3677_row1_col2" class="data row1 col2">35.60</td>
+<td id="T_d3677_row1_col3" class="data row1 col3">0.04</td>
+<td id="T_d3677_row1_col4" class="data row1 col4">0.08</td>
 </tr>
 <tr class="odd">
-<td id="T_289f7_row2_col0" class="data row2 col0">3</td>
-<td id="T_289f7_row2_col1" class="data row2 col1">40.00</td>
-<td id="T_289f7_row2_col2" class="data row2 col2">33.58</td>
-<td id="T_289f7_row2_col3" class="data row2 col3">0.04</td>
-<td id="T_289f7_row2_col4" class="data row2 col4">0.11</td>
+<td id="T_d3677_row2_col0" class="data row2 col0">3</td>
+<td id="T_d3677_row2_col1" class="data row2 col1">40.00</td>
+<td id="T_d3677_row2_col2" class="data row2 col2">33.58</td>
+<td id="T_d3677_row2_col3" class="data row2 col3">0.04</td>
+<td id="T_d3677_row2_col4" class="data row2 col4">0.11</td>
 </tr>
 <tr class="even">
-<td id="T_289f7_row3_col0" class="data row3 col0">4</td>
-<td id="T_289f7_row3_col1" class="data row3 col1">40.00</td>
-<td id="T_289f7_row3_col2" class="data row3 col2">31.68</td>
-<td id="T_289f7_row3_col3" class="data row3 col3">0.03</td>
-<td id="T_289f7_row3_col4" class="data row3 col4">0.14</td>
+<td id="T_d3677_row3_col0" class="data row3 col0">4</td>
+<td id="T_d3677_row3_col1" class="data row3 col1">40.00</td>
+<td id="T_d3677_row3_col2" class="data row3 col2">31.68</td>
+<td id="T_d3677_row3_col3" class="data row3 col3">0.03</td>
+<td id="T_d3677_row3_col4" class="data row3 col4">0.14</td>
 </tr>
 <tr class="odd">
-<td id="T_289f7_row4_col0" class="data row4 col0">5</td>
-<td id="T_289f7_row4_col1" class="data row4 col1">1040.00</td>
-<td id="T_289f7_row4_col2" class="data row4 col2">777.15</td>
-<td id="T_289f7_row4_col3" class="data row4 col3">0.85</td>
-<td id="T_289f7_row4_col4" class="data row4 col4">4.24</td>
+<td id="T_d3677_row4_col0" class="data row4 col0">5</td>
+<td id="T_d3677_row4_col1" class="data row4 col1">1040.00</td>
+<td id="T_d3677_row4_col2" class="data row4 col2">777.15</td>
+<td id="T_d3677_row4_col3" class="data row4 col3">0.85</td>
+<td id="T_d3677_row4_col4" class="data row4 col4">4.24</td>
 </tr>
 <tr class="even">
-<td id="T_289f7_row5_col0" class="data row5 col0">Total</td>
-<td id="T_289f7_row5_col1" class="data row5 col1">1200.00</td>
-<td id="T_289f7_row5_col2" class="data row5 col2">915.75</td>
-<td id="T_289f7_row5_col3" class="data row5 col3">1.00</td>
-<td id="T_289f7_row5_col4" class="data row5 col4">4.61</td>
+<td id="T_d3677_row5_col0" class="data row5 col0">Total</td>
+<td id="T_d3677_row5_col1" class="data row5 col1">1200.00</td>
+<td id="T_d3677_row5_col2" class="data row5 col2">915.75</td>
+<td id="T_d3677_row5_col3" class="data row5 col3">1.00</td>
+<td id="T_d3677_row5_col4" class="data row5 col4">4.61</td>
 </tr>
 </tbody>
 </table>
@@ -1186,7 +1385,7 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 </section>
 <section id="duration-and-price-changes-example" class="slide level2">
 <h2>Duration and price changes: example</h2>
-<p>Consider the previous example of a 5-year annual-coupon bond in <a href="#/tbl-duration-example-2" class="quarto-xref">Table&nbsp;5</a> with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.</p>
+<p>Consider the previous example of a 5-year annual-coupon bond in <a href="#/duration-another-example" class="quarto-xref">Table&nbsp;5</a> with a 4% coupon rate and 6% yield. It has a duration of 4.61 years.</p>
 <p>What is the price change if the interest rate (yield) decreases by 1 percent (<span class="math inline">\(\Delta R=-0.01\)</span>)?</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1197,7 +1396,7 @@ Table&nbsp;5: Calculating the duration of a 5-year bond
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Recall <a href="#/eq-duration-and-price" class="quarto-xref">Equation&nbsp;2</a> that <span class="math inline">\(\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R\)</span>.</p>
+<p>Recall <a href="#/the-economic-meaning-of-duration" class="quarto-xref">Equation&nbsp;2</a> that <span class="math inline">\(\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R\)</span>.</p>
 <p><span class="math display">\[
 \text{Modified duration} = MD = \frac{D}{1+R} = \frac{4.61}{1+0.06} = 4.349
 \]</span></p>
@@ -1275,7 +1474,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 <h2>The duration model</h2>
 <p>We know that total assets (<span class="math inline">\(A\)</span>) is the sum of liabilities (<span class="math inline">\(L\)</span>) and equity (<span class="math inline">\(E\)</span>): <span class="math inline">\(A=E+L\)</span>.</p>
 <p>Therefore, <span class="math inline">\(E = A - L\)</span>, and <span class="math inline">\(\Delta E = \Delta A - \Delta L\)</span>.</p>
-<p>Making use of the previous results <a href="#/eq-duration-and-assets-value" class="quarto-xref">Equation&nbsp;3</a> and <a href="#/eq-duration-and-liabilities-value" class="quarto-xref">Equation&nbsp;4</a>, we have</p>
+<p>Making use of the previous results <a href="#/duration-and-interest-rate-risk-management-balance-sheet" class="quarto-xref">Equation&nbsp;3</a> and <a href="#/duration-and-interest-rate-risk-management-balance-sheet" class="quarto-xref">Equation&nbsp;4</a>, we have</p>
 <p><span id="eq-duration-model"><span class="math display">\[
 \Delta E = \left[- D_A \times A \times \frac{\Delta R}{1+R}\right] -  \left[- D_L \times L \times \frac{\Delta R}{1+R}\right]
 \qquad(5)\]</span></span></p>
@@ -1287,7 +1486,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 </section>
 <section id="the-duration-model-1" class="slide level2">
 <h2>The duration model</h2>
-<p>Let’s examine the duration model <a href="#/eq-duration-model-lev" class="quarto-xref">Equation&nbsp;6</a>:</p>
+<p>Let’s examine the duration model <a href="#/the-duration-model" class="quarto-xref">Equation&nbsp;6</a>:</p>
 <p><span class="math display">\[
 \Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
 \]</span></p>
@@ -1359,15 +1558,15 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 <section id="references" class="slide level2">
 <h2>References</h2>
 
-
-</section></section>
-
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>AFIN8003 Banking and Financial Intermediation</p>
 </div>
-</div></div>
+</div>
+</section></section>
+
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1397,8 +1596,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -1553,7 +1751,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1669,6 +1867,8 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
       });
       clipboard.on('success', onCopySuccess);
       if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
         const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
           text: getTextToCopy,
           container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1775,7 +1975,7 @@ D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
