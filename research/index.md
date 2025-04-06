@@ -70,6 +70,7 @@ cap-location: margin
 
 Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
+- _Reject & Resubmit_ at the _Management Science_.
 - MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
 Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
