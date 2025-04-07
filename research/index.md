@@ -3,17 +3,6 @@ title: Research
 cap-location: margin
 ---
 
-## 👨‍💻 Data & Code
-
-- (code) [Discretionary accruals](/posts/compute-jackknife-coefficient-estimates-in-sas)
-- (docs) [Download M&A data from SDC](/posts/merger_acquisition_deals_from_sdc_platinum)
-- (code & data) [Historical firm HQ location 1969-2022](/posts/firm-historical-headquarter-state-from-10k)
-- (code) [Merton distance-to-default (default probability)](/posts/merton-dd)
-- (code) [Organization capital](/posts/estimate-organization-capital)
-- (code) [Specification curve analysis](/posts/specification-curve-analysis) - listed in [Harvard Business School Research Computing Services blog](https://hbs-rcs.github.io/post/specification-curve-analysis/). For the Stata command, see my [`specurve`](https://github.com/mgao6767/specurve).
-- (code) [Textual analysis on 8K filings](/posts/textual-analysis-on-sec-filings). For a full Python CLI application, see my [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer).
-- (code) [Variance ratio test - Lo and MacKinlay (1988)](/posts/lomackinlay1988)
-
 ## 📄 Publications
 
 [Consumer Behaviour and Credit Supply: Evidence from an Australian FinTech Lender](https://doi.org/10.1016/j.frl.2023.104205), with Henry Leung, Linhui Liu and Buhui Qiu, ___Finance Research Letters___, 2023. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4505420)
@@ -70,13 +59,24 @@ cap-location: margin
 
 Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
 
-- _Reject & Resubmit_ at the _Management Science_.
+- _**Reject & Resubmit**_ at the _**Management Science**_.
 - MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
 Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
 
-- _Reject & Resubmit_ at the _Review of Corporate Finance Studies_.
+- _**Reject & Resubmit**_ at the _**Review of Corporate Finance Studies**_.
 - FMA 2022, FIRN 2022.
+
+## 👨‍💻 Data & Code
+
+- (code) [Discretionary accruals](/posts/compute-jackknife-coefficient-estimates-in-sas)
+- (docs) [Download M&A data from SDC](/posts/merger_acquisition_deals_from_sdc_platinum)
+- (code & data) [Historical firm HQ location 1969-2022](/posts/firm-historical-headquarter-state-from-10k)
+- (code) [Merton distance-to-default (default probability)](/posts/merton-dd)
+- (code) [Organization capital](/posts/estimate-organization-capital)
+- (code) [Specification curve analysis](/posts/specification-curve-analysis) - listed in [Harvard Business School Research Computing Services blog](https://hbs-rcs.github.io/post/specification-curve-analysis/). For the Stata command, see my [`specurve`](https://github.com/mgao6767/specurve).
+- (code) [Textual analysis on 8K filings](/posts/textual-analysis-on-sec-filings). For a full Python CLI application, see my [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer).
+- (code) [Variance ratio test - Lo and MacKinlay (1988)](/posts/lomackinlay1988)
 
 ## ‍🎓 Student Supervision
 
