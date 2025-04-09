@@ -11,7 +11,7 @@
     "href": "teaching/index.html#session-1-2025",
     "title": "Teaching",
     "section": "Session 1, 2025",
-    "text": "Session 1, 2025\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nFeb 27, 2025\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nMar 6, 2025\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2 (Jupyter Notebook)\n\n\nMar 13, 2025\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nMar 20, 2025\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nMar 27, 2025\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nApr 3, 2025\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\n\n\n\nApr 10, 2024\nWeek 7 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)"
+    "text": "Session 1, 2025\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nFeb 27, 2025\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nMar 6, 2025\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2 (Jupyter Notebook)\n\n\nMar 13, 2025\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nMar 20, 2025\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nMar 27, 2025\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nApr 3, 2025\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\nWorkshop 6\n\n\nApr 10, 2024\nWeek 7 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)\nWorkshop 7"
   },
   {
     "objectID": "teaching/index.html#session-2-2024",
@@ -19,6 +19,230 @@
     "title": "Teaching",
     "section": "Session 2, 2024",
     "text": "Session 2, 2024\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nJul 24, 2024\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nJul 31, 2024\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2\n\n\nAug 7, 2024\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nAug 14, 2024\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nAug 21, 2024\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nAug 28, 2024\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\nWorkshop 6\n\n\nSep 4, 2024\nWeek 7 - Midterm Exam\nNone\n\n\nSep 11, 2024\nWeek 8 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)\nWorkshop 8\n\n\nOct 2, 2024\nWeek 9 - Liquidity Risk (PDF)\nWorkshop 9\n\n\nOct 9, 2024\nWeek 10 - Liability and Liquidity Management (PDF)\nWorkshop 10\n\n\nOct 16, 2024\nWeek 11 - Sovereign Risk, FX Risk, and Off-Balance-Sheet Risk (PDF)\nWorkshop 11\n\n\nOct 23, 2024\nWeek 12 - Loan Sales and Securitisation (PDF)\nWorkshop 12\n\n\nOct 30, 2024\nWeek 13 - Emerging Topics in Bank Risk Management (PDF)\nNone"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#introduction",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#introduction",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Introduction",
+    "text": "Introduction\n\nIn Week 6, we discussed alternative ways by which FI managers can measure the default (credit) risk on individual loans.\nFIs typically hold a portfolio of loans and hence credit risk should also be measured and managed in a portfolio context.\nThis week, we discuss several models used by FI managers to assess the risk of the overall loan portfolio.\nWe will also discuss the use of derivatives to manage credit risk."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-models",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-models",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Simple models",
+    "text": "Simple models\n\n\n\n\n\n\nCaution\n\n\nA large credit risk exposure to a single borrower or group of related borrowers poses a potential threat to a bank’s safety and soundness.\n\n\n\n\nRegulations are in place to limit such exposure.\nAs a result, individual loans rarely cause material losses or bank failures.\nPrimary cause of credit-related distress is that pools of individual loans sharing similar characteristics perform similarly, especially during extreme conditions.\nAn important lesson learned is that products exposed to the same types of risks can have different names and under different business units.\n\nTwo simple models widely employed to measure credit risk concentration in the loan portfolio:\n\nMigration analysis\nConcentration limits"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Simple model: migration analysis",
+    "text": "Simple model: migration analysis\n\nTrack credit ratings of certain types of loans or certain sectors, either externally from credit rating agencies or internally.\nIf actual rating deteriorates faster than historical experience, limit lending to that loan class or sector.\nHistorical credit migration measured through loan migration matrix (or transition matrix).\n\n\n\n\nTable 1: Example loan migration matrix\n\n\n\n\n\n\nAAA-A\nBBB-B\nCCC-C\nDefault\n\n\n\n\nAAA-A\n0.85\n0.10\n0.04\n0.01\n\n\nBBB-B\n0.12\n0.83\n0.03\n0.02\n\n\nCCC-C\n0.03\n0.13\n0.80\n0.04\n\n\n\n\n\n\nTable 1, for example, shows the transition probabilities of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.\n\n\nThe probability of AAA-rated loan at the start of a year being downgraded to BBB to B by the year’s end is 0.10.\nThe probability of AAA-rated loan at the start of a year being downgraded to CCC to C by the year’s end is 0.04.\nThe probability of AAA-rated loan at the start of a year defaults by the year’s end is 0.01."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Simple model: migration analysis (cont’d)",
+    "text": "Simple model: migration analysis (cont’d)\nIn practice, FIs use migration matrices with many more rating classes.\nMigration analysis is used not only to evaluate commercial loan portfolios, but also to analyze credit card portfolios and consumer loans.\nHowever, potential problems with migration analysis include, for example:\n\nUse of historical data.\nRating agencies usually downgrade only after the firm has experienced a downturn."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Simple model: concentration limits",
+    "text": "Simple model: concentration limits\n\nLimits set on the maximum loan size to an individual borrower/sector or geographical area.\nUsed to reduce exposures to certain industries and to increase exposure to others.\nUse of aggregate limits for industries in which performance is highly correlated.\nBank regulators also limit loan concentrations to individual borrowers to a maximum of 15% of a bank’s capital.\n\n\\[\n\\text{Concentration limit} = \\text{Maximum loss as a percentage of capital} \\times \\frac{1}{\\text{Loss rate}}\n\\]\n\n\n\n\n\n\n\nExample\n\n\nIf an FI’s manager is unwilling to permit losses exceeding 15% of the FI’s capital, with an estimated loss rate in a particular industry of 40 per cent, then the manager should set a concentration limit on the exposure to that industry as \\(15\\%\\times \\frac{1}{0.4}=37.5\\%\\)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Simple model: concentration limits (cont’d)",
+    "text": "Simple model: concentration limits (cont’d)\nBelow is an industry breakdown of Bank of Queensland’s (BOQ) credit exposure as reported in FY2023’s annual report.\n\n\n\nTable 2: Proportionate credit exposures of lending activities of BOQ FY23\n\n\n\n\n\nSector\n$m\n% of Total Exposure\n\n\n\n\nResidential mortgages\n62,738\n77.8\n\n\nProperty and construction\n6,887\n8.5\n\n\nHealthcare\n2,763\n3.4\n\n\nProfessional services\n2,431\n3.0\n\n\nAgriculture\n1,232\n1.5\n\n\nTransportation\n606\n0.8\n\n\nManufacturing and mining\n682\n0.8\n\n\nHospitality and accommodation\n841\n1.0\n\n\nOther\n2,453\n3.0\n\n\nTotal\n80,633\n100.0"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Loan portfolio diversification and MPT",
+    "text": "Loan portfolio diversification and MPT\nMPT can be used to measure and control an FI’s aggregate credit risk exposure.\nAny model that seeks to estimate an efficient frontier for loans needs to determine and measure three things:\n\nThe expected return on individual loans\nThe risk of individual loans\nThe correlation of default risks between loans\n\nExpected return \\(R_p\\) of a portfolio of \\(N\\) assets:\n\\[\nR_p = \\sum_{i=1}^N X_i R_i\n\\]\nwhere\n\n\\(R_i\\) is the expected return on the \\(i\\)th asset\n\\(X_i\\) is the proportion of the asset portfolio invested in the \\(i\\)th asset (the desired concentration amount)"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Loan portfolio diversification and MPT (cont’d)",
+    "text": "Loan portfolio diversification and MPT (cont’d)\nVariance of returns (or risk) of the portfolio \\(\\sigma_p^2\\) can be calculated as\n\\[\n\\begin{aligned}\n\\sigma_i^2 &= \\sum_{i=1}^N X_i^2 \\sigma^2_i + \\sum_{i=1}^N \\sum_{j=1}^N X_i X_j \\sigma_{ij} \\\\\n           &= \\sum_{i=1}^N X_i^2 \\sigma^2_i + \\sum_{i=1}^N \\sum_{j=1}^N X_i X_j \\rho_{ij} \\sigma_i \\sigma_j\n\\end{aligned}\n\\]\nwhere\n\n\\(\\rho_{ij}\\) is the correlation between the returns on the \\(i\\)th asset \\(j\\)th asset\n\\(\\sigma_i^2\\) is the variance of returns on the \\(i\\)th asset\n\\(\\sigma_{ij}^2\\) is the covariance of returns between the \\(i\\)th asset and \\(j\\)th asset"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd-1",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Loan portfolio diversification and MPT (cont’d)",
+    "text": "Loan portfolio diversification and MPT (cont’d)\nThe fundamental lesson of MPT is that by taking advantage of its size, an FI can diversify considerable amounts of credit risk as long as the returns on different assets are imperfectly correlated with respect to their default risk adjusted returns.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Define annualized returns and covariance matrix for two assets\nmean_returns = np.array([0.04, 0.1])  # Expected annual returns for two assets\ncov_matrix = np.array([[0.06, 0.02], [0.02, 0.10]])  # Covariance matrix of returns\nindividual_volatility = np.sqrt(np.diag(cov_matrix))  # Volatility of individual assets\n\n# Define the number of portfolios to simulate\nnum_portfolios = 10000\n\n# Initialize empty lists to store portfolio returns, volatilities, and weights\nresults = np.zeros((3, num_portfolios))\n\n# Simulate random portfolios\nfor i in range(num_portfolios):\n    # Generate random weights for the two assets\n    weights = np.random.random(2)\n    weights /= np.sum(weights)  # Ensure weights sum to 1\n\n    # Calculate portfolio return and volatility (risk)\n    portfolio_return = np.dot(weights, mean_returns)\n    portfolio_volatility = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))\n\n    # Store the results\n    results[0, i] = portfolio_volatility\n    results[1, i] = portfolio_return\n    results[2, i] = portfolio_return / portfolio_volatility  # Sharpe ratio\n\n# Calculate the Global Minimum Variance Portfolio (GMVP)\ninv_cov_matrix = np.linalg.inv(cov_matrix)\nones = np.ones(len(mean_returns))\nweights_gmvp = inv_cov_matrix.dot(ones) / ones.T.dot(inv_cov_matrix).dot(ones)\ngmvp_return = weights_gmvp.dot(mean_returns)\ngmvp_volatility = np.sqrt(weights_gmvp.T.dot(cov_matrix).dot(weights_gmvp))\n\n# Plot the efficient frontier\nplt.figure(figsize=(10, 6))\nplt.scatter(\n    results[0, :], results[1, :], c=results[2, :], cmap=\"Blues\", marker=\"o\", alpha=1\n)\nplt.colorbar(label=\"Sharpe Ratio\")\n\n# Plot individual assets as red dots\nplt.scatter(\n    individual_volatility[0],\n    mean_returns[0],\n    # color=\"red\",\n    marker=\"o\",\n    s=100,\n    label=\"Asset 1\",\n)\nplt.scatter(\n    individual_volatility[1],\n    mean_returns[1],\n    # color=\"blue\",\n    marker=\"o\",\n    s=100,\n    label=\"Asset 2\",\n)\n# Plot GMVP\nplt.scatter(gmvp_volatility, gmvp_return, color=\"red\", marker=\"X\", s=100, label=\"GMVP\")\n\n# Set axis limits to start from 0\nplt.xlim(0, np.max(results[0, :]) + 0.02)  # Add a small margin on the right\nplt.ylim(0, np.max(results[1, :]) + 0.02)  # Add a small margin on the top\n\n# Annotate the plot\nplt.title(\"Efficient Frontier with Two Assets\")\nplt.xlabel(\"Volatility (Risk)\")\nplt.ylabel(\"Expected Return\")\nplt.legend(loc=\"upper left\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: MPT and efficient frontier\n\n\n\n\n\nMinimum risk portfolio (Global Minimum Variance Portfolio, GMVP)\n\nCombination of assets that reduces the variance of portfolio returns on the lowest feasible level."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Moody’s Analytics RiskFrontier Model",
+    "text": "Moody’s Analytics RiskFrontier Model\nMoody’s Analytics RiskFrontier model (previously Portfolio Manager model) estimates the return, risk and correlations between loans in an FI’s loan portfolio (with its own proprietary methods), which are then incorporated into the standard MPT equations to get an estimate of the risk and return of the FI’s loan portfolio.\n\nMoody’s Analytics Credit Monitor model estimates EDF (Expected Default Frequency) to examine the default risk of individual loans.\nMoody’s Analytics RiskFrontier model then uses EDF to identify the overall risk of the loan portfolio.\n\nDoes not require loan returns to be normally distributed\nApplies MPT to the loan portfolio, although many loans have non-traded aspects"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
+    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nIn Moody’s Analytics RiskFrontier model, portfolio return and risk are a function of:\n\nthe extent to which loan (exposure) values can change over a one-year horizon, and\n\nbased on EDF and the loss given default (LGD)\n\nhow these value changes move together across different loans in the loan portfolio (correlations).\n\nbased on the joint impact of close to 1,000 different systematic factors, which reflect the global economy, region, industry, and country"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-1",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
+    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nRequired input variables:\n\n\n\\(R_i\\): Expected return on a loan to a borrower \\(i\\) is the loan’s all-in-drawn spread (\\(AIS\\)) minus expected loss (expected default frequency times loss given default (LGD)).1 \\[\nR_i = AIS_i - E(L_i) = AIS_i - (EDF_i\\times LGD_i)\n\\]\n\nThe Basel Committee assessed a fixed 45% LGD on secured loans if fully secured by physical, non–real estate collateral and 40% if fully secured by receivables.\n\n\n\n\n\n\\(\\sigma_i\\): Risk of a loan to borrower \\(i\\), “unexpected loss”, is the volatility of the loan’s default rate \\(\\sigma_{D_i}\\) times the amount lost given default (LGD).2 \\[\n\\sigma_i = UL_i = \\sigma_{D_i} \\times LGD_i = \\sqrt{EDF_i(1-EDF_i)} \\times LGD_i\n\\]\n\nAssume defaults are binomially distributed (default or not), the standard deviation of default rate (\\(\\sigma_{D_i}\\)) is \\(\\sqrt{EDF_i(1-EDF_i)}\\).\n\n\n\n\n\n\\(\\rho_{ij}\\): Correlation of default risks between borrowers \\(i\\) and \\(j\\) is the correlation between the systematic return components of the asset returns of \\(i\\) and \\(j\\).\n\n\nIn the textbook Saunders, Cornett, and Erhemjamts (2023), this equation has a typo: \\(E(L_i)\\) is written as \\(R(L_i)\\). Note that \\(E(\\cdot)\\) represents the “expectation” sign and \\(L_i\\) stands for loan loss.In the textbook Saunders, Cornett, and Erhemjamts (2023), this equation is entirely incorrectly written."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-2",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-2",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
+    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nTo measure the unobservable default risk correlation between any two borrowers, the Moody’s Analytics Global Correlation Model (GCORR) uses the systematic asset return components of the two borrowers and calculates a correlation that is based on a factor model rather than direct historical observations.\n\n\nFigure 2: GCorr Corporate Factor Structure\nFigure 2 provides a visual representation of the Moody’s Analytics GCorr Corporate factor structure."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-example",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-example",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Moody’s Analytics RiskFrontier Model (example)",
+    "text": "Moody’s Analytics RiskFrontier Model (example)\nSuppose that an FI holds two loans with the following characteristics. Assume that the correlation \\(\\rho_{12}=-0.25\\), what are the return and risk of the portfolio?\n\n\n\n\n\n\n\n\n\n\n\nLoan \\(i\\)\n\\(X_i\\)\nSpread between loan rate and FI’s cost of funds\nFees\nLGD\nEDF\n\n\n\n\n1\n0.6\n5%\n2%\n25%\n3%\n\n\n2\n0.4\n4.5%\n1.5%\n20%\n2%\n\n\n\nThe return and risk on loan 1 are:\n\n\\[\n\\begin{aligned}\nR_1 &= (0.05+0.02) - (0.03\\times0.25) = 0.0625 \\\\\n\\sigma_1 &= \\sqrt{0.03\\times0.97} \\times 0.25 = 0.04265\n\\end{aligned}\n\\]\n\nThe return and risk on loan 2 are:\n\n\\[\n\\begin{aligned}\nR_2 &= (0.045+0.015) - (0.02\\times0.2) = 0.056 \\\\\n\\sigma_2 &= \\sqrt{0.02\\times0.98} \\times 0.2 = 0.028\n\\end{aligned}\n\\]\n\nThe return and risk of the portfolio are then:\n\n\\[\n\\begin{aligned}\nR_p &= 0.6\\times 0.0625 + 0.4\\times 0.056 = 0.0599 \\text{ or } 5.99\\%  \\\\\n\\sigma_p^2 &= (0.6)^2(0.04265)^2 + (0.4)^2(0.028)^2 + 2(0.6)(0.4)(-0.25)(0.04265)(0.028) = 0.0006369 \\\\\n\\sigma_p &= \\sqrt{0.0006369} = 0.0252 = 2.52\\%\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Partial application of portfolio theory",
+    "text": "Partial application of portfolio theory\n\nLoan volume-based models\nLoan loss ratio-based models"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Partial application of portfolio theory: Loan volume-based models",
+    "text": "Partial application of portfolio theory: Loan volume-based models\nDirect application of MPT is often difficult for FIs lacking information on market prices because many of the loans are not always able to be bought and sold in established markets.\nData can be gathered from:\n\nReports to the central bank\nData on shared national credit\nCommercial databases\n\nData provides market benchmarks against which FIs can compare their loan portfolios.\n\n\n\nTable 3: Allocation of the Loan Portfolio to Different Sectors (in percentages)\n\n\n\n\n\n\n(1) National\n(2) Bank A\n(3) Bank B\n\n\n\n\nReal estate\n45%\n65%\n10%\n\n\nC&I\n30\n20\n25\n\n\nIndividual\n15\n10\n55\n\n\nOthers\n10\n5\n10\n\n\nTotal\n100\n100\n100"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Partial application of portfolio theory: Loan volume-based models (cont’d)",
+    "text": "Partial application of portfolio theory: Loan volume-based models (cont’d)\n\nDeviations from the market portfolio benchmark indicate the relative degree of loan concentration.\nRelative measure of loan allocation deviation:\n\n\\[\n\\sigma_j = \\sqrt{\\frac{\\sum_{i=1}^N (X_{ij}-X{i})^2}{N}}\n\\]\nwhere\n\n\\(\\sigma_j\\) is the standard deviation of bank \\(j\\)’s asset allocation proportions from the national benchmark\n\\(X_i\\) is the national asset allocations\n\\(X_{ij}\\) is the asset allocation proportions of the \\(j\\)th bank\n\\(N\\) is the number of observations or loan categories"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd-1",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Partial application of portfolio theory: Loan volume-based models (cont’d)",
+    "text": "Partial application of portfolio theory: Loan volume-based models (cont’d)\nRefer to Table 3. We get the deviation of Bank A’s loan portfolio allocation as follows:\n\\[\n\\begin{aligned}\n(X_{1A}-X_1)^2 &= (0.65-0.45)^2 = 0.04 \\\\\n(X_{2A}-X_2)^2 &= (0.20-0.30)^2 = 0.01 \\\\\n(X_{3A}-X_3)^2 &= (0.10-0.15)^2 = 0.0025 \\\\\n(X_{4A}-X_4)^2 &= (0.05-0.10)^2 = 0.0025\n\\end{aligned}\n\\] and therefore \\[\n\\sigma_A = \\sqrt{\\frac{0.04+0.01+0.0025+0.0025}{4}} = 11.73\\%\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-loss-ratio-based-models",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-loss-ratio-based-models",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Partial application of portfolio theory: Loan loss ratio-based models",
+    "text": "Partial application of portfolio theory: Loan loss ratio-based models\nEstimates systematic loan loss risk of a particular sector or industry to the loan loss risk of an FI’s total loan portfolio\nUse of time-series regression of quarterly losses:\n\\[\n\\frac{\\text{Sectoral losses in the } i\\text{th sector}}{\\text{Loans to the } i\\text{th sector}} = \\alpha + \\beta \\frac{\\text{Total loan losses}}{\\text{Total loans}}\n\\]\nwhere\n\n\\(\\alpha\\) measures the loan loss rate for a sector that has no sensitivity to losses on the aggregate loan portfolio\n\\(\\beta\\) measures the systematic loss sensitivity of the \\(i\\)th sector loans to total loan losses\n\nThe implication of this model is that sectors with lower \\(\\beta\\)s could have higher concentration limits than high \\(\\beta\\) sectors—since low \\(\\beta\\) loan sector risks (loan losses) are less systematic (that is, are more diversifiable in a portfolio sense)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#regulatory-models",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#regulatory-models",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Regulatory models",
+    "text": "Regulatory models\n\nFederal Reserve’s 1994 Ruling on Credit Concentration Risk:\n\nAdopted a subjective approach based on examiner discretion.\nRejected technical models due to insufficient data and undeveloped methods at the time.\n\n2006 Regulatory Changes:\n\nBank for International Settlements (BIS): Released guidance on credit risk assessment and valuation for loans, structured around 10 principles on risk assessment and supervisory evaluation.\nOffice of the Comptroller of the Currency (OCC): Released guidance on sound risk management practices for commercial real estate lending.\n\nOCC/Fed Joint Study on 2006 CRE Concentration Guidance (April 2013):\n\n13% of banks with construction loans exceeding 100% of capital failed.\n23% of banks exceeding both construction and total CRE lending criteria failed, compared to only 0.5% of banks that did not exceed either criterion.\nRegulators encouraged financial institutions to review their policies and practices related to CRE lending."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-derivatives",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-derivatives",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit derivatives",
+    "text": "Credit derivatives\n\nDiversification of loan portfolio helps FIs to manage their credit risk exposure.\nNew types of derivative instruments are now available to better allow FIs to hedge their credit risk both on individual loans or on loan portfolios.\n\nCredit forwards, options, and swaps.\n\nThese credit derivatives allow FIs to separate the credit risk exposure from the lending process itself."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit forward contracts and credit risk hedging",
+    "text": "Credit forward contracts and credit risk hedging\nA credit forward is a forward agreement that hedges against an increase in default risk on a loan (a decline in credit quality of borrower) after the loan rate is determined and the loan is issued.\n\nCommon buyers are insurance companies who bears the risk of an increase in default risk on the benchmark bond of the borrower\nCommon sellers are banks\nSpecifies a credit spread on a benchmark bond issued by a borrower\nExample: BBB bond at time of origination may have 2 per cent spread over US Treasury of same maturity"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit forward contracts and credit risk hedging (cont’d)",
+    "text": "Credit forward contracts and credit risk hedging (cont’d)\n\n\n\nTable 4: Payment pattern on a credit forward contract\n\n\n\n\n\n\n\n\n\n\nCredit Spread at End of Forward Agreement\nCredit Spread Seller (bank)\nCredit Spread Buyer (counterparty)\n\n\n\n\n\\(\\phi_T&gt;\\phi_F\\)\nReceives \\((\\phi_T - \\phi_F) \\times MD \\times A\\)\nPays \\((\\phi_T - \\phi_F) \\times MD \\times A\\)\n\n\n\\(\\phi_T&lt;\\phi_F\\)\nPays \\((\\phi_F - \\phi_T) \\times MD \\times A\\)\nReceives \\((\\phi_F - \\phi_T) \\times MD \\times A\\)\n\n\n\n\n\n\nwhere\n\n\\(\\phi_F\\) is the credit spread on which the credit forward contract is written\n\\(\\phi_T\\) is the actual credit spread on the bond when the credit forward matures\n\\(MD\\) is the modified duration on the benchmark bond\n\\(A\\) is the principal amount of the forward agreement\n\nPayout by the bank is capped since \\(\\phi_T\\geq 0\\) (credit spread is non-negative).\n\nWhen a bank gives a loan, it is similar to writing a put option\nWhen a bank sells a credit forward, the payoff is similar to buying a put option"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-options",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-options",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit options",
+    "text": "Credit options\nUse of options to hedge credit risk is a relatively new phenomenon. In September 2021, commercial bank holdings of credit options totaled $233 billion, which represented 6.05% of all credit derivatives outstanding.\n\nA credit spread call option is a call option whose payoff increases as the (default) risk premium or yield spread on a specified benchmark bond of the borrower increases above some exercise spread.\nA digital default option is an option that pays a stated amount in the event of a loan default (the extreme case of increased credit risk)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-default-swaps-cds",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-default-swaps-cds",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit (default) swaps (CDS)",
+    "text": "Credit (default) swaps (CDS)\n\nFastest-growing types of swaps. Most important type of credit derivatives.\nIn 2000, commercial banks’ total notional principal for outstanding credit derivatives was $426 billion.\nBy March 2008, this amount had risen to $16.44 trillion, before falling to $13.44 trillion in 2009.\nBy September 2011, the amount increased to $15.66 trillion, of which $15.31 trillion was CDSs.\nDue to post-GFC regulations, the notional value of credit derivatives held by banks dropped to $3.9 trillion in September 2021, with $3.4 trillion of this amount being CDS contracts.\n\nWhy CDS?\n\nCredit risk is still more likely to cause an FI to fail than is either interest rate risk or FX risk.\nCDSs allow FIs to maintain long-term customer lending relationships without bearing the full credit risk exposure from those relationships."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#basics-of-cds",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#basics-of-cds",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Basics of CDS",
+    "text": "Basics of CDS\n\nCDS Payments: The buyer makes periodic payments to the seller (quarterly, semi-annually, or annually) until the end of the swap or a credit event (e.g., default) occurs.\nSettlement: Upon default, settlement involves either physical delivery of bonds (loans) or a cash payment.\n\nThe protection buyer receives a payment upon the occurrence of a credit event trigger, but the swap “expires worthless” if no trigger occurs.\n\nCheapest-to-Deliver Option: The CDS buyer has the option to deliver the cheapest qualifying bond or loan when a default happens.\nNo requirement that the CDS buyer actually owns the underlying reference securities.\nThe CDS buyer hedges its exposure to default risk, but there is still counterparty credit risk in the event that the seller fails to perform their obligations under the terms of the contract.1\n\nWe examine two types of credit swaps:\n\ntotal return swap\npure credit swap\n\nSearch and read about the concern in September 2008 with regard to AIG, an active CDS seller."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit swaps: total return swaps",
+    "text": "Credit swaps: total return swaps\nA total return swap involves swapping an obligation to pay interest at a specified fixed or floating rate for payments representing the total return on a loan or a bond (interest and principal value changes) of a specified amount.\nThe figure below illustrates a total return swap.1\n\n\n\n\n\nThe FI lender pays a fixed annual rate \\(f\\) plus changes in the market value of the loan and receives a variable rate payment (e.g., 1-year LIBOR).\n\nInterest rate risk remains\n\nIn the textbook Saunders, Cornett, and Erhemjamts (2023), Figure 25-4 incorrectly has \\(f-\\frac{P_t-P_0}{P_0}\\)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit swaps: total return swaps (cont’d)",
+    "text": "Credit swaps: total return swaps (cont’d)\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(8003)\n# Parameters for the TRS\nnotional = 1_000_000  # Notional amount (1 million)\nfixed_rate = 0.03  # Fixed annual rate paid by the TRS receiver (3%)\nasset_volatility = 0.1  # Volatility of the asset's return (10%)\nyears = 5  # Time period of the TRS (5 years)\nperiods_per_year = 4  # Payments per year (quarterly)\n\n\n# Generate the timeline for TRS payments\ndef generate_trs_timeline(\n    notional, fixed_rate, asset_volatility, years, periods_per_year=4\n):\n    # Set up the timeline with quarterly periods\n    total_periods = periods_per_year * years\n    time_points = np.arange(1, total_periods + 1) / periods_per_year\n\n    # Calculate the periodic fixed payment amount (quarterly)\n    periodic_fixed_payment = (\n        -notional * fixed_rate / periods_per_year\n    )  # Fixed payment made by TRS receiver\n\n    # Simulate random returns on the asset\n    asset_returns = np.random.normal(loc=0, scale=asset_volatility, size=total_periods)\n\n    # Initialize lists to store the results\n    total_returns = np.zeros(total_periods)\n    payments = np.zeros(total_periods)\n\n    for period in range(total_periods):\n        # Total return on the asset (positive or negative)\n        total_return = notional * asset_returns[period]\n        total_returns[period] = total_return\n\n        # Net payment for the TRS receiver (positive if receiving total return, minus fixed payment)\n        payments[period] = total_return + periodic_fixed_payment\n\n    return time_points, payments, total_returns\n\n\n# Simulate TRS payments with different asset volatilities\nvolatilities = [0.05]  # Different volatilities to simulate\nsimulations = {}\n\nfor vol in volatilities:\n    timeline, payments, total_returns = generate_trs_timeline(\n        notional, fixed_rate, vol, years, periods_per_year\n    )\n    simulations[vol] = payments\n\n# Plot the timelines as bar charts\nplt.figure(figsize=(12, 8))\nbar_width = 0.2  # Width of each bar\n\n# Generate bar charts for each volatility\nfor idx, (vol, payments) in enumerate(simulations.items()):\n    plt.bar(\n        timeline + idx * bar_width * 0.1,\n        payments,\n        width=bar_width,\n        color=\"#A6192E\",\n        label=f\"Volatility: {vol*100:.0f}%\",\n    )\n\n# Customize the plot\nplt.title(f\"{years}-Year Total Return Swap Payments Example\")\nplt.xlabel(\"Time (Years)\")\nplt.ylabel(\"Net Payment Amount ($)\")\nplt.axhline(0, color=\"black\", linewidth=1)\nplt.grid(True)\nplt.legend()\n\n# Show the plot\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3: Total Return Swap Payments Example"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit swaps: pure credit swaps",
+    "text": "Credit swaps: pure credit swaps\nInterest-rate sensitive element stripped out leaving only the credit risk.\nSimilar to buying an insurance:\n\nIf default, the counterparty makes the default payment\nIf not default, the FI receives nothing from the counterparty."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps-contd",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps-contd",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Credit swaps: pure credit swaps (cont’d)",
+    "text": "Credit swaps: pure credit swaps (cont’d)\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(8003)\n# Parameters for the CDS\nnotional = 1_000_000  # Notional amount (1 million)\ncds_spread = 0.02  # Annual CDS spread (2%)\nrecovery_rate = 0.9  # Recovery rate in case of default (10%)\nyears = 5  # Time period of the CDS (5 years)\nperiods_per_year = 4  # Payments per year (quarterly)\n\n\n# Generate the timeline for CDS payments\ndef generate_cds_timeline(\n    notional, cds_spread, default_probability, recovery_rate, years, periods_per_year=4\n):\n    # Set up the timeline with quarterly periods\n    total_periods = periods_per_year * years\n    time_points = np.arange(1, total_periods + 1) / periods_per_year\n\n    # Calculate the periodic payment amount (quarterly)\n    periodic_payment = (\n        -notional * cds_spread / periods_per_year\n    )  # Negative for payments\n\n    # Initialize lists to store the results\n    payments = np.zeros(total_periods)\n\n    # Simulate payments and default events\n    for period in range(total_periods):\n        if np.random.rand() &lt; default_probability / periods_per_year:\n            # Default occurs at this period\n            default_loss = notional * (\n                1 - recovery_rate\n            )  # Positive for the payment received on default\n            payments[period] = default_loss\n            payments[period + 1 :] = 0  # No more payments after default\n            break\n        else:\n            # Regular payment\n            payments[period] = periodic_payment\n\n    return time_points, payments\n\n\n# Simulate multiple series with different default probabilities\ndefault_probabilities = [0.02, 0.1]  # Different default probabilities\ncolors = [\"#D6D2C4\", \"#A6192E\"]\n\nsimulations = {}\n\n# Generate timelines for each default probability\nfor prob in default_probabilities:\n    timeline, payments = generate_cds_timeline(\n        notional, cds_spread, prob, recovery_rate, years, periods_per_year\n    )\n    simulations[prob] = payments\n\n# Plot the timelines as bar charts\nplt.figure(figsize=(12, 8))\nbar_width = 0.2  # Width of each bar\n\n# Generate bar charts for each probability\nfor idx, (prob, payments) in enumerate(simulations.items()):\n    plt.bar(\n        timeline + idx * bar_width * 0.1,\n        payments,\n        width=bar_width,\n        color=colors[idx],\n        label=f\"Default Probability: {prob*100:.0f}%\",\n    )\n\nplt.title(f\"{years}-Year Pure CDS Payments Example\")\nplt.xlabel(\"Time (Years)\")\nplt.ylabel(\"Payment Amount ($)\")\nplt.axhline(0, color=\"black\", linewidth=1)\nplt.grid(True)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4: Pure CDS Payments Example"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#suggested-readings",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#suggested-readings",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nMoody’s Analytics An Overview of Modelling Credit Portfolios"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#references",
+    "href": "teaching/AFIN8003/2025S1/Week7/index.html#references",
+    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
+    "section": "References",
+    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week6/index.html#introduction",
@@ -319,7 +543,7 @@
     "href": "teaching/AFIN8003/2025S1/Week6/index.html#references",
     "title": "AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
+    "text": "References\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week5/index.html#david-chan",
@@ -578,7 +802,7 @@
     "href": "teaching/AFIN8003/2025S1/Week5/index.html#references",
     "title": "AFIN8003 Week 5 - Market Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week4/index.html#what-is-interest-rate-risk",
@@ -858,7 +1082,7 @@
     "href": "teaching/AFIN8003/2025S1/Week4/index.html#references",
     "title": "AFIN8003 Week 4 - Interest Rate Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week3/index.html#defining-capital",
@@ -1138,7 +1362,7 @@
     "href": "teaching/AFIN8003/2025S1/Week3/index.html#references",
     "title": "AFIN8003 Week 3 - Capital Management and Adequacy",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week2/index.html#banks-need-regulation",
@@ -1369,7 +1593,7 @@
     "href": "teaching/AFIN8003/2025S1/Week2/index.html#references",
     "title": "AFIN8003 Week 2 - Risks and Regulation",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
+    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week1/index.html#unit-convenor",
@@ -1642,7 +1866,7 @@
     "href": "teaching/AFIN8003/2025S1/Week1/index.html#references",
     "title": "AFIN8003 Week 1 - Introduction",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week9/index.html#introduction",
@@ -1922,7 +2146,7 @@
     "href": "teaching/AFIN8003/2024S2/Week9/index.html#references",
     "title": "AFIN8003 Week 9 - Liquidity Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nAcharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. “Why Did Bank Stocks Crash During COVID-19?” The Review of Financial Studies 37 (9): 2627–84. https://doi.org/10.1093/rfs/hhae028.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nAcharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. “Why Did Bank Stocks Crash During COVID-19?” The Review of Financial Studies 37 (9): 2627–84. https://doi.org/10.1093/rfs/hhae028.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week8/index.html#introduction",
@@ -2146,7 +2370,7 @@
     "href": "teaching/AFIN8003/2024S2/Week8/index.html#references",
     "title": "AFIN8003 Week 8 - Credit Risk II: Loan Portfolio and Concentration Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week6/index.html#introduction",
@@ -2447,7 +2671,7 @@
     "href": "teaching/AFIN8003/2024S2/Week6/index.html#references",
     "title": "AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
+    "text": "References\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week5/index.html#introduction",
@@ -2699,7 +2923,7 @@
     "href": "teaching/AFIN8003/2024S2/Week5/index.html#references",
     "title": "AFIN8003 Week 5 - Market Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#what-is-interest-rate-risk",
@@ -2979,7 +3203,7 @@
     "href": "teaching/AFIN8003/2024S2/Week4/index.html#references",
     "title": "AFIN8003 Week 4 - Interest Rate Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week3/index.html#defining-capital",
@@ -3259,7 +3483,7 @@
     "href": "teaching/AFIN8003/2024S2/Week3/index.html#references",
     "title": "AFIN8003 Week 3 - Capital Management and Adequacy",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week2/index.html#banks-need-regulation",
@@ -3490,7 +3714,7 @@
     "href": "teaching/AFIN8003/2024S2/Week2/index.html#references",
     "title": "AFIN8003 Week 2 - Risks and Regulation",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
+    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
   },
   {
     "objectID": "research/index.html",
@@ -5771,7 +5995,7 @@
     "href": "teaching/AFIN8003/2024S2/Week1/index.html#references",
     "title": "AFIN8003 Week 1 - Introduction",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week10/index.html#introduction",
@@ -6009,7 +6233,7 @@
     "href": "teaching/AFIN8003/2024S2/Week10/index.html#references",
     "title": "AFIN8003 Week 10 - Liability and Liquidity Management",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week11/index.html#introduction",
@@ -6289,7 +6513,7 @@
     "href": "teaching/AFIN8003/2024S2/Week11/index.html#references",
     "title": "AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
+    "text": "References"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week12/index.html#introduction",
@@ -6478,7 +6702,7 @@
     "href": "teaching/AFIN8003/2024S2/Week12/index.html#references",
     "title": "AFIN8003 Week 12 - Loan Sales and Securitisation",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBerlin, Mitchell, Greg Nini, and Edison G. Yu. 2020. “Concentration of Control Rights in Leveraged Loan Syndicates.” Journal of Financial Economics 137 (1): 249–71. https://doi.org/10.1016/j.jfineco.2020.02.002.\n\n\nIrani, Rustom M, Rajkamal Iyer, Ralf R Meisenzahl, and José-Luis Peydró. 2021. “The Rise of Shadow Banking: Evidence from Capital Regulation.” The Review of Financial Studies 34 (5): 2181–2235. https://doi.org/10.1093/rfs/hhaa106."
+    "text": "References\n\n\n\n\nBerlin, Mitchell, Greg Nini, and Edison G. Yu. 2020. “Concentration of Control Rights in Leveraged Loan Syndicates.” Journal of Financial Economics 137 (1): 249–71. https://doi.org/10.1016/j.jfineco.2020.02.002.\n\n\nIrani, Rustom M, Rajkamal Iyer, Ralf R Meisenzahl, and José-Luis Peydró. 2021. “The Rise of Shadow Banking: Evidence from Capital Regulation.” The Review of Financial Studies 34 (5): 2181–2235. https://doi.org/10.1093/rfs/hhaa106."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week13/index.html#changing-dynamics",
@@ -6583,230 +6807,6 @@
     "href": "teaching/AFIN8003/2024S2/Week13/index.html#references",
     "title": "AFIN8003 Week 13 - Emerging Topics in Bank Risk Management",
     "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBabina, Tania, Saleem Bahaj, Greg Buchak, Filippo De Marco, Angus Foulis, Will Gornall, Francesco Mazzola, and Tong Yu. 2024. “Customer Data Access and Fintech Entry: Early Evidence from Open Banking.” Bank of England working papers 1059. Bank of England. https://ideas.repec.org/p/boe/boeewp/1059.html.\n\n\nChiu, Jonathan, and Seyed Mohammadreza Davoodalhosseini. 2023. “Central Bank Digital Currency and Banking: Macroeconomic Benefits of a Cash-Like Design.” Management Science 69 (11): 6708–30. https://doi.org/10.1287/mnsc.2021.02763.\n\n\nChiu, Jonathan, Seyed Mohammadreza Davoodalhosseini, Janet Jiang, and Yu Zhu. 2023. “Bank Market Power and Central Bank Digital Currency: Theory and Quantitative Assessment.” Journal of Political Economy 131 (5): 1213–48. https://doi.org/10.1086/722517.\n\n\nHe, Zhiguo, Jing Huang, and Jidong Zhou. 2023. “Open Banking: Credit Market Competition When Borrowers Own the Data.” Journal of Financial Economics 147 (2): 449–74. https://doi.org/10.1016/j.jfineco.2022.12.003.\n\n\nNiepelt, Dirk. 2024. “Money and Banking with Reserves and CBDC.” The Journal of Finance 79 (4): 2505–52. https://doi.org/https://doi.org/10.1111/jofi.13357.\n\n\nShkilko, Andriy, and Konstantin Sokolov. 2020. “Every Cloud Has a Silver Lining: Fast Trading, Microwave Connectivity, and Trading Costs.” The Journal of Finance 75 (6): 2899–2927. https://doi.org/10.1111/jofi.12969.\n\n\nWilliamson, Stephen. 2022. “Central Bank Digital Currency: Welfare and Policy Implications.” Journal of Political Economy 130 (11): 2829–61. https://doi.org/10.1086/720457."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#introduction",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#introduction",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Introduction",
-    "text": "Introduction\n\nIn Week 6, we discussed alternative ways by which FI managers can measure the default (credit) risk on individual loans.\nFIs typically hold a portfolio of loans and hence credit risk should also be measured and managed in a portfolio context.\nThis week, we discuss several models used by FI managers to assess the risk of the overall loan portfolio.\nWe will also discuss the use of derivatives to manage credit risk."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-models",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-models",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Simple models",
-    "text": "Simple models\n\n\n\n\n\n\nCaution\n\n\nA large credit risk exposure to a single borrower or group of related borrowers poses a potential threat to a bank’s safety and soundness.\n\n\n\n\nRegulations are in place to limit such exposure.\nAs a result, individual loans rarely cause material losses or bank failures.\nPrimary cause of credit-related distress is that pools of individual loans sharing similar characteristics perform similarly, especially during extreme conditions.\nAn important lesson learned is that products exposed to the same types of risks can have different names and under different business units.\n\nTwo simple models widely employed to measure credit risk concentration in the loan portfolio:\n\nMigration analysis\nConcentration limits"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Simple model: migration analysis",
-    "text": "Simple model: migration analysis\n\nTrack credit ratings of certain types of loans or certain sectors, either externally from credit rating agencies or internally.\nIf actual rating deteriorates faster than historical experience, limit lending to that loan class or sector.\nHistorical credit migration measured through loan migration matrix (or transition matrix).\n\n\n\n\nTable 1: Example loan migration matrix\n\n\n\n\n\n\nAAA-A\nBBB-B\nCCC-C\nDefault\n\n\n\n\nAAA-A\n0.85\n0.10\n0.04\n0.01\n\n\nBBB-B\n0.12\n0.83\n0.03\n0.02\n\n\nCCC-C\n0.03\n0.13\n0.80\n0.04\n\n\n\n\n\n\nTable 1, for example, shows the transition probabilities of loans that began the year with a certain credit rating being upgraded/downgraded to a certain rating, or default.\n\n\nThe probability of AAA-rated loan at the start of a year being downgraded to BBB to B by the year’s end is 0.10.\nThe probability of AAA-rated loan at the start of a year being downgraded to CCC to C by the year’s end is 0.04.\nThe probability of AAA-rated loan at the start of a year defaults by the year’s end is 0.01."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-migration-analysis-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Simple model: migration analysis (cont’d)",
-    "text": "Simple model: migration analysis (cont’d)\nIn practice, FIs use migration matrices with many more rating classes.\nMigration analysis is used not only to evaluate commercial loan portfolios, but also to analyze credit card portfolios and consumer loans.\nHowever, potential problems with migration analysis include, for example:\n\nUse of historical data.\nRating agencies usually downgrade only after the firm has experienced a downturn."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Simple model: concentration limits",
-    "text": "Simple model: concentration limits\n\nLimits set on the maximum loan size to an individual borrower/sector or geographical area.\nUsed to reduce exposures to certain industries and to increase exposure to others.\nUse of aggregate limits for industries in which performance is highly correlated.\nBank regulators also limit loan concentrations to individual borrowers to a maximum of 15% of a bank’s capital.\n\n\\[\n\\text{Concentration limit} = \\text{Maximum loss as a percentage of capital} \\times \\frac{1}{\\text{Loss rate}}\n\\]\n\n\n\n\n\n\n\nExample\n\n\nIf an FI’s manager is unwilling to permit losses exceeding 15% of the FI’s capital, with an estimated loss rate in a particular industry of 40 per cent, then the manager should set a concentration limit on the exposure to that industry as \\(15\\%\\times \\frac{1}{0.4}=37.5\\%\\)."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#simple-model-concentration-limits-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Simple model: concentration limits (cont’d)",
-    "text": "Simple model: concentration limits (cont’d)\nBelow is an industry breakdown of Bank of Queensland’s (BOQ) credit exposure as reported in FY2023’s annual report.\n\n\n\nTable 2: Proportionate credit exposures of lending activities of BOQ FY23\n\n\n\n\n\nSector\n$m\n% of Total Exposure\n\n\n\n\nResidential mortgages\n62,738\n77.8\n\n\nProperty and construction\n6,887\n8.5\n\n\nHealthcare\n2,763\n3.4\n\n\nProfessional services\n2,431\n3.0\n\n\nAgriculture\n1,232\n1.5\n\n\nTransportation\n606\n0.8\n\n\nManufacturing and mining\n682\n0.8\n\n\nHospitality and accommodation\n841\n1.0\n\n\nOther\n2,453\n3.0\n\n\nTotal\n80,633\n100.0"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Loan portfolio diversification and MPT",
-    "text": "Loan portfolio diversification and MPT\nMPT can be used to measure and control an FI’s aggregate credit risk exposure.\nAny model that seeks to estimate an efficient frontier for loans needs to determine and measure three things:\n\nThe expected return on individual loans\nThe risk of individual loans\nThe correlation of default risks between loans\n\nExpected return \\(R_p\\) of a portfolio of \\(N\\) assets:\n\\[\nR_p = \\sum_{i=1}^N X_i R_i\n\\]\nwhere\n\n\\(R_i\\) is the expected return on the \\(i\\)th asset\n\\(X_i\\) is the proportion of the asset portfolio invested in the \\(i\\)th asset (the desired concentration amount)"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Loan portfolio diversification and MPT (cont’d)",
-    "text": "Loan portfolio diversification and MPT (cont’d)\nVariance of returns (or risk) of the portfolio \\(\\sigma_p^2\\) can be calculated as\n\\[\n\\begin{aligned}\n\\sigma_i^2 &= \\sum_{i=1}^N X_i^2 \\sigma^2_i + \\sum_{i=1}^N \\sum_{j=1}^N X_i X_j \\sigma_{ij} \\\\\n           &= \\sum_{i=1}^N X_i^2 \\sigma^2_i + \\sum_{i=1}^N \\sum_{j=1}^N X_i X_j \\rho_{ij} \\sigma_i \\sigma_j\n\\end{aligned}\n\\]\nwhere\n\n\\(\\rho_{ij}\\) is the correlation between the returns on the \\(i\\)th asset \\(j\\)th asset\n\\(\\sigma_i^2\\) is the variance of returns on the \\(i\\)th asset\n\\(\\sigma_{ij}^2\\) is the covariance of returns between the \\(i\\)th asset and \\(j\\)th asset"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd-1",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#loan-portfolio-diversification-and-mpt-contd-1",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Loan portfolio diversification and MPT (cont’d)",
-    "text": "Loan portfolio diversification and MPT (cont’d)\nThe fundamental lesson of MPT is that by taking advantage of its size, an FI can diversify considerable amounts of credit risk as long as the returns on different assets are imperfectly correlated with respect to their default risk adjusted returns.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Define annualized returns and covariance matrix for two assets\nmean_returns = np.array([0.04, 0.1])  # Expected annual returns for two assets\ncov_matrix = np.array([[0.06, 0.02], [0.02, 0.10]])  # Covariance matrix of returns\nindividual_volatility = np.sqrt(np.diag(cov_matrix))  # Volatility of individual assets\n\n# Define the number of portfolios to simulate\nnum_portfolios = 10000\n\n# Initialize empty lists to store portfolio returns, volatilities, and weights\nresults = np.zeros((3, num_portfolios))\n\n# Simulate random portfolios\nfor i in range(num_portfolios):\n    # Generate random weights for the two assets\n    weights = np.random.random(2)\n    weights /= np.sum(weights)  # Ensure weights sum to 1\n\n    # Calculate portfolio return and volatility (risk)\n    portfolio_return = np.dot(weights, mean_returns)\n    portfolio_volatility = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))\n\n    # Store the results\n    results[0, i] = portfolio_volatility\n    results[1, i] = portfolio_return\n    results[2, i] = portfolio_return / portfolio_volatility  # Sharpe ratio\n\n# Calculate the Global Minimum Variance Portfolio (GMVP)\ninv_cov_matrix = np.linalg.inv(cov_matrix)\nones = np.ones(len(mean_returns))\nweights_gmvp = inv_cov_matrix.dot(ones) / ones.T.dot(inv_cov_matrix).dot(ones)\ngmvp_return = weights_gmvp.dot(mean_returns)\ngmvp_volatility = np.sqrt(weights_gmvp.T.dot(cov_matrix).dot(weights_gmvp))\n\n# Plot the efficient frontier\nplt.figure(figsize=(10, 6))\nplt.scatter(\n    results[0, :], results[1, :], c=results[2, :], cmap=\"Blues\", marker=\"o\", alpha=1\n)\nplt.colorbar(label=\"Sharpe Ratio\")\n\n# Plot individual assets as red dots\nplt.scatter(\n    individual_volatility[0],\n    mean_returns[0],\n    # color=\"red\",\n    marker=\"o\",\n    s=100,\n    label=\"Asset 1\",\n)\nplt.scatter(\n    individual_volatility[1],\n    mean_returns[1],\n    # color=\"blue\",\n    marker=\"o\",\n    s=100,\n    label=\"Asset 2\",\n)\n# Plot GMVP\nplt.scatter(gmvp_volatility, gmvp_return, color=\"red\", marker=\"X\", s=100, label=\"GMVP\")\n\n# Set axis limits to start from 0\nplt.xlim(0, np.max(results[0, :]) + 0.02)  # Add a small margin on the right\nplt.ylim(0, np.max(results[1, :]) + 0.02)  # Add a small margin on the top\n\n# Annotate the plot\nplt.title(\"Efficient Frontier with Two Assets\")\nplt.xlabel(\"Volatility (Risk)\")\nplt.ylabel(\"Expected Return\")\nplt.legend(loc=\"upper left\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: MPT and efficient frontier\n\n\n\n\n\nMinimum risk portfolio (Global Minimum Variance Portfolio, GMVP)\n\nCombination of assets that reduces the variance of portfolio returns on the lowest feasible level."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Moody’s Analytics RiskFrontier Model",
-    "text": "Moody’s Analytics RiskFrontier Model\nMoody’s Analytics RiskFrontier model (previously Portfolio Manager model) estimates the return, risk and correlations between loans in an FI’s loan portfolio (with its own proprietary methods), which are then incorporated into the standard MPT equations to get an estimate of the risk and return of the FI’s loan portfolio.\n\nMoody’s Analytics Credit Monitor model estimates EDF (Expected Default Frequency) to examine the default risk of individual loans.\nMoody’s Analytics RiskFrontier model then uses EDF to identify the overall risk of the loan portfolio.\n\nDoes not require loan returns to be normally distributed\nApplies MPT to the loan portfolio, although many loans have non-traded aspects"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
-    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nIn Moody’s Analytics RiskFrontier model, portfolio return and risk are a function of:\n\nthe extent to which loan (exposure) values can change over a one-year horizon, and\n\nbased on EDF and the loss given default (LGD)\n\nhow these value changes move together across different loans in the loan portfolio (correlations).\n\nbased on the joint impact of close to 1,000 different systematic factors, which reflect the global economy, region, industry, and country"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-1",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-1",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
-    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nRequired input variables:\n\n\n\\(R_i\\): Expected return on a loan to a borrower \\(i\\) is the loan’s all-in-drawn spread (\\(AIS\\)) minus expected loss (expected default frequency times loss given default (LGD)).1 \\[\nR_i = AIS_i - E(L_i) = AIS_i - (EDF_i\\times LGD_i)\n\\]\n\nThe Basel Committee assessed a fixed 45% LGD on secured loans if fully secured by physical, non–real estate collateral and 40% if fully secured by receivables.\n\n\n\n\n\n\\(\\sigma_i\\): Risk of a loan to borrower \\(i\\), “unexpected loss”, is the volatility of the loan’s default rate \\(\\sigma_{D_i}\\) times the amount lost given default (LGD).2 \\[\n\\sigma_i = UL_i = \\sigma_{D_i} \\times LGD_i = \\sqrt{EDF_i(1-EDF_i)} \\times LGD_i\n\\]\n\nAssume defaults are binomially distributed (default or not), the standard deviation of default rate (\\(\\sigma_{D_i}\\)) is \\(\\sqrt{EDF_i(1-EDF_i)}\\).\n\n\n\n\n\n\\(\\rho_{ij}\\): Correlation of default risks between borrowers \\(i\\) and \\(j\\) is the correlation between the systematic return components of the asset returns of \\(i\\) and \\(j\\).\n\n\nIn the textbook Saunders, Cornett, and Erhemjamts (2023), this equation has a typo: \\(E(L_i)\\) is written as \\(R(L_i)\\). Note that \\(E(\\cdot)\\) represents the “expectation” sign and \\(L_i\\) stands for loan loss.In the textbook Saunders, Cornett, and Erhemjamts (2023), this equation is entirely incorrectly written."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-2",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-contd-2",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Moody’s Analytics RiskFrontier Model (cont’d)",
-    "text": "Moody’s Analytics RiskFrontier Model (cont’d)\nTo measure the unobservable default risk correlation between any two borrowers, the Moody’s Analytics Global Correlation Model (GCORR) uses the systematic asset return components of the two borrowers and calculates a correlation that is based on a factor model rather than direct historical observations.\n\n\nFigure 2: GCorr Corporate Factor Structure\nFigure 2 provides a visual representation of the Moody’s Analytics GCorr Corporate factor structure."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-example",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#moodys-analytics-riskfrontier-model-example",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Moody’s Analytics RiskFrontier Model (example)",
-    "text": "Moody’s Analytics RiskFrontier Model (example)\nSuppose that an FI holds two loans with the following characteristics. Assume that the correlation \\(\\rho_{12}=-0.25\\), what are the return and risk of the portfolio?\n\n\n\n\n\n\n\n\n\n\n\nLoan \\(i\\)\n\\(X_i\\)\nSpread between loan rate and FI’s cost of funds\nFees\nLGD\nEDF\n\n\n\n\n1\n0.6\n5%\n2%\n25%\n3%\n\n\n2\n0.4\n4.5%\n1.5%\n20%\n2%\n\n\n\nThe return and risk on loan 1 are:\n\n\\[\n\\begin{aligned}\nR_1 &= (0.05+0.02) - (0.03\\times0.25) = 0.0625 \\\\\n\\sigma_1 &= \\sqrt{0.03\\times0.97} \\times 0.25 = 0.04265\n\\end{aligned}\n\\]\n\nThe return and risk on loan 2 are:\n\n\\[\n\\begin{aligned}\nR_2 &= (0.045+0.015) - (0.02\\times0.2) = 0.056 \\\\\n\\sigma_2 &= \\sqrt{0.02\\times0.98} \\times 0.2 = 0.028\n\\end{aligned}\n\\]\n\nThe return and risk of the portfolio are then:\n\n\\[\n\\begin{aligned}\nR_p &= 0.6\\times 0.0625 + 0.4\\times 0.056 = 0.0599 \\text{ or } 5.99\\%  \\\\\n\\sigma_p^2 &= (0.6)^2(0.04265)^2 + (0.4)^2(0.028)^2 + 2(0.6)(0.4)(-0.25)(0.04265)(0.028) = 0.0006369 \\\\\n\\sigma_p &= \\sqrt{0.0006369} = 0.0252 = 2.52\\%\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Partial application of portfolio theory",
-    "text": "Partial application of portfolio theory\n\nLoan volume-based models\nLoan loss ratio-based models"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Partial application of portfolio theory: Loan volume-based models",
-    "text": "Partial application of portfolio theory: Loan volume-based models\nDirect application of MPT is often difficult for FIs lacking information on market prices because many of the loans are not always able to be bought and sold in established markets.\nData can be gathered from:\n\nReports to the central bank\nData on shared national credit\nCommercial databases\n\nData provides market benchmarks against which FIs can compare their loan portfolios.\n\n\n\nTable 3: Allocation of the Loan Portfolio to Different Sectors (in percentages)\n\n\n\n\n\n\n(1) National\n(2) Bank A\n(3) Bank B\n\n\n\n\nReal estate\n45%\n65%\n10%\n\n\nC&I\n30\n20\n25\n\n\nIndividual\n15\n10\n55\n\n\nOthers\n10\n5\n10\n\n\nTotal\n100\n100\n100"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Partial application of portfolio theory: Loan volume-based models (cont’d)",
-    "text": "Partial application of portfolio theory: Loan volume-based models (cont’d)\n\nDeviations from the market portfolio benchmark indicate the relative degree of loan concentration.\nRelative measure of loan allocation deviation:\n\n\\[\n\\sigma_j = \\sqrt{\\frac{\\sum_{i=1}^N (X_{ij}-X{i})^2}{N}}\n\\]\nwhere\n\n\\(\\sigma_j\\) is the standard deviation of bank \\(j\\)’s asset allocation proportions from the national benchmark\n\\(X_i\\) is the national asset allocations\n\\(X_{ij}\\) is the asset allocation proportions of the \\(j\\)th bank\n\\(N\\) is the number of observations or loan categories"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd-1",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-volume-based-models-contd-1",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Partial application of portfolio theory: Loan volume-based models (cont’d)",
-    "text": "Partial application of portfolio theory: Loan volume-based models (cont’d)\nRefer to Table 3. We get the deviation of Bank A’s loan portfolio allocation as follows:\n\\[\n\\begin{aligned}\n(X_{1A}-X_1)^2 &= (0.65-0.45)^2 = 0.04 \\\\\n(X_{2A}-X_2)^2 &= (0.20-0.30)^2 = 0.01 \\\\\n(X_{3A}-X_3)^2 &= (0.10-0.15)^2 = 0.0025 \\\\\n(X_{4A}-X_4)^2 &= (0.05-0.10)^2 = 0.0025\n\\end{aligned}\n\\] and therefore \\[\n\\sigma_A = \\sqrt{\\frac{0.04+0.01+0.0025+0.0025}{4}} = 11.73\\%\n\\]"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-loss-ratio-based-models",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#partial-application-of-portfolio-theory-loan-loss-ratio-based-models",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Partial application of portfolio theory: Loan loss ratio-based models",
-    "text": "Partial application of portfolio theory: Loan loss ratio-based models\nEstimates systematic loan loss risk of a particular sector or industry to the loan loss risk of an FI’s total loan portfolio\nUse of time-series regression of quarterly losses:\n\\[\n\\frac{\\text{Sectoral losses in the } i\\text{th sector}}{\\text{Loans to the } i\\text{th sector}} = \\alpha + \\beta \\frac{\\text{Total loan losses}}{\\text{Total loans}}\n\\]\nwhere\n\n\\(\\alpha\\) measures the loan loss rate for a sector that has no sensitivity to losses on the aggregate loan portfolio\n\\(\\beta\\) measures the systematic loss sensitivity of the \\(i\\)th sector loans to total loan losses\n\nThe implication of this model is that sectors with lower \\(\\beta\\)s could have higher concentration limits than high \\(\\beta\\) sectors—since low \\(\\beta\\) loan sector risks (loan losses) are less systematic (that is, are more diversifiable in a portfolio sense)."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#regulatory-models",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#regulatory-models",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Regulatory models",
-    "text": "Regulatory models\n\nFederal Reserve’s 1994 Ruling on Credit Concentration Risk:\n\nAdopted a subjective approach based on examiner discretion.\nRejected technical models due to insufficient data and undeveloped methods at the time.\n\n2006 Regulatory Changes:\n\nBank for International Settlements (BIS): Released guidance on credit risk assessment and valuation for loans, structured around 10 principles on risk assessment and supervisory evaluation.\nOffice of the Comptroller of the Currency (OCC): Released guidance on sound risk management practices for commercial real estate lending.\n\nOCC/Fed Joint Study on 2006 CRE Concentration Guidance (April 2013):\n\n13% of banks with construction loans exceeding 100% of capital failed.\n23% of banks exceeding both construction and total CRE lending criteria failed, compared to only 0.5% of banks that did not exceed either criterion.\nRegulators encouraged financial institutions to review their policies and practices related to CRE lending."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-derivatives",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-derivatives",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit derivatives",
-    "text": "Credit derivatives\n\nDiversification of loan portfolio helps FIs to manage their credit risk exposure.\nNew types of derivative instruments are now available to better allow FIs to hedge their credit risk both on individual loans or on loan portfolios.\n\nCredit forwards, options, and swaps.\n\nThese credit derivatives allow FIs to separate the credit risk exposure from the lending process itself."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit forward contracts and credit risk hedging",
-    "text": "Credit forward contracts and credit risk hedging\nA credit forward is a forward agreement that hedges against an increase in default risk on a loan (a decline in credit quality of borrower) after the loan rate is determined and the loan is issued.\n\nCommon buyers are insurance companies who bears the risk of an increase in default risk on the benchmark bond of the borrower\nCommon sellers are banks\nSpecifies a credit spread on a benchmark bond issued by a borrower\nExample: BBB bond at time of origination may have 2 per cent spread over US Treasury of same maturity"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-forward-contracts-and-credit-risk-hedging-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit forward contracts and credit risk hedging (cont’d)",
-    "text": "Credit forward contracts and credit risk hedging (cont’d)\n\n\n\nTable 4: Payment pattern on a credit forward contract\n\n\n\n\n\n\n\n\n\n\nCredit Spread at End of Forward Agreement\nCredit Spread Seller (bank)\nCredit Spread Buyer (counterparty)\n\n\n\n\n\\(\\phi_T&gt;\\phi_F\\)\nReceives \\((\\phi_T - \\phi_F) \\times MD \\times A\\)\nPays \\((\\phi_T - \\phi_F) \\times MD \\times A\\)\n\n\n\\(\\phi_T&lt;\\phi_F\\)\nPays \\((\\phi_F - \\phi_T) \\times MD \\times A\\)\nReceives \\((\\phi_F - \\phi_T) \\times MD \\times A\\)\n\n\n\n\n\n\nwhere\n\n\\(\\phi_F\\) is the credit spread on which the credit forward contract is written\n\\(\\phi_T\\) is the actual credit spread on the bond when the credit forward matures\n\\(MD\\) is the modified duration on the benchmark bond\n\\(A\\) is the principal amount of the forward agreement\n\nPayout by the bank is capped since \\(\\phi_T\\geq 0\\) (credit spread is non-negative).\n\nWhen a bank gives a loan, it is similar to writing a put option\nWhen a bank sells a credit forward, the payoff is similar to buying a put option"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-options",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-options",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit options",
-    "text": "Credit options\nUse of options to hedge credit risk is a relatively new phenomenon. In September 2021, commercial bank holdings of credit options totaled $233 billion, which represented 6.05% of all credit derivatives outstanding.\n\nA credit spread call option is a call option whose payoff increases as the (default) risk premium or yield spread on a specified benchmark bond of the borrower increases above some exercise spread.\nA digital default option is an option that pays a stated amount in the event of a loan default (the extreme case of increased credit risk)."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-default-swaps-cds",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-default-swaps-cds",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit (default) swaps (CDS)",
-    "text": "Credit (default) swaps (CDS)\n\nFastest-growing types of swaps. Most important type of credit derivatives.\nIn 2000, commercial banks’ total notional principal for outstanding credit derivatives was $426 billion.\nBy March 2008, this amount had risen to $16.44 trillion, before falling to $13.44 trillion in 2009.\nBy September 2011, the amount increased to $15.66 trillion, of which $15.31 trillion was CDSs.\nDue to post-GFC regulations, the notional value of credit derivatives held by banks dropped to $3.9 trillion in September 2021, with $3.4 trillion of this amount being CDS contracts.\n\nWhy CDS?\n\nCredit risk is still more likely to cause an FI to fail than is either interest rate risk or FX risk.\nCDSs allow FIs to maintain long-term customer lending relationships without bearing the full credit risk exposure from those relationships."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#basics-of-cds",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#basics-of-cds",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Basics of CDS",
-    "text": "Basics of CDS\n\nCDS Payments: The buyer makes periodic payments to the seller (quarterly, semi-annually, or annually) until the end of the swap or a credit event (e.g., default) occurs.\nSettlement: Upon default, settlement involves either physical delivery of bonds (loans) or a cash payment.\n\nThe protection buyer receives a payment upon the occurrence of a credit event trigger, but the swap “expires worthless” if no trigger occurs.\n\nCheapest-to-Deliver Option: The CDS buyer has the option to deliver the cheapest qualifying bond or loan when a default happens.\nNo requirement that the CDS buyer actually owns the underlying reference securities.\nThe CDS buyer hedges its exposure to default risk, but there is still counterparty credit risk in the event that the seller fails to perform their obligations under the terms of the contract.1\n\nWe examine two types of credit swaps:\n\ntotal return swap\npure credit swap\n\nSearch and read about the concern in September 2008 with regard to AIG, an active CDS seller."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit swaps: total return swaps",
-    "text": "Credit swaps: total return swaps\nA total return swap involves swapping an obligation to pay interest at a specified fixed or floating rate for payments representing the total return on a loan or a bond (interest and principal value changes) of a specified amount.\nThe figure below illustrates a total return swap.1\n\n\n\n\n\nThe FI lender pays a fixed annual rate \\(f\\) plus changes in the market value of the loan and receives a variable rate payment (e.g., 1-year LIBOR).\n\nInterest rate risk remains\n\nIn the textbook Saunders, Cornett, and Erhemjamts (2023), Figure 25-4 incorrectly has \\(f-\\frac{P_t-P_0}{P_0}\\)."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-total-return-swaps-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit swaps: total return swaps (cont’d)",
-    "text": "Credit swaps: total return swaps (cont’d)\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(8003)\n# Parameters for the TRS\nnotional = 1_000_000  # Notional amount (1 million)\nfixed_rate = 0.03  # Fixed annual rate paid by the TRS receiver (3%)\nasset_volatility = 0.1  # Volatility of the asset's return (10%)\nyears = 5  # Time period of the TRS (5 years)\nperiods_per_year = 4  # Payments per year (quarterly)\n\n\n# Generate the timeline for TRS payments\ndef generate_trs_timeline(\n    notional, fixed_rate, asset_volatility, years, periods_per_year=4\n):\n    # Set up the timeline with quarterly periods\n    total_periods = periods_per_year * years\n    time_points = np.arange(1, total_periods + 1) / periods_per_year\n\n    # Calculate the periodic fixed payment amount (quarterly)\n    periodic_fixed_payment = (\n        -notional * fixed_rate / periods_per_year\n    )  # Fixed payment made by TRS receiver\n\n    # Simulate random returns on the asset\n    asset_returns = np.random.normal(loc=0, scale=asset_volatility, size=total_periods)\n\n    # Initialize lists to store the results\n    total_returns = np.zeros(total_periods)\n    payments = np.zeros(total_periods)\n\n    for period in range(total_periods):\n        # Total return on the asset (positive or negative)\n        total_return = notional * asset_returns[period]\n        total_returns[period] = total_return\n\n        # Net payment for the TRS receiver (positive if receiving total return, minus fixed payment)\n        payments[period] = total_return + periodic_fixed_payment\n\n    return time_points, payments, total_returns\n\n\n# Simulate TRS payments with different asset volatilities\nvolatilities = [0.05]  # Different volatilities to simulate\nsimulations = {}\n\nfor vol in volatilities:\n    timeline, payments, total_returns = generate_trs_timeline(\n        notional, fixed_rate, vol, years, periods_per_year\n    )\n    simulations[vol] = payments\n\n# Plot the timelines as bar charts\nplt.figure(figsize=(12, 8))\nbar_width = 0.2  # Width of each bar\n\n# Generate bar charts for each volatility\nfor idx, (vol, payments) in enumerate(simulations.items()):\n    plt.bar(\n        timeline + idx * bar_width * 0.1,\n        payments,\n        width=bar_width,\n        color=\"#A6192E\",\n        label=f\"Volatility: {vol*100:.0f}%\",\n    )\n\n# Customize the plot\nplt.title(f\"{years}-Year Total Return Swap Payments Example\")\nplt.xlabel(\"Time (Years)\")\nplt.ylabel(\"Net Payment Amount ($)\")\nplt.axhline(0, color=\"black\", linewidth=1)\nplt.grid(True)\nplt.legend()\n\n# Show the plot\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3: Total Return Swap Payments Example"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit swaps: pure credit swaps",
-    "text": "Credit swaps: pure credit swaps\nInterest-rate sensitive element stripped out leaving only the credit risk.\nSimilar to buying an insurance:\n\nIf default, the counterparty makes the default payment\nIf not default, the FI receives nothing from the counterparty."
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps-contd",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#credit-swaps-pure-credit-swaps-contd",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Credit swaps: pure credit swaps (cont’d)",
-    "text": "Credit swaps: pure credit swaps (cont’d)\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(8003)\n# Parameters for the CDS\nnotional = 1_000_000  # Notional amount (1 million)\ncds_spread = 0.02  # Annual CDS spread (2%)\nrecovery_rate = 0.9  # Recovery rate in case of default (10%)\nyears = 5  # Time period of the CDS (5 years)\nperiods_per_year = 4  # Payments per year (quarterly)\n\n\n# Generate the timeline for CDS payments\ndef generate_cds_timeline(\n    notional, cds_spread, default_probability, recovery_rate, years, periods_per_year=4\n):\n    # Set up the timeline with quarterly periods\n    total_periods = periods_per_year * years\n    time_points = np.arange(1, total_periods + 1) / periods_per_year\n\n    # Calculate the periodic payment amount (quarterly)\n    periodic_payment = (\n        -notional * cds_spread / periods_per_year\n    )  # Negative for payments\n\n    # Initialize lists to store the results\n    payments = np.zeros(total_periods)\n\n    # Simulate payments and default events\n    for period in range(total_periods):\n        if np.random.rand() &lt; default_probability / periods_per_year:\n            # Default occurs at this period\n            default_loss = notional * (\n                1 - recovery_rate\n            )  # Positive for the payment received on default\n            payments[period] = default_loss\n            payments[period + 1 :] = 0  # No more payments after default\n            break\n        else:\n            # Regular payment\n            payments[period] = periodic_payment\n\n    return time_points, payments\n\n\n# Simulate multiple series with different default probabilities\ndefault_probabilities = [0.02, 0.1]  # Different default probabilities\ncolors = [\"#D6D2C4\", \"#A6192E\"]\n\nsimulations = {}\n\n# Generate timelines for each default probability\nfor prob in default_probabilities:\n    timeline, payments = generate_cds_timeline(\n        notional, cds_spread, prob, recovery_rate, years, periods_per_year\n    )\n    simulations[prob] = payments\n\n# Plot the timelines as bar charts\nplt.figure(figsize=(12, 8))\nbar_width = 0.2  # Width of each bar\n\n# Generate bar charts for each probability\nfor idx, (prob, payments) in enumerate(simulations.items()):\n    plt.bar(\n        timeline + idx * bar_width * 0.1,\n        payments,\n        width=bar_width,\n        color=colors[idx],\n        label=f\"Default Probability: {prob*100:.0f}%\",\n    )\n\nplt.title(f\"{years}-Year Pure CDS Payments Example\")\nplt.xlabel(\"Time (Years)\")\nplt.ylabel(\"Payment Amount ($)\")\nplt.axhline(0, color=\"black\", linewidth=1)\nplt.grid(True)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4: Pure CDS Payments Example"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#suggested-readings",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#suggested-readings",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "Suggested readings",
-    "text": "Suggested readings\n\nMoody’s Analytics An Overview of Modelling Credit Portfolios"
-  },
-  {
-    "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#references",
-    "href": "teaching/AFIN8003/2025S1/Week7/index.html#references",
-    "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
-    "section": "References",
-    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\n\nBabina, Tania, Saleem Bahaj, Greg Buchak, Filippo De Marco, Angus Foulis, Will Gornall, Francesco Mazzola, and Tong Yu. 2024. “Customer Data Access and Fintech Entry: Early Evidence from Open Banking.” Bank of England working papers 1059. Bank of England. https://ideas.repec.org/p/boe/boeewp/1059.html.\n\n\nChiu, Jonathan, and Seyed Mohammadreza Davoodalhosseini. 2023. “Central Bank Digital Currency and Banking: Macroeconomic Benefits of a Cash-Like Design.” Management Science 69 (11): 6708–30. https://doi.org/10.1287/mnsc.2021.02763.\n\n\nChiu, Jonathan, Seyed Mohammadreza Davoodalhosseini, Janet Jiang, and Yu Zhu. 2023. “Bank Market Power and Central Bank Digital Currency: Theory and Quantitative Assessment.” Journal of Political Economy 131 (5): 1213–48. https://doi.org/10.1086/722517.\n\n\nHe, Zhiguo, Jing Huang, and Jidong Zhou. 2023. “Open Banking: Credit Market Competition When Borrowers Own the Data.” Journal of Financial Economics 147 (2): 449–74. https://doi.org/10.1016/j.jfineco.2022.12.003.\n\n\nNiepelt, Dirk. 2024. “Money and Banking with Reserves and CBDC.” The Journal of Finance 79 (4): 2505–52. https://doi.org/https://doi.org/10.1111/jofi.13357.\n\n\nShkilko, Andriy, and Konstantin Sokolov. 2020. “Every Cloud Has a Silver Lining: Fast Trading, Microwave Connectivity, and Trading Costs.” The Journal of Finance 75 (6): 2899–2927. https://doi.org/10.1111/jofi.12969.\n\n\nWilliamson, Stephen. 2022. “Central Bank Digital Currency: Welfare and Policy Implications.” Journal of Political Economy 130 (11): 2829–61. https://doi.org/10.1086/720457."
   }
 ]
