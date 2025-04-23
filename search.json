@@ -11,7 +11,7 @@
     "href": "teaching/index.html#session-1-2025",
     "title": "Teaching",
     "section": "Session 1, 2025",
-    "text": "Session 1, 2025\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nFeb 27, 2025\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nMar 6, 2025\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2 (Jupyter Notebook)\n\n\nMar 13, 2025\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nMar 20, 2025\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nMar 27, 2025\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nApr 3, 2025\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\nWorkshop 6\n\n\nApr 10, 2024\nWeek 7 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)\nWorkshop 7"
+    "text": "Session 1, 2025\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nFeb 27, 2025\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nMar 6, 2025\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2 (Jupyter Notebook)\n\n\nMar 13, 2025\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nMar 20, 2025\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nMar 27, 2025\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nApr 3, 2025\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\nWorkshop 6\n\n\nApr 10, 2025\nWeek 7 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)\nWorkshop 7\n\n\nMay 1, 2025\nWeek 8 - Liquidity Risk (PDF)\nWorkshop 8"
   },
   {
     "objectID": "teaching/index.html#session-2-2024",
@@ -19,6 +19,286 @@
     "title": "Teaching",
     "section": "Session 2, 2024",
     "text": "Session 2, 2024\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\nDate\nLecture\nWorkshop\n\n\n\n\nJul 24, 2024\nWeek 1 - Introduction (PDF)\nWorkshop 1\n\n\nJul 31, 2024\nWeek 2 - Risks and Regulation (PDF)\nWorkshop 2\n\n\nAug 7, 2024\nWeek 3 - Capital Management and Adequacy (PDF)\nWorkshop 3\n\n\nAug 14, 2024\nWeek 4 - Interest Rate Risk (PDF)\nWorkshop 4\n\n\nAug 21, 2024\nWeek 5 - Market Risk (PDF)\nWorkshop 5\n\n\nAug 28, 2024\nWeek 6 - Credit Risk I: Individual Loan Risk (PDF)\nWorkshop 6\n\n\nSep 4, 2024\nWeek 7 - Midterm Exam\nNone\n\n\nSep 11, 2024\nWeek 8 - Credit Risk II: Loan Portfolio and Concentration Risk (PDF)\nWorkshop 8\n\n\nOct 2, 2024\nWeek 9 - Liquidity Risk (PDF)\nWorkshop 9\n\n\nOct 9, 2024\nWeek 10 - Liability and Liquidity Management (PDF)\nWorkshop 10\n\n\nOct 16, 2024\nWeek 11 - Sovereign Risk, FX Risk, and Off-Balance-Sheet Risk (PDF)\nWorkshop 11\n\n\nOct 23, 2024\nWeek 12 - Loan Sales and Securitisation (PDF)\nWorkshop 12\n\n\nOct 30, 2024\nWeek 13 - Emerging Topics in Bank Risk Management (PDF)\nNone"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#introduction",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#introduction",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Introduction",
+    "text": "Introduction\nLiquidity risk is a normal aspect of everyday management of a financial institution (FI).\n\nDepository institutions (DIs) are more exposed to liquidity risk than others\nIn extreme cases liquidity risk can threaten the solvency of an FI\nThe Global Financial Crisis commencing in 2008 was, in part, due to liquidity risk\nLiquidity risk may result from asset side or liability side\n\nWe focus on the risk exposure of DIs."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#causes-of-liquidity-risk",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#causes-of-liquidity-risk",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Causes of liquidity risk",
+    "text": "Causes of liquidity risk\nLiquidity risk can arise on both sides of the balance sheet: the asset side as well as the liability side\n\n\n\nLiability side\n\nDepositors and other claim holders decide to cash in their financial claims immediately\n\nThe DI has to borrow additional funds or sell assets\n\nDI need to be able to predict the distribution of net deposit drains\n\nThe difference between deposit withdrawals and deposit additions on any specific normal banking day\n\n\n\n\n\nAsset side\n\nRisk from OBS loan commitments and other credit lines\nChange of the value of investment securities portfolios due to unexpected changes of interest rates\nProblems associated with ‘quick’ asset sales/fire-sales\n\nHigh costs for turning illiquid assets into cash\nLow sales price; in worst case, fire-sale price"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liability-side liquidity risk",
+    "text": "Liability-side liquidity risk\n\nA DI’s balance sheet typically features a large amount of short-term liabilities funding relatively long-term assets.\n\nShort-term liabilities: demand deposits, other transaction accounts, etc.\nLong-term assets: mortgages, C&I loans, etc.\n\nDemand deposit accounts, money market deposit accounts (MMDAs), and other transaction accounts allow holders to demand immediate repayment of the face value in cash.\n\nFor example, a DI with 20% of its liabilities in demand deposits, MMDAs, and other transaction accounts must be ready to liquidate assets to cover that amount on any banking day.\n\n\n\n\n\n\n\n\nNote\n\n\nAs of June 2021, U.S. commercial banks had total deposits representing 82.19% of total liabilities and capital.\n\nCash assets accounted for only 15.45% of total assets."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liability-side liquidity risk (cont’d)",
+    "text": "Liability-side liquidity risk (cont’d)\nFor CBA, cash and liquid assets account for 9.3% of total assets.\n\n\nFigure 1: Excerpt of CBA’s 2023 balance sheet - assets"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liability-side liquidity risk (cont’d)",
+    "text": "Liability-side liquidity risk (cont’d)\nFor CBA, deposits and other public borrowings account for 73.25% of total liabilities.\n\n\nFigure 2: Excerpt of CBA’s 2023 balance sheet - liabilities"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd-2",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liability-side-liquidity-risk-contd-2",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liability-side liquidity risk (cont’d)",
+    "text": "Liability-side liquidity risk (cont’d)\n\n\n\n\n\n\n\nIt’s not that bad.\n\n\n\nNormally, only a small proportion of its deposits will be withdrawn on any given day.\nFurther, deposit withdrawals may in part be offset by the inflow of new deposits1 (and the DI’s income).\n\n\n\n\n\nMost demand deposits are relatively “stable”, acting as consumer core deposits on a daily basis.\n\nCore deposits are those deposits that provide a DI with a long-term funding source.\n\nThe DI manager must monitor and predict the net deposit drains on any given normal banking day.\n\nBeyond predictable daily seasonality in deposit flows, other seasonal variations exist.\nMany of these seasonal variations are somewhat predictable.\nRetail DIs often experience above-average deposit outflows around the end of the year and in the summer (due to Christmas and the vacation season).\nRural DIs may experience a deposit inflow–outflow cycle aligned with the local agricultural cycle.\n\nDuring the planting and growing season, deposits tend to fall.\nDuring the harvest season, deposits tend to rise as crops are sold.\n\n\nLarge inflow of deposits may also cause issues if the DI cannot find sufficiently attractive investments."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#net-deposit-drains",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#net-deposit-drains",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Net deposit drains",
+    "text": "Net deposit drains\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Data for the plot\nx = np.linspace(-10, 15, 1000)\ny = np.exp(-0.5 * ((x - 5) / 4)**2) / (4 * np.sqrt(2 * np.pi))\n\n# Plotting\nplt.figure(figsize=(10, 6))\nplt.plot(x, y, color='gray')\n\n# Adding vertical lines for 0 and 5%\nplt.axvline(x=0, color='black', linestyle='-', label='0')\nplt.axvline(x=5, color='gray', linestyle='--', label='5%')\n\n# Show x-axis\nplt.xlabel(\"% Net deposit drain (cash outflow)\")\n\n# Show the plot\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3: A hypothetical distribution of net deposit drains\n\n\n\n\n\n\nConsider a probability distribution of net deposit drains that is assumed to be strongly peaked at the 5 percent net deposit withdrawal level, as shown in Figure 3.\n\nThis DI expects approximately 5 percent of its net deposit funds to be withdrawn on any given day with the highest probability.\nA positive net drain on deposits, so its new deposit funds and other cash flows are expected to be insufficient to offset deposit withdrawals.\n\nAs a result, the liability side of the DI’s balance sheet is contracting."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#net-deposit-drains-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#net-deposit-drains-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Net deposit drains (cont’d)",
+    "text": "Net deposit drains (cont’d)\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Data for the plot\nx = np.linspace(-10, 15, 1000)\ny = np.exp(-0.5 * ((x + 2) / 2 )**2) / (4 * np.sqrt(2 * 0.1 * np.pi))\n\n# Plotting\nplt.figure(figsize=(10, 6))\nplt.plot(x, y, color='gray')\n\n# Adding vertical lines for 0 and 5%\nplt.axvline(x=0, color='black', linestyle='-', label='0')\nplt.axvline(x=-2, color='gray', linestyle='--', label='-2%')\n\n# Show x-axis\nplt.xlabel(\"% Net deposit drain (cash outflow)\")\n\n# Show the plot\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4: Another hypothetical distribution of net deposit drains\n\n\n\n\n\n\nConsider another probability distribution of net deposit drains that is assumed to be strongly peaked at the -2 percent net deposit withdrawal level, as shown in Figure 4.\n\nA negative net drain on deposits, so its new deposit funds and other cash flows are expected to be larger than deposit withdrawals.\n\nAs a result, this DI is expected to grow with an expanding balance sheet."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#managing-net-deposit-drains",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#managing-net-deposit-drains",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Managing net deposit drains",
+    "text": "Managing net deposit drains\nGenerally a drain on deposits at DIs can be managed by\n\npurchased liquidity management\nstored liquidity management\n\nTraditionally, DIs have relied on stored liquidity management. Today, most DIs rely on purchased liquidity management.\n\n\n\n\n\n\nNote\n\n\nWe will discuss in greater detail liquidity management in next week."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#purchased-liquidity-management",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#purchased-liquidity-management",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Purchased liquidity management",
+    "text": "Purchased liquidity management\n\nA DI manager seeking to purchase liquidity turns to markets for purchased funds.\nOptions include the cash market and the repurchase agreement markets, which are interbank markets for short-term loans.\nAlternatively, the DI manager could:\n\nIssue additional wholesale certificates of deposit.\nSell notes and bonds.\n\nBorrowed funds (at market rates) are likely to be at higher rates than interest paid on deposits."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#purchased-liquidity-management-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#purchased-liquidity-management-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Purchased liquidity management (cont’d)",
+    "text": "Purchased liquidity management (cont’d)\n\n\nPanel A: Balance sheet immediately before and after deposit drain\n\n\n\n\n\n\n\n\n\n\n\n\nAssets\nDeposits\nBorrowed funds\nOther liabilities\nTotal Liabilities\n\n\n\n\nBefore the drain\n100\n70\n10\n20\n100\n\n\nAfter the drain\n100\n65\n10\n20\n95\n\n\n\nPanel B: Adjusting to a deposit drain through purchased liquidity management\n\n\n\n\n\n\n\n\n\n\n\n\nAssets\nDeposits\nBorrowed funds\nOther liabilities\nTotal Liabilities\n\n\n\n\nAfter liquidity management\n100\n65\n15\n20\n100\n\n\n\n\n\nPurchased liquidity management allows DIs to maintain their overall balance sheet size\nA liability-side adjustment to the balance sheet to cover a deposit drain"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#stored-liquidity-management",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#stored-liquidity-management",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Stored liquidity management",
+    "text": "Stored liquidity management\n\nA DI manager could also liquidate some of its assets, utilizing its stored liquidity.\nTraditionally, U.S. DIs hold cash reserves at the Federal Reserve and in their vaults to meet liquidity needs.\nThe Federal Reserve sets minimum reserve requirements for banks’ cash reserves.\nDespite these requirements, DIs often hold cash reserves above the minimum to manage liquidity drains.\n\n\n\n\n\n\n\nNote\n\n\n\nIn U.S., the Fed reduced the reserve requirement to 0, effective March 26, 2020.\nIn Australia, the RBA does not impose formal reserve requirements."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#stored-liquidity-management-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#stored-liquidity-management-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Stored liquidity management (cont’d)",
+    "text": "Stored liquidity management (cont’d)\n\n\nPanel A: Balance sheet immediately before deposit drain\n\n\n\n\nAssets\n\nLiabilities\n\n\n\n\n\nCash\n9\n\nDeposits\n70\n\n\n\n\n\nBorrowed funds\n10\n\n\nOther asset\n91\n\nOther liabilities\n20\n\n\nTotal\n100\n\nTotal\n100\n\n\n\nPanel B: Adjusting to a deposit drain through stored liquidity management\n\n\n\n\nAssets\n\nLiabilities\n\n\n\n\n\nCash\n4\n\nDeposits\n65\n\n\n\n\n\nBorrowed funds\n10\n\n\nOther assets\n91\n\nOther liabilities\n20\n\n\nTotal\n95\n\nTotal\n95\n\n\n\n\n\nSize of balance sheet decreases\nDIs tend to prudently hold low-rate excess reserve assets to meet liquidity drains"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Asset-side liquidity risk",
+    "text": "Asset-side liquidity risk\nThis far we have discussed the liability-side liquidity risk due to net deposit drains.\nOn the asset side, liquidity problems can arise due to\n\nloan requests\nthe exercise by borrowers of their loan commitments and other credit lines! (e.g., at the onset of COVID-19)\n\nSee for example Acharya et al. (2024)."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Asset-side liquidity risk (cont’d)",
+    "text": "Asset-side liquidity risk (cont’d)\n\n\nBalance Sheet Immediately Before and After Exercise\n\nBefore Exercise\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n100\n\n\nOther assets\n138\nBorrowed funds\n20\n\n\n\n\nOther liabilities\n5\n\n\n\n\nEquity\n25\n\n\nTotal\n150\nTotal\n150\n\n\n\n\nAfter Exercise\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n100\n\n\nOther assets\n143\nBorrowed funds\n20\n\n\n\n\nOther liabilities\n5\n\n\n\n\nEquity\n25\n\n\nTotal\n155\nTotal\n150\n\n\n\n\nAdjusting the Balance Sheet to a Loan Commitment Exercise\n\nPurchased Liquidity Management\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n100\n\n\nOther assets\n143\nBorrowed funds\n25\n\n\nOther liabilities\n5\nOther liabilities\n5\n\n\n\n\nEquity\n25\n\n\nTotal\n155\nTotal\n155\n\n\n\n\nStored Liquidity Management\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n7\nDeposits\n100\n\n\nOther assets\n143\nBorrowed funds\n20\n\n\n\n\nOther liabilities\n5\n\n\n\n\nEquity\n25\n\n\nTotal\n150\nTotal\n150"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-investment-portfolio",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-investment-portfolio",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Asset-side liquidity risk (investment portfolio)",
+    "text": "Asset-side liquidity risk (investment portfolio)\nAnother type of asset-side liquidity risk arises from the investment portfolio.\n\nRising interest rates reduce the value of investment portfolios.\nLiquidity in a particular market could deteriorate because no one wants to buy.\n\nTechnological development is claimed to have improved the liquidity of financial markets. But given the herding hebaviour in the market, liquidity could still dry up and investment securities only sold at fire-sale prices.\n\nThe FI must fund the loss in value on the balance sheet such that loan requests and deposit withdrawals can be met.\nThe result is increased liquidity risk for the FI."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-investment-portfolio-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#asset-side-liquidity-risk-investment-portfolio-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Asset-side liquidity risk (investment portfolio) (cont’d)",
+    "text": "Asset-side liquidity risk (investment portfolio) (cont’d)\n\n\nBalance Sheet Immediately Before and After Drop in Investment Portfolio Value\n\nBefore Drop in Value\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n100\n\n\nInvestment portfolio\n50\nBorrowed funds\n20\n\n\nOther assets\n88\nOther liabilities\n5\n\n\n\n\nEquity\n25\n\n\nTotal\n150\nTotal\n150\n\n\n\n\nAfter Drop in Value\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n100\n\n\nInvestment portfolio\n45\nBorrowed funds\n20\n\n\nOther assets\n88\nOther liabilities\n5\n\n\n\n\nEquity\n20\n\n\nTotal\n145\nTotal\n145\n\n\n\n\nAdjusting the Balance Sheet for a Drop in Investment Portfolio Value\n\nPurchased Liquidity Management\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n12\nDeposits\n105\n\n\nInvestment portfolio\n50\nBorrowed funds\n20\n\n\nOther assets\n88\nOther liabilities\n5\n\n\n\n\nEquity\n20\n\n\nTotal\n150\nTotal\n150\n\n\n\n\nStored Liquidity Management\n\n\n\n\n\nAmount\n\nAmount\n\n\n\n\nCash\n7\nDeposits\n100\n\n\nInvestment portfolio\n50\nBorrowed funds\n20\n\n\nOther assets\n88\nOther liabilities\n5\n\n\n\n\nEquity\n20\n\n\nTotal\n145\nTotal\n145"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Measuring a DI’s liquidity risk exposure",
+    "text": "Measuring a DI’s liquidity risk exposure\n\nFinancing gap and the financing requirement.\n\n\nFinancing gap is the difference between a DI’s average loans and average (core) deposits:\n\n\\[\n\\text{Financing gap} = \\text{Average loans} - \\text{Average deposits}\n\\]\nA positive financing gap implies that the DI must fund it using its cash and liquid assets and/or borrowing funds in the money market. Therefore,\n\\[\n\\text{Financing gap} = -\\text{Liquid assets} + \\text{Borrowerd funds}\n\\]\nWe thus have the following relationship:\n\\[\n\\text{Financing gap} + \\text{Liquid assets} = \\text{Financing requirement (borrowed funds)}\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Measuring a DI’s liquidity risk exposure (cont’d)",
+    "text": "Measuring a DI’s liquidity risk exposure (cont’d)\n\nPeer group ratio comparison\n\nComparison of certain key ratios and balance sheet features of the DI with similar DIs, for example,\n\nLoans to deposits\nLoans to assets\nCore deposits to total assets\n(Unused) loan commitments to assets"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#measuring-a-dis-liquidity-risk-exposure-contd-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Measuring a DI’s liquidity risk exposure (cont’d)",
+    "text": "Measuring a DI’s liquidity risk exposure (cont’d)\n\nLiquidity index\n\nDeveloped by Jim Pierce at the Federal Reserve, liquidity index measures the potential losses an FI could suffer from a sudden or fire-sale disposal of assets compared with the amount it would receive at a fair market value established under normal market (sale) conditions.\n\\[\nI = \\sum_{i=1}^N \\left(W_i \\times \\frac{P_i}{P^*_i}\\right)\n\\]\nwhere\n\n\\(W_i\\) is the percentage of each asset in the FI’s portfolio\n\\(P_i\\) is the immediate sale price\n\\(P^*_i\\) is the fair market price\n\nThe liquidity index should lie between 0 and 1."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-measures",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-measures",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity risk measures",
+    "text": "Liquidity risk measures\n\nDuring the financial crisis, many DIs struggled to maintain adequate liquidity.\nCentral banks had to provide extraordinary levels of liquidity assistance to sustain the financial system.\nDespite this support, some DIs failed or were forced into mergers.\nIn response, the BIS’s Basel Committee on Banking Supervision introduced two new regulatory standards for liquidity risk supervision:\n\nLiquidity Coverage Ratio (LCR):\n\nCame into effect on January 1, 2015.\nGradually implemented, reaching full compliance on January 1, 2019.\n\nNet Stable Funding Ratio (NSFR):\n\nBecame a minimum standard on January 1, 2018.\n\n\nThese rules apply to:\n\nLarge, internationally active banking organizations with $250 billion or more in total consolidated assets.\nOrganizations with $10 billion or more in total on-balance-sheet foreign exposure.\nConsolidated subsidiary depository institutions with $10 billion or more in total assets."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR)",
+    "text": "Liquidity Coverage Ratio (LCR)\n\nThe Liquidity Coverage Ratio (LCR) is designed to ensure that a DI maintains sufficient high-quality liquid assets (HQLA).\nThese HQLA must be easily convertible to cash to meet liquidity needs over a 30-day period.\nThe LCR is based on an “acute liquidity stress scenario” defined by supervisors.\n\nThe scenario includes both institution-specific and systemic shocks.\nIt reflects actual conditions experienced during the global financial crisis.\n\nThe purpose of maintaining the LCR is to ensure that DIs can survive severe liquidity stress for at least 30 days.\nThe LCR is reported to DI supervisors on a monthly basis.\n\n\\[\n\\text{Minimum LCR} = \\frac{\\text{Stock of HQLAs}}{\\text{Total net cash outflows over next 30 calendar days}} \\ge 100\\%\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR) (cont’d)",
+    "text": "Liquidity Coverage Ratio (LCR) (cont’d)\nThe stock of HQLAs is defined as follows:\n\nLiquid assets in the stock must remain liquid in times of stress (i.e., convertible into cash at little loss of value and can be used at the central bank discount window as collateral).\nLiquid assets in the stock must be “unencumbered”, i.e., free of legal, regulatory, contractual, or other restrictions on the ability of the bank to liquidate, sell, transfer, or assign the asset.\nLiquid assets in the stock are divided into level 1 and level 2. Level 1 amount has no cap, and level 2 amount is capped at 40 percent of the stock.\n\nLevel 1 assets are limited to:\n\nCash, central bank reserves, marketable securities representing claims on or guaranteed by sovereigns, central banks, public sector entities (PSE), and some supranational institutions (e.g., BIS, IMF, ECB, multilateral development banks).1\n\nLevel 2A assets (15% haircut):\n\nEligible marketable securities representing claims on or guaranteed by sovereigns, central banks, PSEs, or multilateral development banks.\nEligible corporate debt securities and covered bonds.\n\nLevel 2B assets:\n\nEligible residential mortgage backed securities (25% haircut).\nEligible corporate debt securities and equities (50% haircut).\n\n\n\nThere’re more restrictions."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-contd-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR) (cont’d)",
+    "text": "Liquidity Coverage Ratio (LCR) (cont’d)\nThe total net cash outflows is defined as:\n\n\\[\n\\text{Total net cash outflows over next 30 calendar days} = Out - \\min(In, 75\\% \\times Out)\n\\]\nwhere\n\n\\(Out\\) is total expected cash outflows\n\\(In\\) is total expected cash inflows\n\nCash inflows and outflows are computed based on the type of assets/liabilities and associated draw-down factors.\n\n\n\n\n\n\nNote\n\n\nFor a detailed calculation of cash outflows and inflows, refer to textbook Saunders, Cornett, and Erhemjamts (2023) or to the suggested readings."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR): example",
+    "text": "Liquidity Coverage Ratio (LCR): example\nConsider the following balance sheet (in million of dollars) of a bank. Calculate the bank’s LCR.\n\nAssume that the cash inflows over the next 30 days from the bank’s assets are $5 million.\n\n\n\n\n\n\n\n\n\n\n\n\nAssets\n$\nLiquidity Level\nLiabilities and Equity\n$\nRun-Off Factor\n\n\n\n\nCash\n5\nLevel 1\nStable retail deposits\n95\n3%\n\n\nDeposits at the Fed\n15\nLevel 1\nLess Stable retail deposits\n40\n10\n\n\nTreasury securities\n100\nLevel 1\nUnsecured wholesale funding from:\n\n\n\n\nGNMA securities\n75\nLevel 2A\n- Stable small business deposits\n100\n5\n\n\nLoans to A-rated corporations\n110\nLevel 2A\n- Less Stable small business deposits\n80\n10\n\n\nLoans to B-rated corporations\n85\nLevel 2B\n- Nonfinancial corporates\n50\n75\n\n\nPremises\n20\n\nEquity\n45\n\n\n\nTotal\n410\n\nTotal\n410"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example-contd",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example-contd",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR): example (cont’d)",
+    "text": "Liquidity Coverage Ratio (LCR): example (cont’d)\nThe LCR is calculated as follows:\nFirst, calculate the amount of HQLA.\n\nLevel 1 assets is \\(5+15+100=120\\) million\n\nBefore adjustment for capps,\n\nLevel 2A assets is \\((75+110)\\times (1-15\\%) = 157.25\\) million1\nLevel 2B assets is \\(85\\times (1-50\\%)=42.5\\) million2\n\nHowever, Level 2 assets is capped at 40% of HQLA!\n\nGiven that Level 1 assets is 120 million, which should account for at least \\(1-40\\%=60\\%\\) of HQLA.\nHQLA should be \\(120/(1-40\\%) = 200\\) million, which means a maximum of \\(200-120=80\\) million Level 2 assets.\nThe Level 2 assets after haircut is larger than the cap - they will not further increase HQLA.\n\nTherefore, the HQLA is 200 million.\nThere is a 15% haircut applied on the value of Level 2A assets.There is a 50% haircut applied on the value of Level 2B assets."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example-contd-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-coverage-ratio-lcr-example-contd-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity Coverage Ratio (LCR): example (cont’d)",
+    "text": "Liquidity Coverage Ratio (LCR): example (cont’d)\nNext, calculate the total net cash outflows over next 30 days.\nCash outflows are:\n\nStable retail deposits: \\(95\\times 0.03 = 2.85\\)\nLess stable retail deposits: \\(40\\times 0.1 = 4\\)\nStable small business deposits: \\(100\\times 0.05 = 5\\)\nLess stable small business deposits: \\(80\\times 0.1 =8\\)\nNonfinancial corporates: \\(50\\times 0.75 = 37.5\\)\n\nTherefore,\n\nTotal cash outflows over next 30 days is 57.35 million.\nTotal cash inflows over next 30 days is 5 million (assumed).\nTotal net cash outflows over next 30 days is 52.35 million.\n\nLastly, calculate LCR:\n\\[\n\\text{LCR} = \\frac{\\text{Stock of HQLAs}}{\\text{Total net cash outflows over next 30 calendar days}} = \\frac{200}{52.35} = 382.04\\% \\ge 100\\%\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Net Stable Funding Ratio (NSFR)",
+    "text": "Net Stable Funding Ratio (NSFR)\n\nThe Net Stable Funding Ratio (NSFR) focuses on long-term liquidity management on a DI’s balance sheet.\nIt evaluates liquidity across the entire balance sheet, encouraging the use of stable sources of financing.\nThe NSFR requires a minimum amount of stable funding over a one-year time horizon.\n\nIt aims to limit the reliance on short-term wholesale funding, a significant issue during the financial crisis.\n\nThe NSFR has been reported to DI supervisors quarterly since 2018.\n\n\\[\n\\text{NSFR} = \\frac{\\text{Available amount of stable funding}}{\\text{Required amount of stable funding}} \\ge 100\\%\n\\]"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Net Stable Funding Ratio (NSFR)",
+    "text": "Net Stable Funding Ratio (NSFR)\nAvailable stable funding (ASF) includes:\n\nBank capital\nPreferred stock with a maturity &gt; 1 year\nLiabilities with maturities &gt; 1 year\nThe portion of retail deposits and wholesale deposit expected to stay with bank during a period of idiosyncratic stress\n\nThese equity and liabilities are assigned to one of five categories, each with a specific ASF factor.\nASF is calculated as the sum of the weighted amounts."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr-2",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#net-stable-funding-ratio-nsfr-2",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Net Stable Funding Ratio (NSFR)",
+    "text": "Net Stable Funding Ratio (NSFR)\nRequired stable funding (RSF) is calculated as the sum of\n\nthe value of the on-balance-sheet assets multiplied by a specific RSF factor assigned to each particular asset type, and\nthe amount of off-balance-sheet (OBS) activities (or potential liquidity exposure) multiplied by the associated RSF factor."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity risk of Australian banks (FY2023)",
+    "text": "Liquidity risk of Australian banks (FY2023)\n\n\n\n\n\n\n\n\n\n\n\nCBA\nNAB\nANZ\nWestpac\n\n\n\n\nCash Outflows\n\n\n\n\n\n\nRetail And Counterparties Deposits Outflow\n37,416\n29,947\n25,517\n29,304\n\n\nStable Deposits\n12,700\n5,843\n5,879\n7,969\n\n\nLess Stable Deposits\n24,716\n24,104\n19,638\n21,335\n\n\nUnsecured Wholesale Funding Outflow\n82,444\n82,299\n146,698\n76,953\n\n\nOperational Deposit Outflow\n22,219\n21,540\n22,553\n18,631\n\n\nNon Operational Deposits Outflow\n49,236\n47,619\n111,549\n47,073\n\n\nUnsecured Debt Outflow\n10,989\n13,140\n12,596\n11,249\n\n\nSecured Wholesale Funding Outflow\n6,839\n10,701\n5,405\n3,891\n\n\nAdditional Outflow Requirements\n26,186\n38,693\n70,639\n30,463\n\n\nDerivative Expo And Other Collateral Requirement\n7,557\n8,154\n48,206\n12,462\n\n\nLoss of Funding on Debt Products\n0\n0\n0\n136\n\n\nCredit And Liquidity Facilities\n18,629\n30,539\n22,433\n17,865\n\n\nOther Contractual Funding Obligation\n0\n81\n0\n4,515\n\n\nOther Contingent Funding Obligation\n10,373\n5,219\n8,024\n4,082\n\n\nTotal Cash Outflow\n163,258\n166,940\n256,283\n149,208"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023-1",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023-1",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity risk of Australian banks (FY2023)",
+    "text": "Liquidity risk of Australian banks (FY2023)\n\n\n\n\n\n\n\n\n\n\n\nCBA\nNAB\nANZ\nWestpac\n\n\n\n\nCash Inflows\n\n\n\n\n\n\nSecured Lending\n2,328\n3,898\n1,549\n0\n\n\nInflows From Fully Performing Exposures\n9,520\n11,788\n17,190\n5,020\n\n\nOther Cash Inflows\n6,753\n1,589\n36,016\n7,988\n\n\nTotal Cash Inflow\n18,601\n17,275\n54,755\n13,008"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023-2",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-of-australian-banks-fy2023-2",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity risk of Australian banks (FY2023)",
+    "text": "Liquidity risk of Australian banks (FY2023)\n\n\n\n\n\n\n\n\n\n\n\nCBA\nNAB\nANZ\nWestpac\n\n\n\n\nLiquidity Coverage Ratio (LCR)\n\n\n\n\n\n\nAverage High Quality Liquid Assets\n189,419\n209,561\n267,905\n181,882\n\n\nAverage Net Cash Outflows\n144,657\n149,665\n201,528\n136,200\n\n\nAverage Liquidity Coverage Ratio\n131.00\n140.00\n132.90\n134.00\n\n\nNet Stable Funding Ratio (NSFR)\n\n\n\n\n\n\nAvailable Stable Funding\n860,999\n646,508\n625,285\n707,893\n\n\nRequired Stable Funding\n693,453\n556,016\n537,430\n615,341\n\n\nNet Stable Funding Ratio\n124.00\n116.00\n116.35\n115.00"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-planning",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-planning",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity planning",
+    "text": "Liquidity planning\n\nLiquidity planning is crucial for managing liquidity risk and costs, helping with borrowing priorities and minimizing excess reserves.\nComponents of a liquidity plan:\n\nManagerial responsibilities: Assign roles during a liquidity crisis and manage public disclosures.\nList of fund providers: Identify likely fund withdrawers and patterns, including sensitivity to funding composition changes.\nWithdrawal estimates: Assess potential deposit and fund withdrawals over different time horizons and identify funding sources.\nInternal limits and asset disposal: Set borrowing limits for subsidiaries and branches, determine acceptable risk premiums, and sequence asset disposals.\n\nThe plan involves key departments like the money desk and Treasury for daily liability funding."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-unexpected-deposit-drains-and-bank-runs",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#liquidity-risk-unexpected-deposit-drains-and-bank-runs",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Liquidity risk, unexpected deposit drains, and bank runs",
+    "text": "Liquidity risk, unexpected deposit drains, and bank runs\nMajor liquidity problems can arise, however, if deposit drains are abnormally large and unexpected, which may occur for a number of reasons, including:\n\nConcerns about a DI’s solvency relative to those of other DIs.\nFailure of a related DI (the contagion effect).\nSudden changes in investor preferences regarding holding nonbank financial assets (such as T-bills or mutual fund shares) relative to deposits.\n\nIn these cases, unexpected deposit drains could trigger a bank run that may eventually force a bank into insolvency.\nIn the worst case, a bank panic may occur - systemic or contagious bank run on deposits of banking industry."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#bank-runs-the-discount-window-and-deposit-insurance",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#bank-runs-the-discount-window-and-deposit-insurance",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Bank runs, the discount window, and deposit insurance",
+    "text": "Bank runs, the discount window, and deposit insurance\nThe two major liquidity risk insulation devices are deposit insurance and the discount window.\n\nDeposit insurance\nDiscount window:\n\nA facility provided by central banks where FIs can borrow short-term funds to meet liquidity needs, typically at an interest rate called the “discount rate.”\nDuring the March 2023 United States bank failures, banks drew $153 billion from the discount window as of 15 March 2023, a new record.\n\n\nNot without economic costs\n\nProtection may encourage DIs to increase liquidity risk"
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#life-insurance-companies",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#life-insurance-companies",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Life insurance companies",
+    "text": "Life insurance companies\n\nLife insurance companies hold cash reserves and liquid assets to meet policy cancellations (surrenders) and working capital needs.\nPremium income and returns on investments usually cover policyholder surrenders, with government bonds serving as a liquidity buffer.\nIf premium income is insufficient, insurers may sell liquid assets to meet demands.\nA loss of confidence in an insurer can lead to a run, with mass policy surrenders forcing asset liquidations at potentially low prices.\nForced liquidations can push insurers towards insolvency, similar to banks (DIs).\n\n\n\n\n\n\n\nNote\n\n\nAn example is the case of Equitable Life. Increase in surrenders after it received an adverse legal ruling contributed to its failing. Its 256-year history ended in June 2018, after an 18-year-long winding-down process."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#property-casualty-insurers",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#property-casualty-insurers",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Property-casualty insurers",
+    "text": "Property-casualty insurers\n\nProperty–casualty (PC) insurers sell policies insuring against certain contingencies impacting either real property or individuals.\nLarge unexpected claims may materialize and exceed the flow of premium income and income returns from assets.\n\nFor example, natural disasters."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#suggested-readings",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#suggested-readings",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nAPRA Explains: Liquidity in banking.\nRBA: The Implementation of Monetary Policy: Domestic Market Operations.\nBIS: LCR - Liquidity Coverage Ratio.\nAcharya, V. V., Engle, R., Jager, M., & Steffen, S. (2024). Why Did Bank Stocks Crash during COVID-19? The Review of Financial Studies, 37, 2627–2684."
+  },
+  {
+    "objectID": "teaching/AFIN8003/2025S1/Week8/index.html#references",
+    "href": "teaching/AFIN8003/2025S1/Week8/index.html#references",
+    "title": "AFIN8003 Week 8 - Liquidity Risk",
+    "section": "References",
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nAcharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. “Why Did Bank Stocks Crash During COVID-19?” The Review of Financial Studies 37 (9): 2627–84. https://doi.org/10.1093/rfs/hhae028.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week7/index.html#introduction",
@@ -242,7 +522,7 @@
     "href": "teaching/AFIN8003/2025S1/Week7/index.html#references",
     "title": "AFIN8003 Week 7 - Credit Risk II: Loan Portfolio and Concentration Risk",
     "section": "References",
-    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week6/index.html#introduction",
@@ -543,7 +823,7 @@
     "href": "teaching/AFIN8003/2025S1/Week6/index.html#references",
     "title": "AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week5/index.html#david-chan",
@@ -802,7 +1082,7 @@
     "href": "teaching/AFIN8003/2025S1/Week5/index.html#references",
     "title": "AFIN8003 Week 5 - Market Risk",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week4/index.html#what-is-interest-rate-risk",
@@ -1082,7 +1362,7 @@
     "href": "teaching/AFIN8003/2025S1/Week4/index.html#references",
     "title": "AFIN8003 Week 4 - Interest Rate Risk",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week3/index.html#defining-capital",
@@ -1362,7 +1642,7 @@
     "href": "teaching/AFIN8003/2025S1/Week3/index.html#references",
     "title": "AFIN8003 Week 3 - Capital Management and Adequacy",
     "section": "References",
-    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week2/index.html#banks-need-regulation",
@@ -1593,7 +1873,7 @@
     "href": "teaching/AFIN8003/2025S1/Week2/index.html#references",
     "title": "AFIN8003 Week 2 - Risks and Regulation",
     "section": "References",
-    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
   },
   {
     "objectID": "teaching/AFIN8003/2025S1/Week1/index.html#unit-convenor",
@@ -1866,7 +2146,7 @@
     "href": "teaching/AFIN8003/2025S1/Week1/index.html#references",
     "title": "AFIN8003 Week 1 - Introduction",
     "section": "References",
-    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week9/index.html#introduction",
@@ -2146,7 +2426,7 @@
     "href": "teaching/AFIN8003/2024S2/Week9/index.html#references",
     "title": "AFIN8003 Week 9 - Liquidity Risk",
     "section": "References",
-    "text": "References\n\n\n\n\nAcharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. “Why Did Bank Stocks Crash During COVID-19?” The Review of Financial Studies 37 (9): 2627–84. https://doi.org/10.1093/rfs/hhae028.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nAcharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. “Why Did Bank Stocks Crash During COVID-19?” The Review of Financial Studies 37 (9): 2627–84. https://doi.org/10.1093/rfs/hhae028.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week8/index.html#introduction",
@@ -2370,7 +2650,7 @@
     "href": "teaching/AFIN8003/2024S2/Week8/index.html#references",
     "title": "AFIN8003 Week 8 - Credit Risk II: Loan Portfolio and Concentration Risk",
     "section": "References",
-    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week6/index.html#introduction",
@@ -2671,7 +2951,7 @@
     "href": "teaching/AFIN8003/2024S2/Week6/index.html#references",
     "title": "AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBlack, Fischer, and Myron Scholes. 1973. “The Pricing of Options and Corporate Liabilities.” Journal of Political Economy 81 (3): 637–54. http://www.jstor.org/stable/1831029.\n\n\nMerton, Robert C. 1974. “On the Pricing of Corporate Debt: The Risk Structure of Interest Rates*.” The Journal of Finance 29 (2): 449–70. https://doi.org/10.1111/j.1540-6261.1974.tb03058.x."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week5/index.html#introduction",
@@ -2923,7 +3203,7 @@
     "href": "teaching/AFIN8003/2024S2/Week5/index.html#references",
     "title": "AFIN8003 Week 5 - Market Risk",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week4/index.html#what-is-interest-rate-risk",
@@ -3203,7 +3483,7 @@
     "href": "teaching/AFIN8003/2024S2/Week4/index.html#references",
     "title": "AFIN8003 Week 4 - Interest Rate Risk",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week3/index.html#defining-capital",
@@ -3483,7 +3763,7 @@
     "href": "teaching/AFIN8003/2024S2/Week3/index.html#references",
     "title": "AFIN8003 Week 3 - Capital Management and Adequacy",
     "section": "References",
-    "text": "References\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week2/index.html#banks-need-regulation",
@@ -3714,7 +3994,7 @@
     "href": "teaching/AFIN8003/2024S2/Week2/index.html#references",
     "title": "AFIN8003 Week 2 - Risks and Regulation",
     "section": "References",
-    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nSalop, Steven C. 1979. “Monopolistic Competition with Outside Goods.” The Bell Journal of Economics 10 (1): 141."
   },
   {
     "objectID": "research/index.html",
@@ -3735,7 +4015,7 @@
     "href": "research/index.html#working-papers",
     "title": "Research",
     "section": "📝 Working Papers",
-    "text": "📝 Working Papers\n🆕 Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics, with Giacinta Cestone, Jiaying Li and Ruiqi Mao.\n\nNordic Initiative for Corporate Economics (NICE) 2025 (invited), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).\n\nBorrower Technology Similarity and Bank Loan Contracting, with Yunying Huang, Steven Ongena and Eliza Wu.\n\nSFS Cavalcade 2024, EFA 2023 (poster), FMA 2023, 35th AFBC, Macquarie University, University of Sydney.\nSemifinalist for FMA 2023 Best Paper Award.\nCEPR Discussion Paper DP18624.\n\nLone (Loan) Wolf Pack Risk, with Iftekhar Hasan, Buhui Qiu and Eliza Wu.\n\n\n\n\n\nAggregate Syndicate Concentration\n\n\n\nWFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.\nThe Brattle Group Best Paper Award, FIRN 2023.\nSUERF Policy Brief No. 586, Bank of Finland Research Discussion Paper No. 4/2023.\n\nCatering to Environmental Premium in Green Venture Financing, with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.\n\nRBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.\nPodcast by NotebookLM.\n\nInvestor Disagreement, Liquidity and Informational Efficiency at the 52 Week High, with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.\n\nFMA-Europe 2024, 17th International Behavioural Finance Conference.\n\nAnomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.\n\nReject & Resubmit at the Management Science.\nMQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023, BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.\n\nReal Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.\n\nReject & Resubmit at the Review of Corporate Finance Studies.\nFMA 2022, FIRN 2022."
+    "text": "📝 Working Papers\n🆕 Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics, with Giacinta Cestone, Jiaying Li and Ruiqi Mao.\n\nNordic Initiative for Corporate Economics (NICE) 2025 (invited), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).\n\nBorrower Technology Similarity and Bank Loan Contracting, with Yunying Huang, Steven Ongena and Eliza Wu.\n\nSFS Cavalcade 2024, EFA 2023 (poster), FMA 2023, 35th AFBC, Macquarie University, University of Sydney.\nSemifinalist for FMA 2023 Best Paper Award.\nCEPR Discussion Paper DP18624.\n\nLone (Loan) Wolf Pack Risk, with Iftekhar Hasan, Buhui Qiu and Eliza Wu.\n\n\n\n\n\nAggregate Syndicate Concentration\n\n\n\nWFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.\nThe Brattle Group Best Paper Award, FIRN 2023.\nSUERF Policy Brief No. 586, Bank of Finland Research Discussion Paper No. 4/2023.\n\nCatering to Environmental Premium in Green Venture Financing, with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.\n\nRBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop, National Taiwan University.\nPodcast by NotebookLM.\n\n(Dis)agreement at the 52 Week High: When Liquidity Becomes a Barrier, with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.\n\nPreviously titled as Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High.\nFMA-Europe 2024, 17th International Behavioural Finance Conference, EFMA 2024, Multinational Finance Society annual meeting 2024, FMA 2020.\n\nAnomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.\n\nReject & Resubmit at the Management Science.\nMQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023, BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.\n\nReal Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.\n\nReject & Resubmit at the Review of Corporate Finance Studies.\nFMA 2022, FIRN 2022."
   },
   {
     "objectID": "research/index.html#data-code",
@@ -5995,7 +6275,7 @@
     "href": "teaching/AFIN8003/2024S2/Week1/index.html#references",
     "title": "AFIN8003 Week 1 - Introduction",
     "section": "References",
-    "text": "References\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBernanke, Ben S. 1983. “Nonmonetary Effects of the Financial Crisis in the Propagation of the Great Depression.” The American Economic Review 73 (3): 257–76.\n\n\nBroecker, Thorsten. 1990. “Credit-Worthiness Tests and Interbank Competition.” Econometrica 58 (2): 429.\n\n\nDiamond, Douglas W. 1984. “Financial Intermediation and Delegated Monitoring.” The Review of Economic Studies 51 (3): 393–414.\n\n\nDiamond, Douglas W., and Philip H. Dybvig. 1983. “Bank Runs, Deposit Insurance, and Liquidity.” Journal of Political Economy 91 (3): 401–19.\n\n\nFisher, Irving. 1933. “The Debt-Deflation Theory of Great Depressions.” Econometrica 1 (4): 337.\n\n\nFreixas, Xavier, and Jean-Charles Rochet. 2023. Microeconomics of Banking. 3rd ed. MIT Press.\n\n\nHolmstrom, Bengt, and Jean Tirole. 1997. “Financial Intermediation, Loanable Funds, and the Real Sector.” Quarterly Journal of Economics 112 (3): 663–91.\n\n\nMerton, R C. 1993. Operation and Regulation in Financial Intermediation: A Functional Perspective. Edited by P Englund. Stockholm: Economic Council.\n\n\nModigliani, F, and M H Miller. 1958. “The Cost of Capital, Corporation Finance and the Theory of Investment.” The American Economic Review 48 (3): 261–97.\n\n\nSaunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. Financial Institutions Management ISE. 11th ed. McGraw Hill."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week10/index.html#introduction",
@@ -6233,7 +6513,7 @@
     "href": "teaching/AFIN8003/2024S2/Week10/index.html#references",
     "title": "AFIN8003 Week 10 - Liability and Liquidity Management",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week11/index.html#introduction",
@@ -6513,7 +6793,7 @@
     "href": "teaching/AFIN8003/2024S2/Week11/index.html#references",
     "title": "AFIN8003 Week 11 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk",
     "section": "References",
-    "text": "References"
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation"
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week12/index.html#introduction",
@@ -6702,7 +6982,7 @@
     "href": "teaching/AFIN8003/2024S2/Week12/index.html#references",
     "title": "AFIN8003 Week 12 - Loan Sales and Securitisation",
     "section": "References",
-    "text": "References\n\n\n\n\nBerlin, Mitchell, Greg Nini, and Edison G. Yu. 2020. “Concentration of Control Rights in Leveraged Loan Syndicates.” Journal of Financial Economics 137 (1): 249–71. https://doi.org/10.1016/j.jfineco.2020.02.002.\n\n\nIrani, Rustom M, Rajkamal Iyer, Ralf R Meisenzahl, and José-Luis Peydró. 2021. “The Rise of Shadow Banking: Evidence from Capital Regulation.” The Review of Financial Studies 34 (5): 2181–2235. https://doi.org/10.1093/rfs/hhaa106."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBerlin, Mitchell, Greg Nini, and Edison G. Yu. 2020. “Concentration of Control Rights in Leveraged Loan Syndicates.” Journal of Financial Economics 137 (1): 249–71. https://doi.org/10.1016/j.jfineco.2020.02.002.\n\n\nIrani, Rustom M, Rajkamal Iyer, Ralf R Meisenzahl, and José-Luis Peydró. 2021. “The Rise of Shadow Banking: Evidence from Capital Regulation.” The Review of Financial Studies 34 (5): 2181–2235. https://doi.org/10.1093/rfs/hhaa106."
   },
   {
     "objectID": "teaching/AFIN8003/2024S2/Week13/index.html#changing-dynamics",
@@ -6807,6 +7087,6 @@
     "href": "teaching/AFIN8003/2024S2/Week13/index.html#references",
     "title": "AFIN8003 Week 13 - Emerging Topics in Bank Risk Management",
     "section": "References",
-    "text": "References\n\n\n\n\nBabina, Tania, Saleem Bahaj, Greg Buchak, Filippo De Marco, Angus Foulis, Will Gornall, Francesco Mazzola, and Tong Yu. 2024. “Customer Data Access and Fintech Entry: Early Evidence from Open Banking.” Bank of England working papers 1059. Bank of England. https://ideas.repec.org/p/boe/boeewp/1059.html.\n\n\nChiu, Jonathan, and Seyed Mohammadreza Davoodalhosseini. 2023. “Central Bank Digital Currency and Banking: Macroeconomic Benefits of a Cash-Like Design.” Management Science 69 (11): 6708–30. https://doi.org/10.1287/mnsc.2021.02763.\n\n\nChiu, Jonathan, Seyed Mohammadreza Davoodalhosseini, Janet Jiang, and Yu Zhu. 2023. “Bank Market Power and Central Bank Digital Currency: Theory and Quantitative Assessment.” Journal of Political Economy 131 (5): 1213–48. https://doi.org/10.1086/722517.\n\n\nHe, Zhiguo, Jing Huang, and Jidong Zhou. 2023. “Open Banking: Credit Market Competition When Borrowers Own the Data.” Journal of Financial Economics 147 (2): 449–74. https://doi.org/10.1016/j.jfineco.2022.12.003.\n\n\nNiepelt, Dirk. 2024. “Money and Banking with Reserves and CBDC.” The Journal of Finance 79 (4): 2505–52. https://doi.org/https://doi.org/10.1111/jofi.13357.\n\n\nShkilko, Andriy, and Konstantin Sokolov. 2020. “Every Cloud Has a Silver Lining: Fast Trading, Microwave Connectivity, and Trading Costs.” The Journal of Finance 75 (6): 2899–2927. https://doi.org/10.1111/jofi.12969.\n\n\nWilliamson, Stephen. 2022. “Central Bank Digital Currency: Welfare and Policy Implications.” Journal of Political Economy 130 (11): 2829–61. https://doi.org/10.1086/720457."
+    "text": "References\n\n\n\nAFIN8003 Banking and Financial Intermediation\n\n\n\n\nBabina, Tania, Saleem Bahaj, Greg Buchak, Filippo De Marco, Angus Foulis, Will Gornall, Francesco Mazzola, and Tong Yu. 2024. “Customer Data Access and Fintech Entry: Early Evidence from Open Banking.” Bank of England working papers 1059. Bank of England. https://ideas.repec.org/p/boe/boeewp/1059.html.\n\n\nChiu, Jonathan, and Seyed Mohammadreza Davoodalhosseini. 2023. “Central Bank Digital Currency and Banking: Macroeconomic Benefits of a Cash-Like Design.” Management Science 69 (11): 6708–30. https://doi.org/10.1287/mnsc.2021.02763.\n\n\nChiu, Jonathan, Seyed Mohammadreza Davoodalhosseini, Janet Jiang, and Yu Zhu. 2023. “Bank Market Power and Central Bank Digital Currency: Theory and Quantitative Assessment.” Journal of Political Economy 131 (5): 1213–48. https://doi.org/10.1086/722517.\n\n\nHe, Zhiguo, Jing Huang, and Jidong Zhou. 2023. “Open Banking: Credit Market Competition When Borrowers Own the Data.” Journal of Financial Economics 147 (2): 449–74. https://doi.org/10.1016/j.jfineco.2022.12.003.\n\n\nNiepelt, Dirk. 2024. “Money and Banking with Reserves and CBDC.” The Journal of Finance 79 (4): 2505–52. https://doi.org/https://doi.org/10.1111/jofi.13357.\n\n\nShkilko, Andriy, and Konstantin Sokolov. 2020. “Every Cloud Has a Silver Lining: Fast Trading, Microwave Connectivity, and Trading Costs.” The Journal of Finance 75 (6): 2899–2927. https://doi.org/10.1111/jofi.12969.\n\n\nWilliamson, Stephen. 2022. “Central Bank Digital Currency: Welfare and Policy Implications.” Journal of Political Economy 130 (11): 2829–61. https://doi.org/10.1086/720457."
   }
 ]

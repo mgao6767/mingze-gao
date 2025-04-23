@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-17cf1aa965d7a3061eaf472c0fafa655.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,8 +80,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <link rel="stylesheet" href="../styles.css">
 <meta name="twitter:title" content="Research – Mingze Gao">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://mingze-gao.com/images/specification-curve-of-oc.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -223,12 +222,13 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </ul>
 <p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222">Catering to Environmental Premium in Green Venture Financing</a>, with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.</p>
 <ul>
-<li>RBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop.</li>
+<li>RBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop, National Taiwan University.</li>
 <li><a href="https://www.dropbox.com/scl/fi/zn2ahdzvyu4jg5gwr8kcu/Catering-to-Environmental-Premium-in-Green-Venture-Financing.wav?rlkey=p9lvr0xjomf8qbr737zy8mizd&amp;st=05vizcv2&amp;dl=0">Podcast</a> by NotebookLM.</li>
 </ul>
-<p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756">Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High</a>, with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.</p>
+<p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756">(Dis)agreement at the 52 Week High: When Liquidity Becomes a Barrier</a>, with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.</p>
 <ul>
-<li>FMA-Europe 2024, 17th International Behavioural Finance Conference.</li>
+<li>Previously titled as <em>Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High</em>.</li>
+<li>FMA-Europe 2024, 17th International Behavioural Finance Conference, EFMA 2024, Multinational Finance Society annual meeting 2024, FMA 2020.</li>
 </ul>
 <p>Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.</p>
 <ul>
@@ -348,6 +348,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -458,6 +460,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
