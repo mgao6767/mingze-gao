@@ -1,0 +1,274 @@
+---
+title: "AFIN8003 - Workshop 8"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-05-08
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop8.pdf"
+# Custom fields
+pdf-name: "Workshop8.pdf"
+include-answers: true
+---
+
+# MCQ
+
+1. The inability of an FI to meet the demands of liability holders or asset claimants is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] credit risk
+   - [ ] foreign exchange risk
+   - [ ] capital risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] liquidity risk
+   - [ ] credit risk
+   - [ ] foreign exchange risk
+   - [ ] capital risk
+   :::
+
+2. Deposits that provide a relatively stable, long-term source of funds are called:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] core deposits
+   - [ ] savings deposits
+   - [ ] loanable funds
+   - [ ] interbank funds
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] core deposits
+   - [ ] savings deposits
+   - [ ] loanable funds
+   - [ ] interbank funds
+   :::
+
+3. An FI that practices purchased liquidity management is unlikely to do which of the following to raise funds?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] interbank borrowing
+   - [ ] issue wholesale certificates of deposit
+   - [ ] sell assets at fire-sale prices
+   - [ ] sell notes or bonds
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] interbank borrowing
+   - [ ] issue wholesale certificates of deposit
+   - [x] sell assets at fire-sale prices
+   - [ ] sell notes or bonds
+   :::
+
+4. Which of the following is not a characteristic of stored liquidity management?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] DIs tend to hold excess reserve assets to meet liquidity drains
+   - [ ] The cost of using excess cash is the foregone return since cash is a non-earning asset
+   - [ ] The balance sheet will contract when the liquidity adjustment mechanism is used
+   - [ ] The balance sheet will expand when the liquidity adjustment mechanism is used
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] DIs tend to hold excess reserve assets to meet liquidity drains
+   - [ ] The cost of using excess cash is the foregone return since cash is a non-earning asset
+   - [ ] The balance sheet will contract when the liquidity adjustment mechanism is used
+   - [x] The balance sheet will expand when the liquidity adjustment mechanism is used
+   :::
+
+5. Abnormal deposit drains may occur for which of the following reasons?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Sudden changes in investor preferences regarding holding non-bank financial assets relative to deposits.
+   - [ ] Concerns about a DI's solvency relative to other DIs
+   - [ ] Failure of a related DI leading to increased concern about the solvency of other DIs
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Sudden changes in investor preferences regarding holding non-bank financial assets relative to deposits.
+   - [ ] Concerns about a DI's solvency relative to other DIs
+   - [ ] Failure of a related DI leading to increased concern about the solvency of other DIs
+   - [x] All of the listed options are correct.
+   :::
+
+6. Liquidity risk can arise from which of the following activities on the asset side of a bank's balance sheet?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Deposit withdrawals
+   - [ ] Borrowing additional funds
+   - [ ] Changes in the value of investment securities portfolios
+   - [ ] Increasing equity capital
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Deposit withdrawals
+   - [ ] Borrowing additional funds
+   - [x] Changes in the value of investment securities portfolios
+   - [ ] Increasing equity capital
+   :::
+
+7. The term "fire-sale" in the context of liquidity risk refers to:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] A strategy where banks reduce interest rates to attract more deposits.
+   - [ ] A situation where banks must sell assets quickly at reduced prices to generate liquidity.
+   - [ ] A method of restructuring bank loans.
+   - [ ] The process of issuing long-term debt.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] A strategy where banks reduce interest rates to attract more deposits.
+   - [x] A situation where banks must sell assets quickly at reduced prices to generate liquidity.
+   - [ ] A method of restructuring bank loans.
+   - [ ] The process of issuing long-term debt.
+   :::
+
+8. Which of the following is a key purpose of the Liquidity Coverage Ratio (LCR)?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] To ensure banks maintain a stable funding profile over a one-year period.
+   - [ ] To provide financial support to developing countries.
+   - [ ] To ensure banks hold enough high-quality liquid assets to cover net cash outflows over a 30-day stress period.
+   - [ ] To limit the reliance on short-term wholesale funding.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] To ensure banks maintain a stable funding profile over a one-year period.
+   - [ ] To provide financial support to developing countries.
+   - [x] To ensure banks hold enough high-quality liquid assets to cover net cash outflows over a 30-day stress period.
+   - [ ] To limit the reliance on short-term wholesale funding.
+   :::
+
+9. Which of the following is considered "stable funding" under the NSFR?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Short-term wholesale funding
+   - [ ] Long-term retail deposits
+   - [ ] High-risk, short-term loans
+   - [ ] Overnight borrowing from other banks
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Short-term wholesale funding
+   - [x] Long-term retail deposits
+   - [ ] High-risk, short-term loans
+   - [ ] Overnight borrowing from other banks
+   :::
+
+10. In the context of NSFR, stable funding sources are expected to be reliable for what duration?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] 30 days
+    - [ ] 6 months
+    - [ ] 1 year
+    - [ ] 5 years
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] 30 days
+    - [ ] 6 months
+    - [x] 1 year
+    - [ ] 5 years
+    :::
+
+11. Which type of asset is most likely to require stable funding under the NSFR?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Cash reserves
+    - [ ] Short-term government bonds
+    - [ ] Long-term illiquid loans
+    - [ ] Overnight loans
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Cash reserves
+    - [ ] Short-term government bonds
+    - [x] Long-term illiquid loans
+    - [ ] Overnight loans
+    :::
+
+12.  Which of the following could lead to a bank failing to meet its NSFR requirements?
+
+     ::: {.content-hidden when-meta="include-answers"}
+     - [ ] A sudden influx of short-term deposits
+     - [ ] Excessive reliance on short-term wholesale funding
+     - [ ] Increase in long-term stable funding
+     - [ ] Reducing the bank's loan portfolio
+     :::
+     ::: {.content-hidden unless-meta="include-answers"}
+     - [ ] A sudden influx of short-term deposits
+     - [x] Excessive reliance on short-term wholesale funding
+     - [ ] Increase in long-term stable funding
+     - [ ] Reducing the bank's loan portfolio
+     :::
+
+# Exercise 
+
+The following table provides the data on LCR and NSFR of the "Big 4" Australian banks for FR2023. It shows that NAB has the highest LCR of 140%. 
+
+Let's focus on NAB and conduct some exercise!
+
+|                                      |     CBA |     NAB |     ANZ | Westpac |
+|--------------------------------------|--------:|--------:|--------:|--------:|
+| __Liquidity Coverage Ratio (LCR)__   |         |         |         |         |
+| Average High Quality Liquid   Assets | 189,419 | 209,561 | 267,905 | 181,882 |
+| Average Net Cash Outflows            | 144,657 | 149,665 | 201,528 | 136,200 |
+| Average Liquidity Coverage   Ratio   |  131.00 |  140.00 |  132.90 |  134.00 |
+| __Net Stable Funding Ratio (NSFR)__  |         |         |         |         |
+| Available Stable Funding             | 860,999 | 646,508 | 625,285 | 707,893 |
+| Required Stable Funding              | 693,453 | 556,016 | 537,430 | 615,341 |
+| Net Stable Funding Ratio             |  124.00 |  116.00 |  116.35 |  115.00 |
+
+__Instructions__
+
+1. Locate and download the most recent "Pillar 3" full-year report of NAB. It should be the __Full Year Pillar 3 Report__ for 2024. You can start with [NAB's regulatory disclosures](https://www.nab.com.au/about-us/shareholder-centre/regulatory-disclosures).
+2. Read and examine the section on __Liquidity Coverage Ratio__.
+3. Conduct research and try to answer the following questions.
+
+__Questions__
+
+1. What is the average LCR of NAB for the 3 months ended 30 September, 2024? Compared to the previous period (3 months ended 30 June, 2024), is LCR higher or lower?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+137%. Same as its previous value.
+:::
+:::
+
+2. What is the reason for the observed change/nonchange in LCR?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Average LCR for the three months ended 30 September 2024 remained unchanged at 137%, with a \$6.8 billion increase in average liquid assets, and a \$5.4 billion increase in average net cash outflows.
+The increase in average liquid assets was mainly a result of higher HQLA, partially offset by lower RBNZ (Reserve Bank of New Zealand) securities.
+The increase in average net cash outflows was largely due to modelling changes in derivative collateral requirements and higher cash outflows from wholesale deposits and unsecured wholesale funding in the 30-day stress period, partially offset by a decrease in cash outflows from secured wholesale funding related to repayment of the final tranches of the TFF in the prior quarter.
+:::
+:::
+
+3. What is the largest component of cash inflows?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Cash inflows from secured lending, which represent expected cash inflows that a bank anticipates receiving from lending activities where the loans are backed by collateral.
+
+These secured lending inflows are considered more reliable because the presence of collateral reduces the risk of loss, making these inflows an important part of a bank’s liquidity planning and Pillar 3 disclosures.
+:::
+:::
+
+4. Why is the HQLA reported as an "average"? How many data points were used to compute such average? Provide reference to the relevant prudential standard in Australia.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+APS 330 Public Disclosure provides a template for liquidity disclosures. See for example Attachment F of [Final APS 330](https://www.apra.gov.au/public-disclosure-requirements-for-authorised-deposit-taking-institutions).
+
+Based on the guidelines, data is calculated based on a simple average of daily LCR outcomes, excluding non-business days. There were 66 daily
+LCR data points used in calculating the average for the current quarter and 62 in the previous quarter. 
+:::
+:::
