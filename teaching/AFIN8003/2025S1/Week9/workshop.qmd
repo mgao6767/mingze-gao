@@ -1,0 +1,189 @@
+---
+title: "AFIN8003 - Workshop 9"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-05-15
+categories:
+    - AFIN8003
+    - 2025S1
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop9.pdf"
+# Custom fields
+pdf-name: "Workshop9.pdf"
+include-answers: false
+---
+
+# MCQ
+
+1. The cost of holding reserves that pay no interest at the central bank is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] buffer reserves
+   - [ ] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] buffer reserves
+   - [x] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+   :::
+
+2. A deep market is an important consideration in the management of FI liquidity in that:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [ ] the FI will need to be able to sell short-term assets quickly to convert to cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [x] the FI will need to be able to sell short-term assets quickly to convert to cash
+   :::
+
+3. Which of the following is a determinant of an FI's optimal liquid asset ratio?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [x] All of the listed options are correct.
+   :::
+
+4. A facility that allows a DI to utilise RBA repos, in order to obtain liquidity overnight to fund its liquidity settlement needs, is called a(n):
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] RBA repurchase agreement
+   - [ ] overnight repurchase agreement
+   - [ ] intra-day repurchase agreement
+   - [ ] committed liquidity facility
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] RBA repurchase agreement
+   - [x] overnight repurchase agreement
+   - [ ] intra-day repurchase agreement
+   - [ ] committed liquidity facility
+   :::
+
+5. Covered bonds are:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+   :::
+
+6. What is the primary method of meeting cash demands in modern financial institutions?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [ ] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [x] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+   :::
+
+7. A high quality liquid asset (HQLA) must be:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [ ] unencumbered and easily and immediately able to be converted into cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [x] unencumbered and easily and immediately able to be converted into cash
+   :::
+
+8. Governments seek to protect depositors more than other DI creditors because:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [x] All of the listed options are correct.
+   :::
+
+9. Which of the following instruments is considered a low-cost liability but carries high withdrawal risk?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [ ] Demand deposits
+   - [ ] Savings accounts
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [x] Demand deposits
+   - [ ] Savings accounts
+   :::
+
+# Short answer questions
+
+## Q1
+
+How can liquidity and interest rate risk management objectives conflict in a DI? Where possible, provide examples. Are these conflicts resolvable? Explain
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Liquidity risk and interest rate risk are usually closely linked in a DI. For example, a DI that runs a positive or negative duration gap to take advantage of expected interest rate movements may suffer an increase in liquidity risk if the gamble proves wrong and, as a result of losses on the interest rate mismatch, there is an increase in withdrawals by depositors. Alternatively, a DI that acts to immunise the value of equity against interest rate risk may find that this has created potential liquidity problems in terms of an imbalance between cash inflows and outflows as the maturities of assets and liabilities are mismatched to achieve a zero duration gap. Similarly, a DI that issues long-term fixed-rate paper to secure funds and reduce liquidity risk may find that this impacts adversely on the interest rate risk position of the DI if the DIhas a zero or negative duration gap before the funds are issued, or if managers expect falling interest rates in the short term.
+
+To resolve these conflicts DI managers need to be aware of the interactive nature of interest rate and liquidity risks (as well as other balance sheet risks) when formulating risk management strategies. For example, if the goals of matched asset/liability maturities and a zero duration gap are incompatible, managers need to amend these goals or set in place secondary strategies to deal with any risks that may be increased.Here such a strategy might be to increase standby credit arrangements with other DIs to deal with potential cash imbalances arising from the policy of equity immunisation against interest rate risk.
+:::
+:::
+
+## Q2
+
+How do deposit insurance and deposit guarantees help mitigate the problem of bank runs and what schemes are available in Australia to protect DI deposits?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Bank runs are costly to society since they create liquidity problems and can have a contagion effect. Because of the first-come, first-served nature of deposit liabilities, DI depositors have incentives to run on the DI if they are concerned about solvency. As a result of the external cost of runs on the safety and soundness of the entire banking system, governments have put into place safety nets using deposit insurance/guarantees to remove the incentives to undertake DI runs. The primary pieces of this safety net are the Financial Claims Scheme which guarantees deposits of Australian dollar deposits in authorised DIs up to $250 000 per depositor per institution. Deposit insurance and other guarantee programs provide assurance that funds are safe even in cases when the FI is in financial distress.
+:::
+:::
