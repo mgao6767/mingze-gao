@@ -28,6 +28,27 @@ cap-location: margin
 
 ## 📝 Working Papers
 
+Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
+
+- _**Reject & Resubmit**_ at the _**Management Science**_.
+- MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
+
+Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
+
+- _**Reject & Resubmit**_ at the _**Review of Corporate Finance Studies**_.
+- FMA 2022, FIRN 2022.
+
+[Lone (Loan) Wolf Pack Risk](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418), with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
+
+::: {.column-margin}
+![Aggregate Syndicate Concentration](/images/timeseries_aggregate_sc.png)
+:::
+
+- _**Reject & Resubmit**_ at the _**Contemporary Accounting Research**_.
+- WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
+- ___The Brattle Group Best Paper Award___, FIRN 2023.
+- SUERF Policy Brief [No. 586](https://www.suerf.org/publications/suerf-policy-notes-and-briefs/the-big-problem-of-small-syndicates/), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
+
 🆕 [Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Giacinta Cestone, Jiaying Li and Ruiqi Mao.
 
 - Nordic Initiative for Corporate Economics (NICE) 2025 (_invited_), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).
@@ -37,16 +58,6 @@ cap-location: margin
 - SFS Cavalcade 2024, EFA 2023 (poster), FMA 2023, 35th AFBC, Macquarie University, University of Sydney.
 - Semifinalist for ___FMA 2023 Best Paper Award___.
 - CEPR Discussion Paper [DP18624](https://cepr.org/publications/dp18624).
-
-[Lone (Loan) Wolf Pack Risk](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418), with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
-
-::: {.column-margin}
-![Aggregate Syndicate Concentration](/images/timeseries_aggregate_sc.png)
-:::
-
-- WFA 2023, FIRN 2023, FIRN Banking 2022, Curtin University, Massey University, National Central University, University of Essex, University of Sydney.
-- ___The Brattle Group Best Paper Award___, FIRN 2023.
-- SUERF Policy Brief [No. 586](https://www.suerf.org/publications/suerf-policy-notes-and-briefs/the-big-problem-of-small-syndicates/), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
 
 [Catering to Environmental Premium in Green Venture Financing](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4522222), with Henry Leung, Tse-Chun Lin and Tracy Thi Vu.
 
@@ -58,15 +69,6 @@ cap-location: margin
 - Previously titled as _Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High_.
 - FMA-Europe 2024, 17th International Behavioural Finance Conference, EFMA 2024, Multinational Finance Society annual meeting 2024, FMA 2020.
 
-Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Yan Yu.
-
-- _**Reject & Resubmit**_ at the _**Management Science**_.
-- MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
-
-Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
-
-- _**Reject & Resubmit**_ at the _**Review of Corporate Finance Studies**_.
-- FMA 2022, FIRN 2022.
 
 ## 👨‍💻 Data & Code
 
