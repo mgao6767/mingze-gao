@@ -49,9 +49,9 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 - ___The Brattle Group Best Paper Award___, FIRN 2023.
 - SUERF Policy Brief [No. 586](https://www.suerf.org/publications/suerf-policy-notes-and-briefs/the-big-problem-of-small-syndicates/), Bank of Finland Research Discussion Paper [No. 4/2023](https://ssrn.com/abstract=4391791).
 
-🆕 [Mind the Gap: AI Adoption Disparity and Supply Chain Dynamics](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Giacinta Cestone, Jiaying Li and Ruiqi Mao.
+[AI Adoption and Big Data in Supply Chains](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5039427), with Giacinta Cestone, Jiaying Li and Ruiqi Mao.
 
-- Nordic Initiative for Corporate Economics (NICE) 2025 (_invited_), 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).
+- Nordic Initiative for Corporate Economics (NICE) 2025, 3rd Aarhus Workshop on Strategic Interaction in Corporate Finance (scheduled).
 
 [Borrower Technology Similarity and Bank Loan Contracting](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677), with Yunying Huang, Steven Ongena and Eliza Wu.
 
