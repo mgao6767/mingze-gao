@@ -401,31 +401,6 @@ The RWA in the minimum capital ratios (@eq-min-required-capital-ratio) is the su
 We covered only the RWA for credit risk.
 :::
 
-## Risk-based capital: beyond credit risk
-
-In the previous example, we have calculated that the DI's RWA (for credit risk) is $97.4 million.
-
-Now, suppose that we have also calculated that the DI's
-
-- RWA for market risk is $10.2 million, and 
-- RWA for operational risk is $9 million.
-
-The total RWA is $97.4 + $10.2 + $9 = $116.6 million.
-
-The DI's capital ratios are actually:
-
-$$
-\begin{aligned}
-\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}  = \frac{25}{116.6} = 21.44\% \ge 4.5\% \\
-\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} = \frac{25+2}{116.6} = 23.16\% \ge 6\% \\
-\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} = \frac{27+8}{116.6} = 30.02\% \ge 8\%
-\end{aligned}
-$$
-
-::: {.callout-note}
-In this course, no assessment will be on the calculation of RWA for market risk or RWA for operational risk.
-:::
-
 
 # Interest rate risk
 
