@@ -33,11 +33,6 @@ Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Ya
 - _**Reject & Resubmit**_ at the _**Management Science**_.
 - MQBS Banking and Finance Forum 2024, FIRN 2023, Monash Winter Finance 2023, Machine Learning Methods for Business Workshop 2023,  BFBRG Workshop 2022, Deakin University, Loughborough University, University of Queensland, University of Sydney.
 
-Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
-
-- _**Reject & Resubmit**_ at the _**Review of Corporate Finance Studies**_.
-- FMA 2022, FIRN 2022.
-
 [Lone (Loan) Wolf Pack Risk](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418), with Iftekhar Hasan, Buhui Qiu and Eliza Wu.
 
 ::: {.column-margin}
@@ -69,6 +64,9 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 - Previously titled as _Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High_.
 - FMA-Europe 2024, 17th International Behavioural Finance Conference, EFMA 2024, Multinational Finance Society annual meeting 2024, FMA 2020.
 
+Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
+
+- FMA 2022, FIRN 2022.
 
 ## 👨‍💻 Data & Code
 
