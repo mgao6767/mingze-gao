@@ -2,7 +2,7 @@
 title: Estimate Merton Distance-to-Default
 # description: SAS code to calculate Merton (1974) Distance-to-Default and default probability as in Bharath and Shumway (2008 RFS).
 date: 2022-11-30
-# date: Nov 30, 2022
+date-modified: 2025-06-23
 hasTex: true
 tags:
   - SAS
@@ -155,14 +155,12 @@ Here I discuss the iterative approach.
 
 The original code is enclosed in the [SSRN version](https://ssrn.com/abstract=637342) of @bharath_forecasting_2008, and was available on [Shumway's website](http://www-personal.umich.edu/~shumway/papers.dir/nuiter99_print.sas).
 
-However, there are two issues in this version of code:
+However, there were two minor issues in this version of code:
 
 1. The initial value of $\sigma_V$ is not set to $\sigma_E[E/(E+F)]$ as described in the paper.
 2. It does not use the past year's data but the past month.
    - At line 36, `cdt=100*year(date)+month(date)` accidentally restricts the "past year" daily stock returns to the "past month" later. Note that at line 42-43 it merges by `permno` and `cdt`, where `cdt` refers to a certain year-month. We can pause the program after this data step to confirm that indeed there is only a month of data for each `permno`.
    - A correction is to change line 36 to `cdt=100*&yyy.+&mmm.;`.
-
-Other issues are minor and harmless.
 
 A copy of this version can be found here on [GitHub](https://gist.github.com/mgao6767/12e3d99cd1bc55eee42bbe57d87fa042).
 
@@ -170,10 +168,10 @@ A copy of this version can be found here on [GitHub](https://gist.github.com/mga
 
 Based on the original SAS code in @bharath_forecasting_2008, I made some edits and below is a fully self-contained SAS code that executes smoothly. Note that I've corrected the above issues.
 
+::: {.callout-note}
+This code has been updated in 2025 given the change of WRDS's FRB database.
+
+Specifically, the variable `tb_m3` is renamed to `tb3ms` (TBills Secondary Market 3-month).
+:::
+
 <script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
-
-__Note__:
-
-The interest rate data from FRB on WRDS stopped in April 2020. See [here](https://wrds-www.wharton.upenn.edu/pages/get-data/federal-reserve-bank-reports/).
-
-To get estimates post 2020, we need to manually collect interest rate (3-month Treasury Bill) data and upload to WRDS. Then modify the relevant code, e.g. from line 96 to 117.
