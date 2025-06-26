@@ -295,14 +295,12 @@ window.Quarto = {
 <!-- more -->
 <section id="one-event-and-the-canonical-did" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="one-event-and-the-canonical-did">One event and the canonical DiD</h2>
-<p>The canonical DiD takes a <span class="math inline">\(2\times 2\)</span> form which involves 2 periods (before &amp; after) and 2 groups (treated and untreated). Under the assumption of parallel trends (1), the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The canonical DiD takes a <span class="math inline">\(2\times 2\)</span> form which involves 2 periods (before &amp; after) and 2 groups (treated and untreated). Under the assumption of parallel trends,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<strong>Parallel trends</strong> assume that the change in the outcomes of treated group, in absence of the treatment, is the same as the change in the outcomes of the untreated group.</p></div></div><p>Specifically, we would estimate the following model:</p>
-<p><span class="math display">\[
-\begin{equation}
-  Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
-\end{equation}
-\]</span></p>
-<p>where <span class="math inline">\(Y_{it}\)</span> is the outcome of interest for entity <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span>, <span class="math inline">\(D_{it}\)</span> is an indicator that takes the value of 1 if entity <span class="math inline">\(i\)</span> has been treated at time <span class="math inline">\(t\)</span>(1), <span class="math inline">\(\theta_t\)</span> is the time fixed effect and <span class="math inline">\(\gamma_i\)</span> is the entity fixed effect (2). Here, estimate of <span class="math inline">\(\beta\)</span> is interpreted as the ATT.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><span id="eq-twfe-did"><span class="math display">\[
+Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(Y_{it}\)</span> is the outcome of interest for entity <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span>, <span class="math inline">\(D_{it}\)</span> is an indicator that takes the value of 1 if entity <span class="math inline">\(i\)</span> has been treated at time <span class="math inline">\(t\)</span>, <span class="math inline">\(\theta_t\)</span> is the time fixed effect and <span class="math inline">\(\gamma_i\)</span> is the entity fixed effect. Here, estimate of <span class="math inline">\(\beta\)</span> is interpreted as the ATT.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;If we have separate <span class="math inline">\(\text{Treatment}_i\)</span> and <span class="math inline">\(\text{Post}_{t}\)</span> indicators, then <span class="math inline">\(D_{it}=\text{Treatment}_i \times \text{Post}_t\)</span>. Note that the presence of time and entity fixed effects absorbs individual <span class="math inline">\(\text{Post}_t\)</span> and <span class="math inline">\(\text{Treatment}_{i}\)</span> variables in the model.</p></div></div><p>This TWFE method works when</p>
 <ol type="1">
 <li>There is homogeneous treatment effect, i.e., the treatment effect is the same for all treated entities.</li>
@@ -312,7 +310,7 @@ window.Quarto = {
 <p>“What if there are multiple treatments at different times?”</p>
 </blockquote>
 </section>
-<section id="problems-of-twfe-with-multiple-events" class="level2">
+<section id="problems-of-twfe-with-multiple-events" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="problems-of-twfe-with-multiple-events">Problems of TWFE with multiple events</h2>
 <p>Suppose there are two treatment events. Let’s visualize the treatment status of three groups of entities, the Never-treated group N, the Early-treated group E and the Late-treated group L. Here I ignore the possibility that a group has always been treated.</p>
 <div class="cell" data-layout-align="default">
@@ -338,8 +336,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p><span class="citation" data-cites="goodman-bacon_2021">Goodman-Bacon (<a href="#ref-goodman-bacon_2021" role="doc-biblioref">2021</a>)</span> shows that, in this case, TWFE estimate of <span class="math inline">\(\beta\)</span> in Equation (1) above is in fact a (complicated) weighted-average of all possible <span class="math inline">\(2\times2\)</span> DiD estimates, which leads to <strong>bias</strong>:</p>
-<div class="annotate" data-markdown="">
+<p><span class="citation" data-cites="goodman-bacon_2021">Goodman-Bacon (<a href="#ref-goodman-bacon_2021" role="doc-biblioref">2021</a>)</span> shows that, in this case, TWFE estimate of <span class="math inline">\(\beta\)</span> in <a href="#eq-twfe-did" class="quarto-xref">Equation&nbsp;1</a> above is in fact a (complicated) weighted-average of all possible <span class="math inline">\(2\times2\)</span> DiD estimates, which leads to <strong>bias</strong>:</p>
 <ul>
 <li>For the event to group E (Early-treated):
 <ul>
@@ -349,14 +346,10 @@ window.Quarto = {
 <li>For the event to group L (Late-treated):
 <ul>
 <li>L vs N. No problem, controls are never treated.</li>
-<li>L vs E. <strong>Problematic</strong>, controls have been treated (by another earlier event).(1)</li>
+<li>L vs E. <strong>Problematic</strong>, controls have been treated (by another earlier event).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 </ul></li>
 </ul>
-</div>
-<ol type="1">
-<li>This may not seem obvious given that group E would have <span class="math inline">\(D_{it}=1\)</span> after 2011. But DiD is actually comparing the “before-after” differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses <em>do not change</em>. The already-treated group E’s status stay unchanged from 2011 to 2014.</li>
-</ol>
-</section>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;This may not seem obvious given that group E would have <span class="math inline">\(D_{it}=1\)</span> after 2011. But DiD is actually comparing the “before-after” differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses <em>do not change</em>. The already-treated group E’s status stay unchanged from 2011 to 2014.</p></div></div></section>
 <section id="what-to-do-then-an-overview" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-do-then-an-overview">What to do then? An overview</h2>
 <p>When there is a staggered adoption design, i.e., groups of entities receive treatments in a staggered way, there are a few modified DiD approaches that try to produce ATT estimates robust to the bias. But the key idea is to avoid including as controls the entities that have been previously treated, then find a good way to aggregate the many estimates as a result of multiple events. Here I discuss two approaches, namely stacked DiD and CS DiD.</p>
@@ -372,33 +365,39 @@ window.Quarto = {
     - Cohort 1. Entities in Group E are treated at 2011, entities in Group N and L are controls.
     - Cohort 2. Entities in Group L are treated at 2013, entities in Group N are controls. -->
 <p>For a stacked DiD, we estimate a regression specification like below:</p>
-<p><span class="math display">\[
-\begin{equation}
-    Y_{ict} = \beta_0 + \beta_1 {Treat_{ic}\times Post_{ct}} + \beta_2 Treat_{ic} + \beta_3 Post_{ct} + \varepsilon_{ict}
-\end{equation}
-\]</span></p>
+<p><span id="eq-stacked-did"><span class="math display">\[
+Y_{ict} = \beta_0 + \beta_1 {Treat_{ic}\times Post_{ct}} + \beta_2 Treat_{ic} + \beta_3 Post_{ct} + \varepsilon_{ict}
+\tag{2}\]</span></span></p>
 <p>where</p>
 <ul>
 <li><span class="math inline">\(Treat_{ic}\)</span> is an indicator that equals 1 if entity <span class="math inline">\(i\)</span> in cohort <span class="math inline">\(c\)</span> is treated.</li>
 <li><span class="math inline">\(Post_{ct}\)</span> is an indicator that equals 1 if time period <span class="math inline">\(t\)</span> in cohort <span class="math inline">\(c\)</span> is after treatment event.</li>
 </ul>
 <p>Alternatively and preferably (?), replace <span class="math inline">\(Treat_{ci}\)</span> and <span class="math inline">\(Post_{ct}\)</span> with cohort-entity fixed effect <span class="math inline">\(\gamma_{ic}\)</span> and cohort-time fixed effect <span class="math inline">\(\theta_{ct}\)</span>:</p>
-<p><span class="math display">\[
-\begin{equation}
-    Y_{ict} = \beta D_{ict} + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
-\end{equation}
-\]</span></p>
+<p><span id="eq-stacked-did-cohort-fe"><span class="math display">\[
+Y_{ict} = \beta D_{ict} + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
+\tag{3}\]</span></span></p>
 <p>where <span class="math inline">\(D_{ict}\equiv Treat_{ic}\times Post_{ct}\)</span> is an indicator that equals 1 if entity <span class="math inline">\(i\)</span> in cohort <span class="math inline">\(c\)</span> has been treated at time <span class="math inline">\(t\)</span>.</p>
-<p>:: {.callout-note title=“Comparison with one-period TWFE”} Easy to notice that Equation (3) is very similar to Equation (1). Instead of using an entity-time level indicator <span class="math inline">\(D_{it}\)</span> in TWFE Equation (1) to estimate ATT, stacked DiD uses an entity-cohort-time level indicator <span class="math inline">\(D_{ict}\)</span>. Time and entity fixed effects are also allowed to vary across cohorts. :::</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Comparison with one-period TWFE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Comparison with one-period TWFE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Easy to notice that <a href="#eq-stacked-did-cohort-fe" class="quarto-xref">Equation&nbsp;3</a> is very similar to <a href="#eq-twfe-did" class="quarto-xref">Equation&nbsp;1</a>. Instead of using an entity-time level indicator <span class="math inline">\(D_{it}\)</span> in TWFE <a href="#eq-twfe-did" class="quarto-xref">Equation&nbsp;1</a> to estimate ATT, stacked DiD uses an entity-cohort-time level indicator <span class="math inline">\(D_{ict}\)</span>. Time and entity fixed effects are also allowed to vary across cohorts.</p>
+</div>
+</div>
 <p>Stacked DiD effectively pool together ATT estimates from only good <span class="math inline">\(2\times2\)</span> DiD pairs, thereby avoiding the bias caused by simple TWFE when treatment events are staggered.</p>
 <p>Stacked DiD by construction causes duplication of observations since an entity-time can be used as control in different cohorts, which means observations in the stacked dataset can be correlated. We need to use proper clustering to address it, usually done by clustering at the entity level.</p>
 <p>An event-study form of stacked DiD can further help identifying the time-varying treatment effects. Specifically, we replace the cohort-time <span class="math inline">\(Post_{ct}\)</span> indicator with a series of cohort-time dummy variables, e.g., <span class="math inline">\(\{..., d^{-2}_{ct}, d^{-1}_{ct}, d^{0}_{ct}, d^{1}_{ct}, d^{2}_{ct}, ... \}\)</span>, where <span class="math inline">\(d^{\tau}_{ct}=1\)</span> if time <span class="math inline">\(t\)</span> in cohort <span class="math inline">\(c\)</span> is <span class="math inline">\(\tau\)</span> periods after (or before, if negative) the treatment. So, we will have</p>
-<p><span class="math display">\[
-\begin{equation}
-    Y_{ict} = \sum_{\tau} \beta_{\tau} \left(Treat_{ic}\times d^{\tau}_{ct}\right)
+<p><span id="eq-stacked-did-event-study"><span class="math display">\[
+Y_{ict} = \sum_{\tau} \beta_{\tau} \left(Treat_{ic}\times d^{\tau}_{ct}\right)
             + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
-\end{equation}
-\]</span></p>
+\tag{4}\]</span></span></p>
 <p>The estimates <span class="math inline">\(\{\beta_{\tau}\}\)</span> can describe the time-varying treatment effect, i.e., the difference between treated and control in outcome&nbsp;<span class="math inline">\(Y\)</span>, <span class="math inline">\(\tau\)</span> periods after the treatment.</p>
 </section>
 <section id="callaway_2021" class="level2 page-columns page-full">
@@ -406,14 +405,14 @@ window.Quarto = {
 <p><span class="citation" data-cites="callaway_2021">Callaway and Sant’Anna (<a href="#ref-callaway_2021" role="doc-biblioref">2021</a>)</span> (CS) DiD groups entities by their treatment time and estimates each group’s ATT at each time since treatment to the end of the sample period, similarly using never treated (or not yet treated) as control.</p>
 <section id="how-it-works" class="level3">
 <h3 class="anchored" data-anchor-id="how-it-works">How it works?</h3>
-<p>Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between ^^the outcome if treated^^ <span class="math inline">\(Y(1)\)</span> and ^^the outcome if untreated^^ <span class="math inline">\(Y(0)\)</span>, for the treated entities (<span class="math inline">\(D=1\)</span>).</p>
-<p><span class="math display">\[
+<p>Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between <mark>the outcome if treated</mark> <span class="math inline">\(Y(1)\)</span> and <mark>the outcome if untreated</mark> <span class="math inline">\(Y(0)\)</span>, for the treated entities (<span class="math inline">\(D=1\)</span>).</p>
+<p><span id="eq-cs-att"><span class="math display">\[
 ATT = \mathbb{E} \left[Y_{t}(1)-Y_{t}(0)\right|D=1]
-\]</span></p>
-<p>CS DiD builds a group-time ATT, the expected difference in ^^the outcome if treated in group <span class="math inline">\(g\)</span>^^ <span class="math inline">\(Y(g)\)</span> and ^^the outcome if untreated^^ <span class="math inline">\(Y(0)\)</span>, for the treated entities in group <span class="math inline">\(g\)</span> (<span class="math inline">\(G=g\)</span>).</p>
-<p><span class="math display">\[
+\tag{5}\]</span></span></p>
+<p>CS DiD builds a group-time ATT, the expected difference in <mark>the outcome if treated in group <span class="math inline">\(g\)</span></mark> <span class="math inline">\(Y(g)\)</span> and <mark>the outcome if untreated</mark> <span class="math inline">\(Y(0)\)</span>, for the treated entities in group <span class="math inline">\(g\)</span> (<span class="math inline">\(G=g\)</span>).</p>
+<p><span id="eq-cs-att-group-time"><span class="math display">\[
 ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
-\]</span></p>
+\tag{6}\]</span></span></p>
 <p>This is the average effect of participating in the treatment for entities in group <span class="math inline">\(g\)</span> at time period <span class="math inline">\(t\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Example">
 <div class="callout-header d-flex align-content-center">
@@ -446,13 +445,11 @@ Example
 <p>To me, CS DiD and stacked DiD share some similarities.</p>
 <p>Stacked DiD select “good controls” into groups. While it will create many duplicates, we may use propensity score matching (PSM) to mitigate the problem, which also helps with the parallel trend assumption (conditional on covariates).</p>
 <p>CS DiD does not select “good controls” into groups. Instead, CS DiD estimates group-time ATTs by aggregating the “before-after” differences of entities base on entities’ treatment status and their propensity to be treated in the group, etc. For example, the inverse-probability-weighting estimand for <span class="math inline">\(ATT(g,t)\)</span> is given by</p>
-<p><span class="math display">\[
-\begin{equation}
-    ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{P_g}{\mathbb{E}(P_g)}\right)}_{\text{weight}} \times \underbrace{(Y_t-Y_{g-1})}_{\text{before-after diff}}\right]
-\end{equation}
-\]</span></p>
-<p>where <span class="math inline">\(P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}\)</span> is like a propensity score ratio; <span class="math inline">\(p_g(X)\)</span> is the propensity score of an entity being treated at the time defined by group <span class="math inline">\(g\)</span>, conditional on the pre-event covariates <span class="math inline">\(X\)</span>; <span class="math inline">\(C=1\)</span> if an entity does not participate in the treatment and zero otherwise; <span class="math inline">\(G_g=1\)</span> if an entity is in group <span class="math inline">\(g\)</span> (i.e., treated at the time defined by group <span class="math inline">\(g\)</span>) and zero otherwise.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;In comparison, a TWFE DiD aggregates the “before-after” differences by giving a weight of +1 to treated entities and -1 to controls.</p></div></div></section>
+<p><span id="eq-cs-att-expectation"><span class="math display">\[
+ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{P_g}{\mathbb{E}(P_g)}\right)}_{\text{weight}} \times \underbrace{(Y_t-Y_{g-1})}_{\text{before-after diff}}\right]
+\tag{7}\]</span></span></p>
+<p>where <span class="math inline">\(P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}\)</span> is like a propensity score ratio; <span class="math inline">\(p_g(X)\)</span> is the propensity score of an entity being treated at the time defined by group <span class="math inline">\(g\)</span>, conditional on the pre-event covariates <span class="math inline">\(X\)</span>; <span class="math inline">\(C=1\)</span> if an entity does not participate in the treatment and zero otherwise; <span class="math inline">\(G_g=1\)</span> if an entity is in group <span class="math inline">\(g\)</span> (i.e., treated at the time defined by group <span class="math inline">\(g\)</span>) and zero otherwise.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;In comparison, a TWFE DiD aggregates the “before-after” differences by giving a weight of +1 to treated entities and -1 to controls.</p></div></div></section>
 </section>
 <section id="how-do-they-compare" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-they-compare">How do they compare?</h2>
