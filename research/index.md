@@ -3,17 +3,26 @@ title: Research
 cap-location: margin
 ---
 
+## 👨‍💻 Data & Code
+
+- (code) [Discretionary accruals](/posts/compute-jackknife-coefficient-estimates-in-sas)
+- (docs) [Download M&A data from SDC](/posts/merger_acquisition_deals_from_sdc_platinum)
+- (code & data) [Historical firm HQ location 1969-2022](/posts/firm-historical-headquarter-state-from-10k)
+- (code) [Merton distance-to-default (default probability)](/posts/merton-dd)
+- (code) [Organization capital](/posts/estimate-organization-capital)
+- (code) [Specification curve analysis](/posts/specification-curve-analysis) - listed in [Harvard Business School Research Computing Services blog](https://hbs-rcs.github.io/post/specification-curve-analysis/). For the Stata command, see my [`specurve`](https://github.com/mgao6767/specurve).
+- (code) [Textual analysis on 8K filings](/posts/textual-analysis-on-sec-filings). For a full Python CLI application, see my [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer).
+- (code) [Variance ratio test - Lo and MacKinlay (1988)](/posts/lomackinlay1988)
+
 ## 📄 Publications
 
 [Consumer Behaviour and Credit Supply: Evidence from an Australian FinTech Lender](https://doi.org/10.1016/j.frl.2023.104205), with Henry Leung, Linhui Liu and Buhui Qiu, ___Finance Research Letters___, 2023. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4505420)
 
 - Consumer behaviour affects FinTech lending decisions.
 
-
 [Closer Than Ever: Growing Business-level Connections Between Australia and Europe](https://doi.org/10.1016/j.emj.2023.03.001), with Boris Choy, Teresa Davis, Hanyun Ding, Massimo Garbuio, Catherine Hardy, Henry Leung, Thanh Son Luong, Greg Patmore, Sandra Peter, Buhui Qiu, Kai Riemer, John Shields, Catherine Sutton-Brady, Carlos Vazquez-Hernandez, and Eliza Wu, ___European Management Journal___, 2023.
 
 - Invited submission
-
 
 [Organization Capital and Executive Performance Incentives](https://doi.org/10.1016/j.jbankfin.2020.106017), with Henry Leung and Buhui Qiu, ___Journal of Banking & Finance___, 2021. [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3734710)
 
@@ -24,7 +33,6 @@ cap-location: margin
 - A firm's organization capital has a substitution effect on its executive pay-for-performance sensitivity.
 - ___Outstanding PhD Student Paper Award___, 3rd Global PhD Colloquium.
 - FMA 2020, 3rd Global PhD Colloquium, 32nd Annual PhD Conference in Economics and Business.
-
 
 ## 📝 Working Papers
 
@@ -68,16 +76,7 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 
 - FMA 2022, FIRN 2022.
 
-## 👨‍💻 Data & Code
-
-- (code) [Discretionary accruals](/posts/compute-jackknife-coefficient-estimates-in-sas)
-- (docs) [Download M&A data from SDC](/posts/merger_acquisition_deals_from_sdc_platinum)
-- (code & data) [Historical firm HQ location 1969-2022](/posts/firm-historical-headquarter-state-from-10k)
-- (code) [Merton distance-to-default (default probability)](/posts/merton-dd)
-- (code) [Organization capital](/posts/estimate-organization-capital)
-- (code) [Specification curve analysis](/posts/specification-curve-analysis) - listed in [Harvard Business School Research Computing Services blog](https://hbs-rcs.github.io/post/specification-curve-analysis/). For the Stata command, see my [`specurve`](https://github.com/mgao6767/specurve).
-- (code) [Textual analysis on 8K filings](/posts/textual-analysis-on-sec-filings). For a full Python CLI application, see my [`edgar-analyzer`](https://github.com/mgao6767/edgar-analyzer).
-- (code) [Variance ratio test - Lo and MacKinlay (1988)](/posts/lomackinlay1988)
+Of Rivals and Role Models: The Impact of Foreign Bank Entry on Domestic Bank Opacity, with Guihua He, Weiping Li, and Quan Yuan.
 
 ## ‍🎓 Student Supervision
 
