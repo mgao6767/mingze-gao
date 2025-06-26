@@ -20,19 +20,17 @@ Empirical researchers have been using difference-in-differences (DiD) estimation
 
 ## One event and the canonical DiD
 
-The canonical DiD takes a $2\times 2$ form which involves 2 periods (before & after) and 2 groups (treated and untreated). Under the assumption of parallel trends (1), the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.[^1]
+The canonical DiD takes a $2\times 2$ form which involves 2 periods (before & after) and 2 groups (treated and untreated). Under the assumption of parallel trends,[^1] the most common approach to identify ATT is a two-way fixed effect (TWFE) linear regression.
 
 [^1]: __Parallel trends__ assume that the change in the outcomes of treated group, in absence of the treatment, is the same as the change in the outcomes of the untreated group.
 
 Specifically, we would estimate the following model:
 
 $$
-\begin{equation}
-  Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
-\end{equation}
-$$
+Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
+$$ {#eq-twfe-did}
 
-where $Y_{it}$ is the outcome of interest for entity $i$ at time $t$, $D_{it}$ is an indicator that takes the value of 1 if entity $i$ has been treated at time $t$(1), $\theta_t$ is the time fixed effect and $\gamma_i$ is the entity fixed effect (2). Here, estimate of $\beta$ is interpreted as the ATT.[^2]
+where $Y_{it}$ is the outcome of interest for entity $i$ at time $t$, $D_{it}$ is an indicator that takes the value of 1 if entity $i$ has been treated at time $t$, $\theta_t$ is the time fixed effect and $\gamma_i$ is the entity fixed effect. Here, estimate of $\beta$ is interpreted as the ATT.[^2]
 
 [^2]: If we have separate $\text{Treatment}_i$ and $\text{Post}_{t}$ indicators, then $D_{it}=\text{Treatment}_i \times \text{Post}_t$.
       Note that the presence of time and entity fixed effects absorbs individual $\text{Post}_t$ and $\text{Treatment}_{i}$ variables in the model.
@@ -66,18 +64,16 @@ gantt
         Treated : 2y
 ```
 
-@goodman-bacon_2021 shows that, in this case, TWFE estimate of $\beta$ in Equation (1) above is in fact a (complicated) weighted-average of all possible $2\times2$ DiD estimates, which leads to __bias__:
+@goodman-bacon_2021 shows that, in this case, TWFE estimate of $\beta$ in @eq-twfe-did above is in fact a (complicated) weighted-average of all possible $2\times2$ DiD estimates, which leads to __bias__:
 
-<div class="annotate" markdown>
 - For the event to group E (Early-treated):
     - E vs N. No problem, controls are never treated.
     - E vs L. No problem, controls have not yet been treated.
 - For the event to group L (Late-treated):
     - L vs N. No problem, controls are never treated.
-    - L vs E. __Problematic__, controls have been treated (by another earlier event).(1)
-</div>
+    - L vs E. __Problematic__, controls have been treated (by another earlier event).[^problem]
 
-1. This may not seem obvious given that group E would have $D_{it}=1$ after 2011. But DiD is actually comparing the "before-after" differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses _do not change_. The already-treated group E's status stay unchanged from 2011 to 2014.
+    [^problem]: This may not seem obvious given that group E would have $D_{it}=1$ after 2011. But DiD is actually comparing the "before-after" differences in outcomes of entities whose treatment statuses just change to those whose treatment statuses _do not change_. The already-treated group E's status stay unchanged from 2011 to 2014.
 
 ## What to do then? An overview
 
@@ -100,10 +96,8 @@ Centre to stacked DiD is the idea of building cohorts of clean $2\times2$ DiD pa
 For a stacked DiD, we estimate a regression specification like below:
 
 $$
-\begin{equation}
-    Y_{ict} = \beta_0 + \beta_1 {Treat_{ic}\times Post_{ct}} + \beta_2 Treat_{ic} + \beta_3 Post_{ct} + \varepsilon_{ict}
-\end{equation}
-$$
+Y_{ict} = \beta_0 + \beta_1 {Treat_{ic}\times Post_{ct}} + \beta_2 Treat_{ic} + \beta_3 Post_{ct} + \varepsilon_{ict}
+$$ {#eq-stacked-did}
 
 where
 
@@ -113,15 +107,13 @@ where
 Alternatively and preferably (?), replace $Treat_{ci}$ and $Post_{ct}$ with cohort-entity fixed effect $\gamma_{ic}$ and cohort-time fixed effect $\theta_{ct}$:
 
 $$
-\begin{equation}
-    Y_{ict} = \beta D_{ict} + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
-\end{equation}
-$$
+Y_{ict} = \beta D_{ict} + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
+$$ {#eq-stacked-did-cohort-fe}
 
 where $D_{ict}\equiv Treat_{ic}\times Post_{ct}$ is an indicator that equals 1 if entity $i$ in cohort $c$ has been treated at time $t$.
 
-:: {.callout-note title="Comparison with one-period TWFE"}
-Easy to notice that Equation (3) is very similar to Equation (1). Instead of using an entity-time level indicator $D_{it}$ in TWFE Equation (1) to estimate ATT, stacked DiD uses an entity-cohort-time level indicator $D_{ict}$. Time and entity fixed effects are also allowed to vary across cohorts.
+::: {.callout-note title="Comparison with one-period TWFE"}
+Easy to notice that @eq-stacked-did-cohort-fe is very similar to @eq-twfe-did. Instead of using an entity-time level indicator $D_{it}$ in TWFE @eq-twfe-did to estimate ATT, stacked DiD uses an entity-cohort-time level indicator $D_{ict}$. Time and entity fixed effects are also allowed to vary across cohorts.
 :::
 
 Stacked DiD effectively pool together ATT estimates from only good $2\times2$ DiD pairs, thereby avoiding the bias caused by simple TWFE when treatment events are staggered.
@@ -131,11 +123,9 @@ Stacked DiD by construction causes duplication of observations since an entity-t
 An event-study form of stacked DiD can further help identifying the time-varying treatment effects. Specifically, we replace the cohort-time $Post_{ct}$ indicator with a series of cohort-time dummy variables, e.g., $\{..., d^{-2}_{ct}, d^{-1}_{ct}, d^{0}_{ct}, d^{1}_{ct}, d^{2}_{ct}, ... \}$, where $d^{\tau}_{ct}=1$ if time $t$ in cohort $c$ is $\tau$ periods after (or before, if negative) the treatment. So, we will have
 
 $$
-\begin{equation}
-    Y_{ict} = \sum_{\tau} \beta_{\tau} \left(Treat_{ic}\times d^{\tau}_{ct}\right)
+Y_{ict} = \sum_{\tau} \beta_{\tau} \left(Treat_{ic}\times d^{\tau}_{ct}\right)
             + \theta_{ct} + \gamma_{ic} + \varepsilon_{ict}
-\end{equation}
-$$
+$$ {#eq-stacked-did-event-study}
 
 The estimates $\{\beta_{\tau}\}$ can describe the time-varying treatment effect, i.e., the difference between treated and control in outcome $Y$, $\tau$ periods after the treatment.
 
@@ -145,17 +135,17 @@ The estimates $\{\beta_{\tau}\}$ can describe the time-varying treatment effect,
 
 ### How it works?
 
-Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between ^^the outcome if treated^^ $Y(1)$ and ^^the outcome if untreated^^ $Y(0)$, for the treated entities ($D=1$).
+Intuitively, ATT (Average Treatment effect on the Treated) is an expected difference between [the outcome if treated]{.mark} $Y(1)$ and [the outcome if untreated]{.mark} $Y(0)$, for the treated entities ($D=1$).
 
 $$
 ATT = \mathbb{E} \left[Y_{t}(1)-Y_{t}(0)\right|D=1]
-$$
+$$ {#eq-cs-att}
 
-CS DiD builds a group-time ATT, the expected difference in  ^^the outcome if treated in group $g$^^ $Y(g)$ and ^^the outcome if untreated^^ $Y(0)$, for the treated entities in group $g$ ($G=g$).
+CS DiD builds a group-time ATT, the expected difference in  [the outcome if treated in group $g$]{.mark} $Y(g)$ and [the outcome if untreated]{.mark} $Y(0)$, for the treated entities in group $g$ ($G=g$).
 
 $$
 ATT(g,t) = \mathbb{E} \left[Y_{t}(g)-Y_{t}(0)\right|G=g]
-$$
+$$ {#eq-cs-att-group-time}
 
 This is the average effect of participating in the treatment for entities in group $g$ at time period $t$.
 
@@ -184,10 +174,8 @@ Stacked DiD select "good controls" into groups. While it will create many duplic
 CS DiD does not select "good controls" into groups. Instead, CS DiD estimates group-time ATTs by aggregating the "before-after" differences of entities base on entities' treatment status and their propensity to be treated in the group, etc. For example, the inverse-probability-weighting estimand for $ATT(g,t)$ is given by
 
 $$
-\begin{equation}
-    ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{P_g}{\mathbb{E}(P_g)}\right)}_{\text{weight}} \times \underbrace{(Y_t-Y_{g-1})}_{\text{before-after diff}}\right]
-\end{equation}
-$$
+ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{P_g}{\mathbb{E}(P_g)}\right)}_{\text{weight}} \times \underbrace{(Y_t-Y_{g-1})}_{\text{before-after diff}}\right]
+$$ {#eq-cs-att-expectation}
 
 where $P_g\equiv\frac{p_g(X)C}{1-p_g(X)C}$ is like a propensity score ratio; $p_g(X)$ is the propensity score of an entity being treated at the time defined by group $g$, conditional on the pre-event covariates $X$; $C=1$ if an entity does not participate in the treatment and zero otherwise; $G_g=1$ if an entity is in group $g$ (i.e., treated at the time defined by group $g$) and zero otherwise.[^3]
 
