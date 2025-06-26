@@ -1,6 +1,7 @@
 ---
 title: PhDs.io
 date: 2024-09-09
+date-modified: 2025-06-27
 tags:
     - Python
 categories:
@@ -24,6 +25,10 @@ As for the future, my vision for PhDs.io goes beyond a mere repository of papers
 This journey isn’t something I can do alone. The platform is currently supported by my own contributions, but as it expands, I hope others will see the value in what we’re building here and join the effort. Whether through financial support, collaborations, or just spreading the word, every little bit helps us move toward a better research experience for everyone.
 
 ## This post
+
+::: {.callout-important}
+The below is no longer relevant. I have re-written the whole project in Rust with Tantivy and Axum.
+:::
 
 In what follows, I explain a little bit of the development of [PhDs.io](https://phds.io), in case someone would like to build a similar or even better project.
 
