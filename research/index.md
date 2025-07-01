@@ -67,7 +67,7 @@ Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Ya
 - Oxford Sustainable Private Markets Conference 2025, RBFC 2024, AsianFA 2024, Journal of Contemporary Accounting and Economics (JCAE) Annual Symposium 2024, 7th Advances in Venture Capital and Private Equity Research Workshop, National Taiwan University.
 - [Podcast](https://www.dropbox.com/scl/fi/zn2ahdzvyu4jg5gwr8kcu/Catering-to-Environmental-Premium-in-Green-Venture-Financing.wav?rlkey=p9lvr0xjomf8qbr737zy8mizd&st=05vizcv2&dl=0) by NotebookLM.
 
-[(Dis)agreement at the 52 Week High: When Liquidity Becomes a Barrier](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756), with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
+[When Everyone Agrees: How the 52 Week High Creates a Liquidity Barrier](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756), with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss.
 
 - Previously titled as _Investor Disagreement, Liquidity and Informational Efficiency at the 52 Week High_.
 - FMA-Europe 2024, 17th International Behavioural Finance Conference, EFMA 2024, Multinational Finance Society annual meeting 2024, FMA 2020.
