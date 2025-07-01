@@ -75,6 +75,10 @@ Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Lu
 
 - FMA 2022, FIRN 2022.
 
+Shareholder Participation and Wealth Transfer in Rights Offerings, with Sean Foley, Jiri Svec, and Qinqin Xia.
+
+- Australian Conference of Economists (ACE) 2025.
+
 Of Rivals and Role Models: The Impact of Foreign Bank Entry on Domestic Bank Opacity, with Guihua He, Weiping Li, and Quan Yuan.
 
 ## ‍🎓 Student Supervision
