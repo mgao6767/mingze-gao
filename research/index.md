@@ -6,7 +6,7 @@ cap-location: margin
 ## 👨‍💻 Data & Code
 
 - (code) [Discretionary accruals](/posts/compute-jackknife-coefficient-estimates-in-sas)
-- (docs) [Download M&A data from SDC](/posts/merger_acquisition_deals_from_sdc_platinum)
+- (docs) [Download M&A data from SDC](/posts/merger-acquisition-deals-from-sdc-platinum)
 - (code & data) [Historical firm HQ location 1969-2022](/posts/firm-historical-headquarter-state-from-10k)
 - (code) [Merton distance-to-default (default probability)](/posts/merton-dd)
 - (code) [Organization capital](/posts/estimate-organization-capital)
