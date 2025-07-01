@@ -1,0 +1,109 @@
+---
+title: ElasticNet from Portfolio Performance Tracking
+date: 2025-07-01
+tags: 
+  - Econometrics
+  - Optimization
+categories: 
+  - Research Notes
+  - Teaching Notes
+  - Programming
+---
+
+::: {.callout-note}
+This post is adapted from one of my research projects from years ago, which has been suspended due to time constraints and my limited experience in mutual fund studies. If you'd like to revive this project, please let me know. 
+:::
+
+Very often I find research super interesting in that methods across fields can be related.
+In this post, I explain how I somewhat derived the core concepts of [ElasticNet](https://en.wikipedia.org/wiki/Elastic_net_regularization) when trying to solve a practical finance question. To some degree, this can also serve as an intuitive example for teaching and understanding the ideas behind **ElasticNet**.
+
+## Motivation
+
+Mutual funds in the United States report their portfolio holdings on a quarterly basis (Form N-PORT since 2019, Form N-Q previously) with a 60-day delay allowed.[^nport] Higher-frequency disclosure of fund holdings is rare and would inevitably disclose the fund's strategy. However, the disclosure frequency of fund holdings data affects the evaluation of fund performance [e.g., @jiang_mutual_2007;@elton_effect_2010;@parida_impact_2018].
+
+[^nport]: Funds report in Form N-PORT their monthly holdings to the SEC, but only the last month of each quarter's holdings are made publicly available.
+
+I therefore had an idea, [**what if we could estimate a fund's daily fund holdings data**]{.mark} using publicly available 1) the fund's quarterly disclosure, 2) its daily return computed from net asset value (NAV), and 3) the daily returns of all stocks? Arguably, the estimates are _ex post_ but can still allow for some interesting studies, especially when we cannot access the monthly fund holdings like the SEC does.
+
+## Conceptualization
+
+To me, this is an optimization problem à la portfolio performance tracking. We choose the daily weights of all securities so that the portfolio's returns closely track the changes of NAV, after various adjustments, subject to the constraint that the quarter-ends' weights must conform to the reported holdings.
+
+## The problem
+
+Formally, there are $N$ assets indexed by $i$, each with daily returns $r_{it}$ from $t=1$ to $T$. A long-only portfolio of these $N$ assets reports its daily returns $R_t=\sum_{i=1}^N w^{*}_{it} r_{it}$, where $w^{*}_{it}$ is the unobservable actual dollar weight of asset $i$ in the portfolio at time $t$. The dollar weight $w^*_{it}=\frac{P_{it}\times S^*_{it}}{\sum P_{it}\times S^*_{it}}$, where $P_{it}$ is the observable price of asset $i$ and $S^*_{it}$ is the unobservable units of asset $i$ in the portfolio at time $t$. The portfolio periodically discloses the actual holdings $S^{*}_{it}$ if $t$ is a quarter's end. Given the asset returns $r_{it}$, portfolio returns $R_{t}$ and certain actual holdings $w^{*}_{it}$ (available for some $t$), is there a way to estimate the daily portfolio holdings $w^{*}_{it}$ (or $S^*_{it}$) for all $i$ and $t$?
+
+## My attempt to solve the problem
+
+As discussed earlier, the problem is similar to index tracking. The "index" to track is the observed portfolio's daily returns.
+
+### Quadratic problem
+
+The simplest solution formulates a [constrained quadratic program]{.mark} that solves for the daily portfolio holdings $\{w_{it} \equiv \frac{P_{it}\times S_{it}}{\sum_i P_{it}\times S_{it}}\}$ which minimize the sum of **tracking error** and **total costs**:[^note]
+
+[^note]: Note that $\{w\}$ contains $N\times T$ parameter to estimate, while I have $(N+1)\times T$ observations. I may occasionally know some actual $w^*_{t}$ when fund managers report the quarterly portfolio holdings, which can be used as additional constraints in the optimization.
+
+$$
+\begin{align}
+\min_{S_{it}} \quad & \underbrace{\sum_{t=1}^{T} \left( R_t - \sum_{i=1}^{N} w_{it} \times r_{it} \right)^2}_{\text{tracking error}} + \underbrace{\sum_{k=1}^K \lambda_k C_k(S)}_{\text{cost penalties}} \\
+\textrm{s.t.} \quad & w_{it}=w^{*}_{it} \quad \forall t\in \{\tau | \tau \text{ is a quarter's end}\} \\
+    & w_{it} \ge 0 \quad \forall i, t
+\end{align}
+$$ {#eq-objective}
+
+Here, $C_k(S)$ is one of the $K$ cost functions (of my choices) of $\{S_{it}\}$ and $\lambda_k>0$ is a regularization parameter that controls the intensity of such cost in the overall objective function.
+
+### Cost functions
+
+So, what cost functions should there be? I design the cost functions $C_k(S)$ in @eq-objective based on some stylized facts about mutual funds.[^stylized-facts]
+
+[^stylized-facts]: For example, around 30% of time, an asset's number of shares in a fund does not change. About 30% of time, the fund's holding of an asset decreases. The remaining 40% of time an asset's holding increases, 20% of which increases from 0 (i.e., new addition to the portfolio). These are based on my own checks of the 13F data.
+
+At first, I wanted to [minimize transaction costs from frequent and/or large portfolio changes]{.mark}. For instance, I do not want the portfolio to have 1M shares in a stock today, 0 shares the next day, then again 1M shares two days later. In practice, fund managers rarely make major adjustments every day. To capture this, I added a penalty that discourages large day-to-day changes in asset weights. The idea is simple: if today's holding of an asset is very different from yesterday's, there should be a cost.
+
+Mathematically, this first cost function penalizes the **squared difference in weights over time**. It heavily penalizes large changes, but allows small fluctuations without too much penalty. This helps enforce smoothness — encouraging the portfolio to evolve gradually over time rather than jump around.
+
+$$
+\begin{equation}
+    C_1(w) = \sum_{t=2}^{T} \sum_{i=1}^N \gamma_i \left(w_{it} - w_{i,t-1}\right)^2
+\end{equation}
+$$ {#eq-transaction-costs}
+where $\gamma_i$ is a parameter of the transaction cost of trading asset $i$, e.g., the asset's average price impact or illiquidity. I assume $\gamma_i=1$ for all assets for now.
+
+::: {.callout-note}
+This penalty works well to ensure that each asset’s weight moves gently across time, rather than sharply reacting day by day.
+:::
+
+But then I noticed something not ideal. With this "smoothness" term, the estimated portfolio showed small, frequent adjustments — tiny tweaks in asset weights every day. That didn’t look realistic. In real data, a fund might hold a position constant for weeks or months. I needed a way to reflect that.
+
+So I found out that I needed to add a second cost function that also [penalizes the presence of any change]{.mark} at all.
+
+$$
+\begin{equation}
+    C_2(w) = \sum_{t=2}^{T} \sum_{i=1}^N \varphi_i |w_{it} - w_{i,t-1}|
+\end{equation}
+$$ {#eq-transaction-costs-2}
+
+where $\varphi_i$ is a parameter assumed to be 1 for all assets for now.
+
+This new term penalizes the **absolute difference in weights between days**, rather than the squared difference. Unlike the first penalty, this one grows linearly with change size — and, more importantly, it applies the same cost whether a change is small or large (no squared diff!). This naturally leads the model to avoid unnecessary small trades, which matches fund behavior much more closely.
+
+::: {.callout-note}
+In other words, this second term promotes sparsity in changes. It encourages the model to stick with yesterday’s holdings unless there’s a strong reason to adjust.
+:::
+
+### ElasticNet?!
+
+Together, these two cost functions balance each other. 
+
+1. The first (squared difference, @eq-transaction-costs) smooths weight paths, allowing gentle adjustments rather than big shifts day to day. 
+2. The second (absolute difference, @eq-transaction-costs-2) discourages daily churning and encourages periods of no change. 
+
+This combination turns out to be conceptually similar to the [ElasticNet]{.mark} approach in regression — linearly combining the L1 and L2 penalties of the lasso and ridge methods.
+
+## What's next?
+
+This project began as an attempt to reverse-engineer daily portfolio holdings from limited disclosure data and observed returns. The early results are promising: even without hard constraints, the optimization recovers plausible dynamics using cost functions inspired by fund behavior. But the model remains incomplete. I haven’t yet imposed the binding constraints from known quarterly holdings nor have I incorporated richer institutional features about mutual funds.
+
+More broadly, this is a problem that could benefit from machine learning and AI that could capture more realistic adjustment patterns, while data-driven regularization might outperform hand-crafted penalties. Methodologically, this line of work offers tools for inferring fund behavior from noisy or partial data. It could shed light on the hidden mechanics of portfolio management. But to be truly useful, significant more work is needed.
+
