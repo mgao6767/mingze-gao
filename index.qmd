@@ -96,3 +96,53 @@ I write about many topics, taking a random walk away finance. Some recent ones a
 :::
 
 [Read more](posts/index.qmd){.btn .btn-outline-primary .btn role="button"} 
+
+## 📊 Site statistics
+
+::: {.site-views-chart-container}
+```{python}
+# | code-fold: true
+# | code-tools: false
+# fmt: off
+import pandas as pd, altair as alt
+from datetime import datetime, timedelta
+from google.analytics.data_v1beta import BetaAnalyticsDataClient
+from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, RunReportRequest
+from google.oauth2 import service_account
+
+key, pid = "ga-key.json", "301665506"
+creds = service_account.Credentials.from_service_account_file(key)
+client = BetaAnalyticsDataClient(credentials=creds)
+
+resp = client.run_report(RunReportRequest(
+  property=f"properties/{pid}",
+  dimensions=[Dimension(name="date")],
+  metrics=[Metric(name="screenPageViews")],
+  date_ranges=[DateRange(start_date="90daysAgo", end_date="today")]
+))
+
+df = pd.DataFrame([{
+  "date": datetime.strptime(r.dimension_values[0].value, "%Y%m%d"),
+  "views": int(r.metric_values[0].value)
+} for r in resp.rows]).sort_values("date")
+
+cap_99 = df["views"].quantile(0.99)
+print(f"Total Views (90 Days): {df['views'].sum():,.0f}")
+print(f"Total Views (90 Days): {df['views'].clip(upper=cap_99).sum():,.0f} (winsorized at 99%)")
+
+start_30d = df["date"].max() - timedelta(days=30)
+
+xscale = alt.Scale(domain=[start_30d, df["date"].max()])
+ymin, ymax = 0, df["views"].quantile(0.95)
+yrange = alt.Scale(domain=[ymin, ymax]) if (ymax - ymin) / (df["views"].max() - df["views"].min()) < 0.9 else alt.Scale()
+
+alt.renderers.set_embed_options(actions=False)
+alt.Chart(df).mark_line(point=True).encode(
+  x=alt.X("date:T", title=None, scale=xscale, axis=alt.Axis(format="%b %d")),
+  y=alt.Y("views:Q", title="Views", scale=yrange),
+  tooltip=["date:T", "views:Q"]
+).properties(
+  title="📈 Daily Site Views (Past 90 Days)", width="container", height=300
+).interactive()
+```
+:::
