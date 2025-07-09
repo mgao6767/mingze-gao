@@ -126,6 +126,7 @@ df = pd.DataFrame([{
   "views": int(r.metric_values[0].value)
 } for r in resp.rows]).sort_values("date")
 
+print(f'Last Updated:          {df["date"].max().strftime("%Y-%m-%d")}')
 cap_99 = df["views"].quantile(0.99)
 print(f"Total Views (90 Days): {df['views'].sum():,.0f}")
 print(f"Total Views (90 Days): {df['views'].clip(upper=cap_99).sum():,.0f} (winsorized at 99%)")
