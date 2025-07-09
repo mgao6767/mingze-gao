@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -382,75 +348,34 @@ No matching items
 <section id="site-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="site-statistics">📊 Site statistics</h2>
 <div class="site-views-chart-container">
-<div id="a68e3f78" class="cell" data-code-tools="false" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fmt: off</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd, altair <span class="im">as</span> alt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.analytics.data_v1beta <span class="im">import</span> BetaAnalyticsDataClient</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.analytics.data_v1beta.types <span class="im">import</span> DateRange, Dimension, Metric, RunReportRequest</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>key, pid <span class="op">=</span> <span class="st">"ga-key.json"</span>, <span class="st">"301665506"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>creds <span class="op">=</span> service_account.Credentials.from_service_account_file(key)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> BetaAnalyticsDataClient(credentials<span class="op">=</span>creds)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> client.run_report(RunReportRequest(</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="bu">property</span><span class="op">=</span><span class="ss">f"properties/</span><span class="sc">{</span>pid<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  dimensions<span class="op">=</span>[Dimension(name<span class="op">=</span><span class="st">"date"</span>)],</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  metrics<span class="op">=</span>[Metric(name<span class="op">=</span><span class="st">"screenPageViews"</span>)],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  date_ranges<span class="op">=</span>[DateRange(start_date<span class="op">=</span><span class="st">"90daysAgo"</span>, end_date<span class="op">=</span><span class="st">"today"</span>)]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame([{</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"date"</span>: datetime.strptime(r.dimension_values[<span class="dv">0</span>].value, <span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">"</span>),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"views"</span>: <span class="bu">int</span>(r.metric_values[<span class="dv">0</span>].value)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>} <span class="cf">for</span> r <span class="kw">in</span> resp.rows]).sort_values(<span class="st">"date"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>cap_99 <span class="op">=</span> df[<span class="st">"views"</span>].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Views (90 Days): </span><span class="sc">{</span>df[<span class="st">'views'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total Views (90 Days): </span><span class="sc">{</span>df[<span class="st">'views'</span>]<span class="sc">.</span>clip(upper<span class="op">=</span>cap_99)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.0f}</span><span class="ss"> (winsorized at 99%)"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>start_30d <span class="op">=</span> df[<span class="st">"date"</span>].<span class="bu">max</span>() <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>xscale <span class="op">=</span> alt.Scale(domain<span class="op">=</span>[start_30d, df[<span class="st">"date"</span>].<span class="bu">max</span>()])</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ymin, ymax <span class="op">=</span> <span class="dv">0</span>, df[<span class="st">"views"</span>].quantile(<span class="fl">0.95</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>yrange <span class="op">=</span> alt.Scale(domain<span class="op">=</span>[ymin, ymax]) <span class="cf">if</span> (ymax <span class="op">-</span> ymin) <span class="op">/</span> (df[<span class="st">"views"</span>].<span class="bu">max</span>() <span class="op">-</span> df[<span class="st">"views"</span>].<span class="bu">min</span>()) <span class="op">&lt;</span> <span class="fl">0.9</span> <span class="cf">else</span> alt.Scale()</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>alt.renderers.set_embed_options(actions<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>alt.Chart(df).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span>alt.X(<span class="st">"date:T"</span>, title<span class="op">=</span><span class="va">None</span>, scale<span class="op">=</span>xscale, axis<span class="op">=</span>alt.Axis(<span class="bu">format</span><span class="op">=</span><span class="st">"%b </span><span class="sc">%d</span><span class="st">"</span>)),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span>alt.Y(<span class="st">"views:Q"</span>, title<span class="op">=</span><span class="st">"Views"</span>, scale<span class="op">=</span>yrange),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  tooltip<span class="op">=</span>[<span class="st">"date:T"</span>, <span class="st">"views:Q"</span>]</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>).properties(</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="st">"📈 Daily Site Views (Past 90 Days)"</span>, width<span class="op">=</span><span class="st">"container"</span>, height<span class="op">=</span><span class="dv">300</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>).interactive()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div id="aa53e061" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>Total Views (90 Days): 40,686
-Total Views (90 Days): 23,758 (winsorized at 99%)</code></pre>
+<pre><code>Last Updated:              2025-07-09
+Total Views (365 Days):    110,662
+Total Visitors (365 Days): 23,366
+Total Views (90 Days):     40,749
+Total Views (90 Days):     23,821 (winsorized at 99%)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <style>
-  #altair-viz-159cc6d29b724da48f090888f4a6882e.vega-embed {
+  #altair-viz-8be1a6da48dd48508833de8e6f4677f5.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-159cc6d29b724da48f090888f4a6882e.vega-embed details,
-  #altair-viz-159cc6d29b724da48f090888f4a6882e.vega-embed details summary {
+  #altair-viz-8be1a6da48dd48508833de8e6f4677f5.vega-embed details,
+  #altair-viz-8be1a6da48dd48508833de8e6f4677f5.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-159cc6d29b724da48f090888f4a6882e"></div>
+<div id="altair-viz-8be1a6da48dd48508833de8e6f4677f5"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-159cc6d29b724da48f090888f4a6882e") {
-      outputDiv = document.getElementById("altair-viz-159cc6d29b724da48f090888f4a6882e");
+    if (outputDiv.id !== "altair-viz-8be1a6da48dd48508833de8e6f4677f5") {
+      outputDiv = document.getElementById("altair-viz-8be1a6da48dd48508833de8e6f4677f5");
     }
 
     const paths = {
@@ -498,7 +423,82 @@ Total Views (90 Days): 23,758 (winsorized at 99%)</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-fb98a8c8061f4525f185f44a7e9ac54e"}, "mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"field": "date", "type": "temporal"}, {"field": "views", "type": "quantitative"}], "x": {"axis": {"format": "%b %d"}, "field": "date", "scale": {"domain": ["2025-06-09T00:00:00", "2025-07-09T00:00:00"]}, "title": null, "type": "temporal"}, "y": {"field": "views", "scale": {"domain": [0, 255.0]}, "title": "Views", "type": "quantitative"}}, "height": 300, "params": [{"name": "param_1", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "\ud83d\udcc8 Daily Site Views (Past 90 Days)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-fb98a8c8061f4525f185f44a7e9ac54e": [{"date": "2025-04-10T00:00:00", "views": 267}, {"date": "2025-04-11T00:00:00", "views": 236}, {"date": "2025-04-12T00:00:00", "views": 156}, {"date": "2025-04-13T00:00:00", "views": 106}, {"date": "2025-04-14T00:00:00", "views": 171}, {"date": "2025-04-15T00:00:00", "views": 176}, {"date": "2025-04-16T00:00:00", "views": 241}, {"date": "2025-04-17T00:00:00", "views": 123}, {"date": "2025-04-18T00:00:00", "views": 21721}, {"date": "2025-04-19T00:00:00", "views": 2912}, {"date": "2025-04-20T00:00:00", "views": 2307}, {"date": "2025-04-21T00:00:00", "views": 161}, {"date": "2025-04-22T00:00:00", "views": 149}, {"date": "2025-04-23T00:00:00", "views": 144}, {"date": "2025-04-24T00:00:00", "views": 168}, {"date": "2025-04-25T00:00:00", "views": 165}, {"date": "2025-04-26T00:00:00", "views": 165}, {"date": "2025-04-27T00:00:00", "views": 166}, {"date": "2025-04-28T00:00:00", "views": 129}, {"date": "2025-04-29T00:00:00", "views": 243}, {"date": "2025-04-30T00:00:00", "views": 144}, {"date": "2025-05-01T00:00:00", "views": 215}, {"date": "2025-05-02T00:00:00", "views": 132}, {"date": "2025-05-03T00:00:00", "views": 107}, {"date": "2025-05-04T00:00:00", "views": 124}, {"date": "2025-05-05T00:00:00", "views": 138}, {"date": "2025-05-06T00:00:00", "views": 152}, {"date": "2025-05-07T00:00:00", "views": 174}, {"date": "2025-05-08T00:00:00", "views": 165}, {"date": "2025-05-09T00:00:00", "views": 159}, {"date": "2025-05-10T00:00:00", "views": 142}, {"date": "2025-05-11T00:00:00", "views": 148}, {"date": "2025-05-12T00:00:00", "views": 122}, {"date": "2025-05-13T00:00:00", "views": 146}, {"date": "2025-05-14T00:00:00", "views": 184}, {"date": "2025-05-15T00:00:00", "views": 218}, {"date": "2025-05-16T00:00:00", "views": 169}, {"date": "2025-05-17T00:00:00", "views": 140}, {"date": "2025-05-18T00:00:00", "views": 125}, {"date": "2025-05-19T00:00:00", "views": 158}, {"date": "2025-05-20T00:00:00", "views": 182}, {"date": "2025-05-21T00:00:00", "views": 136}, {"date": "2025-05-22T00:00:00", "views": 217}, {"date": "2025-05-23T00:00:00", "views": 140}, {"date": "2025-05-24T00:00:00", "views": 121}, {"date": "2025-05-25T00:00:00", "views": 107}, {"date": "2025-05-26T00:00:00", "views": 154}, {"date": "2025-05-27T00:00:00", "views": 190}, {"date": "2025-05-28T00:00:00", "views": 170}, {"date": "2025-05-29T00:00:00", "views": 146}, {"date": "2025-05-30T00:00:00", "views": 174}, {"date": "2025-05-31T00:00:00", "views": 123}, {"date": "2025-06-01T00:00:00", "views": 104}, {"date": "2025-06-02T00:00:00", "views": 171}, {"date": "2025-06-03T00:00:00", "views": 190}, {"date": "2025-06-04T00:00:00", "views": 197}, {"date": "2025-06-05T00:00:00", "views": 146}, {"date": "2025-06-06T00:00:00", "views": 138}, {"date": "2025-06-07T00:00:00", "views": 115}, {"date": "2025-06-08T00:00:00", "views": 99}, {"date": "2025-06-09T00:00:00", "views": 154}, {"date": "2025-06-10T00:00:00", "views": 195}, {"date": "2025-06-11T00:00:00", "views": 210}, {"date": "2025-06-12T00:00:00", "views": 182}, {"date": "2025-06-13T00:00:00", "views": 277}, {"date": "2025-06-14T00:00:00", "views": 173}, {"date": "2025-06-15T00:00:00", "views": 94}, {"date": "2025-06-16T00:00:00", "views": 110}, {"date": "2025-06-17T00:00:00", "views": 131}, {"date": "2025-06-18T00:00:00", "views": 170}, {"date": "2025-06-19T00:00:00", "views": 154}, {"date": "2025-06-20T00:00:00", "views": 190}, {"date": "2025-06-21T00:00:00", "views": 126}, {"date": "2025-06-22T00:00:00", "views": 104}, {"date": "2025-06-23T00:00:00", "views": 156}, {"date": "2025-06-24T00:00:00", "views": 160}, {"date": "2025-06-25T00:00:00", "views": 169}, {"date": "2025-06-26T00:00:00", "views": 179}, {"date": "2025-06-27T00:00:00", "views": 192}, {"date": "2025-06-28T00:00:00", "views": 102}, {"date": "2025-06-29T00:00:00", "views": 90}, {"date": "2025-06-30T00:00:00", "views": 141}, {"date": "2025-07-01T00:00:00", "views": 182}, {"date": "2025-07-02T00:00:00", "views": 143}, {"date": "2025-07-03T00:00:00", "views": 132}, {"date": "2025-07-04T00:00:00", "views": 134}, {"date": "2025-07-05T00:00:00", "views": 68}, {"date": "2025-07-06T00:00:00", "views": 142}, {"date": "2025-07-07T00:00:00", "views": 190}, {"date": "2025-07-08T00:00:00", "views": 183}, {"date": "2025-07-09T00:00:00", "views": 65}]}}, {"actions": false, "mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-41799f631f7c433e0a472ef8ac2799af"}, "mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"field": "date", "type": "temporal"}, {"field": "views", "type": "quantitative"}], "x": {"axis": {"format": "%b %d"}, "field": "date", "scale": {"domain": ["2025-06-09T00:00:00", "2025-07-09T00:00:00"]}, "title": null, "type": "temporal"}, "y": {"field": "views", "scale": {"domain": [0, 255.0]}, "title": "Views", "type": "quantitative"}}, "height": 300, "params": [{"name": "param_13", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "\ud83d\udcc8 Daily Site Views (Past 90 Days)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-41799f631f7c433e0a472ef8ac2799af": [{"date": "2025-04-10T00:00:00", "views": 267}, {"date": "2025-04-11T00:00:00", "views": 236}, {"date": "2025-04-12T00:00:00", "views": 156}, {"date": "2025-04-13T00:00:00", "views": 106}, {"date": "2025-04-14T00:00:00", "views": 171}, {"date": "2025-04-15T00:00:00", "views": 176}, {"date": "2025-04-16T00:00:00", "views": 241}, {"date": "2025-04-17T00:00:00", "views": 123}, {"date": "2025-04-18T00:00:00", "views": 21721}, {"date": "2025-04-19T00:00:00", "views": 2912}, {"date": "2025-04-20T00:00:00", "views": 2307}, {"date": "2025-04-21T00:00:00", "views": 161}, {"date": "2025-04-22T00:00:00", "views": 149}, {"date": "2025-04-23T00:00:00", "views": 144}, {"date": "2025-04-24T00:00:00", "views": 168}, {"date": "2025-04-25T00:00:00", "views": 165}, {"date": "2025-04-26T00:00:00", "views": 165}, {"date": "2025-04-27T00:00:00", "views": 166}, {"date": "2025-04-28T00:00:00", "views": 129}, {"date": "2025-04-29T00:00:00", "views": 243}, {"date": "2025-04-30T00:00:00", "views": 144}, {"date": "2025-05-01T00:00:00", "views": 215}, {"date": "2025-05-02T00:00:00", "views": 132}, {"date": "2025-05-03T00:00:00", "views": 107}, {"date": "2025-05-04T00:00:00", "views": 124}, {"date": "2025-05-05T00:00:00", "views": 138}, {"date": "2025-05-06T00:00:00", "views": 152}, {"date": "2025-05-07T00:00:00", "views": 174}, {"date": "2025-05-08T00:00:00", "views": 165}, {"date": "2025-05-09T00:00:00", "views": 159}, {"date": "2025-05-10T00:00:00", "views": 142}, {"date": "2025-05-11T00:00:00", "views": 148}, {"date": "2025-05-12T00:00:00", "views": 122}, {"date": "2025-05-13T00:00:00", "views": 146}, {"date": "2025-05-14T00:00:00", "views": 184}, {"date": "2025-05-15T00:00:00", "views": 218}, {"date": "2025-05-16T00:00:00", "views": 169}, {"date": "2025-05-17T00:00:00", "views": 140}, {"date": "2025-05-18T00:00:00", "views": 125}, {"date": "2025-05-19T00:00:00", "views": 158}, {"date": "2025-05-20T00:00:00", "views": 182}, {"date": "2025-05-21T00:00:00", "views": 136}, {"date": "2025-05-22T00:00:00", "views": 217}, {"date": "2025-05-23T00:00:00", "views": 140}, {"date": "2025-05-24T00:00:00", "views": 121}, {"date": "2025-05-25T00:00:00", "views": 107}, {"date": "2025-05-26T00:00:00", "views": 154}, {"date": "2025-05-27T00:00:00", "views": 190}, {"date": "2025-05-28T00:00:00", "views": 170}, {"date": "2025-05-29T00:00:00", "views": 146}, {"date": "2025-05-30T00:00:00", "views": 174}, {"date": "2025-05-31T00:00:00", "views": 123}, {"date": "2025-06-01T00:00:00", "views": 104}, {"date": "2025-06-02T00:00:00", "views": 171}, {"date": "2025-06-03T00:00:00", "views": 190}, {"date": "2025-06-04T00:00:00", "views": 197}, {"date": "2025-06-05T00:00:00", "views": 146}, {"date": "2025-06-06T00:00:00", "views": 138}, {"date": "2025-06-07T00:00:00", "views": 115}, {"date": "2025-06-08T00:00:00", "views": 99}, {"date": "2025-06-09T00:00:00", "views": 154}, {"date": "2025-06-10T00:00:00", "views": 195}, {"date": "2025-06-11T00:00:00", "views": 210}, {"date": "2025-06-12T00:00:00", "views": 182}, {"date": "2025-06-13T00:00:00", "views": 277}, {"date": "2025-06-14T00:00:00", "views": 173}, {"date": "2025-06-15T00:00:00", "views": 94}, {"date": "2025-06-16T00:00:00", "views": 110}, {"date": "2025-06-17T00:00:00", "views": 131}, {"date": "2025-06-18T00:00:00", "views": 170}, {"date": "2025-06-19T00:00:00", "views": 154}, {"date": "2025-06-20T00:00:00", "views": 190}, {"date": "2025-06-21T00:00:00", "views": 126}, {"date": "2025-06-22T00:00:00", "views": 104}, {"date": "2025-06-23T00:00:00", "views": 156}, {"date": "2025-06-24T00:00:00", "views": 160}, {"date": "2025-06-25T00:00:00", "views": 169}, {"date": "2025-06-26T00:00:00", "views": 179}, {"date": "2025-06-27T00:00:00", "views": 192}, {"date": "2025-06-28T00:00:00", "views": 102}, {"date": "2025-06-29T00:00:00", "views": 90}, {"date": "2025-06-30T00:00:00", "views": 141}, {"date": "2025-07-01T00:00:00", "views": 182}, {"date": "2025-07-02T00:00:00", "views": 143}, {"date": "2025-07-03T00:00:00", "views": 132}, {"date": "2025-07-04T00:00:00", "views": 134}, {"date": "2025-07-05T00:00:00", "views": 68}, {"date": "2025-07-06T00:00:00", "views": 142}, {"date": "2025-07-07T00:00:00", "views": 190}, {"date": "2025-07-08T00:00:00", "views": 183}, {"date": "2025-07-09T00:00:00", "views": 128}]}}, {"actions": false, "mode": "vega-lite"});
+</script>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="site-views-by-region-container">
+<div id="65f5ef0d" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="27">
+
+<style>
+  #altair-viz-116f37d18c1c407eaa1aab22df1bd26a.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-116f37d18c1c407eaa1aab22df1bd26a.vega-embed details,
+  #altair-viz-116f37d18c1c407eaa1aab22df1bd26a.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-116f37d18c1c407eaa1aab22df1bd26a"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-116f37d18c1c407eaa1aab22df1bd26a") {
+      outputDiv = document.getElementById("altair-viz-116f37d18c1c407eaa1aab22df1bd26a");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-e62031ed49f897dcfdb4433db7858677"}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "region", "type": "nominal"}, {"field": "views", "type": "quantitative"}], "x": {"field": "views", "title": "Views", "type": "quantitative"}, "y": {"field": "region", "sort": "-x", "title": null, "type": "nominal"}}, "height": 400, "title": "\ud83c\udf0d Top 20 Regions by Views (Past 90 Days)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-e62031ed49f897dcfdb4433db7858677": [{"region": "United States", "views": 5829}, {"region": "Australia", "views": 3107}, {"region": "China", "views": 1915}, {"region": "United Kingdom", "views": 1828}, {"region": "India", "views": 1321}, {"region": "Japan", "views": 1300}, {"region": "Germany", "views": 1220}, {"region": "Bangladesh", "views": 1064}, {"region": "France", "views": 1045}, {"region": "Canada", "views": 1033}, {"region": "Indonesia", "views": 1030}, {"region": "Brazil", "views": 869}, {"region": "Russia", "views": 846}, {"region": "Spain", "views": 836}, {"region": "Vietnam", "views": 729}, {"region": "South Korea", "views": 701}, {"region": "Mexico", "views": 668}, {"region": "T\u00fcrkiye", "views": 644}, {"region": "Nigeria", "views": 608}, {"region": "Hong Kong", "views": 590}]}}, {"actions": false, "mode": "vega-lite"});
 </script>
 </div>
 </div>
