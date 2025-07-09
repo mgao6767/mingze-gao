@@ -101,8 +101,7 @@ I write about many topics, taking a random walk away finance. Some recent ones a
 
 ::: {.site-views-chart-container}
 ```{python}
-# | code-fold: true
-# | code-tools: false
+# | echo: false
 # fmt: off
 import pandas as pd, altair as alt
 from datetime import datetime, timedelta
@@ -114,6 +113,26 @@ key, pid = "ga-key.json", "301665506"
 creds = service_account.Credentials.from_service_account_file(key)
 client = BetaAnalyticsDataClient(credentials=creds)
 
+# Past-year totals (views + users)
+resp_year = client.run_report(RunReportRequest(
+    property=f"properties/{pid}",
+    dimensions=[],
+    metrics=[
+        Metric(name="screenPageViews"),
+        Metric(name="activeUsers")
+    ],
+    date_ranges=[DateRange(start_date="365daysAgo", end_date="today")]
+))
+
+total_views_365 = int(resp_year.rows[0].metric_values[0].value)
+total_users_365 = int(resp_year.rows[0].metric_values[1].value)
+
+# Stats
+print(f'Last Updated:              {datetime.today().strftime("%Y-%m-%d")}')
+print(f"Total Views (365 Days):    {total_views_365:,}")
+print(f"Total Visitors (365 Days): {total_users_365:,}")
+
+# ---- 1. Daily Views: 90 Days ----
 resp = client.run_report(RunReportRequest(
   property=f"properties/{pid}",
   dimensions=[Dimension(name="date")],
@@ -126,24 +145,64 @@ df = pd.DataFrame([{
   "views": int(r.metric_values[0].value)
 } for r in resp.rows]).sort_values("date")
 
-print(f'Last Updated:          {df["date"].max().strftime("%Y-%m-%d")}')
+# Stats
 cap_99 = df["views"].quantile(0.99)
-print(f"Total Views (90 Days): {df['views'].sum():,.0f}")
-print(f"Total Views (90 Days): {df['views'].clip(upper=cap_99).sum():,.0f} (winsorized at 99%)")
+print(f"Total Views (90 Days):     {df['views'].sum():,.0f}")
+print(f"Total Views (90 Days):     {df['views'].clip(upper=cap_99).sum():,.0f} (winsorized at 99%)")
 
+# Plot 1: Line chart
 start_30d = df["date"].max() - timedelta(days=30)
-
 xscale = alt.Scale(domain=[start_30d, df["date"].max()])
 ymin, ymax = 0, df["views"].quantile(0.95)
 yrange = alt.Scale(domain=[ymin, ymax]) if (ymax - ymin) / (df["views"].max() - df["views"].min()) < 0.9 else alt.Scale()
 
 alt.renderers.set_embed_options(actions=False)
-alt.Chart(df).mark_line(point=True).encode(
+line_chart = alt.Chart(df).mark_line(point=True).encode(
   x=alt.X("date:T", title=None, scale=xscale, axis=alt.Axis(format="%b %d")),
   y=alt.Y("views:Q", title="Views", scale=yrange),
   tooltip=["date:T", "views:Q"]
 ).properties(
-  title="📈 Daily Site Views (Past 90 Days)", width="container", height=300
+  title="📈 Daily Site Views (Past 90 Days)",
+  width="container",
+  height=300
 ).interactive()
+
+line_chart
+```
+:::
+
+<br>
+
+::: {.site-views-by-region-container}
+```{python}
+# | echo: false
+# fmt: off
+# ---- 2. Views by Country: 90 Days ----
+resp_country = client.run_report(RunReportRequest(
+  property=f"properties/{pid}",
+  dimensions=[Dimension(name="country")],
+  metrics=[Metric(name="screenPageViews")],
+  date_ranges=[DateRange(start_date="90daysAgo", end_date="today")]
+))
+
+df_country = pd.DataFrame([{
+  "region": row.dimension_values[0].value,
+  "views": int(row.metric_values[0].value)
+} for row in resp_country.rows])
+
+df_country = df_country[df_country["views"] > 0].sort_values("views", ascending=False).head(20)
+
+# Plot 2: Bar chart
+bar_chart = alt.Chart(df_country).mark_bar().encode(
+  x=alt.X("views:Q", title="Views"),
+  y=alt.Y("region:N", sort="-x", title=None),
+  tooltip=["region:N", "views:Q"]
+).properties(
+  title="🌍 Top 20 Regions by Views (Past 90 Days)",
+  width="container",
+  height=400
+)
+
+bar_chart
 ```
 :::
