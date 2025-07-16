@@ -1,21 +1,44 @@
-<table class="quarto-listing-table table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Slides</th>
-      <th>PDF</th>
-    </tr>
-  </thead>
 
-  <tbody class="list">
-    <% for (const item of items) { %>
-      <tr <%= metadataAttrs(item) %>>
-        <td><%= item.date %></td>
-        <td><a href="<%- item.path %>"><%= item.title %></a></td>
-        <% if (item['pdf-name']) { %>
-          <td><a href="<%- item.path.replace('index.qmd', item['pdf-name']) %>">PDF</a></td>
-        <% } %>
+<% if (templateParams.lectures) { %>
+  <table class="quarto-listing-table table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>PDF</th>
       </tr>
-    <% } %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody class="list">
+      <% for (const item of items) { %>
+        <tr <%= metadataAttrs(item) %>>
+          <td class="listing-date"><%= item.date %></td>
+          <td><a href="<%- item.path %>" class="listing-title"><%= item.title %></a></td>
+          <% if (item['pdf-name']) { %>
+            <td><a href="<%- item.path.replace('index.qmd', item['pdf-name']) %>">PDF</a></td>
+          <% } %>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>
+
+<% if (templateParams.workshops) { %>
+  <table class="quarto-listing-table table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Topic</th>
+      </tr>
+    </thead>
+
+    <tbody class="list">
+      <% for (const item of items) { %>
+        <tr <%= metadataAttrs(item) %>>
+          <td class="listing-date"><%= item.date %></td>
+          <td><a href="<%- item.path %>" class="listing-title"><%= item.title %></a></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>
