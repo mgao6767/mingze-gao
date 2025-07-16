@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Mingze Gao">
-<meta name="dcterms.date" content="2025-03-27">
+<meta name="dcterms.date" content="2025-04-03">
 
-<title>AFIN8003 - Workshop 4 – Mingze Gao</title>
+<title>AFIN8003 - Workshop 5 – Mingze Gao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,38 +78,9 @@ gtag('js', new Date());
 gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta name="twitter:title" content="AFIN8003 - Workshop 4 – Mingze Gao">
+<meta name="twitter:title" content="AFIN8003 - Workshop 5 – Mingze Gao">
 <meta name="twitter:description" content="Banking and Financial Intermediation">
 <meta name="twitter:card" content="summary">
 </head>
@@ -171,23 +142,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mcq---repricing-model" id="toc-mcq---repricing-model" class="nav-link active" data-scroll-target="#mcq---repricing-model">MCQ - Repricing model</a></li>
-  <li><a href="#mcq---duration-model" id="toc-mcq---duration-model" class="nav-link" data-scroll-target="#mcq---duration-model">MCQ - Duration model</a></li>
+  <li><a href="#key-concepts-of-market-risk" id="toc-key-concepts-of-market-risk" class="nav-link active" data-scroll-target="#key-concepts-of-market-risk">Key concepts of market risk</a></li>
+  <li><a href="#mcq" id="toc-mcq" class="nav-link" data-scroll-target="#mcq">MCQ</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short answer questions</a>
   <ul class="collapse">
-  <li><a href="#repricing-model" id="toc-repricing-model" class="nav-link" data-scroll-target="#repricing-model">Repricing model</a></li>
-  <li><a href="#duration-model" id="toc-duration-model" class="nav-link" data-scroll-target="#duration-model">Duration model</a></li>
-  </ul></li>
+  <li><a href="#q1" id="toc-q1" class="nav-link" data-scroll-target="#q1">Q1</a></li>
+  <li><a href="#q2---dear" id="toc-q2---dear" class="nav-link" data-scroll-target="#q2---dear">Q2 - DEAR</a></li>
+  <li><a href="#q3---var-and-es" id="toc-q3---var-and-es" class="nav-link" data-scroll-target="#q3---var-and-es">Q3 - VaR and ES</a></li>
   <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
+  </ul></li>
+  <li><a href="#var-and-es-calculation-in-excel" id="toc-var-and-es-calculation-in-excel" class="nav-link" data-scroll-target="#var-and-es-calculation-in-excel">VaR and ES calculation in Excel</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Workshop4.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Workshop5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AFIN8003 - Workshop 4</h1>
+<h1 class="title">AFIN8003 - Workshop 5</h1>
 <p class="subtitle lead">Banking and Financial Intermediation</p>
   <div class="quarto-categories">
     <div class="quarto-category">AFIN8003</div>
@@ -216,7 +189,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 27, 2025</p>
+      <p class="date">April 3, 2025</p>
     </div>
   </div>
   
@@ -228,308 +201,155 @@ window.Quarto = {
 </header>
 
 
-<section id="mcq---repricing-model" class="level1">
-<h1>MCQ - Repricing model</h1>
-<ol type="1">
-<li><p>Because of its simplicity, the Australian Prudential Regulation Authority (APRA) requires smaller ADIs to use _______ as their primary measure of interest rate risk.</p>
-<ul class="task-list">
-<li><label><input type="checkbox">the maturity model</label></li>
-<li><label><input type="checkbox">the repricing model</label></li>
-<li><label><input type="checkbox">the duration model</label></li>
-<li><label><input type="checkbox">the option pricing model</label></li>
-</ul></li>
-<li><p>The difference between the dollar amount of assets whose interest rates will change and the dollar amount of liabilities whose interest rates will change when market rates change in some given time window is:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">rate-sensitive assets</label></li>
-<li><label><input type="checkbox">the repricing gap</label></li>
-<li><label><input type="checkbox">rate-sensitive liabilities</label></li>
-<li><label><input type="checkbox">the duration gap</label></li>
-</ul></li>
-<li><p>A positive gap implies that a decrease in interest rates will cause _______ in net interest income</p>
-<ul class="task-list">
-<li><label><input type="checkbox">decrease</label></li>
-<li><label><input type="checkbox">increase</label></li>
-<li><label><input type="checkbox">no change</label></li>
-<li><label><input type="checkbox">an uncertain change</label></li>
-</ul></li>
-<li><p>AFIN Bank has a repricing gap of -$400 million. Interest rates are expected to increase by 1 per cent. What will be the impact on the bank’s net interest income (NII)?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">4 million</label></li>
-<li><label><input type="checkbox">2 million</label></li>
-<li><label><input type="checkbox">-2 million</label></li>
-<li><label><input type="checkbox">-4 million</label></li>
-</ul></li>
-<li><p>An FI operating with a negative gap implies that management expects interest rates</p>
-<ul class="task-list">
-<li><label><input type="checkbox">to decrease</label></li>
-<li><label><input type="checkbox">to increase</label></li>
-<li><label><input type="checkbox">to not change</label></li>
-<li><label><input type="checkbox">to have an uncertain change</label></li>
-</ul></li>
-<li><p>Ignoring information regarding the distribution of assets and liabilities within buckets when defining buckets over a range of maturities is the problem of:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">runoff</label></li>
-<li><label><input type="checkbox">ignoring cash flows from off-balance-sheet activities</label></li>
-<li><label><input type="checkbox">over-aggregation</label></li>
-<li><label><input type="checkbox">market value effects</label></li>
-</ul></li>
-<li><p>The repricing model:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">implicitly assumes book value accounting</label></li>
-<li><label><input type="checkbox">is over-aggregative</label></li>
-<li><label><input type="checkbox">ignores the problem of runoffs</label></li>
-<li><label><input type="checkbox">All of the listed options are correct.</label></li>
-</ul></li>
-</ol>
+<p>In this workshop, we will work together on some example questions to review the key concepts covered last week in the guest lecture on Market Risk. Then we will work on some simple cases in Excel to prepare for your individual assignment.</p>
+<section id="key-concepts-of-market-risk" class="level1">
+<h1>Key concepts of market risk</h1>
+<p>Refer to the <a href="https://mingze-gao.com/teaching/AFIN8003/2025S1/Week5/">lecture slides</a>.</p>
 </section>
-<section id="mcq---duration-model" class="level1">
-<h1>MCQ - Duration model</h1>
+<section id="mcq" class="level1">
+<h1>MCQ</h1>
 <ol type="1">
-<li><p>A measure of the weighted-average time to maturity on an asset using the relative present values of the cash flows as weights is:</p>
+<li><p>The risk related to the uncertainty of an FI’s earnings on its trading portfolio caused by changes in market conditions is:</p>
 <ul class="task-list">
-<li><label><input type="checkbox">average maturity</label></li>
-<li><label><input type="checkbox">duration</label></li>
-<li><label><input type="checkbox">the Monte Carlo simulation</label></li>
-<li><label><input type="checkbox">the funding gap</label></li>
+<li><label><input type="checkbox">liquidity risk</label></li>
+<li><label><input type="checkbox">interest rate risk</label></li>
+<li><label><input type="checkbox">credit risk</label></li>
+<li><label><input type="checkbox">market risk</label></li>
 </ul></li>
-<li><p>An FI has invested in a five-year, zero-coupon bond that is selling to yield 6 per cent. What is the duration of this bond?</p>
+<li><p>Market risk, as measured by daily earnings at risk (DEAR), includes which of the following components?</p>
 <ul class="task-list">
-<li><label><input type="checkbox">less than 5 years</label></li>
-<li><label><input type="checkbox">more than 5 years</label></li>
-<li><label><input type="checkbox">exactly 5 years</label></li>
-<li><label><input type="checkbox">less than 5 years only if using semi-annual compounding</label></li>
-</ul></li>
-<li><p>An FI has invested $400 in an asset with a duration of 2 years and $600 in an asset with a duration of 4 years. What is the duration of the total assets?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">3 years</label></li>
-<li><label><input type="checkbox">0.8 years</label></li>
-<li><label><input type="checkbox">2.4 years</label></li>
-<li><label><input type="checkbox">3.2 years</label></li>
-</ul></li>
-<li><p>Duration increases with the maturity of a fixed-income asset:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">at a decreasing rate</label></li>
-<li><label><input type="checkbox">at a constant rate</label></li>
-<li><label><input type="checkbox">at an increasing rate</label></li>
-<li><label><input type="checkbox">and can become infinite</label></li>
-</ul></li>
-<li><p>The higher the coupon or promised interest payment is on a fixed-income asset:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">the higher the duration</label></li>
-<li><label><input type="checkbox">the more likely it is that impact on duration cannot be determined</label></li>
-<li><label><input type="checkbox">the lower the duration</label></li>
-<li><label><input type="checkbox">the more likely it is that the duration will eventually become negative</label></li>
-</ul></li>
-<li><p>If interest rate shocks leave the value of an FI’s equity unaffected, then:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">the duration of its assets must equal the duration of its liabilities</label></li>
-<li><label><input type="checkbox">its duration gap must be positive</label></li>
-<li><label><input type="checkbox">its leverage adjusted duration gap must be positive</label></li>
-<li><label><input type="checkbox">its leverage adjusted duration gap must be zero</label></li>
-</ul></li>
-<li><p>The effect of interest rate changes on the market value of an FI’s equity is determined by:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">the size of the interest rate shock</label></li>
-<li><label><input type="checkbox">the size of the FI</label></li>
-<li><label><input type="checkbox">the leverage adjusted duration gap</label></li>
+<li><label><input type="checkbox">potential adverse move in yield</label></li>
+<li><label><input type="checkbox">price sensitivity of the position</label></li>
+<li><label><input type="checkbox">dollar market value of the position</label></li>
 <li><label><input type="checkbox">All of the listed options are correct.</label></li>
 </ul></li>
-<li><p>In order for an FI manager to immunise the net worth ratio against interest rate shocks, then the:</p>
+<li><p>Price volatility includes which of the following components?</p>
 <ul class="task-list">
-<li><label><input type="checkbox">duration of assets must equal the duration of liabilities</label></li>
-<li><label><input type="checkbox">duration gap must be positive</label></li>
-<li><label><input type="checkbox">leverage adjusted duration gap must be positive</label></li>
-<li><label><input type="checkbox">leverage adjusted duration gap must be zero</label></li>
+<li><label><input type="checkbox">potential adverse move in yield and price sensitivity of the position</label></li>
+<li><label><input type="checkbox">potential favourable move in yield and price sensitivity of the position</label></li>
+<li><label><input type="checkbox">potential adverse move in yield and dollar market value of the position</label></li>
+<li><label><input type="checkbox">potential favourable move in yield and dollar market value of the position</label></li>
 </ul></li>
-<li><p>The duration model:</p>
+<li><p>Which of the following is often criticised for its need to assume a normal or symmetric distribution for all asset returns?</p>
 <ul class="task-list">
-<li><label><input type="checkbox">underestimates price decreases</label></li>
-<li><label><input type="checkbox">overestimates price increases</label></li>
-<li><label><input type="checkbox">is more accurate for large interest rate changes because of its price–yield convexity assumption</label></li>
-<li><label><input type="checkbox">is less accurate for large interest rate changes because of its price–yield linearity assumption</label></li>
+<li><label><input type="checkbox">back simulation</label></li>
+<li><label><input type="checkbox">RiskMetrics</label></li>
+<li><label><input type="checkbox">Monte Carlo simulation</label></li>
+<li><label><input type="checkbox">CreditMetrics</label></li>
 </ul></li>
-<li><p>The larger the duration for an asset or liability:</p>
+<li><p>The expected shortfall (ES) approach to measuring market risk has the advantage that it:</p>
 <ul class="task-list">
-<li><label><input type="checkbox">the higher the return on the asset</label></li>
-<li><label><input type="checkbox">the lower the interest cost of the liability</label></li>
-<li><label><input type="checkbox">the higher the interest rate sensitivity of that asset or liability</label></li>
-<li><label><input type="checkbox">the lower the interest rate sensitivity of that asset or liability</label></li>
-</ul></li>
-<li><p>Which of the following assets or liabilities fit the one‑year rate or repricing sensitivity test?</p>
-<ul class="task-list">
-<li><label><input type="checkbox">91-day treasury notes</label></li>
-<li><label><input type="checkbox">one-year treasury bonds</label></li>
-<li><label><input type="checkbox">20-year treasury bonds</label></li>
-<li><label><input type="checkbox">20-year floating-rate corporate bonds with annual repricing</label></li>
-<li><label><input type="checkbox">30-year floating-rate mortgages with annual repricing</label></li>
-<li><label><input type="checkbox">30-year floating-rate mortgages with biannual repricing</label></li>
-<li><label><input type="checkbox">overnight interbank funds</label></li>
-<li><label><input type="checkbox">nine-month fixed-rate term deposits</label></li>
-<li><label><input type="checkbox">one-year fixed rate term deposits</label></li>
-<li><label><input type="checkbox">five-year floating-rate corporate bonds with annual repricing</label></li>
-<li><label><input type="checkbox">common equity</label></li>
+<li><label><input type="checkbox">measures tail risk precisely</label></li>
+<li><label><input type="checkbox">is less comprehensive than VAR</label></li>
+<li><label><input type="checkbox">will not be considered in Basel III</label></li>
+<li><label><input type="checkbox">measures credit risk</label></li>
 </ul></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level1">
 <h1>Short answer questions</h1>
-<!-- ## Q1 - Repricing gap
-
-A bank manager is quite certain that interest rates are going to fall within the next six months. How should the bank manager adjust the ban’s six-month repricing gap and spread to take advantage of this anticipated rise? What if the manger believes rates will rise in the next six months?
-
-
-::: {.content-hidden unless-meta="include-answers"}
-::: {.callout-tip title="Example answer"}
-When interest rates are expected to fall, a bank should set its repricing gap to a negative position. Further, tho manager would want to increase the spread between the return on RSAs and RSLs. 
-In this case, as rates fall, interest income will fall by less than interest expense. The result is an increase in net interest income. 
-
-When interest rates are expected to rise, a bank should set its repricing gap to a positive position.
-Again, the manager would want to increase the spread between the return on RSAs and RSLs. In this case, as rates rise, interest income will rise by more than interest expense. The result is an increase in net interest income.
-:::
-::: -->
-<section id="repricing-model" class="level2">
-<h2 class="anchored" data-anchor-id="repricing-model">Repricing model</h2>
-<p>Consider the following balance sheet for AFIN Bank (in millions):</p>
+<section id="q1" class="level2">
+<h2 class="anchored" data-anchor-id="q1">Q1</h2>
+<p>The mean change in the daily yields of a 15-year, zero-coupon bond has been 5 basis points (bp) over the past year with a standard deviation of 15 bp. Use these data and assume the yield changes are normally distributed.</p>
+<ol type="a">
+<li>What is the highest yield change expected if a 99 per cent confidence limit is required; that is, adverse moves will not occur more than one day in 100?</li>
+<li>What is the highest yield change expected if a 95 per cent confidence limit is required?</li>
+</ol>
+</section>
+<section id="q2---dear" class="level2">
+<h2 class="anchored" data-anchor-id="q2---dear">Q2 - DEAR</h2>
+<p>Bank Alpha has an inventory of AAA-rated, 15-year zero-coupon bonds with a face value of $400 million. The bonds are currently yielding 9.5% in the over-the-counter market.</p>
+<ol type="a">
+<li>What is the modified duration of these bonds?</li>
+<li>What is the price volatility if the potential adverse move in yields is 25 basis points?</li>
+<li>What is the DEAR?</li>
+<li>If the price volatility is based on a 99% confidence limit and a mean historical change in daily yields of 0.0%, what is the implied standard deviation of daily yield changes?</li>
+</ol>
+</section>
+<section id="q3---var-and-es" class="level2">
+<h2 class="anchored" data-anchor-id="q3---var-and-es">Q3 - VaR and ES</h2>
+<p>Consider the following discrete probability distribution of payoffs for two securities, A and B, held in the trading portfolio of an FI:</p>
 <table class="table">
-<colgroup>
-<col style="width: 34%">
-<col style="width: 10%">
-<col style="width: 44%">
-<col style="width: 10%">
-</colgroup>
 <thead>
 <tr class="header">
-<th><strong>Assets</strong></th>
-<th><strong>$</strong></th>
-<th><strong>Liabilities and equity</strong></th>
-<th><strong>$</strong></th>
+<th>Probability</th>
+<th>A</th>
+<th>Probability</th>
+<th>B</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Floating-rate mortgages</td>
-<td>50</td>
-<td>1-year term deposits</td>
-<td>70</td>
+<td>50%</td>
+<td>$80m</td>
+<td>50%</td>
+<td>$80m</td>
 </tr>
 <tr class="even">
-<td>(currently 10% annually)</td>
-<td></td>
-<td>(currently 6% annually)</td>
-<td></td>
+<td>49%</td>
+<td>$60m</td>
+<td>49%</td>
+<td>$68m</td>
 </tr>
 <tr class="odd">
-<td>30-year fixed-rate loans</td>
-<td>50</td>
-<td>3-year term deposits</td>
-<td>20</td>
+<td>1%</td>
+<td>-$740m</td>
+<td>0.6%</td>
+<td>-$740m</td>
 </tr>
 <tr class="even">
-<td>(currently 7% annually)</td>
-<td></td>
-<td>(currently 7% annually)</td>
-<td></td>
-</tr>
-<tr class="odd">
 <td></td>
 <td></td>
-<td><strong>Equity</strong></td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td><strong>Total assets</strong></td>
-<td>100</td>
-<td><strong>Total liabilities and equity</strong></td>
-<td>100</td>
+<td>0.4%</td>
+<td>-$1393m</td>
 </tr>
 </tbody>
 </table>
-<ol type="a">
-<li>What is AFIN Bank’s expected net interest income at year-end?</li>
-<li>What will net interest income be at year-end if interest rates rise by 2 per cent?</li>
-<li>Using the cumulative repricing gap model, what is the expected net interest income for a 2 per cent increase in interest rates?</li>
-<li>What will net interest income be at year-end if interest rates on RSAs increase by 2 per cent but interest rates on RSLs increase by 1 percent? Is it reasonable for changes in interest rates on RSAs and RSLs to differ? Why?</li>
-</ol>
+<p>Which of the two securities will add more market risk to the FI’s trading portfolio according to the VaR and ES measures?</p>
 </section>
-<section id="duration-model" class="level2">
-<h2 class="anchored" data-anchor-id="duration-model">Duration model</h2>
-<p>The following balance sheet information is available (amounts in thousands of dollars and duration in years) for a financial institution:</p>
+<section id="extra" class="level2">
+<h2 class="anchored" data-anchor-id="extra">Extra</h2>
+<p>Today is April 1, 2025. Suppose you are the head of risk management of a financial institution (FI) that engages in fixed-income securities investment. The FI is financed by long-term borrowings and equity. The balance sheet (in millions) of the FI today is as below.</p>
 <table class="table">
 <thead>
 <tr class="header">
-<th><strong>Item</strong></th>
-<th><strong>Amount</strong></th>
-<th><strong>Duration</strong></th>
+<th>Assets</th>
+<th></th>
+<th>Liabilities and Equity</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>T-notes</td>
-<td>$90</td>
-<td>0.50</td>
+<td>Treasury bonds</td>
+<td>$300</td>
+<td>Long-term borrowings</td>
+<td>$350</td>
 </tr>
 <tr class="even">
-<td>T-notes</td>
-<td>$55</td>
-<td>0.90</td>
-</tr>
-<tr class="odd">
-<td>T-notes (5 year)</td>
-<td>$176</td>
-<td>4.3931</td>
-</tr>
-<tr class="even">
-<td>Loans</td>
-<td>$2724</td>
-<td>7.00</td>
-</tr>
-<tr class="odd">
-<td>Deposits</td>
-<td>$2092</td>
-<td>1.00</td>
-</tr>
-<tr class="even">
-<td>Interbank borrowings</td>
-<td>$238</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
+<td>Corporate bonds</td>
+<td>$200</td>
 <td>Equity</td>
-<td>$715</td>
-<td></td>
+<td>$150</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>$500</td>
+<td>Total</td>
+<td>$500</td>
 </tr>
 </tbody>
 </table>
+<p>The risk management team estimates that the standard deviation of the Treasury bonds’ daily returns is 2% and the standard deviation of the corporate bonds’ daily returns is 5%. The mean return of both bonds is 0%. The correlation between the daily returns of Treasury and corporate bonds is estimated to be 0.7.</p>
 <ol type="a">
-<li>What is the average duration of all the assets?</li>
-<li>What is the average duration of all the liabilities?</li>
-<li>What is the leverage adjusted duration gap? What is the interest rate risk exposure?</li>
-<li>What is the forecasted impact on the market value of equity caused by a relative upward shift in the entire yield curve of 0.5 percent? That is, <span class="math inline">\(\frac{\Delta R}{1+R}=0.0050\)</span>.</li>
-<li>What variables are available to the financial institution to immunize the balance sheet? How much would each variable need to change to get duration gap equal to 0?</li>
+<li>What is the 5-day Value at Risk (VaR) of the bond portfolio at a 99% confidence level? Assume that returns follow a normal distribution.</li>
+<li>How to interpret the calculated VaR from (a)? What is conditional VaR or Expected Shortfall?</li>
 </ol>
 </section>
 </section>
-<section id="extra" class="level1">
-<h1>Extra</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is a somewhat challenging question. Please take time to work it through.</p>
-</div>
-</div>
-<p>Two banks are being examined by regulators to determine the interest rate sensitivity of their balance sheets. Bank A has assets composed solely of a 10-year $1 million loan with a coupon rate and yield of 12 per cent. The loan is financed with a 10-year $1 million CD with a coupon rate and yield of 10 per cent. Bank B has assets composed solely of a 7-year, 12 per cent zero-coupon bond with a current (market) value of $894 006.20 and a maturity (principal) value of $1 976 362.88. The bond is financed with a 10-year, 8.275 per cent coupon $1 000 000 face value CD with a yield to maturity of 10 per cent. The loan and the CDs pay interest annually, with principal due at maturity.</p>
-<ol type="a">
-<li>If market interest rates increase 1 per cent (100 basis points), how do the market values of the assets and liabilities of each bank change? That is, what will be the net effect on the market value of the equity for each bank?</li>
-<li>What accounts for the differences in the changes in the market value of equity between the two banks?</li>
-<li>Verify your results above by calculating the duration for the assets and liabilities of each bank, and estimate the changes in value for the expected change in interest rates. Summarize your results.</li>
-</ol>
+<section id="var-and-es-calculation-in-excel" class="level1">
+<h1>VaR and ES calculation in Excel</h1>
+<p>Download the Excel spreadsheet <code>Workshop5.xlsx</code> on iLearn.</p>
 
 
 </section>
