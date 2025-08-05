@@ -73,6 +73,7 @@ Anomalous Lending and Bank Risk, with Iftekhar Hasan, Buhui Qiu, Eliza Wu and Ya
 
 Real Estate Collateral, Lender Screening, and M&A Performance, with Thanh Son Luong and Buhui Qiu.
 
+- _**Revise & Resubmit**_ at the _**Journal of Corporate Finance**_.
 - FMA 2022, FIRN 2022.
 
 Of Rivals and Role Models: The Impact of Foreign Bank Entry on Domestic Bank Opacity, with Guihua He, Weiping Li, and Quan Yuan.
