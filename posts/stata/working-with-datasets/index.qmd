@@ -24,8 +24,8 @@ flowchart LR
   subgraph Stata
     direction TB
     Engine
-    Engine -->|frame change| default & frame2 & frame3 & ...
-    subgraph default
+    Engine -->|frame change| default_["default"] & frame2 & frame3 & ...
+    subgraph default_["default"]
     end
     subgraph frame2
     end
@@ -34,10 +34,8 @@ flowchart LR
     subgraph frame3
     end
   end
-
-
   
-  default -->|sysuse| auto.dta
+  default_["default"] -->|sysuse| auto.dta
   frame2 -->|use| /User/mgao/Desktop/anotherDataset.dta
   frame3 -->|use| http://www.stata-press.com/data/r13/nlswork.dta
 
