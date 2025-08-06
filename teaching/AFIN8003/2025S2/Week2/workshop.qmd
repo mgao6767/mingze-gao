@@ -15,6 +15,7 @@ format:
     code-fold: true
     footer: "AFIN8003 Banking and Financial Intermediation"
     mermaid-format: svg
+    callout-appearance: simple
   pdf:
     documentclass: article
     papersize: a4
@@ -30,6 +31,7 @@ format:
     fig-cap-location: "bottom"
     output-file: "Workshop2.pdf"
     echo: false
+    callout-appearance: simple
 # Custom fields
 pdf-name: "Workshop2.pdf"
 ---
