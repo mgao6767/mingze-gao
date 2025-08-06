@@ -68,8 +68,10 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - styles.scss
+      light: 
+        - cosmo
+        - brand
+        - styles.scss
     css: styles.css
     toc: true
     mermaid:
