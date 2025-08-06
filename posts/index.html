@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,15 +34,16 @@ ul.task-list li input[type="checkbox"] {
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-listing/list.min.js"></script>
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-697b6fb292a12040a2212f61c6afc307.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,7 +145,7 @@ window.Quarto = {
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -198,7 +199,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(59)</span></div><div class="category" data-category="Cryptocurrency">Cryptocurrency <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Programming">Programming <span class="quarto-category-count">(15)</span></div><div class="category" data-category="QuantLib">QuantLib <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Research Notes">Research Notes <span class="quarto-category-count">(28)</span></div><div class="category" data-category="Teaching Notes">Teaching Notes <span class="quarto-category-count">(20)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(59)</span></div><div class="category" data-category="Q3J5cHRvY3VycmVuY3k=">Cryptocurrency <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UHJvZ3JhbW1pbmc=">Programming <span class="quarto-category-count">(15)</span></div><div class="category" data-category="UXVhbnRMaWI=">QuantLib <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVzZWFyY2glMjBOb3Rlcw==">Research Notes <span class="quarto-category-count">(28)</span></div><div class="category" data-category="VGVhY2hpbmclMjBOb3Rlcw==">Teaching Notes <span class="quarto-category-count">(20)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -228,242 +229,298 @@ window.Quarto = {
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-     </select>
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+    </select>
   </div>
 </div>
 <table class="quarto-listing-table table">
 <thead>
 <tr>
+
 <th>
 <a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
 </th>
+
 <th>
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
 </th>
+
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Research Notes,Teaching Notes,Programming" data-listing-date-sort="1751292000000" data-listing-file-modified-sort="1751346901664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1251" data-listing-title-sort="ElasticNet from Portfolio Performance Tracking" data-listing-filename-sort="index.qmd">
+
+<tr data-index="0" data-categories="UmVzZWFyY2glMjBOb3RlcyUyQ1RlYWNoaW5nJTIwTm90ZXMlMkNQcm9ncmFtbWluZw==" data-listing-date-sort="1751292000000" data-listing-file-modified-sort="1751346901664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1251" data-listing-title-sort="ElasticNet from Portfolio Performance Tracking" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jul 1, 2025</span>
 </td>
 <td>
 <a href="../posts/elasticnet-from-portfolio-performance-tracking/index.html" class="title listing-title">ElasticNet from Portfolio Performance Tracking</a>
 </td>
+
 </tr>
-<tr data-index="1" data-categories="Programming,Teaching Notes" data-listing-date-sort="1737291600000" data-listing-file-modified-sort="1739360824997" data-listing-date-modified-sort="1739278800000" data-listing-reading-time-sort="12" data-listing-word-count-sort="2308" data-listing-title-sort="Developing a Bank Simulation Software" data-listing-filename-sort="index.qmd">
+
+<tr data-index="1" data-categories="UHJvZ3JhbW1pbmclMkNUZWFjaGluZyUyME5vdGVz" data-listing-date-sort="1737291600000" data-listing-file-modified-sort="1754351990032" data-listing-date-modified-sort="1739278800000" data-listing-reading-time-sort="12" data-listing-word-count-sort="2308" data-listing-title-sort="Developing a Bank Simulation Software" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jan 20, 2025</span>
 </td>
 <td>
 <a href="../posts/developing-a-bank-simulation-software/index.html" class="title listing-title">Developing a Bank Simulation Software</a>
 </td>
+
 </tr>
-<tr data-index="2" data-categories="Teaching Notes,Research Notes,Programming" data-listing-date-sort="1732712400000" data-listing-file-modified-sort="1736564530987" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3034" data-listing-title-sort="Kalman Filter" data-listing-filename-sort="index.qmd">
+
+<tr data-index="2" data-categories="VGVhY2hpbmclMjBOb3RlcyUyQ1Jlc2VhcmNoJTIwTm90ZXMlMkNQcm9ncmFtbWluZw==" data-listing-date-sort="1732712400000" data-listing-file-modified-sort="1736564530987" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3034" data-listing-title-sort="Kalman Filter" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Nov 28, 2024</span>
 </td>
 <td>
 <a href="../posts/kalman-filter/index.html" class="title listing-title">Kalman Filter</a>
 </td>
+
 </tr>
-<tr data-index="3" data-categories="Programming" data-listing-date-sort="1725804000000" data-listing-file-modified-sort="1750981574173" data-listing-date-modified-sort="1750946400000" data-listing-reading-time-sort="5" data-listing-word-count-sort="905" data-listing-title-sort="PhDs.io" data-listing-filename-sort="index.qmd">
+
+<tr data-index="3" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1725804000000" data-listing-file-modified-sort="1750981574173" data-listing-date-modified-sort="1750946400000" data-listing-reading-time-sort="5" data-listing-word-count-sort="905" data-listing-title-sort="PhDs.io" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Sep 9, 2024</span>
 </td>
 <td>
 <a href="../posts/phds.io/index.html" class="title listing-title">PhDs.io</a>
 </td>
+
 </tr>
-<tr data-index="4" data-categories="Research Notes" data-listing-date-sort="1721397600000" data-listing-file-modified-sort="1736564531050" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3852" data-listing-title-sort="Technology Diversity" data-listing-filename-sort="index.qmd">
+
+<tr data-index="4" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1721397600000" data-listing-file-modified-sort="1736564531050" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3852" data-listing-title-sort="Technology Diversity" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jul 20, 2024</span>
 </td>
 <td>
 <a href="../posts/technology-diversity/index.html" class="title listing-title">Technology Diversity</a>
 </td>
+
 </tr>
-<tr data-index="5" data-categories="Programming,QuantLib" data-listing-date-sort="1719669600000" data-listing-file-modified-sort="1736564531025" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4384" data-listing-title-sort="QuantLib - Yield Curve" data-listing-filename-sort="index.qmd">
+
+<tr data-index="5" data-categories="UHJvZ3JhbW1pbmclMkNRdWFudExpYg==" data-listing-date-sort="1719669600000" data-listing-file-modified-sort="1736564531025" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4384" data-listing-title-sort="QuantLib - Yield Curve" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jun 30, 2024</span>
 </td>
 <td>
 <a href="../posts/quantlib-yield-curve/index.html" class="title listing-title">QuantLib - Yield Curve</a>
 </td>
+
 </tr>
-<tr data-index="6" data-categories="Research Notes" data-listing-date-sort="1703077200000" data-listing-file-modified-sort="1736564530976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368" data-listing-title-sort="Identify Retail Investors" data-listing-filename-sort="index.md">
+
+<tr data-index="6" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1703077200000" data-listing-file-modified-sort="1736564530976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368" data-listing-title-sort="Identify Retail Investors" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Dec 21, 2023</span>
 </td>
 <td>
 <a href="../posts/identify-retail-investors/index.html" class="title listing-title">Identify Retail Investors</a>
 </td>
+
 </tr>
-<tr data-index="7" data-categories="Teaching Notes" data-listing-date-sort="1702558800000" data-listing-file-modified-sort="1736564530935" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1911" data-listing-title-sort="Bond Price Volatility (Sensitivity)" data-listing-filename-sort="index.qmd">
+
+<tr data-index="7" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1702558800000" data-listing-file-modified-sort="1736564530935" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1911" data-listing-title-sort="Bond Price Volatility (Sensitivity)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Dec 15, 2023</span>
 </td>
 <td>
 <a href="../posts/fixed-income/bond-price-volatility/index.html" class="title listing-title">Bond Price Volatility (Sensitivity)</a>
 </td>
+
 </tr>
-<tr data-index="8" data-categories="Teaching Notes,Research Notes" data-listing-date-sort="1697288400000" data-listing-file-modified-sort="1736564531058" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1751" data-listing-title-sort="Translog Cost Function Estimation" data-listing-filename-sort="index.md">
+
+<tr data-index="8" data-categories="VGVhY2hpbmclMjBOb3RlcyUyQ1Jlc2VhcmNoJTIwTm90ZXM=" data-listing-date-sort="1697288400000" data-listing-file-modified-sort="1736564531058" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1751" data-listing-title-sort="Translog Cost Function Estimation" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Oct 15, 2023</span>
 </td>
 <td>
 <a href="../posts/translog-cost-function-estimation/index.html" class="title listing-title">Translog Cost Function Estimation</a>
 </td>
+
 </tr>
-<tr data-index="9" data-categories="Teaching Notes,Research Notes" data-listing-date-sort="1697115600000" data-listing-file-modified-sort="1736564531062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1517" data-listing-title-sort="Translog Production and Cost Functions" data-listing-filename-sort="index.qmd">
+
+<tr data-index="9" data-categories="VGVhY2hpbmclMjBOb3RlcyUyQ1Jlc2VhcmNoJTIwTm90ZXM=" data-listing-date-sort="1697115600000" data-listing-file-modified-sort="1736564531062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1517" data-listing-title-sort="Translog Production and Cost Functions" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Oct 13, 2023</span>
 </td>
 <td>
 <a href="../posts/translog-production-and-cost-functions/index.html" class="title listing-title">Translog Production and Cost Functions</a>
 </td>
+
 </tr>
-<tr data-index="10" data-categories="Teaching Notes,Programming" data-listing-date-sort="1696165200000" data-listing-file-modified-sort="1736564530958" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1738" data-listing-title-sort="GARCH-Constant Conditional Correlation (CCC)" data-listing-filename-sort="index.md">
+
+<tr data-index="10" data-categories="VGVhY2hpbmclMjBOb3RlcyUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696165200000" data-listing-file-modified-sort="1736564530958" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1738" data-listing-title-sort="GARCH-Constant Conditional Correlation (CCC)" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Oct 2, 2023</span>
 </td>
 <td>
 <a href="../posts/garch-ccc/index.html" class="title listing-title">GARCH-Constant Conditional Correlation (CCC)</a>
 </td>
+
 </tr>
-<tr data-index="11" data-categories="Teaching Notes" data-listing-date-sort="1695650400000" data-listing-file-modified-sort="1736564530962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3539" data-listing-title-sort="GARCH Estimation" data-listing-filename-sort="index.md">
+
+<tr data-index="11" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1695650400000" data-listing-file-modified-sort="1736564530962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3539" data-listing-title-sort="GARCH Estimation" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Sep 26, 2023</span>
 </td>
 <td>
 <a href="../posts/garch-estimation/index.html" class="title listing-title">GARCH Estimation</a>
 </td>
+
 </tr>
-<tr data-index="12" data-categories="Research Notes,Programming" data-listing-date-sort="1694095200000" data-listing-file-modified-sort="1736564530918" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="996" data-listing-title-sort="Download SEC Filings from EDGAR" data-listing-filename-sort="index.md">
+
+<tr data-index="12" data-categories="UmVzZWFyY2glMjBOb3RlcyUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1694095200000" data-listing-file-modified-sort="1736564530918" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="996" data-listing-title-sort="Download SEC Filings from EDGAR" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Sep 8, 2023</span>
 </td>
 <td>
 <a href="../posts/download-sec-filings-from-edgar/index.html" class="title listing-title">Download SEC Filings from EDGAR</a>
 </td>
+
 </tr>
-<tr data-index="13" data-categories="Teaching Notes" data-listing-date-sort="1693404000000" data-listing-file-modified-sort="1736564530949" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3943" data-listing-title-sort="Yield Curve and Term Structure of Interest Rates" data-listing-filename-sort="index.qmd">
+
+<tr data-index="13" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1693404000000" data-listing-file-modified-sort="1736564530949" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3943" data-listing-title-sort="Yield Curve and Term Structure of Interest Rates" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 31, 2023</span>
 </td>
 <td>
 <a href="../posts/fixed-income/yield-curve/index.html" class="title listing-title">Yield Curve and Term Structure of Interest Rates</a>
 </td>
+
 </tr>
-<tr data-index="14" data-categories="Teaching Notes" data-listing-date-sort="1692540000000" data-listing-file-modified-sort="1736564530941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2713" data-listing-title-sort="Bond Prices and Yields" data-listing-filename-sort="index.qmd">
+
+<tr data-index="14" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1692540000000" data-listing-file-modified-sort="1736564530941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2713" data-listing-title-sort="Bond Prices and Yields" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 21, 2023</span>
 </td>
 <td>
 <a href="../posts/fixed-income/bond-prices-and-yields/index.html" class="title listing-title">Bond Prices and Yields</a>
 </td>
+
 </tr>
-<tr data-index="15" data-categories="Research Notes" data-listing-date-sort="1692194400000" data-listing-file-modified-sort="1750981316653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4298" data-listing-title-sort="Difference-in-Differences Estimation" data-listing-filename-sort="index.qmd">
+
+<tr data-index="15" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1692194400000" data-listing-file-modified-sort="1750981316653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4298" data-listing-title-sort="Difference-in-Differences Estimation" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 17, 2023</span>
 </td>
 <td>
 <a href="../posts/difference-in-differences/index.html" class="title listing-title">Difference-in-Differences Estimation</a>
 </td>
+
 </tr>
-<tr data-index="16" data-categories="Research Notes" data-listing-date-sort="1692021600000" data-listing-file-modified-sort="1736564530903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2273" data-listing-title-sort="CRSP Missing Codes" data-listing-filename-sort="index.md">
+
+<tr data-index="16" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1692021600000" data-listing-file-modified-sort="1736564530903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2273" data-listing-title-sort="CRSP Missing Codes" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Aug 15, 2023</span>
 </td>
 <td>
 <a href="../posts/crsp-missing-codes/index.html" class="title listing-title">CRSP Missing Codes</a>
 </td>
+
 </tr>
-<tr data-index="17" data-categories="Research Notes" data-listing-date-sort="1691416800000" data-listing-file-modified-sort="1736564530953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="574" data-listing-title-sort="FRED - Federal Reserve Economic Data" data-listing-filename-sort="index.md">
+
+<tr data-index="17" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1691416800000" data-listing-file-modified-sort="1736564530953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="574" data-listing-title-sort="FRED - Federal Reserve Economic Data" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Aug 8, 2023</span>
 </td>
 <td>
 <a href="../posts/fred/index.html" class="title listing-title">FRED - Federal Reserve Economic Data</a>
 </td>
+
 </tr>
-<tr data-index="18" data-categories="Teaching Notes" data-listing-date-sort="1690725600000" data-listing-file-modified-sort="1736564531046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1347" data-listing-title-sort="Stata - Working with datasets" data-listing-filename-sort="index.qmd">
+
+<tr data-index="18" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1690725600000" data-listing-file-modified-sort="1754448912283" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1347" data-listing-title-sort="Stata - Working with datasets" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jul 31, 2023</span>
 </td>
 <td>
 <a href="../posts/stata/working-with-datasets/index.html" class="title listing-title">Stata - Working with datasets</a>
 </td>
+
 </tr>
-<tr data-index="19" data-categories="Teaching Notes" data-listing-date-sort="1690293600000" data-listing-file-modified-sort="1736564530944" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1718" data-listing-title-sort="Introduction to Fixed Income Securities" data-listing-filename-sort="index.qmd">
+
+<tr data-index="19" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1690293600000" data-listing-file-modified-sort="1736564530944" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1718" data-listing-title-sort="Introduction to Fixed Income Securities" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jul 26, 2023</span>
 </td>
 <td>
 <a href="../posts/fixed-income/introduction/index.html" class="title listing-title">Introduction to Fixed Income Securities</a>
 </td>
+
 </tr>
-<tr data-index="20" data-categories="Research Notes" data-listing-date-sort="1680962400000" data-listing-file-modified-sort="1736564530899" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="765" data-listing-title-sort="Correlated Random Effects" data-listing-filename-sort="index.md">
+
+<tr data-index="20" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1680962400000" data-listing-file-modified-sort="1736564530899" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="765" data-listing-title-sort="Correlated Random Effects" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Apr 9, 2023</span>
 </td>
 <td>
 <a href="../posts/correlated-random-effects/index.html" class="title listing-title">Correlated Random Effects</a>
 </td>
+
 </tr>
-<tr data-index="21" data-categories="Research Notes" data-listing-date-sort="1680616800000" data-listing-file-modified-sort="1736564531019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1313" data-listing-title-sort="Probability of Informed Trading (PIN)" data-listing-filename-sort="index.md">
+
+<tr data-index="21" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1680616800000" data-listing-file-modified-sort="1736564531019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1313" data-listing-title-sort="Probability of Informed Trading (PIN)" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Apr 5, 2023</span>
 </td>
 <td>
 <a href="../posts/probability-of-informed-trading/index.html" class="title listing-title">Probability of Informed Trading (PIN)</a>
 </td>
+
 </tr>
-<tr data-index="22" data-categories="Teaching Notes" data-listing-date-sort="1676466000000" data-listing-file-modified-sort="1736564531041" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="694" data-listing-title-sort="Stata - Packages" data-listing-filename-sort="index.qmd">
+
+<tr data-index="22" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1676466000000" data-listing-file-modified-sort="1736564531041" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="694" data-listing-title-sort="Stata - Packages" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Feb 16, 2023</span>
 </td>
 <td>
 <a href="../posts/stata/packages/index.html" class="title listing-title">Stata - Packages</a>
 </td>
+
 </tr>
-<tr data-index="23" data-categories="Teaching Notes" data-listing-date-sort="1675342800000" data-listing-file-modified-sort="1736564531039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1895" data-listing-title-sort="Stata - Introduction" data-listing-filename-sort="index.qmd">
+
+<tr data-index="23" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1675342800000" data-listing-file-modified-sort="1736564531039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1895" data-listing-title-sort="Stata - Introduction" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Feb 3, 2023</span>
 </td>
 <td>
 <a href="../posts/stata/introduction/index.html" class="title listing-title">Stata - Introduction</a>
 </td>
+
 </tr>
-<tr data-index="24" data-categories="Research Notes" data-listing-date-sort="1669726800000" data-listing-file-modified-sort="1750647754228" data-listing-date-modified-sort="1750600800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="722" data-listing-title-sort="Estimate Merton Distance-to-Default" data-listing-filename-sort="index.qmd">
+
+<tr data-index="24" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1669726800000" data-listing-file-modified-sort="1750647754228" data-listing-date-modified-sort="1750600800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="722" data-listing-title-sort="Estimate Merton Distance-to-Default" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Nov 30, 2022</span>
 </td>
 <td>
 <a href="../posts/merton-dd/index.html" class="title listing-title">Estimate Merton Distance-to-Default</a>
 </td>
+
 </tr>
-<tr data-index="25" data-categories="Programming" data-listing-date-sort="1655474400000" data-listing-file-modified-sort="1736564531066" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="338" data-listing-title-sort="Uninitialized Variable in C" data-listing-filename-sort="index.md">
+
+<tr data-index="25" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1655474400000" data-listing-file-modified-sort="1736564531066" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="338" data-listing-title-sort="Uninitialized Variable in C" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jun 18, 2022</span>
 </td>
 <td>
 <a href="../posts/uninitialized-variable-in-c/index.html" class="title listing-title">Uninitialized Variable in C</a>
 </td>
+
 </tr>
+
 <tr data-index="26" data-listing-date-sort="1650031200000" data-listing-file-modified-sort="1736564530884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2976" data-listing-title-sort="Centrifuge Problem" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Apr 16, 2022</span>
@@ -471,191 +528,239 @@ window.Quarto = {
 <td>
 <a href="../posts/centrifuge-problem/index.html" class="title listing-title">Centrifuge Problem</a>
 </td>
+
 </tr>
-<tr data-index="27" data-categories="Research Notes" data-listing-date-sort="1646485200000" data-listing-file-modified-sort="1736564530865" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1220" data-listing-title-sort="Adding Another Factor to Principal-Agent Model" data-listing-filename-sort="index.md">
+
+<tr data-index="27" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1646485200000" data-listing-file-modified-sort="1736564530865" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1220" data-listing-title-sort="Adding Another Factor to Principal-Agent Model" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Mar 6, 2022</span>
 </td>
 <td>
 <a href="../posts/adding-another-factor-to-principal-agent-model/index.html" class="title listing-title">Adding Another Factor to Principal-Agent Model</a>
 </td>
+
 </tr>
-<tr data-index="28" data-categories="Research Notes" data-listing-date-sort="1641646800000" data-listing-file-modified-sort="1736564530926" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="202" data-listing-title-sort="Estimate Organization Capital" data-listing-filename-sort="index.md">
+
+<tr data-index="28" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1641646800000" data-listing-file-modified-sort="1736564530926" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="202" data-listing-title-sort="Estimate Organization Capital" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jan 9, 2022</span>
 </td>
 <td>
 <a href="../posts/estimate-organization-capital/index.html" class="title listing-title">Estimate Organization Capital</a>
 </td>
+
 </tr>
-<tr data-index="29" data-categories="Research Notes" data-listing-date-sort="1621000800000" data-listing-file-modified-sort="1736564531001" data-listing-date-modified-sort="1704027600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="567" data-listing-title-sort="Download M&amp;A Deals from SDC Platinum" data-listing-filename-sort="index.md">
+
+<tr data-index="29" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1621000800000" data-listing-file-modified-sort="1736564531001" data-listing-date-modified-sort="1704027600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="567" data-listing-title-sort="Download M&amp;A Deals from SDC Platinum" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 15, 2021</span>
 </td>
 <td>
 <a href="../posts/merger-acquisition-deals-from-sdc-platinum/index.html" class="title listing-title">Download M&amp;A Deals from SDC Platinum</a>
 </td>
+
 </tr>
-<tr data-index="30" data-categories="Research Notes" data-listing-date-sort="1612962000000" data-listing-file-modified-sort="1736564531035" data-listing-date-modified-sort="1676206800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="786" data-listing-title-sort="Specification Curve Analysis" data-listing-filename-sort="index.md">
+
+<tr data-index="30" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1612962000000" data-listing-file-modified-sort="1736564531035" data-listing-date-modified-sort="1676206800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="786" data-listing-title-sort="Specification Curve Analysis" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Feb 11, 2021</span>
 </td>
 <td>
 <a href="../posts/specification-curve-analysis/index.html" class="title listing-title">Specification Curve Analysis</a>
 </td>
+
 </tr>
-<tr data-index="31" data-categories="Cryptocurrency" data-listing-date-sort="1596031200000" data-listing-file-modified-sort="1736564530873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="490" data-listing-title-sort="Bitcoin Address Generator in Obfuscated Python" data-listing-filename-sort="index.md">
+
+<tr data-index="31" data-categories="Q3J5cHRvY3VycmVuY3k=" data-listing-date-sort="1596031200000" data-listing-file-modified-sort="1736564530873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="490" data-listing-title-sort="Bitcoin Address Generator in Obfuscated Python" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jul 30, 2020</span>
 </td>
 <td>
 <a href="../posts/bitcoin-address-generator-in-obfuscated-python/index.html" class="title listing-title">Bitcoin Address Generator in Obfuscated Python</a>
 </td>
+
 </tr>
-<tr data-index="32" data-categories="Research Notes" data-listing-date-sort="1595858400000" data-listing-file-modified-sort="1736564530930" data-listing-date-modified-sort="1679230800000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2116" data-listing-title-sort="Firm Historical Headquarter State from SEC 10K/Q Filings" data-listing-filename-sort="index.md">
+
+<tr data-index="32" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1595858400000" data-listing-file-modified-sort="1736564530930" data-listing-date-modified-sort="1679230800000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2116" data-listing-title-sort="Firm Historical Headquarter State from SEC 10K/Q Filings" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jul 28, 2020</span>
 </td>
 <td>
 <a href="../posts/firm-historical-headquarter-state-from-10k/index.html" class="title listing-title">Firm Historical Headquarter State from SEC 10K/Q Filings</a>
 </td>
+
 </tr>
-<tr data-index="33" data-categories="Research Notes" data-listing-date-sort="1591711200000" data-listing-file-modified-sort="1736564530888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1705" data-listing-title-sort="Compute Jackknife Coefficient Estimates in SAS" data-listing-filename-sort="index.md">
+
+<tr data-index="33" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1591711200000" data-listing-file-modified-sort="1736564530888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1705" data-listing-title-sort="Compute Jackknife Coefficient Estimates in SAS" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jun 10, 2020</span>
 </td>
 <td>
 <a href="../posts/compute-jackknife-coefficient-estimates-in-sas/index.html" class="title listing-title">Compute Jackknife Coefficient Estimates in SAS</a>
 </td>
+
 </tr>
-<tr data-index="34" data-categories="Programming" data-listing-date-sort="1591538400000" data-listing-file-modified-sort="1736564531022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="881" data-listing-title-sort="Python Shared Memory in Multiprocessing" data-listing-filename-sort="index.md">
+
+<tr data-index="34" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1591538400000" data-listing-file-modified-sort="1736564531022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="881" data-listing-title-sort="Python Shared Memory in Multiprocessing" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jun 8, 2020</span>
 </td>
 <td>
 <a href="../posts/python-shared-memory-in-multiprocessing/index.html" class="title listing-title">Python Shared Memory in Multiprocessing</a>
 </td>
+
 </tr>
-<tr data-index="35" data-categories="Research Notes" data-listing-date-sort="1590501600000" data-listing-file-modified-sort="1736564531054" data-listing-date-modified-sort="1677157200000" data-listing-reading-time-sort="14" data-listing-word-count-sort="2771" data-listing-title-sort="Textual Analysis on SEC Filings" data-listing-filename-sort="index.md">
+
+<tr data-index="35" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590501600000" data-listing-file-modified-sort="1736564531054" data-listing-date-modified-sort="1677157200000" data-listing-reading-time-sort="14" data-listing-word-count-sort="2771" data-listing-title-sort="Textual Analysis on SEC Filings" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 27, 2020</span>
 </td>
 <td>
 <a href="../posts/textual-analysis-on-sec-filings/index.html" class="title listing-title">Textual Analysis on SEC Filings</a>
 </td>
+
 </tr>
-<tr data-index="36" data-categories="Teaching Notes" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564530995" data-listing-date-modified-sort="1692712800000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1798" data-listing-title-sort="Variance Ratio Test - Lo and MacKinlay (1988)" data-listing-filename-sort="index.md">
+
+<tr data-index="36" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564530995" data-listing-date-modified-sort="1692712800000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1798" data-listing-title-sort="Variance Ratio Test - Lo and MacKinlay (1988)" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 26, 2020</span>
 </td>
 <td>
 <a href="../posts/lomackinlay1988/index.html" class="title listing-title">Variance Ratio Test - Lo and MacKinlay (1988)</a>
 </td>
+
 </tr>
-<tr data-index="37" data-categories="Teaching Notes" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564531008" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="594" data-listing-title-sort="Minimum Variance Hedge Ratio" data-listing-filename-sort="index.md">
+
+<tr data-index="37" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564531008" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="594" data-listing-title-sort="Minimum Variance Hedge Ratio" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 26, 2020</span>
 </td>
 <td>
 <a href="../posts/minimum-variance-hedge-ratio/index.html" class="title listing-title">Minimum Variance Hedge Ratio</a>
 </td>
+
 </tr>
-<tr data-index="38" data-categories="Programming" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564531078" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1214" data-listing-title-sort="Winsorization in SAS" data-listing-filename-sort="index.md">
+
+<tr data-index="38" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1590415200000" data-listing-file-modified-sort="1736564531078" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1214" data-listing-title-sort="Winsorization in SAS" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 26, 2020</span>
 </td>
 <td>
 <a href="../posts/winsorization-in-sas/index.html" class="title listing-title">Winsorization in SAS</a>
 </td>
+
 </tr>
-<tr data-index="39" data-categories="Teaching Notes" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530881" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="678" data-listing-title-sort="Call Option Value from Two Approaches" data-listing-filename-sort="index.md">
+
+<tr data-index="39" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530881" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="678" data-listing-title-sort="Call Option Value from Two Approaches" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 25, 2020</span>
 </td>
 <td>
 <a href="../posts/call-option-value-from-two-approaches/index.html" class="title listing-title">Call Option Value from Two Approaches</a>
 </td>
+
 </tr>
-<tr data-index="40" data-categories="Research Notes" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530969" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="432" data-listing-title-sort="Bank Holing Company Financials from FR Y-9C" data-listing-filename-sort="index.md">
+
+<tr data-index="40" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530969" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="432" data-listing-title-sort="Bank Holing Company Financials from FR Y-9C" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 25, 2020</span>
 </td>
 <td>
 <a href="../posts/get-bank-holding-company-financials/index.html" class="title listing-title">Bank Holing Company Financials from FR Y-9C</a>
 </td>
+
 </tr>
-<tr data-index="41" data-categories="Research Notes" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530998" data-listing-date-modified-sort="1705928400000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2025" data-listing-title-sort="Merge Compustat and CRSP" data-listing-filename-sort="index.md">
+
+<tr data-index="41" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564530998" data-listing-date-modified-sort="1705928400000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2025" data-listing-title-sort="Merge Compustat and CRSP" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 25, 2020</span>
 </td>
 <td>
 <a href="../posts/merge-compustat-and-crsp/index.html" class="title listing-title">Merge Compustat and CRSP</a>
 </td>
+
 </tr>
-<tr data-index="42" data-categories="Teaching Notes" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564531031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="139" data-listing-title-sort="Reconciliation of Black-Scholes Variants" data-listing-filename-sort="index.md">
+
+<tr data-index="42" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1590328800000" data-listing-file-modified-sort="1736564531031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="139" data-listing-title-sort="Reconciliation of Black-Scholes Variants" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 25, 2020</span>
 </td>
 <td>
 <a href="../posts/reconciliation-of-black-scholes-variants/index.html" class="title listing-title">Reconciliation of Black-Scholes Variants</a>
 </td>
+
 </tr>
-<tr data-index="43" data-categories="Research Notes" data-listing-date-sort="1590242400000" data-listing-file-modified-sort="1736564530906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="873" data-listing-title-sort="Decomposing Herfindahl–Hirschman (HHI) Index" data-listing-filename-sort="index.md">
+
+<tr data-index="43" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590242400000" data-listing-file-modified-sort="1736564530906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="873" data-listing-title-sort="Decomposing Herfindahl–Hirschman (HHI) Index" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 24, 2020</span>
 </td>
 <td>
 <a href="../posts/decomposing-hhi-index/index.html" class="title listing-title">Decomposing Herfindahl–Hirschman (HHI) Index</a>
 </td>
+
 </tr>
-<tr data-index="44" data-categories="Programming" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1551" data-listing-title-sort="Bloomberg BQuant (BQNT)" data-listing-filename-sort="index.md">
+
+<tr data-index="44" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1551" data-listing-title-sort="Bloomberg BQuant (BQNT)" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/bloomberg-bquant/index.html" class="title listing-title">Bloomberg BQuant (BQNT)</a>
 </td>
+
 </tr>
-<tr data-index="45" data-categories="Research Notes" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530892" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1563" data-listing-title-sort="Compute Weekly Return from Daily CRSP Data" data-listing-filename-sort="index.md">
+
+<tr data-index="45" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530892" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1563" data-listing-title-sort="Compute Weekly Return from Daily CRSP Data" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/compute-weekly-return-from-daily-crsp-data/index.html" class="title listing-title">Compute Weekly Return from Daily CRSP Data</a>
 </td>
+
 </tr>
-<tr data-index="46" data-categories="Programming" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530896" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="388" data-listing-title-sort="Convert Between Numeric and Character Variables" data-listing-filename-sort="index.md">
+
+<tr data-index="46" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530896" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="388" data-listing-title-sort="Convert Between Numeric and Character Variables" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/convert-between-numeric-and-character-variables/index.html" class="title listing-title">Convert Between Numeric and Character Variables</a>
 </td>
+
 </tr>
-<tr data-index="47" data-categories="Programming" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530914" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="956" data-listing-title-sort="Setup Docker/Ngnix and Let's Encrypt on Ubuntu" data-listing-filename-sort="index.md">
+
+<tr data-index="47" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530914" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="956" data-listing-title-sort="Setup Docker/Ngnix and Let's Encrypt on Ubuntu" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/docker-nginx-letsencrypt/index.html" class="title listing-title">Setup Docker/Ngnix and Let’s Encrypt on Ubuntu</a>
 </td>
+
 </tr>
-<tr data-index="48" data-categories="Research Notes" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530966" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8286" data-listing-title-sort="Generate Fama-French Industry Classification From SIC" data-listing-filename-sort="index.md">
+
+<tr data-index="48" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530966" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8286" data-listing-title-sort="Generate Fama-French Industry Classification From SIC" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/generate-fama-french-industry-classification-from-sic/index.html" class="title listing-title">Generate Fama-French Industry Classification From SIC</a>
 </td>
+
 </tr>
-<tr data-index="49" data-categories="Research Notes" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="775" data-listing-title-sort="Identify Chinese State-Owned Enterprise using CSMAR" data-listing-filename-sort="index.md">
+
+<tr data-index="49" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="775" data-listing-title-sort="Identify Chinese State-Owned Enterprise using CSMAR" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/identify-chinese-state-owned-enterprise-using-csmar/index.html" class="title listing-title">Identify Chinese State-Owned Enterprise using CSMAR</a>
 </td>
+
 </tr>
+
 <tr data-index="50" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564530991" data-listing-date-modified-sort="1664373600000" data-listing-reading-time-sort="2" data-listing-word-count-sort="324" data-listing-title-sort="LeGao to Make Your Own LEGO Mosaics" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
@@ -663,23 +768,29 @@ window.Quarto = {
 <td>
 <a href="../posts/legao-to-make-your-own-lego-mosaics/index.html" class="title listing-title">LeGao to Make Your Own LEGO Mosaics</a>
 </td>
+
 </tr>
-<tr data-index="51" data-categories="Research Notes" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564531069" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="446" data-listing-title-sort="Use SAS Macros on WRDS" data-listing-filename-sort="index.md">
+
+<tr data-index="51" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564531069" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="446" data-listing-title-sort="Use SAS Macros on WRDS" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/use-sas-macros-on-wrds/index.html" class="title listing-title">Use SAS Macros on WRDS</a>
 </td>
+
 </tr>
-<tr data-index="52" data-categories="Research Notes" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564531074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2221" data-listing-title-sort="What it takes to be a CEO? A fun survey of literature" data-listing-filename-sort="index.md">
+
+<tr data-index="52" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564531074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2221" data-listing-title-sort="What it takes to be a CEO? A fun survey of literature" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
 </td>
 <td>
 <a href="../posts/what-it-takes-to-be-a-ceo/index.html" class="title listing-title">What it takes to be a CEO? A fun survey of literature</a>
 </td>
+
 </tr>
+
 <tr data-index="53" data-listing-date-sort="1590069600000" data-listing-file-modified-sort="1736564531081" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="393" data-listing-title-sort="Working Remotely on a Windows Machine from VSCode on a Mac" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 22, 2020</span>
@@ -687,290 +798,303 @@ window.Quarto = {
 <td>
 <a href="../posts/working-remotely-on-a-windows-machine-wsl-from-vscode-on-a-mac/index.html" class="title listing-title">Working Remotely on a Windows Machine from VSCode on a Mac</a>
 </td>
+
 </tr>
-<tr data-index="54" data-categories="Teaching Notes" data-listing-date-sort="1584968400000" data-listing-file-modified-sort="1736564530868" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666" data-listing-title-sort="Beta - Unlevered and Levered" data-listing-filename-sort="index.md">
+
+<tr data-index="54" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1584968400000" data-listing-file-modified-sort="1736564530868" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="666" data-listing-title-sort="Beta - Unlevered and Levered" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Mar 24, 2020</span>
 </td>
 <td>
 <a href="../posts/beta-unlevered-and-levered/index.html" class="title listing-title">Beta - Unlevered and Levered</a>
 </td>
+
 </tr>
-<tr data-index="55" data-categories="Programming" data-listing-date-sort="1563976800000" data-listing-file-modified-sort="1736564530922" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282" data-listing-title-sort="Encode Password for SAS Remote Submission" data-listing-filename-sort="index.md">
+
+<tr data-index="55" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1563976800000" data-listing-file-modified-sort="1736564530922" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282" data-listing-title-sort="Encode Password for SAS Remote Submission" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Jul 25, 2019</span>
 </td>
 <td>
 <a href="../posts/encode-password-for-sas-remote-submission/index.html" class="title listing-title">Encode Password for SAS Remote Submission</a>
 </td>
+
 </tr>
-<tr data-index="56" data-categories="Teaching Notes" data-listing-date-sort="1559052000000" data-listing-file-modified-sort="1736564530859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1935" data-listing-title-sort="Accumulator Option Pricing" data-listing-filename-sort="index.md">
+
+<tr data-index="56" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1559052000000" data-listing-file-modified-sort="1754439967305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1935" data-listing-title-sort="Accumulator Option Pricing" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">May 29, 2019</span>
 </td>
 <td>
 <a href="../posts/accumulator-option-pricing/index.html" class="title listing-title">Accumulator Option Pricing</a>
 </td>
+
 </tr>
-<tr data-index="57" data-categories="Programming,Cryptocurrency" data-listing-date-sort="1559052000000" data-listing-file-modified-sort="1736564531012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409" data-listing-title-sort="Never Use a Brain Wallet" data-listing-filename-sort="index.qmd">
+
+<tr data-index="57" data-categories="UHJvZ3JhbW1pbmclMkNDcnlwdG9jdXJyZW5jeQ==" data-listing-date-sort="1559052000000" data-listing-file-modified-sort="1736564531012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409" data-listing-title-sort="Never Use a Brain Wallet" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">May 29, 2019</span>
 </td>
 <td>
 <a href="../posts/never-use-a-brain-wallet/index.html" class="title listing-title">Never Use a Brain Wallet</a>
 </td>
+
 </tr>
-<tr data-index="58" data-categories="Cryptocurrency" data-listing-date-sort="1551013200000" data-listing-file-modified-sort="1736564530852" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1115" data-listing-title-sort="100 Bitcoins Forgone for Science" data-listing-filename-sort="index.md">
+
+<tr data-index="58" data-categories="Q3J5cHRvY3VycmVuY3k=" data-listing-date-sort="1551013200000" data-listing-file-modified-sort="1736564530852" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1115" data-listing-title-sort="100 Bitcoins Forgone for Science" data-listing-filename-sort="index.md">
 <td>
 <span class="listing-date">Feb 25, 2019</span>
 </td>
 <td>
 <a href="../posts/100-bitcoins-forgone-for-science/index.html" class="title listing-title">100 Bitcoins Forgone for Science</a>
 </td>
+
 </tr>
+
 </tbody>
 </table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<div class="listing-no-matching d-none">No matching items</div>
 <nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
   <ul class="pagination"></ul>
 </nav>
 </div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -978,185 +1102,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
