@@ -36,6 +36,11 @@ format:
 pdf-name: "Workshop2.pdf"
 ---
 
+```{python}
+# | echo: false
+fmt = lambda amt: f"{amt:,}"
+```
+
 # Simple banking book accounting
 
 ## A first look at bank's balance sheet 
@@ -79,9 +84,16 @@ report.print_balance_sheet()
 ::: {.column}
 Now some customers have made some deposits, for example:
 
-- Customer A deposits $60,000.
-- Customer B deposits $40,000.
-- Customer C deposits $20,000.
+```{python}
+# | echo: false
+deposit_a = 60_000
+deposit_b = 40_000
+deposit_c = 20_000
+```
+
+- Customer A deposits $`{python} fmt(deposit_a)`.
+- Customer B deposits $`{python} fmt(deposit_b)`.
+- Customer C deposits $`{python} fmt(deposit_c)`.
 
 Notably, customer deposits are the bank's _liability_. We see an increase in both the bank's total assets and total liabilities, while total shareholders' equity remains unchanged.
 :::
@@ -133,7 +145,7 @@ report.print_balance_sheet()
 ::: {.column}
 Depositors can also withdraw from the bank. 
 
-If Customer C has withdrawn all of their deposits ($20,000), we see a decrease of cash and deposits.
+If Customer C has withdrawn all of their deposits ($`{python} fmt(deposit_c)`), we see a decrease of cash and deposits.
 :::
 ::: {.column}
 ```{python}
@@ -159,9 +171,14 @@ report.print_balance_sheet()
 
 ## Loan disbursement
 
+```{python}
+# | echo: false
+loan_amt = 80_000
+```
+
 ::: {.columns}
 ::: {.column}
-Of course, the typical business of a bank is to make loans. Let's assume the bank has made an (interest-only) loan of $80,000 to some borrowers.
+Of course, the typical business of a bank is to make loans. Let's assume the bank has made an (interest-only) loan of $`{python} fmt(loan_amt)` to some borrowers.
 :::
 ::: {.column}
 ```{python}
@@ -172,7 +189,7 @@ from brms.instruments.base import Instrument
 from brms.instruments.mock import MockInstrument
 from brms.models.transaction import LoanDisbursementTransaction
 
-(loan := MockInstrument("A loan")).value = 80_000
+(loan := MockInstrument("A loan")).value = loan_amt
 # fmt: off
 tx_loan = TransactionFactory.create_transaction(
     bank=bank,
@@ -192,9 +209,14 @@ report.print_balance_sheet()
 
 ## Interest paid on deposits
 
+```{python}
+# | echo: false
+loan_interest_expense = 100
+```
+
 ::: {.columns}
 ::: {.column}
-After some time (e.g., a month), the bank may need to pay interest on customers' deposits, e.g., $100.
+After some time (e.g., a month), the bank may need to pay interest on customers' deposits, e.g., $`{python} fmt(loan_interest_expense)`.
 
 ::: {.callout-tip}
 __Income Statement__ is included given that we'd like to know the profit and loss (P&L) of the bank over the period.
@@ -214,7 +236,7 @@ today = today + datetime.timedelta(days=31)
 tx_interest_paid = TransactionFactory.create_transaction(
     bank=bank,
     transaction_type=TransactionType.INTEREST_PAID_ON_DEPOSIT,
-    instrument=Cash(value=100),
+    instrument=Cash(value=loan_interest_expense),
     transaction_date=today,
     description="Interest paid on deposits",
 )
@@ -229,6 +251,12 @@ report.print_income_statement()
 
 ## Loan interest income
 
+```{python}
+# | echo: false
+loan_interest_income = 800
+net_interest_income = loan_interest_income - loan_interest_expense
+```
+
 ::: {.columns}
 ::: {.column}
 
@@ -238,10 +266,10 @@ If the bank has only paid interest on deposits over this period, it surely has a
 However, it is more reasonable that the bank also has earned some profits during the same time, especially because it has made some loans.
 :::
 
-Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $800.
+Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $`{python} fmt(loan_interest_income)`.
 
 ::: {.callout-tip}
-Overall, the bank has a net profit of $700. We can observe that the bank's __Retained Earnings__ has increased by $700, too.
+Overall, the bank has a net profit of $`{python} fmt(net_interest_income)`. We can observe that the bank's __Retained Earnings__ has increased by $`{python} fmt(net_interest_income)`, too.
 :::
 :::
 ::: {.column}
@@ -253,7 +281,7 @@ Overall, the bank has a net profit of $700. We can observe that the bank's __Ret
 tx_interest_earned = TransactionFactory.create_transaction(
     bank=bank,
     transaction_type=TransactionType.LOAN_INTEREST_PAYMENT,
-    instrument=Cash(value=800),
+    instrument=Cash(value=loan_interest_income),
     transaction_date=today,
     description="Interest earned from loans",
 )
@@ -286,7 +314,15 @@ Accounting for trading book securities is relatively easy. We consider:
 
 ## FVTPL security purchase
 
-Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $10,000.
+```{python}
+# | echo: false
+fvtpl_security_value = 10_000
+day1_pct_change = -5
+day2_pct_change = 10
+day3_pct_change = 2
+```
+
+Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $`{python} fmt(fvtpl_security_value)`.
 
 The fair value of the security is recorded on the balance sheet under the _Assets at FVTPL_ account.
 
@@ -309,7 +345,7 @@ report1.print_balance_sheet()
 from brms.models.base import BookType
 
 fvtpl_security = MockInstrument("A FVTPL Security", BookType.TRADING_BOOK)
-fvtpl_security.value = 1_0000
+fvtpl_security.value = fvtpl_security_value
 tx_fvtpl_purchase = TransactionFactory.create_transaction(
     bank=bank,
     transaction_type=TransactionType.SECURITY_PURCHASE_TRADING,
@@ -319,7 +355,7 @@ tx_fvtpl_purchase = TransactionFactory.create_transaction(
 )
 bank.process_transaction(tx_fvtpl_purchase)
 
-report2= Report(ledger=bank.ledger, viewer=viewer, date=today)
+report2 = Report(ledger=bank.ledger, viewer=viewer, date=today)
 report2.print_balance_sheet()
 ```
 :::
@@ -341,7 +377,7 @@ These trading gains and losses are _unrealized_ because the securities have not 
 
 ## Unrealized trading loss - Income Statement
 
-If the market value of the security went down by 5% ($500) the next day, we need to recognize this _unrealized trading loss_ in the Income Statement.
+If the market value of the security went down by `{python} abs(day1_pct_change)`% ($`{python} fmt(fvtpl_security_value*0.05)`) the next day, we need to recognize this _unrealized trading loss_ in the Income Statement.
 
 ::: {.columns}
 ::: {.column}
@@ -410,7 +446,14 @@ Usually, financial reports are generated at a period's end, such as quarter's en
 
 ## Unrealized trading gain - Income Statement
 
-The day after, if the market value of the security went up by 10% ($950), we need to recognize this _unrealized trading gain_.
+```{python}
+# | echo: false
+change_of_fvtpl_value = (
+    fvtpl_security_value * (1 + day1_pct_change / 100) * day2_pct_change / 100
+)
+```
+
+The day after, if the market value of the security went up by `{python} day2_pct_change`% ($`{python} fmt(change_of_fvtpl_value)`), we need to recognize this _unrealized trading gain_.
 
 ::: {.columns}
 ::: {.column}
@@ -428,7 +471,7 @@ report3.print_income_statement()
 # | panel: center
 today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went up by 10%
-new_fvtpl_instrument_value = fvtpl_security.value * 1.1
+new_fvtpl_instrument_value = fvtpl_security.value * (1 + day2_pct_change / 100)
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 tx_fvtpl_marked_up = TransactionFactory.create_transaction(
     bank=bank,
@@ -448,7 +491,7 @@ report4.print_income_statement()
 
 ## Unrealized trading gain - Balance Sheet
 
-Again, if we were to close the bank's accounting ledger now and check its balance sheet, we will see changes of the bank's retained earnings (increase by $950).
+Again, if we were to close the bank's accounting ledger now and check its balance sheet, we will see changes of the bank's retained earnings (increase by $`{python} fmt(change_of_fvtpl_value)`).
 
 ::: {.columns}
 ::: {.column}
@@ -473,15 +516,25 @@ report4.print_balance_sheet()
 
 ## FVTPL security sale
 
-The next day, if the bank sold the security at the prevailing market price (assumed 2% up), we recognize _realized trading gain_.
+The next day, if the bank sold the security at the prevailing market price (assumed `{python} day3_pct_change`% up), we recognize _realized trading gain_.
 
 Tracking the P&L of this particular FVTPL security, 
 
-1. On day 1, we had a loss of $500 ($10,000 * 0.95 = $9,500).
-2. On day 2, we had a gain of $950 ($9,500 * 1.1 = $10,450).
-3. On day 3, we had a gain of $209 ($10,450 * 1.02 = $10,659).
+```{python}
+# | echo: false
+v0 = fvtpl_security_value
+v1 = v0 * (1 + day1_pct_change / 100)
+v2 = v1 * (1 + day2_pct_change / 100)
+v3 = v2 * (1 + day3_pct_change / 100)
+net_gain = (v1 - v0) + (v2 - v1) + (v3 - v2)
+net_loss = abs(v1 - v0)
+```
 
-The total P&L from this security is therefore a net gain of $659, which shows up in the Income Statement. 
+1. On day 1, we had a loss of `{python} f"${abs(v1-v0)}"` (`{python} f"${v0} * {100 + day1_pct_change}% = ${v1}"`).
+2. On day 2, we had a gain of `{python} f"${v2-v1}"` (`{python} f"${v1} * {100 + day2_pct_change}% = ${v2}"`).
+3. On day 3, we had a gain of `{python} f"${v3-v2}"` (`{python} f"${v2} * {100 + day3_pct_change}% = ${v3}"`).
+
+The total P&L from this security is therefore a net gain of $`{python} net_gain`, which shows up in the Income Statement. 
 
 ::: {.callout-note}
 Because of the sale, the _unrealized trading gain/loss_ associated with this security must be __reclassified__ to _realized gain/loss_.
@@ -505,7 +558,7 @@ report4.print_income_statement()
 # | panel: center
 today = today + datetime.timedelta(days=1)
 # Assume that the market value of the FVTPL security went up by 2%
-new_fvtpl_instrument_value = fvtpl_security.value * 1.02
+new_fvtpl_instrument_value = fvtpl_security.value * (1 + day3_pct_change / 100)
 valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
 tx_fvtpl_marked_up = TransactionFactory.create_transaction(
     bank=bank,
@@ -533,9 +586,9 @@ report5.print_income_statement()
 # report.print_balance_sheet()
 ```
 
-- Trading gain: $950 + $209 = $1159
-- Trading loss: $500
-- Net gain: $659
+- Trading gain: `{python} f"${v3-v2} + ${v2-v1} = ${v3-v1}"`
+- Trading loss: `{python} f"${abs(v1-v0)}"`
+- Net gain: `{python} f"${net_gain}"`
 - Gain/loss _reclassified_ from unrealized to realized
 :::
 :::
@@ -567,7 +620,7 @@ report5.print_balance_sheet()
 
 ## FVTPL security sale - Balance Sheet
 
-Compared to the balance sheet before the bank purchased this FVTPL security, the retained earnings increased by exactly $659.
+Compared to the balance sheet before the bank purchased this FVTPL security, the retained earnings increased by exactly `{python} f"${net_gain}"`.
 
 ::: {.columns}
 ::: {.column}
