@@ -227,6 +227,6 @@ $code-block-bg:  #F5F5F5 !default;
 }
 
 
-strong {
+strong:not(.callout-title strong) {
   color: $red;
 }
