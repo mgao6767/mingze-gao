@@ -110,8 +110,8 @@ total_users_365 = int(resp_year.rows[0].metric_values[1].value)
 
 # Stats
 print(f'Last Updated:              {datetime.today().strftime("%Y-%m-%d")}')
-print(f"Total Views (365 Days):    {total_views_365:,}")
 print(f"Total Visitors (365 Days): {total_users_365:,}")
+print(f"Total Views (365 Days):    {total_views_365:,}")
 
 # ---- 1. Daily Views: 90 Days ----
 resp = client.run_report(RunReportRequest(
@@ -134,16 +134,15 @@ print(f"Total Views (90 Days):     {df['views'].clip(upper=cap_99).sum():,.0f} (
 # Plot 1: Line chart
 start_30d = df["date"].max() - timedelta(days=30)
 xscale = alt.Scale(domain=[start_30d, df["date"].max()])
-ymin, ymax = 0, df["views"].quantile(0.95)
-yrange = alt.Scale(domain=[ymin, ymax]) if (ymax - ymin) / (df["views"].max() - df["views"].min()) < 0.9 else alt.Scale()
+df["views"] = df["views"].clip(lower=0, upper=df["views"].quantile(0.99))
 
 alt.renderers.set_embed_options(actions=False)
 line_chart = alt.Chart(df).mark_line(point=True).encode(
   x=alt.X("date:T", title=None, scale=xscale, axis=alt.Axis(format="%b %d")),
-  y=alt.Y("views:Q", title="Views", scale=yrange),
+  y=alt.Y("views:Q", title="Views"),
   tooltip=["date:T", "views:Q"]
 ).properties(
-  title="📈 Daily Site Views (Past 90 Days)",
+  title="📈 Daily Site Views (Past 90 Days), winsorized at 99%",
   width="container",
   height=300
 ).interactive()
