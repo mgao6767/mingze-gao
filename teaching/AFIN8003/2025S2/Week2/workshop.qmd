@@ -16,24 +16,6 @@ format:
     footer: "AFIN8003 Banking and Financial Intermediation"
     mermaid-format: svg
     callout-appearance: simple
-  pdf:
-    documentclass: article
-    papersize: a4
-    toc: false
-    number-sections: true
-    colorlinks: true
-    geometry:
-      - top=30mm
-      - left=20mm
-      - heightrounded
-    fig-pos: "H"
-    fig-width: 1
-    fig-cap-location: "bottom"
-    output-file: "Workshop2.pdf"
-    echo: false
-    callout-appearance: simple
-# Custom fields
-pdf-name: "Workshop2.pdf"
 ---
 
 ```{python}
