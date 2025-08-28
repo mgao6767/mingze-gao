@@ -58,7 +58,7 @@ We first define some key project parameters.
 #| code-fold: false
 #| code-summary: Define key parameters.
 
-year_start <- 2000
+year_start <- 1990
 year_end <- 2024
 remove_financial_firms <- TRUE
 remove_utility_firms <- TRUE
@@ -517,6 +517,7 @@ The summary statistics for the final sample are presented in the table below.
 #| label: summary-statistics
 #| code-fold: true
 #| code-summary: Summary statistics for the analysis.
+#| output: asis 
 
 modelsummary::datasummary(
   as.formula(paste(
@@ -595,6 +596,7 @@ Below are several examples of how to present regression results using `modelsumm
 #| label: baseline-model
 #| code-fold: true
 #| code-summary: Minimal regression table.
+#| output: asis 
 
 models <- list(
   "Model 1" = feols(
@@ -627,6 +629,7 @@ Use the `coef_map` argument in the `modelsummary` function to apply the variable
 #| label: baseline-model-with-variable-labels-and-ordering
 #| code-fold: true
 #| code-summary: Show variable labels instead of raw variable names.
+#| output: asis 
 
 models <- list(
   "Model 1" = feols(
@@ -672,6 +675,7 @@ I use custom functions to extract and format the information.
 #| label: baseline-model-gof
 #| code-fold: true
 #| code-summary: Customize GoF panel.
+#| output: asis 
 
 models <- list(
   "Model 1" = feols(
@@ -771,6 +775,7 @@ We can also group the models when presenting the results.
 #| label: baseline-model-group
 #| code-fold: true
 #| code-summary: Group models
+#| output: asis 
 
 models <- list(
   "Model 1" = feols(
@@ -819,6 +824,7 @@ If the `models` list is *unnamed*, `modelsummary` will number the models automat
 #| label: baseline-model-column-numbering
 #| code-fold: true
 #| code-summary: Number models
+#| output: asis 
 
 models <- list(
   feols(
@@ -867,6 +873,7 @@ If the `models` list is *named*, we can manually add column numbers.
 #| label: baseline-model-column-numbering-naming
 #| code-fold: true
 #| code-summary: Number and name models
+#| output: asis 
 
 models <- list(
   "Model 1" = feols(
@@ -938,6 +945,7 @@ Finally, the checkmark symbol `✓` used to indicate the inclusion of fixed effe
 #| label: prepare-latex-export
 #| code-fold: true
 #| code-summary: Modify various formatting for LaTeX export.
+#| output: asis 
 
 # Update label_map and gm for LaTeX export
 
@@ -1017,7 +1025,7 @@ The rendered PDF is shown below. Note that we need to include several LaTeX pack
 
 ## Rendered PDF
 
-This PDF can be [downloaded here](./output/table.pdf)
+This PDF can be [downloaded here](./output/table.pdf). The table is surely of publication quality.
 
 ![](output/table.pdf){height=850 width=600}
 
@@ -1055,4 +1063,6 @@ This PDF can be [downloaded here](./output/table.pdf)
 
 ::: {.callout-tip}
 To be continued...
+
+I will add more examples of various statistical analysis and tabulation with different customizations in the future.
 :::
