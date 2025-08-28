@@ -2,6 +2,7 @@ project:
   type: website
   preview:
     port: 4200
+  execute-dir: file
   post-render: 
     - scripts/post-render.py
 

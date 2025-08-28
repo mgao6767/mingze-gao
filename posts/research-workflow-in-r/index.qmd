@@ -1,0 +1,1058 @@
+---
+title: "Research Workflow in R"
+date: 2025-08-28
+execute: 
+  freeze: true
+format:
+  html:
+    embed-resources: true
+    toc: true
+    number-sections: true
+    code-fold: false
+    code-tools: true
+    code-link: true
+    cap-location: top
+---
+
+[This is a template for a research workflow in R.]{.mark} 
+
+After many years working with SAS and Stata, I am experimenting a pure R workflow. This template outlines a typical research workflow in R, including data loading, cleaning, analysis, and presentation of results.
+
+The end goal is to provide a comprehensive guide and a [Quarto](https://quarto.org/) template to start new empirical research projects.[^download-template] 
+
+[^download-template]: You can download the template by clicking the `Code` button at the top right of this page and selecting `View Source`. 
+
+::: {.callout-tip}
+I will continue to refine this workflow as I gain more experience with R.
+:::
+
+## Setup
+
+This section initializes the R environment, sets project parameters, and loads required libraries for data processing and analysis.
+
+```{r}
+#| label: init-setup
+#| message: false
+#| code-summary: Initial setup.
+#| code-fold: true
+
+# Clear the environment
+rm(list = ls())
+
+# Disable scientific notation
+options(scipen = 999)
+
+# A hack to set the working directory to the location of this file
+if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+  wd <- dirname(rstudioapi::getSourceEditorContext()$path)
+  setwd(wd)
+}
+# Set the root directory for the project
+here::i_am("index.qmd")
+```
+
+We first define some key project parameters.
+
+```{r}
+#| label: define-parameters
+#| code-fold: false
+#| code-summary: Define key parameters.
+
+year_start <- 2000
+year_end <- 2024
+remove_financial_firms <- TRUE
+remove_utility_firms <- TRUE
+force_data_download <- FALSE
+```
+
+```{r}
+#| label: load-libraries
+#| code-summary: Load libraries.
+#| code-fold: true
+#| message: false
+
+# Database and data manipulation
+library(RPostgres)
+library(here)
+library(glue)
+library(tidyverse)
+library(slider)
+
+# Data analysis and statistics
+library(fixest)
+library(mFilter)
+library(modelsummary)
+
+# Plotting and presentation
+library(ggplot2)
+library(tinytable)
+
+# Variable labelling
+library(labelled)
+```
+
+```{r}
+#| label: define-helper-functions
+#| code-fold: true
+#| code-summary: Define helper functions.
+
+# Load data from local file or WRDS database.
+load_data <- function(local, wrds, sql, force_download = FALSE) {
+  if (file.exists(local) && !force_download) {
+    df <- readRDS(local)
+  } else {
+    res <- dbSendQuery(wrds, sql)
+    df <- dbFetch(res, n = -1)
+    dbClearResult(res)
+    saveRDS(df, local, compress = "gzip")
+  }
+  return(df)
+}
+
+# Check for duplicate rows in a data frame based on specified columns.
+check_duplicates <- function(df, cols) {
+  if (any(duplicated(df[, cols]))) {
+    warning(
+      glue(
+        "Found duplicate rows based on columns: ",
+        "{paste(cols, collapse = ', ')}."
+      )
+    )
+  } else {
+    message(
+      glue(
+        "Rows in {deparse(substitute(df))} are unique based on columns: ",
+        "{paste(cols, collapse = ', ')}."
+      )
+    )
+  }
+}
+
+# Winsorize a numeric vector at specified percentiles.
+winsorize_vec <- function(x, probs = c(0.01, 0.99), na.rm = TRUE) {
+  stopifnot(length(probs) == 2, probs[1] <= probs[2])
+  q <- stats::quantile(x, probs = probs, na.rm = na.rm, names = FALSE)
+  x <- pmin(pmax(x, q[1]), q[2])
+  x
+}
+```
+
+Define some custom CSS styles for the tables in the rendered HTML. Notably, rendering this document can produce an HTML page containing formatted outputs (tables and figures), while such outputs can also be exported as LaTeX files and image files to be used elsewhere (e.g., Overleaf, Word).
+
+```{r}
+#| label: define-css
+#| code-summary: Define CSS for table formatting. 
+#| code-fold: true 
+
+table_css <- "
+.regtable table {
+  border-collapse: collapse;      /* removes default cell gaps */
+  border-spacing: 0;
+  font-size: 0.9rem;              /* relative, responsive */
+}
+
+.regtable caption {
+  caption-side: top;
+  font-weight: bold;
+  color: black;
+}
+
+.regtable th,
+.regtable td {
+  font-weight: normal;            /* normal weight for data cells */
+  line-height: 1;                 /* tight vertical spacing */
+  padding: 0.2em 0.4em;           /* minimal padding for readability */
+  white-space: nowrap;            /* no wrapping */
+  margin: 0;                      /* avoid extra vertical gaps */
+}
+"
+```
+
+## Data
+
+Data used in an empirical research project can be retrieved from either some remote sources (e.g., web pages, database like WRDS) or from local files, depending on availability. 
+
+In this section, we load data from WRDS or from local storage in the `data` directory.
+
+### Fetch from WRDS
+
+::: {.callout-note}
+Before running the code chunks in this section, ensure that you have followed the guide on WRDS to set up your local R environment for database connection.
+:::
+
+Connect to WRDS database. We will use `wrds` to access the data. However, if `force_data_download` is set to `FALSE`, we will attempt to load data from local files first.
+
+```{r}
+#| label: connect-wrds
+#| code-summary: Connect to WRDS database.
+
+wrds <- NULL 
+if (force_data_download) {
+  wrds <- dbConnect(
+    Postgres(),
+    host = "wrds-pgdata.wharton.upenn.edu",
+    port = 9737,
+    dbname = "wrds",
+    sslmode = "require",
+    user = Sys.getenv("WRDS_USERNAME")
+  )
+}
+```
+
+::: {.callout-note}
+My WRDS username is stored in the environment variable `WRDS_USERNAME`. You can do the same or simply replace `Sys.getenv("WRDS_USERNAME")` with your actual WRDS username.
+:::
+
+#### Compustat
+
+Try to load Compustat Fundamentals Annual (funda) data from local storage first. If the local file does not exist, we download the data from WRDS and save it locally for future use.
+
+```{r}
+#| label: load-compustat-funda
+#| code-summary: Load Compustat Funda data.
+
+local_path <- here("data", "comp.funda.rds")
+sql <- glue("
+  select * from comp.funda
+  where
+    extract(year from datadate) between {year_start} and {year_end}
+    and indfmt = 'INDL'
+    and datafmt = 'STD'
+    and popsrc = 'D'
+    and consol = 'C'
+")
+comp.funda <- load_data(local_path, wrds, sql) 
+```
+
+Following @pflueger2020financial, for firms that change fiscal year within a calendar year, we take the last reported date when extracting financial data. This leaves us with one set of observations for each firm (`gvkey`) in each year.
+
+```{r}
+#| label: remove-duplicate-dates
+#| code-summary: Remove duplicate fiscal year-end dates.
+
+comp.funda <- comp.funda |>
+  group_by(gvkey, fyear) |>
+  filter(datadate == max(datadate, na.rm = TRUE)) |>
+  ungroup()
+```
+
+#### CRSP
+
+Need the CRSP-Compustat Merged Link Table to link Compustat `gvkey` with CRSP `permno` and `permco`.
+
+```{r}
+#| label: load-crsp-link-history
+#| code-summary: Load CRSP Link History data.
+
+local_path <- here("data", "crsp.ccmxpf_lnkhist.rds")
+sql <- "
+  select * from crsp.ccmxpf_lnkhist
+  where
+    linktype in ('LC', 'LU')
+    and linkprim in ('C', 'P')"
+crsp.ccmxpf_lnkhist <- load_data(local_path, wrds, sql)
+```
+
+Because Compustat records only the *current* company information. We need the historical SIC code `hsiccd`, which is only available in CRSP. 
+
+```{r}
+#| label: load-crsp-msenames
+#| code-summary: Load CRSP Msenames data.
+
+local_path <- here("data", "crsp.msenames.rds")
+sql <- "
+  select * from crsp.msenames
+  where
+    shrcd in (10, 11)"
+crsp.msenames <- load_data(local_path, wrds, sql)
+```
+
+::: {.callout-note}
+`shrcd` in (10, 11) ensures common stocks.
+:::
+
+Later, we will merge `crsp.msenames` and `comp.funda` to add the historical SIC code.
+
+Download daily stock return data from CRSP.
+
+```{r}
+#| label: load-crsp-daily-returns
+#| code-summary: Load stock return data.
+
+local_path <- here("data", "crsp.dsf.rds")
+sql <- glue("
+  select date, permno, ret
+  from crsp.dsf
+  where
+    extract(year from date) between {year_start} and {year_end}
+")
+crsp.dsf <- load_data(local_path, wrds, sql)
+```
+
+Housekeeping.
+
+```{r}
+#| message: false
+#| label: housekeeping
+#| code-fold: true 
+#| code-summary: Clear up temporary variables and disconnect from WRDS
+
+rm(local_path, sql)
+
+if (!is.null(wrds)) {
+  dbDisconnect(wrds)
+}
+
+gc() # garbage collection
+```
+### Load from Local Storage
+
+::: {.callout-note}
+If we have other datasets stored locally, we can load them here.
+:::
+
+## Sample
+
+After loading the necessary datasets, we proceed to create the sample for analysis.
+
+### Merge Compustat and CRSP Data
+
+We first merge Compustat and CRSP data using the link table `crsp.ccmxpf_lnkhist`. The linking is based on `gvkey` and the date `datadate` falling between the link start date `linkdt` and link end date `linkenddt`.
+
+```{r}
+#| label: merge-compustat-crsp
+#| code-summary: Merge Compustat and CRSP data.
+
+ccm <- inner_join(
+  comp.funda,
+  crsp.ccmxpf_lnkhist |>
+    mutate(
+      linkdt = coalesce(linkdt, as.Date("1900-01-01")),
+      linkenddt = coalesce(linkenddt, as.Date("9999-12-31"))
+    ),
+  join_by(
+    gvkey == gvkey,
+    between(datadate, linkdt, linkenddt)
+  )
+)
+```
+
+Next, we add the historical SIC code `hsiccd` from `crsp.msenames`. The linking is based on `permno` and the date `datadate` falling between the name start date `namedt` and name end date `nameendt`.
+
+```{r}
+#| label: add-hsiccd
+#| code-summary: Add historical SIC code.
+
+ccm <- left_join(
+  ccm,
+  crsp.msenames |> select(permno, permco, namedt, nameendt, hsiccd),
+  join_by(
+    lpermno == permno,
+    between(datadate, namedt, nameendt)
+  )
+)
+```
+
+Before proceeding, we verify that we have unique `gvkey`-`permco` and `gvkey`-`permno` links for each date `datadate`.
+
+```{r message=FALSE}
+#| label: verify-unique-links
+#| code-summary: Verify that we have unique gvkey-permco and gvkey-permno links.
+
+check_duplicates(ccm, c("gvkey", "datadate"))
+check_duplicates(ccm, c("lpermco", "gvkey", "datadate"))
+check_duplicates(ccm, c("lpermno", "gvkey", "datadate"))
+```
+
+### Create the Sample
+
+After all data is fetched and loaded, we create the sample for analysis. 
+
+#### Stock Return Volatility
+
+Compute the standard deviation of daily stock returns over the past 12 months for each firm-year observation in `ccm`. We require at least 60 daily return observations within the 12-month window to compute the standard deviation; otherwise, we set it to missing.
+
+```{r}
+#| label: compute-ret-sd
+#| code-summary: Compute the volatility of daily returns over the past 12 months.
+
+ccm_returns <- ccm |>
+  # create a lookup table of firm-year (permno, datadate) with the 12-month window
+  select(gvkey, lpermno, datadate) |>
+  rename(permno = lpermno) |>
+  mutate(
+    window_start = datadate %m-% months(12),
+    window_end = datadate
+  ) |>
+  # join with daily returns to get daily returns in the past 12 months
+  left_join(
+    crsp.dsf,
+    join_by(permno, between(y$date, x$window_start, x$window_end))
+  ) |>
+  group_by(gvkey, datadate) |>
+  summarise(
+    n_obs = sum(!is.na(ret)),
+    ret_sd_12m = ifelse(n_obs >= 60, sd(ret, na.rm = TRUE), NA_real_),
+    .groups = "drop"
+  ) |>
+  # keep only gvkey, datadate, ret_sd_12m
+  select(gvkey, datadate, ret_sd_12m)
+
+# Merge back to ccm
+ccm <- left_join(ccm, ccm_returns, by = c("gvkey", "datadate"))
+
+# Remove temporary data frame
+rm(ccm_returns)
+```
+
+#### Final Sample Creation
+
+We now create the final sample for analysis.
+
+```{r}
+#| label: create-sample
+#| code-summary: Create the sample.
+
+df_firm <- ccm |>
+  # Create new variables
+  mutate(
+    # sic2: 2-digit SIC code
+    sic2 = floor(hsiccd / 100), 
+    # size: log of total assets
+    size = log(at),
+    # mktcap: market capitalization
+    mktcap = log(abs(prcc_f * csho)),
+    # seq: stockholder's equity
+    seq = coalesce(seq, ceq + pstk, at - lt - mib),
+    # pref: preferred stock
+    pref = coalesce(pstkrv, pstkl, pstk, 0),
+    # be: book equity
+    be = seq - pref,
+    # tangibility
+    tangibility = coalesce(ppent, 0) / at,
+    # market-to-book ratio
+    mtb = (prcc_f * csho) / be,
+    # ROA
+    roa = ib / at,
+    # lev: leverage
+    lev = (dltt + dlc) / at,
+    # Altman Z-score
+    z_score = (3.3 * ebit + sale + 1.4 * re + 1.2 * (act - lct)) / at 
+      + 0.6 * (prcc_f * csho / lt),
+    # CF is operating income before depreciation scaled by total assets
+    cf = coalesce(oibdp, 0) / at,
+    # Capital expenditures (capex) is capital expenditures scaled by total assets
+    capex = coalesce(capx, 0) / at,
+    # R&D is research and development expenses scaled by total assets
+    rd = coalesce(xrd, 0) / at,
+  ) |>
+  # Remove rows without historical SIC code
+  filter(!is.na(hsiccd)) |>
+  # Remove rows without total assets
+  filter(!is.na(at)) |>
+  # Remove rows without permco or permno
+  filter(!is.na(lpermco) & !is.na(lpermno)) |>
+  # Keep non-financial and non-utility firms
+  filter(!(remove_financial_firms & sic2 %in% c(60:69))) |>
+  filter(!(remove_utility_firms & sic2 %in% c(49))) |>
+  filter(
+    # Remove obs with negative book equity
+    be > 0,
+    # Remove obs with negative market-to-book ratio
+    mtb > 0,
+    # Remove obs with negative or zero market capitalization
+    mktcap > 0,
+    # Remove obs with R&D expenses greater than total assets
+    rd <= 1
+  )
+```
+
+Define variable labels.
+
+```{r}
+#| label: variable-labels
+#| code-summary: Variable labels for the analysis.
+ 
+label_map <- list(
+  size = "Size",
+  mktcap = "Market capitalization",
+  tangibility = "Asset tangibility",
+  roa = "ROA",
+  mtb = "Market-to-book",
+  lev = "Leverage",
+  z_score = "Altman Z-score",
+  capex = "Capital expenditures",
+  rd = "R&D",
+  cf = "Cash flow",
+  ret_sd_12m = "Stock return volatility"
+)
+
+# list of variables to be used in the analysis
+vars <- names(label_map)
+
+# Set variable labels
+var_label(df_firm) <- label_map
+```
+
+Finally, winsorize variables to reduce the impact of outliers. Specifically, we winsorize all continuous variables at the 1st and 99th percentiles.
+
+```{r}
+#| label: winsorize-variables
+#| code-summary: Winsorize variables to reduce the impact of outliers.
+
+df_firm <- df_firm |>
+  # Keep only rows with non-missing values for all vars
+  filter(if_all(all_of(vars), ~ !is.na(.))) |>
+  # Winsorize variables at the 1st and 99th percentiles
+  mutate(
+    across(all_of(vars), \(x) winsorize_vec(x, probs = c(0.01, 0.99)))
+  )
+```
+
+### Summary Statistics
+
+The summary statistics for the final sample are presented in the table below. 
+
+```{r}
+#| label: summary-statistics
+#| code-fold: true
+#| code-summary: Summary statistics for the analysis.
+
+modelsummary::datasummary(
+  as.formula(paste(
+    paste(vars, collapse = " + "),
+    "~ N + Mean + SD + Min + P25 + Median + P75 + Max"
+  )),
+  data = df_firm,
+  title = "Summary Statistics",
+  fmt = 3
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+Visualization is also a powerful tool to understand the data. The following figure shows the time series of average capital expenditure and the number of firms in the sample.
+
+```{r}
+#| label: plot-capex-n-firms
+#| code-fold: true 
+#| code-summary: Plot time series of average capital expenditure and number of firms.
+ 
+df_capex <- df_firm |>
+  group_by(fyear) |>
+  summarise(
+    mean_capex = mean(capex, na.rm = TRUE),
+    n_firms = n_distinct(gvkey)
+  )
+
+ggplot(df_capex, aes(x = fyear)) +
+  geom_col(aes(y = n_firms / max(n_firms) * max(mean_capex) * 0.3), 
+           fill = "#bdbdbd", width = 0.8, alpha = 0.6) +
+  geom_line(aes(y = mean_capex), color = "#A6192E", linewidth = 1.2) +
+  scale_y_continuous(
+    name = "Average Capital Expenditure",
+    sec.axis = sec_axis(
+      transform = ~ . / (max(df_capex$mean_capex, na.rm = TRUE) * 0.3) * max(df_capex$n_firms),
+      name = "Number of Firms"
+    )
+  ) +
+  labs(
+    title = "Time Series of Average Capital Expenditure and Number of Firms",
+    x = "Year"
+  ) +
+  theme_minimal()
+```
+
+## Empirical Analysis
+
+In practice, our research questions vary. For illustration, we examine the relationship between capital expenditures and cash flow, controlling for a set of other firm characteristics.[^research-question]
+
+[^research-question]: This is just a hypothetical example. Let's not get too caught up by whether this is a good research question or not.
+
+Specifically, we estimate the following regression model:
+
+$$
+\begin{equation}
+\textit{CAPEX}_{it} = \beta \textit{CF}_{it} + \gamma X_{it} + \theta_t + \lambda_i + \varepsilon_{it}
+\end{equation},
+$$ {#eq-capex-regression}
+
+where $\textit{CAPEX}_{it}$ is capital expenditures scaled by total assets for firm $i$ in year $t$, $\textit{CF}_{it}$ is cash flow scaled by total assets, $X_{it}$ is a vector of control variables including firm size, market-to-book ratio, leverage, ROA, asset tangibility, R&D expenses, and Altman Z-score. $\theta_t$ and $\lambda_i$ represent year and firm fixed effects, respectively. Standard errors are clustered at the firm level.
+
+
+::: {.callout-note}
+I will use `fixest` to estimate the model and `modelsummary` to create the regression table.
+:::
+
+::: {.column-screen-inset-shaded}
+
+Below are several examples of how to present regression results using `modelsummary`, from a minimal example to more complex customizations.
+
+::: {.panel-tabset}
+
+## Minimal Example
+
+```{r}
+#| label: baseline-model
+#| code-fold: true
+#| code-summary: Minimal regression table.
+
+models <- list(
+  "Model 1" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 2" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+# Report results using modelsummary
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## Variable Labels and Ordering
+
+Use the `coef_map` argument in the `modelsummary` function to apply the variable labels and ordering.
+
+```{r}
+#| label: baseline-model-with-variable-labels-and-ordering
+#| code-fold: true
+#| code-summary: Show variable labels instead of raw variable names.
+
+models <- list(
+  "Model 1" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 2" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+# Sort `label_map` to have `cf` to be the first var
+label_map <- label_map[c("cf", setdiff(names(label_map), "cf"))]
+
+# Report results using modelsummary
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  coef_map = label_map, # Use label_map to rename, reorder, and subset reported vars
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## Customize the GoF Panel
+
+I will customize the table's bottom goodness of fit (GoF) panel in a way that I find most useful:
+
+- Report fixed effects included in each model.
+- Report the clustering information.
+- Report the mean of the dependent variable.
+- Report the number of observations and adjusted R-squared.
+
+::: {.callout-note}
+I use custom functions to extract and format the information.
+:::
+
+```{r}
+#| label: baseline-model-gof
+#| code-fold: true
+#| code-summary: Customize GoF panel.
+
+models <- list(
+  "Model 1" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 2" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 3" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+# Extract clustering variables
+get_cluster_vars <- function(x) {
+  # assert x is a fixest object
+  if (!inherits(x, "fixest")) stop("Input must be a fixest object")
+  typ <- attr(x$se, "type")
+  if (is.null(typ) || !nzchar(typ)) return(NULL)
+  if (!grepl("\\(", typ)) return(NULL)
+  inside <- sub(".*\\((.*)\\).*", "\\1", typ)
+  vars <- trimws(unlist(strsplit(inside, "[,&+]")))
+  vars[nzchar(vars)]
+}
+
+# Pretty print clustering variables
+# Rename `gvkey` to `Firm`, `fyear` to `Year`, and `sic2` to `Industry`
+pretty_cluster <- function(vars) {
+  map <- c(gvkey = "Firm", fyear = "Year", sic2 = "Industry")
+  pretty <- ifelse(vars %in% names(map), unname(map[vars]), vars)
+  paste(pretty, collapse = " & ")
+}
+
+# Custom glance method for fixest objects
+glance_custom.fixest <- function(x) {
+  out <- list()
+  # Fixed effects
+  for (v in x$fixef_vars) {
+    out[[paste0("FE: ", v)]] <- "✓"
+  }
+  # Cluster info
+  cl_vars <- get_cluster_vars(x)
+  if (length(cl_vars)) {
+    out[["vcov.type"]] <- paste("by", pretty_cluster(cl_vars))
+  } else {
+    out[["vcov.type"]] <- "Not clustered"
+  }
+  # Mean of dependent variable
+  dv <- insight::get_response(x)
+  dv <- mean(dv, na.rm = TRUE)
+  out[["Mean dep. var."]] <- dv
+
+  return(data.frame(out, check.names = FALSE))
+}
+
+# Format numbers with commas
+f_comma <- function(x) format(round(x, 3), big.mark = ",")
+
+# This list must have an element for each statistics we want to print. 
+# Each element must be a named list with exactly three elements:
+# raw: a string with the name of a column produced by get_gof(model).
+# clean: a string with the “clean” name of the statistic you want to appear in your final table.
+# fmt: a string, numeric value, or function which will be used to round/format the string in question.
+gm <- list(
+  list("raw" = "FE: gvkey", "clean" = "Firm fixed effects", "fmt" = 0),
+  list("raw" = "FE: sic2", "clean" = "Industry fixed effects", "fmt" = 0),
+  list("raw" = "FE: fyear", "clean" = "Year fixed effects", "fmt" = 0),
+  list("raw" = "nobs", "clean" = "N", "fmt" = f_comma),
+  list("raw" = "adj.r.squared", "clean" = "Adjusted R<sup>2</sup>", "fmt" = 3),
+  list("raw" = "Mean dep. var.", "clean" = "Mean of dep. var.", "fmt" = 3),
+  list("raw" = "vcov.type", "clean" = "Standard errors clustering", "fmt" = 0)
+)
+
+# Report results using modelsummary
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  coef_map = label_map, # Use label_map to rename, reorder, and subset reported vars
+  gof_map = gm,
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## Group Models
+
+We can also group the models when presenting the results.
+
+```{r}
+#| label: baseline-model-group
+#| code-fold: true
+#| code-summary: Group models
+
+models <- list(
+  "Model 1" = feols(
+    capex ~ cf | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 2" = feols(
+    capex ~ cf | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 3" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 4" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+# Report results using modelsummary
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  coef_map = label_map, # Use label_map to rename, reorder, and subset reported vars
+  gof_map = gm,
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+) |>
+  group_tt(j = list(
+    "Without Controls" = c(2,3),
+    "With Controls" = c(4,5)
+    )) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## Column Numbering
+
+If the `models` list is *unnamed*, `modelsummary` will number the models automatically.
+
+```{r}
+#| label: baseline-model-column-numbering
+#| code-fold: true
+#| code-summary: Number models
+
+models <- list(
+  feols(
+    capex ~ cf | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  feols(
+    capex ~ cf | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+# Report results using modelsummary
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  coef_map = label_map,
+  gof_map = gm,
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+) |>
+  group_tt(j = list(
+    "Without Controls" = c(2,3),
+    "With Controls" = c(4,5)
+    )) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## Column Numbering and Naming
+
+If the `models` list is *named*, we can manually add column numbers.
+
+```{r}
+#| label: baseline-model-column-numbering-naming
+#| code-fold: true
+#| code-summary: Number and name models
+
+models <- list(
+  "Model 1" = feols(
+    capex ~ cf | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 2" = feols(
+    capex ~ cf | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 3" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + gvkey,
+    data = df_firm,
+    cluster = ~gvkey
+  ),
+  "Model 4" = feols(
+    capex ~ cf + size + mtb + lev + roa + tangibility + rd + z_score | fyear + sic2,
+    data = df_firm,
+    cluster = ~gvkey
+  )
+)
+
+n_cols <- length(models)
+
+# Report results using modelsummary
+table <-
+  modelsummary(
+    models,
+    title = "Capital Expenditures and Cash Flow",
+    coef_map = label_map,
+    gof_map = gm,
+    stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+    note = "Robust standard errors in parentheses.",
+  ) |>
+    group_tt(j = setNames(as.list(2:(n_cols + 1)), paste0("(", seq_len(n_cols), ")"))) |>
+    group_tt(j = list(
+      "Dependent Variable: CAPEX" = c(2:(n_cols + 1))
+      ))
+    
+table |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+:::
+
+<!-- end of panel -->
+
+:::
+
+<!-- end of .column-screen-inset-shaded -->
+
+The tables presented here are in HTML format but can also be easily exported to other formats such as LaTeX.[^tinytable] 
+
+[^tinytable]: See [documentation of `tinytable`](https://vincentarelbundock.github.io/tinytable/man/save_tt.html) for details, especially the required preamble.
+
+::: {.callout-important}
+We need to tweak the table formatting for LaTeX export.
+
+For example, the label of variable `R&D` contains a special character `&`, which needs to be escaped in LaTeX. We can use the `escape = TRUE` argument in `modelsummary` to handle this. 
+
+Also, the term `Adjusted R<sup>2</sup>` in the GoF panel contains HTML code, which needs to be replaced with `Adjusted R\textsuperscript{2}` or `Adjusted $R^2$` for LaTeX. We can modify the `clean` element of the corresponding item in `gm` to achieve this.
+
+Finally, the checkmark symbol `✓` used to indicate the inclusion of fixed effects is a Unicode character that may not render correctly in LaTeX. We can modify the `glance_custom.fixest` function to return `\checkmark` instead.
+:::
+
+```{r}
+#| label: prepare-latex-export
+#| code-fold: true
+#| code-summary: Modify various formatting for LaTeX export.
+
+# Update label_map and gm for LaTeX export
+
+label_map[["rd"]] <- "R\\&D"
+var_label(df_firm) <- label_map
+
+gm <- list(
+  list("raw" = "FE: gvkey", "clean" = "Firm fixed effects", "fmt" = 0),
+  list("raw" = "FE: sic2", "clean" = "Industry fixed effects", "fmt" = 0),
+  list("raw" = "FE: fyear", "clean" = "Year fixed effects", "fmt" = 0),
+  list("raw" = "nobs", "clean" = "N", "fmt" = f_comma),
+  list("raw" = "adj.r.squared", "clean" = "Adjusted $R^2$", "fmt" = 3),
+  list("raw" = "Mean dep. var.", "clean" = "Mean of dep. var.", "fmt" = 3),
+  list("raw" = "vcov.type", "clean" = "Standard errors clustering", "fmt" = 0)
+)
+
+# Update to use LaTeX checkmark instead of unicode
+glance_custom.fixest <- function(x) {
+  out <- list()
+  # Fixed effects
+  for (v in x$fixef_vars) {
+    out[[paste0("FE: ", v)]] <- "\\checkmark"
+  }
+  # Cluster info
+  cl_vars <- get_cluster_vars(x)
+  if (length(cl_vars)) {
+    out[["vcov.type"]] <- paste("by", pretty_cluster(cl_vars))
+  } else {
+    out[["vcov.type"]] <- "Not clustered"
+  }
+  # Mean of dependent variable
+  dv <- insight::get_response(x)
+  dv <- mean(dv, na.rm = TRUE)
+  out[["Mean dep. var."]] <- dv
+
+  return(data.frame(out, check.names = FALSE))
+}
+```
+
+The code exports the regression table to a LaTeX file. Note that `escape = TRUE` is used to ensure special characters are properly formatted for LaTeX.
+
+```{r}
+#| label: export-regression-table
+#| code-summary: Export regression table to LaTeX.
+
+output_path <- here("output", "regression_table.tex")
+
+modelsummary(
+  models,
+  title = "Capital Expenditures and Cash Flow",
+  coef_map = label_map,
+  gof_map = gm,
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Robust standard errors in parentheses.",
+  escape = TRUE
+) |>
+  group_tt(j = setNames(as.list(2:(n_cols + 1)), paste0("(", seq_len(n_cols), ")"))) |>
+  group_tt(j = list(
+    "Dependent Variable: CAPEX" = c(2:(n_cols + 1))
+    )) |>
+  save_tt(output_path, overwrite = TRUE)
+```
+
+The output is
+
+```{latex filename="output/regression_table.tex"}
+#| label: raw-latex-regression-table
+#| code-fold: true 
+#| code-summary: Raw LaTeX content of `output/regression_table.tex`.
+
+{{< include output/regression_table.tex >}}
+```
+
+The rendered PDF is shown below. Note that we need to include several LaTeX packages in the preamble to ensure proper rendering of the table.
+
+::: {.panel-tabset}
+
+## Rendered PDF
+
+This PDF can be [downloaded here](./output/table.pdf)
+
+![](output/table.pdf){height=850 width=600}
+
+## Raw LaTeX
+
+```latex
+\documentclass{article}
+
+% For \checkmark
+\usepackage{amssymb}
+
+% For tinytable export
+\usepackage{tabularray}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{siunitx}
+\newcommand{\tinytableTabularrayUnderline}[1]{\underline{#1}}
+\newcommand{\tinytableTabularrayStrikeout}[1]{\sout{#1}}
+\NewTableCommand{\tinytableDefineColor}[3]{\definecolor{#1}{#2}{#3}}
+
+\begin{document}
+
+\input{output/regression_table}
+
+\end{document}
+```
+
+:::
+
+<!-- end of tabset -->
+
+
+::: {.callout-tip}
+To be continued...
+:::
