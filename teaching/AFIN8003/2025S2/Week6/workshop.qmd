@@ -1,0 +1,242 @@
+---
+title: "AFIN8003 - Workshop 6"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-09-01
+categories:
+    - AFIN8003
+    - 2025S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop6.pdf"
+# Custom fields
+pdf-name: "Workshop6.pdf"
+include-answers: false
+---
+
+::: {.callout-note}
+This workshop questions are for your own practice and review. We will not cover them in class.
+:::
+
+# MCQ
+
+1. The risk that the borrower is unwilling or unable to fulfil the terms promised under the loan contract is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [ ] default risk
+   - [ ] market risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [x] default risk
+   - [ ] market risk
+   :::
+
+2. A loan which is made and taken down immediately is a:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] syndicated loan
+   - [ ] loan commitment
+   - [ ] spot loan
+   - [ ] secured loan
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] syndicated loan
+   - [ ] loan commitment
+   - [x] spot loan
+   - [ ] secured loan
+   :::
+
+3. A portion of a loan which a borrower may not use but which must be kept on deposit at the lending institution is a:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] compensating balance
+   - [ ] revolving credit line
+   - [ ] loan commitment
+   - [ ] minimum reserve requirement
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] compensating balance
+   - [ ] revolving credit line
+   - [ ] loan commitment
+   - [ ] minimum reserve requirement
+   :::
+
+4. The process of restricting the quantity of loans to an individual borrower is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] leverage lending
+   - [ ] covenants
+   - [ ] using implicit contracts
+   - [ ] credit rationing
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] leverage lending
+   - [ ] covenants
+   - [ ] using implicit contracts
+   - [x] credit rationing
+   :::
+
+6. Which of the following factors may affect the promised return an FI receives on a loan?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] fees relating to the loan
+   - [ ] the interest rate on the loan
+   - [ ] the credit risk premium on the loan
+   - [ ] all of the listed options are correct
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] fees relating to the loan
+   - [ ] the interest rate on the loan
+   - [ ] the credit risk premium on the loan
+   - [x] all of the listed options are correct
+   :::
+
+7. Which of the following refers to restrictions in bond and loan contracts that either encourage or limit certain actions by the borrower?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] mortality rates
+   - [ ] RAROC
+   - [ ] covenants
+   - [ ] credit rationing
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] mortality rates
+   - [ ] RAROC
+   - [x] covenants
+   - [ ] credit rationing
+   :::
+
+
+8. Credit scoring models include all of the following broad types except:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] linear discriminant models
+   - [ ] linear probability models
+   - [ ] term structure models
+   - [ ] logit models
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] linear discriminant models
+   - [ ] linear probability models
+   - [x] term structure models
+   - [ ] logit models
+   :::
+
+9. According to Altman's credit scoring model, which of the following Z-scores would indicate a high default risk firm? 
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] less than 1.81
+   - [ ] between 1 and 1.81
+   - [ ] between 1.81 and 2.99
+   - [ ] greater than 2.99
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] less than 1.81
+   - [ ] between 1 and 1.81
+   - [ ] between 1.81 and 2.99
+   - [ ] greater than 2.99
+   :::
+
+<!-- 
+10. The expected income per dollar lent is 0.4 cents. The 99th percentile historic (extreme case) default rate for this type of borrower is 5 per cent and the dollar proportion that cannot be recaptured is 85 per cent. The RAROC is:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] 4.25%
+    - [ ] 6.756%
+    - [ ] 9.41%
+    - [ ] 4.324%
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] 4.25%
+    - [ ] 6.756%
+    - [x] 9.41%
+    - [ ] 4.324%
+    ::: 
+-->
+
+# Short answer questions
+
+## Q1 - Loan returns
+
+Metrobank offers one-year loans with a 9 per cent stated or base rate, charges a 0.25 per cent loan origination fee, imposes a 10 per cent compensating balance requirement and must pay a 6 per cent reserve requirement to the central bank. The loans typically are repaid at maturity.
+
+(a) If the risk premium for a given customer is 2.5 per cent, what is the simple promised interest return on the loan?
+(b) What is the contractually promised gross return on the loan per dollar lent?
+(c) Which of the fee items has the greatest impact on the gross return?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+The simple promised interest return on the loan is 0.09 + 0.025 = 0.115 or 11.5 per cent.
+
+(b)
+$$
+1+k = 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]} = 1+\frac{0.0025+(0.09+0.025)}{1-[0.1(1-0.06)]} = 1.12969
+$$
+So the contractually promised gross return $k=12.97\%$.
+
+(c)
+The compensating balance has the strongest effect on the gross return on the loan. 
+- Without the compensating balance, the gross return would equal 11.75 per cent, a reduction of 1.22 per cent. 
+- Without the origination fee, the gross return would be 12.69 percent, a reduction of only 0.28 per cent. 
+- Eliminating the reserve requirement would cause the gross return to increase to 13.06 percent, an increase of 0.09 per cent.
+:::
+:::
+
+## Q2 - RAROC
+
+A bank is planning to make a loan of $5 000 000 to a firm in the steel industry. It expects to charge a servicing fee of 50 basis points. The loan has a maturity of 8 years and a duration of 7.5 years. The cost of funds (the RAROC benchmark) for the bank is 10 per cent.Assume the bank has estimated the maximum change in the risk premium on the steel manufacturing sector to be approximately 4.2 per cent, based on two years of historical data. The current market interest rate for loans in this sector is 12 per cent.
+
+(a) Using the RAROC model, estimate whether the bank should make the loan.
+(b) What should be the duration in order for this loan to be approved?
+
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+    RAROC = Fees and interest income earned on loan / Loan risk
+
+    Loan risk is capture by ${\Delta LN} = - D_{LN} \times LN \times \frac{\Delta R}{1+R}$.
+
+    $$
+    {\Delta LN} = - D_{LN} \times LN \times \frac{\Delta R}{1+R} = -7.5\times \$5 \text{m} \times (0.042/1.12) = -\$1 406 250
+    $$
+
+    - Expected interest $=0.12\times \$5 000 000 = \$600 000$
+    - Servicing fees $=0.005\times \$5 000 000 = \$25 000$
+    - _Less_ cost of funds $=0.1\times \$5 000 000 = \$500 000$
+    - Net interest and fee income $=\$125 000$
+
+    Therefore, RAROC = 125000/1406250 = 8.89 per cent. Since RAROC is lower than the cost of funds to the bank, the bank should not make the loan.
+
+(b)
+
+   For RAROC to be 10 per cent, loan risk ($\Delta LN$) should be:
+
+   $$
+    \$125 000 / \Delta LN = 0.1
+   $$
+
+   $\Delta LN = 1 250 000 = - D_{LN} \times LN \times \frac{\Delta R}{1+R}$
+
+   Therefore, $D_{LN}=6.67$ years. Thus, this loan can be made if the duration is reduced to 6.67 years from 7.5 years.
+
+:::
+:::
