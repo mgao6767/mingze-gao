@@ -1,6 +1,7 @@
 ---
 title: "Research Workflow in R"
 date: 2025-08-28
+date-modified: 2025-08-29
 execute: 
   freeze: true
 format:
@@ -14,17 +15,11 @@ format:
     cap-location: top
 ---
 
-[This is a template for a research workflow in R.]{.mark} 
+[This is an example template for a research workflow in R.]{.mark} 
 
-After many years working with SAS and Stata, I am experimenting a pure R workflow. This template outlines a typical research workflow in R, including data loading, cleaning, analysis, and presentation of results.
-
-The end goal is to provide a comprehensive guide and a [Quarto](https://quarto.org/) template to start new empirical research projects.[^download-template] 
+After many years working with SAS and Stata, I am experimenting a pure R workflow. This template outlines a typical research workflow in R, including data loading, cleaning, analysis, and presentation of results.[^download-template] 
 
 [^download-template]: You can download the template by clicking the `Code` button at the top right of this page and selecting `View Source`. 
-
-::: {.callout-tip}
-I will continue to refine this workflow as I gain more experience with R.
-:::
 
 ## Setup
 
@@ -526,7 +521,8 @@ modelsummary::datasummary(
   )),
   data = df_firm,
   title = "Summary Statistics",
-  fmt = 3
+  fmt = 3,
+  notes = "Continuous variables are winsorized at the 1st and 99th percentiles."
 ) |>
   theme_html(class="table table-borderless regtable", css_rule=table_css)
 ```
@@ -565,6 +561,8 @@ ggplot(df_capex, aes(x = fyear)) +
 
 ## Empirical Analysis
 
+### Baseline Contemporaneous Model
+
 In practice, our research questions vary. For illustration, we examine the relationship between capital expenditures and cash flow, controlling for a set of other firm characteristics.[^research-question]
 
 [^research-question]: This is just a hypothetical example. Let's not get too caught up by whether this is a good research question or not.
@@ -584,9 +582,9 @@ where $\textit{CAPEX}_{it}$ is capital expenditures scaled by total assets for f
 I will use `fixest` to estimate the model and `modelsummary` to create the regression table.
 :::
 
-::: {.column-screen-inset-shaded}
-
 Below are several examples of how to present regression results using `modelsummary`, from a minimal example to more complex customizations.
+
+::: {.column-page-inset}
 
 ::: {.panel-tabset}
 
@@ -1027,7 +1025,7 @@ The rendered PDF is shown below. Note that we need to include several LaTeX pack
 
 This PDF can be [downloaded here](./output/table.pdf). The table is surely of publication quality.
 
-![](output/table.pdf){height=850 width=600}
+![](output/table.pdf){height=850 width=100%}
 
 ## Raw LaTeX
 
@@ -1060,9 +1058,181 @@ This PDF can be [downloaded here](./output/table.pdf). The table is surely of pu
 
 <!-- end of tabset -->
 
+### Panel with Lagged Variables
 
-::: {.callout-tip}
-To be continued...
+Very often in empirical finance, we need to control for lagged independent variables (e.g., lagged firm characteristics). For example, we can estimate the following model:
 
-I will add more examples of various statistical analysis and tabulation with different customizations in the future.
+$$
+\begin{equation}
+\textit{CAPEX}_{it} = \beta \textit{CF}_{i,t-1} + \gamma X_{i,t-1} + \theta_t + \lambda_i + \varepsilon_{it}
+\end{equation}.
+$$ {#eq-capex-regression-lagged}
+
+@eq-capex-regression-lagged includes lagged values of the independent variables instead of contemporaneous values in @eq-capex-regression. 
+
+Before proceeding, we need to set the panel.
+
+```{r}
+#| label: create-panel
+
+panel_sample = panel(df_firm, ~gvkey+fyear)
+```
+
+```{r}
+#| label: restore-html-formatting
+#| code-fold: true
+#| code-summary: Restore HTML formatting for variable labels and GoF panel.
+
+label_map[["rd"]] <- "R&D"
+var_label(df_firm) <- label_map
+
+gm <- list(
+  list("raw" = "FE: gvkey", "clean" = "Firm fixed effects", "fmt" = 0),
+  list("raw" = "FE: sic2", "clean" = "Industry fixed effects", "fmt" = 0),
+  list("raw" = "FE: fyear", "clean" = "Year fixed effects", "fmt" = 0),
+  list("raw" = "nobs", "clean" = "N", "fmt" = f_comma),
+  list("raw" = "adj.r.squared", "clean" = "Adjusted R-squared", "fmt" = 3),
+  list("raw" = "Mean dep. var.", "clean" = "Mean of dep. var.", "fmt" = 3),
+  list("raw" = "vcov.type", "clean" = "Standard errors clustering", "fmt" = 0)
+)
+
+# Update to use LaTeX checkmark instead of unicode
+glance_custom.fixest <- function(x) {
+  out <- list()
+  # Fixed effects
+  for (v in x$fixef_vars) {
+    out[[paste0("FE: ", v)]] <- "Y"
+  }
+  # Cluster info
+  cl_vars <- get_cluster_vars(x)
+  if (length(cl_vars)) {
+    out[["vcov.type"]] <- paste("by", pretty_cluster(cl_vars))
+  } else {
+    out[["vcov.type"]] <- "Not clustered"
+  }
+  # Mean of dependent variable
+  dv <- insight::get_response(x)
+  dv <- mean(dv, na.rm = TRUE)
+  out[["Mean dep. var."]] <- dv
+
+  return(data.frame(out, check.names = FALSE))
+}
+```
+
+```{r}
+#| label: estimate-model-with-lagged-variables
+#| code-fold: true
+#| code-summary: Estimate model with lagged variables.
+
+# Variables to lag
+lag_vars <- c("cf", "size", "mtb", "lev", "roa", "tangibility", "rd", "z_score")
+fml <- as.formula(
+          paste0(
+            # dependent
+            "capex ~ ",
+            # lagged variables
+            paste0("l(", lag_vars, ",1)", collapse = " + "),
+            # fixed effects
+            " | fyear + gvkey"
+          )
+        )
+
+models <- list(
+  feols(
+    capex ~ l(cf,0:1) | fyear + gvkey,
+    data = panel_sample,
+    cluster = ~gvkey
+  ),
+  feols(fml,
+    data = panel_sample,
+    cluster = ~gvkey
+  )
+)
+```
+
+Below are examples of presenting regression results using `modelsummary`, from a minimal example to more complex customizations.
+
+::: {.column-page-inset}
+
+::: {.panel-tabset}
+
+## Minimal Example
+
+```{r}
+#| label: panel-lagged
+#| code-fold: true 
+#| code-summary: Panel data with lagged variables. No variable labelling.
+
+# Report results using modelsummary
+table <-
+  modelsummary(
+    models,
+    title = "Capital Expenditures and Cash Flow",
+    gof_map = gm,
+    stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+    note = "Robust standard errors in parentheses.",
+  ) |>
+    group_tt(j = list(
+      "Dependent Variable: CAPEX" = c(2:(length(models) + 1))
+      ))
+    
+table |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+## With Variable Labelling and Ordering
+
+```{r}
+#| label: panel-lagged-var-label
+#| code-fold: true 
+#| code-summary: Lagged variables with variable labelling and ordering.
+
+# Create a new label_map for lagged variables
+label_map_lagged <- list()
+
+# Add lagged variable labels
+# The order here determines the display order in the table
+label_map_lagged[["cf"]] <- "Cash flow (t)"
+label_map_lagged[["l(cf, 1)"]] <- "Cash flow (t-1)"
+label_map_lagged[["l(size, 1)"]] <- "Size (t-1)"
+label_map_lagged[["l(mtb, 1)"]] <- "Market-to-book (t-1)"
+label_map_lagged[["l(lev, 1)"]] <- "Leverage (t-1)"
+label_map_lagged[["l(roa, 1)"]] <- "ROA (t-1)"
+label_map_lagged[["l(tangibility, 1)"]] <- "Asset tangibility (t-1)"
+label_map_lagged[["l(rd, 1)"]] <- "R&D (t-1)"
+label_map_lagged[["l(z_score, 1)"]] <- "Altman Z-score (t-1)"
+
+# Report results using modelsummary
+table <-
+  modelsummary(
+    models,
+    title = "Capital Expenditures and Cash Flow",
+    coef_map = label_map_lagged,
+    gof_map = gm,
+    stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+    note = "Robust standard errors in parentheses.",
+  ) |>
+    group_tt(j = list(
+      "Dependent Variable: CAPEX" = c(2:(length(models) + 1))
+      ))
+    
+table |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+
 :::
+
+<!-- end of tabset -->
+
+:::
+
+<!-- end of .column-screen-inset-shaded -->
+
+## Conclusion
+
+In this example template for a research workflow in R, I showcase various steps in the research process from data collection, manipulation, model estimation, to result presentation.
+
+While I initially planned to cover a more comprehensive set of empirical analyses, I realized that that this document would be bloated if I included too many examples.
+
+I will add more examples of various statistical analysis and tabulation with different customizations in separate posts. Of course, feedback and suggestions are always welcome!
