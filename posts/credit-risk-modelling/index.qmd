@@ -1,0 +1,560 @@
+---
+title: "Credit Risk Modelling (IRB)"
+date: 2025-09-03
+abstract: This article provides an educational overview of the Internal Ratings-Based (IRB) approach to credit risk modeling under the Basel III framework. It covers the key concepts, methodologies, and practical considerations involved in developing and validating IRB models.
+format: 
+  html:
+    number-sections: true
+categories:
+  - Teaching Notes
+filters:
+  - shinylive
+---
+
+::: {.callout-note}
+This article is a [work in progress]{.mark} and a part of my [teaching notes](https://mingze-gao.com/teaching/). It is intended for educational purposes and aims to provide students with an understanding of the IRB approach.
+:::
+
+## Background
+
+Under Basel III capital adequacy regulations, banks are required to maintain appropriate levels of *capital ratios*, which are essentially computed as
+
+$$
+\text{Capital Ratio} = \frac{\text{Capital}}{\text{Risk-Weighted Assets (RWA)}},
+$$ {#eq-capital-ratio}
+
+where $\text{Capital}$ is the amount of capital (e.g., CET1, Tier 1, and Total Capital), and $\text{RWA}$ is the total risk-weighted assets, calculated as the sum of RWA for different risk types, including credit risk, market risk, and operational risk.
+
+Of the different risk types, __credit risk__ contributes the most to RWA, as shown in the @tbl-rwa-au-banks below. Therefore, accurate measurement and management of credit risk are crucial for banks to maintain adequate capital levels. Even outside of regulatory requirements, effective credit risk management can help banks optimize their capital allocation and improve profitability. This is the "essence of banking" [@Gorton2008BankCycles].
+
+|                          | CBA     | Westpac | NAB     | ANZ     | Macquarie |
+|--------------------------|---------|---------|---------|---------|-----------|
+| RWA for credit risk      | 370,444 | 351,724 | 350,891 | 361,185 | 98,250    |
+| RWA for market risk      | 52,132  | 37,510  | 26,953  | 30,875  | 14,277    |
+| RWA for operational risk | 44,975  | 48,196  | 36,102  | 49,650  | 17,512    |
+| Other RWA                | 0       | 0       | 0       | 4,872   | 0         |
+| Total RWA                | 467,551 | 437,430 | 413,946 | 446,582 | 130,039   |
+
+: RWA of some Australian banks in 2024 (source: Capital IQ) {#tbl-rwa-au-banks}
+
+To compute the RWA for credit risk, smaller banks use the **Standardised Approach**, while larger banks can use the **Internal Ratings-Based (IRB)** approach,[^approval] which allows them to use their own estimates of key risk parameters to calculate capital requirements.
+
+[^approval]: The use of the IRB approach requires approval from the relevant regulatory authority.
+
+While the Standardised Approach is simpler and more prescriptive, the IRB approach can be somewhat more opaque. The purpose of this article is to shed light on the IRB approach and provide an educational overview of its implementation.
+
+::: {.callout-note}
+This article is written in the Australian context, using the Basel III framework as implemented by APRA via [Prudential Standard APS 113: Capital Adequacy: Internal Ratings-Based Approach to Credit Risk](https://www.apra.gov.au/capital-adequacy-internal-ratings-based-approach-to-credit-risk). However, the concepts and formulas discussed here are broadly applicable to other jurisdictions that have adopted the Basel III framework.
+:::
+
+## Overview of the IRB Approach
+
+Using the IRB approach, banks need to classify its *banking book* exposures to one of the following asset classes:
+
+1. corporate;
+2. sovereign;
+3. financial institution; and
+4. retail.
+
+Then for each asset class, banks must estimate the key risk parameters to calculate RWA. The total RWA (for credit risk) is the sum of the RWA for each asset class, subject to certain adjustments.[^rwa-adjustment]
+
+[^rwa-adjustment]: This means that the computed RWAs may receive additional scaling or other adjustments as specified by the APS 113.
+
+A simplified overview of the IRB approach is illustrated below.
+
+::: {.column-screen-inset-shaded}
+```{mermaid}
+%%| fig-align: center
+
+flowchart LR
+    subgraph Corporate
+        A1[Estimate PD] --> D1[Risk-weight function]
+        B1[Estimate LGD] --> D1
+        C1[Estimate EAD] --> D1
+        D1 --> E1[RWA Corporate]
+        style A1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style B1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style C1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+    end
+    subgraph Sovereign
+        A2[...] -->
+        E2[RWA Sovereign]
+    end
+    subgraph Financial Institution
+        A3[...] --> E3[RWA Financial]
+    end
+    subgraph Retail
+        A4[...] --> E4[RWA Retail]
+    end
+    E1 --> F[Aggregation]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    F --> G[Total Credit Risk RWA]
+```
+:::
+
+### Key components of the IRB approach
+
+Central to the implementation of the IRB approach is the accurate estimation of three key risk parameters:
+
+1. **Probability of Default (PD)**: The likelihood that a borrower will default on their obligations, expressed as a percentage.
+2. **Loss Given Default (LGD)**: The economic loss upon the default of a borrower, expressed as a percentage.
+3. **Exposure at Default (EAD)**: The gross exposure under a facility (i.e., the amount that is legally owed to the bank) upon the default of a borrower, expressed in Australian dollars.
+
+Once these parameters are estimated, banks can use them to calculate the RWA for each asset class using the prescribed **risk-weight functions** as set out in APS 113.
+
+### IRB risk-weight functions
+
+The IRB approach specifies different risk-weight functions for each asset class, which are used to calculate the RWA based on the estimated risk parameters. Specifically, Attachment A of APS 113 sets out the **risk-weight functions** for different exposures, including:
+
+- Risk-weighted assets for corporate, sovereign and financial
+institution exposures
+- Risk-weighted assets for specialised lending exposures
+subject to the supervisory slotting approach
+- Risk-weighted assets for retail exposure
+- Risk-weighted assets for lease exposures
+- Risk-weighted assets for defaulted exposures
+
+::: {.callout-note}
+Without loss of generality, this article focuses on the risk-weight function for **non-defaulted corporate, sovereign and financial institution exposures**.
+:::
+
+For example, as at the time of writing, the risk-weight function for **non-defaulted corporate, sovereign and financial institution exposures** is:
+
+::: {.column-page-inset-right}
+
+$$
+\begin{align}
+\text{Correlation} (R) &= AVCM \times \left(0.12 \times \frac{1-\exp(-50 \times PD)}{1-\exp(-50)} + 0.24 \times \left[1-\frac{1-\exp(-50 \times PD)}{1-\exp(-50)} \right]\right) \\
+\text{Maturity adjustment} (b) &= \left[0.11852 - 0.05478 \ln(PD)\right]^2 \\
+\text{Capital requirement} (K) &= \left[LGD \times N\left(\frac{G(PD) + \sqrt{R} \times G(0.999)}{\sqrt{1-R}}\right) - PD \times LGD \right] \times \left(\frac{1+(M-2.5)\times b}{1 - 1.5\times b}\right) \\
+RWA &= K \times 12.5 \times EAD
+\end{align}
+$$ {#eq-rwa-func}
+
+:::
+
+where $N(\cdot)$ is the cumulative distribution function (CDF) of the standard normal distribution, and $G(\cdot)$ is the inverse CDF of the standard normal distribution, i.e., $G(x) = N^{-1}(x)$. Further, if the calculated $K$ is negative, banks must apply a zero capital requirement for that exposure.
+  
+::: {.callout-note}
+The **asset value correlation multiplier (AVCM)** is normally set to 1. However, for exposures to large financial institutions (those with total assets of $125 billion or more) or to unregulated financial institutions, the AVCM is increased to 1.25.[^avcm-note]
+:::
+
+[^avcm-note]: The reason is that very large and unregulated financial institutions tend to be more exposed to systemic shocks. Large institutions are highly interconnected across markets, so their performance often moves with the financial system as a whole. Unregulated institutions, on the other hand, typically operate with less oversight, higher leverage, and riskier business models, making their losses more likely to coincide with broader market stress. By setting AVCM higher, Basel III ensures banks hold extra capital against exposures that are more likely to default together with the system, amplifying contagion risk.
+
+To have an intuitive understanding of how these parameters interact, play around with the following calculator.
+
+```{ojs}
+//| echo: false
+
+import {Plot} from "@observablehq/plot"
+
+// --- Inputs ---
+viewof pd = Inputs.range([0.05, 100], {value: 1.00, step: 0.01, label: "PD (%)"})
+viewof lgd = Inputs.range([0, 100], {value: 25, step: 0.5, label: "LGD (%)"})
+viewof ead = Inputs.range([0, 5_000_000], {value: 1_000_000, step: 10_000, label: "EAD"})
+viewof m = Inputs.range([0.25, 20], {value: 2.5, step: 0.25, label: "Maturity (years)"})
+viewof avcm = Inputs.select([1, 1.25], {value: 1, label: "AVCM"})
+
+// --- Formulas ---
+corr_R = (PD, AVCM) => {
+  const x = (1 - Math.exp(-50 * PD)) / (1 - Math.exp(-50));
+  const R = AVCM * (0.12 * x + 0.24 * (1 - x));
+  return Math.min(Math.max(R, 1e-6), 0.999);
+};
+
+b_maturity = PD => (0.11852 - 0.05478 * Math.log(PD)) ** 2;
+
+// Standard normal CDF
+function stdnorm_cdf(x) {
+  return (1 + erf(x / Math.sqrt(2))) / 2;
+}
+// Error function
+function erf(x) {
+  // Abramowitz and Stegun formula 7.1.26
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x);
+  const a1 =  0.254829592, a2 = -0.284496736, a3 = 1.421413741;
+  const a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+// Inverse error function (approximate)
+function erfinv(x) {
+  // Approximation by Mike Giles (2010)
+  const a = 0.147;
+  const ln = Math.log((1 - x) * (1 + x));
+  const sgn = x < 0 ? -1 : 1;
+  const part1 = 2 / (Math.PI * a) + ln / 2;
+  const part2 = ln / a;
+  return sgn * Math.sqrt(Math.sqrt(part1 * part1 - part2) - part1);
+}
+
+capital_K = (PD, LGD, M, AVCM) => {
+  const R = corr_R(PD, AVCM);
+  const b = b_maturity(PD);
+  const qnorm = p => Math.sqrt(2) * erfinv(2 * p - 1); // Approximate inverse normal
+  const term = (qnorm(PD) + Math.sqrt(R) * qnorm(0.999)) / Math.sqrt(1 - R);
+  const K = LGD * stdnorm_cdf(term) - PD * LGD;
+  const K_adj = K * ((1 + (M - 2.5) * b) / (1 - 1.5 * b));
+  return Math.max(K_adj, 0);
+};
+
+// --- Calculations ---
+PD = pd / 100;
+LGD = lgd / 100;
+EAD = ead;
+M = m;
+AVCM = avcm;
+
+R = corr_R(PD, AVCM);
+b = b_maturity(PD);
+K = capital_K(PD, LGD, M, AVCM);
+RWA = K * 12.5 * EAD;
+
+// --- Sensitivity Data ---
+// Lower and upper bounds for PD in decimal (0.0005 to 1.0)
+pd_min = 0.0005;
+pd_max = 1.0;
+pd_lower = Math.max(pd_min, PD * 0.5);
+pd_upper = Math.min(pd_max, PD * 1.5);
+pd_seq = Array.from({length: 50}, (_, i) => pd_lower + i * (pd_upper - pd_lower) / 49);
+lgd_seq = Array.from({length: 50}, (_, i) => Math.max(0, LGD*0.5) + i*(Math.min(1, LGD*1.5)-Math.max(0, LGD*0.5))/49);
+ead_seq = Array.from({length: 50}, (_, i) => EAD*0.5 + i*(EAD*1.5-EAD*0.5)/49);
+m_min = 0.25;
+m_max = 20.0;
+m_lower = Math.max(m_min, M * 0.5);
+m_upper = Math.min(m_max, M * 1.5);
+m_seq = Array.from({length: 50}, (_, i) => m_lower + i * (m_upper - m_lower) / 49);
+
+data_pd = pd_seq.map(p => ({PD: p*100, RWA: capital_K(p, LGD, M, AVCM) * 12.5 * EAD}));
+data_lgd = lgd_seq.map(l => ({LGD: l*100, RWA: capital_K(PD, l, M, AVCM) * 12.5 * EAD}));
+data_ead = ead_seq.map(e => ({EAD: e, RWA: capital_K(PD, LGD, M, AVCM) * 12.5 * e}));
+data_m = m_seq.map(mv => ({M: mv, RWA: capital_K(PD, LGD, mv, AVCM) * 12.5 * EAD}));
+
+function highlight(x, y, xlab, ylab) {
+  return [
+    Plot.ruleX([x], {stroke: "gray", strokeDasharray: "4,2"}),
+    Plot.ruleY([y], {stroke: "gray", strokeDasharray: "4,2"}),
+    Plot.dot([{[xlab]: x, [ylab]: y}], {x: xlab, y: ylab, fill: "black", r: 5}),
+    Plot.text([{[xlab]: x, [ylab]: y, label: `(${x.toFixed(2)}, ${Math.round(y)})`}], {
+      x: xlab, y: ylab, text: "label", dx: 10, dy: -10, fill: "black", fontSize: 12
+    })
+  ];
+}
+
+// --- Individual Plots ---
+plot_pd = Plot.plot({
+  grid: true,
+  width: 350,
+  height: 250,
+  marginLeft: 50,
+  marginBottom: 40,
+  marks: [
+    Plot.line(data_pd, {x: "PD", y: "RWA", stroke: "blue"}),
+    ...highlight(pd, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "PD", "RWA")
+  ],
+  x: {label: "PD (%)"},
+  y: {label: "RWA"},
+  caption: "Sensitivity to PD"
+})
+
+plot_lgd = Plot.plot({
+  grid: true,
+  width: 350,
+  height: 250,
+  marginLeft: 50,
+  marginBottom: 40,
+  marks: [
+    Plot.line(data_lgd, {x: "LGD", y: "RWA", stroke: "darkred"}),
+    ...highlight(lgd, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "LGD", "RWA")
+  ],
+  x: {label: "LGD (%)"},
+  y: {label: "RWA"},
+  caption: "Sensitivity to LGD"
+})
+
+plot_ead = Plot.plot({
+  grid: true,
+  width: 350,
+  height: 250,
+  marginLeft: 50,
+  marginBottom: 40,
+  marks: [
+    Plot.line(data_ead, {x: "EAD", y: "RWA", stroke: "darkgreen"}),
+    ...highlight(ead, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "EAD", "RWA")
+  ],
+  x: {label: "EAD"},
+  y: {label: "RWA"},
+  caption: "Sensitivity to EAD"
+})
+
+plot_m = Plot.plot({
+  grid: true,
+  width: 350,
+  height: 250,
+  marginLeft: 50,
+  marginBottom: 40,
+  marks: [
+    Plot.line(data_m, {x: "M", y: "RWA", stroke: "darkorange"}),
+    ...highlight(m, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "M", "RWA")
+  ],
+  x: {label: "Maturity (years)"},
+  y: {label: "RWA"},
+  caption: "Sensitivity to Maturity"
+})
+
+// --- Output: Results Table and Plots ---
+html`
+  <table class="table">
+    <thead><tr><th>Quantity</th><th>Value</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td>Correlation (R)</td><td>${R.toFixed(6)}</td><td></td></tr>
+      <tr><td>Maturity adjustment (b)</td><td>${b.toFixed(6)}</td><td></td></tr>
+      <tr><td>Capital requirement (K)</td><td>${K.toFixed(6)}</td><td>per unit EAD</td></tr>
+      <tr><td>RWA</td><td>${Math.round(RWA).toLocaleString()}</td><td>currency</td></tr>
+    </tbody>
+  </table>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+    <div>${plot_pd}</div>
+    <div>${plot_lgd}</div>
+    <div>${plot_ead}</div>
+    <div>${plot_m}</div>
+  </div>
+`
+```
+
+::: {.callout-tip collapse="true"}
+### Why IRB Capital (K) Falls at Very High PDs
+
+In the IRB framework, **capital (K)** is designed to cover [*unexpected losses*]{.mark} — the part of credit loss that arises only in bad-tail scenarios.
+
+- **When PD is low**: Defaults are rare, so if one happens it is a big surprise. The unexpected loss is large, and capital requirements rise as PD increases.  
+- **When PD is high** (say above 30%): Default is almost certain. At that point, most of the loss is **expected** rather than unexpected.
+
+[*Expected loss*]{.mark} is not covered by capital. Instead, it is addressed through **accounting provisions**. Simply put, when a loan's default risk (PD) is sufficiently high, the bank needs to increase *loan loss provisions* to cover these expected losses. This is governed by IFRS 9.
+
+Because those losses are already anticipated and provisioned, the "unexpected" portion becomes smaller. This is why IRB capital can actually **decline for very high PD exposures** — capital is only needed for the residual uncertainty, not for losses that everyone already expects.
+:::
+
+## Credit Scoring - Estimating PD
+
+::: {.callout-note}
+This article focuses on the estimation of **Probability of Default (PD)**, taking as given **Loss Given Default (LGD)** and **Exposure at Default (EAD)**.
+:::
+
+Under the IRB approach, banks use their own internal credit scoring and rating systems to estimate risk parameters like Probability of Default (PD).
+
+Importantly, Basel III and its Australian implementation (APS 113) requires the PD estimates to be [*calibrated to a long-run average of one-year default rates (one-year PD) for borrowers in each borrower grade and for exposures in each pool*]{.mark}.
+
+### Overview of credit scoring model development
+
+The flowchart below illustrates the key steps to develop a PD model in the credit risk modelling process. We will then break down each step in detail.
+
+::: {.column-screen-inset-shaded}
+```{mermaid}
+%%| fig-align: center
+
+flowchart LR
+  %% A[Start] --> B[Sample selection]
+  B[Sample selection]
+  B --> C[Variable screening]
+  C --> D["Model estimation 
+  & evaluation"]
+  D --> E[Calibration]
+  E --> F["Transition matrix 
+  analysis"]
+  F --> G{Ratings stable?}
+  G -- No --> E
+  G -- Yes --> H["RWA impact 
+  analysis"]
+  H --> I{Impact acceptable?}
+  I -- Yes --> J[Approval & deployment]
+  I -- No  --> E
+  %% J --> K[Ongoing monitoring]
+```
+:::
+
+### Sample selection
+
+We begin by building a representative sample from the accumulated data of loans and borrowers. This includes both performing and non-performing (defaulted) loans. Typically, *default* is defined by 90+ days past due (DPD), which indicates a payment that is at least three months overdue, marking a serious stage of delinquency. The sample period could cover one mini-cycle, e.g., 5 to 7 years.
+
+The sample is then split into a training set and a test set, typically using a 70/30 or 80/20 split. The training set is used to build the model, while the test set is used to evaluate its performance.
+
+### Variable screening {#sec-variable-screening}
+
+The next step involves short listing a set of candidate variables that are potentially predictive of default risk. This is done through a combination of domain knowledge and statistical techniques. We start with a broad set of variables and then apply various screening methods to identify the most relevant ones.
+
+#### Single-factor screening
+
+First, because the outcome variable (`default`) that we are interested in is binary (default vs non-default), we can use the **Information Value (IV)** metric to assess the predictive power of each candidate variable. The IV measures how well a variable can distinguish between defaulters and non-defaulters. A higher IV indicates a stronger predictive power.
+
+#### Redundancy and correlation control
+
+Second, after short listing a set of candidate variables via single-factor screening, we need to check for redundancy and correlation among them. Highly correlated variables can introduce multicollinearity into the model, making it difficult to isolate the effect of each variable on default risk.
+
+In practice, we can compute the pairwise Pearson and Spearman correlation coefficients to identify highly correlated variables. If two variables are found to be highly correlated (e.g., correlation coefficient larger than 0.7), we may choose to retain only one of them in the model.
+
+### Model estimation & evaluation
+
+Notably, many different statistical models can be used for credit risk modeling. For demonstration purposes, we will focus on logistic regression given that our outcome variable `default` is binary.
+
+#### Model estimation
+
+Specifically, we fit a logistic regression model to the training data, where the outcome variable is `default` and the predictor variables are the selected features from @sec-variable-screening. The logistic regression model estimates the log-odds of default as a linear combination of the predictor variables. It can be expressed as:
+
+$$
+P(\text{default}=1|X) = \frac{1}{1 + e^{-(\beta^{T} X)}},
+$$
+
+where $P(\text{default}=1|X)$ is the probability of default given the vector of predictor variables $X$, and $\beta$ is the vector of coefficients to be estimated.
+
+#### Performance evaluation
+
+After estimating the model parameters, we can compute the **AUC (Area Under the Curve)** or the **Gini score** to evaluate the model's discriminatory power.[^gini-score]
+
+[^gini-score]: The Gini score is simply calculated as $\text{Gini} = 2 \times AUC - 1$ and bounded by 0 and 1. It is preferred over AUC because a random prediction will yield a Gini score of 0 as opposed to the AUC which will be 0.5.
+
+Ideally, we want the model to achieve a sufficiently high Gini score. If the model's performance is unsatisfactory, we may need to revisit the variable screening step to select different variables or consider alternative modeling techniques.
+
+::: {.callout-note}
+### Example credit scoring model estimation
+
+```{r}
+#| message: false
+#| code-fold: true
+#| code-summary: Fit a logistic PD model and plot ROC curve.
+ 
+# Minimal, self-contained example: fit a logistic PD model and plot AUC
+
+# Packages
+# install.packages(c("pROC","ggplot2"))
+library(pROC)
+library(ggplot2)
+
+set.seed(8003)
+
+# 1) Simulate a credit-scoring style dataset
+n <- 50000
+x1 <- rnorm(n)                       # e.g., log income z-score
+x2 <- rnorm(n)                       # e.g., leverage z-score
+x3 <- rbinom(n, 1, 0.3)              # e.g., delinquency flag
+linpred <- -3 + 0.8*x2 + 0.5*x3 - 0.4*x1
+pd_true <- plogis(linpred)
+y <- rbinom(n, 1, pd_true)           # default indicator (1 = default)
+
+df <- data.frame(y, x1, x2, x3)
+
+# 2) Train / test split
+idx <- sample(seq_len(n), size = 0.7*n)
+train <- df[idx, ]
+test  <- df[-idx, ]
+
+# 3) Fit logistic regression (credit scoring PD model)
+fit <- glm(y ~ x1 + x2 + x3, data = train, family = binomial())
+
+# 4) Score test set with predicted PDs
+test$pd_hat <- predict(fit, newdata = test, type = "response")
+
+# 5) ROC and AUC
+roc_obj <- roc(response = test$y, predictor = test$pd_hat, direction = "<")
+auc_val <- as.numeric(auc(roc_obj))
+gini_val <- 2*auc_val - 1
+
+# 6) Plot ROC with ggplot2
+roc_df <- data.frame(
+  fpr = 1 - roc_obj$specificities,
+  tpr = roc_obj$sensitivities
+)
+
+ggplot(roc_df, aes(x = fpr, y = tpr)) +
+  geom_line(linewidth = 1, color = "blue") +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  labs(
+    title = sprintf("ROC Curve (AUC = %.3f, Gini = %.3f)", auc_val, gini_val),
+    x = "False Positive Rate",
+    y = "True Positive Rate"
+  ) +
+  theme_minimal()
+```
+
+:::
+
+### Calibration
+
+At this step, we have built a credit scoring model (a logistic model) that has good discriminatory power (e.g., Gini > 0.6). However, the predicted PDs from the model are known to be **point-in-time (PIT)** estimates, meaning they reflect the borrower's credit risk at a specific point in time. In recessions PIT PDs rise; in booms they fall.
+
+For regulatory capital calculation, Basel III and APS 113 do not allow direct use of PIT PDs, because that would make capital requirements fluctuate too much with the cycle. Instead, banks must calibrate PDs to long-run averages of one-year default rates for each grade or pool. These are empirical averages that cover both benign and stressed periods.[^ttc]
+
+[^ttc]: It is important to distinguish these from **through-the-cycle (TTC)** PDs, which are smoothed to be cycle-neutral and essentially fixed. Basel’s long-run PDs are not fully TTC; rather, they are a hybrid: more stable than PIT, but still anchored in actual long-run default experience and updated as history evolves.
+
+In short:
+
+- The logit model provides PIT PDs for rank-ordering.
+- Calibration maps them into rating grades with long-run average PDs.
+- These calibrated grade PDs are the inputs to the Basel IRB capital formula. 
+
+::: {.callout-note}
+### Example: Calibrated Rating Table
+
+| Grade | Description       | PIT PD range (model output) | Assigned long-run PD (regulatory) |
+|-------|-------------------|-----------------------------|-----------------------------------|
+| AAA   | Prime             | 0.00% – 0.05%               | 0.03%                             |
+| AA    | Very strong       | 0.05% – 0.10%               | 0.08%                             |
+| A     | Strong            | 0.10% – 0.25%               | 0.20%                             |
+| BBB   | Satisfactory      | 0.25% – 0.75%               | 0.60%                             |
+| BB    | Weak              | 0.75% – 2.00%               | 1.50%                             |
+| B     | Very weak         | 2.00% – 5.00%               | 3.50%                             |
+| CCC   | Distressed        | 5.00% – 15.0%               | 10.0%                             |
+| CC    | Highly distressed | 15.0% – 30.0%               | 20.0%                             |
+| C     | Near default      | > 30.0%                     | 40.0%                             |
+
+Note that banks can have different number of internal credit grades and may use different naming conventions for these grades. The long-run PDs assigned to each grade can also be different but must be justified by historical default experience and approved by the regulator.
+
+:::
+
+#### Long-run PD
+
+The long-run PDs assigned to each credit grade are used for regulatory capital calculations. APS 113 mandates that these long-run PDs must be based on the observed
+historical one-year default rate that is calculated as a simple average based on the
+number of borrowers or facilities, with a minimum historical observation period of five years.
+
+#### Binning calibration
+
+Because the predicted probabilities from the model are continuous values, they need to be mapped to discrete (internal) credit grades for which long-run PDs are estimated. This is where binning comes in, i.e., grouping the continuous model outputs into a set of intervals (bins), each corresponding to a credit grade. The choice of bin edges can be based on quantiles of the predicted PD distribution or based on business considerations.
+
+In a narrow sense, calibration refers to the process of determining the bin edges and assigning long-run PDs to each bin.
+
+### Validation
+
+#### Transition matrix analysis
+
+Transition matrix analysis involves examining the changes in credit ratings over time. This can help assess the stability of the credit grades assigned to borrowers and the performance of the credit scoring model.
+
+In the context of developing a credit scoring model, transition matrix can be used to study how credit grades change using the new model compared to the old model. This can help identify any significant shifts in credit ratings and assess the impact of the new model on the bank's credit portfolio.
+
+If the new model results in a significant change in credit ratings of existing borrowers, it may prompt a review of the underlying factors driving these changes and potential adjustments to the model.
+
+#### RWA impact analysis
+
+Finally, banks need to assess the impact of the new credit scoring model on the calculation of risk-weighted assets (RWA) for regulatory capital purposes. This involves comparing the RWA calculated using the new model with that calculated using the old model.
+
+If the new model results in a significant increase in RWA, it may indicate that the model is more conservative and may require higher capital reserves. Conversely, if the new model results in a significant decrease in RWA, it may indicate that the model is less conservative and may require lower capital reserves. If the impact on RWA is deemed unacceptable, banks may need to revisit the model development process, including variable selection, model estimation, and calibration.
+
+::: {.callout-note collapse="true"}
+#### Override analysis
+
+In practice, credit decisions are not always fully automated. Senior credit officers or committees may override the model’s suggested rating when they have additional information not captured by the model (e.g., recent restructuring, parent company support, or industry events).  
+
+While some level of overrides is expected and even healthy, frequent overrides can be a red flag. High override rates may suggest that the model is missing important risk drivers, that calibration does not align well with expert judgment, or that the economic environment has shifted.  
+:::
+
+### Approval, Deployment & Ongoing Monitoring
+
+After the model has been developed and validated, it must be approved by the relevant internal governance bodies within the bank before it can be deployed. This process typically involves a review of the model documentation, validation results, calibration approach, and any known limitations. In addition, supervisory authorities may review the model as part of the regulatory approval process.
+
+Once the model is approved, it can be deployed into production. This may involve integrating the model into existing IT systems, developing user interfaces for model users, and providing training to staff on how to apply the model consistently.
+
+Ongoing monitoring of the model's performance is essential to ensure that it continues to operate as intended. This includes regular backtesting of the model's predictions, monitoring for changes in the underlying data or economic environment, and reviewing override patterns. Where necessary, the model should be updated or recalibrated.
