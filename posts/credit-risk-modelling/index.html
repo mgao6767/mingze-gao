@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mingze Gao">
+<meta name="dcterms.date" content="2025-09-03">
+
+<title>Credit Risk Modelling (IRB) – Mingze Gao</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-697b6fb292a12040a2212f61c6afc307.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<meta name="mermaid-theme" content="default">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Credit Risk Modelling (IRB) – Mingze Gao">
+<meta name="twitter:description" content="This article provides an educational overview of the Internal Ratings-Based (IRB) approach to credit risk modeling under the Basel III framework. It covers the key concepts, methodologies, and practical considerations involved in developing and validating IRB models.">
+<meta name="twitter:image" content="https://mingze-gao.com/posts/credit-risk-modelling/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#overview-of-the-irb-approach" id="toc-overview-of-the-irb-approach" class="nav-link" data-scroll-target="#overview-of-the-irb-approach"><span class="header-section-number">2</span> Overview of the IRB Approach</a>
+  <ul class="collapse">
+  <li><a href="#key-components-of-the-irb-approach" id="toc-key-components-of-the-irb-approach" class="nav-link" data-scroll-target="#key-components-of-the-irb-approach"><span class="header-section-number">2.1</span> Key components of the IRB approach</a></li>
+  <li><a href="#irb-risk-weight-functions" id="toc-irb-risk-weight-functions" class="nav-link" data-scroll-target="#irb-risk-weight-functions"><span class="header-section-number">2.2</span> IRB risk-weight functions</a></li>
+  </ul></li>
+  <li><a href="#credit-scoring---estimating-pd" id="toc-credit-scoring---estimating-pd" class="nav-link" data-scroll-target="#credit-scoring---estimating-pd"><span class="header-section-number">3</span> Credit Scoring - Estimating PD</a>
+  <ul class="collapse">
+  <li><a href="#overview-of-credit-scoring-model-development" id="toc-overview-of-credit-scoring-model-development" class="nav-link" data-scroll-target="#overview-of-credit-scoring-model-development"><span class="header-section-number">3.1</span> Overview of credit scoring model development</a></li>
+  <li><a href="#sample-selection" id="toc-sample-selection" class="nav-link" data-scroll-target="#sample-selection"><span class="header-section-number">3.2</span> Sample selection</a></li>
+  <li><a href="#sec-variable-screening" id="toc-sec-variable-screening" class="nav-link" data-scroll-target="#sec-variable-screening"><span class="header-section-number">3.3</span> Variable screening</a></li>
+  <li><a href="#model-estimation-evaluation" id="toc-model-estimation-evaluation" class="nav-link" data-scroll-target="#model-estimation-evaluation"><span class="header-section-number">3.4</span> Model estimation &amp; evaluation</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">3.5</span> Calibration</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">3.6</span> Validation</a></li>
+  <li><a href="#approval-deployment-ongoing-monitoring" id="toc-approval-deployment-ongoing-monitoring" class="nav-link" data-scroll-target="#approval-deployment-ongoing-monitoring"><span class="header-section-number">3.7</span> Approval, Deployment &amp; Ongoing Monitoring</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Credit Risk Modelling (IRB)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Teaching Notes</div>
+  </div>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mingze Gao, PhD <a href="mailto:mingze.gao@mq.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-8635-4269" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Macquarie University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 3, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    This article provides an educational overview of the Internal Ratings-Based (IRB) approach to credit risk modeling under the Basel III framework. It covers the key concepts, methodologies, and practical considerations involved in developing and validating IRB models.
+  </div>
+</div>
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This article is a <mark>work in progress</mark> and a part of my <a href="https://mingze-gao.com/teaching/">teaching notes</a>. It is intended for educational purposes and aims to provide students with an understanding of the IRB approach.</p>
+</div>
+</div>
+</div>
+<section id="background" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="background"><span class="header-section-number">1</span> Background</h2>
+<p>Under Basel III capital adequacy regulations, banks are required to maintain appropriate levels of <em>capital ratios</em>, which are essentially computed as</p>
+<p><span id="eq-capital-ratio"><span class="math display">\[
+\text{Capital Ratio} = \frac{\text{Capital}}{\text{Risk-Weighted Assets (RWA)}},
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(\text{Capital}\)</span> is the amount of capital (e.g., CET1, Tier 1, and Total Capital), and <span class="math inline">\(\text{RWA}\)</span> is the total risk-weighted assets, calculated as the sum of RWA for different risk types, including credit risk, market risk, and operational risk.</p>
+<p>Of the different risk types, <strong>credit risk</strong> contributes the most to RWA, as shown in the <a href="#tbl-rwa-au-banks" class="quarto-xref">Table&nbsp;1</a> below. Therefore, accurate measurement and management of credit risk are crucial for banks to maintain adequate capital levels. Even outside of regulatory requirements, effective credit risk management can help banks optimize their capital allocation and improve profitability. This is the “essence of banking” <span class="citation" data-cites="Gorton2008BankCycles">(<a href="#ref-Gorton2008BankCycles" role="doc-biblioref">Gorton and He 2008</a>)</span>.</p>
+<div id="tbl-rwa-au-banks" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-tbl figure page-columns page-full">
+<div aria-describedby="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CBA</th>
+<th>Westpac</th>
+<th>NAB</th>
+<th>ANZ</th>
+<th>Macquarie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RWA for credit risk</td>
+<td>370,444</td>
+<td>351,724</td>
+<td>350,891</td>
+<td>361,185</td>
+<td>98,250</td>
+</tr>
+<tr class="even">
+<td>RWA for market risk</td>
+<td>52,132</td>
+<td>37,510</td>
+<td>26,953</td>
+<td>30,875</td>
+<td>14,277</td>
+</tr>
+<tr class="odd">
+<td>RWA for operational risk</td>
+<td>44,975</td>
+<td>48,196</td>
+<td>36,102</td>
+<td>49,650</td>
+<td>17,512</td>
+</tr>
+<tr class="even">
+<td>Other RWA</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4,872</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Total RWA</td>
+<td>467,551</td>
+<td>437,430</td>
+<td>413,946</td>
+<td>446,582</td>
+<td>130,039</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-tbl margin-caption" id="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: RWA of some Australian banks in 2024 (source: Capital IQ)
+</figcaption>
+</figure>
+</div>
+<p>To compute the RWA for credit risk, smaller banks use the <strong>Standardised Approach</strong>, while larger banks can use the <strong>Internal Ratings-Based (IRB)</strong> approach,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> which allows them to use their own estimates of key risk parameters to calculate capital requirements.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The use of the IRB approach requires approval from the relevant regulatory authority.</p></div></div><p>While the Standardised Approach is simpler and more prescriptive, the IRB approach can be somewhat more opaque. The purpose of this article is to shed light on the IRB approach and provide an educational overview of its implementation.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This article is written in the Australian context, using the Basel III framework as implemented by APRA via <a href="https://www.apra.gov.au/capital-adequacy-internal-ratings-based-approach-to-credit-risk">Prudential Standard APS 113: Capital Adequacy: Internal Ratings-Based Approach to Credit Risk</a>. However, the concepts and formulas discussed here are broadly applicable to other jurisdictions that have adopted the Basel III framework.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="overview-of-the-irb-approach" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="overview-of-the-irb-approach"><span class="header-section-number">2</span> Overview of the IRB Approach</h2>
+<p>Using the IRB approach, banks need to classify its <em>banking book</em> exposures to one of the following asset classes:</p>
+<ol type="1">
+<li>corporate;</li>
+<li>sovereign;</li>
+<li>financial institution; and</li>
+<li>retail.</li>
+</ol>
+<p>Then for each asset class, banks must estimate the key risk parameters to calculate RWA. The total RWA (for credit risk) is the sum of the RWA for each asset class, subject to certain adjustments.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;This means that the computed RWAs may receive additional scaling or other adjustments as specified by the APS 113.</p></div></div><p>A simplified overview of the IRB approach is illustrated below.</p>
+<div class="column-screen-inset-shaded">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    subgraph Corporate
+        A1[Estimate PD] --&gt; D1[Risk-weight function]
+        B1[Estimate LGD] --&gt; D1
+        C1[Estimate EAD] --&gt; D1
+        D1 --&gt; E1[RWA Corporate]
+        style A1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style B1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style C1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+    end
+    subgraph Sovereign
+        A2[...] --&gt;
+        E2[RWA Sovereign]
+    end
+    subgraph Financial Institution
+        A3[...] --&gt; E3[RWA Financial]
+    end
+    subgraph Retail
+        A4[...] --&gt; E4[RWA Retail]
+    end
+    E1 --&gt; F[Aggregation]
+    E2 --&gt; F
+    E3 --&gt; F
+    E4 --&gt; F
+    F --&gt; G[Total Credit Risk RWA]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+<section id="key-components-of-the-irb-approach" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="key-components-of-the-irb-approach"><span class="header-section-number">2.1</span> Key components of the IRB approach</h3>
+<p>Central to the implementation of the IRB approach is the accurate estimation of three key risk parameters:</p>
+<ol type="1">
+<li><strong>Probability of Default (PD)</strong>: The likelihood that a borrower will default on their obligations, expressed as a percentage.</li>
+<li><strong>Loss Given Default (LGD)</strong>: The economic loss upon the default of a borrower, expressed as a percentage.</li>
+<li><strong>Exposure at Default (EAD)</strong>: The gross exposure under a facility (i.e., the amount that is legally owed to the bank) upon the default of a borrower, expressed in Australian dollars.</li>
+</ol>
+<p>Once these parameters are estimated, banks can use them to calculate the RWA for each asset class using the prescribed <strong>risk-weight functions</strong> as set out in APS 113.</p>
+</section>
+<section id="irb-risk-weight-functions" class="level3 page-columns page-full" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="irb-risk-weight-functions"><span class="header-section-number">2.2</span> IRB risk-weight functions</h3>
+<p>The IRB approach specifies different risk-weight functions for each asset class, which are used to calculate the RWA based on the estimated risk parameters. Specifically, Attachment A of APS 113 sets out the <strong>risk-weight functions</strong> for different exposures, including:</p>
+<ul>
+<li>Risk-weighted assets for corporate, sovereign and financial institution exposures</li>
+<li>Risk-weighted assets for specialised lending exposures subject to the supervisory slotting approach</li>
+<li>Risk-weighted assets for retail exposure</li>
+<li>Risk-weighted assets for lease exposures</li>
+<li>Risk-weighted assets for defaulted exposures</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Without loss of generality, this article focuses on the risk-weight function for <strong>non-defaulted corporate, sovereign and financial institution exposures</strong>.</p>
+</div>
+</div>
+</div>
+<p>For example, as at the time of writing, the risk-weight function for <strong>non-defaulted corporate, sovereign and financial institution exposures</strong> is:</p>
+<div class="column-page-inset-right">
+<p><span id="eq-rwa-func"><span class="math display">\[
+\begin{align}
+\text{Correlation} (R) &amp;= AVCM \times \left(0.12 \times \frac{1-\exp(-50 \times PD)}{1-\exp(-50)} + 0.24 \times \left[1-\frac{1-\exp(-50 \times PD)}{1-\exp(-50)} \right]\right) \\
+\text{Maturity adjustment} (b) &amp;= \left[0.11852 - 0.05478 \ln(PD)\right]^2 \\
+\text{Capital requirement} (K) &amp;= \left[LGD \times N\left(\frac{G(PD) + \sqrt{R} \times G(0.999)}{\sqrt{1-R}}\right) - PD \times LGD \right] \times \left(\frac{1+(M-2.5)\times b}{1 - 1.5\times b}\right) \\
+RWA &amp;= K \times 12.5 \times EAD
+\end{align}
+\tag{2}\]</span></span></p>
+</div>
+<p>where <span class="math inline">\(N(\cdot)\)</span> is the cumulative distribution function (CDF) of the standard normal distribution, and <span class="math inline">\(G(\cdot)\)</span> is the inverse CDF of the standard normal distribution, i.e., <span class="math inline">\(G(x) = N^{-1}(x)\)</span>. Further, if the calculated <span class="math inline">\(K\)</span> is negative, banks must apply a zero capital requirement for that exposure.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The <strong>asset value correlation multiplier (AVCM)</strong> is normally set to 1. However, for exposures to large financial institutions (those with total assets of $125 billion or more) or to unregulated financial institutions, the AVCM is increased to 1.25.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+</div>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;The reason is that very large and unregulated financial institutions tend to be more exposed to systemic shocks. Large institutions are highly interconnected across markets, so their performance often moves with the financial system as a whole. Unregulated institutions, on the other hand, typically operate with less oversight, higher leverage, and riskier business models, making their losses more likely to coincide with broader market stress. By setting AVCM higher, Basel III ensures banks hold extra capital against exposures that are more likely to default together with the system, amplifying contagion risk.</p></div></div><p>To have an intuitive understanding of how these parameters interact, play around with the following calculator.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="151" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 150;"><span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {Plot} <span class="im">from</span> <span class="st">"@observablehq/plot"</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Inputs ---</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>viewof pd <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.05</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.00</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"PD (%)"</span>})</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>viewof lgd <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"LGD (%)"</span>})</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>viewof ead <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">5_000_000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1_000_000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10_000</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"EAD"</span>})</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>viewof m <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.25</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.25</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years)"</span>})</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>viewof avcm <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>([<span class="dv">1</span><span class="op">,</span> <span class="fl">1.25</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"AVCM"</span>})</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Formulas ---</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>corr_R <span class="op">=</span> (PD<span class="op">,</span> AVCM) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> x <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="dv">50</span> <span class="op">*</span> PD)) <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="dv">50</span>))<span class="op">;</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> R <span class="op">=</span> AVCM <span class="op">*</span> (<span class="fl">0.12</span> <span class="op">*</span> x <span class="op">+</span> <span class="fl">0.24</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x))<span class="op">;</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(R<span class="op">,</span> <span class="fl">1e-6</span>)<span class="op">,</span> <span class="fl">0.999</span>)<span class="op">;</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>b_maturity <span class="op">=</span> PD <span class="kw">=&gt;</span> (<span class="fl">0.11852</span> <span class="op">-</span> <span class="fl">0.05478</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(PD)) <span class="op">**</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="co">// Standard normal CDF</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stdnorm_cdf</span>(x) {</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (<span class="dv">1</span> <span class="op">+</span> <span class="fu">erf</span>(x <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>))) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="co">// Error function</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erf</span>(x) {</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Abramowitz and Stegun formula 7.1.26</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sign <span class="op">=</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="op">-</span><span class="dv">1</span> <span class="op">:</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(x)<span class="op">;</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a1 <span class="op">=</span>  <span class="fl">0.254829592</span><span class="op">,</span> a2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.284496736</span><span class="op">,</span> a3 <span class="op">=</span> <span class="fl">1.421413741</span><span class="op">;</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a4 <span class="op">=</span> <span class="op">-</span><span class="fl">1.453152027</span><span class="op">,</span> a5 <span class="op">=</span> <span class="fl">1.061405429</span><span class="op">,</span> p <span class="op">=</span> <span class="fl">0.3275911</span><span class="op">;</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> p <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> y <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (((((a5 <span class="op">*</span> t <span class="op">+</span> a4) <span class="op">*</span> t) <span class="op">+</span> a3) <span class="op">*</span> t <span class="op">+</span> a2) <span class="op">*</span> t <span class="op">+</span> a1) <span class="op">*</span> t <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sign <span class="op">*</span> y<span class="op">;</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="co">// Inverse error function (approximate)</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">erfinv</span>(x) {</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Approximation by Mike Giles (2010)</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a <span class="op">=</span> <span class="fl">0.147</span><span class="op">;</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ln <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>((<span class="dv">1</span> <span class="op">-</span> x) <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> x))<span class="op">;</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sgn <span class="op">=</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="op">-</span><span class="dv">1</span> <span class="op">:</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> part1 <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> (<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> a) <span class="op">+</span> ln <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> part2 <span class="op">=</span> ln <span class="op">/</span> a<span class="op">;</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sgn <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(part1 <span class="op">*</span> part1 <span class="op">-</span> part2) <span class="op">-</span> part1)<span class="op">;</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>capital_K <span class="op">=</span> (PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> R <span class="op">=</span> <span class="fu">corr_R</span>(PD<span class="op">,</span> AVCM)<span class="op">;</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> b <span class="op">=</span> <span class="fu">b_maturity</span>(PD)<span class="op">;</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> qnorm <span class="op">=</span> p <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="op">*</span> <span class="fu">erfinv</span>(<span class="dv">2</span> <span class="op">*</span> p <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span> <span class="co">// Approximate inverse normal</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> term <span class="op">=</span> (<span class="fu">qnorm</span>(PD) <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(R) <span class="op">*</span> <span class="fu">qnorm</span>(<span class="fl">0.999</span>)) <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> R)<span class="op">;</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> K <span class="op">=</span> LGD <span class="op">*</span> <span class="fu">stdnorm_cdf</span>(term) <span class="op">-</span> PD <span class="op">*</span> LGD<span class="op">;</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> K_adj <span class="op">=</span> K <span class="op">*</span> ((<span class="dv">1</span> <span class="op">+</span> (M <span class="op">-</span> <span class="fl">2.5</span>) <span class="op">*</span> b) <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> b))<span class="op">;</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(K_adj<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Calculations ---</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>PD <span class="op">=</span> pd <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>LGD <span class="op">=</span> lgd <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>EAD <span class="op">=</span> ead<span class="op">;</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> m<span class="op">;</span></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>AVCM <span class="op">=</span> avcm<span class="op">;</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fu">corr_R</span>(PD<span class="op">,</span> AVCM)<span class="op">;</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fu">b_maturity</span>(PD)<span class="op">;</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM)<span class="op">;</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>RWA <span class="op">=</span> K <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD<span class="op">;</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Sensitivity Data ---</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="co">// Lower and upper bounds for PD in decimal (0.0005 to 1.0)</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>pd_min <span class="op">=</span> <span class="fl">0.0005</span><span class="op">;</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>pd_max <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>pd_lower <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(pd_min<span class="op">,</span> PD <span class="op">*</span> <span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>pd_upper <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(pd_max<span class="op">,</span> PD <span class="op">*</span> <span class="fl">1.5</span>)<span class="op">;</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>pd_seq <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">50</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> pd_lower <span class="op">+</span> i <span class="op">*</span> (pd_upper <span class="op">-</span> pd_lower) <span class="op">/</span> <span class="dv">49</span>)<span class="op">;</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>lgd_seq <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">50</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> LGD<span class="op">*</span><span class="fl">0.5</span>) <span class="op">+</span> i<span class="op">*</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">1</span><span class="op">,</span> LGD<span class="op">*</span><span class="fl">1.5</span>)<span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> LGD<span class="op">*</span><span class="fl">0.5</span>))<span class="op">/</span><span class="dv">49</span>)<span class="op">;</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>ead_seq <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">50</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> EAD<span class="op">*</span><span class="fl">0.5</span> <span class="op">+</span> i<span class="op">*</span>(EAD<span class="op">*</span><span class="fl">1.5</span><span class="op">-</span>EAD<span class="op">*</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">49</span>)<span class="op">;</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>m_min <span class="op">=</span> <span class="fl">0.25</span><span class="op">;</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>m_max <span class="op">=</span> <span class="fl">20.0</span><span class="op">;</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>m_lower <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(m_min<span class="op">,</span> M <span class="op">*</span> <span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>m_upper <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(m_max<span class="op">,</span> M <span class="op">*</span> <span class="fl">1.5</span>)<span class="op">;</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>m_seq <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">50</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> m_lower <span class="op">+</span> i <span class="op">*</span> (m_upper <span class="op">-</span> m_lower) <span class="op">/</span> <span class="dv">49</span>)<span class="op">;</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>data_pd <span class="op">=</span> pd_seq<span class="op">.</span><span class="fu">map</span>(p <span class="kw">=&gt;</span> ({<span class="dt">PD</span><span class="op">:</span> p<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">RWA</span><span class="op">:</span> <span class="fu">capital_K</span>(p<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD}))<span class="op">;</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>data_lgd <span class="op">=</span> lgd_seq<span class="op">.</span><span class="fu">map</span>(l <span class="kw">=&gt;</span> ({<span class="dt">LGD</span><span class="op">:</span> l<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">RWA</span><span class="op">:</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> l<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD}))<span class="op">;</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>data_ead <span class="op">=</span> ead_seq<span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> ({<span class="dt">EAD</span><span class="op">:</span> e<span class="op">,</span> <span class="dt">RWA</span><span class="op">:</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> e}))<span class="op">;</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>data_m <span class="op">=</span> m_seq<span class="op">.</span><span class="fu">map</span>(mv <span class="kw">=&gt;</span> ({<span class="dt">M</span><span class="op">:</span> mv<span class="op">,</span> <span class="dt">RWA</span><span class="op">:</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> mv<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD}))<span class="op">;</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">highlight</span>(x<span class="op">,</span> y<span class="op">,</span> xlab<span class="op">,</span> ylab) {</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([x]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"gray"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,2"</span>})<span class="op">,</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([y]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"gray"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,2"</span>})<span class="op">,</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{[xlab]<span class="op">:</span> x<span class="op">,</span> [ylab]<span class="op">:</span> y}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> xlab<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> ylab<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>})<span class="op">,</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{[xlab]<span class="op">:</span> x<span class="op">,</span> [ylab]<span class="op">:</span> y<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="vs">`(</span><span class="sc">${</span>x<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(y)<span class="sc">}</span><span class="vs">)`</span>}]<span class="op">,</span> {</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> xlab<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> ylab<span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Individual Plots ---</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>plot_pd <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">350</span><span class="op">,</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_pd<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"PD"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"RWA"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span><span class="fu">highlight</span>(pd<span class="op">,</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD<span class="op">,</span> <span class="st">"PD"</span><span class="op">,</span> <span class="st">"RWA"</span>)</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"PD (%)"</span>}<span class="op">,</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"RWA"</span>}<span class="op">,</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Sensitivity to PD"</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>plot_lgd <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">350</span><span class="op">,</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_lgd<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"LGD"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"RWA"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"darkred"</span>})<span class="op">,</span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span><span class="fu">highlight</span>(lgd<span class="op">,</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD<span class="op">,</span> <span class="st">"LGD"</span><span class="op">,</span> <span class="st">"RWA"</span>)</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"LGD (%)"</span>}<span class="op">,</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"RWA"</span>}<span class="op">,</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Sensitivity to LGD"</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>plot_ead <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">350</span><span class="op">,</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_ead<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"EAD"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"RWA"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"darkgreen"</span>})<span class="op">,</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span><span class="fu">highlight</span>(ead<span class="op">,</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD<span class="op">,</span> <span class="st">"EAD"</span><span class="op">,</span> <span class="st">"RWA"</span>)</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"EAD"</span>}<span class="op">,</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"RWA"</span>}<span class="op">,</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Sensitivity to EAD"</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>plot_m <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">350</span><span class="op">,</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_m<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"RWA"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"darkorange"</span>})<span class="op">,</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span><span class="fu">highlight</span>(m<span class="op">,</span> <span class="fu">capital_K</span>(PD<span class="op">,</span> LGD<span class="op">,</span> M<span class="op">,</span> AVCM) <span class="op">*</span> <span class="fl">12.5</span> <span class="op">*</span> EAD<span class="op">,</span> <span class="st">"M"</span><span class="op">,</span> <span class="st">"RWA"</span>)</span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years)"</span>}<span class="op">,</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"RWA"</span>}<span class="op">,</span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Sensitivity to Maturity"</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="co">// --- Output: Results Table and Plots ---</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;table class="table"&gt;</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Quantity&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;th&gt;Units&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tbody&gt;</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;td&gt;Correlation (R)&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>R<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">6</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;td&gt;Maturity adjustment (b)&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>b<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">6</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;td&gt;Capital requirement (K)&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>K<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">6</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;per unit EAD&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr&gt;&lt;td&gt;RWA&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(RWA)<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;currency&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tbody&gt;</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/table&gt;</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;"&gt;</span></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span><span class="sc">${</span>plot_pd<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span><span class="sc">${</span>plot_lgd<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span><span class="sc">${</span>plot_ead<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span><span class="sc">${</span>plot_m<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-15" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-16" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-17" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-18" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-19" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-20" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-21" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-22" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-23" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-24" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-25" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-26" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-27" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-28" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-29" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-30" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-31" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-32" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-33" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-34" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-35" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-36" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-37" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-38" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-39" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-40" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-41" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-42" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-43" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why IRB Capital (K) Falls at Very High PDs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the IRB framework, <strong>capital (K)</strong> is designed to cover <mark><em>unexpected losses</em></mark> — the part of credit loss that arises only in bad-tail scenarios.</p>
+<ul>
+<li><strong>When PD is low</strong>: Defaults are rare, so if one happens it is a big surprise. The unexpected loss is large, and capital requirements rise as PD increases.<br>
+</li>
+<li><strong>When PD is high</strong> (say above 30%): Default is almost certain. At that point, most of the loss is <strong>expected</strong> rather than unexpected.</li>
+</ul>
+<p><mark><em>Expected loss</em></mark> is not covered by capital. Instead, it is addressed through <strong>accounting provisions</strong>. Simply put, when a loan’s default risk (PD) is sufficiently high, the bank needs to increase <em>loan loss provisions</em> to cover these expected losses. This is governed by IFRS 9.</p>
+<p>Because those losses are already anticipated and provisioned, the “unexpected” portion becomes smaller. This is why IRB capital can actually <strong>decline for very high PD exposures</strong> — capital is only needed for the residual uncertainty, not for losses that everyone already expects.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="credit-scoring---estimating-pd" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="credit-scoring---estimating-pd"><span class="header-section-number">3</span> Credit Scoring - Estimating PD</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This article focuses on the estimation of <strong>Probability of Default (PD)</strong>, taking as given <strong>Loss Given Default (LGD)</strong> and <strong>Exposure at Default (EAD)</strong>.</p>
+</div>
+</div>
+</div>
+<p>Under the IRB approach, banks use their own internal credit scoring and rating systems to estimate risk parameters like Probability of Default (PD).</p>
+<p>Importantly, Basel III and its Australian implementation (APS 113) requires the PD estimates to be <mark><em>calibrated to a long-run average of one-year default rates (one-year PD) for borrowers in each borrower grade and for exposures in each pool</em></mark>.</p>
+<section id="overview-of-credit-scoring-model-development" class="level3 page-columns page-full" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="overview-of-credit-scoring-model-development"><span class="header-section-number">3.1</span> Overview of credit scoring model development</h3>
+<p>The flowchart below illustrates the key steps to develop a PD model in the credit risk modelling process. We will then break down each step in detail.</p>
+<div class="column-screen-inset-shaded">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  %% A[Start] --&gt; B[Sample selection]
+  B[Sample selection]
+  B --&gt; C[Variable screening]
+  C --&gt; D["Model estimation 
+  &amp; evaluation"]
+  D --&gt; E[Calibration]
+  E --&gt; F["Transition matrix 
+  analysis"]
+  F --&gt; G{Ratings stable?}
+  G -- No --&gt; E
+  G -- Yes --&gt; H["RWA impact 
+  analysis"]
+  H --&gt; I{Impact acceptable?}
+  I -- Yes --&gt; J[Approval &amp; deployment]
+  I -- No  --&gt; E
+  %% J --&gt; K[Ongoing monitoring]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sample-selection" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="sample-selection"><span class="header-section-number">3.2</span> Sample selection</h3>
+<p>We begin by building a representative sample from the accumulated data of loans and borrowers. This includes both performing and non-performing (defaulted) loans. Typically, <em>default</em> is defined by 90+ days past due (DPD), which indicates a payment that is at least three months overdue, marking a serious stage of delinquency. The sample period could cover one mini-cycle, e.g., 5 to 7 years.</p>
+<p>The sample is then split into a training set and a test set, typically using a 70/30 or 80/20 split. The training set is used to build the model, while the test set is used to evaluate its performance.</p>
+</section>
+<section id="sec-variable-screening" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="sec-variable-screening"><span class="header-section-number">3.3</span> Variable screening</h3>
+<p>The next step involves short listing a set of candidate variables that are potentially predictive of default risk. This is done through a combination of domain knowledge and statistical techniques. We start with a broad set of variables and then apply various screening methods to identify the most relevant ones.</p>
+<section id="single-factor-screening" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="single-factor-screening"><span class="header-section-number">3.3.1</span> Single-factor screening</h4>
+<p>First, because the outcome variable (<code>default</code>) that we are interested in is binary (default vs non-default), we can use the <strong>Information Value (IV)</strong> metric to assess the predictive power of each candidate variable. The IV measures how well a variable can distinguish between defaulters and non-defaulters. A higher IV indicates a stronger predictive power.</p>
+</section>
+<section id="redundancy-and-correlation-control" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="redundancy-and-correlation-control"><span class="header-section-number">3.3.2</span> Redundancy and correlation control</h4>
+<p>Second, after short listing a set of candidate variables via single-factor screening, we need to check for redundancy and correlation among them. Highly correlated variables can introduce multicollinearity into the model, making it difficult to isolate the effect of each variable on default risk.</p>
+<p>In practice, we can compute the pairwise Pearson and Spearman correlation coefficients to identify highly correlated variables. If two variables are found to be highly correlated (e.g., correlation coefficient larger than 0.7), we may choose to retain only one of them in the model.</p>
+</section>
+</section>
+<section id="model-estimation-evaluation" class="level3 page-columns page-full" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="model-estimation-evaluation"><span class="header-section-number">3.4</span> Model estimation &amp; evaluation</h3>
+<p>Notably, many different statistical models can be used for credit risk modeling. For demonstration purposes, we will focus on logistic regression given that our outcome variable <code>default</code> is binary.</p>
+<section id="model-estimation" class="level4" data-number="3.4.1">
+<h4 data-number="3.4.1" class="anchored" data-anchor-id="model-estimation"><span class="header-section-number">3.4.1</span> Model estimation</h4>
+<p>Specifically, we fit a logistic regression model to the training data, where the outcome variable is <code>default</code> and the predictor variables are the selected features from <a href="#sec-variable-screening" class="quarto-xref">Section&nbsp;3.3</a>. The logistic regression model estimates the log-odds of default as a linear combination of the predictor variables. It can be expressed as:</p>
+<p><span class="math display">\[
+P(\text{default}=1|X) = \frac{1}{1 + e^{-(\beta^{T} X)}},
+\]</span></p>
+<p>where <span class="math inline">\(P(\text{default}=1|X)\)</span> is the probability of default given the vector of predictor variables <span class="math inline">\(X\)</span>, and <span class="math inline">\(\beta\)</span> is the vector of coefficients to be estimated.</p>
+</section>
+<section id="performance-evaluation" class="level4 page-columns page-full" data-number="3.4.2">
+<h4 data-number="3.4.2" class="anchored" data-anchor-id="performance-evaluation"><span class="header-section-number">3.4.2</span> Performance evaluation</h4>
+<p>After estimating the model parameters, we can compute the <strong>AUC (Area Under the Curve)</strong> or the <strong>Gini score</strong> to evaluate the model’s discriminatory power.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;The Gini score is simply calculated as <span class="math inline">\(\text{Gini} = 2 \times AUC - 1\)</span> and bounded by 0 and 1. It is preferred over AUC because a random prediction will yield a Gini score of 0 as opposed to the AUC which will be 0.5.</p></div></div><p>Ideally, we want the model to achieve a sufficiently high Gini score. If the model’s performance is unsatisfactory, we may need to revisit the variable screening step to select different variables or consider alternative modeling techniques.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example credit scoring model estimation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<details class="code-fold">
+<summary>Fit a logistic PD model and plot ROC curve.</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal, self-contained example: fit a logistic PD model and plot AUC</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("pROC","ggplot2"))</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8003</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Simulate a credit-scoring style dataset</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50000</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                       <span class="co"># e.g., log income z-score</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                       <span class="co"># e.g., leverage z-score</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>)              <span class="co"># e.g., delinquency flag</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>linpred <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="fl">0.8</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>x3 <span class="sc">-</span> <span class="fl">0.4</span><span class="sc">*</span>x1</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>pd_true <span class="ot">&lt;-</span> <span class="fu">plogis</span>(linpred)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, pd_true)           <span class="co"># default indicator (1 = default)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y, x1, x2, x3)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Train / test split</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(n), <span class="at">size =</span> <span class="fl">0.7</span><span class="sc">*</span>n)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> df[idx, ]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> df[<span class="sc">-</span>idx, ]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Fit logistic regression (credit scoring PD model)</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> train, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Score test set with predicted PDs</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>test<span class="sc">$</span>pd_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 5) ROC and AUC</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>roc_obj <span class="ot">&lt;-</span> <span class="fu">roc</span>(<span class="at">response =</span> test<span class="sc">$</span>y, <span class="at">predictor =</span> test<span class="sc">$</span>pd_hat, <span class="at">direction =</span> <span class="st">"&lt;"</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>auc_val <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">auc</span>(roc_obj))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>gini_val <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>auc_val <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 6) Plot ROC with ggplot2</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>roc_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">fpr =</span> <span class="dv">1</span> <span class="sc">-</span> roc_obj<span class="sc">$</span>specificities,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">tpr =</span> roc_obj<span class="sc">$</span>sensitivities</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(roc_df, <span class="fu">aes</span>(<span class="at">x =</span> fpr, <span class="at">y =</span> tpr)) <span class="sc">+</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">sprintf</span>(<span class="st">"ROC Curve (AUC = %.3f, Gini = %.3f)"</span>, auc_val, gini_val),</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"False Positive Rate"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"True Positive Rate"</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="calibration" class="level3 page-columns page-full" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="calibration"><span class="header-section-number">3.5</span> Calibration</h3>
+<p>At this step, we have built a credit scoring model (a logistic model) that has good discriminatory power (e.g., Gini &gt; 0.6). However, the predicted PDs from the model are known to be <strong>point-in-time (PIT)</strong> estimates, meaning they reflect the borrower’s credit risk at a specific point in time. In recessions PIT PDs rise; in booms they fall.</p>
+<p>For regulatory capital calculation, Basel III and APS 113 do not allow direct use of PIT PDs, because that would make capital requirements fluctuate too much with the cycle. Instead, banks must calibrate PDs to long-run averages of one-year default rates for each grade or pool. These are empirical averages that cover both benign and stressed periods.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;It is important to distinguish these from <strong>through-the-cycle (TTC)</strong> PDs, which are smoothed to be cycle-neutral and essentially fixed. Basel’s long-run PDs are not fully TTC; rather, they are a hybrid: more stable than PIT, but still anchored in actual long-run default experience and updated as history evolves.</p></div></div><p>In short:</p>
+<ul>
+<li>The logit model provides PIT PDs for rank-ordering.</li>
+<li>Calibration maps them into rating grades with long-run average PDs.</li>
+<li>These calibrated grade PDs are the inputs to the Basel IRB capital formula.</li>
+</ul>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example: Calibrated Rating Table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 21%">
+<col style="width: 32%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Grade</th>
+<th>Description</th>
+<th>PIT PD range (model output)</th>
+<th>Assigned long-run PD (regulatory)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AAA</td>
+<td>Prime</td>
+<td>0.00% – 0.05%</td>
+<td>0.03%</td>
+</tr>
+<tr class="even">
+<td>AA</td>
+<td>Very strong</td>
+<td>0.05% – 0.10%</td>
+<td>0.08%</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>Strong</td>
+<td>0.10% – 0.25%</td>
+<td>0.20%</td>
+</tr>
+<tr class="even">
+<td>BBB</td>
+<td>Satisfactory</td>
+<td>0.25% – 0.75%</td>
+<td>0.60%</td>
+</tr>
+<tr class="odd">
+<td>BB</td>
+<td>Weak</td>
+<td>0.75% – 2.00%</td>
+<td>1.50%</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>Very weak</td>
+<td>2.00% – 5.00%</td>
+<td>3.50%</td>
+</tr>
+<tr class="odd">
+<td>CCC</td>
+<td>Distressed</td>
+<td>5.00% – 15.0%</td>
+<td>10.0%</td>
+</tr>
+<tr class="even">
+<td>CC</td>
+<td>Highly distressed</td>
+<td>15.0% – 30.0%</td>
+<td>20.0%</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Near default</td>
+<td>&gt; 30.0%</td>
+<td>40.0%</td>
+</tr>
+</tbody>
+</table>
+<p>Note that banks can have different number of internal credit grades and may use different naming conventions for these grades. The long-run PDs assigned to each grade can also be different but must be justified by historical default experience and approved by the regulator.</p>
+</div>
+</div>
+<section id="long-run-pd" class="level4" data-number="3.5.1">
+<h4 data-number="3.5.1" class="anchored" data-anchor-id="long-run-pd"><span class="header-section-number">3.5.1</span> Long-run PD</h4>
+<p>The long-run PDs assigned to each credit grade are used for regulatory capital calculations. APS 113 mandates that these long-run PDs must be based on the observed historical one-year default rate that is calculated as a simple average based on the number of borrowers or facilities, with a minimum historical observation period of five years.</p>
+</section>
+<section id="binning-calibration" class="level4" data-number="3.5.2">
+<h4 data-number="3.5.2" class="anchored" data-anchor-id="binning-calibration"><span class="header-section-number">3.5.2</span> Binning calibration</h4>
+<p>Because the predicted probabilities from the model are continuous values, they need to be mapped to discrete (internal) credit grades for which long-run PDs are estimated. This is where binning comes in, i.e., grouping the continuous model outputs into a set of intervals (bins), each corresponding to a credit grade. The choice of bin edges can be based on quantiles of the predicted PD distribution or based on business considerations.</p>
+<p>In a narrow sense, calibration refers to the process of determining the bin edges and assigning long-run PDs to each bin.</p>
+</section>
+</section>
+<section id="validation" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="validation"><span class="header-section-number">3.6</span> Validation</h3>
+<section id="transition-matrix-analysis" class="level4" data-number="3.6.1">
+<h4 data-number="3.6.1" class="anchored" data-anchor-id="transition-matrix-analysis"><span class="header-section-number">3.6.1</span> Transition matrix analysis</h4>
+<p>Transition matrix analysis involves examining the changes in credit ratings over time. This can help assess the stability of the credit grades assigned to borrowers and the performance of the credit scoring model.</p>
+<p>In the context of developing a credit scoring model, transition matrix can be used to study how credit grades change using the new model compared to the old model. This can help identify any significant shifts in credit ratings and assess the impact of the new model on the bank’s credit portfolio.</p>
+<p>If the new model results in a significant change in credit ratings of existing borrowers, it may prompt a review of the underlying factors driving these changes and potential adjustments to the model.</p>
+</section>
+<section id="rwa-impact-analysis" class="level4" data-number="3.6.2">
+<h4 data-number="3.6.2" class="anchored" data-anchor-id="rwa-impact-analysis"><span class="header-section-number">3.6.2</span> RWA impact analysis</h4>
+<p>Finally, banks need to assess the impact of the new credit scoring model on the calculation of risk-weighted assets (RWA) for regulatory capital purposes. This involves comparing the RWA calculated using the new model with that calculated using the old model.</p>
+<p>If the new model results in a significant increase in RWA, it may indicate that the model is more conservative and may require higher capital reserves. Conversely, if the new model results in a significant decrease in RWA, it may indicate that the model is less conservative and may require lower capital reserves. If the impact on RWA is deemed unacceptable, banks may need to revisit the model development process, including variable selection, model estimation, and calibration.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Override analysis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In practice, credit decisions are not always fully automated. Senior credit officers or committees may override the model’s suggested rating when they have additional information not captured by the model (e.g., recent restructuring, parent company support, or industry events).</p>
+<p>While some level of overrides is expected and even healthy, frequent overrides can be a red flag. High override rates may suggest that the model is missing important risk drivers, that calibration does not align well with expert judgment, or that the economic environment has shifted.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="approval-deployment-ongoing-monitoring" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="approval-deployment-ongoing-monitoring"><span class="header-section-number">3.7</span> Approval, Deployment &amp; Ongoing Monitoring</h3>
+<p>After the model has been developed and validated, it must be approved by the relevant internal governance bodies within the bank before it can be deployed. This process typically involves a review of the model documentation, validation results, calibration approach, and any known limitations. In addition, supervisory authorities may review the model as part of the regulatory approval process.</p>
+<p>Once the model is approved, it can be deployed into production. This may involve integrating the model into existing IT systems, developing user interfaces for model users, and providing training to staff on how to apply the model consistently.</p>
+<p>Ongoing monitoring of the model’s performance is essential to ensure that it continues to operate as intended. This includes regular backtesting of the model’s predictions, monitoring for changes in the underlying data or economic environment, and reviewing override patterns. Where necessary, the model should be updated or recalibrated.</p>
+
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Gorton2008BankCycles" class="csl-entry" role="listitem">
+Gorton, G B, and Ping He. 2008. <span>“Bank Credit Cycles.”</span> <em>Review of Economic Studies</em> 75 (4): 1181–1214.
+</div>
+</div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuaW1wb3J0IHtQbG90fSBmcm9tIFwiQG9ic2VydmFibGVocS9wbG90XCJcblxuLy8gLS0tIElucHV0cyAtLS1cbnZpZXdvZiBwZCA9IElucHV0cy5yYW5nZShbMC4wNSwgMTAwXSwge3ZhbHVlOiAxLjAwLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJQRCAoJSlcIn0pXG52aWV3b2YgbGdkID0gSW5wdXRzLnJhbmdlKFswLCAxMDBdLCB7dmFsdWU6IDI1LCBzdGVwOiAwLjUsIGxhYmVsOiBcIkxHRCAoJSlcIn0pXG52aWV3b2YgZWFkID0gSW5wdXRzLnJhbmdlKFswLCA1XzAwMF8wMDBdLCB7dmFsdWU6IDFfMDAwXzAwMCwgc3RlcDogMTBfMDAwLCBsYWJlbDogXCJFQURcIn0pXG52aWV3b2YgbSA9IElucHV0cy5yYW5nZShbMC4yNSwgMjBdLCB7dmFsdWU6IDIuNSwgc3RlcDogMC4yNSwgbGFiZWw6IFwiTWF0dXJpdHkgKHllYXJzKVwifSlcbnZpZXdvZiBhdmNtID0gSW5wdXRzLnNlbGVjdChbMSwgMS4yNV0sIHt2YWx1ZTogMSwgbGFiZWw6IFwiQVZDTVwifSlcblxuLy8gLS0tIEZvcm11bGFzIC0tLVxuY29ycl9SID0gKFBELCBBVkNNKSA9PiB7XG4gIGNvbnN0IHggPSAoMSAtIE1hdGguZXhwKC01MCAqIFBEKSkgLyAoMSAtIE1hdGguZXhwKC01MCkpO1xuICBjb25zdCBSID0gQVZDTSAqICgwLjEyICogeCArIDAuMjQgKiAoMSAtIHgpKTtcbiAgcmV0dXJuIE1hdGgubWluKE1hdGgubWF4KFIsIDFlLTYpLCAwLjk5OSk7XG59O1xuXG5iX21hdHVyaXR5ID0gUEQgPT4gKDAuMTE4NTIgLSAwLjA1NDc4ICogTWF0aC5sb2coUEQpKSAqKiAyO1xuXG4vLyBTdGFuZGFyZCBub3JtYWwgQ0RGXG5mdW5jdGlvbiBzdGRub3JtX2NkZih4KSB7XG4gIHJldHVybiAoMSArIGVyZih4IC8gTWF0aC5zcXJ0KDIpKSkgLyAyO1xufVxuLy8gRXJyb3IgZnVuY3Rpb25cbmZ1bmN0aW9uIGVyZih4KSB7XG4gIC8vIEFicmFtb3dpdHogYW5kIFN0ZWd1biBmb3JtdWxhIDcuMS4yNlxuICBjb25zdCBzaWduID0geCA8IDAgPyAtMSA6IDE7XG4gIHggPSBNYXRoLmFicyh4KTtcbiAgY29uc3QgYTEgPSAgMC4yNTQ4Mjk1OTIsIGEyID0gLTAuMjg0NDk2NzM2LCBhMyA9IDEuNDIxNDEzNzQxO1xuICBjb25zdCBhNCA9IC0xLjQ1MzE1MjAyNywgYTUgPSAxLjA2MTQwNTQyOSwgcCA9IDAuMzI3NTkxMTtcbiAgY29uc3QgdCA9IDEgLyAoMSArIHAgKiB4KTtcbiAgY29uc3QgeSA9IDEgLSAoKCgoKGE1ICogdCArIGE0KSAqIHQpICsgYTMpICogdCArIGEyKSAqIHQgKyBhMSkgKiB0ICogTWF0aC5leHAoLXggKiB4KTtcbiAgcmV0dXJuIHNpZ24gKiB5O1xufVxuLy8gSW52ZXJzZSBlcnJvciBmdW5jdGlvbiAoYXBwcm94aW1hdGUpXG5mdW5jdGlvbiBlcmZpbnYoeCkge1xuICAvLyBBcHByb3hpbWF0aW9uIGJ5IE1pa2UgR2lsZXMgKDIwMTApXG4gIGNvbnN0IGEgPSAwLjE0NztcbiAgY29uc3QgbG4gPSBNYXRoLmxvZygoMSAtIHgpICogKDEgKyB4KSk7XG4gIGNvbnN0IHNnbiA9IHggPCAwID8gLTEgOiAxO1xuICBjb25zdCBwYXJ0MSA9IDIgLyAoTWF0aC5QSSAqIGEpICsgbG4gLyAyO1xuICBjb25zdCBwYXJ0MiA9IGxuIC8gYTtcbiAgcmV0dXJuIHNnbiAqIE1hdGguc3FydChNYXRoLnNxcnQocGFydDEgKiBwYXJ0MSAtIHBhcnQyKSAtIHBhcnQxKTtcbn1cblxuY2FwaXRhbF9LID0gKFBELCBMR0QsIE0sIEFWQ00pID0+IHtcbiAgY29uc3QgUiA9IGNvcnJfUihQRCwgQVZDTSk7XG4gIGNvbnN0IGIgPSBiX21hdHVyaXR5KFBEKTtcbiAgY29uc3QgcW5vcm0gPSBwID0+IE1hdGguc3FydCgyKSAqIGVyZmludigyICogcCAtIDEpOyAvLyBBcHByb3hpbWF0ZSBpbnZlcnNlIG5vcm1hbFxuICBjb25zdCB0ZXJtID0gKHFub3JtKFBEKSArIE1hdGguc3FydChSKSAqIHFub3JtKDAuOTk5KSkgLyBNYXRoLnNxcnQoMSAtIFIpO1xuICBjb25zdCBLID0gTEdEICogc3Rkbm9ybV9jZGYodGVybSkgLSBQRCAqIExHRDtcbiAgY29uc3QgS19hZGogPSBLICogKCgxICsgKE0gLSAyLjUpICogYikgLyAoMSAtIDEuNSAqIGIpKTtcbiAgcmV0dXJuIE1hdGgubWF4KEtfYWRqLCAwKTtcbn07XG5cbi8vIC0tLSBDYWxjdWxhdGlvbnMgLS0tXG5QRCA9IHBkIC8gMTAwO1xuTEdEID0gbGdkIC8gMTAwO1xuRUFEID0gZWFkO1xuTSA9IG07XG5BVkNNID0gYXZjbTtcblxuUiA9IGNvcnJfUihQRCwgQVZDTSk7XG5iID0gYl9tYXR1cml0eShQRCk7XG5LID0gY2FwaXRhbF9LKFBELCBMR0QsIE0sIEFWQ00pO1xuUldBID0gSyAqIDEyLjUgKiBFQUQ7XG5cbi8vIC0tLSBTZW5zaXRpdml0eSBEYXRhIC0tLVxuLy8gTG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBmb3IgUEQgaW4gZGVjaW1hbCAoMC4wMDA1IHRvIDEuMClcbnBkX21pbiA9IDAuMDAwNTtcbnBkX21heCA9IDEuMDtcbnBkX2xvd2VyID0gTWF0aC5tYXgocGRfbWluLCBQRCAqIDAuNSk7XG5wZF91cHBlciA9IE1hdGgubWluKHBkX21heCwgUEQgKiAxLjUpO1xucGRfc2VxID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiA1MH0sIChfLCBpKSA9PiBwZF9sb3dlciArIGkgKiAocGRfdXBwZXIgLSBwZF9sb3dlcikgLyA0OSk7XG5sZ2Rfc2VxID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiA1MH0sIChfLCBpKSA9PiBNYXRoLm1heCgwLCBMR0QqMC41KSArIGkqKE1hdGgubWluKDEsIExHRCoxLjUpLU1hdGgubWF4KDAsIExHRCowLjUpKS80OSk7XG5lYWRfc2VxID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiA1MH0sIChfLCBpKSA9PiBFQUQqMC41ICsgaSooRUFEKjEuNS1FQUQqMC41KS80OSk7XG5tX21pbiA9IDAuMjU7XG5tX21heCA9IDIwLjA7XG5tX2xvd2VyID0gTWF0aC5tYXgobV9taW4sIE0gKiAwLjUpO1xubV91cHBlciA9IE1hdGgubWluKG1fbWF4LCBNICogMS41KTtcbm1fc2VxID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiA1MH0sIChfLCBpKSA9PiBtX2xvd2VyICsgaSAqIChtX3VwcGVyIC0gbV9sb3dlcikgLyA0OSk7XG5cbmRhdGFfcGQgPSBwZF9zZXEubWFwKHAgPT4gKHtQRDogcCoxMDAsIFJXQTogY2FwaXRhbF9LKHAsIExHRCwgTSwgQVZDTSkgKiAxMi41ICogRUFEfSkpO1xuZGF0YV9sZ2QgPSBsZ2Rfc2VxLm1hcChsID0+ICh7TEdEOiBsKjEwMCwgUldBOiBjYXBpdGFsX0soUEQsIGwsIE0sIEFWQ00pICogMTIuNSAqIEVBRH0pKTtcbmRhdGFfZWFkID0gZWFkX3NlcS5tYXAoZSA9PiAoe0VBRDogZSwgUldBOiBjYXBpdGFsX0soUEQsIExHRCwgTSwgQVZDTSkgKiAxMi41ICogZX0pKTtcbmRhdGFfbSA9IG1fc2VxLm1hcChtdiA9PiAoe006IG12LCBSV0E6IGNhcGl0YWxfSyhQRCwgTEdELCBtdiwgQVZDTSkgKiAxMi41ICogRUFEfSkpO1xuXG5mdW5jdGlvbiBoaWdobGlnaHQoeCwgeSwgeGxhYiwgeWxhYikge1xuICByZXR1cm4gW1xuICAgIFBsb3QucnVsZVgoW3hdLCB7c3Ryb2tlOiBcImdyYXlcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsMlwifSksXG4gICAgUGxvdC5ydWxlWShbeV0sIHtzdHJva2U6IFwiZ3JheVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwyXCJ9KSxcbiAgICBQbG90LmRvdChbe1t4bGFiXTogeCwgW3lsYWJdOiB5fV0sIHt4OiB4bGFiLCB5OiB5bGFiLCBmaWxsOiBcImJsYWNrXCIsIHI6IDV9KSxcbiAgICBQbG90LnRleHQoW3tbeGxhYl06IHgsIFt5bGFiXTogeSwgbGFiZWw6IGAoJHt4LnRvRml4ZWQoMil9LCAke01hdGgucm91bmQoeSl9KWB9XSwge1xuICAgICAgeDogeGxhYiwgeTogeWxhYiwgdGV4dDogXCJsYWJlbFwiLCBkeDogMTAsIGR5OiAtMTAsIGZpbGw6IFwiYmxhY2tcIiwgZm9udFNpemU6IDEyXG4gICAgfSlcbiAgXTtcbn1cblxuLy8gLS0tIEluZGl2aWR1YWwgUGxvdHMgLS0tXG5wbG90X3BkID0gUGxvdC5wbG90KHtcbiAgZ3JpZDogdHJ1ZSxcbiAgd2lkdGg6IDM1MCxcbiAgaGVpZ2h0OiAyNTAsXG4gIG1hcmdpbkxlZnQ6IDUwLFxuICBtYXJnaW5Cb3R0b206IDQwLFxuICBtYXJrczogW1xuICAgIFBsb3QubGluZShkYXRhX3BkLCB7eDogXCJQRFwiLCB5OiBcIlJXQVwiLCBzdHJva2U6IFwiYmx1ZVwifSksXG4gICAgLi4uaGlnaGxpZ2h0KHBkLCBjYXBpdGFsX0soUEQsIExHRCwgTSwgQVZDTSkgKiAxMi41ICogRUFELCBcIlBEXCIsIFwiUldBXCIpXG4gIF0sXG4gIHg6IHtsYWJlbDogXCJQRCAoJSlcIn0sXG4gIHk6IHtsYWJlbDogXCJSV0FcIn0sXG4gIGNhcHRpb246IFwiU2Vuc2l0aXZpdHkgdG8gUERcIlxufSlcblxucGxvdF9sZ2QgPSBQbG90LnBsb3Qoe1xuICBncmlkOiB0cnVlLFxuICB3aWR0aDogMzUwLFxuICBoZWlnaHQ6IDI1MCxcbiAgbWFyZ2luTGVmdDogNTAsXG4gIG1hcmdpbkJvdHRvbTogNDAsXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKGRhdGFfbGdkLCB7eDogXCJMR0RcIiwgeTogXCJSV0FcIiwgc3Ryb2tlOiBcImRhcmtyZWRcIn0pLFxuICAgIC4uLmhpZ2hsaWdodChsZ2QsIGNhcGl0YWxfSyhQRCwgTEdELCBNLCBBVkNNKSAqIDEyLjUgKiBFQUQsIFwiTEdEXCIsIFwiUldBXCIpXG4gIF0sXG4gIHg6IHtsYWJlbDogXCJMR0QgKCUpXCJ9LFxuICB5OiB7bGFiZWw6IFwiUldBXCJ9LFxuICBjYXB0aW9uOiBcIlNlbnNpdGl2aXR5IHRvIExHRFwiXG59KVxuXG5wbG90X2VhZCA9IFBsb3QucGxvdCh7XG4gIGdyaWQ6IHRydWUsXG4gIHdpZHRoOiAzNTAsXG4gIGhlaWdodDogMjUwLFxuICBtYXJnaW5MZWZ0OiA1MCxcbiAgbWFyZ2luQm90dG9tOiA0MCxcbiAgbWFya3M6IFtcbiAgICBQbG90LmxpbmUoZGF0YV9lYWQsIHt4OiBcIkVBRFwiLCB5OiBcIlJXQVwiLCBzdHJva2U6IFwiZGFya2dyZWVuXCJ9KSxcbiAgICAuLi5oaWdobGlnaHQoZWFkLCBjYXBpdGFsX0soUEQsIExHRCwgTSwgQVZDTSkgKiAxMi41ICogRUFELCBcIkVBRFwiLCBcIlJXQVwiKVxuICBdLFxuICB4OiB7bGFiZWw6IFwiRUFEXCJ9LFxuICB5OiB7bGFiZWw6IFwiUldBXCJ9LFxuICBjYXB0aW9uOiBcIlNlbnNpdGl2aXR5IHRvIEVBRFwiXG59KVxuXG5wbG90X20gPSBQbG90LnBsb3Qoe1xuICBncmlkOiB0cnVlLFxuICB3aWR0aDogMzUwLFxuICBoZWlnaHQ6IDI1MCxcbiAgbWFyZ2luTGVmdDogNTAsXG4gIG1hcmdpbkJvdHRvbTogNDAsXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKGRhdGFfbSwge3g6IFwiTVwiLCB5OiBcIlJXQVwiLCBzdHJva2U6IFwiZGFya29yYW5nZVwifSksXG4gICAgLi4uaGlnaGxpZ2h0KG0sIGNhcGl0YWxfSyhQRCwgTEdELCBNLCBBVkNNKSAqIDEyLjUgKiBFQUQsIFwiTVwiLCBcIlJXQVwiKVxuICBdLFxuICB4OiB7bGFiZWw6IFwiTWF0dXJpdHkgKHllYXJzKVwifSxcbiAgeToge2xhYmVsOiBcIlJXQVwifSxcbiAgY2FwdGlvbjogXCJTZW5zaXRpdml0eSB0byBNYXR1cml0eVwiXG59KVxuXG4vLyAtLS0gT3V0cHV0OiBSZXN1bHRzIFRhYmxlIGFuZCBQbG90cyAtLS1cbmh0bWxgXG4gIDx0YWJsZSBjbGFzcz1cInRhYmxlXCI+XG4gICAgPHRoZWFkPjx0cj48dGg+UXVhbnRpdHk8L3RoPjx0aD5WYWx1ZTwvdGg+PHRoPlVuaXRzPC90aD48L3RyPjwvdGhlYWQ+XG4gICAgPHRib2R5PlxuICAgICAgPHRyPjx0ZD5Db3JyZWxhdGlvbiAoUik8L3RkPjx0ZD4ke1IudG9GaXhlZCg2KX08L3RkPjx0ZD48L3RkPjwvdHI+XG4gICAgICA8dHI+PHRkPk1hdHVyaXR5IGFkanVzdG1lbnQgKGIpPC90ZD48dGQ+JHtiLnRvRml4ZWQoNil9PC90ZD48dGQ+PC90ZD48L3RyPlxuICAgICAgPHRyPjx0ZD5DYXBpdGFsIHJlcXVpcmVtZW50IChLKTwvdGQ+PHRkPiR7Sy50b0ZpeGVkKDYpfTwvdGQ+PHRkPnBlciB1bml0IEVBRDwvdGQ+PC90cj5cbiAgICAgIDx0cj48dGQ+UldBPC90ZD48dGQ+JHtNYXRoLnJvdW5kKFJXQSkudG9Mb2NhbGVTdHJpbmcoKX08L3RkPjx0ZD5jdXJyZW5jeTwvdGQ+PC90cj5cbiAgICA8L3Rib2R5PlxuICA8L3RhYmxlPlxuICA8ZGl2IHN0eWxlPVwiZGlzcGxheTogZmxleDsgZmxleC13cmFwOiB3cmFwOyBnYXA6IDEwcHg7IGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcIj5cbiAgICA8ZGl2PiR7cGxvdF9wZH08L2Rpdj5cbiAgICA8ZGl2PiR7cGxvdF9sZ2R9PC9kaXY+XG4gICAgPGRpdj4ke3Bsb3RfZWFkfTwvZGl2PlxuICAgIDxkaXY+JHtwbG90X219PC9kaXY+XG4gIDwvZGl2PlxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwZCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdsZ2QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnZWFkJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ20nKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnYXZjbScpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/credit-risk-modelling";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "mgao6767/mingze-gao";
+    script.dataset.repoId = "MDEwOlJlcG9zaXRvcnkyODEwMTIwMjk=";
+    script.dataset.category = "Comments";
+    script.dataset.categoryId = "DIC_kwDOEL_nPc4CgWgL";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © 2019 - 2025 Mingze Gao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
