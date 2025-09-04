@@ -1,18 +1,17 @@
 ---
 title: "Credit Risk Modelling (IRB)"
 date: 2025-09-03
+date-modified: 2025-09-04
 abstract: This article provides an educational overview of the Internal Ratings-Based (IRB) approach to credit risk modeling under the Basel III framework. It covers the key concepts, methodologies, and practical considerations involved in developing and validating IRB models.
 format: 
   html:
     number-sections: true
 categories:
   - Teaching Notes
-filters:
-  - shinylive
 ---
 
 ::: {.callout-note}
-This article is a [work in progress]{.mark} and a part of my [teaching notes](https://mingze-gao.com/teaching/). It is intended for educational purposes and aims to provide students with an understanding of the IRB approach.
+This article is a part of my [teaching notes](https://mingze-gao.com/teaching/) for **AFIN8003 Banking and Financial Intermediation** at the Macquarie Business School. It is intended for educational purposes and aims to provide students with an understanding of the IRB approach.
 :::
 
 ## Background
@@ -377,25 +376,449 @@ flowchart LR
 ```
 :::
 
+
+```{r}
+#| echo: false
+#| label: load-libraries
+#| code-summary: Load libraries.
+#| code-fold: true
+#| message: false
+
+library(glue)
+library(tidyverse)
+library(modelsummary)
+library(ggplot2)
+library(tinytable)
+```
+
+```{r}
+#| label: simulate-data
+#| echo: false 
+
+# Disable scientific notation
+options(scipen = 999)
+
+# This code generates a large synthetic dataset, assigns ratings using PIT PD breakpoints,
+# and then performs stratified sampling to match target grade proportions.
+
+# Parameters
+current_year <- 2025
+n_loans <- 100000
+n_borrowers <- 25000
+n_years <- 5
+
+# Target proportions (Normal shape around BBB)
+rating_labels <- c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "C")
+grade_prop <- c(0.01, 0.04, 0.15, 0.30, 0.25, 0.15, 0.06, 0.025, 0.005)
+target_n <- round(n_loans * grade_prop)
+target_n[length(target_n)] <- n_loans - sum(target_n[-length(target_n)]) # fix rounding
+
+# Generate a large pool to ensure enough loans in each grade
+n_loans_large <- 10 * n_loans
+n_borrowers_large <- 10 * n_borrowers
+
+set.seed(1)
+
+# --- Borrower characteristics ---
+borrower_large <- data.frame(
+  borrower_id = 1:n_borrowers_large,
+  net_worth = round(rlnorm(n_borrowers_large, log(120), 0.7), 2)
+)
+borrower_large$leverage <- round(runif(n_borrowers_large, 0.1, 0.9), 2)
+borrower_large$assets <- borrower_large$net_worth / (1 - borrower_large$leverage)
+borrower_large$debt <- borrower_large$assets * borrower_large$leverage
+borrower_large$ebitda_margin <- rnorm(n_borrowers_large, 0.18, 0.06)
+borrower_large$revenue <- borrower_large$assets * runif(n_borrowers_large, 0.5, 1.5)
+borrower_large$ebitda <- borrower_large$revenue * borrower_large$ebitda_margin
+borrower_large$ebitda_to_debt <- round(borrower_large$ebitda / (borrower_large$debt + 1e-2), 3)
+borrower_large$net_profit_margin <- pmax(pmin(rnorm(n_borrowers_large, 0.08, 0.04), 0.25), -0.2)
+borrower_large$net_profit_vol <- abs(rnorm(n_borrowers_large, 0.03, 0.015))
+borrower_large$board_size <- sample(3:15, n_borrowers_large, replace = TRUE)
+borrower_large$ceo_tenure <- sample(1:20, n_borrowers_large, replace = TRUE)
+borrower_large$audit_firm_big4 <- rbinom(n_borrowers_large, 1, 0.7)
+
+# --- Loan assignment ---
+loan_large <- data.frame(
+  loan_id = 1:n_loans_large,
+  borrower_id = sample(borrower_large$borrower_id, n_loans_large, replace = TRUE),
+  amount_in_thousands = round(rlnorm(n_loans_large, log(20), 0.7), 2),
+  term_months = sample(c(12, 36, 60, 84), n_loans_large, replace = TRUE, prob = c(0.2, 0.5, 0.2, 0.1)),
+  interest_rate = round(rnorm(n_loans_large, 0.045, 0.012), 4),
+  year_borrowed = sample((current_year-n_years+1):current_year, n_loans_large, replace = TRUE)
+)
+loan_large <- merge(loan_large, borrower_large, by = "borrower_id")
+
+# --- Adjustment ---
+loan_large <- loan_large |>
+  left_join(borrower_large[, c("borrower_id", "debt")], by = "borrower_id", suffix = c("", ".b")) |>
+  mutate(
+    amount_in_thousands = pmin(amount_in_thousands, debt)
+  ) |>
+  select(-debt)
+
+# --- Latent PD calculation (features drive PD) ---
+linpred_large <- 0.13 +
+  0.12 * loan_large$leverage +
+  -4.8 * loan_large$ebitda_to_debt +
+  -1.1 * (loan_large$ebitda_to_debt)^2 +
+  -4.5 * loan_large$net_profit_margin +
+  -0.5 * (loan_large$net_profit_margin)^2 +
+  4.1 * loan_large$net_profit_vol +
+  0.001 * loan_large$amount_in_thousands +
+  -0.0065 * loan_large$net_worth +
+  0.002 * loan_large$interest_rate +
+  0.05 * loan_large$board_size +
+  -0.005 * loan_large$ceo_tenure +
+  -0.03 * loan_large$audit_firm_big4 +
+  0.001 * loan_large$term_months 
+
+loan_large$pd_pit <- plogis(linpred_large)
+
+# --- Assign ratings using PIT PD breakpoints ---
+pd_breaks <- c(0, 0.0005, 0.001, 0.002, 0.007, 0.02, 0.05, 0.15, 0.25, 1)
+loan_large$rating <- cut(
+  loan_large$pd_pit,
+  breaks = pd_breaks,
+  labels = rating_labels,
+  include.lowest = TRUE,
+  right = TRUE
+)
+
+# --- Stratified sampling to match target proportions ---
+loan <- purrr::map2_dfr(
+  rating_labels, target_n,
+  ~{
+    pool <- loan_large[loan_large$rating == .x, ]
+    if (nrow(pool) < .y) stop(glue::glue("Not enough loans in grade {.x}"))
+    pool[sample(nrow(pool), .y), ]
+  }
+)
+
+# --- Assign long-run PDs for each grade ---
+long_run_pd_table <- data.frame(
+  rating = rating_labels,
+  long_run_pd = c(0.03, 0.07, 0.20, 0.60, 1.50, 3.50, 10.0, 25.0, 30.0) / 100
+)
+
+# --- Assign defaults to match long-run PDs within each grade ---
+loan$default <- 0L
+for (i in seq_along(rating_labels)) {
+  grade <- rating_labels[i]
+  pd_target <- long_run_pd_table$long_run_pd[i]
+  idx <- which(loan$rating == grade)
+  n_grade <- length(idx)
+  n_default <- round(pd_target * n_grade)
+  if (n_grade > 0 && n_default > 0) {
+    idx_sorted <- idx[order(loan$pd_pit[idx], decreasing = TRUE)]
+    loan$default[idx_sorted[seq_len(n_default)]] <- 1L
+  }
+}
+
+# --- Assign days_past_due ---
+loan$days_past_due <- 0
+n_default <- sum(loan$default == 1, na.rm = TRUE)
+n_nondefault <- sum(loan$default == 0, na.rm = TRUE)
+if (!is.na(n_default) && n_default > 0) {
+  dpd_default <- pmin(pmax(rpois(n_default, lambda = 90), 90), 365)
+  loan$days_past_due[which(loan$default == 1)] <- dpd_default
+}
+if (!is.na(n_nondefault) && n_nondefault > 0) {
+  prob_zero <- 0.85
+  dpd_nondefault <- ifelse(runif(n_nondefault) < prob_zero, 0, rpois(n_nondefault, 2))
+  loan$days_past_due[which(loan$default == 0)] <- dpd_nondefault
+}
+
+# --- Final dataset ---
+credit_data <- loan[, c(
+  "loan_id", "borrower_id", "year_borrowed", "net_worth", "leverage", "ebitda_to_debt",
+  "net_profit_margin", "net_profit_vol", "board_size", "ceo_tenure", "audit_firm_big4",
+  "amount_in_thousands", "term_months", "interest_rate", "days_past_due", "default", "rating"
+)]
+```
+
+::: {.callout-tip}
+To illustrate the process, I will use a simulated dataset `credit_data` to demonstrate the steps involved in credit risk modeling. The dataset contains `r format(n_loans, big.mark = ",", scientific = FALSE, trim = TRUE)` loans over a period of `r n_years` years.
+:::
+
 ### Sample selection
 
 We begin by building a representative sample from the accumulated data of loans and borrowers. This includes both performing and non-performing (defaulted) loans. Typically, *default* is defined by 90+ days past due (DPD), which indicates a payment that is at least three months overdue, marking a serious stage of delinquency. The sample period could cover one mini-cycle, e.g., 5 to 7 years.
 
-The sample is then split into a training set and a test set, typically using a 70/30 or 80/20 split. The training set is used to build the model, while the test set is used to evaluate its performance.
+Consider, for example, the simulated dataset `credit_data` as a representative sample. @tbl-sample below gives an overview of `credit_data`.
+
+```{r}
+#| echo: false
+#| label: define-css
+#| code-summary: Define CSS for table formatting. 
+#| code-fold: true 
+
+table_css <- "
+.regtable table {
+  border-collapse: collapse;      /* removes default cell gaps */
+  border-spacing: 0;
+  font-size: 0.9rem;              /* relative, responsive */
+}
+
+.regtable caption {
+  caption-side: top;
+  font-weight: bold;
+  color: black;
+}
+
+.regtable th,
+.regtable td {
+  font-weight: normal;            /* normal weight for data cells */
+  line-height: 1;                 /* tight vertical spacing */
+  padding: 0.2em 0.4em;           /* minimal padding for readability */
+  white-space: nowrap;            /* no wrapping */
+  margin: 0;                      /* avoid extra vertical gaps */
+}
+"
+```
+
+::: {.column-page}
+```{r}
+#| echo: false
+#| code-code-summary: Sample of simulated credit data. 
+#| label: tbl-sample
+#| tbl-cap: Sample of Simulated Credit Data
+modelsummary::datasummary_df(
+  dplyr::sample_n(credit_data, 10)
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+:::
+
+@tbl-grade-dist shows the empirical distribution of credit ratings and their associated default rates.
+
+```{r}
+#| echo: false
+#| code-fold: true
+#| code-summary: Empirical grade distribution and default rates.
+#| label: tbl-grade-dist
+#| tbl-cap: Empirical Grade Distribution and Default Rates
+#| message: false
+
+credit_data |>
+  group_by(rating) |>
+  summarise(
+    Count = n(),
+    Defaults = sum(default),
+    `Observed Default Rate (%)` = round(100 * mean(default), 2)
+  ) |>
+  rename(`Rating Grade` = rating) |>
+  mutate(
+    Count = format(Count, big.mark = ",", scientific = FALSE, trim = TRUE),
+    Defaults = format(Defaults, big.mark = ",", scientific = FALSE, trim = TRUE),
+    ) |>
+  modelsummary::datasummary_df()|>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+@tbl-summary-statistics presents the summary statistics. 
+
+```{r}
+#| code-fold: true
+#| code-summary: Summary statistics for the analysis.
+#| label: tbl-summary-statistics
+#| tbl-cap: Summary Statistics of Simulated Credit Data 
+modelsummary::datasummary(
+  as.formula(paste(
+    paste(
+      setdiff(
+        names(credit_data)[sapply(credit_data, is.numeric)],
+        c("loan_id", "borrower_id")
+      ),
+      collapse = " + "
+    ),
+    "~ N + Mean + SD + Min + P25 + Median + P75 + Max"
+  )),
+  data = credit_data,
+  fmt = 3
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+The sample is then split into a **training set** and a **test set**, typically using a 70/30 or 80/20 split. The training set is used to build the model, while the test set is used to evaluate its performance.
+
+```{r}
+#| code-fold: true
+#| code-summary: Partition the data into training and test sets based on an 80/20 split.
+
+train_indices <- sample(1:nrow(credit_data), 0.8 * nrow(credit_data))
+train_data <- credit_data[train_indices, ]
+test_data <- credit_data[-train_indices, ]
+```
 
 ### Variable screening {#sec-variable-screening}
 
 The next step involves short listing a set of candidate variables that are potentially predictive of default risk. This is done through a combination of domain knowledge and statistical techniques. We start with a broad set of variables and then apply various screening methods to identify the most relevant ones.
 
+
 #### Single-factor screening
 
-First, because the outcome variable (`default`) that we are interested in is binary (default vs non-default), we can use the **Information Value (IV)** metric to assess the predictive power of each candidate variable. The IV measures how well a variable can distinguish between defaulters and non-defaulters. A higher IV indicates a stronger predictive power.
+First, because the outcome variable (`default`) that we are interested in is binary (default vs non-default), we can use the **Information Value (IV)** metric to assess the predictive power of each candidate variable. The IV measures how well a variable can distinguish between defaulters and non-defaulters. A higher IV indicates a stronger predictive power. IV provides a *univariate measure* of the variable's ability to distinguish between good and bad accounts. It helps in keeping predictors with meaningful discriminatory power before building a multivariate model.  
+
+::: {.callout-note title="Information Value (IV)" collapse="true"}
+
+The Information Value (IV) is a statistic commonly used in credit scoring to measure how well a predictor variable $X$ separates two groups: "good" (non-default) and "bad" (default). It is based on the idea of comparing the proportion of goods and bads in each bin (or category) of the variable.
+
+Suppose we partition the values of $X$ into $k$ bins. The **Information Value (IV)** for variable $X$ is then:
+
+$$
+IV(X) = \sum_{i=1}^k \left( p_i^G - p_i^B \right) \cdot  \ln \left( \frac{p_i^G}{p_i^B} \right),
+$$
+
+where $p_{i}^{G}$ is the proportion of goods (non-defaults) in bin $i$ and $p_{i}^{B}$ is the proportion of bads (defaults) in bin $i$.
+
+:::
+
+@tbl-iv-screening shows the Information Value (IV) for each candidate variable based on the training data. For demonstration purposes, we consider only borrower characteristics available in the dataset.
+
+```{r}
+#| label: tbl-iv-screening
+#| tbl-cap: Information Value (IV) Screening Results 
+#| code-fold: true 
+#| code-summary: Compute and rank Information Value (IV) for each variable.
+#| message: false
+
+library(scorecard)
+
+# Select candidate variables (exclude IDs, year, and outcome)
+vars <- c(
+  "net_worth", "leverage", "ebitda_to_debt",
+  "net_profit_margin", "net_profit_vol",
+  "board_size", "ceo_tenure", "audit_firm_big4"
+)
+
+# Compute IV for each variable and display sorted table using tidyverse pipes
+iv_df <- scorecard::iv(
+  train_data,
+  y = "default",
+  x = vars
+) |>
+  as_tibble() |>
+  arrange(desc(info_value)) |>
+  rename(
+    Variable = variable,
+    `Information Value` = info_value
+  )
+
+# Show IV table
+iv_df |>
+  modelsummary::datasummary_df(fmt = 3) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+```{r}
+#| echo: false
+#| label: candidate-vars
+candidate_vars <- iv_df |>
+  filter(`Information Value` >= 0.1) |>
+  pull(Variable)
+
+candidate_vars_str <- iv_df |>
+  filter(`Information Value` >= 0.1) |>
+  mutate(Variable = paste0("`", Variable, "`")) |>
+  pull(Variable) |>
+  paste(collapse = ", ")
+```
+
+As a rule of thumb, we consider variables with an IV of 0.1 or higher as having medium predictive power and worthy of further consideration in the modeling process. This leaves us with only the following variable: `r candidate_vars_str`. 
+
 
 #### Redundancy and correlation control
 
 Second, after short listing a set of candidate variables via single-factor screening, we need to check for redundancy and correlation among them. Highly correlated variables can introduce multicollinearity into the model, making it difficult to isolate the effect of each variable on default risk.
 
-In practice, we can compute the pairwise Pearson and Spearman correlation coefficients to identify highly correlated variables. If two variables are found to be highly correlated (e.g., correlation coefficient larger than 0.7), we may choose to retain only one of them in the model.
+In practice, we can compute the pairwise Pearson and Spearman correlation coefficients to identify highly correlated variables. If two variables are found to be highly correlated (e.g., the size of the correlation coefficient larger than 0.6), we may choose to retain only one of them in the model.
+
+@tbl-corr-matrix shows the correlation matrix of the short listed candidate variables in the training data.
+
+```{r}
+#| echo: false
+#| message: false
+#| label: tbl-corr-matrix
+#| tbl-cap: Correlation Matrix of Candidate Variables
+datasummary_correlation(
+  data = train_data |> select(all_of(candidate_vars)),
+  fmt = 3
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+```{r}
+#| echo: false
+#| label: high-corr-pairs
+#| code-summary: Identify and store highly correlated candidate variable pairs and which to keep/drop.
+#| message: false
+
+# Compute correlation matrix for candidate variables
+corr_mat <- cor(train_data |> select(all_of(candidate_vars)), use = "pairwise.complete.obs")
+
+# Find pairs with |correlation| > 0.6 (excluding diagonal and duplicates)
+high_corr_pairs <- which(abs(corr_mat) > 0.6 & lower.tri(corr_mat), arr.ind = TRUE)
+
+# Store results in a data frame for later use
+if (nrow(high_corr_pairs) == 0) {
+  high_corr_info <- tibble(
+    var1 = character(),
+    var2 = character(),
+    correlation = numeric(),
+    keep = character(),
+    drop = character(),
+    iv_keep = numeric(),
+    iv_drop = numeric()
+  )
+} else {
+  high_corr_info <- purrr::map_dfr(seq_len(nrow(high_corr_pairs)), function(i) {
+    var1 <- rownames(corr_mat)[high_corr_pairs[i, 1]]
+    var2 <- colnames(corr_mat)[high_corr_pairs[i, 2]]
+    iv1 <- iv_df$`Information Value`[iv_df$Variable == var1]
+    iv2 <- iv_df$`Information Value`[iv_df$Variable == var2]
+    keep <- if (iv1 >= iv2) var1 else var2
+    drop <- if (iv1 >= iv2) var2 else var1
+    tibble(
+      var1 = var1,
+      var2 = var2,
+      correlation = corr_mat[var1, var2],
+      keep = keep,
+      drop = drop,
+      iv_keep = max(iv1, iv2),
+      iv_drop = min(iv1, iv2)
+    )
+  })
+}
+
+# Function to generate explanatory text for each high correlation pair
+generate_corr_text <- function(var1, var2, correlation, keep, drop, iv_keep, iv_drop) {
+  cor_sign <- ifelse(correlation > 0, "positive", "negative")
+  glue::glue(
+    "Given that `{var1}` and `{var2}` have a high ({cor_sign}) correlation (correlation = {round(correlation, 3)}), ",
+    "we may consider removing one of them from the model. ",
+    "Since `{keep}` has a higher IV ({round(iv_keep, 3)} vs {round(iv_drop, 3)}), ",
+    "we may choose to keep `{keep}` and drop `{drop}`."
+  )
+}
+
+# Generate explanatory text for each high correlation pair
+corr_texts <- purrr::pmap_chr(
+  high_corr_info,
+  generate_corr_text
+)
+
+# The final set of selected variables after redundancy control
+final_vars <- setdiff(candidate_vars, high_corr_info$drop)
+
+final_vars_str <- final_vars |>
+  (\(x) paste0("`", x, "`"))() |>
+  paste(collapse = ", ")
+```
+
+`{r} I(corr_texts)`
+
+The final set of selected variables after redundancy and correlation control is: `r final_vars_str`.
+
 
 ### Model estimation & evaluation
 
@@ -411,6 +834,36 @@ $$
 
 where $P(\text{default}=1|X)$ is the probability of default given the vector of predictor variables $X$, and $\beta$ is the vector of coefficients to be estimated.
 
+@tbl-logit-results reports the results of the logistic regression model using the training data and our selected features.
+
+```{r}
+#| label: tbl-logit-results
+#| tbl-cap: Logistic Regression Results
+#| code-fold: true
+#| code-summary: Fit logistic regression using selected variables after screening.
+#| message: false
+#| warning: false 
+
+# Build formula using final_vars
+logit_formula <- as.formula(
+  paste("default ~", paste(final_vars, collapse = " + "))
+)
+
+# Fit logistic regression model on training data
+logit_fit <- glm(
+  formula = logit_formula,
+  data = train_data,
+  family = binomial()
+)
+
+modelsummary(
+  list("Logistic Model" = logit_fit),
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note = "Standard errors in parentheses."
+) |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
 #### Performance evaluation
 
 After estimating the model parameters, we can compute the **AUC (Area Under the Curve)** or the **Gini score** to evaluate the model's discriminatory power.[^gini-score]
@@ -419,51 +872,27 @@ After estimating the model parameters, we can compute the **AUC (Area Under the 
 
 Ideally, we want the model to achieve a sufficiently high Gini score. If the model's performance is unsatisfactory, we may need to revisit the variable screening step to select different variables or consider alternative modeling techniques.
 
-::: {.callout-note}
-### Example credit scoring model estimation
+Based on the test data, we can evaluate the performance of our model (given by @tbl-logit-results) using the ROC curve and compute the AUC and Gini score.
 
 ```{r}
+#| label: fig-roc-curve
+#| fig-cap: ROC Curve with AUC and Gini Score 
 #| message: false
 #| code-fold: true
-#| code-summary: Fit a logistic PD model and plot ROC curve.
- 
-# Minimal, self-contained example: fit a logistic PD model and plot AUC
+#| code-summary: Plot ROC curve and compute AUC/Gini using test data.
 
-# Packages
-# install.packages(c("pROC","ggplot2"))
 library(pROC)
 library(ggplot2)
 
-set.seed(8003)
+# 1) Score test set with predicted PDs
+test_data$pd_hat <- predict(logit_fit, newdata = test_data, type = "response")
 
-# 1) Simulate a credit-scoring style dataset
-n <- 50000
-x1 <- rnorm(n)                       # e.g., log income z-score
-x2 <- rnorm(n)                       # e.g., leverage z-score
-x3 <- rbinom(n, 1, 0.3)              # e.g., delinquency flag
-linpred <- -3 + 0.8*x2 + 0.5*x3 - 0.4*x1
-pd_true <- plogis(linpred)
-y <- rbinom(n, 1, pd_true)           # default indicator (1 = default)
-
-df <- data.frame(y, x1, x2, x3)
-
-# 2) Train / test split
-idx <- sample(seq_len(n), size = 0.7*n)
-train <- df[idx, ]
-test  <- df[-idx, ]
-
-# 3) Fit logistic regression (credit scoring PD model)
-fit <- glm(y ~ x1 + x2 + x3, data = train, family = binomial())
-
-# 4) Score test set with predicted PDs
-test$pd_hat <- predict(fit, newdata = test, type = "response")
-
-# 5) ROC and AUC
-roc_obj <- roc(response = test$y, predictor = test$pd_hat, direction = "<")
+# 2) ROC and AUC
+roc_obj <- roc(response = test_data$default, predictor = test_data$pd_hat, direction = "<")
 auc_val <- as.numeric(auc(roc_obj))
-gini_val <- 2*auc_val - 1
+gini_val <- 2 * auc_val - 1
 
-# 6) Plot ROC with ggplot2
+# 3) Plot ROC with ggplot2
 roc_df <- data.frame(
   fpr = 1 - roc_obj$specificities,
   tpr = roc_obj$sensitivities
@@ -480,11 +909,11 @@ ggplot(roc_df, aes(x = fpr, y = tpr)) +
   theme_minimal()
 ```
 
-:::
+Our model achieves a Gini score of `r gini_val`, which is considered `{r} ifelse(gini_val>=0.7, "excellent", "okay")`. We now proceed to model calibration.
 
 ### Calibration
 
-At this step, we have built a credit scoring model (a logistic model) that has good discriminatory power (e.g., Gini > 0.6). However, the predicted PDs from the model are known to be **point-in-time (PIT)** estimates, meaning they reflect the borrower's credit risk at a specific point in time. In recessions PIT PDs rise; in booms they fall.
+At this step, we have built a credit scoring model (a logistic model) that has good discriminatory power (Gini score of `r gini_val`). However, the predicted PDs from the model are known to be **point-in-time (PIT)** estimates, meaning they reflect the borrower's credit risk at a specific point in time. In recessions PIT PDs rise; in booms they fall.
 
 For regulatory capital calculation, Basel III and APS 113 do not allow direct use of PIT PDs, because that would make capital requirements fluctuate too much with the cycle. Instead, banks must calibrate PDs to long-run averages of one-year default rates for each grade or pool. These are empirical averages that cover both benign and stressed periods.[^ttc]
 
@@ -496,36 +925,42 @@ In short:
 - Calibration maps them into rating grades with long-run average PDs.
 - These calibrated grade PDs are the inputs to the Basel IRB capital formula. 
 
-::: {.callout-note}
-### Example: Calibrated Rating Table
-
-| Grade | Description       | PIT PD range (model output) | Assigned long-run PD (regulatory) |
-|-------|-------------------|-----------------------------|-----------------------------------|
-| AAA   | Prime             | 0.00% – 0.05%               | 0.03%                             |
-| AA    | Very strong       | 0.05% – 0.10%               | 0.08%                             |
-| A     | Strong            | 0.10% – 0.25%               | 0.20%                             |
-| BBB   | Satisfactory      | 0.25% – 0.75%               | 0.60%                             |
-| BB    | Weak              | 0.75% – 2.00%               | 1.50%                             |
-| B     | Very weak         | 2.00% – 5.00%               | 3.50%                             |
-| CCC   | Distressed        | 5.00% – 15.0%               | 10.0%                             |
-| CC    | Highly distressed | 15.0% – 30.0%               | 20.0%                             |
-| C     | Near default      | > 30.0%                     | 40.0%                             |
-
-Note that banks can have different number of internal credit grades and may use different naming conventions for these grades. The long-run PDs assigned to each grade can also be different but must be justified by historical default experience and approved by the regulator.
-
-:::
-
 #### Long-run PD
 
-The long-run PDs assigned to each credit grade are used for regulatory capital calculations. APS 113 mandates that these long-run PDs must be based on the observed
-historical one-year default rate that is calculated as a simple average based on the
-number of borrowers or facilities, with a minimum historical observation period of five years.
+The long-run PDs assigned to each credit grade are used for regulatory capital calculations. APS 113 mandates that [these long-run PDs must be based on the observed historical one-year default rate that is calculated as a simple average based on the number of borrowers or facilities, with a minimum historical observation period of five years]{.mark}.
 
 #### Binning calibration
 
 Because the predicted probabilities from the model are continuous values, they need to be mapped to discrete (internal) credit grades for which long-run PDs are estimated. This is where binning comes in, i.e., grouping the continuous model outputs into a set of intervals (bins), each corresponding to a credit grade. The choice of bin edges can be based on quantiles of the predicted PD distribution or based on business considerations.
 
+::: {.callout-note}
 In a narrow sense, calibration refers to the process of determining the bin edges and assigning long-run PDs to each bin.
+:::
+
+Suppose we have created the following calibrated rating table, where we decide:
+
+1. the range of PIT PDs for each credit grade, and
+2. the long-run PD assigned for each credit grade.
+
+| Grade | Description       | PIT PD range (model output) | Long-run PD |
+|-------|-------------------|-----------------------------|-------------|
+| AAA   | Prime             | 0.00% – 0.05%               | 0.00%       |
+| AA    | Very strong       | 0.05% – 0.10%               | 0.07%       |
+| A     | Strong            | 0.10% – 0.25%               | 0.20%       |
+| BBB   | Satisfactory      | 0.25% – 0.75%               | 0.60%       |
+| BB    | Weak              | 0.75% – 2.00%               | 1.50%       |
+| B     | Very weak         | 2.00% – 5.00%               | 3.50%       |
+| CCC   | Distressed        | 5.00% – 15.0%               | 10.0%       |
+| CC    | Highly distressed | 15.0% – 25.0%               | 25.0%       |
+| C     | Near default      | >= 25.0%                    | 30.0%       |
+
+: Calibrated Rating Table {#tbl-calibrated-rating}
+
+::: {.callout-caution}
+Notably, the long-run PDs in this table match the historical one-year default rates observed for each credit grade in @tbl-grade-dist. This largely aligns with the requirements set forth in APS 113. 
+
+In practice, however, banks may need to adjust these long-run PDs based on their internal risk assessments and the specific characteristics of their credit portfolios. Here we used only the simple average based on our chosen sample.
+:::
 
 ### Validation
 
@@ -537,18 +972,155 @@ In the context of developing a credit scoring model, transition matrix can be us
 
 If the new model results in a significant change in credit ratings of existing borrowers, it may prompt a review of the underlying factors driving these changes and potential adjustments to the model.
 
+Comparing the old ratings (assigned under the previous model, given in the data) with the new ratings, @tbl-transition-matrix shows the transition matrix as percentages. The diagonal cells (in bold) represent borrowers whose ratings remain unchanged, while the off-diagonal cells represent borrowers whose ratings have changed.
+
+```{r}
+#| label: tbl-transition-matrix
+#| tbl-cap: Transition Matrix
+#| code-fold: true
+#| code-summary: Tabulate transition matrix comparing original and new model ratings.
+#| message: false
+
+# 1. Define the calibrated PIT PD bin edges and grade labels (from the calibrated table)
+calib_rating_labels <- c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "C")
+calib_pd_breaks <- c(0, 0.0005, 0.001, 0.002, 0.007, 0.02, 0.05, 0.15, 0.25, 1)
+
+# 2. Score all observations with the fitted logistic model to get new PIT PDs
+credit_data$pd_pit_new <- predict(logit_fit, newdata = credit_data, type = "response")
+
+# 3. Assign new ratings based on the calibrated PIT PD bins
+credit_data$rating_new <- cut(
+  credit_data$pd_pit_new,
+  breaks = calib_pd_breaks,
+  labels = calib_rating_labels,
+  include.lowest = TRUE,
+  right = TRUE
+)
+
+# 4. Tabulate the transition matrix: old (rows) vs new (columns), as proportions
+transition_mat <- table(
+  "Old Rating" = credit_data$rating,
+  "New Rating" = credit_data$rating_new
+)
+transition_prop <- prop.table(transition_mat, margin = 1) * 100
+
+# 5. Convert to data frame for display, add vertical header
+transition_df <- as.data.frame.matrix(transition_prop)
+transition_df <- tibble::rownames_to_column(transition_df, var = "Old Rating") |>
+   rename("Rating" = `Old Rating`)
+
+# 6. Display as a formatted table (vertical and horizontal headers, proportions)
+n <- nrow(transition_df)
+tbl <- modelsummary::datasummary_df(transition_df)
+
+# Find the max value for scaling
+max_val <- 100
+min_val <- 0
+
+# Function to compute color shade based on value (higher = darker teal)
+get_teal_shade <- function(val, min_val, max_val) {
+  # Scale value between 0.2 (light) and 1 (dark)
+  alpha <- if (max_val > min_val) (val - min_val) / (max_val - min_val) else 1
+  # Use a fixed set of teal shades (from light to dark)
+  # We'll interpolate between two colors
+  light_teal <- grDevices::col2rgb("#e0f7fa") # light teal
+  dark_teal <- grDevices::col2rgb("#008080")  # dark teal
+  rgb_val <- round(light_teal + (dark_teal - light_teal) * alpha)
+  rgb(rgb_val[1], rgb_val[2], rgb_val[3], maxColorValue = 255)
+}
+
+# Style diagonal and off-diagonal cells based on value
+for (i in seq_len(n)) {
+  for (j in 2:(n+1)) {
+    val <- as.numeric(transition_df[i, j])
+    bg_col <- get_teal_shade(val, min_val, max_val)
+    bold <- if (i == (j-1)) TRUE else FALSE
+    tbl <- style_tt(tbl, i = i, j = j, background = bg_col, bold = bold)
+  }
+}
+tbl |>
+  theme_html(class="table table-borderless regtable", css_rule=table_css)
+```
+
+Based on @tbl-transition-matrix, we can observe that the new model has resulted in some changes. It seems to be more optimistic for borrowers with previously higher ratings, and more conservative for those with lower ratings. Let's assume that this level of rating change is acceptable to the bank.
+
 #### RWA impact analysis
 
 Finally, banks need to assess the impact of the new credit scoring model on the calculation of risk-weighted assets (RWA) for regulatory capital purposes. This involves comparing the RWA calculated using the new model with that calculated using the old model.
 
 If the new model results in a significant increase in RWA, it may indicate that the model is more conservative and may require higher capital reserves. Conversely, if the new model results in a significant decrease in RWA, it may indicate that the model is less conservative and may require lower capital reserves. If the impact on RWA is deemed unacceptable, banks may need to revisit the model development process, including variable selection, model estimation, and calibration.
 
-::: {.callout-note collapse="true"}
-#### Override analysis
+::: {.callout-note title="Assumptions"}
+For simplicity, assume a LGD (Loss Given Default) of 20% for all exposures in our sample. We also assume that the EAD (Exposure at Default) is equal to the loan amount, and the maturity (M) is equal to the term in years. The maturity adjustment factor (AVCM) is set to 1.
+:::
 
-In practice, credit decisions are not always fully automated. Senior credit officers or committees may override the model’s suggested rating when they have additional information not captured by the model (e.g., recent restructuring, parent company support, or industry events).  
+```{r}
+#| label: tbl-rwa-impact
+#| tbl-cap: RWA by Old and New Ratings
+#| code-fold: true 
+#| code-summary: Calculate and compare RWA using old and new ratings and long-run PDs.
+#| message: false
 
-While some level of overrides is expected and even healthy, frequent overrides can be a red flag. High override rates may suggest that the model is missing important risk drivers, that calibration does not align well with expert judgment, or that the economic environment has shifted.  
+# --- IRB RWA function (from eq-rwa-func) ---
+irb_rwa <- function(PD, LGD, EAD, M, AVCM = 1) {
+  PD <- pmax(PD, 0.0005) # Minimum PD is 0.05%
+  R <- AVCM * (0.12 * (1 - exp(-50 * PD)) / (1 - exp(-50)) + 0.24 * (1 - (1 - exp(-50 * PD)) / (1 - exp(-50))))
+  b <- (0.11852 - 0.05478 * log(PD))^2
+  term <- (qnorm(PD) + sqrt(R) * qnorm(0.999)) / sqrt(1 - R)
+  K <- (LGD * pnorm(term) - PD * LGD) * ((1 + (M - 2.5) * b) / (1 - 1.5 * b))
+  K_adj <- pmax(K, 0)
+  RWA <- K_adj * 12.5 * EAD
+  return(RWA)
+}
+
+# --- Long-run PDs for each grade (from calibrated table) ---
+calib_rating_labels <- c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "C")
+long_run_pd_table <- data.frame(
+  rating = calib_rating_labels,
+  long_run_pd = c(0.0000, 0.0007, 0.0020, 0.0060, 0.0150, 0.0350, 0.10, 0.25, 0.30)
+)
+
+# --- Assign long-run PDs to each loan for old and new ratings ---
+credit_data$pd_old <- long_run_pd_table$long_run_pd[match(credit_data$rating, long_run_pd_table$rating)]
+credit_data$pd_new <- long_run_pd_table$long_run_pd[match(credit_data$rating_new, long_run_pd_table$rating)]
+
+# Calculate maturity year for each loan
+credit_data$maturity_year <- credit_data$year_borrowed + ceiling(credit_data$term_months / 12) - 1
+
+# Filter for loans not yet matured as of current_year
+active_loans <- credit_data |> filter(maturity_year >= current_year)
+
+# --- Calculate RWA for old and new ratings (active loans only) ---
+LGD <- 20 / 100
+EAD <- active_loans$amount_in_thousands * 1000
+M <- active_loans$term_months / 12
+AVCM <- 1
+
+active_loans$rwa_old <- irb_rwa(PD = active_loans$pd_old, LGD = LGD, EAD = EAD, M = M, AVCM = AVCM)
+active_loans$rwa_new <- irb_rwa(PD = active_loans$pd_new, LGD = LGD, EAD = EAD, M = M, AVCM = AVCM)
+
+# --- Tabulate total RWA by old and new ratings (active loans only) ---
+# Save total RWA for old and new models in variables
+total_rwa_old <- sum(active_loans$rwa_old, na.rm = TRUE)
+total_rwa_new <- sum(active_loans$rwa_new, na.rm = TRUE)
+total_loans <- sum(active_loans$amount_in_thousands * 1000, na.rm = TRUE)
+
+tibble(
+  Scenario = c("Old Model", "New Model"),
+  `Total Active Loans` = c(total_loans, total_loans),
+  `Total RWA` = c(total_rwa_old, total_rwa_new)
+) |>
+  mutate(
+    `Total Active Loans` = format(`Total Active Loans`, big.mark = ",", scientific = FALSE, trim = TRUE),
+    `Total RWA` = format(`Total RWA`, big.mark = ",", scientific = FALSE, trim = TRUE)
+  ) |> 
+  modelsummary::datasummary_df()
+```
+
+Based on @tbl-rwa-impact, we can see that the new model results in a `{r} ifelse(total_rwa_new > total_rwa_old, "higher", "lower")` total RWA compared to the old model, or a change of `{r} round(ifelse(total_rwa_old == 0, 0, (total_rwa_new - total_rwa_old) / total_rwa_old * 100), 3)`%. Let's assume that this level of change is acceptable to the bank.
+
+::: {.callout-tip}
+Our validation suggests that the new model is performing well in terms of discriminatory power (Gini score of `r gini_val`), rating stability (as per the transition matrix), and RWA impact (change of `{r} round(ifelse(total_rwa_old == 0, 0, (total_rwa_new - total_rwa_old) / total_rwa_old * 100), 3)`%). Therefore, we can proceed with the implementation of the new model.
 :::
 
 ### Approval, Deployment & Ongoing Monitoring
@@ -558,3 +1130,11 @@ After the model has been developed and validated, it must be approved by the rel
 Once the model is approved, it can be deployed into production. This may involve integrating the model into existing IT systems, developing user interfaces for model users, and providing training to staff on how to apply the model consistently.
 
 Ongoing monitoring of the model's performance is essential to ensure that it continues to operate as intended. This includes regular backtesting of the model's predictions, monitoring for changes in the underlying data or economic environment, and reviewing override patterns. Where necessary, the model should be updated or recalibrated.
+
+::: {.callout-note collapse="true"}
+#### Override analysis
+
+In practice, credit decisions are not always fully automated. Senior credit officers or committees may override the model’s suggested rating when they have additional information not captured by the model (e.g., recent restructuring, parent company support, or industry events).  
+
+While some level of overrides is expected and even healthy, frequent overrides can be a red flag. High override rates may suggest that the model is missing important risk drivers, that calibration does not align well with expert judgment, or that the economic environment has shifted.  
+:::
