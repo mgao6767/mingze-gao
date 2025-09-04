@@ -957,7 +957,7 @@ Suppose we have created the following calibrated rating table, where we decide:
 : Calibrated Rating Table {#tbl-calibrated-rating}
 
 ::: {.callout-caution}
-Notably, the long-run PDs in this table match the historical one-year default rates observed for each credit grade in @tbl-grade-dist. This largely aligns with the requirements set forth in APS 113. 
+Notably, the long-run PDs in this table match the historical one-year default rates observed for each credit grade in @tbl-grade-dist. This largely aligns with the requirements set forth in APS 113. On the other hand, APS 113 requires a minimum PD of 0.05% in calculating capital requirements, which is not reflected in this table.
 
 In practice, however, banks may need to adjust these long-run PDs based on their internal risk assessments and the specific characteristics of their credit portfolios. Here we used only the simple average based on our chosen sample.
 :::
@@ -1051,7 +1051,7 @@ Finally, banks need to assess the impact of the new credit scoring model on the 
 If the new model results in a significant increase in RWA, it may indicate that the model is more conservative and may require higher capital reserves. Conversely, if the new model results in a significant decrease in RWA, it may indicate that the model is less conservative and may require lower capital reserves. If the impact on RWA is deemed unacceptable, banks may need to revisit the model development process, including variable selection, model estimation, and calibration.
 
 ::: {.callout-note title="Assumptions"}
-For simplicity, assume a LGD (Loss Given Default) of 20% for all exposures in our sample. We also assume that the EAD (Exposure at Default) is equal to the loan amount, and the maturity (M) is equal to the term in years. The maturity adjustment factor (AVCM) is set to 1.
+For simplicity, assume a LGD (Loss Given Default) of 20% for all exposures in our sample. We also assume that the EAD (Exposure at Default) is equal to the loan amount, and the maturity (M) is equal to the term in years. The asset value correlation multiplier (AVCM) is set to 1.
 :::
 
 ```{r}
