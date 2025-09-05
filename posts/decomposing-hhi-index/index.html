@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-697b6fb292a12040a2212f61c6afc307.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d2a32191beebe63d0cf2d5b88b98cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -274,7 +274,7 @@ H = E_i + E_n
 \]</span></p>
 <p>where <span class="math inline">\(E_i = \tau^2\)</span>, and <span class="math inline">\(E_n = H-\tau^2\)</span>.</p>
 <p>We mentioned before that <span class="math inline">\(\tau\)</span> can be measure of the market concentration resulted from the size distribution (variance) of firms, such that <span class="math inline">\(E_i=\tau^2\)</span> can be an even better one since it’s smaller than <span class="math inline">\(H\)</span>, which enables us to measure the concentration contributed from the number of firms, measured by <span class="math inline">\(E_n\)</span>.</p>
-<p><img src="../..\images/HHI-decomposition-1.jpg" class="img-fluid"></p>
+<p><img src="../../images/HHI-decomposition-1.jpg" class="img-fluid"></p>
 <p>This decomposition is appealing also in that <span class="math inline">\(E_n\)</span>, from the graph above, effectively is the horizontal difference between the two curves, i.e.&nbsp;the ‘distance’ between the actual market state and the fully competitive market with infinite number of firms (scenario two).</p>
 <p>Thus, it’s safe to say this decomposition produces two components explaining the observed market concentration, <strong>1)</strong> <span class="math inline">\(E_i\)</span>, the inequality of firm sizes effect, and <strong>2)</strong> <span class="math inline">\(E_n\)</span>, the number of firms effect.</p>
 <p>Another finding from the graph is that with higher market concentration measured by <span class="math inline">\(H\)</span>, the relative importance of the two components is changing.</p>
@@ -282,7 +282,7 @@ H = E_i + E_n
 <li><p>When <span class="math inline">\(H\)</span> is small, most of the concentration is resulted from <span class="math inline">\(E_n\)</span> as highlighted below, which means the number of firms has a greater impact on market concentration.</p></li>
 <li><p>When <span class="math inline">\(H\)</span> is larger, on the other hand, <span class="math inline">\(E_i\)</span> contributes more to <span class="math inline">\(H\)</span>, which means the firm size inequality plays a bigger role in market concentration.</p></li>
 </ul>
-<p><img src="../..\images/HHI-decomposition-2.jpg" class="img-fluid"></p>
+<p><img src="../../images/HHI-decomposition-2.jpg" class="img-fluid"></p>
 <p>A potential implication for regulators who are concerned about market concentration, I think, is to <strong>1)</strong> focus more on reducing the entry barrier if the current concentration level is moderate, and to <strong>2)</strong> focus more on antitrust if the concentration level is already high.</p>
 <p>Another implication for researchers is that even though <span class="math inline">\(H \in [\frac{1}{n}, 1]\)</span> is affected by the number of firms in a market, we should not attempt to use the <span class="math inline">\(\text{normalized HHI}=\frac{H-1/n}{1-1/n} \in [0,1]\)</span>. The reason is now very simple and clear – the normalized HHI is nothing but <span class="math inline">\(E_i=\tau^2\)</span>, which reflects only the market concentration due to the inequality of firm sizes. When we compare across markets or the same market over time, apparently a market with 1,000 firms has a different competitive landscape than a market with only 2 firms.</p>
 </section>
@@ -726,13 +726,16 @@ H = E_i + E_n
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2019 - 2025 Mingze Gao</p>
+<p><img src="../../images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2019 - 2025 Mingze Gao
+  </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/mgao6767">
       <i class="bi bi-github" role="img">

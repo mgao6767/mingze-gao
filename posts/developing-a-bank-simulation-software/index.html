@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-697b6fb292a12040a2212f61c6afc307.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d2a32191beebe63d0cf2d5b88b98cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -272,7 +272,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>To begin with, a simple bank has just been established with shareholders’ contribution of $10,000. Its balance sheet is shown as below.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="7e83e6e5" class="cell panel-center" data-execution_count="1">
+<div id="78f429b0" class="cell panel-center" data-execution_count="1">
 <details class="code-fold">
 <summary>A new bank has just been established.</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
@@ -329,7 +329,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Notably, customer deposits are the bank’s <em>liability</em>. We see an increase in both the bank’s total assets and total liabilities, while total shareholders’ equity remains unchanged.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="8e3e4b5a" class="cell panel-center" data-execution_count="2">
+<div id="b957e81b" class="cell panel-center" data-execution_count="2">
 <details class="code-fold">
 <summary>Some customers have made deposits.</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.factory <span class="im">import</span> InstrumentFactory</span>
@@ -396,7 +396,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Depositors can also withdraw from the bank. If Customer C has withdrawn all of their deposits, we see a decrease of cash and deposits.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="54df13d0" class="cell panel-center" data-execution_count="3">
+<div id="03170363" class="cell panel-center" data-execution_count="3">
 <details class="code-fold">
 <summary>Customer C has withdrawn their deposits.</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositWithdrawTransaction</span>
@@ -443,7 +443,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Of course, the typical business of a bank is to make loans. Let’s assume the bank has made an (interest-only) loan of $80,000 to some borrowers.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="a4279495" class="cell panel-center" data-execution_count="4">
+<div id="7dc9d682" class="cell panel-center" data-execution_count="4">
 <details class="code-fold">
 <summary>The bank has made some loans.</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.base <span class="im">import</span> Instrument</span>
@@ -506,7 +506,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </div>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="1aed13c8" class="cell panel-center" data-execution_count="5">
+<div id="2c8f7556" class="cell panel-center" data-execution_count="5">
 <details class="code-fold">
 <summary>If the bank has only paid interest on deposits over the month…</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.cash <span class="im">import</span> Cash</span>
@@ -577,7 +577,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $800.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="f15cb012" class="cell panel-center" data-execution_count="6">
+<div id="14e6e5c9" class="cell panel-center" data-execution_count="6">
 <details class="code-fold">
 <summary>… if the bank has also earned interest from loans over the month.</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tx_interest_earned <span class="op">=</span> TransactionFactory.create_transaction(</span>
@@ -650,7 +650,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $10,000.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="35302c27" class="cell panel-center" data-execution_count="7">
+<div id="f23295b3" class="cell panel-center" data-execution_count="7">
 <details class="code-fold">
 <summary>The bank has purchased some FVTPL securities.</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.base <span class="im">import</span> BookType</span>
@@ -706,7 +706,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>If the market value of the security went down by 5% ($500) the next day, we need to recognize this <em>unrealized trading loss</em> in the Income Statement.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="f5d3017f" class="cell panel-center" data-execution_count="8">
+<div id="34ae27c2" class="cell panel-center" data-execution_count="8">
 <details class="code-fold">
 <summary>The FVTPL security is marked to market with an unrealized trading loss.</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockValuationVisitor</span>
@@ -793,7 +793,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>The day after, if the market value of the security went up by 10% ($950), we need to recognize this <em>unrealized trading gain</em>.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="5b663847" class="cell panel-center" data-execution_count="9">
+<div id="4962281a" class="cell panel-center" data-execution_count="9">
 <details class="code-fold">
 <summary>The FVTPL security is marked to market with an unrealized trading gain.</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
@@ -887,7 +887,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </div>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="3a237b29" class="cell panel-center" data-execution_count="10">
+<div id="ce1a5cf6" class="cell panel-center" data-execution_count="10">
 <details class="code-fold">
 <summary>The FVTPL security is sold.</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
@@ -989,7 +989,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Assume that the bank now purchased a Treasury bond at a fair value of $30,000. The bank may sell the bond before it matures, and hence classify it as a FVOCI asset on the banking book.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="045984f2" class="cell panel-center" data-execution_count="11">
+<div id="16ccba37" class="cell panel-center" data-execution_count="11">
 <details class="code-fold">
 <summary>The bank has purchased some FVOCI securities.</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fvoci_security <span class="op">=</span> MockInstrument(<span class="st">"A Treausy bond (FVOCI)"</span>, BookType.BANKING_BOOK)</span>
@@ -1044,7 +1044,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>It is important to note that FVOCI security’s fair value changes affect AOCI, an equity account. It does not affect Income Statement P&amp;L untill it’s eventually sold.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="5da8fb7c" class="cell panel-center" data-execution_count="12">
+<div id="b806fad7" class="cell panel-center" data-execution_count="12">
 <details class="code-fold">
 <summary>The FVOCI security is marked to market with an unrealized gain.</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1132,7 +1132,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>If the market value of the security went down by 2% ($612=$30,600*2%) the next day, we recognize this <em>unrealized OCI loss</em> of AOCI.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="f9eba68f" class="cell panel-center" data-execution_count="13">
+<div id="8de588e0" class="cell panel-center" data-execution_count="13">
 <details class="code-fold">
 <summary>The FVOCI security is marked to market with an unrealized trading loss.</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1220,7 +1220,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Now that the FVOCI security is sold, its gain/loss is moved from AOCI to Income Statement as <em>Investment Income (FVOCI)</em>. When P&amp;L accounts of income statement are closed, the net gain/loss of Investment Income (FVOCI) changes the bank’s retained earnings.</p>
 <div class="panel-center panel-grid">
 <div class="g-col-24 g-col-lg-20 g-start-lg-2">
-<div id="aeccacf2" class="cell panel-center" data-execution_count="14">
+<div id="40590aca" class="cell panel-center" data-execution_count="14">
 <details class="code-fold">
 <summary>The FVOCI security is sold.</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> SecuritySaleFVOCITransaction</span>
@@ -1744,13 +1744,16 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2019 - 2025 Mingze Gao</p>
+<p><img src="../../images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2019 - 2025 Mingze Gao
+  </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/mgao6767">
       <i class="bi bi-github" role="img">

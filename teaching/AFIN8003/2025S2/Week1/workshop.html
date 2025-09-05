@@ -7,8 +7,8 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2025-07-28">
@@ -211,7 +211,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+<section id="title-slide" data-background-image="../../../../site_libs/quarto-contrib/quarto-project/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
   <h1 class="title">Workshop 1 - Understanding Bank Financial Statements I</h1>
   <p class="subtitle">AFIN8003 Workshop 1</p>
 
@@ -269,7 +269,7 @@ Dr.&nbsp;Mingze Gao
 <div class="column">
 <p>To begin with, a simple bank has just been established with shareholders’ contribution of $10,000.</p>
 </div><div class="column">
-<div id="90365bb6" class="cell panel-center" data-execution_count="1">
+<div id="f8ad0979" class="cell panel-center" data-execution_count="1">
 <details class="code-fold">
 <summary>A new bank has just been established.</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> datetime</span>
@@ -327,7 +327,7 @@ Dr.&nbsp;Mingze Gao
 </ul>
 <p>Notably, customer deposits are the bank’s <em>liability</em>. We see an increase in both the bank’s total assets and total liabilities, while total shareholders’ equity remains unchanged.</p>
 </div><div class="column">
-<div id="f7499f9a" class="cell panel-center" data-execution_count="2">
+<div id="91fea5b5" class="cell panel-center" data-execution_count="2">
 <details class="code-fold">
 <summary>Some customers have made deposits.</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> brms.instruments.factory <span class="im">import</span> InstrumentFactory</span>
@@ -395,7 +395,7 @@ Dr.&nbsp;Mingze Gao
 <p>Depositors can also withdraw from the bank.</p>
 <p>If Customer C has withdrawn all of their deposits ($20,000), we see a decrease of cash and deposits.</p>
 </div><div class="column">
-<div id="526851fb" class="cell panel-center" data-execution_count="3">
+<div id="c596f932" class="cell panel-center" data-execution_count="3">
 <details class="code-fold">
 <summary>Customer C has withdrawn their deposits.</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositWithdrawTransaction</span>
@@ -442,7 +442,7 @@ Dr.&nbsp;Mingze Gao
 <div class="column">
 <p>Of course, the typical business of a bank is to make loans. Let’s assume the bank has made an (interest-only) loan of $80,000 to some borrowers.</p>
 </div><div class="column">
-<div id="94ccc6a5" class="cell panel-center" data-execution_count="4">
+<div id="c781d8bf" class="cell panel-center" data-execution_count="4">
 <details class="code-fold">
 <summary>The bank has made some loans.</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> brms.instruments.base <span class="im">import</span> Instrument</span>
@@ -505,7 +505,7 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="ec28616d" class="cell panel-center" data-execution_count="5">
+<div id="a885b141" class="cell panel-center" data-execution_count="5">
 <details class="code-fold">
 <summary>If the bank has only paid interest on deposits over the month…</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> brms.instruments.cash <span class="im">import</span> Cash</span>
@@ -592,7 +592,7 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="20ea2b06" class="cell panel-center" data-execution_count="6">
+<div id="ef957976" class="cell panel-center" data-execution_count="6">
 <details class="code-fold">
 <summary>… if it has also earned interest from loans over the month.</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>tx_interest_earned <span class="op">=</span> TransactionFactory.create_transaction(</span>
