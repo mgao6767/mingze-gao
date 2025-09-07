@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,10 +94,10 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d2a32191beebe63d0cf2d5b88b98cf1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -2061,11 +2061,11 @@ IV(X) = \sum_{i=1}^k \left( p_i^G - p_i^B \right) \cdot  \ln \left( \frac{p_i^G}
                   <td data-row="3" data-col="1">0.475</td>
                 </tr>
                 <tr>
-                  <td data-row="4" data-col="0">net_profit_vol</td>
+                  <td data-row="4" data-col="0">net_profit_margin</td>
                   <td data-row="4" data-col="1">0.264</td>
                 </tr>
                 <tr>
-                  <td data-row="5" data-col="0">net_profit_margin</td>
+                  <td data-row="5" data-col="0">net_profit_vol</td>
                   <td data-row="5" data-col="1">0.264</td>
                 </tr>
                 <tr>
@@ -2092,7 +2092,7 @@ Table&nbsp;5: Information Value (IV) Screening Results
 </figure>
 </div>
 </div>
-<p>As a rule of thumb, we consider variables with an IV of 0.1 or higher as having medium predictive power and worthy of further consideration in the modeling process. This leaves us with only the following variable: <code>ebitda_to_debt</code>, <code>leverage</code>, <code>net_worth</code>, <code>net_profit_vol</code>, <code>net_profit_margin</code>.</p>
+<p>As a rule of thumb, we consider variables with an IV of 0.1 or higher as having medium predictive power and worthy of further consideration in the modeling process. This leaves us with only the following variable: <code>ebitda_to_debt</code>, <code>leverage</code>, <code>net_worth</code>, <code>net_profit_margin</code>, <code>net_profit_vol</code>.</p>
 </section>
 <section id="redundancy-and-correlation-control" class="level4 page-columns page-full" data-number="3.3.2">
 <h4 data-number="3.3.2" class="anchored" data-anchor-id="redundancy-and-correlation-control"><span class="header-section-number">3.3.2</span> Redundancy and correlation control</h4>
@@ -2207,8 +2207,8 @@ Table&nbsp;5: Information Value (IV) Screening Results
                 <th scope="col" data-row="0" data-col="1">ebitda_to_debt</th>
                 <th scope="col" data-row="0" data-col="2">leverage</th>
                 <th scope="col" data-row="0" data-col="3">net_worth</th>
-                <th scope="col" data-row="0" data-col="4">net_profit_vol</th>
-                <th scope="col" data-row="0" data-col="5">net_profit_margin</th>
+                <th scope="col" data-row="0" data-col="4">net_profit_margin</th>
+                <th scope="col" data-row="0" data-col="5">net_profit_vol</th>
               </tr>
         </thead>
         
@@ -2238,18 +2238,18 @@ Table&nbsp;5: Information Value (IV) Screening Results
                   <td data-row="3" data-col="5">.</td>
                 </tr>
                 <tr>
-                  <td data-row="4" data-col="0">net_profit_vol</td>
-                  <td data-row="4" data-col="1">.027</td>
-                  <td data-row="4" data-col="2">-.016</td>
-                  <td data-row="4" data-col="3">.005</td>
+                  <td data-row="4" data-col="0">net_profit_margin</td>
+                  <td data-row="4" data-col="1">-.070</td>
+                  <td data-row="4" data-col="2">.045</td>
+                  <td data-row="4" data-col="3">-.005</td>
                   <td data-row="4" data-col="4">1</td>
                   <td data-row="4" data-col="5">.</td>
                 </tr>
                 <tr>
-                  <td data-row="5" data-col="0">net_profit_margin</td>
-                  <td data-row="5" data-col="1">-.070</td>
-                  <td data-row="5" data-col="2">.045</td>
-                  <td data-row="5" data-col="3">-.005</td>
+                  <td data-row="5" data-col="0">net_profit_vol</td>
+                  <td data-row="5" data-col="1">.027</td>
+                  <td data-row="5" data-col="2">-.016</td>
+                  <td data-row="5" data-col="3">.005</td>
                   <td data-row="5" data-col="4">.002</td>
                   <td data-row="5" data-col="5">1</td>
                 </tr>
@@ -2266,7 +2266,7 @@ Table&nbsp;6: Correlation Matrix of Candidate Variables
 </div>
 </div>
 <p>Given that <code>leverage</code> and <code>ebitda_to_debt</code> have a high (negative) correlation (correlation = -0.693), we may consider removing one of them from the model. Since <code>ebitda_to_debt</code> has a higher IV (1.622 vs 1.012), we may choose to keep <code>ebitda_to_debt</code> and drop <code>leverage</code>.</p>
-<p>The final set of selected variables after redundancy and correlation control is: <code>ebitda_to_debt</code>, <code>net_worth</code>, <code>net_profit_vol</code>, <code>net_profit_margin</code>.</p>
+<p>The final set of selected variables after redundancy and correlation control is: <code>ebitda_to_debt</code>, <code>net_worth</code>, <code>net_profit_margin</code>, <code>net_profit_vol</code>.</p>
 </section>
 </section>
 <section id="model-estimation-evaluation" class="level3 page-columns page-full" data-number="3.4">
@@ -2441,20 +2441,20 @@ P(\text{default}=1|X) = \frac{1}{1 + e^{-(\beta^{T} X)}},
                   <td data-row="6" data-col="1">(0.000)</td>
                 </tr>
                 <tr>
-                  <td data-row="7" data-col="0">net_profit_vol</td>
-                  <td data-row="7" data-col="1">6.705***</td>
+                  <td data-row="7" data-col="0">net_profit_margin</td>
+                  <td data-row="7" data-col="1">-7.147***</td>
                 </tr>
                 <tr>
                   <td data-row="8" data-col="0"></td>
-                  <td data-row="8" data-col="1">(1.615)</td>
+                  <td data-row="8" data-col="1">(0.589)</td>
                 </tr>
                 <tr>
-                  <td data-row="9" data-col="0">net_profit_margin</td>
-                  <td data-row="9" data-col="1">-7.147***</td>
+                  <td data-row="9" data-col="0">net_profit_vol</td>
+                  <td data-row="9" data-col="1">6.705***</td>
                 </tr>
                 <tr>
                   <td data-row="10" data-col="0"></td>
-                  <td data-row="10" data-col="1">(0.589)</td>
+                  <td data-row="10" data-col="1">(1.615)</td>
                 </tr>
                 <tr>
                   <td data-row="11" data-col="0">Num.Obs.</td>
@@ -3697,7 +3697,7 @@ window._ojs.runtime.interpretFromScriptTags();
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><img src="../../images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></p>
+<p><img src="../..\images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
