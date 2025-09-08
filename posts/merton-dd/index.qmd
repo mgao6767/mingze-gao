@@ -2,7 +2,7 @@
 title: Estimate Merton Distance-to-Default
 # description: SAS code to calculate Merton (1974) Distance-to-Default and default probability as in Bharath and Shumway (2008 RFS).
 date: 2022-11-30
-date-modified: 2025-06-23
+date-modified: 2025-09-02
 hasTex: true
 tags:
   - SAS
@@ -12,6 +12,7 @@ tags:
 slug: merton-dd
 categories:
   - Research Notes
+  - Programming
 ---
 
 @merton_pricing_1974 Distance to Default (DD) model is useful in forecasting defaults. This post documents a few ways to empirically estimate Merton DD (and default probability) as in @bharath_forecasting_2008.
@@ -174,4 +175,269 @@ This code has been updated in 2025 given the change of WRDS's FRB database.
 Specifically, the variable `tb_m3` is renamed to `tb3ms` (TBills Secondary Market 3-month).
 :::
 
-<script src="https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3.js"></script>
+```{.sas code-line-numbers="true"}
+/******************************************************************************/
+/* 
+  Compute and download the Merton DD (default probability)
+  KMV method from Barath and Shumway (2008 RFS)
+  Sample period: 1990 - 2024
+  Results will be saved in work directory
+  
+  For details, visit:
+  https://mingze-gao.com/posts/merton-dd
+  
+  Author: Mingze Gao (mingze.gao@mq.edu.au)
+  Date: Nov 30, 2022
+  Edited: Jun 23, 2025
+  
+  Version History:
+  - Jun 23, 2025: `tb_m3` is renamed to `tb3ms` (TBills Secondary Market 3-month)
+                  because WRDS has updated the FRB database in 2025.
+ */
+/******************************************************************************/
+
+%let year_start = 1990;
+%let year_end   = 2024;
+
+/******************************************************************************/
+/* No need to modify anything below                                           */
+/******************************************************************************/
+
+%let wrds       = wrds-cloud.wharton.upenn.edu 4016;
+options comamid = TCP 
+        remote  = WRDS;
+
+signon username=_prompt_;
+
+%syslput _GLOBAL_;
+
+options nonotes nosource nosource2;
+
+rsubmit;
+
+/* CRSP/Compustat Merged dataset */
+proc sql;
+/* CCM Link table */
+create table lnk as 
+select * 
+from crsp.ccmxpf_lnkhist 
+where
+  linktype in ("LU", "LC") and
+  /* primary link	assigned by Compustat or CRSP */
+  linkprim in ("P", "C") and
+  /* Extend the period to deal with fiscal year issues */
+  /* Note that the ".B" and ".E" missing value codes represent the   */
+  /* earliest possible beginning date and latest possible end date   */
+  /* of the Link Date range, respectively.                           */
+    (&year_end.	 +1 >= year(linkdt)    or linkdt=.B) and
+    (&year_start.-1 <= year(linkenddt) or linkenddt=.E)
+order by gvkey, linkdt;
+
+/* CRSP/Compustat merged */
+%let fundq_vars = gvkey datadate indfmt datafmt popsrc consol 
+          fyearq fyr datafqtr datacqtr dlcq dlttq;
+create table ccm(drop=indfmt datafmt popsrc consol) as 
+select cst.*, lpermno as permno, lpermco as permco
+from lnk, comp.fundq(keep=&fundq_vars.) as cst 
+where 
+  datafmt='STD' and popsrc='D' and consol='C' and indfmt='INDL'
+  and lnk.gvkey=cst.gvkey
+  and (&year_start. <=fyearq <=&year_end.) 
+  and (linkdt <=cst.datadate or linkdt=.B)
+  and (cst.datadate <=linkenddt or linkenddt=.E);
+quit;
+
+/* (Optional) Sanity check: unique gvkey-permco, gvkey-permno links */
+proc sort data=ccm nodupkey; by permco gvkey datadate; run;
+proc sort data=ccm nodupkey; by permno gvkey datadate; run;
+proc sort data=ccm nodupkey; by gvkey datadate; run;
+
+data ccm; set ccm;
+  by gvkey datadate;
+  /* remove firms with only one quarter's observation */
+  if not (first.gvkey and last.gvkey);
+  /* replace missing debt with 0 */
+  if missing(dlcq) then dlcq=0;
+  if missing(dlttq) then dlttq=0;
+  /* align date to quarter-end date */
+  qtrdate=intnx('quarter', datadate, 0, 'e');
+  format qtrdate date9.;
+run;
+
+/* There may be a few cases of duplicated gvkey-datadate records,
+  which may result from the firm changing fiscal year-end month. */
+proc sort data=ccm nodupkey; by gvkey qtrdate; run;
+
+/* Expand from quarterly obs to monthly observations */
+/* `qtrdate` converted to year-month after the procedure */
+proc expand data=ccm out=temp from=qtr to=month;
+  id qtrdate; by gvkey;
+  /* `method=step`: same monthly obs for all months in a quarter */ 
+   convert permno dlcq dlttq / method=step; 
+run; 
+
+proc sql;
+/* COMP dataset: risk-free rate and face value of debt */
+create table comp as
+select a.gvkey, a.permno, 
+  /* align to month-end */
+  intnx('month',a.qtrdate,0,'e') as cdt format=date9.,
+  /* monthly risk-free rate (3-month Treasury Bill) 
+     note we expand to monthly frequency first (proc expand above),
+     if not, rf would be same for the whole quarter */
+  b.tb3ms/100 as r label="risk-free rate",
+  /* face value of debt 
+     Bharath and Shumway (2008 RFS, p.1351):
+     "Following Vassalou and Xing (2004), we take F, 
+     the face value of debt, to be debt in current liabilities
+     plus one-half of longterm debt." */
+    1000*(a.dlcq + 0.5 * a.dlttq) as f label="face value of debt"
+from temp as a, frb.rates_monthly as b
+where 
+  calculated cdt=b.date and not missing(b.tb3ms)
+  and (&year_start. <= year(calculated cdt) <= &year_end.) 
+order by permno, cdt;
+quit;
+
+proc sql;
+/* CRSP dataset: market value of equity */
+create table crsp as
+select permno, date,
+    /* market value of equity */ 
+    abs(prc)*shrout as e label="market value of equity",
+    /* align date to month-end */
+     intnx('month', date, 0, 'e') as cdt format=date9.
+from crsp.dsf(keep=permno date shrout prc)
+where
+  /* extend by 1yr to allow for rolling window */
+  (&year_start.-1 <= year(date) <= &year_end.);
+quit;
+  
+
+*------------------process data;
+/* This part largely follows Bharath and Shumway original code */
+/* Modifications made to set initial values of asset volatility 
+   as in their paper */
+data kmv; curdat = 0;
+
+%macro itera(yyy,mmm);
+
+  proc sql;
+  /* COMP-CRSP merged sample, past-12m data for each firm*/
+  /* placed inside the macro to reduce disk requirement */
+  create table sample as
+  select
+    comp.*, crsp.date, crsp.e,
+    (crsp.e+comp.f) as a label="market value of assets"
+  from comp, crsp
+  where
+    year(comp.cdt)=&yyy. and month(comp.cdt)=&mmm. and
+    crsp.permno=comp.permno and not missing(crsp.permno)
+    and crsp.cdt between intnx('year',comp.cdt,-1) and comp.cdt
+  order by comp.permno, comp.cdt, crsp.date;
+  quit;
+
+  /* Get volatility of total asset returns and equity returns */
+  data one; set sample; by permno;
+    ra = log(a/lag1(a)); re = log(e/lag1(e));
+    if first.permno then do ra = .; re = .; end;
+    if f>0 and e ne . and a ne . and permno ne . and e ne 0;
+  run;
+
+  /* Get init value of VA, sigma_E * E/(E+F) as stated in the paper */
+  proc means noprint data=one; var ra re f e; by permno; output out=bob;
+  data bob1(keep=permno va); set bob; 
+    if _stat_ = 'STD' and _freq_ >= 50; 
+    /* here `re` is the std.dev of equity return */
+    /* later we multiply E/A */
+    va = sqrt(252) * re;
+  data bob2(keep=permno largev); set bob; 
+    if _stat_ = 'MEAN'; 
+    if f > 100000 and e > 100000 then largev = 1; else largev = 0; 
+
+  data one; merge one bob1 bob2; by permno ;     
+    /* note a side-effect here:
+        (e/a) is varying daily, and so is va as a result */
+    va = va * (e/a);
+    if va < .01 then va = .01;
+    if va = . then delete;
+    if largev = 1 then do; f = f/10000; e = e/10000; a = a/10000; end;
+     drop ra;
+  run;
+
+  data conv; permno = 0;
+
+  * iteration;
+  %do j = 1 %to 15;
+    dm 'log;clear;';
+    ods _all_ close;  
+    ods listing close;
+    
+    proc model noprint data = one;  
+      endogenous a;  
+      exogenous r f va e;
+        e = a*probnorm((log(a/f) + (r+va*va/2))/va) 
+            - f*exp(-r)*probnorm((log(a/f) + (r-va*va/2))/va);  
+      solve a/out=two;
+      
+    data two;   set two;   num = _n_;   keep a num;
+    data one;   set one;   num = _n_;   drop a;  
+    data two;   merge one two;   by num;  l1p = lag1(permno);   l1a = lag1(a);
+    data two;   set two; if l1p = permno then ra = log(a/l1a);
+    proc means noprint data = two;   var ra;   by permno;   output out = bob;
+    data bar;   set bob; if _stat_ = 'MEAN';  mu = 252*ra;   keep permno mu;
+    data bob;   set bob; if _stat_ = 'STD'; va1 = sqrt(252)*ra;
+                if va1 < 0.01 then va1 = 0.01; keep permno va1;
+    data one;   merge two bob bar; by permno; vdif = va1 - va; 
+                if abs(vdif) < 0.001 and vdif ne . then do; conv = 1; end;
+    data fin;   set one; if conv = 1;   assetvol = va1; 
+    proc sort;  by permno descending date;  
+    data fin;   set fin; if permno ne lag1(permno);   curdat = 100*&yyy + &mmm;  iter = &j;
+    data conv;  merge conv fin;   by permno;  drop va re ra l1p l1a conv cdt num;
+    data one;   set one; if conv ne 1;   va = va1;   drop va1; 
+  %end;
+
+  data kmv; merge kmv conv; by curdat;
+
+    edf = 100 * probnorm(-((log(a/f) + (mu-(assetvol**2)/2))/assetvol));
+
+    if permno = 0 or curdat = 0 then delete;  drop va1;
+    label edf = 'expected default frequency';
+    label curdat = 'date in yyyymm format';
+    label e = 'market equity';
+    label iter = 'iterations required';
+    label assetvol = 'volatility of a';
+    label f = 'current debt + 0.5LTD';
+    label vdif = 'assetvol - penultimate VA';
+    label a = 'total firm value';
+    label r = 'risk-free rate';
+    label largev = 'one if assets, equity and f deflated';
+    label mu = 'expected asset return';
+  run;
+
+%mend itera;
+
+%macro bob;
+  %do i = &year_start. %to &year_end.;
+    %do m = 1 %to 12;
+      %itera(&i, &m);
+    %end;
+	proc download data=kmv(where=(year(date)=&i.)) out=kmv_&i.; run;
+  %end;
+%mend bob;
+
+%bob;
+
+proc download data=kmv out=kmv_&year_start._&year_end.; run;
+
+endrsubmit;
+signoff;
+
+options notes source source2;
+```
+
+The above code can also be found on [GitHub Gist](https://gist.github.com/mgao6767/1ae3cf6f8b38dd001d0cf7b6850d29a3).
+
+### Other versions
+
+- An R version is written by [Alessandro Spina](https://www.alessandro-spina.com/posts/2025/03/blog-post-9/).
