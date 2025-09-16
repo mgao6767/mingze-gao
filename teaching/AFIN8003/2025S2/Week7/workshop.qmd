@@ -1,0 +1,232 @@
+---
+title: "AFIN8003 - Workshop 7"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-09-08
+categories:
+    - AFIN8003
+    - 2025S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop7.pdf"
+# Custom fields
+pdf-name: "Workshop7.pdf"
+include-answers: false
+---
+
+# MCQ
+
+
+1. A method of measuring loan concentration by tracking credit ratings of firms in particular classes for unusual declines is known as:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] concentration risk
+   - [ ] migration analysis
+   - [ ] diversification analysis
+   - [ ] minimum risk analysis
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] concentration risk
+   - [x] migration analysis
+   - [ ] diversification analysis
+   - [ ] minimum risk analysis
+   :::
+
+2. The measure used to reflect the historic experience of a pool of loans in terms of their credit-rating migration over time is a:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] credit swap
+   - [ ] migration matrix
+   - [ ] concentration limit
+   - [ ] minimum risk analysis
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] credit swap
+   - [x] migration matrix
+   - [ ] concentration limit
+   - [ ] minimum risk analysis
+   :::
+
+3. Management is unwilling to permit losses exceeding 5 per cent of an FI's capital, and it estimates that the amount lost per dollar of defaulted loans is 20 cents. What is the maximum amount of loans to a single sector as a per cent of capital?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] 2.5%
+   - [ ] 25%
+   - [ ] 4%
+   - [ ] 1%
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] 2.5%
+   - [x] 25%
+   - [ ] 4%
+   - [ ] 1%
+   :::
+
+4. The combination of assets that reduces the variance of portfolio returns to the lowest feasible level is the:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] efficient frontier
+   - [ ] least cost portfolio
+   - [ ] minimum risk portfolio
+   - [ ] maximum return portfolio
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] efficient frontier
+   - [ ] least cost portfolio
+   - [x] minimum risk portfolio
+   - [ ] maximum return portfolio
+   :::
+
+5. The risk of a loan ($\sigma_i$) is measured as
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] 1-LGD
+   - [ ] 1-EDG
+   - [ ] volatility of the default rate $\times$ LGD
+   - [ ] $X_i-R_i$
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] 1-LGD
+   - [ ] 1-EDG
+   - [x] volatility of the default rate $\times$ LGD
+   - [ ] $X_i-R_i$
+   :::
+
+6. A measure of the sensitivity of loan losses in a particular business sector relative to the losses in an FI's portfolio is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] system loan loss risk
+   - [ ] standard deviation of losses
+   - [ ] minimum risk portfolio
+   - [ ] migration analysis
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] system loan loss risk
+   - [ ] standard deviation of losses
+   - [ ] minimum risk portfolio
+   - [ ] migration analysis
+   :::
+
+<!-- 7. If a bank sold a credit forward and at the maturity if the actual credit spread $CS_T$ on the bond is greater than the credit spread on the forward $CS_F$ then: 
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the bank pays the counterparty $(CS_F-CS_T)\times MD\times A$
+   - [ ] the bank pays $(CS_T-CS_F)\times MD\times A$
+   - [ ] the bank receives $(CS_F-CS_T)\times MD\times A$
+   - [ ] the bank receives $(CS_T-CS_F)\times MD\times A$
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the bank pays the counterparty $(CS_F-CS_T)\times MD\times A$
+   - [ ] the bank pays $(CS_T-CS_F)\times MD\times A$
+   - [ ] the bank receives $(CS_F-CS_T)\times MD\times A$
+   - [x] the bank receives $(CS_T-CS_F)\times MD\times A$
+   ::: -->
+
+7. A swap that involves swapping an obligation to pay interest, at a fixed or floating rate, for payments representing the total return on a loanor a bond of a specified amount is a(n):
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] plain vanilla swap
+   - [ ] off-market swap
+   - [ ] fixed-floating swap
+   - [ ] total return swap
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] plain vanilla swap
+   - [ ] off-market swap
+   - [ ] fixed-floating swap
+   - [x] total return swap
+   :::
+
+# Short answer questions
+
+## Q1
+
+How do loan portfolio risks differ from individual loan risks?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Loan portfolio risks refer to the risks of a portfolio of loans as opposed to the risks of a single loan. Inherent in the distinction is the elimination of some of the risks of individual loans because of benefits from diversification.
+:::
+:::
+
+## Q2
+
+Why is it difficult for small banks, credit unions and building societies to measure credit risk using modern portfolio theory?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+The basic premise behind modern portfolio theory is the ability to diversify and reduce risk by eliminating diversifiable risk. Small banks, credit unions and building societies
+may not have the ability to diversify their asset base, especially if the local markets in which they serve have a limited number of industries. The ability to diversify is even more acute if these loans cannot be traded easily.
+:::
+:::
+
+## Q3
+
+CountrySide Bank uses the Moody’s Analytics RiskFrontier model to evaluate the risk–return characteristics of the loans in its portfolio. A specific $10 million loan earns 2 per cent per year in fees, and the loan is priced at a 4 per cent spread over the cost of funds for the bank. For collateral considerations, the loss to the bank if the borrower defaults will be 20 per cent of the loan’s face value. The expected probability of default is 3 per cent. What is the anticipated return on this loan? What is the risk of the loan?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Expected return is $AIS_i-E(L_i) = (0.02+0.04)-(0.03\times0.2) = 0.054$
+
+Risk of the loan is $\sigma_{D_i}\times LGD_i = \sqrt{0.03\times(1-0.03)} \times 0.2 = 0.0341$
+:::
+:::
+
+<!-- 
+## Q4
+
+Using regression analysis on historical loan losses, a bank has estimated the following:
+
+$$
+\begin{aligned}
+XC &= 0.002 + 0.8XL \\
+XH &= 0.003 + 1.8XL
+\end{aligned}
+$$
+
+where
+
+- XC = loss rate in the business sector
+- XH = loss rate in the consumer (household) sector
+- XL = loss rate for its total loan portfolio
+
+(a) If the bank’s total loan loss rates increase by 10 per cent, what are the increases in the expected loss rates in the business and consumer sectors?
+(b) In which sector should the bank limit its loans, and why?
+
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a) 
+      - Business loan loss rates will increase by 0.002+0.8(0.10) = 8.2 per cent.
+      - Consumer loan loss rates will increase by 0.003+1.8(0.10) = 18.3 per cent.
+
+(b) 
+The bank should limit its loans to the consumer sector because the loss rates are systematically higher than the loss rates for the total loan portfolio. 
+Loss rates are lower for the business sector. For a 10 per cent increase in the total loan portfolio, the consumer loss rate is expected to increase by 18.3 per cent, as opposed to only 8.2 per cent for the business sector.
+:::
+::: -->
+
+## Q4
+
+How is selling a credit forward similar to buying a put option?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+After the loan is made, the FI sells a credit forward. If the credit risk of the borrower decreases sufficiently that the spread over the benchmark bond increases, the forward seller (the FI) will realise a gain at the maturity of the forward contract that will offset the decrease in value of the loan. Thus, the FI benefits as the credit risk of the borrower decreases. This is the exact same situation as a put option buyer when the stock price goes down.
+
+If the credit risk improves, the lender FI will pay the forward buyer because the benchmark spread will have decreased. However, since the spread can only decrease to zero, the FI has limited loss exposure. This is similar to paying a premium on a put option.
+:::
+:::
