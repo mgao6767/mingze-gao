@@ -1,3 +1,18 @@
 .sourceCode {
   scrollbar-width: none;
 }
+
+/* default for wide screens */
+.portrait-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* phones / narrow screens */
+@media (max-width: 767px) {
+  .portrait-img {
+    width: 50%; /* or 100% if you still want full width */
+  }
+}
