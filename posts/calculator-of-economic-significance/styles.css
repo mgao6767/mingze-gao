@@ -1,0 +1,6 @@
+/* This style sheet is to increase the spacing between form labels and inputs.
+   It allows for better readability of forms with long labels.
+*/
+form {
+  --label-width: 250px !important;
+}
