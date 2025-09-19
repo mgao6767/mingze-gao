@@ -1,0 +1,284 @@
+---
+title: "A Calculator for Interpreting Economic Significance"
+date: 2025-09-19
+categories:
+  - Research Notes
+format: 
+  html:
+    css: styles.css
+---
+
+This note provides interactive calculators to articulate the economic significance of regression estimates in empirical finance studies, producing discussions that are almost publication-ready.
+
+## Log-linear model
+
+Suppose we have estimated a regression model:
+$$
+\ln Y = \beta X + \cdots + \varepsilon,
+$$ {#eq-log-linear-regression}
+where $Y$ is the dependent variable, $X$ is a key independent variable, and $\varepsilon$ is the error term.
+
+```{ojs}
+//| echo: false
+import {Inputs, tex} from "@observablehq/stdlib"
+
+// --- Controls ---
+viewof loglinear = Inputs.form({
+  nameX: Inputs.text({label: html`Name of ${tex`X`}`, value: "Good Banana"}),
+  nameY: Inputs.text({label: html`Name of ${tex`Y`}`, value: "Loan Spread (bps)"}),
+  beta: Inputs.number({label: html`Coefficient estimate ${tex`\hat{\beta}`}`, value: -0.38, step: 0.0001}),
+  sigmaX: Inputs.number([0, Infinity], {label: html`Standard deviation of ${tex`X`}`, value: 0.06, step: 0.0001}),
+  muY: Inputs.number({label: html`Sample mean of ${tex`Y`}`, value: 205.31, step: 0.0001}),
+  mulnY: Inputs.number({label: html`Sample mean of ${tex`\ln Y`}`, value: 5.066, step: 0.0001}),
+  showVarName: Inputs.toggle({label: "Show variable names in output", value: true})
+})
+
+_DeltaY = (Math.exp(loglinear.mulnY + loglinear.beta * loglinear.sigmaX) - Math.exp(loglinear.mulnY)).toFixed(4)
+_absDeltaY = Math.abs(_DeltaY)
+
+```
+
+::: {.callout-note}
+```{ojs}
+//| echo: false  
+
+html`
+<p>
+Other things equal, a one-standard-deviation increase in <strong>${loglinear.showVarName ? loglinear.nameX : tex`X`}</strong> is associated with ${loglinear.beta>0 ? "an increase": "a decrease"} in <strong>${loglinear.showVarName ? loglinear.nameY : tex`Y`}</strong> of ${_absDeltaY}, which is approximately ${((_absDeltaY / loglinear.muY) * 100).toFixed(2)}% of its sample mean of ${loglinear.muY}.
+</p>
+<p>
+Specifically, <strong>${loglinear.showVarName ? loglinear.nameX : tex`X`}</strong> has a sample standard deviation of ${loglinear.sigmaX} and an estimated coefficient of ${loglinear.beta}. Since the sample mean of the natural logarithm of <strong>${loglinear.showVarName ? loglinear.nameY : tex`Y`}</strong> is ${loglinear.mulnY}, a one-standard-deviation increase in <strong>${loglinear.showVarName ? loglinear.nameX : tex`X`}</strong> is associated with a change in <strong>${loglinear.showVarName ? loglinear.nameY : tex`Y`}</strong> of ${_DeltaY}, computed as ${tex`e^{${loglinear.mulnY} + (${loglinear.beta} \times ${loglinear.sigmaX})} - e^{${loglinear.mulnY}}`}.
+</p>`
+```
+:::
+
+::: {.callout-tip collapse="true" title="Derivation"}
+
+Note that the regression is linear between $\ln Y$ and $X$. 
+
+This means that [if $X$ increases by one unit, then $\ln Y$ increases by approximately $\hat\beta$ units]{.mark}.
+
+If $X$ increases by $\Delta X$, then $\ln Y$ increases by $\hat\beta \Delta X$ units, which implies that
+
+$$
+\Delta \ln Y \equiv \ln(Y_{\text{new}}) - \ln(Y_{\text{old}}) = \ln\left(\frac{Y_{\text{new}}}{Y_{\text{old}}}\right) = \hat{\beta} \Delta X.
+$$ {#eq-delta-logY-loglinear}
+
+Therefore,
+
+$$
+Y_{\text{new}} = Y_{\text{old}} \exp\left(\hat\beta \Delta X\right).
+$$ {#eq-newY-loglinear}
+
+$\Delta Y$, the additive change in $Y$, is therefore
+
+$$
+\begin{align}
+\Delta Y
+   &= Y_{\text{new}} - Y_{\text{old}} \\
+   &= Y_{\text{old}}
+    \exp\left( \hat\beta \Delta X \right)  - Y_{\text{old}} \\
+   &= \exp\left(
+        \ln Y_{\text{old}}
+        + \hat\beta \Delta X
+      \right)
+     - \exp\left( \ln Y_{\text{old}} \right).
+\end{align}
+$$ {#eq-deltaY-loglinear}
+
+The last step of @eq-deltaY-loglinear keeps $\ln Y_{\text{old}}$ instead of $Y_{\text{old}}$ to be consistent with the fact that the regression in @eq-log-linear-regression is log-linear.
+
+@eq-deltaY-loglinear also shows that the change in $Y$ depends on the baseline level of $\ln Y_{\text{old}}$. To interpret the economic significance of $\hat\beta$, we therefore need to choose a reference level of $\ln Y_{\text{old}}$. A common choice is its sample mean.
+
+Let $\mu_{\ln Y}$ be the sample mean of $\ln Y$. Then the representative change in $Y$ from a change in $\ln X$ of $\Delta \ln X$ is
+$$
+\Delta Y = \exp\big(\mu_{\ln Y} + \beta \Delta X\big)-\exp(\mu_{\ln Y}).
+$$ {#eq-deltaY-loglinear-mean}
+
+If we consider a one-standard-deviation move in $X$, i.e., $\Delta X = \sigma_X$, then
+
+$$
+\Delta Y = \exp\big(\mu_{\ln Y} + \beta \sigma_X\big)-\exp(\mu_{\ln Y}).
+$$ {#eq-deltaY-loglinear-1sd}
+
+```{ojs}
+// | echo: false
+html`
+Based on the information above, we have
+<ul>
+<li>${tex`\Delta X = \sigma_X = ${loglinear.sigmaX}`}</li>
+<li>${tex`\mu_{\ln Y}  = ${loglinear.mulnY}`}</li>
+</ul>
+Therefore, ${tex`\Delta Y = \exp\big(${loglinear.mulnY}+(${loglinear.beta} \times ${loglinear.sigmaX})\big)-\exp(${loglinear.mulnY}) = ${_DeltaY}`}.
+`
+```
+
+:::
+
+::: {.callout-important collapse="true" title="A Note on Means of Logs vs. Logs of Means"}
+Note that the sample mean of $\ln Y$ is NOT equal to the log of the sample mean of $Y$, unless $Y$ is constant.
+
+Mathematically, mean of $\ln Y$ is $\mathbb{E}[\ln Y]$, while log of the mean of $Y$ is $\ln(\mathbb{E}[Y])$.
+By Jensen's inequality, since the natural logarithm function $\ln(\cdot)$ is concave,
+$$
+\mathbb{E}[\ln Y] \le \ln\big(\mathbb{E}[Y]\big),
+$$ {#eq-jensen-inequality}
+with equality only when $Y$ is constant.
+:::
+
+## Log-log model
+
+Suppose we have estimated a regression model:
+$$
+\ln Y = \beta \ln X + \cdots + \varepsilon,
+$$ {#eq-log-log-regression}
+where $Y$ is the dependent variable, $X$ is a key independent variable, and $\varepsilon_{it}$ is the error term.
+
+```{ojs}
+//| echo: false
+//| 
+// --- Controls ---
+viewof loglog = Inputs.form({
+  nameX: Inputs.text({label: html`Name of ${tex`X`}`, value: "Bad Apple"}),
+  nameY: Inputs.text({label: html`Name of ${tex`Y`}`, value: "Loan Spread (bps)"}),
+  beta: Inputs.number({label: html`Coefficient estimate ${tex`\hat{\beta}`}`, value: 0.38, step: 0.0001}),
+  muX: Inputs.number({label: html`Sample mean of ${tex`X`}`, value: 0.48, step: 0.0001}),
+  sigmaX: Inputs.number([0, Infinity], {label: html`Standard deviation of ${tex`X`}`, value: 0.06, step: 0.0001}),
+  muY: Inputs.number({label: html`Sample mean of ${tex`Y`}`, value: 205.31, step: 0.0001}),
+  showVarName: Inputs.toggle({label: "Show variable names in output", value: true})
+})
+
+
+// Exact effect in a log–log model for a +1σ change in X (from μX to μX+σX)
+  x0 = loglog.muX;
+  x1 = loglog.muX + loglog.sigmaX;
+
+  // Guard against nonpositive baseline or new values
+  valid = (x0 > 0) && (x1 > 0);
+
+  ratio = valid ? Math.pow(x1 / x0, loglog.beta) : NaN;              // (x1/x0)^β
+  pctChange = valid ? 100 * (ratio - 1) : NaN;                        // %ΔY (exact)
+  deltaY = valid ? loglog.muY * (ratio - 1) : NaN;                    // absolute ΔY relative to μY baseline
+
+  __DeltaY = Number.isFinite(deltaY) ? deltaY.toFixed(4) : "N/A";
+  __absDeltaY = Number.isFinite(deltaY) ? Math.abs(deltaY).toFixed(4) : "N/A";
+  __absPctChange = Number.isFinite(pctChange) ? Math.abs(pctChange).toFixed(2) : "N/A";
+  __needBaseline = !valid;
+
+```
+
+
+::: {.callout-note}
+```{ojs}
+//| echo: false  
+
+html`
+<p>
+Other things equal, a one-standard-deviation increase in <strong>${loglog.showVarName ? loglog.nameX : tex`X`}</strong> is associated with
+${(Number(pctChange) >= 0 ? "an increase" : "a decrease")}
+in <strong>${loglog.showVarName ? loglog.nameY : tex`Y`}</strong> of ${__absDeltaY},
+which is approximately ${__absPctChange}% relative to its sample mean of ${loglog.muY}.
+</p>
+
+${
+  __needBaseline
+  ? html`<p><em>Note:</em> This calculation requires ${tex`\mu_X > 0`} and ${tex`\mu_X+\sigma_X > 0`}.</p>`
+  : ""
+}
+
+<p>
+Specifically, the sample mean of <strong>${loglog.showVarName ? loglog.nameX : tex`X`}</strong> is ${loglog.muX},
+and its standard deviation is ${loglog.sigmaX}.  
+
+Given a coefficient estimate of ${loglog.beta}, a one–standard–deviation increase in
+<strong>${loglog.showVarName ? loglog.nameX : tex`X`}</strong>
+from its sample mean
+implies an exact multiplicative effect on 
+<strong>${loglog.showVarName ? loglog.nameY : tex`Y`}</strong> of ${ratio.toFixed(4)}, computed as
+${tex`\left(1 + {${loglog.sigmaX}}/{${loglog.muX}}\right)^{${loglog.beta}}`}, or equivalently a percentage change of ${pctChange.toFixed(2)}%.
+
+Since the sample mean of <strong>${loglog.showVarName ? loglog.nameY : tex`Y`}</strong> is ${loglog.muY},
+this translates to a change in
+<strong>${loglog.showVarName ? loglog.nameY : tex`Y`}</strong> of
+${__DeltaY}, computed as
+${tex`${loglog.muY} \times \left[\left(1 + {${loglog.sigmaX}}/{${loglog.muX}}\right)^{${loglog.beta}} - 1\right]`}.
+</p>
+`
+
+```
+:::
+
+
+::: {.callout-tip collapse="true" title="Derivation"}
+
+Note that the regression is linear in the logs of $Y$ and $X$. 
+
+This means that [if $\ln(X)$ increases by one unit, then $\ln(Y)$ increases by approximately $\hat\beta$ units]{.mark}.
+
+If $X$ increases from $X_0$ to $X_0 + \Delta X$, then change in $\ln(X)$ is
+
+$$
+\Delta \ln X \equiv \ln(X_0 + \Delta X) - \ln(X_0) = \ln\left(1 + \frac{\Delta X}{X_0}\right).
+$$ {#eq-delta-logX}
+
+$\ln Y$ therefore increases by $\hat\beta \Delta \ln X$ units, which implies that
+
+$$
+\Delta \ln Y \equiv \ln(Y_{\text{new}}) - \ln(Y_{\text{old}}) = \ln\left(\frac{Y_{\text{new}}}{Y_{\text{old}}}\right) = \hat{\beta} \Delta \ln X.
+$$ {#eq-delta-logY-loglog}
+
+Therefore,
+
+$$
+Y_{\text{new}} = Y_{\text{old}} \exp\left(\hat\beta \Delta \ln X\right).
+$$ {#eq-newY-loglog}
+
+$\Delta Y$, the additive change in $Y$, is therefore
+
+$$
+\begin{align}
+\Delta Y
+   &= Y_{\text{new}} - Y_{\text{old}} \\
+   &= Y_{\text{old}}
+    \exp\left( \hat\beta \, \Delta \ln X \right)  - Y_{\text{old}} \\
+   &= Y_{\text{old}} \left[ \exp\left( \hat\beta  \Delta \ln X \right) - 1 \right] \\
+   &= Y_{\text{old}} \left[ \exp\left( \hat\beta  \ln\left(1 + \frac{\Delta X}{X_0}\right)\right) - 1 \right] \\
+   &= Y_{\text{old}} \left[ \left(1 + \frac{\Delta X}{X_0}\right)^{\hat\beta} - 1 \right].
+\end{align}
+$$ {#eq-deltaY-loglog}
+
+The last step of @eq-deltaY-loglog shows that we need two reference levels, $Y_{\text{old}}$ and $X_0$, to interpret the economic significance of $\hat\beta$ (in terms of additive changes in the outcome variable $Y$).
+
+Using the sample mean of $Y$ and the sample mean of $X$ as the reference levels, then the representative change in $Y$ from a change in $X$ of $\Delta X$ is
+
+$$
+\Delta Y = \mu_{Y} \left[ \left(1 + \frac{\Delta X}{\mu_X}\right)^{\beta} - 1 \right].
+$$ {#eq-deltaY-loglog-mean}
+
+If we consider a one-standard-deviation move in $X$, i.e., $\Delta X = \sigma_X$, then
+
+$$
+\Delta Y = \mu_{Y} \left[ \left(1 + \frac{\sigma_X}{\mu_X}\right)^{\beta} - 1 \right].
+$$ {#eq-deltaY-loglog-1sd}
+
+```{ojs}
+// | echo: false
+html`
+Based on the information above, we have
+<ul>
+<li>${tex`\Delta X = \sigma_X = ${loglog.sigmaX}`}</li>
+<li>${tex`X_0 = \mu_X = ${loglog.muX}`}</li>
+<li>${tex`Y_{\text{old}} = \mu_Y = ${loglog.muY}`}</li>
+</ul>
+Therefore, ${tex`\Delta Y = ${loglog.muY} \times \left[\left(1 + {${loglog.sigmaX}}/{${loglog.muX}}\right)^{${loglog.beta}} - 1\right] = ${__DeltaY}`}.
+`
+```
+
+:::
+
+## Linear model
+
+Too simple. Skipped.
+
+
+
