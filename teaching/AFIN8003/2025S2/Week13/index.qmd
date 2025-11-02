@@ -1,0 +1,248 @@
+---
+title: "AFIN8003 Week 13 - Emerging Topics in Bank Risk Management"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2025-11-03
+draft: false
+categories:
+    - AFIN8003
+    - 2025S2
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week13.pdf"
+# Custom fields
+pdf-name: "Week13.pdf"
+---
+
+# Emerging topics in bank risk management
+
+## Changing dynamics
+
+- Traditional "banks", taking deposits and grant loans, are facing increasing challenges.
+- Global competition with other banks.
+- Competition with nonbanks or "shadow banks".
+    - Many of banks' functions can be now performed by nonbanks.
+    - For example, FinTech firms may better reduce information asymmetry through screening and monitoring based on big data and advanced technologies (AI/ML), improved and customized services, and reduced cost of search and match with platform economy.
+    - More importantly, nonbanks are not regulated or less regulated than banks.
+- Central bank digital currencies (CBDC).
+    - Increased funding costs for banks if households hold CBDC instead of bank deposits.
+- Technological advancement.
+    - Online/mobile banking simplifies transfer of funds.
+- Transition from "originate and hold" to "originate and distribute" business model.
+
+## FinTech
+
+Financial technology (FinTech) has been fast growing in recent years.
+
+- Adoption of FinTech, measured by FinTech users as a percentage of the digitally active population, varies by country:
+  - Global average is 64% in 2019.
+  - China and India led other countries at 87%.
+  - Russia and South Africa at 82%.
+  - Australia was 58%.
+  - U.S. was 46%.
+
+::: {.callout-note}
+The Financial Stability Board (FSB) defines FinTech as “technology-enabled innovation in financial services that could result in new business models, applications, processes or products with an associated material effect on the provision of financial services.”
+:::
+
+## Evolution of FinTech
+
+FinTech innovation dates back to the 1800s.
+
+- In 1866, the first trans-Atlantic telegraph cable was laid, enabling strong financial globalization.
+- In 1918, the Federal Reserve Banks established Fedwire to transfer funds using a Morse code-based telegraph system.
+- In 1933, Germany trialed the world's first telex network, replacing the Morse key with a typewriter keyboard.
+- In 1958, Western Union began building a telex network in the United States.
+- In 1960, Quotron Systems introduced the first electronic system to provide real-time stock quotes.
+- In 1966, the telex network became the standard for long-distance communication, enabling global financial transactions.
+
+::: {.content-hidden when-format="pdf"}
+## Evolution of FinTech (cont'd)
+:::
+
+Late 1960s and 1970s saw rapid advancements in electronic payments.
+
+- Barclays Bank installed the first ATM in London, using paper checks marked with carbon-14 for security.
+- In 1968, the UK established the Inter Bank Computer Bureau (later BACS).
+- In 1970, the US created the Clearing House Interbank Payments System (CHIPS).
+- In 1973, SWIFT was established to facilitate global interbank communications.
+- In 1971, NASDAQ, the world’s first electronic stock market, was established.
+
+The 1980s saw the rise of electronic trading, bank mainframe computers, and better data systems.
+
+The 1990s brought the Internet and e-commerce, leading to online stock brokerage websites for retail investors.
+
+The early 2000s saw the introduction of stock market decimalization, algorithmic trading, and high-frequency trading (HFT).
+
+- @shkilko_every_2020
+
+## Factors driving FinTech development
+
+Many supply and demand factors to explain why FinTech is evolving into what it is today.
+
+Supply-side factors:
+
+1. GFC:
+      - After the 2008 GFC, banks shifted to comply with post-crisis regulations and implemented cost-cutting measures.
+      - Regulatory burdens and increased risk aversion led banks to reduce lending activities.
+      - New players entered the market, using technology to overcome banks' branch network advantage.
+      - Peer-to-peer (P2P) lenders targeted borrowers banks were retreating from, such as small businesses and riskier consumers.
+2. Macroeconomic conditions:
+      - The low interest rate environment reduced profits and incentivized financial institutions to cut costs.
+      - FinTechs focused on cost-cutting through technology, with online lenders streamlining loan underwriting processes to reduce expenses.
+
+::: {.content-hidden when-format="pdf"}
+## Factors driving FinTech development (cont'd)
+:::
+
+Demand-side factors:
+
+1. Mobile technology:
+      - The release of the iPhone in 2007 launched the mobile revolution, with Android further fueling the boom.
+      - Mobile Internet traffic surged due to iOS and Android apps, with millions of apps now available on both platforms.
+      - Smartphones have transformed industries, including financial services, by turning phones into multifunctional devices.
+      - Global smartphone penetration reached 67% in 2020, with Europe and North America having the highest rates.
+      <!-- - China became the largest smartphone market in 2012, followed by India in 2016, with fast-growing markets in Indonesia and Brazil. -->
+2. Demographics:
+      - Millennials (born 1981 to 1996) became the largest generation in the U.S. labor force in 2016, representing 35%.
+      - Millennials are tech-savvy digital natives, optimistic about technology's benefits.
+      - They tend to distrust banks due to the 2008 financial crisis' impact on their parents.
+      - Millennials are comfortable with digital spending; 64% paid for apps, and use mobile for financial transactions more than branches.
+      - They frequently use mobile payments, online financial advice, and digital currencies.
+
+## Changing relationship between banks and FinTechs
+
+- As FinTechs gained traction, some predicted the demise of traditional banks.
+- FinTechs benefit from fewer regulatory burdens, no legacy IT systems, agility, innovation, and a consumer-centric approach.
+- Some suggest banks may evolve into "narrow banking," holding only safe assets while FinTechs match borrowers and savers.
+- JPMorgan Chase's CEO, Jamie Dimon, warned in 2015 that "Silicon Valley is coming" for the banking industry.
+- A 2015 PwC survey showed 56% of CEOs worried about cross-sector competition, with 32% citing technology as the main threat.
+- By 2016, 76% of executives believed FinTech posed risks to their business, particularly consumer banking.
+    - Key threats included loss of market share (70%), pressure on margins (70%), and increased customer churn (50%).
+- McKinsey estimated that 10-40% of retail banking revenues and 20-60% of profits could be at risk by 2025.
+- The bleak outlook for traditional banks began to improve over time.
+- Retail banks still hold a significant and lasting advantage.
+- Increasing FinTech–bank partnerships in the future.
+
+## Neobank and challenger banks in Australia
+
+- **Neobank**: Fully digital bank with no physical branches, mobile-first delivery, built on modern tech stack.
+- **Challenger bank**: Newer, agile bank aiming to compete with incumbents; may be digital-only or hybrid.
+- Key features:
+  - App-based onboarding and product delivery  
+  - Faster innovation cycles, less legacy tech debt  
+  - Low fixed costs (no branch network)  
+  - Target younger or underserved customer segments  
+- Regulatory note: To accept deposits, must hold an **Authorised Deposit-Taking Institution (ADI)** licence under APRA.
+
+| Bank          | Notes                                                              |
+|---------------|--------------------------------------------------------------------|
+| **Up Bank**   | Mobile-only, launched 2018; partnered with Bendigo & Adelaide Bank |
+| **UBank**     | NAB-owned, digital savings & lending                               |
+| **Alex Bank** | ADI licence granted Dec 2022; fully digital                        |
+| **Judo Bank** | Focus on SME lending; full ADI since 2019                          |
+
+: Example Neobanks in Australia {#tbl-neobanks-aus}
+
+## Why it matters for banking & risk
+
+- **Competition**: New entrants pressure incumbents on UX, pricing, deposit products
+- **Funding & liquidity**: Digital-only customer base may have higher deposit mobility
+- **Operational & cyber risk**: Heavy reliance on cloud, APIs, third-party tech
+- **Regulation**: APRA evolving regimes for digital banks and Banking-as-a-Service models
+- **Profitability challenge**: Many neobanks struggle to scale sustainably
+
+
+## BigTech, FinTech
+
+- Tech giants like Google, Apple, Amazon, and Facebook have heavily invested in FinTech for new revenue streams.
+- In 2021, big tech firms invested $1.3 billion in FinTechs, showing a rebound from the pandemic slowdown.
+- Big tech companies pose a risk to traditional banks due to their agility, data expertise, and lack of legacy systems.
+- These firms have focused mainly on payments, with Facebook consolidating its platforms and Apple expanding through Apple Card and contactless payments.
+- Big techs are likely to add peripheral financial services but avoid becoming full-scale banks, partnering with licensed institutions instead.
+
+
+## Regulatory approaches to FinTech
+
+FinTech charters and other licenses
+
+- Regulators have introduced virtual bank licenses, FinTech charters, and e-money licenses to lower barriers for FinTechs.
+- In 2018, the U.S. Treasury recommended special-purpose national bank charters for FinTechs, but legal challenges have delayed their implementation, with some FinTechs seeking full national bank charters instead.
+
+::: {.content-hidden when-format="pdf"}
+## Regulatory approaches to FinTech (cont'd)
+:::
+
+Regulating BigTechs
+
+- Big tech firms entering financial services can scale rapidly using existing user data and network effects, raising concerns about market power and data governance.
+- In China, Alibaba and Tencent dominate the mobile payments market, highlighting the potential for rapid market concentration.
+- Big techs have expanded into lending, insurance, and wealth management, warranting close attention from regulators due to their fast growth potential.
+- The current activity-based regulatory framework, such as payment licensing in the U.S. and EU, may not be sufficient to address the unique challenges posed by big tech firms.
+- Proposals for entity-based regulations are emerging in the EU (Digital Markets Act), China (anti-monopoly guidelines), and the U.S. (antitrust initiatives) to address data concentration and anti-competitive practices.
+
+::: {.content-hidden when-format="pdf"}
+## Regulatory approaches to FinTech (cont'd)
+:::
+
+International regulations
+
+- Two key EU regulations, GDPR and PSD2, have boosted the FinTech industry and its competitiveness with traditional banks.
+- GDPR, adopted in 2016 and fully enforceable by 2018, gives citizens control over their personal data and requires protection of data exported outside the EU.
+- GDPR promotes transparent, opt-in data collection, allowing businesses to access honestly sourced consumer data.
+- PSD2, passed in 2015 and effective in 2018, mandates banks to share consumer banking data with authorized third parties, creating new opportunities for FinTechs.
+- PSD2 aims to increase competition and improve online payment security by regulating the payment services industry and FinTechs' access to banking infrastructure.
+
+## Open Banking and Consumer Data Right (CDR)
+
+PSD2 marks the first regulatory move to the concept of __Open Banking__.
+
+Open Banking allows the sharing of financial data between financial institutions through the use of application programming interfaces (APIs), conditional on the consent of the data owner, the customer. In Australia, this relates to the Consumer Data Right (CDR).
+
+- @he_open_2023, @babina2024
+
+## Central Bank Digital Currency (CBDC)
+
+- Central Bank Digital Currency (CBDC) is a digital form of a country's fiat currency issued and regulated by its central bank.
+- CBDCs aim to complement physical cash by providing a digital alternative that is secure, reliable, and widely accessible.
+- There are two primary types of CBDCs: Retail CBDCs, for use by the general public, and Wholesale CBDCs, for interbank transfers and large-scale financial institutions.
+- CBDCs can enhance financial inclusion by providing access to banking services for unbanked populations through digital means.
+- They improve payment efficiency by offering faster, low-cost, and secure transactions both domestically and cross-border.
+- CBDCs mitigate risks associated with cryptocurrencies by providing a regulated digital currency backed by the central bank.
+- Central banks can maintain monetary policy control while tracking money flows more effectively with CBDCs.
+- Key concerns include issues around privacy, cybersecurity, and the potential impact on traditional banking systems if CBDCs lead to disintermediation.
+
+@williamson_central_2022, @chiu_central_2023, @chiu_bank_2023, @niepelt_money_2024, @bai_adoption_2025 among others.
+
+Read more here: [phds.io](https://phds.io/?all=CBDC)
+
+# Finally...
+
+## Suggested readings
+
+- [EY - Global FinTech Adoption Index 2019](https://assets.ey.com/content/dam/ey-sites/ey-com/en_gl/topics/banking-and-capital-markets/ey-global-FinTech-adoption-index.pdf).
+- [Australian Banking Association - Open Banking](https://www.ausbanking.org.au/priorities/open-banking/).
+- [Consumer Data Right (CDR)](https://www.cdr.gov.au/).
+
+## References
