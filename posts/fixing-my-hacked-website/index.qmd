@@ -1,0 +1,164 @@
+---
+title: Fixing My Hacked Website
+date: 2026-01-08
+categories: 
+  - Programming
+---
+
+Today, I was casually using [phds.io](https://phds.io) to do some research when I noticed something unusual. The site initially loaded normally, but any interaction triggered opening a crypto gambling website. There were no DNS changes, no Cloudflare configuration changes, and no suspicious commits in the repository. The central lesson is that this was not a Cloudflare issue, not an npm bug, and not an SSH credential leak. It was an application-layer compromise made persistent by serving production traffic from a writable directory.
+
+## Symptoms and first checks
+
+The issue was consistent across browsers and devices, which ruled out client-side malware. Because the page rendered correctly before redirecting, the behaviour did not match DNS hijacking or HTTP-level redirects. Disabling JavaScript in the browser prevented the issue, confirming that it was caused by injected client-side JavaScript.
+
+Purging the Cloudflare cache temporarily removed the behaviour, but it returned after subsequent builds. This showed that Cloudflare was caching and serving malicious assets originating from the server rather than injecting anything itself.
+
+## Build and dependency investigation
+
+A clean build using npm with lifecycle scripts disabled produced a non-infected site.
+
+```bash
+rm -rf node_modules
+npm ci --ignore-scripts
+npm run build
+```
+
+This initially suggested a malicious npm lifecycle script. However, manually executing every lifecycle script during installation did not reproduce the issue, and a fresh `npm ci` followed by a rebuild also appeared clean. This behaviour was inconsistent with a permanently malicious dependency or a simple supply-chain attack.
+
+## The decisive forensic finding
+
+Running a plain git diff on the production server revealed the real problem.
+
+```bash
+git diff
+```
+
+The diff showed a local modification to `package.json` that had not been committed. The `start` script had been altered to launch a background binary before starting the Next.js server.
+
+```diff
+diff --git a/package.json b/package.json
+@@
+- "start": "next start --port 8080",
++ "start": "nohup /var/tmp/.font/n0de > /dev/null 2>&1 & next start --port 8080",
+```
+
+A binary existed at `/var/tmp/.font/n0de`, named to resemble `node`. Because this change was not present in git history, it proved that the working tree had been modified directly on the server. No git credentials were involved, and no SSH login was required. Some process running on the host had write access to the application directory.
+
+At this point, the conclusion was unavoidable. The EC2 instance had been compromised at the application layer.
+
+## Root cause
+
+The root cause was architectural rather than operational. The production site was served directly from a directory writable by the same user running the Node.js process. Builds were performed on the production host. The systemd service invoked `npm start`, executing scripts from `package.json`. Nginx served static assets directly from that same directory.
+
+In this setup, any application-layer remote code execution immediately allows modification of served files and trivial persistence. SSH hardening does not protect against this class of attack.
+
+## Immediate containment
+
+The first step was to terminate the malicious process and remove the dropped binary.
+
+```bash
+sudo pkill -f /var/tmp/.font/n0de || true
+sudo rm -rf /var/tmp/.font
+```
+
+Basic checks confirmed that no cron jobs or systemd units referenced the malicious path.
+
+## Redesigning the deployment model
+
+The fix focused on eliminating persistence rather than attempting incremental cleanup. The application was switched to use Next.js standalone output.
+
+The Next.js configuration was updated as follows.
+
+```ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+};
+
+export default nextConfig;
+```
+
+A standalone build produces a minimal runtime containing `server.js`, required Node modules, static assets under `.next/static`, and the `public` directory. The git repository, `package.json`, and `node_modules` are not needed at runtime.
+
+After building, only the runtime artifacts are copied into an immutable directory.
+
+```bash
+npm run build
+
+sudo rm -rf /srv/phds-frontend
+sudo mkdir -p /srv/phds-frontend
+
+sudo rsync -a .next/standalone/ /srv/phds-frontend/
+sudo mkdir -p /srv/phds-frontend/.next
+sudo rsync -a .next/static/ /srv/phds-frontend/.next/static/
+sudo rsync -a public/ /srv/phds-frontend/public/
+
+sudo chown -R root:root /srv/phds-frontend
+sudo chmod -R 755 /srv/phds-frontend
+```
+
+The runtime directory is now read-only to the service user.
+
+## Hardening systemd
+
+The frontend is now run as a dedicated, non-login user using a hardened systemd unit. The service runs the standalone server directly and does not invoke npm.
+
+```ini
+[Unit]
+Description=PHDS Frontend Next.js Application
+After=network.target
+
+[Service]
+Type=simple
+User=phds
+Group=phds
+WorkingDirectory=/srv/phds-frontend
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/node /srv/phds-frontend/server.js
+Restart=on-failure
+RestartSec=10
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+This configuration ensures that even if the application is exploited again, it cannot modify runtime files or establish persistence.
+
+## Fixing Nginx static paths
+
+Nginx was updated to serve static assets only from the immutable runtime directory rather than the source or build directory.
+
+```nginx
+location = /favicon.ico {
+    root /srv/phds-frontend/public;
+    expires 7d;
+    access_log off;
+    log_not_found off;
+}
+
+location /_next/static/ {
+    alias /srv/phds-frontend/.next/static/;
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+    access_log off;
+}
+```
+
+All references to `/home/ubuntu/phds-frontend` were removed from the Nginx configuration.
+
+## Deployment after the incident
+
+Deployments now follow a strict scripted process. The repository is updated and built in the source directory. The runtime directory is replaced entirely with new artifacts. Permissions are locked. The systemd service is restarted. Cloudflare cache is purged when static assets change. At no point does the running service write to files that it serves.
+
+## Lessons learned
+
+This incident illustrates a common failure mode in self-hosted JavaScript deployments. SSH hardening protects administrative access but does nothing against application-layer compromise. Serving from writable directories makes persistence trivial. Running npm scripts in production expands the attack surface unnecessarily. Cloudflare will faithfully cache and distribute malicious assets if the origin serves them.
+
+The most effective mitigation is architectural. Immutable runtime directories, standalone builds, minimal privileges, and a clean separation between build and serve stages dramatically reduce the impact of this entire class of attack.
