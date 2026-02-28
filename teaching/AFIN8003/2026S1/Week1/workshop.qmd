@@ -1,0 +1,925 @@
+---
+title: "Workshop - Understanding Bank Financial Statements"
+subtitle: "AFIN8003 Workshop"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-03-03
+categories:
+    - AFIN8003
+    - 2026S1
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+    callout-appearance: simple
+---
+
+```{python}
+# | echo: false
+fmt = lambda amt: f"{amt:,}"
+```
+
+## Why this workshop?
+
+Understanding bank accounting is fundamental for anyone interested in finance, banking, or risk management. Banks play a unique role in the financial system, and their accounting practices differ significantly from those of non-financial firms. Through this workshop, you will:
+
+- Gain practical insights into how banks record and report financial transactions.
+- Learn how various banking activities impact the balance sheet and financial health of a bank.
+- Build a strong foundation for more advanced topics in banking, regulation, and risk management.
+
+This workshop is based on the [BRMS (Bank Risk Management Simulation)](https://github.com/mgao6767/brms/) Python package, which I developed for teaching and research in banking. 
+
+# Real-world example
+
+## CBA's balance sheet and income statement
+
+Let's see the statements of an Australian bank, [Commonwealth Bank of Australia (CBA)](https://www.commbank.com.au/), as an example. Its financial results are publicly available at [its website](https://www.commbank.com.au/about-us/investors.html). However, to make our lives a bit easier, pre-compiled data are available on iLearn.
+
+- Visit AFIN8003 course page on [iLearn](https://ilearn.mq.edu.au/).
+- Under Week 1, find and download the Excel spreadsheet `SPGlobal_CBA_BalanceSheet.xlsx` and `SPGlobal_CBA_IncomeStatement.xlsx`.
+
+::: {.callout-note}
+Now, use the provided data and your own research, try to answer the following questions. Unless specified otherwise, use the bank's latest data.
+:::
+
+## Some (motivating) questions
+
+1. Looking at a bank’s balance sheet, what do you think a bank actually *does* as a business?
+
+1. Why are customer deposits recorded as *liabilities* rather than as income?
+
+1. When a bank makes a loan and holds it, what do you think happens in its accounting records and financial statements?
+
+
+# Simple banking book accounting
+
+## A first look at bank's balance sheet 
+
+::: {.columns}
+::: {.column}
+To begin with, a simple bank has just been established with shareholders' contribution of $10,000.
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: A new bank has just been established.
+# | panel: center
+import datetime
+from brms.accounting.account import AccountBalances
+from brms.accounting.report import Report
+from brms.accounting.statement_viewer import HTMLStatementViewer
+from brms.models.bank import Bank
+
+
+bank = Bank()
+balances = AccountBalances(
+    {
+        bank.chart_of_accounts.cash_account: 10_000,
+        bank.chart_of_accounts.equity_account: 10_000,
+    },
+)
+bank.initialize(balances)
+viewer = HTMLStatementViewer(jupyter=True, hide_zero_balance_accounts=True)
+
+today = datetime.date(2026, 3, 3)
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+:::
+:::
+
+## Customer deposit
+
+::: {.columns}
+::: {.column}
+Now some customers have made some deposits, for example:
+
+- Customer A deposits $60,000.
+- Customer B deposits $40,000.
+- Customer C deposits $20,000.
+
+Notably, customer deposits are the bank's _liability_. We see an increase in both the bank's total assets and total liabilities, while total shareholders' equity remains unchanged.
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: Some customers have made deposits.
+# | panel: center
+from brms.instruments.factory import InstrumentFactory
+from brms.models.transaction import TransactionFactory, TransactionType
+
+customer_A_deposit = InstrumentFactory.create_deposit(value=60_000)
+customer_B_deposit = InstrumentFactory.create_deposit(value=40_000)
+customer_C_deposit = InstrumentFactory.create_deposit(value=20_000)
+tx_deposit1 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_A_deposit,
+    transaction_date=today,
+    description="Customer A's Deposits",
+)
+tx_deposit2 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_B_deposit,
+    transaction_date=today,
+    description="Customer B's Deposits",
+)
+tx_deposit3 = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_RECEIVED,
+    instrument=customer_C_deposit,
+    transaction_date=today,
+    description="Customer C's Deposits",
+)
+bank.process_transaction(tx_deposit1)
+bank.process_transaction(tx_deposit2)
+bank.process_transaction(tx_deposit3)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+:::
+:::
+
+## Deposit withdraw
+
+::: {.columns}
+::: {.column}
+Depositors can also withdraw from the bank. 
+
+If Customer C has withdrawn all of their deposits ($20,000), we see a decrease of cash and deposits.
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: Customer C has withdrawn their deposits.
+# | panel: center
+from brms.models.transaction import DepositWithdrawTransaction
+
+tx_deposit_withdraw = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.DEPOSIT_WITHDRAWAL,
+    instrument=customer_C_deposit,
+    transaction_date=today,
+    description="Customer C withdraw",
+)
+bank.process_transaction(tx_deposit_withdraw)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+:::
+:::
+
+## Loan disbursement
+
+::: {.columns}
+::: {.column}
+Of course, the typical business of a bank is to make loans. Let's assume the bank has made an (interest-only) loan of $80,000 to some borrowers.
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The bank has made some loans.
+# | panel: center
+from brms.instruments.base import Instrument
+from brms.instruments.mock import MockInstrument
+from brms.models.transaction import LoanDisbursementTransaction
+
+(loan := MockInstrument("A loan")).value = 80_000
+# fmt: off
+tx_loan = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.LOAN_DISBURSEMENT,
+    instrument=loan,
+    transaction_date=today,
+    description="Loan made to a borrower",
+)
+# fmt: on
+bank.process_transaction(tx_loan)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+```
+:::
+:::
+
+## Interest paid on deposits
+
+::: {.columns}
+::: {.column}
+After some time (e.g., a month), the bank may need to pay interest on customers' deposits, e.g., $100.
+
+::: {.callout-tip}
+__Income Statement__ is included given that we'd like to know the profit and loss (P&L) of the bank over the period.
+:::
+
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: If the bank has only paid interest on deposits over the month...
+# | panel: center
+from brms.instruments.cash import Cash
+from brms.models.transaction import InterestPaidOnDepositTransaction
+
+today = today + datetime.timedelta(days=31)
+
+tx_interest_paid = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.INTEREST_PAID_ON_DEPOSIT,
+    instrument=Cash(value=100),
+    transaction_date=today,
+    description="Interest paid on deposits",
+)
+bank.process_transaction(tx_interest_paid)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+report.print_income_statement()
+```
+:::
+:::
+
+## Loan interest income
+
+::: {.columns}
+::: {.column}
+
+::: {.callout-note}
+If the bank has only paid interest on deposits over this period, it surely has a net loss or negative profit as shown before. 
+
+However, it is more reasonable that the bank also has earned some profits during the same time, especially because it has made some loans.
+:::
+
+Suppose that over the 1-month period, the bank has earned some interest income from the loans made earlier, e.g., for a total of $800.
+
+::: {.callout-tip}
+Overall, the bank has a net profit of $700. We can observe that the bank's __Retained Earnings__ has increased by $700, too.
+:::
+:::
+::: {.column}
+
+```{python}
+# | code-fold: true
+# | code-summary: ... if it has also earned interest from loans over the month.
+# | panel: center
+tx_interest_earned = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.LOAN_INTEREST_PAYMENT,
+    instrument=Cash(value=800),
+    transaction_date=today,
+    description="Interest earned from loans",
+)
+bank.process_transaction(tx_interest_earned)
+
+report = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report.print_balance_sheet()
+report.print_income_statement()
+```
+:::
+:::
+
+# Intermediate trading book accounting
+
+## Trading Book
+
+The transactions and non-transactions previous discussed all occur to the bank's __banking book__. 
+
+However, a bank also has a __trading book__ that holds securities for short-term trading P&L purposes. 
+
+::: {.callout-note}
+These instruments are named __Fair Value Through Profit and Loss (FVTPL)__.
+:::
+
+Accounting for trading book securities is relatively easy. We consider:
+
+1. The purchase
+2. The marking-to-market
+3. The sale
+
+## FVTPL security purchase
+
+```{python}
+# | echo: false
+fvtpl_security_value = 10_000
+day1_pct_change = -5
+day2_pct_change = 10
+day3_pct_change = 2
+```
+
+Assume that the bank just purchased a FVTPL security for its trading book at its fair value of $`{python} fmt(fvtpl_security_value)`.
+
+The fair value of the security is recorded on the balance sheet under the _Assets at FVTPL_ account.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: Before purchasing some FVTPL securities.
+# | panel: center
+report1 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report1.print_balance_sheet()
+```
+:::
+::: {.column}
+
+```{python}
+# | code-fold: true
+# | code-summary: The bank has purchased some FVTPL securities.
+# | panel: center
+from brms.models.base import BookType
+
+fvtpl_security = MockInstrument("A FVTPL Security", BookType.TRADING_BOOK)
+fvtpl_security.value = fvtpl_security_value
+tx_fvtpl_purchase = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_PURCHASE_TRADING,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    description="Purchase a FVTPL security",
+)
+bank.process_transaction(tx_fvtpl_purchase)
+
+report2 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report2.print_balance_sheet()
+```
+:::
+::: 
+
+## FVTPL security marking to market
+
+- The _fair value_ of FVTPL security is __marked to market__ periodically, e.g., daily. 
+- This ensures consistency in that they are held for trading P&L in the first place.
+
+There are two possible cases:
+
+1. Unrealized trading loss
+2. Unrealized trading gain
+
+::: {.callout-note}
+These trading gains and losses are _unrealized_ because the securities have not yet been sold.
+:::
+
+## Unrealized trading loss - Income Statement
+
+If the market value of the security went down by `{python} abs(day1_pct_change)`% ($`{python} fmt(fvtpl_security_value*0.05)`) the next day, we need to recognize this _unrealized trading loss_ in the Income Statement.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Income Statement before.
+# | panel: center
+report2.print_income_statement()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security has an unrealized trading loss.
+# | panel: center
+from brms.instruments.mock import MockValuationVisitor
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went down by 5%
+new_fvtpl_instrument_value = fvtpl_security.value * 0.95
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+tx_fvtpl_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
+bank.process_transaction(tx_fvtpl_marked_down)
+
+report3 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report3.print_income_statement()
+```
+:::
+:::
+
+## Unrealized trading loss - Balance Sheet
+
+If we were to generate the balance sheet now, such net trading loss would reduce the bank's retained earnings.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before.
+# | panel: center
+
+report2.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security has an unrealized trading loss.
+# | panel: center
+
+report3.print_balance_sheet()
+```
+:::
+:::
+
+::: {.callout-important}
+Usually, financial reports are generated at a period's end, such as quarter's end or year's end. What's shown here should be viewed as _what if we close the bank's accounting ledger at this time and generate the reports?_
+:::
+
+## Unrealized trading gain - Income Statement
+
+```{python}
+# | echo: false
+change_of_fvtpl_value = (
+    fvtpl_security_value * (1 + day1_pct_change / 100) * day2_pct_change / 100
+)
+```
+
+The day after, if the market value of the security went up by `{python} day2_pct_change`% ($`{python} fmt(change_of_fvtpl_value)`), we need to recognize this _unrealized trading gain_.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Income Statement before.
+# | panel: center
+report3.print_income_statement()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security has an unrealized trading gain.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 10%
+new_fvtpl_instrument_value = fvtpl_security.value * (1 + day2_pct_change / 100)
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+tx_fvtpl_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
+bank.process_transaction(tx_fvtpl_marked_up)
+
+report4 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report4.print_income_statement()
+```
+:::
+:::
+
+## Unrealized trading gain - Balance Sheet
+
+Again, if we were to close the bank's accounting ledger now and check its balance sheet, we will see changes of the bank's retained earnings (increase by $`{python} fmt(change_of_fvtpl_value)`).
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before.
+# | panel: center
+
+report3.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security has an unrealized trading gain.
+# | panel: center
+
+report4.print_balance_sheet()
+```
+:::
+:::
+
+## FVTPL security sale
+
+The next day, if the bank sold the security at the prevailing market price (assumed `{python} day3_pct_change`% up), we recognize _realized trading gain_.
+
+Tracking the P&L of this particular FVTPL security, 
+
+```{python}
+# | echo: false
+v0 = fvtpl_security_value
+v1 = v0 * (1 + day1_pct_change / 100)
+v2 = v1 * (1 + day2_pct_change / 100)
+v3 = v2 * (1 + day3_pct_change / 100)
+net_gain = (v1 - v0) + (v2 - v1) + (v3 - v2)
+net_loss = abs(v1 - v0)
+```
+
+1. On day 1, we had a loss of `{python} f"${abs(v1-v0)}"` (`{python} f"${v0} * {100 + day1_pct_change}% = ${v1}"`).
+2. On day 2, we had a gain of `{python} f"${v2-v1}"` (`{python} f"${v1} * {100 + day2_pct_change}% = ${v2}"`).
+3. On day 3, we had a gain of `{python} f"${v3-v2}"` (`{python} f"${v2} * {100 + day3_pct_change}% = ${v3}"`).
+
+The total P&L from this security is therefore a net gain of $`{python} net_gain`, which shows up in the Income Statement. 
+
+::: {.callout-note}
+Because of the sale, the _unrealized trading gain/loss_ associated with this security must be __reclassified__ to _realized gain/loss_.
+:::
+
+## FVTPL security sale - Income Statement
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Income Statement before.
+# | panel: center
+report4.print_income_statement()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security is sold.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 2%
+new_fvtpl_instrument_value = fvtpl_security.value * (1 + day3_pct_change / 100)
+valuation_visitor = MockValuationVisitor(new_value=new_fvtpl_instrument_value)
+tx_fvtpl_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVTPL_MARK_TO_MARKET,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
+bank.process_transaction(tx_fvtpl_marked_up)
+# Sale transaction should be created after the previous transaction has been processed
+tx_fvtpl_sale = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_SALE_TRADING,
+    instrument=fvtpl_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Sale of FVTPL security (net gain)",
+)
+bank.process_transaction(tx_fvtpl_sale)
+# fmt: on
+
+report5 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report5.print_income_statement()
+# report.print_balance_sheet()
+```
+
+- Trading gain: `{python} f"${v3-v2} + ${v2-v1} = ${v3-v1}"`
+- Trading loss: `{python} f"${abs(v1-v0)}"`
+- Net gain: `{python} f"${net_gain}"`
+- Gain/loss _reclassified_ from unrealized to realized
+:::
+:::
+
+## FVTPL security sale - Balance Sheet
+
+Now, if we were to close the bank's accounting ledger and produce its balance sheet, we will have:
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before.
+# | panel: center
+
+report4.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVTPL security has been sold with a net gain.
+# | panel: center
+
+report5.print_balance_sheet()
+```
+:::
+:::
+
+## FVTPL security sale - Balance Sheet
+
+Compared to the balance sheet before the bank purchased this FVTPL security, the retained earnings increased by exactly `{python} f"${net_gain}"`.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before purchasing the FVTPL security.
+# | panel: center
+
+report1.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: After selling the FVTPL security with a net gain.
+# | panel: center
+
+report5.print_balance_sheet()
+```
+:::
+:::
+
+# Intermediate banking book accounting
+
+## Banking book
+
+::: {.columns}
+::: {.column}
+Apart from loans, a bank's banking book contains other assets that are held mostly for interest income. However, depending on whether the bank intends to hold them until maturity, these non-loan banking book assets can be either of:
+
+1. __Fair Value Through Other Comprehensive Income (FVOCI)__,
+2. __At Amortized Cost__ or Held to Maturity (HTM).[^htm]
+
+[^htm]: Now called "at amortized cost" under IFRS 9 / AASB 9.
+
+For example, Treasury bonds, corporate bonds, MBS, etc., are usually FVOCI or HTM banking book assets.
+:::
+::: {.column}
+![Excerpt of CBA's 2023 balance sheet - assets](./figures/CBA-balance-sheet-2023.png){#fig-cba-balance-sheet fig-align="center"}
+:::
+:::
+
+## FVOCI security
+
+FVOCI assets in the banking book are typically debt securities that:
+
+- Earn interest income for the bank.
+- Can be sold before maturity but are _not actively traded_ like FVTPL securities.
+- Experience fair value changes that are recorded in __Accumulated Other Comprehensive Income (AOCI)__ instead of directly impacting net income.
+- Upon sale, unrealized gains/losses from AOCI are transferred to Net Income.
+
+## FVOCI security purchase
+
+Assume that the bank now purchased a Treasury bond at a fair value of $30,000. The bank may sell the bond before it matures, and hence classify it as a FVOCI asset on the banking book.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before purchasing the FVOCI security.
+# | panel: center
+
+report5.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The bank has purchased some FVOCI securities.
+# | panel: center
+
+fvoci_security = MockInstrument("A Treausy bond (FVOCI)", BookType.BANKING_BOOK)
+fvoci_security.value = 30_000
+tx_fvoci_purchase = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_PURCHASE_FVOCI,
+    instrument=fvoci_security,
+    transaction_date=today,
+    description="Purchase a FVOCI security",
+)
+bank.process_transaction(tx_fvoci_purchase)
+
+report6 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report6.print_balance_sheet()
+```
+:::
+:::
+
+::: {.callout-note}
+The fair value of the security is recorded on the balance sheet under the _Investment Securities at FVOCI_ account.
+:::
+
+## FVOCI security marking to market
+
+- The _fair value_ of FVOCI security is __marked to market__ periodically, e.g., daily. 
+- This is because such securities do have market values (e.g., Treasury securities).
+
+There are two possible cases:
+
+1. Unrealized loss
+2. Unrealized gain
+
+::: {.callout-note}
+These gains and losses are _unrealized_ because the securities have not yet been sold.
+:::
+
+::: {.callout-important}
+These gains and losses are not through _trading_.
+:::
+
+## Unrealized gain
+
+Suppose the next day the market value of the FVOCI security went up by 5% ($600 = $30,000*5%).
+
+It is important to note that FVOCI security's fair value changes affect AOCI, an equity account. 
+
+It does not affect Income Statement P&L until it's eventually sold.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before.
+# | panel: center
+report6.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security has an unrealized gain.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVTPL security went up by 2%
+new_fvoci_instrument_value = fvoci_security.value * 1.02
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+tx_fvoci_marked_up = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (up)",
+)
+bank.process_transaction(tx_fvoci_marked_up)
+
+report7 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report7.print_balance_sheet()
+```
+:::
+:::
+
+## Unrealized loss
+
+If the market value of the security went down by 2% ($612=$30,600*2%) the next day, we recognize this _unrealized OCI loss_ of AOCI.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before.
+# | panel: center
+report7.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security has an unrealized trading loss.
+# | panel: center
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVOCI security went down by 2%
+new_fvoci_instrument_value = fvoci_security.value * 0.98
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+tx_fvoci_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
+bank.process_transaction(tx_fvoci_marked_down)
+
+report8 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report8.print_balance_sheet()
+```
+:::
+:::
+
+## FVOCI, AOCI, and capital ratios
+
+Because FVOCI's (even unrealized) gain/loss changes AOCI, and AOCI is part of a bank's CET1 capital, FVOCI's fair value movement can cause volatility in the bank's regulatory capital ratios.
+
+::: {.callout-note}
+CET1 is the primary or core capital of a DI.
+
+- **Common shares**
+- Share premium resulting from the issue of CET1 instruments
+- **Retained earnings**
+- **Accumulated and other comprehensive income (AOCI)**
+- Other disclosed reserves
+- Certain minority interests
+- Regulatory adjustment applied in the calculation of CET1 Capital.
+:::
+
+Today, banks with total assets below $250 billion are permitted to exclude AOCI when reporting applicable regulatory ratios.
+
+
+## FVOCI security sale
+
+The next day, if the bank sold the FVOCI security at the prevailing market price (assumed 2% down), we recognize _realized OCI loss_.
+
+Tracking the AOCI gain/loss of this particular FVOCI security, 
+
+1. On day 1, we had a gain of $600.
+2. On day 2, we had a loss of $612.
+3. On day 3, we had a loss of $599.76.
+
+The total net loss of this security is therefore $611.76.
+
+## FVOCI security sale - Income Statement
+
+Now that the FVOCI security is sold, its gain/loss is moved from AOCI to Income Statement as _Investment Income (FVOCI)_. 
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Income Statement before
+# | panel: center
+
+report8.print_income_statement()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security is sold with a net loss.
+# | panel: center
+from brms.models.transaction import SecuritySaleFVOCITransaction
+
+today = today + datetime.timedelta(days=1)
+# Assume that the market value of the FVOCI security went down by 2%
+new_fvoci_instrument_value = fvoci_security.value * 0.98
+valuation_visitor = MockValuationVisitor(new_value=new_fvoci_instrument_value)
+tx_fvoci_marked_down = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_FVOCI_MARK_TO_MARKET,
+    instrument=fvoci_security,
+    transaction_date=today,
+    valuation_visitor=valuation_visitor,
+    description="Mark to market a FVTPL security (down)",
+)
+bank.process_transaction(tx_fvoci_marked_down)
+# Sale transaction should be created after the previous transaction has been processed
+tx_fvoci_sale = TransactionFactory.create_transaction(
+    bank=bank,
+    transaction_type=TransactionType.SECURITY_SALE_FVOCI,
+    instrument=fvoci_security,
+    transaction_date=today,
+    description="Sale of FVOCI security (net loss)",
+)
+bank.process_transaction(tx_fvoci_sale)
+
+report9 = Report(ledger=bank.ledger, viewer=viewer, date=today)
+report9.print_income_statement()
+```
+:::
+:::
+
+## FVOCI security sale - Balance Sheet
+
+When P&L accounts of income statement are closed, the net gain/loss of Investment Income (FVOCI) changes the bank's retained earnings.
+
+::: {.columns}
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The Balance Sheet before
+# | panel: center
+
+report8.print_balance_sheet()
+```
+:::
+::: {.column}
+```{python}
+# | code-fold: true
+# | code-summary: The FVOCI security is sold with a net loss.
+# | panel: center
+
+report9.print_balance_sheet()
+```
+:::
+:::
+
+## Investment securities at amortized cost
+
+* Measurement
+  * Initially recorded at fair value plus transaction costs.
+  * Subsequently measured at **amortised cost** using the **effective interest method**.
+  * Carrying amount = purchase price ± cumulative amortisation of premium/discount – impairment allowance.
+* Income Recognition
+  * **Interest income** recognised in profit or loss using the effective interest rate (EIR).
+  * Amortisation of premiums or discounts included in interest income.
+* Gains and Losses
+  * No recognition of unrealised fair value changes in P&L or OCI.
+  * Realised gains/losses recognised in P&L only upon sale or derecognition.
+* Impairment
+  * Subject to **expected credit loss (ECL)** model under IFRS 9/AASB 9.
+  * ECL recognised in P&L and reduces the carrying amount.
