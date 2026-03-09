@@ -1,0 +1,716 @@
+---
+title: "Workshop Handout — Bank Financial Statements"
+subtitle: "AFIN8003 Banking and Financial Intermediation | Week 2"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-03-10
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=22mm
+      - right=22mm
+      - bottom=25mm
+    output-file: "Workshop2.pdf"
+    include-in-header:
+      text: |
+        \usepackage{booktabs}
+        \usepackage{array}
+        \usepackage{enumitem}
+        \newcommand{\blank}[1]{\underline{\hspace{#1}}}
+        \newcommand{\writespace}{\vspace{1.8cm}}
+# Custom fields
+pdf-name: "Workshop2.pdf"
+include-answers: false
+---
+
+```{python}
+# | echo: false
+# ---------------------------------------------------------------------------
+# Setup: read the include-answers flag from this file's own YAML front matter.
+# Change  include-answers: false  →  include-answers: true  to reveal answers.
+# ---------------------------------------------------------------------------
+import pathlib, re
+
+_content = pathlib.Path("workshop.qmd").read_text(encoding="utf-8")
+_match = re.search(r"include-answers:\s*(true|false)", _content)
+SHOW_ANSWERS = bool(_match and _match.group(1).strip() == "true")
+
+
+def ans(*lines):
+    """Print a highlighted answer block only when include-answers is true."""
+    if SHOW_ANSWERS:
+        body = "\n".join(str(l) for l in lines)
+        print(f'\n::: {{.callout-note title="Answer"}}\n{body}\n:::\n')
+```
+
+\noindent\textbf{Student Name:}~\blank{8cm}\qquad\textbf{Student ID:}~\blank{4cm}
+
+\bigskip
+\noindent\rule{\linewidth}{0.5pt}
+\bigskip
+
+\noindent This handout follows **Bravo Bank** through its very first weeks of operation.
+Read each scenario carefully, then fill in the missing values.
+Every exercise builds on the one before it, so work through them in order.
+
+\bigskip
+\noindent\rule{\linewidth}{0.5pt}
+
+# Banking Book: Balance Sheet Basics
+
+## Opening day
+
+Bravo Bank is incorporated on **1 March 2026**.
+The founding shareholders contribute **\$25,000** as the bank's starting capital.
+At this point, the only thing the bank owns is the cash just received, and it owes nothing to anyone.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — the accounting equation:**
+$$\text{Total assets} = \text{Total liabilities} + \text{Shareholders' equity}$$
+Always check that both sides balance before moving on.
+:::
+
+**Exercise 1.** Fill in Bravo Bank's opening balance sheet.
+
+| | Amount (\$) |
+|:---|---:|
+| **Assets** | |
+| Cash and Cash Equivalents | \blank{3.5cm} |
+| **Total assets** | \blank{3.5cm} |
+| | |
+| **Liabilities** | |
+| Total liabilities | $0 |
+| | |
+| **Shareholders' Equity** | |
+| Shareholders' Equity | \blank{3.5cm} |
+| **Total shareholders' equity** | \blank{3.5cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Cash and Cash Equivalents = **$25,000** (the shareholders paid in $25,000 cash)",
+    "- Total assets = **$25,000**",
+    "- Shareholders' Equity = **$25,000**",
+    "- Total shareholders' equity = **$25,000**",
+    "",
+    "Both sides equal $25,000. ✓"
+)
+```
+
+---
+
+## Customer deposits
+
+Later that day, two customers open savings accounts:
+
+- **Customer D** deposits **\$70,000**
+- **Customer E** deposits **\$30,000**
+
+When a customer deposits money, the bank takes custody of their cash. But the bank **owes** that money back on demand — so deposits are recorded as a **liability**, not income.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — what changes?**
+The bank now holds more cash (↑ asset).
+It also owes the deposited money back to customers (↑ liability).
+Shareholders' equity does **not** change, because no profit has been earned.
+:::
+
+**Exercise 2.** Fill in the balance sheet after receiving both deposits.
+
+| | Amount (\$) |
+|:---|---:|
+| **Assets** | |
+| Cash and Cash Equivalents | \blank{3.5cm} |
+| **Total assets** | \blank{3.5cm} |
+| | |
+| **Liabilities** | |
+| Customer Deposits | \blank{3.5cm} |
+| **Total liabilities** | \blank{3.5cm} |
+| | |
+| **Shareholders' Equity** | |
+| Shareholders' Equity | 25,000 |
+| **Total shareholders' equity** | 25,000 |
+
+::: {.callout-tip appearance="minimal"}
+**Hint — calculating the numbers:**
+
+- Customer Deposits = $70,000 + $30,000 = \blank{2cm}
+- Cash = original $25,000 + deposits received = \blank{2cm}
+:::
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Customer Deposits = $70,000 + $30,000 = **$100,000**",
+    "- Cash = $25,000 + $100,000 = **$125,000**",
+    "- Total assets = **$125,000** &nbsp;&nbsp; Total liabilities = **$100,000**",
+    "",
+    "Both sides: $125,000 = $100,000 + $25,000. ✓"
+)
+```
+
+---
+
+## Making a loan
+
+Bravo Bank makes its first loan: it lends **\$90,000** to a borrower.
+The bank transfers \$90,000 in cash to the borrower and in return receives a loan contract — the borrower's legal promise to repay.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — what changes?**
+One asset (cash) decreases; another asset (the loan) increases by the same amount.
+Total assets stay the same. No profit is earned yet, so equity is unchanged.
+:::
+
+**Exercise 3.** Fill in the balance sheet after disbursing the loan.
+
+| | Amount (\$) |
+|:---|---:|
+| **Assets** | |
+| Cash and Cash Equivalents | \blank{3.5cm} |
+| Loans and Advances | \blank{3.5cm} |
+| **Total assets** | 125,000 |
+| | |
+| **Liabilities** | |
+| Customer Deposits | 100,000 |
+| **Total liabilities** | 100,000 |
+| | |
+| **Shareholders' Equity** | |
+| Shareholders' Equity | 25,000 |
+| **Total shareholders' equity** | 25,000 |
+
+::: {.callout-tip appearance="minimal"}
+**Hint:**
+
+- Cash falls by the loan amount: $125,000 − $90,000 = \blank{2cm}
+- Loans and Advances = \blank{2cm} (the amount lent out)
+:::
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Cash = $125,000 − $90,000 = **$35,000**",
+    "- Loans and Advances = **$90,000**",
+    "- Total assets = $35,000 + $90,000 = **$125,000** ✓"
+)
+```
+
+**Exercise 3(b).** In one sentence, explain why making a loan does **not** immediately change shareholders' equity or the income statement.
+
+\writespace
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "Disbursing a loan is an **asset swap** — cash (an asset) is exchanged for a loan receivable (also an asset) of equal value.",
+    "No income or expense is recognised at this point, so the income statement and equity are unaffected.",
+    "Profit (and therefore equity) only changes when the bank *earns* the interest income over time."
+)
+```
+
+---
+
+## Interest income and expense
+
+One month has passed. On **1 April 2026**, Bravo Bank closes its books for March. During the month:
+
+- The bank **paid \$150 interest** on customer deposits — this is an **expense**.
+- The bank **received \$750 interest** from its loan — this is **income**.
+
+Net profit is the difference: income minus expenses. Profit flows into **Retained Earnings** on the balance sheet.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — the income statement:**
+$$\text{Net profit} = \text{Total income} - \text{Total expenses} = \$750 - \$150 = \text{\blank{2cm}}$$
+:::
+
+**Exercise 4.** Complete the income statement for the month ended 1 April 2026.
+
+| | Amount (\$) |
+|:---|---:|
+| **Income** | |
+| Interest Income | 750 |
+| **Total income** | 750 |
+| | |
+| **Expenses** | |
+| Interest Expense | \blank{3.5cm} |
+| **Total expenses** | \blank{3.5cm} |
+| | |
+| **Net profit** | \blank{3.5cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Interest Expense = **$150**",
+    "- Total expenses = **$150**",
+    "- Net profit = $750 − $150 = **$600**"
+)
+```
+
+**Exercise 5.** Net profit of **\$600** is added to **Retained Earnings**. Cash also changes: the bank received \$750 interest in cash and paid \$150 in cash. Fill in the missing amounts.
+
+::: {.callout-tip appearance="minimal"}
+**Hint:**
+
+- New cash = previous cash ± cash flows = $35,000 + $750 received − $150 paid = \blank{2cm}
+- Retained Earnings = Net profit accumulated = \blank{2cm}
+- Total shareholders' equity = Shareholders' Equity + Retained Earnings = \blank{2cm}
+:::
+
+| | Amount (\$) |
+|:---|---:|
+| **Assets** | |
+| Cash and Cash Equivalents | \blank{3.5cm} |
+| Loans and Advances | 90,000 |
+| **Total assets** | \blank{3.5cm} |
+| | |
+| **Liabilities** | |
+| Customer Deposits | 100,000 |
+| **Total liabilities** | 100,000 |
+| | |
+| **Shareholders' Equity** | |
+| Shareholders' Equity | 25,000 |
+| Retained Earnings | \blank{3.5cm} |
+| **Total shareholders' equity** | \blank{3.5cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Cash = $35,000 + $750 − $150 = **$35,600**",
+    "- Loans and Advances = **$90,000** (unchanged)",
+    "- Total assets = $35,600 + $90,000 = **$125,600**",
+    "- Retained Earnings = **$600** (= net profit for the month)",
+    "- Total shareholders' equity = $25,000 + $600 = **$25,600**",
+    "",
+    "Check: $125,600 = $100,000 + $25,600. ✓"
+)
+```
+
+\newpage
+
+# Trading Book: FVTPL Securities
+
+On **2 April 2026**, Bravo Bank buys a security for its **trading book** at a cost of **\$12,000**.
+Trading book securities are classified as **FVTPL** (Fair Value Through Profit or Loss).
+
+> **The key rule for FVTPL:** the security is **marked to market every day** — any rise or fall in its value is recognised **immediately in the Income Statement**, increasing or decreasing the bank's net profit (and retained earnings) right away, even before the security is sold.
+
+After the purchase, the security's fair value changes over three days:
+
+| Date | What happens |
+|:-----|:-------------|
+| 3 April | Market value **falls 10%** from the previous day's value |
+| 4 April | Market value **rises 15%** from the previous day's value |
+| 5 April | Market value **rises 5%** from the previous day's value, then the bank **sells** |
+
+**Exercise 6.** Track the security's market value and the daily trading gain or loss. Fill in every blank cell.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — how to fill in each row:**
+
+- *Market value* = previous day's market value × (1 + % change)
+- *Daily gain/(loss)* = today's market value − yesterday's market value
+- A **positive** number is a gain (the bank made money today).
+- A **negative** number is a loss (written in brackets, e.g. **(1,200)**).
+- The *total gain/(loss)* at the bottom is the sum of all three daily figures — or simply: final sale price − original purchase price.
+:::
+
+| Date | Market Value (\$) | Daily Gain / (Loss) (\$) |
+|:-----|------------------:|-------------------------:|
+| 2 Apr — purchase | 12,000 | — |
+| 3 Apr — down 10% | \blank{3cm} | \blank{3cm} |
+| 4 Apr — up 15% | \blank{3cm} | \blank{3cm} |
+| 5 Apr — up 5%, then sold | \blank{3cm} | \blank{3cm} |
+| **Total gain / (loss)** | | \blank{3cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "| Date | Market Value (\\$) | Daily Gain / (Loss) (\\$) |",
+    "|:-----|------------------:|-------------------------:|",
+    "| 3 Apr | **10,800** | **(1,200)** |",
+    "| 4 Apr | **12,420** | **1,620** |",
+    "| 5 Apr | **13,041** | **621** |",
+    "| **Total** | | **1,041** |",
+    "",
+    "**Workings:**",
+    "",
+    "- Day 1: $12,000 × 0.90 = $10,800 &nbsp;→&nbsp; loss = $10,800 − $12,000 = **(1,200)**",
+    "- Day 2: $10,800 × 1.15 = $12,420 &nbsp;→&nbsp; gain = $12,420 − $10,800 = **1,620**",
+    "- Day 3: $12,420 × 1.05 = $13,041 &nbsp;→&nbsp; gain = $13,041 − $12,420 = **621**",
+    "- Total: −1,200 + 1,620 + 621 = **1,041** &nbsp;(or: $13,041 − $12,000 = $1,041)"
+)
+```
+
+**Exercise 7.** When the bank sells the FVTPL security on 5 April for **\$13,041**, fill in the two amounts below.
+
+::: {.callout-tip appearance="minimal"}
+**Hint:**
+
+- The bank receives **cash equal to the sale price**.
+- Over the three trading days the bank booked gains and losses in its Income Statement. The **net effect on Retained Earnings** equals the total gain/(loss) from Exercise 6.
+:::
+
+| | Amount (\$) |
+|:---|--:|
+| Cash received from the sale | \blank{3.5cm} |
+| Net change in Retained Earnings over 3–5 April | \blank{3.5cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "- Cash received = **$13,041** (the bank sold at the Day 3 market price)",
+    "- Net change in Retained Earnings = **+$1,041** (the total P&L from the trading activity)"
+)
+```
+
+**Exercise 8.** Which of the following statements about FVTPL securities are correct? Circle **all** that apply.
+
+\bigskip
+
+(A) \quad Unrealized gains and losses flow through the **Income Statement**, affecting net profit every day.
+
+(B) \quad Unrealized gains and losses are held in **AOCI** until the security is sold.
+
+(C) \quad When the security is sold, gains/losses are reclassified from AOCI into the Income Statement.
+
+(D) \quad A fall in an FVTPL security's value reduces **Retained Earnings** via a net loss in that period.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Correct answers: (A) and (D).**",
+    "",
+    "- **(A) ✓** — FVTPL gains/losses hit the Income Statement *immediately*, even before sale.",
+    "- **(B) ✗** — AOCI is for **FVOCI** securities, not FVTPL.",
+    "- **(C) ✗** — There is nothing to reclassify from AOCI for FVTPL; gains/losses are already in P&L.",
+    "- **(D) ✓** — Because net loss reduces profit, which reduces the Retained Earnings on the balance sheet."
+)
+```
+
+\newpage
+
+# Banking Book: FVOCI Securities
+
+On **6 April 2026**, Bravo Bank buys a **Treasury bond** for **\$20,000** and places it in its banking book, classifying it as **FVOCI** (Fair Value Through Other Comprehensive Income).
+
+> **The key rule for FVOCI:** the bond is also marked to market — but its fair value changes go to **Accumulated Other Comprehensive Income (AOCI)**, which is a *separate section of shareholders' equity*. They do **not** touch the Income Statement while the bond is held. The gain or loss only moves into the Income Statement when the bond is sold.
+
+Here is Bravo Bank's balance sheet immediately after buying the bond.
+Note that AOCI starts at zero because there has been no fair value change yet.
+
+| | Amount (\$) |
+|:---|---:|
+| **Assets** | |
+| Cash and Cash Equivalents | 16,641 |
+| Loans and Advances | 90,000 |
+| Investment Securities at FVOCI | 20,000 |
+| **Total assets** | 126,641 |
+| | |
+| **Liabilities** | |
+| Customer Deposits | 100,000 |
+| **Total liabilities** | 100,000 |
+| | |
+| **Shareholders' Equity** | |
+| Shareholders' Equity | 25,000 |
+| Accumulated OCI (AOCI) | 0 |
+| Retained Earnings | 1,641 |
+| **Total shareholders' equity** | 26,641 |
+
+::: {.callout-tip appearance="minimal"}
+**Why did cash fall to \$16,641?**
+Before buying the bond, cash was \$36,641 (from the FVTPL trading gains in Part 2).
+Buying the \$20,000 bond uses cash: \$36,641 − \$20,000 = \$16,641.
+:::
+
+The bond's fair value then changes on two consecutive days, before being sold:
+
+| Date | What happens |
+|:-----|:-------------|
+| 7 April | Fair value **rises 5%** from the previous day |
+| 8 April | Fair value **falls 8%** from the previous day |
+| 9 April | Bank **sells** the bond at the 8 April closing price (no further change) |
+
+**Exercise 9.** Track the bond's fair value and the resulting AOCI movements.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — how AOCI works:**
+
+- When the bond's fair value **rises**, AOCI increases by the same amount (a gain for equity, but *not* for P&L).
+- When the bond's fair value **falls**, AOCI decreases (a loss for equity, but *not* for P&L).
+- **Retained Earnings is not affected** while the bond is held — only AOCI changes.
+- The *Cumulative AOCI* column shows the running total: start at 0 and add each day's change.
+:::
+
+| Date | Fair Value (\$) | AOCI Change (\$) | Cumulative AOCI (\$) |
+|:-----|----------------:|-----------------:|---------------------:|
+| 6 Apr — purchase | 20,000 | — | 0 |
+| 7 Apr — up 5% | \blank{2.5cm} | \blank{2.5cm} | \blank{2.5cm} |
+| 8 Apr — down 8% | \blank{2.5cm} | \blank{2.5cm} | \blank{2.5cm} |
+
+::: {.callout-tip appearance="minimal"}
+**Hint — calculating each row:**
+
+- Day 1 (7 Apr): Fair value = $20,000 × 1.05 = \blank{2cm} &nbsp;→&nbsp; AOCI change = new FV − old FV = \blank{2cm}
+- Day 2 (8 Apr): Fair value = Day 1 FV × 0.92 = \blank{2cm} &nbsp;→&nbsp; AOCI change = new FV − Day 1 FV = \blank{2cm}
+:::
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "| Date | Fair Value (\\$) | AOCI Change (\\$) | Cumulative AOCI (\\$) |",
+    "|:-----|----------------:|-----------------:|---------------------:|",
+    "| 7 Apr | **21,000** | **+1,000** | **+1,000** |",
+    "| 8 Apr | **19,320** | **(1,680)** | **(680)** |",
+    "",
+    "**Workings:**",
+    "",
+    "- Day 1: $20,000 × 1.05 = **$21,000** &nbsp;→&nbsp; AOCI change = $21,000 − $20,000 = **+$1,000**",
+    "- Day 2: $21,000 × 0.92 = **$19,320** &nbsp;→&nbsp; AOCI change = $19,320 − $21,000 = **(1,680)**",
+    "- Cumulative AOCI (Day 2) = +$1,000 − $1,680 = **(680)**"
+)
+```
+
+**Exercise 10.** On **9 April**, Bravo Bank sells the Treasury bond at the 8 April closing price of **\$19,320**.
+
+When the bond is sold, the cumulative AOCI balance of **(680)** is **reclassified** out of AOCI and into the Income Statement as *Investment Income (FVOCI)*. After this, AOCI returns to zero.
+
+::: {.callout-tip appearance="minimal"}
+**Hint — reclassification:**
+
+- "Reclassification" means the loss moves from AOCI (equity) into the Income Statement (P&L).
+- A negative AOCI means the bank had unrealized *losses* while holding the bond.
+- When reclassified, those losses become a **realized investment loss** in the Income Statement.
+- The AOCI is cleared to zero because the bond no longer exists on the balance sheet.
+:::
+
+Fill in the blanks:
+
+(a) \quad The bank receives \$\blank{2.5cm} in cash from the sale.
+
+(b) \quad AOCI moves from (\$680) to \$\blank{2cm} after the reclassification.
+
+(c) \quad The Income Statement records an investment \blank{2.5cm} *(gain / loss)* of \$\blank{2cm}.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**(a)** Cash received = **$19,320** (the bank sold at the current market price).",
+    "",
+    "**(b)** AOCI returns to **$0** — the cumulative unrealized loss is fully reclassified.",
+    "",
+    "**(c)** The Income Statement records an investment **loss** of **$680**.",
+    "",
+    "This makes sense: the bank paid $20,000 and received $19,320 — a net economic loss of $680."
+)
+```
+
+**Exercise 11.** Compare how an **FVTPL** security and an **FVOCI** security are treated when their fair value changes. Fill in each cell with either *Income Statement (P&L)* or *AOCI (equity)*.
+
+::: {.callout-tip appearance="minimal"}
+**Hint:** Think about where each type's gains/losses go **while held** vs. **when sold**.
+For FVTPL, gains/losses hit P&L immediately.
+For FVOCI, gains/losses bypass P&L and sit in AOCI — until the bond is sold, at which point they "flow through" into P&L.
+:::
+
+| | Where does the gain/loss appear *while held*? | Where does it appear *on sale*? |
+|:--|:--|:--|
+| FVTPL security | \blank{4.5cm} | \blank{4.5cm} |
+| FVOCI security | \blank{4.5cm} | \blank{4.5cm} |
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "| | While held | On sale |",
+    "|:--|:--|:--|",
+    "| FVTPL | **Income Statement (P&L)** | **Income Statement (P&L)** |",
+    "| FVOCI | **AOCI (equity)** | **Income Statement (P&L)** |",
+    "",
+    "For FVOCI, both columns end up as Income Statement eventually — but the timing differs.",
+    "For FVTPL, gains/losses hit P&L every single day the security is held."
+)
+```
+
+**Exercise 12.** AOCI is a component of **CET1 capital**. In one sentence, explain why a fall in an FVOCI bond's fair value can affect a bank's CET1 capital ratio even before the bond is sold.
+
+::: {.callout-tip appearance="minimal"}
+**Hint:** CET1 capital includes shareholders' equity, and AOCI is part of that equity. A fall in AOCI directly reduces CET1 — which is the denominator's driver for capital ratios.
+:::
+
+\writespace
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "Because AOCI is part of CET1 capital, a fall in an FVOCI bond's fair value reduces AOCI,",
+    "which directly reduces total CET1 capital — lowering the CET1 capital ratio even though",
+    "the bond has not been sold and no loss has yet appeared in the Income Statement."
+)
+```
+
+\newpage
+
+# Multiple Choice
+
+*Circle the single best answer for each question.*
+
+\bigskip
+
+**Q1.** Bravo Bank receives a \$70,000 deposit from Customer D. What is the **immediate** effect on its balance sheet?
+
+\bigskip
+
+(A) \quad Total assets increase by \$70,000; shareholders' equity increases by \$70,000.
+
+(B) \quad Total assets increase by \$70,000; total liabilities increase by \$70,000.
+
+(C) \quad Cash increases by \$70,000; retained earnings increase by \$70,000.
+
+(D) \quad No effect — the deposit is only recorded when the customer withdraws the money.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Answer: (B).**",
+    "",
+    "The bank gains cash (↑ asset) but owes the money back (↑ liability). Equity is unaffected.",
+    "(A) is wrong — deposits are a liability, not equity.",
+    "(C) is wrong — retained earnings only change when profit is earned.",
+    "(D) is wrong — the entry is made when the deposit is received."
+)
+```
+
+\bigskip\bigskip
+
+**Q2.** Bravo Bank makes a \$90,000 loan. Which of the following best describes the accounting entry?
+
+\bigskip
+
+(A) \quad Cash increases by \$90,000; loans increase by \$90,000.
+
+(B) \quad Loans increase by \$90,000; deposits increase by \$90,000.
+
+(C) \quad Cash decreases by \$90,000; loans increase by \$90,000.
+
+(D) \quad Shareholders' equity decreases by \$90,000; loans increase by \$90,000.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Answer: (C).**",
+    "",
+    "Disbursing a loan is an asset swap: cash goes out (↓) and a loan receivable comes in (↑).",
+    "Total assets and equity are unchanged."
+)
+```
+
+\bigskip\bigskip
+
+**Q3.** Bravo Bank holds an FVTPL security that falls in value by \$1,200 overnight. Which statement is correct?
+
+\bigskip
+
+(A) \quad AOCI decreases by \$1,200; net income is unaffected.
+
+(B) \quad The \$1,200 loss is deferred until the security is sold.
+
+(C) \quad Net income decreases by \$1,200 immediately; retained earnings fall by the same amount.
+
+(D) \quad Cash decreases by \$1,200 because the bank has lost money.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Answer: (C).**",
+    "",
+    "FVTPL losses flow straight through the Income Statement — no deferral, no AOCI.",
+    "(A) is wrong — AOCI is for FVOCI securities only.",
+    "(D) is wrong — no cash changes hands; this is a mark-to-market entry only."
+)
+```
+
+\bigskip\bigskip
+
+**Q4.** Bravo Bank holds an FVOCI Treasury bond whose fair value rises by \$1,000. Which statement is correct?
+
+\bigskip
+
+(A) \quad Net income increases by \$1,000 immediately.
+
+(B) \quad AOCI increases by \$1,000 within equity; net income is unaffected until the bond is sold.
+
+(C) \quad Cash increases by \$1,000 because the bond is now worth more.
+
+(D) \quad The \$1,000 gain is ignored entirely — no entry is made until the bond matures.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Answer: (B).**",
+    "",
+    "FVOCI fair value changes bypass the Income Statement and go to AOCI instead.",
+    "Net income (and retained earnings) are unaffected while the bond is held.",
+    "(A) describes FVTPL treatment, not FVOCI.",
+    "(C) is wrong — no cash changes; the bond is simply revalued on the balance sheet."
+)
+```
+
+\bigskip\bigskip
+
+**Q5.** When Bravo Bank sells its FVOCI Treasury bond, which carries a cumulative AOCI **loss** of \$680, what happens?
+
+\bigskip
+
+(A) \quad The \$680 loss stays in AOCI permanently — selling has no income statement effect.
+
+(B) \quad The \$680 AOCI loss is reversed (cancelled); net income increases by \$680.
+
+(C) \quad The \$680 AOCI loss is reclassified into the Income Statement as a realized investment loss; AOCI returns to zero.
+
+(D) \quad The \$680 is transferred directly to Retained Earnings without going through net income.
+
+```{python}
+#| echo: false
+#| output: asis
+ans(
+    "**Answer: (C).**",
+    "",
+    "On sale, cumulative AOCI is reclassified into the Income Statement.",
+    "AOCI clears to zero; net income falls by $680 (a loss); retained earnings fall by $680.",
+    "(A) is wrong — AOCI *must* be reclassified on sale.",
+    "(B) is wrong — a loss cannot increase net income.",
+    "(D) is wrong — it passes through the Income Statement first, then into Retained Earnings."
+)
+```
+
+\vspace{1.5cm}
+\noindent\rule{\linewidth}{0.5pt}
+\begin{center}
+\textit{End of handout — good luck!}
+\end{center}
