@@ -1,0 +1,649 @@
+---
+title: "AFIN8003 - Workshop 3"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-03-17
+draft: false
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: false
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop3.pdf"
+# Custom fields
+pdf-name: "Workshop3.pdf"
+include-answers: false
+---
+
+\begin{center}
+\Large\textbf{THE APRA WAR ROOM}\\[4pt]
+\large\textit{A Capital Adequacy Crisis Simulation}
+\end{center}
+
+\vspace{6pt}
+\noindent\rule{\textwidth}{1.5pt}
+
+> **CONFIDENTIAL — ADRIABANK INTERNAL MEMO**
+>
+> **To:** All Risk and Finance Division Staff
+>
+> **From:** Group CEO
+>
+> **Date:** Monday, 17 March 2026, 07:14 AM
+>
+> **Subject:** APRA Urgent Capital Review — 48-Hour Response Required
+>
+> Overnight, AdriaBank received formal notification from APRA that it will conduct an
+> unannounced capital adequacy assessment commencing **Wednesday morning**.
+> APRA has flagged concerns about our reported capital position following our latest
+> quarterly statistical return.
+>
+> I have assembled four specialist teams. Each team must complete its section of the analysis
+> **by end of workshop today** and deliver a **3-minute board briefing** on their findings.
+> The Board meets at the end of the session.
+>
+> The future of AdriaBank — and your year-end bonuses — may depend on what you find.
+>
+> *Good luck.*
+
+\noindent\rule{\textwidth}{1.5pt}
+
+\vspace{8pt}
+
+## Background: AdriaBank at a Glance
+
+AdriaBank is a mid-sized Australian authorised deposit-taking institution (ADI) regulated by APRA. It uses the **standardised approach** to calculate risk-weighted assets. The bank has been planning to announce a **$4 million dividend** to shareholders at the end of the quarter.
+
+**Workshop format:**
+
+| Phase | Activity                                     | Time   |
+|-------|----------------------------------------------|--------|
+| 1     | Briefing and group formation                 | 5 min  |
+| 2     | Team investigations (work within your group) | 35 min |
+| 3     | Board presentations (3–4 min per team)       | 20 min |
+| 4     | Class debrief and key takeaways              | 10 min |
+
+\vspace{4pt}
+
+**Your team assignment:**
+
+\begin{center}
+\begin{tabular}{|c|p{5cm}|p{6cm}|}
+\hline
+\textbf{Team} & \textbf{Name} & \textbf{Your Mission} \\
+\hline
+\textbf{A} & Capital Accounting Unit & Classify capital instruments; compute CET1, Tier 1, and Total capital \\
+\hline
+\textbf{B} & Credit Risk Division & Compute on-balance-sheet risk-weighted assets \\
+\hline
+\textbf{C} & Markets \& Derivatives Desk & Compute off-balance-sheet risk-weighted assets \\
+\hline
+\textbf{D} & Strategy \& Regulatory Affairs & Assemble all results; assess capital adequacy; stress test; recommend action \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+
+
+\newpage
+
+## Team A — Capital Accounting Unit
+
+> **Your mission:** AdriaBank's Head of Financial Reporting has left you a data file listing all potential capital instruments on the balance sheet. Some of them do **not** qualify as regulatory capital under Basel III. Your job is to classify each instrument correctly and compute the bank's CET1, Tier 1 and Total regulatory capital.
+
+### Background: Capital Tiers Under Basel III
+
+Recall the hierarchy:
+
+- **CET1 (Common Equity Tier 1)**: Highest quality capital. Includes common shares, retained earnings, and accumulated other comprehensive income (AOCI) — **net of regulatory deductions** (e.g., goodwill and intangible assets must be deducted).
+- **Additional Tier 1 (AT1)**: Includes instruments that can absorb losses while the bank is a going concern — for example, **non-cumulative perpetual preferred shares** and qualifying **contingent convertible bonds (CoCos)**. Critically, preferred shares must be **non-cumulative** to qualify as AT1. If cumulative, missed dividends accumulate — the instrument is too debt-like.
+- **Tier 2**: Supplementary capital — subordinated debt, certain loan loss provisions (up to 1.25% of credit risk RWA), and other qualifying instruments.
+
+### Task A1: Classify the Instruments
+
+AdriaBank's balance sheet includes the following items. For each instrument, determine:
+**(i)** Does it qualify as regulatory capital? If so, which tier?
+**(ii)** Is there anything that must be **deducted** from CET1?
+
+| #  | Instrument                                                       | Amount (\$M) | Classification (fill in) |
+|----|------------------------------------------------------------------|--------------|--------------------------|
+| 1  | Common shares (fully paid, issued)                               | 22           |                          |
+| 2  | Retained earnings                                                | 8            |                          |
+| 3  | Accumulated other comprehensive income (AOCI)                    | 2            |                          |
+| 4  | Goodwill (intangible asset, carried on balance sheet)            | 3            |                          |
+| 5  | Deferred tax assets (relying on future profitability)            | 1            |                          |
+| 6  | Non-cumulative perpetual preferred shares                        | 6            |                          |
+| 7  | CoCo bonds (mandatory conversion to equity if CET1 ratio < 5.5%) | 4            |                          |
+| 8  | **Cumulative** preference shares                                 | 5            |                          |
+| 9  | Subordinated notes (5 years remaining maturity)                  | 15           |                          |
+| 10 | General loan loss provisions                                     | 4            |                          |
+
+> **Hint on item 8:** Read the Basel III definition of AT1 carefully. The word "cumulative" is the key. What does it imply for the nature of missed dividends?
+
+> **Hint on item 10:** Loan loss provisions qualify for Tier 2 only up to **1.25% of credit risk RWA**. Credit risk RWA ≈ **\$476 million** (from Teams B and C). Calculate the cap and apply it.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task A1"}
+
+| #  | Instrument                                | Amount | Classification                                                                                                                              |
+|----|-------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | Common shares                             | $22M   | **CET1**                                                                                                                                    |
+| 2  | Retained earnings                         | $8M    | **CET1**                                                                                                                                    |
+| 3  | AOCI                                      | $2M    | **CET1**                                                                                                                                    |
+| 4  | Goodwill                                  | $3M    | **Deducted from CET1** (regulatory adjustment)                                                                                              |
+| 5  | Deferred tax assets                       | $1M    | **Deducted from CET1** (regulatory adjustment)                                                                                              |
+| 6  | Non-cumulative perpetual preferred shares | $6M    | **Additional Tier 1**                                                                                                                       |
+| 7  | CoCo bonds (CET1 trigger 5.5%)            | $4M    | **Additional Tier 1**                                                                                                                       |
+| 8  | Cumulative preference shares              | $5M    | **Does NOT qualify as AT1** (cumulative → too debt-like). Also does not clearly qualify as Tier 2 in this simplified example. **Excluded.** |
+| 9  | Subordinated notes (5-yr)                 | $15M   | **Tier 2**                                                                                                                                  |
+| 10 | General loan loss provisions              | $4M    | Cap = 1.25% × $476M = **$5.95M**. Since $4M < cap, all $4M qualifies. **Tier 2**                                                            |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Task A2: Compute Regulatory Capital
+
+Using your classifications from Task A1, complete the capital waterfall:
+
+| Capital Component                            | Calculation | Amount (\$M) |
+|----------------------------------------------|-------------|--------------|
+| Common shares + Retained earnings + AOCI     |             |              |
+| Less: regulatory deductions (goodwill + DTA) |             |              |
+| **= CET1 Capital**                           |             | **\_\_\_\_** |
+| Additional Tier 1 capital                    |             |              |
+| **= Tier 1 Capital** (CET1 + AT1)            |             | **\_\_\_\_** |
+| Tier 2 capital                               |             |              |
+| **= Total Capital** (Tier 1 + Tier 2)        |             | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task A2"}
+
+| Component          | Calculation             | Amount   |
+|--------------------|-------------------------|----------|
+| CET1 (gross)       | 22 + 8 + 2              | $32M     |
+| Less deductions    | −3 (goodwill) − 1 (DTA) | −$4M     |
+| **CET1 Capital**   |                         | **$28M** |
+| Additional Tier 1  | 6 + 4                   | $10M     |
+| **Tier 1 Capital** | 28 + 10                 | **$38M** |
+| Tier 2             | 15 + 4                  | $19M     |
+| **Total Capital**  | 38 + 19                 | **$57M** |
+
+Note: the $5M cumulative preference shares are **excluded**. This is an important trap — cumulative instruments cannot absorb losses as going-concern capital.
+:::
+:::
+
+\vspace{4pt}
+
+### Team A Board Briefing Preparation
+
+Using the template on the last page, prepare your **3-minute board briefing**.
+
+Key questions to address:
+
+1. How much CET1, Tier 1, and Total capital does AdriaBank have?
+2. Were there any instruments that looked like capital but didn't qualify? Why not?
+3. What should the board know about the quality of AdriaBank's capital base?
+
+
+\newpage
+
+## Team B — Credit Risk Division
+
+> **Your mission:** Compute the risk-weighted assets (RWA) for AdriaBank's **on-balance-sheet** assets. This forms the largest component of total RWA and determines how much "risky" activity the bank is running relative to its capital cushion.
+
+### Background: How On-Balance-Sheet RWA Works
+
+Under the standardised approach, each asset is assigned a **risk weight** that reflects its credit risk. The RWA for each asset is simply:
+
+$$\text{RWA} = \text{Asset value} \times \text{Risk weight}$$
+
+Total on-balance-sheet RWA is the sum across all assets.
+
+### Task B1: Map Risk Weights and Calculate RWA
+
+The following table lists AdriaBank's on-balance-sheet assets. Apply the correct risk weight and calculate the risk-weighted value.
+
+| Asset Type                                               | Amount (\$M) | Risk Weight | RWA (\$M)    |
+|----------------------------------------------------------|--------------|-------------|--------------|
+| Cash, Australian Treasury bonds, and deposits at the RBA | 50           | 0%          |              |
+| Local government bonds (S&P: AA−)                        | 80           | 20%         |              |
+| Loans to other Australian banks (S&P: BBB+)              | 40           | 100%        |              |
+| Standard eligible residential mortgages                  | 300          | 35%         |              |
+| Corporate loans (S&P: BB− to BBB+)                       | 150          | 100%        |              |
+| Corporate loans (S&P: B+ or lower)                       | 80           | 150%        |              |
+| **Total**                                                | **700**      |             | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task B1"}
+
+| Asset Type                     | Amount    | Risk Weight | RWA       |
+|--------------------------------|-----------|-------------|-----------|
+| Cash, Treasuries, RBA deposits | $50M      | 0%          | **$0**    |
+| Local government bonds (AA−)   | $80M      | 20%         | **$16M**  |
+| Interbank loans (BBB+)         | $40M      | 100%        | **$40M**  |
+| Standard residential mortgages | $300M     | 35%         | **$105M** |
+| Corporate loans (BB− to BBB+)  | $150M     | 100%        | **$150M** |
+| Corporate loans (B+ or lower)  | $80M      | 150%        | **$120M** |
+| **Total**                      | **$700M** |             | **$431M** |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Task B2: Reflect
+
+> **Discussion question (2 min with your group):** The residential mortgages receive a 35% risk weight while corporate loans to investment-grade companies (BB− to BBB+) receive 100%. Does this seem fair? What assumption does this embed about Australian housing?
+>
+> Can you think of a scenario where this assumption breaks down?
+
+\vspace{6pt}
+
+> **Extra challenge:** Suppose AdriaBank is considering selling its entire portfolio of low-rated corporate loans (B+ or lower) and replacing them with additional residential mortgages. How much would total on-BS RWA change? Is this a good idea purely from a capital ratio perspective? What are the risks?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task B2 Extra"}
+Selling $80M of B+ or lower corporate loans removes $120M of RWA.
+Replacing with $80M of standard mortgages (35%) adds $28M of RWA.
+Net change: −$120M + $28M = **−$92M reduction** in RWA.
+
+This would improve all risk-based capital ratios. However, it concentrates the bank's portfolio in Australian residential property — increasing geographic and sectoral concentration risk. It also assumes the bank can originate $80M of mortgages quickly. The RBA's financial stability concerns about housing concentration would also likely attract regulatory scrutiny.
+:::
+:::
+
+\vspace{4pt}
+
+### Team B Board Briefing Preparation
+
+Using the template on the last page, prepare your **3-minute board briefing**.
+
+Key questions to address:
+
+1. What is AdriaBank's total on-balance-sheet RWA?
+2. Which asset classes are driving the most risk?
+3. If the bank wanted to reduce RWA, where would you look first?
+
+\newpage
+
+## Team C — Markets & Derivatives Desk
+
+> **Your mission:** Compute the risk-weighted assets (RWA) for AdriaBank's **off-balance-sheet (OBS)** activities. OBS items don't sit on the balance sheet but can still create real credit losses — and regulators require capital to be held against them.
+
+### Background: Two Types of OBS Exposure
+
+**Type 1 — Contingent and guarantee-type contracts** (e.g., loan commitments, letters of credit):
+
+These are converted to an on-balance-sheet equivalent using a **Credit Conversion Factor (CCF)**:
+
+$$\text{Credit Equivalent Amount (CEA)} = \text{Face value} \times \text{CCF}$$
+
+Then: $\text{RWA} = \text{CEA} \times \text{Risk weight}$
+
+**Type 2 — Market contracts and derivatives** (e.g., interest rate swaps, FX forwards):
+
+These carry **counterparty credit risk**. The CEA has two components:
+
+- **Potential future exposure**: the risk if the counterparty defaults at some point in the future. $= \text{Notional} \times \text{Potential Exposure Conversion Factor (PECF)}$
+- **Current exposure**: the cost of replacing the contract today if the counterparty defaults now. $= \max(0, \text{Replacement cost})$
+
+$$\text{CEA} = \text{Potential future exposure} + \text{Current exposure}$$
+
+$$\text{RWA} = \text{CEA} \times 100\%$$
+
+### Task C1: OBS Contingent and Guarantee Contracts
+
+| OBS Item                    | Face Value (\$M) | CCF | CEA (\$M) | Risk Weight | RWA (\$M)    |
+|-----------------------------|------------------|-----|-----------|-------------|--------------|
+| 18-month loan commitment    | 100              | 0.4 |           | 20%         |              |
+| Standby letter of credit    | 50               | 1.0 |           | 20%         |              |
+| Commercial letter of credit | 40               | 0.2 |           | 75%         |              |
+| **Total**                   |                  |     |           |             | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task C1"}
+
+| OBS Item                    | Face Value | CCF | CEA  | Risk Weight | RWA      |
+|-----------------------------|------------|-----|------|-------------|----------|
+| 18-month loan commitment    | $100M      | 0.4 | $40M | 20%         | **$8M**  |
+| Standby letter of credit    | $50M       | 1.0 | $50M | 20%         | **$10M** |
+| Commercial letter of credit | $40M       | 0.2 | $8M  | 75%         | **$6M**  |
+| **Total**                   |            |     |      |             | **$24M** |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Task C2: OBS Market Contracts and Derivatives
+
+**Step 1 — Calculate potential future exposure:**
+
+| Contract                                       | Notional (\$M) | PECF  | Potential Exposure (\$M) |
+|------------------------------------------------|----------------|-------|--------------------------|
+| 5-year interest rate swap (fixed-for-floating) | 500            | 0.005 |                          |
+| 3-year FX forward contract                     | 200            | 0.050 |                          |
+
+**Step 2 — Calculate current exposure:**
+
+| Contract                   | Replacement Cost (\$M) | Current Exposure (\$M) |
+|----------------------------|------------------------|------------------------|
+| 5-year interest rate swap  | +8                     |                        |
+| 3-year FX forward contract | −4                     |                        |
+
+> **Recall:** Current exposure = Max(0, replacement cost). If the replacement cost is negative, the contract is out-of-the-money for AdriaBank — the counterparty owes AdriaBank nothing. There is no current credit exposure.
+
+**Step 3 — Calculate CEA and RWA:**
+
+| Contract                   | Potential Exposure (\$M) | Current Exposure (\$M) | CEA (\$M) | Risk Weight | RWA (\$M)    |
+|----------------------------|--------------------------|------------------------|-----------|-------------|--------------|
+| 5-year interest rate swap  |                          |                        |           | 100%        |              |
+| 3-year FX forward contract |                          |                        |           | 100%        |              |
+| **Total**                  |                          |                        |           |             | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task C2"}
+
+**Step 1:**
+
+| Contract        | Notional | PECF  | Potential Exposure |
+|-----------------|----------|-------|--------------------|
+| 5-yr IRS        | $500M    | 0.005 | **$2.5M**          |
+| 3-yr FX forward | $200M    | 0.050 | **$10M**           |
+
+**Step 2:**
+
+| Contract        | Replacement Cost | Current Exposure              |
+|-----------------|------------------|-------------------------------|
+| 5-yr IRS        | +$8M             | **$8M**                       |
+| 3-yr FX forward | −$4M             | **$0** (max of 0 and −4 is 0) |
+
+**Step 3:**
+
+| Contract        | PE    | CE  | CEA        | RW   | RWA        |
+|-----------------|-------|-----|------------|------|------------|
+| 5-yr IRS        | $2.5M | $8M | **$10.5M** | 100% | **$10.5M** |
+| 3-yr FX forward | $10M  | $0  | **$10M**   | 100% | **$10M**   |
+| **Total**       |       |     |            |      | **$20.5M** |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Task C3: Total OBS RWA
+
+| OBS Category                       | RWA (\$M)    |
+|------------------------------------|--------------|
+| Contingent and guarantee contracts |              |
+| Market contracts and derivatives   |              |
+| **Total OBS RWA**                  | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task C3"}
+
+| OBS Category                       | RWA        |
+|------------------------------------|------------|
+| Contingent and guarantee contracts | $24M       |
+| Market contracts and derivatives   | $20.5M     |
+| **Total OBS RWA**                  | **$44.5M** |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Team C Board Briefing Preparation
+
+Using the template on the last page, prepare your **3-minute board briefing**.
+
+Key questions to address:
+
+1. What is AdriaBank's total OBS RWA?
+2. Why do we require capital against off-balance-sheet items? Aren't they off the balance sheet for a reason?
+3. The FX forward has a negative replacement cost — does this mean AdriaBank has zero credit exposure? Explain.
+
+\newpage
+
+## Team D — Strategy & Regulatory Affairs
+
+> **Your mission:** You are the Chief Risk Officer. Once the other teams have finished, collect their results and assemble the complete capital adequacy picture for AdriaBank. Then run a stress test and advise the Board on what must be done — including whether the planned dividend can proceed.
+
+\vspace{8pt}
+
+> **For Team D only:** You will receive Group A, B, and C's results mid-workshop. You also have the following additional information: AdriaBank's **RWA for market risk = \$35 million** and **RWA for operational risk = \$25 million**. The bank's total on- and off-balance-sheet exposure (for leverage ratio purposes) is **\$1,050 million**. APRA has currently set the **Countercyclical Capital Buffer (CCyB) at 1.0%**.
+
+
+### Task D1: Assemble Total RWA
+
+Collect figures from Teams B and C, then add the market risk and operational risk RWA provided separately.
+
+| RWA Component                               | RWA (\$M)    |
+|---------------------------------------------|--------------|
+| On-balance-sheet credit risk (from Team B)  |              |
+| Off-balance-sheet credit risk (from Team C) |              |
+| Market risk (provided)                      | 35           |
+| Operational risk (provided)                 | 25           |
+| **Total RWA**                               | **\_\_\_\_** |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task D1"}
+
+| Component         | RWA         |
+|-------------------|-------------|
+| On-BS credit risk | $431M       |
+| OBS credit risk   | $44.5M      |
+| Market risk       | $35M        |
+| Operational risk  | $25M        |
+| **Total RWA**     | **$535.5M** |
+
+:::
+:::
+
+\vspace{4pt}
+
+### Task D2: Calculate Capital Ratios
+
+Using the capital figures from Team A and total RWA from Task D1:
+
+| Ratio                 | Formula                            | Calculation | Result | Minimum Required |
+|-----------------------|------------------------------------|-------------|--------|------------------|
+| CET1 capital ratio    | CET1 / Total RWA                   |             |        | ≥ 4.5%           |
+| Tier 1 capital ratio  | Tier 1 / Total RWA                 |             |        | ≥ 6.0%           |
+| Total capital ratio   | Total capital / Total RWA          |             |        | ≥ 8.0%           |
+| Tier 1 leverage ratio | Tier 1 / Total exposure (\$1,050M) |             |        | ≥ 3.0%           |
+
+Does AdriaBank pass all four minimum requirements? Circle: **YES / NO**
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task D2"}
+
+| Ratio    | Calculation | Result     | Pass?    |
+|----------|-------------|------------|----------|
+| CET1     | 28 / 535.5  | **5.23%**  | ✓ ≥ 4.5% |
+| Tier 1   | 38 / 535.5  | **7.10%**  | ✓ ≥ 6.0% |
+| Total    | 57 / 535.5  | **10.65%** | ✓ ≥ 8.0% |
+| Leverage | 38 / 1050   | **3.62%**  | ✓ ≥ 3.0% |
+
+On paper: **all four minimum requirements are met.**
+:::
+:::
+
+\vspace{4pt}
+
+### Task D3: The Capital Buffer Test — Here's Where It Gets Interesting
+
+Meeting the minimum ratios is not enough. Under Basel III, banks must also maintain the **Capital Conservation Buffer (CCB)** and any applicable **Countercyclical Capital Buffer (CCyB)**.
+
+APRA has currently set the CCyB at **1.0%**.
+
+**Step 1 — Calculate the required CET1 ratio including all buffers:**
+
+$$\text{Required CET1} = \text{Minimum CET1} + \text{CCB} + \text{CCyB} = 4.5\% + 2.5\% + \underline{\hspace{1cm}}\% = \underline{\hspace{1cm}}\%$$
+
+**Step 2 — Compare AdriaBank's actual CET1 ratio to the required level:**
+
+| | Required (with buffers) | Actual (from D2) | Outcome |
+|-|------------------------|-----------------|---------|
+| CET1 capital ratio | | | |
+
+**Step 3 — Consequences:**
+
+If a bank's CET1 ratio falls short of the required level (including buffers), what constraints does Basel III impose on the bank?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+**Step 4 — The Dividend Question:**
+
+AdriaBank's board was planning to pay a **$4 million dividend** this quarter. Based on your analysis, should this dividend proceed?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task D3"}
+
+**Step 1:**
+Required CET1 = 4.5% + 2.5% + 1.0% = **8.0%**
+
+**Step 2:**
+
+| | Required | Actual | Outcome |
+|-|----------|--------|---------|
+| CET1 | 8.0% | 5.23% | **FAIL — shortfall of 2.77 percentage points** |
+
+**Step 3:**
+When a bank's CET1 ratio falls below the combined buffer requirement (minimum + CCB + CCyB), Basel III **restricts capital distributions**. Specifically, the bank cannot pay dividends, conduct share buybacks, or pay discretionary bonuses to staff, until the buffer is restored.
+
+**Step 4:**
+**The $4 million dividend must NOT proceed.** The bank is already in breach of the combined CET1 buffer requirement. Paying a dividend would further deplete CET1 capital and deepen the breach. The Board must be informed immediately.
+
+This is the core finding of the workshop: AdriaBank is **technically compliant** on minimum ratios but is **in breach of its capital buffer requirements** — a situation that must be disclosed to APRA and remedied.
+:::
+:::
+
+\vspace{4pt}
+
+### Task D4: Stress Test — What if Things Get Worse?
+
+APRA is conducting its review precisely because the economy is showing stress. Consider the following scenario:
+
+> House prices in major Australian cities have fallen 15%. As a result, AdriaBank estimates that **3% of its residential mortgage portfolio will default**, with an average **loss given default (LGD) of 40%**.
+
+**How much additional capital loss does this represent?**
+
+$$\text{Mortgage portfolio} = \$300M \quad \Rightarrow \quad \text{Expected loss} = 300 \times 3\% \times 40\% = \$\underline{\hspace{1cm}}\text{M}$$
+
+**What happens to CET1 capital after absorbing this loss?**
+
+$$\text{New CET1} = \$28M - \$\underline{\hspace{1cm}}M = \$\underline{\hspace{1cm}}M$$
+
+**What is the new CET1 ratio?** (Assume RWA is unchanged for simplicity.)
+
+$$\text{New CET1 ratio} = \frac{\$\underline{\hspace{1cm}}M}{\$535.5M} = \underline{\hspace{1cm}}\%$$
+
+Is the bank now in breach of even the **minimum** CET1 requirement of 4.5%?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution — Task D4"}
+
+Expected loss from mortgage defaults = $300M × 3% × 40% = **$3.6M**
+
+New CET1 = $28M − $3.6M = **$24.4M**
+
+New CET1 ratio = $24.4M / $535.5M = **4.56%**
+
+This is above 4.5% — but only just. The bank is now even further below the combined buffer requirement (8.0%). And this is a relatively modest stress scenario. A more severe shock (say, 5% default rate or 50% LGD) would breach even the minimum 4.5% requirement. This illustrates why the capital buffer exists — it is the "advance warning system" before the hard minimum is breached.
+:::
+:::
+
+\vspace{4pt}
+
+### Task D5: Recommendations
+
+Based on your analysis, draft three specific recommendations for the Board:
+
+1. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+2. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+3. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Suggested Recommendations"}
+1. **Immediately cancel the planned $4M dividend** and communicate this to shareholders, citing the capital buffer shortfall.
+2. **Raise additional CET1 capital** — either through a rights issue (new shares) or by retaining all earnings for the next 2–3 quarters until the CET1 ratio exceeds 8%.
+3. **Review high-RWA assets** — consider whether some B+ or lower corporate loans can be reduced, sold, or offset with credit protection (guarantees) to reduce credit risk RWA and improve the CET1 ratio without diluting equity.
+4. **(Optional)** Engage proactively with APRA before the inspection — demonstrate the bank has identified the issue and is taking remedial action. Regulators typically respond better to self-identified problems than to those they discover themselves.
+:::
+:::
+
+\vspace{4pt}
+
+### Team D Board Briefing Preparation
+
+Using the template on the last page, prepare your **3-minute board briefing**.
+
+Key questions to address:
+
+1. Does AdriaBank meet all minimum capital requirements? Does it meet the buffer requirements?
+2. What is the consequence for the planned dividend?
+3. What are your three recommendations for restoring an adequate capital position?
+
+\newpage
+
+## The Board Meeting — Presentation Guidelines
+
+Each team delivers a **3-minute board briefing** in sequence: A → B → C → D.
+
+Team D's presentation is the climax — they synthesise everything and deliver the verdict.
+
+### Board Briefing Template
+
+Use this structure for your presentation:
+
+\vspace{6pt}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{10cm}|}
+\hline
+\textbf{Section} & \textbf{Your notes} \\
+\hline
+\textbf{1. What we found} \newline (30 sec) & \\[2cm]
+\hline
+\textbf{2. What it means} \newline (60 sec) & \\[2cm]
+\hline
+\textbf{3. The key risk / concern} \newline (30 sec) & \\[2cm]
+\hline
+\textbf{4. Our recommendation} \newline (60 sec) & \\[2cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{8pt}
+
+### Peer Assessment — Audience Scorecard
+
+While each team presents, **other teams fill in this scorecard**. Be honest — the teams presenting to a real APRA panel will need to handle tough questions.
+
+| Criterion                                                        | Team A | Team B | Team C | Team D |
+|------------------------------------------------------------------|--------|--------|--------|--------|
+| **Accuracy** — Numbers/classifications are correct (1–5)         |        |        |        |        |
+| **Clarity** — Explanation is clear and well-structured (1–5)     |        |        |        |        |
+| **Insight** — Goes beyond the numbers to the "so what" (1–5)     |        |        |        |        |
+| **Composure** — Confident delivery, handles questions well (1–5) |        |        |        |        |
+| **Total /20**                                                    |        |        |        |        |
