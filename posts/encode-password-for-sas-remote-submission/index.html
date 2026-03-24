@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +135,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -229,7 +235,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 
 
 <p>The <a href="https://wrds-www.wharton.upenn.edu/">Wharton Research Data Services (WRDS)</a> allows one to submit and execute SAS programs to the cloud. WRDS has an <a href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-sas/sas-from-your-computer/">instruction on accessing WRDS data from SAS on our own PCs</a>. Generally, you should use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>signon username=_prompt_;</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -238,13 +244,13 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Code for remote execution goes here. */</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>signoff;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>However, if you want to save the effort of entering username and password every time, you’ll need to <a href="https://wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-sas/encoding-your-wrds-password/">encode your password</a>. Concluding the two articles, basically you just need to follow the steps below.</p>
 <!-- more -->
 <section id="simple-steps" class="level2">
 <h2 class="anchored" data-anchor-id="simple-steps">Simple Steps</h2>
 <p>First, open your SAS program locally on your PC, run the following command and replace <code>1234567890</code> with your WRDS password:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> pwencode <span class="kw">in</span>=<span class="st">"1234567890"</span><span class="kw">; run</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> pwencode <span class="kw">in</span>=<span class="st">"1234567890"</span><span class="kw">; run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The output <code>{SAS002}23AA9C2811439227077603C8365060A44800CA1F</code> is the encoded password (which is <code>1234567890</code> in this example).</p>
 <div class="callout callout-style-simple callout-warning callout-titled" title="Do NOT share your SAS program with encoded password!">
 <div class="callout-header d-flex align-content-center">
@@ -252,7 +258,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Do NOT share your SAS program with encoded password!
+<span class="screen-reader-only">Warning</span>Do NOT share your SAS program with encoded password!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -260,24 +266,24 @@ Do NOT share your SAS program with encoded password!
 </div>
 </div>
 <p>Next, put the following statements at the beginning of your SAS program and replace <code>my_username</code> with your WRDS username:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>signon username=my_username password=<span class="st">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>signon username=my_username password=<span class="st">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After these statements, you’ll be able to submit your SAS program remotely to and execute on the WRDS server by enclosing your statements with <code>rsubmit</code> and <code>endrsubmit</code>. An example would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> download<span class="kw"> data</span>=comp.funda out=funda<span class="kw">; run</span>;</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As you can guess, this statement actually downloads the whole Compustat Fundamentals Annual to the local work directory, with the downloaded dataset also named <code>funda</code>.</p>
 <p>Lastly, after everything, you should run <code>signoff</code> to close the connection with WRDS.</p>
 <p>Full code is as below.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">%let</span> wrds=wrds-cloud.wharton.upenn.edu <span class="dv">4016</span>;</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">options</span> comamid=TCP remote=WRDS;</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>signon username=my_username password=<span class="st">"{SAS002}23AA9C2811439227077603C8365060A44800CA1F"</span>;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rsubmit;</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> download<span class="kw"> data</span>=comp.funda out=funda<span class="kw">; run</span>;</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>endrsubmit;</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>signoff;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>signoff;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Replace <code>my_username</code> and the encoded password with your actual WRDS username and encoded password, paste it in the SAS program editor and press <code>F3</code>. You’ll be downloading <code>comp.funda</code> in a few seconds!</p>
 </section>
 <section id="video-instruction" class="level2">
@@ -340,13 +346,14 @@ Do NOT share your SAS program with encoded password!
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

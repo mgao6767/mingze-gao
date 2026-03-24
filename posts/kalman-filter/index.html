@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,7 +133,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -159,7 +164,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -387,7 +393,7 @@ z_t = H_t x_t + u_t
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kalman Gain
+<span class="screen-reader-only">Tip</span>Kalman Gain
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -428,7 +434,7 @@ k_t = \frac{P_{t|t-1} H_t}{H_t^2 P_{t|t-1} + R_t}.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why <span class="math inline">\(k_t\)</span> and <span class="math inline">\(k_t H_t\)</span> show up in different places? A ChatGPT answer
+<span class="screen-reader-only">Note</span>Why <span class="math inline">\(k_t\)</span> and <span class="math inline">\(k_t H_t\)</span> show up in different places? A ChatGPT answer
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -476,7 +482,7 @@ Z_t = H_t X_t + u_t
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kalman filter in a nutshell
+<span class="screen-reader-only">Tip</span>Kalman filter in a nutshell
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -530,7 +536,7 @@ P_{t|t} = \big(I - K_t H_t \big) P_{t|t-1}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Recursive nature of the Kalman filter
+<span class="screen-reader-only">Note</span>Recursive nature of the Kalman filter
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -591,8 +597,8 @@ Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
 <section id="python" class="level4">
 <h4 class="anchored" data-anchor-id="python">Python</h4>
 <p>Here’s a handwritten simple example for MLE in Python:</p>
-<div id="ae8347ed" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div id="625d8dcc" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> det, inv</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
@@ -689,7 +695,7 @@ Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
 <span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'True R: </span><span class="sc">{</span>R[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.90</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
 <span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'Estimated Q: </span><span class="sc">{</span>estimated_Q[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.85</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
 <span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'Estimated R: </span><span class="sc">{</span>estimated_R[<span class="dv">0</span>,<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.80</span>), xycoords<span class="op">=</span><span class="st">'axes fraction'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>)</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -768,13 +774,14 @@ Z_t = X_t + u_t, \quad u_t \sim \mathcal{N}(0, R)
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

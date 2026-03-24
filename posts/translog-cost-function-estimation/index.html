@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,14 +90,19 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -148,7 +153,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -179,7 +184,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -350,7 +356,7 @@ d\ln C = d\ln \bar{W} \sum_{i=1}^{n} \gamma_i + d\ln \bar{W}^2 \frac{1}{2}\sum_{
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Do NOT forget to impose the constraint!
+<span class="screen-reader-only">Warning</span>Do NOT forget to impose the constraint!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -427,7 +433,7 @@ Do NOT forget to impose the constraint!
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-SFA: pooled or panel?
+<span class="screen-reader-only">Note</span>SFA: pooled or panel?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -484,7 +490,7 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 <section id="code-examples" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples">Code Examples</h2>
 <p>Here I demonstrate how to estimate translog function for banks. Specifically, I start with the bank-year data from BankScope downloaded via WRDS.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> ctrycode == <span class="st">"US"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> ctrycode == <span class="st">"US"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> special == <span class="st">"Commercial banks"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Use year-end data</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> closdate == <span class="fu">mdy</span>(12, 31, <span class="fu">year</span>(closdate))</span>
@@ -524,9 +530,9 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logQ  = <span class="fu">log</span>(Q)</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logC  = <span class="fu">log</span>(C_s)</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logW2 = <span class="fu">log</span>(W2_s)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logW3 = <span class="fu">log</span>(W3_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logW3 = <span class="fu">log</span>(W3_s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now it comes to the estimation. In some cases, like the one below with time fixed effects, Stata may fail to start the MLE process with an error “initial values not feasible”.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">frontier</span> logC c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.<span class="fu">year</span>, cost</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">frontier</span> logC c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.<span class="fu">year</span>, cost</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>According to this <a href="https://www.stata.com/statalist/archive/2003-05/msg00650.html">Stata mail list</a>, the reason is because Stata uses a method of moments estimator to find the starting values for MLE. For some datasets, especially those with almost no inefficiency effect, these starting values will not be feasible.</p>
 <p>The solution, as I summarize, is to supply the starting values using <code>from()</code> (for half-normal or exponential models) or <code>ufrom()</code> (for truncated-normal model). Specifically,</p>
 <ol type="1">
@@ -534,17 +540,17 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 <li>Use the natural log of the square of RMSE as the starting value for <code>lnsig2v</code> parameter, the natural log of variance of the idiosyncratic error.</li>
 <li>Use a small positive number, say 0.1, as the starting value for the <code>lnsig2u</code> parameter, the natural log of the variance of the log of the inefficiency term.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// A simple linear regression</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// A simple linear regression</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> rhs = <span class="st">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 i.year"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span>  logC <span class="ot">${rhs}</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// matrix b0_hnormal is [b..., lnsig2v, lnsig2u]</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> b0_hnormal = <span class="fu">e</span>(b), <span class="fu">ln</span>(<span class="fu">e</span>(rmse)^2) , .1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> b0_hnormal = <span class="fu">e</span>(b), <span class="fu">ln</span>(<span class="fu">e</span>(rmse)^2) , .1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, estimate SFA with the given starting values <code>b0_hnormal</code>. I additionally specify options <code>difficult</code> to automatically switch optimization algorithm. <code>iter</code> option may be used to limit the maximum number of iterations.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">frontier</span> logC <span class="ot">${rhs}</span>, cost from(b0_hnormal, copy) dist(hnormal) <span class="kw">difficult</span> iter(25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">frontier</span> logC <span class="ot">${rhs}</span>, cost from(b0_hnormal, copy) dist(hnormal) <span class="kw">difficult</span> iter(25)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This time the estimation successfully complete. We can compute the margin cost MC as</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> MC = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> MC = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If we use trend model instead, the above becomes</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> trend = <span class="fu">year</span> - 2015</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> trend = <span class="fu">year</span> - 2015</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> rhs = <span class="st">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3 c.trend c.trend#c.trend c.trend#c.logQ c.trend#(c.logW2 c.logW3)"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span>  logC <span class="ot">${rhs}</span></span>
@@ -554,16 +560,16 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">frontier</span> logC <span class="ot">${rhs}</span>, cost from(b0_hnormal, copy) dist(hnormal) <span class="kw">difficult</span> iter(25)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> MC_trend = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3 + _b[trend#logQ]*trend)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> MC_trend = C/Q * (_b[logQ] + 2*_b[logQ#logQ]*logQ + _b[logQ#logW2]*logW2 + _b[logQ#logW3]*logW3 + _b[trend#logQ]*trend)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case, <code>MC</code> and <code>MC_trend</code> have a correlation of 1.0, so the two models (time fixed effects and trend) are basically the same.</p>
 <p>Panel SFA can be done via <code>xtfrontier</code> in Stata (<code>xtfrontier</code> assumes truncated-normal).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> rhs = <span class="st">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> rhs = <span class="st">"c.logQ##(c.logQ c.logW2 c.logW3) c.logW2#c.logW3"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span>  logC <span class="ot">${rhs}</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">// matrix b0_xtfront is [b..., lnsigma2, lgtgamma, mu]</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// see Stata help xtfrontier for the meaning of the params</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> b0_xtfront = <span class="fu">e</span>(b), <span class="fu">ln</span>(<span class="fu">e</span>(rmse)^2) , .1 , .1</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">xtfrontier</span> logC <span class="ot">${rhs}</span>, cost ti from(b0_xtfront, copy) <span class="kw">difficult</span> iter(25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">xtfrontier</span> logC <span class="ot">${rhs}</span>, cost ti from(b0_xtfront, copy) <span class="kw">difficult</span> iter(25)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that with panel SFA, the <code>ti</code> option specifies a time-invariant firm inefficient. Yet the inefficiency estimate is again highly correlated with the pooled SFA.</p>
 
 
@@ -638,13 +644,14 @@ Zardkoohi, Asghar, Nanda Rangan, and James Kolari. 1986. <span>“Homogeneity <s
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

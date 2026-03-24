@@ -7,8 +7,8 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2025-09-01">
@@ -117,7 +117,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-9ae6873356c414e8693029ea579cd19d.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-f222cc739733b773b93a5a2764b6fb5e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -228,7 +228,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
   <h1 class="title">AFIN8003 Week 6 - Credit Risk I: Individual Loan Risk</h1>
   <p class="subtitle">Banking and Financial Intermediation</p>
 
@@ -1045,7 +1045,7 @@ h_2 &amp;= - \frac{[\frac{1}{2} \sigma^2 \tau + \ln(d)]}{\sigma \sqrt{\tau}}
 <div id="cell-fig-edf" class="cell" data-fig-location="center" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a></a></span>
 <span id="cb1-4"><a></a>mu <span class="op">=</span> <span class="dv">3</span>  <span class="co"># mean</span></span>
@@ -1077,7 +1077,7 @@ h_2 &amp;= - \frac{[\frac{1}{2} \sigma^2 \tau + \ln(d)]}{\sigma \sqrt{\tau}}
 <span id="cb1-30"><a></a>ax.set_ylabel(<span class="st">'Probability'</span>)</span>
 <span id="cb1-31"><a></a></span>
 <span id="cb1-32"><a></a><span class="co"># Show plot</span></span>
-<span id="cb1-33"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-33"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-edf" class="quarto-float quarto-figure quarto-figure-center">
@@ -1317,7 +1317,7 @@ Merton, Robert C. 1974. <span>“On the <span>Pricing</span> of <span>Corporate<
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1391,13 +1391,14 @@ Merton, Robert C. 1974. <span>“On the <span>Pricing</span> of <span>Corporate<
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,7 +133,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -159,7 +164,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -341,7 +347,7 @@ Z(k)=\frac{\textit{VR}(k)-1}{\sqrt{\phi(k)}}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Erratum
+<span class="screen-reader-only">Warning</span>Erratum
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -352,7 +358,7 @@ Erratum
 \end{equation}
 \]</span></p>
 <p>To correct it in the example code below, change the line 51 below to:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>delta_arr <span class="op">=</span> T <span class="op">*</span> b_arr <span class="op">/</span> np.square(np.<span class="bu">sum</span>(sqr_demeaned_x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>delta_arr <span class="op">=</span> T <span class="op">*</span> b_arr <span class="op">/</span> np.square(np.<span class="bu">sum</span>(sqr_demeaned_x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>I thank Simon Jurkatis for letting me know about the erratum.</p>
 </div>
 </div>
@@ -363,7 +369,7 @@ Erratum
 <h2 class="anchored" data-anchor-id="source-code">Source Code</h2>
 <p><img style="width:82px;height:20px" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT"></p>
 <p>This example Python code has been optimized for speed but serves only demonstration purpose. It may contain errors.</p>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="co"># LoMacKinlay.py</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="co"># LoMacKinlay.py</span></span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="im">from</span> numba <span class="im">import</span> jit</span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a></span>
@@ -443,7 +449,7 @@ Erratum
 <span id="annotated-cell-1-78"><a href="#annotated-cell-1-78"></a>            <span class="ss">f'Variance Ratio Test Statistic (k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">) Homoscedasticity Assumption'</span>: stat1,</span>
 <span id="annotated-cell-1-79"><a href="#annotated-cell-1-79"></a>            <span class="ss">f'Variance Ratio Test Statistic (k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">) Heteroscedasticity Assumption'</span>: stat2</span>
 <span id="annotated-cell-1-80"><a href="#annotated-cell-1-80"></a>        })</span>
-<span id="annotated-cell-1-81"><a href="#annotated-cell-1-81"></a>    <span class="cf">return</span> result</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-1-81"><a href="#annotated-cell-1-81"></a>    <span class="cf">return</span> result</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
@@ -459,7 +465,7 @@ Erratum
 </dd>
 </dl>
 <p>As an example, let’s create 1 million prices from random walk and estimate the variance ratio and two test statistics at various lags.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-4"><a href="#cb2-4"></a>    <span class="im">from</span> pprint <span class="im">import</span> pprint</span>
@@ -473,9 +479,9 @@ Erratum
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="co"># Test</span></span>
 <span id="cb2-13"><a href="#cb2-13"></a>    data <span class="op">=</span> pd.DataFrame(P, columns<span class="op">=</span>[<span class="st">'Price'</span>])</span>
 <span id="cb2-14"><a href="#cb2-14"></a>    result <span class="op">=</span> estimate(data)</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    pprint(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15"></a>    pprint(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In just a few seconds, the output is:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>[{<span class="st">'Variance Ratio (k=2)'</span>: <span class="fl">1.0003293867428107</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>[{<span class="st">'Variance Ratio (k=2)'</span>: <span class="fl">1.0003293867428107</span>,</span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="st">'Variance Ratio Test Statistic (k=2) Heteroscedasticity Assumption'</span>: <span class="fl">0.32904631796994205</span>,</span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">'Variance Ratio Test Statistic (k=2) Homoscedasticity Assumption'</span>: <span class="fl">0.3293865781172764</span>},</span>
 <span id="cb3-4"><a href="#cb3-4"></a> {<span class="st">'Variance Ratio (k=4)'</span>: <span class="fl">1.0007984480057008</span>,</span>
@@ -516,10 +522,10 @@ Erratum
 <span id="cb3-39"><a href="#cb3-39"></a>  <span class="st">'Variance Ratio Test Statistic (k=500) Homoscedasticity Assumption'</span>: <span class="fl">0.7065863036900603</span>},</span>
 <span id="cb3-40"><a href="#cb3-40"></a> {<span class="st">'Variance Ratio (k=1000)'</span>: <span class="fl">1.0187822241562867</span>,</span>
 <span id="cb3-41"><a href="#cb3-41"></a>  <span class="st">'Variance Ratio Test Statistic (k=1000) Heteroscedasticity Assumption'</span>: <span class="fl">0.5140697633208364</span>,</span>
-<span id="cb3-42"><a href="#cb3-42"></a>  <span class="st">'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption'</span>: <span class="fl">0.5147582201029187</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-42"><a href="#cb3-42"></a>  <span class="st">'Variance Ratio Test Statistic (k=1000) Homoscedasticity Assumption'</span>: <span class="fl">0.5147582201029187</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It’s easy to see that at all lags tested, we cannot reject the null hypothesis that this price series follows a random walk.</p>
 <p>For comparison purpose, below is an implementation in pure Python. It is more readable but is significantly slower.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> estimate_python(data, k<span class="op">=</span><span class="dv">5</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> estimate_python(data, k<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"A slow pure python implementation"</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>    prices <span class="op">=</span> data[<span class="st">'Price'</span>].to_numpy(dtype<span class="op">=</span>np.float64)</span>
 <span id="cb4-4"><a href="#cb4-4"></a>    log_prices <span class="op">=</span> np.log(prices)</span>
@@ -548,7 +554,7 @@ Erratum
 <span id="cb4-27"><a href="#cb4-27"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, k):</span>
 <span id="cb4-28"><a href="#cb4-28"></a>        phi2 <span class="op">+=</span> (<span class="dv">2</span><span class="op">*</span>(k<span class="op">-</span>j)<span class="op">/</span>k)<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> delta(j)</span>
 <span id="cb4-29"><a href="#cb4-29"></a></span>
-<span id="cb4-30"><a href="#cb4-30"></a>    <span class="cf">return</span> vr, (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi1), (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-30"><a href="#cb4-30"></a>    <span class="cf">return</span> vr, (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi1), (vr <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> np.sqrt(phi2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -605,13 +611,14 @@ Erratum
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

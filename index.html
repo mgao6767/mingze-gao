@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -35,14 +35,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,9 +113,12 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -126,7 +134,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -160,7 +168,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/favicon.png" alt="" class="navbar-logo">
+    <img src="./images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="./images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -292,7 +301,7 @@ Title
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1767790800000" data-listing-file-modified-sort="1767847122539" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="872" data-listing-title-sort="Fixing My Hacked Website" data-listing-filename-sort="index.qmd">
+<tr data-index="0" data-categories="UHJvZ3JhbW1pbmc=" data-listing-date-sort="1767790800000" data-listing-file-modified-sort="1771888138922" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="872" data-listing-title-sort="Fixing My Hacked Website" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jan 8, 2026</span>
 </td>
@@ -302,7 +311,7 @@ Title
 
 </tr>
 
-<tr data-index="1" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1758204000000" data-listing-file-modified-sort="1758261478390" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1368" data-listing-title-sort="A Calculator for Interpreting Economic Significance" data-listing-filename-sort="index.qmd">
+<tr data-index="1" data-categories="UmVzZWFyY2glMjBOb3Rlcw==" data-listing-date-sort="1758204000000" data-listing-file-modified-sort="1771888138749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1368" data-listing-title-sort="A Calculator for Interpreting Economic Significance" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Sep 19, 2025</span>
 </td>
@@ -312,7 +321,7 @@ Title
 
 </tr>
 
-<tr data-index="2" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1756821600000" data-listing-file-modified-sort="1757047043320" data-listing-date-modified-sort="1756908000000" data-listing-reading-time-sort="39" data-listing-word-count-sort="7681" data-listing-title-sort="Credit Risk Modelling (IRB)" data-listing-filename-sort="index.qmd">
+<tr data-index="2" data-categories="VGVhY2hpbmclMjBOb3Rlcw==" data-listing-date-sort="1756821600000" data-listing-file-modified-sort="1771888138863" data-listing-date-modified-sort="1756908000000" data-listing-reading-time-sort="39" data-listing-word-count-sort="7681" data-listing-title-sort="Credit Risk Modelling (IRB)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Sep 3, 2025</span>
 </td>
@@ -322,7 +331,7 @@ Title
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1756303200000" data-listing-file-modified-sort="1757044304916" data-listing-date-modified-sort="1756389600000" data-listing-reading-time-sort="29" data-listing-word-count-sort="5724" data-listing-title-sort="Research Workflow in R" data-listing-filename-sort="index.qmd">
+<tr data-index="3" data-listing-date-sort="1756303200000" data-listing-file-modified-sort="1771888139197" data-listing-date-modified-sort="1756389600000" data-listing-reading-time-sort="29" data-listing-word-count-sort="5724" data-listing-title-sort="Research Workflow in R" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 28, 2025</span>
 </td>
@@ -332,7 +341,7 @@ Title
 
 </tr>
 
-<tr data-index="4" data-categories="UmVzZWFyY2glMjBOb3RlcyUyQ1RlYWNoaW5nJTIwTm90ZXMlMkNQcm9ncmFtbWluZw==" data-listing-date-sort="1751292000000" data-listing-file-modified-sort="1751346901664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1251" data-listing-title-sort="ElasticNet from Portfolio Performance Tracking" data-listing-filename-sort="index.qmd">
+<tr data-index="4" data-categories="UmVzZWFyY2glMjBOb3RlcyUyQ1RlYWNoaW5nJTIwTm90ZXMlMkNQcm9ncmFtbWluZw==" data-listing-date-sort="1751292000000" data-listing-file-modified-sort="1771888138893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1251" data-listing-title-sort="ElasticNet from Portfolio Performance Tracking" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Jul 1, 2025</span>
 </td>
@@ -351,41 +360,41 @@ Title
 <section id="site-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="site-statistics">📊 Site statistics</h2>
 <div class="site-views-chart-container">
-<div id="3d54cb8b" class="cell" data-execution_count="1">
+<div id="7cb29f83" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>Last Updated:              2026-03-09
-Total Visitors (365 Days): 24,841
-Total Views (365 Days):    90,106
-Total Views (90 Days):     14,010
-Total Views (90 Days):     13,335 (winsorized at 99%)</code></pre>
+<pre><code>Last Updated:              2026-03-10
+Total Visitors (365 Days): 24,873
+Total Views (365 Days):    90,169
+Total Views (90 Days):     14,014
+Total Views (90 Days):     13,339 (winsorized at 99%)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 
 <style>
-  #altair-viz-c7dcf99312f74633a802555de4755ff7.vega-embed {
+  #altair-viz-73e0adab96274d1e96e08b46b9bde8a6.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-c7dcf99312f74633a802555de4755ff7.vega-embed details,
-  #altair-viz-c7dcf99312f74633a802555de4755ff7.vega-embed details summary {
+  #altair-viz-73e0adab96274d1e96e08b46b9bde8a6.vega-embed details,
+  #altair-viz-73e0adab96274d1e96e08b46b9bde8a6.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-c7dcf99312f74633a802555de4755ff7"></div>
+<div id="altair-viz-73e0adab96274d1e96e08b46b9bde8a6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c7dcf99312f74633a802555de4755ff7") {
-      outputDiv = document.getElementById("altair-viz-c7dcf99312f74633a802555de4755ff7");
+    if (outputDiv.id !== "altair-viz-73e0adab96274d1e96e08b46b9bde8a6") {
+      outputDiv = document.getElementById("altair-viz-73e0adab96274d1e96e08b46b9bde8a6");
     }
 
     const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega": "https://cdn.jsdelivr.net/npm/vega@6?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@6.1.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@7?noext",
     };
 
     function maybeLoadScript(lib, version) {
@@ -420,47 +429,47 @@ Total Views (90 Days):     13,335 (winsorized at 99%)</code></pre>
       let deps = ["vega-embed"];
       require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
-      maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
-        .then(() => maybeLoadScript("vega-embed", "6"))
+      maybeLoadScript("vega", "6")
+        .then(() => maybeLoadScript("vega-lite", "6.1.0"))
+        .then(() => maybeLoadScript("vega-embed", "7"))
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-61c799c600dfe3ed1d9453db8134ec12"}, "mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"field": "date", "type": "temporal"}, {"field": "views", "type": "quantitative"}], "x": {"axis": {"format": "%b %d"}, "field": "date", "scale": {"domain": ["2026-02-06T00:00:00", "2026-03-08T00:00:00"]}, "title": null, "type": "temporal"}, "y": {"field": "views", "title": "Views", "type": "quantitative"}}, "height": 300, "params": [{"name": "param_1", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "\ud83d\udcc8 Daily Site Views (Past 90 Days), winsorized at 99%", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-61c799c600dfe3ed1d9453db8134ec12": [{"date": "2025-12-09T00:00:00", "views": 160.0}, {"date": "2025-12-10T00:00:00", "views": 161.0}, {"date": "2025-12-11T00:00:00", "views": 161.0}, {"date": "2025-12-12T00:00:00", "views": 140.0}, {"date": "2025-12-13T00:00:00", "views": 100.0}, {"date": "2025-12-14T00:00:00", "views": 122.0}, {"date": "2025-12-15T00:00:00", "views": 119.0}, {"date": "2025-12-16T00:00:00", "views": 123.0}, {"date": "2025-12-17T00:00:00", "views": 134.0}, {"date": "2025-12-18T00:00:00", "views": 94.0}, {"date": "2025-12-19T00:00:00", "views": 128.0}, {"date": "2025-12-20T00:00:00", "views": 90.0}, {"date": "2025-12-21T00:00:00", "views": 109.0}, {"date": "2025-12-22T00:00:00", "views": 117.0}, {"date": "2025-12-23T00:00:00", "views": 116.0}, {"date": "2025-12-24T00:00:00", "views": 100.0}, {"date": "2025-12-25T00:00:00", "views": 96.0}, {"date": "2025-12-26T00:00:00", "views": 103.0}, {"date": "2025-12-27T00:00:00", "views": 104.0}, {"date": "2025-12-28T00:00:00", "views": 121.0}, {"date": "2025-12-29T00:00:00", "views": 139.0}, {"date": "2025-12-30T00:00:00", "views": 130.0}, {"date": "2025-12-31T00:00:00", "views": 95.0}, {"date": "2026-01-01T00:00:00", "views": 200.0}, {"date": "2026-01-02T00:00:00", "views": 344.37999999999954}, {"date": "2026-01-03T00:00:00", "views": 128.0}, {"date": "2026-01-04T00:00:00", "views": 105.0}, {"date": "2026-01-05T00:00:00", "views": 118.0}, {"date": "2026-01-06T00:00:00", "views": 151.0}, {"date": "2026-01-07T00:00:00", "views": 110.0}, {"date": "2026-01-08T00:00:00", "views": 157.0}, {"date": "2026-01-09T00:00:00", "views": 122.0}, {"date": "2026-01-10T00:00:00", "views": 106.0}, {"date": "2026-01-11T00:00:00", "views": 106.0}, {"date": "2026-01-12T00:00:00", "views": 138.0}, {"date": "2026-01-13T00:00:00", "views": 145.0}, {"date": "2026-01-14T00:00:00", "views": 175.0}, {"date": "2026-01-15T00:00:00", "views": 144.0}, {"date": "2026-01-16T00:00:00", "views": 142.0}, {"date": "2026-01-17T00:00:00", "views": 109.0}, {"date": "2026-01-18T00:00:00", "views": 126.0}, {"date": "2026-01-19T00:00:00", "views": 131.0}, {"date": "2026-01-20T00:00:00", "views": 124.0}, {"date": "2026-01-21T00:00:00", "views": 182.0}, {"date": "2026-01-22T00:00:00", "views": 193.0}, {"date": "2026-01-23T00:00:00", "views": 236.0}, {"date": "2026-01-24T00:00:00", "views": 187.0}, {"date": "2026-01-25T00:00:00", "views": 109.0}, {"date": "2026-01-26T00:00:00", "views": 163.0}, {"date": "2026-01-27T00:00:00", "views": 171.0}, {"date": "2026-01-28T00:00:00", "views": 170.0}, {"date": "2026-01-29T00:00:00", "views": 152.0}, {"date": "2026-01-30T00:00:00", "views": 183.0}, {"date": "2026-01-31T00:00:00", "views": 123.0}, {"date": "2026-02-01T00:00:00", "views": 144.0}, {"date": "2026-02-02T00:00:00", "views": 149.0}, {"date": "2026-02-03T00:00:00", "views": 152.0}, {"date": "2026-02-04T00:00:00", "views": 177.0}, {"date": "2026-02-05T00:00:00", "views": 168.0}, {"date": "2026-02-06T00:00:00", "views": 183.0}, {"date": "2026-02-07T00:00:00", "views": 93.0}, {"date": "2026-02-08T00:00:00", "views": 117.0}, {"date": "2026-02-09T00:00:00", "views": 118.0}, {"date": "2026-02-10T00:00:00", "views": 143.0}, {"date": "2026-02-11T00:00:00", "views": 152.0}, {"date": "2026-02-12T00:00:00", "views": 169.0}, {"date": "2026-02-13T00:00:00", "views": 139.0}, {"date": "2026-02-14T00:00:00", "views": 134.0}, {"date": "2026-02-15T00:00:00", "views": 122.0}, {"date": "2026-02-16T00:00:00", "views": 152.0}, {"date": "2026-02-17T00:00:00", "views": 150.0}, {"date": "2026-02-18T00:00:00", "views": 176.0}, {"date": "2026-02-19T00:00:00", "views": 179.0}, {"date": "2026-02-20T00:00:00", "views": 189.0}, {"date": "2026-02-21T00:00:00", "views": 169.0}, {"date": "2026-02-22T00:00:00", "views": 145.0}, {"date": "2026-02-23T00:00:00", "views": 144.0}, {"date": "2026-02-24T00:00:00", "views": 213.0}, {"date": "2026-02-25T00:00:00", "views": 223.0}, {"date": "2026-02-26T00:00:00", "views": 172.0}, {"date": "2026-02-27T00:00:00", "views": 167.0}, {"date": "2026-02-28T00:00:00", "views": 194.0}, {"date": "2026-03-01T00:00:00", "views": 132.0}, {"date": "2026-03-02T00:00:00", "views": 163.0}, {"date": "2026-03-03T00:00:00", "views": 261.0}, {"date": "2026-03-04T00:00:00", "views": 175.0}, {"date": "2026-03-05T00:00:00", "views": 232.0}, {"date": "2026-03-06T00:00:00", "views": 153.0}, {"date": "2026-03-07T00:00:00", "views": 132.0}, {"date": "2026-03-08T00:00:00", "views": 142.0}]}}, {"actions": false, "mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-650c430f6280b05271650c6b26bcf371"}, "mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"field": "date", "type": "temporal"}, {"field": "views", "type": "quantitative"}], "x": {"axis": {"format": "%b %d"}, "field": "date", "scale": {"domain": ["2026-02-07T00:00:00", "2026-03-09T00:00:00"]}, "title": null, "type": "temporal"}, "y": {"field": "views", "title": "Views", "type": "quantitative"}}, "height": 300, "params": [{"name": "param_1e9efca18e7a2868", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "\ud83d\udcc8 Daily Site Views (Past 90 Days), winsorized at 99%", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-650c430f6280b05271650c6b26bcf371": [{"date": "2025-12-10T00:00:00", "views": 161.0}, {"date": "2025-12-11T00:00:00", "views": 161.0}, {"date": "2025-12-12T00:00:00", "views": 140.0}, {"date": "2025-12-13T00:00:00", "views": 100.0}, {"date": "2025-12-14T00:00:00", "views": 122.0}, {"date": "2025-12-15T00:00:00", "views": 119.0}, {"date": "2025-12-16T00:00:00", "views": 123.0}, {"date": "2025-12-17T00:00:00", "views": 134.0}, {"date": "2025-12-18T00:00:00", "views": 94.0}, {"date": "2025-12-19T00:00:00", "views": 128.0}, {"date": "2025-12-20T00:00:00", "views": 90.0}, {"date": "2025-12-21T00:00:00", "views": 109.0}, {"date": "2025-12-22T00:00:00", "views": 117.0}, {"date": "2025-12-23T00:00:00", "views": 116.0}, {"date": "2025-12-24T00:00:00", "views": 100.0}, {"date": "2025-12-25T00:00:00", "views": 96.0}, {"date": "2025-12-26T00:00:00", "views": 103.0}, {"date": "2025-12-27T00:00:00", "views": 104.0}, {"date": "2025-12-28T00:00:00", "views": 121.0}, {"date": "2025-12-29T00:00:00", "views": 139.0}, {"date": "2025-12-30T00:00:00", "views": 130.0}, {"date": "2025-12-31T00:00:00", "views": 95.0}, {"date": "2026-01-01T00:00:00", "views": 200.0}, {"date": "2026-01-02T00:00:00", "views": 344.37999999999954}, {"date": "2026-01-03T00:00:00", "views": 128.0}, {"date": "2026-01-04T00:00:00", "views": 105.0}, {"date": "2026-01-05T00:00:00", "views": 118.0}, {"date": "2026-01-06T00:00:00", "views": 151.0}, {"date": "2026-01-07T00:00:00", "views": 110.0}, {"date": "2026-01-08T00:00:00", "views": 157.0}, {"date": "2026-01-09T00:00:00", "views": 122.0}, {"date": "2026-01-10T00:00:00", "views": 106.0}, {"date": "2026-01-11T00:00:00", "views": 106.0}, {"date": "2026-01-12T00:00:00", "views": 138.0}, {"date": "2026-01-13T00:00:00", "views": 145.0}, {"date": "2026-01-14T00:00:00", "views": 175.0}, {"date": "2026-01-15T00:00:00", "views": 144.0}, {"date": "2026-01-16T00:00:00", "views": 142.0}, {"date": "2026-01-17T00:00:00", "views": 109.0}, {"date": "2026-01-18T00:00:00", "views": 126.0}, {"date": "2026-01-19T00:00:00", "views": 131.0}, {"date": "2026-01-20T00:00:00", "views": 124.0}, {"date": "2026-01-21T00:00:00", "views": 182.0}, {"date": "2026-01-22T00:00:00", "views": 193.0}, {"date": "2026-01-23T00:00:00", "views": 236.0}, {"date": "2026-01-24T00:00:00", "views": 187.0}, {"date": "2026-01-25T00:00:00", "views": 109.0}, {"date": "2026-01-26T00:00:00", "views": 163.0}, {"date": "2026-01-27T00:00:00", "views": 171.0}, {"date": "2026-01-28T00:00:00", "views": 170.0}, {"date": "2026-01-29T00:00:00", "views": 152.0}, {"date": "2026-01-30T00:00:00", "views": 183.0}, {"date": "2026-01-31T00:00:00", "views": 123.0}, {"date": "2026-02-01T00:00:00", "views": 144.0}, {"date": "2026-02-02T00:00:00", "views": 149.0}, {"date": "2026-02-03T00:00:00", "views": 152.0}, {"date": "2026-02-04T00:00:00", "views": 177.0}, {"date": "2026-02-05T00:00:00", "views": 168.0}, {"date": "2026-02-06T00:00:00", "views": 183.0}, {"date": "2026-02-07T00:00:00", "views": 93.0}, {"date": "2026-02-08T00:00:00", "views": 117.0}, {"date": "2026-02-09T00:00:00", "views": 118.0}, {"date": "2026-02-10T00:00:00", "views": 143.0}, {"date": "2026-02-11T00:00:00", "views": 152.0}, {"date": "2026-02-12T00:00:00", "views": 169.0}, {"date": "2026-02-13T00:00:00", "views": 139.0}, {"date": "2026-02-14T00:00:00", "views": 134.0}, {"date": "2026-02-15T00:00:00", "views": 122.0}, {"date": "2026-02-16T00:00:00", "views": 152.0}, {"date": "2026-02-17T00:00:00", "views": 150.0}, {"date": "2026-02-18T00:00:00", "views": 176.0}, {"date": "2026-02-19T00:00:00", "views": 179.0}, {"date": "2026-02-20T00:00:00", "views": 189.0}, {"date": "2026-02-21T00:00:00", "views": 169.0}, {"date": "2026-02-22T00:00:00", "views": 145.0}, {"date": "2026-02-23T00:00:00", "views": 144.0}, {"date": "2026-02-24T00:00:00", "views": 213.0}, {"date": "2026-02-25T00:00:00", "views": 223.0}, {"date": "2026-02-26T00:00:00", "views": 172.0}, {"date": "2026-02-27T00:00:00", "views": 167.0}, {"date": "2026-02-28T00:00:00", "views": 194.0}, {"date": "2026-03-01T00:00:00", "views": 132.0}, {"date": "2026-03-02T00:00:00", "views": 163.0}, {"date": "2026-03-03T00:00:00", "views": 261.0}, {"date": "2026-03-04T00:00:00", "views": 175.0}, {"date": "2026-03-05T00:00:00", "views": 232.0}, {"date": "2026-03-06T00:00:00", "views": 153.0}, {"date": "2026-03-07T00:00:00", "views": 132.0}, {"date": "2026-03-08T00:00:00", "views": 142.0}, {"date": "2026-03-09T00:00:00", "views": 164.0}]}}, {"actions": false, "mode": "vega-lite"});
 </script>
 </div>
 </div>
 </div>
 <p><br></p>
 <div class="site-views-by-region-container">
-<div id="c8aefc73" class="cell" data-execution_count="2">
+<div id="833f41a9" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-  #altair-viz-a13185a5ea8a4c639ca0de7e74bb040e.vega-embed {
+  #altair-viz-0e0b28b10fb24ab381a467c97bed5516.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-a13185a5ea8a4c639ca0de7e74bb040e.vega-embed details,
-  #altair-viz-a13185a5ea8a4c639ca0de7e74bb040e.vega-embed details summary {
+  #altair-viz-0e0b28b10fb24ab381a467c97bed5516.vega-embed details,
+  #altair-viz-0e0b28b10fb24ab381a467c97bed5516.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-a13185a5ea8a4c639ca0de7e74bb040e"></div>
+<div id="altair-viz-0e0b28b10fb24ab381a467c97bed5516"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a13185a5ea8a4c639ca0de7e74bb040e") {
-      outputDiv = document.getElementById("altair-viz-a13185a5ea8a4c639ca0de7e74bb040e");
+    if (outputDiv.id !== "altair-viz-0e0b28b10fb24ab381a467c97bed5516") {
+      outputDiv = document.getElementById("altair-viz-0e0b28b10fb24ab381a467c97bed5516");
     }
 
     const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega": "https://cdn.jsdelivr.net/npm/vega@6?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@6.1.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@7?noext",
     };
 
     function maybeLoadScript(lib, version) {
@@ -495,13 +504,13 @@ Total Views (90 Days):     13,335 (winsorized at 99%)</code></pre>
       let deps = ["vega-embed"];
       require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
-      maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
-        .then(() => maybeLoadScript("vega-embed", "6"))
+      maybeLoadScript("vega", "6")
+        .then(() => maybeLoadScript("vega-lite", "6.1.0"))
+        .then(() => maybeLoadScript("vega-embed", "7"))
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-7cda6256e1e73b14abadf925d039369f"}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "region", "type": "nominal"}, {"field": "views", "type": "quantitative"}], "x": {"field": "views", "title": "Views", "type": "quantitative"}, "y": {"field": "region", "sort": "-x", "title": null, "type": "nominal"}}, "height": 400, "title": "\ud83c\udf0d Top 20 Regions by Views (Past 90 Days)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-7cda6256e1e73b14abadf925d039369f": [{"region": "United States", "views": 4500}, {"region": "China", "views": 2142}, {"region": "Australia", "views": 1425}, {"region": "United Kingdom", "views": 911}, {"region": "Singapore", "views": 469}, {"region": "Germany", "views": 394}, {"region": "Canada", "views": 356}, {"region": "Hong Kong", "views": 277}, {"region": "France", "views": 275}, {"region": "Netherlands", "views": 220}, {"region": "India", "views": 194}, {"region": "Italy", "views": 134}, {"region": "Taiwan", "views": 125}, {"region": "Switzerland", "views": 122}, {"region": "Japan", "views": 121}, {"region": "Poland", "views": 119}, {"region": "Spain", "views": 119}, {"region": "South Korea", "views": 114}, {"region": "Indonesia", "views": 110}, {"region": "Hungary", "views": 105}]}}, {"actions": false, "mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-33d8ee734b85b35e868b65784c9880b3"}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "region", "type": "nominal"}, {"field": "views", "type": "quantitative"}], "x": {"field": "views", "title": "Views", "type": "quantitative"}, "y": {"field": "region", "sort": "-x", "title": null, "type": "nominal"}}, "height": 400, "title": "\ud83c\udf0d Top 20 Regions by Views (Past 90 Days)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-33d8ee734b85b35e868b65784c9880b3": [{"region": "United States", "views": 4474}, {"region": "China", "views": 2123}, {"region": "Australia", "views": 1451}, {"region": "United Kingdom", "views": 897}, {"region": "Singapore", "views": 482}, {"region": "Germany", "views": 393}, {"region": "Canada", "views": 352}, {"region": "France", "views": 276}, {"region": "Hong Kong", "views": 275}, {"region": "Netherlands", "views": 229}, {"region": "India", "views": 192}, {"region": "Taiwan", "views": 137}, {"region": "Italy", "views": 134}, {"region": "Poland", "views": 125}, {"region": "Switzerland", "views": 124}, {"region": "Japan", "views": 122}, {"region": "Spain", "views": 119}, {"region": "South Korea", "views": 113}, {"region": "Indonesia", "views": 110}, {"region": "Hungary", "views": 105}]}}, {"actions": false, "mode": "vega-lite"});
 </script>
 </div>
 </div>
@@ -564,13 +573,14 @@ Total Views (90 Days):     13,335 (winsorized at 99%)</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

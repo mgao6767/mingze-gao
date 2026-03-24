@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +135,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -224,7 +230,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <p>Never underestimate what programmers can do.</p>
 <!-- more -->
 <p>The code below shows a fully-functioning Bitcoin address generator in obfuscated Python (2.5-2.7), which I saw in <a href="https://preshing.com/20131219/bitcoin-address-generator-in-obfuscated-python/">an interesting article</a> posted in 2013.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_                   <span class="op">=</span><span class="vs">r"""A</span><span class="kw">(</span><span class="vs">W/2,</span><span class="op">*</span><span class="vs">M</span><span class="kw">(</span><span class="vs">3</span><span class="op">*</span><span class="vs">G</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_                   <span class="op">=</span><span class="vs">r"""A</span><span class="kw">(</span><span class="vs">W/2,</span><span class="op">*</span><span class="vs">M</span><span class="kw">(</span><span class="vs">3</span><span class="op">*</span><span class="vs">G</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="vs">               </span><span class="op">*</span><span class="vs">G</span><span class="op">*</span><span class="vs">V</span><span class="kw">(</span><span class="vs">2</span><span class="op">*</span><span class="vs">J%P</span><span class="kw">)</span><span class="vs">,G,J,G</span><span class="kw">)</span><span class="op">+</span><span class="kw">((</span><span class="vs">M</span><span class="kw">((</span><span class="vs">J-T</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="vs">            </span><span class="kw">)</span><span class="op">*</span><span class="vs">V</span><span class="kw">((</span><span class="vs">G-S</span><span class="kw">)</span><span class="vs">%P</span><span class="kw">)</span><span class="vs">,S,T,G</span><span class="kw">)</span><span class="vs">if</span><span class="kw">(</span><span class="vs">S@</span><span class="kw">(</span><span class="vs">G,J</span><span class="kw">))</span><span class="vs">if</span><span class="kw">(</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="vs">         W%2@</span><span class="kw">(</span><span class="vs">S,T</span><span class="kw">)))</span><span class="vs">if</span><span class="kw">(</span><span class="vs">W@</span><span class="kw">(</span><span class="vs">S,T</span><span class="kw">)</span><span class="vs">;H=2</span><span class="op">**</span><span class="vs">256;import&amp;h</span></span>
@@ -249,7 +255,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="vs">         "</span><span class="ch">\x80</span><span class="vs">"</span><span class="op">+</span><span class="vs">I</span><span class="kw">(</span><span class="vs">f</span><span class="kw">))</span><span class="vs">"""</span><span class="op">;</span><span class="bu">exec</span>(<span class="bu">reduce</span>(<span class="kw">lambda</span> W,X:</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            W.replace(<span class="op">*</span>X),<span class="bu">zip</span>(<span class="st">" </span><span class="ch">\n</span><span class="st">&amp;$@"</span>,[<span class="st">""</span>,<span class="st">""</span>,</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>               <span class="st">" "</span>,<span class="st">"=lambda W,"</span>,<span class="st">")else "</span>])</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    ,<span class="st">"A$G,J,S,T:"</span><span class="op">+</span>_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    ,<span class="st">"A$G,J,S,T:"</span><span class="op">+</span>_))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>I’ve tested it on Python 2.7 on Ubuntu. Working like a charm.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -322,13 +328,14 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

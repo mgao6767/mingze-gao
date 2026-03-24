@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2025-08-04">
@@ -97,7 +97,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-9ae6873356c414e8693029ea579cd19d.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-f222cc739733b773b93a5a2764b6fb5e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -200,7 +200,7 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
   
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <meta name="twitter:title" content="Workshop 2 - Understanding Bank Financial Statements II – Mingze Gao">
@@ -211,7 +211,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
   <h1 class="title">Workshop 2 - Understanding Bank Financial Statements II</h1>
   <p class="subtitle">AFIN8003 Workshop 2</p>
 
@@ -239,10 +239,10 @@ Dr.&nbsp;Mingze Gao
 <div class="column">
 <p>To begin with, a simple bank has just been established with shareholders’ contribution of $10,000.</p>
 </div><div class="column">
-<div id="801967e6" class="cell panel-center" data-execution_count="2">
+<div id="2fa9276d" class="cell panel-center" data-execution_count="2">
 <details class="code-fold">
 <summary>A new bank has just been established.</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> datetime</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> datetime</span>
 <span id="cb1-2"><a></a><span class="im">from</span> brms.accounting.account <span class="im">import</span> AccountBalances</span>
 <span id="cb1-3"><a></a><span class="im">from</span> brms.accounting.report <span class="im">import</span> Report</span>
 <span id="cb1-4"><a></a><span class="im">from</span> brms.accounting.statement_viewer <span class="im">import</span> HTMLStatementViewer</span>
@@ -261,7 +261,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb1-17"><a></a></span>
 <span id="cb1-18"><a></a>today <span class="op">=</span> datetime.date(<span class="dv">2025</span>, <span class="dv">7</span>, <span class="dv">28</span>)</span>
 <span id="cb1-19"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb1-20"><a></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-20"><a></a>report.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                Balance Sheet                 </span>
@@ -297,10 +297,10 @@ Dr.&nbsp;Mingze Gao
 </ul>
 <p>Notably, customer deposits are the bank’s <em>liability</em>. We see an increase in both the bank’s total assets and total liabilities, while total shareholders’ equity remains unchanged.</p>
 </div><div class="column">
-<div id="dccc34fe" class="cell panel-center" data-execution_count="4">
+<div id="36ca3b59" class="cell panel-center" data-execution_count="4">
 <details class="code-fold">
 <summary>Some customers have made deposits.</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> brms.instruments.factory <span class="im">import</span> InstrumentFactory</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> brms.instruments.factory <span class="im">import</span> InstrumentFactory</span>
 <span id="cb2-2"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> TransactionFactory, TransactionType</span>
 <span id="cb2-3"><a></a></span>
 <span id="cb2-4"><a></a>customer_A_deposit <span class="op">=</span> InstrumentFactory.create_deposit(value<span class="op">=</span><span class="dv">60_000</span>)</span>
@@ -332,7 +332,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb2-30"><a></a>bank.process_transaction(tx_deposit3)</span>
 <span id="cb2-31"><a></a></span>
 <span id="cb2-32"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb2-33"><a></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-33"><a></a>report.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -365,10 +365,10 @@ Dr.&nbsp;Mingze Gao
 <p>Depositors can also withdraw from the bank.</p>
 <p>If Customer C has withdrawn all of their deposits ($20,000), we see a decrease of cash and deposits.</p>
 </div><div class="column">
-<div id="792614b3" class="cell panel-center" data-execution_count="5">
+<div id="710a0e4e" class="cell panel-center" data-execution_count="5">
 <details class="code-fold">
 <summary>Customer C has withdrawn their deposits.</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositWithdrawTransaction</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> DepositWithdrawTransaction</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a>tx_deposit_withdraw <span class="op">=</span> TransactionFactory.create_transaction(</span>
 <span id="cb3-4"><a></a>    bank<span class="op">=</span>bank,</span>
@@ -380,7 +380,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb3-10"><a></a>bank.process_transaction(tx_deposit_withdraw)</span>
 <span id="cb3-11"><a></a></span>
 <span id="cb3-12"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb3-13"><a></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a></a>report.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -412,10 +412,10 @@ Dr.&nbsp;Mingze Gao
 <div class="column">
 <p>Of course, the typical business of a bank is to make loans. Let’s assume the bank has made an (interest-only) loan of $80,000 to some borrowers.</p>
 </div><div class="column">
-<div id="f8fdefc7" class="cell panel-center" data-execution_count="7">
+<div id="14261250" class="cell panel-center" data-execution_count="7">
 <details class="code-fold">
 <summary>The bank has made some loans.</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> brms.instruments.base <span class="im">import</span> Instrument</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> brms.instruments.base <span class="im">import</span> Instrument</span>
 <span id="cb4-2"><a></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockInstrument</span>
 <span id="cb4-3"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> LoanDisbursementTransaction</span>
 <span id="cb4-4"><a></a></span>
@@ -432,7 +432,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb4-15"><a></a>bank.process_transaction(tx_loan)</span>
 <span id="cb4-16"><a></a></span>
 <span id="cb4-17"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb4-18"><a></a>report.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-18"><a></a>report.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -475,10 +475,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="27ff312f" class="cell panel-center" data-execution_count="9">
+<div id="1c5e2cca" class="cell panel-center" data-execution_count="9">
 <details class="code-fold">
 <summary>If the bank has only paid interest on deposits over the month…</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> brms.instruments.cash <span class="im">import</span> Cash</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> brms.instruments.cash <span class="im">import</span> Cash</span>
 <span id="cb5-2"><a></a><span class="im">from</span> brms.models.transaction <span class="im">import</span> InterestPaidOnDepositTransaction</span>
 <span id="cb5-3"><a></a></span>
 <span id="cb5-4"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">31</span>)</span>
@@ -494,7 +494,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb5-14"><a></a></span>
 <span id="cb5-15"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
 <span id="cb5-16"><a></a>report.print_balance_sheet()</span>
-<span id="cb5-17"><a></a>report.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a></a>report.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -562,10 +562,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="85634226" class="cell panel-center" data-execution_count="11">
+<div id="fdc55fd6" class="cell panel-center" data-execution_count="11">
 <details class="code-fold">
 <summary>… if it has also earned interest from loans over the month.</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>tx_interest_earned <span class="op">=</span> TransactionFactory.create_transaction(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>tx_interest_earned <span class="op">=</span> TransactionFactory.create_transaction(</span>
 <span id="cb6-2"><a></a>    bank<span class="op">=</span>bank,</span>
 <span id="cb6-3"><a></a>    transaction_type<span class="op">=</span>TransactionType.LOAN_INTEREST_PAYMENT,</span>
 <span id="cb6-4"><a></a>    instrument<span class="op">=</span>Cash(value<span class="op">=</span>loan_interest_income),</span>
@@ -576,7 +576,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb6-9"><a></a></span>
 <span id="cb6-10"><a></a>report <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
 <span id="cb6-11"><a></a>report.print_balance_sheet()</span>
-<span id="cb6-12"><a></a>report.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-12"><a></a>report.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -650,11 +650,11 @@ Dr.&nbsp;Mingze Gao
 <p>The fair value of the security is recorded on the balance sheet under the <em>Assets at FVTPL</em> account.</p>
 <div class="columns">
 <div class="column">
-<div id="bbfc24e8" class="cell panel-center" data-execution_count="13">
+<div id="8d7800a9" class="cell panel-center" data-execution_count="13">
 <details class="code-fold">
 <summary>Before purchasing some FVTPL securities.</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>report1 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb7-2"><a></a>report1.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>report1 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
+<span id="cb7-2"><a></a>report1.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -681,10 +681,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="dae525b2" class="cell panel-center" data-execution_count="14">
+<div id="3666288e" class="cell panel-center" data-execution_count="14">
 <details class="code-fold">
 <summary>The bank has purchased some FVTPL securities.</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> brms.models.base <span class="im">import</span> BookType</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> brms.models.base <span class="im">import</span> BookType</span>
 <span id="cb8-2"><a></a></span>
 <span id="cb8-3"><a></a>fvtpl_security <span class="op">=</span> MockInstrument(<span class="st">"A FVTPL Security"</span>, BookType.TRADING_BOOK)</span>
 <span id="cb8-4"><a></a>fvtpl_security.value <span class="op">=</span> fvtpl_security_value</span>
@@ -698,7 +698,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb8-12"><a></a>bank.process_transaction(tx_fvtpl_purchase)</span>
 <span id="cb8-13"><a></a></span>
 <span id="cb8-14"><a></a>report2 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb8-15"><a></a>report2.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-15"><a></a>report2.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -754,10 +754,10 @@ Dr.&nbsp;Mingze Gao
 <p>If the market value of the security went down by 5% ($500.0) the next day, we need to recognize this <em>unrealized trading loss</em> in the Income Statement.</p>
 <div class="columns">
 <div class="column">
-<div id="688a9b2d" class="cell panel-center" data-execution_count="15">
+<div id="0e2334bb" class="cell panel-center" data-execution_count="15">
 <details class="code-fold">
 <summary>The Income Statement before.</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>report2.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>report2.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">         Income Statement         </span>
@@ -775,10 +775,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="15b9319a" class="cell panel-center" data-execution_count="16">
+<div id="c0b647ca" class="cell panel-center" data-execution_count="16">
 <details class="code-fold">
 <summary>The FVTPL security has an unrealized trading loss.</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockValuationVisitor</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> brms.instruments.mock <span class="im">import</span> MockValuationVisitor</span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb10-4"><a></a><span class="co"># Assume that the market value of the FVTPL security went down by 5%</span></span>
@@ -795,7 +795,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb10-15"><a></a>bank.process_transaction(tx_fvtpl_marked_down)</span>
 <span id="cb10-16"><a></a></span>
 <span id="cb10-17"><a></a>report3 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb10-18"><a></a>report3.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-18"><a></a>report3.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">               Income Statement                </span>
@@ -821,10 +821,10 @@ Dr.&nbsp;Mingze Gao
 <p>If we were to generate the balance sheet now, such net trading loss would reduce the bank’s retained earnings.</p>
 <div class="columns">
 <div class="column">
-<div id="c4233a47" class="cell panel-center" data-execution_count="17">
+<div id="65ac944e" class="cell panel-center" data-execution_count="17">
 <details class="code-fold">
 <summary>The Balance Sheet before.</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>report2.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>report2.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -852,10 +852,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="4ac1f1c5" class="cell panel-center" data-execution_count="18">
+<div id="55f16cd5" class="cell panel-center" data-execution_count="18">
 <details class="code-fold">
 <summary>The FVTPL security has an unrealized trading loss.</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>report3.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>report3.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -899,10 +899,10 @@ Dr.&nbsp;Mingze Gao
 <p>The day after, if the market value of the security went up by 10% ($950.0), we need to recognize this <em>unrealized trading gain</em>.</p>
 <div class="columns">
 <div class="column">
-<div id="5d0d5440" class="cell panel-center" data-execution_count="20">
+<div id="f4f0b542" class="cell panel-center" data-execution_count="20">
 <details class="code-fold">
 <summary>The Income Statement before.</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>report3.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>report3.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">               Income Statement                </span>
@@ -922,10 +922,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="7e816d29" class="cell panel-center" data-execution_count="21">
+<div id="47349946" class="cell panel-center" data-execution_count="21">
 <details class="code-fold">
 <summary>The FVTPL security has an unrealized trading gain.</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb14-2"><a></a><span class="co"># Assume that the market value of the FVTPL security went up by 10%</span></span>
 <span id="cb14-3"><a></a>new_fvtpl_instrument_value <span class="op">=</span> fvtpl_security.value <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> day2_pct_change <span class="op">/</span> <span class="dv">100</span>)</span>
 <span id="cb14-4"><a></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvtpl_instrument_value)</span>
@@ -940,7 +940,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb14-13"><a></a>bank.process_transaction(tx_fvtpl_marked_up)</span>
 <span id="cb14-14"><a></a></span>
 <span id="cb14-15"><a></a>report4 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
-<span id="cb14-16"><a></a>report4.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-16"><a></a>report4.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">               Income Statement                </span>
@@ -967,10 +967,10 @@ Dr.&nbsp;Mingze Gao
 <p>Again, if we were to close the bank’s accounting ledger now and check its balance sheet, we will see changes of the bank’s retained earnings (increase by $950.0).</p>
 <div class="columns">
 <div class="column">
-<div id="24d7b7e6" class="cell panel-center" data-execution_count="22">
+<div id="bdb7c95b" class="cell panel-center" data-execution_count="22">
 <details class="code-fold">
 <summary>The Balance Sheet before.</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>report3.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>report3.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -998,10 +998,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="d8eddcb6" class="cell panel-center" data-execution_count="23">
+<div id="caf5efee" class="cell panel-center" data-execution_count="23">
 <details class="code-fold">
 <summary>The FVTPL security has an unrealized trading gain.</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>report4.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>report4.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -1055,10 +1055,10 @@ Dr.&nbsp;Mingze Gao
 <h2>FVTPL security sale - Income Statement</h2>
 <div class="columns">
 <div class="column">
-<div id="acb919ef" class="cell panel-center" data-execution_count="25">
+<div id="a74539a7" class="cell panel-center" data-execution_count="25">
 <details class="code-fold">
 <summary>The Income Statement before.</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>report4.print_income_statement()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>report4.print_income_statement()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">               Income Statement                </span>
@@ -1079,10 +1079,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="620e456a" class="cell panel-center" data-execution_count="26">
+<div id="beee79b5" class="cell panel-center" data-execution_count="26">
 <details class="code-fold">
 <summary>The FVTPL security is sold.</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>today <span class="op">=</span> today <span class="op">+</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb18-2"><a></a><span class="co"># Assume that the market value of the FVTPL security went up by 2%</span></span>
 <span id="cb18-3"><a></a>new_fvtpl_instrument_value <span class="op">=</span> fvtpl_security.value <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> day3_pct_change <span class="op">/</span> <span class="dv">100</span>)</span>
 <span id="cb18-4"><a></a>valuation_visitor <span class="op">=</span> MockValuationVisitor(new_value<span class="op">=</span>new_fvtpl_instrument_value)</span>
@@ -1109,7 +1109,7 @@ Dr.&nbsp;Mingze Gao
 <span id="cb18-25"><a></a></span>
 <span id="cb18-26"><a></a>report5 <span class="op">=</span> Report(ledger<span class="op">=</span>bank.ledger, viewer<span class="op">=</span>viewer, date<span class="op">=</span>today)</span>
 <span id="cb18-27"><a></a>report5.print_income_statement()</span>
-<span id="cb18-28"><a></a><span class="co"># report.print_balance_sheet()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-28"><a></a><span class="co"># report.print_balance_sheet()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">              Income Statement               </span>
@@ -1142,10 +1142,10 @@ Dr.&nbsp;Mingze Gao
 <p>Now, if we were to close the bank’s accounting ledger and produce its balance sheet, we will have:</p>
 <div class="columns">
 <div class="column">
-<div id="6ab37d06" class="cell panel-center" data-execution_count="27">
+<div id="191cbbba" class="cell panel-center" data-execution_count="27">
 <details class="code-fold">
 <summary>The Balance Sheet before.</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>report4.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>report4.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -1173,10 +1173,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="e35dadcd" class="cell panel-center" data-execution_count="28">
+<div id="f0bb3ee7" class="cell panel-center" data-execution_count="28">
 <details class="code-fold">
 <summary>The FVTPL security has been sold with a net gain.</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>report5.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>report5.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -1209,10 +1209,10 @@ Dr.&nbsp;Mingze Gao
 <p>Compared to the balance sheet before the bank purchased this FVTPL security, the retained earnings increased by exactly $659.0.</p>
 <div class="columns">
 <div class="column">
-<div id="773ae783" class="cell panel-center" data-execution_count="29">
+<div id="09b46950" class="cell panel-center" data-execution_count="29">
 <details class="code-fold">
 <summary>The Balance Sheet before purchasing the FVTPL security.</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>report1.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>report1.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -1239,10 +1239,10 @@ Dr.&nbsp;Mingze Gao
 </div>
 </div>
 </div><div class="column">
-<div id="4e9f2fe7" class="cell panel-center" data-execution_count="30">
+<div id="bc08df8b" class="cell panel-center" data-execution_count="30">
 <details class="code-fold">
 <summary>After selling the FVTPL security with a net gain.</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>report5.print_balance_sheet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>report5.print_balance_sheet()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-style: italic">                      Balance Sheet                       </span>
@@ -1472,7 +1472,7 @@ Dr.&nbsp;Mingze Gao
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1546,13 +1546,14 @@ Dr.&nbsp;Mingze Gao
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +135,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -322,7 +328,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="prerequisite">Prerequisite</h2>
 <p>Before you start, you will need an API Key from FRED. <a href="https://fred.stlouisfed.org/docs/api/api_key.html">Register one here</a></p>
 <p>Then in Stata, you can store this key permanently so you don’t need to provide again.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Replace <code>_key_</code> with your actual API Key obtained.</p></div></div><div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> fredkey _key_, <span class="kw">permanently</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Replace <code>_key_</code> with your actual API Key obtained.</p></div></div><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> fredkey _key_, <span class="kw">permanently</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="gui-is-always-a-good-start" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gui-is-always-a-good-start">GUI is always a good start</h2>
@@ -376,7 +382,7 @@ Figure&nbsp;4: The window showing the description of Australia’s CPI data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Vintage
+<span class="screen-reader-only">Note</span>Vintage
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -397,7 +403,7 @@ Figure&nbsp;5: Import data
 </figure>
 </div>
 <p>The outputs will be like the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) <span class="kw">aggregate</span>(<span class="fu">quarterly</span>,avg)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) <span class="kw">aggregate</span>(<span class="fu">quarterly</span>,avg)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Summary</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------------------------------</span>
@@ -407,15 +413,15 @@ Figure&nbsp;5: Import data
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------------------------------</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a># <span class="kw">of</span> series imported: 1</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   highest <span class="kw">frequency</span>: Quarterly</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    lowest <span class="kw">frequency</span>: Quarterly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    lowest <span class="kw">frequency</span>: Quarterly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="programmatical-is-recipe-to-reproducibility" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="programmatical-is-recipe-to-reproducibility">Programmatical is recipe to reproducibility</h2>
 <p>We don’t need to go through the GUI process every time. In fact, Stata already told us what the corresponding command is:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) <span class="kw">aggregate</span>(<span class="fu">quarterly</span>,avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-08-08) <span class="kw">aggregate</span>(<span class="fu">quarterly</span>,avg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can simply put this line of code into our program.</p>
 <p>For example, the code below generates a time-series chart for Australia’s CPI.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Import</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Import</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>import fred AUSCPIALLQINMEI, daterange(2010-01-01 2023-03-31) vintage(2023-05-10) <span class="kw">aggregate</span>(<span class="fu">quarterly</span>,avg) <span class="kw">clear</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> AUSCPIALLQINMEI_20230510 cpi_australia</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Time format</span></span>
@@ -427,7 +433,7 @@ Figure&nbsp;5: Import data
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> cpi_australia = 100 <span class="kw">if</span> <span class="dt">_n</span>==1</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> cpi_australia = L.cpi_australia * (1+cpi_ret) <span class="kw">if</span> <span class="dt">_n</span>&gt;1</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">tsline</span> cpi_australia), <span class="bn">title</span>(<span class="st">"Quarterly CPI of Australia 2010Q1-2023Q1"</span>) <span class="bn">ytitle</span>(<span class="st">""</span>) ttitle(<span class="st">""</span>) <span class="kw">note</span>(<span class="st">"Index 2010Q1=100. Source: FRED, 2023-05-10 vintage."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">tsline</span> cpi_australia), <span class="bn">title</span>(<span class="st">"Quarterly CPI of Australia 2010Q1-2023Q1"</span>) <span class="bn">ytitle</span>(<span class="st">""</span>) ttitle(<span class="st">""</span>) <span class="kw">note</span>(<span class="st">"Index 2010Q1=100. Source: FRED, 2023-05-10 vintage."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-timeseries-au-cpi" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-timeseries-au-cpi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -505,13 +511,14 @@ Figure&nbsp;6: Timeseries plot of Australia’s CPI data imported from the FRED 
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

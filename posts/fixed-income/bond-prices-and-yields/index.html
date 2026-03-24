@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +135,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -161,7 +166,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -375,7 +381,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Before we move on
+<span class="screen-reader-only">Note</span>Before we move on
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -385,7 +391,7 @@ Before we move on
 <p>I like examples. Suppose we are to issue a 10-year bond with a $10,000 face value that pays 5% annual coupon in arrears<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, with 8% discount rate<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, what would be the price today <span class="math inline">\(t=0\)</span> at which we can sell the bond to investors?</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;“in arrears” means that the payment is made at the end of the period. So in this case, the bond pays coupon annually at the end of the year, not any time sooner.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;We assume that this is an effective annual rate, and is the same for all 10 years in the future.</p></div></div><p>The chart below shows the result. Specifically, the blue bars indicate the bond’s cashflows, the overlaying red bars indicate their present values as at time <span class="math inline">\(t=0\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="40" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 39;"><span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>viewof maturity <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="40" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 39;"><span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>viewof maturity <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -433,7 +439,7 @@ Before we move on
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Time"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Cashflow"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">2</span>})<span class="op">,</span></span>
 <span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Time"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"PV"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -490,7 +496,7 @@ Before we move on
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Try it out
+<span class="screen-reader-only">Tip</span>Try it out
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -514,7 +520,7 @@ P_{t=0} = \underbrace{\sum_{\tau=1}^{N} \frac{C}{(1+r)^{\tau}}}_{\text{sum of co
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question
+<span class="screen-reader-only">Note</span>Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -531,7 +537,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <p>From only <span class="math inline">\(P_{t=0}\)</span> to <span class="math inline">\(\{P_{t}\}\)</span> is a major improvement!<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;However, here <span class="math inline">\(t\)</span> can only be positive integers as we assume <span class="math inline">\(t\)</span> is exactly <span class="math inline">\(n\)</span> years before the bond’s maturity. See the next question.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;Note that at maturity, <span class="math inline">\(n=0\)</span> such that the price <span class="math inline">\(P_t=F\)</span>.</p></div></div><p>Let me show you another graph. Note that in this graph, each bar represents the bond price as at a point in time.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="134" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>viewof maturity2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="134" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>viewof maturity2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -581,7 +587,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">100</span>])<span class="op">,</span></span>
 <span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(data2<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Time"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"PV"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -642,7 +648,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}}}_{\text{sum of coup
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Confused?
+<span class="screen-reader-only">Note</span>Confused?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -660,7 +666,7 @@ Confused?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question
+<span class="screen-reader-only">Note</span>Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -683,7 +689,7 @@ P_{t} = \underbrace{\left[\sum_{\tau=1}^{n} \frac{C}{(1+r)^{\tau}} + \frac{F}{(1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Attention!
+<span class="screen-reader-only">Warning</span>Attention!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -695,7 +701,7 @@ Attention!
 <p>In fact, a bondholder starts to accumulate <strong>accrued interest</strong><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> the moment their own the bond. Even though they may sell the bond right before a coupon payment, but given that they have been holding the bond for almost entire the time until selling just before the next coupon payment, they should be given compensation for not receiving the next coupon, which will be paid to the buyer.</p>
 <div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;<strong>Accrued interest</strong>: payoffs entitled to the investor but not yet paid.</p></div></div><p>Further, we generalize this idea to bond transactions any time between coupon payments – the buyer should compensate the seller additionally a coupon payment proportional to the time that the seller has been holding since last coupon payment relative to the time between two coupon payments.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="240" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 239;"><span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>viewof maturity3 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="240" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 239;"><span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>viewof maturity3 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -754,7 +760,7 @@ Attention!
 <span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data3<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Time"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Clean"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data3<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Time"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Dirty"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span>})<span class="op">,</span></span>
 <span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -821,7 +827,7 @@ Attention!
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Day count convention
+<span class="screen-reader-only">Note</span>Day count convention
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -843,7 +849,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 <p>This single discount rate <span class="math inline">\(\color{red}y\)</span> is called the <strong>yield to maturity</strong>, or <em>yield</em>, of the bond at time <span class="math inline">\(t\)</span>.</p>
 <p>If we plot bond prices against yields, <em>at a given time</em>, it’s easy to see that they have a one-to-one mapping and a inverse non-linear relationship.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="339" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 338;"><span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="339" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 338;"><span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -879,7 +885,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 <span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
 <span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data4<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Price"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -938,7 +944,7 @@ P_{t} = \underbrace{\sum_{\tau=1}^{n} \frac{C}{(1+r_\tau)^{\tau}} + \frac{F}{(1+
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Portfolio of bonds
+<span class="screen-reader-only">Warning</span>Portfolio of bonds
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1023,13 +1029,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -7,11 +7,11 @@
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Dr.&nbsp;Mingze Gao">
   <meta name="dcterms.date" content="2024-07-31">
@@ -120,7 +120,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-9ae6873356c414e8693029ea579cd19d.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-f222cc739733b773b93a5a2764b6fb5e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
   <script type="text/javascript">
@@ -233,7 +233,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../../../_extensions/mgao6767/mq/MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
   <h1 class="title">AFIN8003 Week 2 - Risks and Regulation</h1>
   <p class="subtitle">Banking and Financial Intermediation</p>
 
@@ -418,7 +418,7 @@ Figure&nbsp;2: Excerpt of CBA’s 2023 balance sheet - assets
 <p>For example, a bond’s price is given by</p>
 <p><span id="eq-bond-pv"><span class="math display">\[
 P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
-\qquad(1)\]</span></span></p>
+\tag{1}\]</span></span></p>
 <p>where <span class="math inline">\(C\)</span> is coupon payment, <span class="math inline">\(F\)</span> face value, <span class="math inline">\(T\)</span> maturity, and <span class="math inline">\(r\)</span> interest rate.</p>
 <p>Risks due to uncertainties in:</p>
 <ul>
@@ -429,7 +429,7 @@ P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="177" data-source-offset="-3"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb1-177"><a></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="177" data-source-offset="-3"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb1-177"><a></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb1-178"><a></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb1-179"><a></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb1-180"><a></a>)</span>
@@ -465,7 +465,7 @@ P = \sum_{t=1}^T\frac{C}{(1+r)^t} + \frac{F}{(1+r)^T}
 <span id="cb1-210"><a></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
 <span id="cb1-211"><a></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data4<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Price"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb1-212"><a></a>  ]</span>
-<span id="cb1-213"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-213"><a></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1018,7 +1018,7 @@ Salop, Steven C. 1979. <span>“Monopolistic Competition with Outside Goods.”<
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1103,13 +1103,14 @@ Salop, Steven C. 1979. <span>“Monopolistic Competition with Outside Goods.”<
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

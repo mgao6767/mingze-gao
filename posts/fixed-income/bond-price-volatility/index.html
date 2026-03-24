@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-455cc40e60a3918d8e97c40ba46c9f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +135,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -161,7 +166,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/favicon.png" alt="" class="navbar-logo">
+    <img src="../../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../../images/favicon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -372,7 +378,7 @@ P=f(C,t,y,F)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why should we care about it?
+<span class="screen-reader-only">Note</span>Why should we care about it?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -384,7 +390,7 @@ Why should we care about it?
 <h2 class="anchored" data-anchor-id="price-sensitivity-to-yield">Price sensitivity to yield</h2>
 <p>As we have <a href="../../..\posts/fixed-income/bond-prices-and-yields/#price-and-yield-to-maturity">previously discussed</a>, a bond’s price and its yield has an <strong>inverse, non-linear</strong> relationship. More importantly, the non-linearity shows that <strong>the same unit change in yield has different impacts on bond’s price</strong>: the higher the yield is, the smaller the impact of a given unit change in yield, other things equal.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="29" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 28;"><span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="29" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 28;"><span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>viewof maturity4 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -420,7 +426,7 @@ Why should we care about it?
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data4<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Price"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -464,7 +470,7 @@ Why should we care about it?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-How to measure the bond price sensitivity to yield?
+<span class="screen-reader-only">Note</span>How to measure the bond price sensitivity to yield?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -488,12 +494,12 @@ How to measure the bond price sensitivity to yield?
 \frac{\partial}{\partial {\color{red}y}}{\left[\sum_{\tau=1}^{n} \frac{C}{(1+{\color{red}y})^{\tau}} + \frac{F}{(1+{\color{red}y})^n}\right]}
 \]</span></p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Be not afraid - Ask ChatGPT to derive">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Be not afraid - Ask ChatGPT to derive
+<span class="screen-reader-only">Note</span>Be not afraid - Ask ChatGPT to derive
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -566,7 +572,7 @@ Be not afraid - Ask ChatGPT to derive
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-PV01
+<span class="screen-reader-only">Tip</span>PV01
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -594,7 +600,7 @@ PV01
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="192" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 191;"><span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>viewof maturity <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="192" data-source-offset="-3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 191;"><span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>viewof maturity <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
 <span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> </span>
 <span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Maturity (years):"</span>}</span>
 <span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -636,7 +642,7 @@ PV01
 <span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Price"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span>})<span class="op">,</span></span>
 <span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"YTM"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"PriceApproxByDuration"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span>})<span class="op">,</span></span>
 <span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -678,12 +684,12 @@ PV01
 \Delta P = \underbrace{\frac{\partial P}{\partial y}}_{\text{related to duration}} \cdot \partial y + \underbrace{\frac{1}{2}\frac{\partial^2 P}{\partial y^2}}_{\text{related to convexity}} \cdot (\partial y)^2
 \]</span></p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Why does it work? -- Taylor Expansion">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why does it work? – Taylor Expansion
+<span class="screen-reader-only">Tip</span>Why does it work? – Taylor Expansion
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -706,7 +712,7 @@ f(y+\Delta y) - f(y) = f'(y) \Delta y + \frac{f''(y)}{2} (\Delta y)^2 + \cdots
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-In the graph above, reduce coupon rate. What do you find?
+<span class="screen-reader-only">Warning</span>In the graph above, reduce coupon rate. What do you find?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -744,7 +750,7 @@ In the graph above, reduce coupon rate. What do you find?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Real world application
+<span class="screen-reader-only">Tip</span>Real world application
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -822,13 +828,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
