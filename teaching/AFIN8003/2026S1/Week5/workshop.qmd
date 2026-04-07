@@ -180,9 +180,9 @@ Which of the two securities will add more market risk to the FI's trading portfo
 ::: {.content-hidden unless-meta="include-answers"}
 ::: {.callout-tip title="Example answer"}
 - The expected return on security A = 0.50($80m) + 0.49($60m) + 0.01(–$740m) = $62m
-- The expected return on security B = 0.50($80m) + 0.49($68m) + 0.0040(–$740m) + 0.0060(–$1393m) = $62m
+- The expected return on security B = 0.50($80m) + 0.49($68m) + 0.0060(–$740m) + 0.0040(–$1393m) = $63.308m
 - For a 99% confidence level, $VaR_A= VaR_B = –\$740m$
-- For a 99% confidence level, $ES_A= –\$740m$, while $ES_B= 0.40(–\$740m) + 0.60(–\$1393m) = –\$1131.8m$
+- For a 99% confidence level, $ES_A= –\$740m$, while $ES_B= 0.60(–\$740m) + 0.40(–\$1393m) = –\$1001.2m$
 
 While the VaR is identical for both securities, the ES finds that security B has the potential to subject the FI to much greater losses than security A. 
 
