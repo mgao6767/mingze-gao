@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>Estimate Organization Capital – Mingze Gao</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -26,7 +29,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -55,19 +57,18 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +106,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -248,7 +249,7 @@ window.Quarto = {
 </header>
 
 
-<p>This post explains the estimation of organization capital <span class="citation" data-cites="gao_organization_2021">(<a href="#ref-gao_organization_2021" role="doc-biblioref">Gao, Leung, and Qiu 2021</a>)</span>. As in <span class="citation" data-cites="eisfeldt_organization_2013">Eisfeldt and Papanikolaou (<a href="#ref-eisfeldt_organization_2013" role="doc-biblioref">2013</a>)</span>, we obtain firm-year accounting data from the Compustat and compute the stock of organization capital for firms using the perpetual inventory method that recursively calculates the stock of OC by accumulating the deflated value of SG&amp;A expenses.</p>
+<p>This post explains the estimation of organization capital <span class="citation" data-cites="gao_organization_2021">(<a href="#ref-gao_organization_2021" role="doc-biblioref">Gao et al. 2021</a>)</span>. As in <span class="citation" data-cites="eisfeldt_organization_2013">Eisfeldt and Papanikolaou (<a href="#ref-eisfeldt_organization_2013" role="doc-biblioref">2013</a>)</span>, we obtain firm-year accounting data from the Compustat and compute the stock of organization capital for firms using the perpetual inventory method that recursively calculates the stock of OC by accumulating the deflated value of SG&amp;A expenses.</p>
 <!-- more -->
 <section id="organization-capital" class="level2">
 <h2 class="anchored" data-anchor-id="organization-capital">Organization Capital</h2>
@@ -259,7 +260,7 @@ OC_{i,t} = (1-\delta_{OC})OC_{i,t-1} + \frac{SGA_{i,t}}{CPI_t}
 <p><span id="eq-organization-capital-inital-value"><span class="math display">\[
 OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 \tag{2}\]</span></span></p>
-<p>where <span class="math inline">\(g\)</span> is the average real growth rate of firm-level SG&amp;A expenses, which is 10% in <span class="citation" data-cites="eisfeldt_organization_2013">Eisfeldt and Papanikolaou (<a href="#ref-eisfeldt_organization_2013" role="doc-biblioref">2013</a>)</span> or specific for an industry-decade in <span class="citation" data-cites="li_organization_2018">Li, Qiu, and Shen (<a href="#ref-li_organization_2018" role="doc-biblioref">2018</a>)</span>.</p>
+<p>where <span class="math inline">\(g\)</span> is the average real growth rate of firm-level SG&amp;A expenses, which is 10% in <span class="citation" data-cites="eisfeldt_organization_2013">Eisfeldt and Papanikolaou (<a href="#ref-eisfeldt_organization_2013" role="doc-biblioref">2013</a>)</span> or specific for an industry-decade in <span class="citation" data-cites="li_organization_2018">Li et al. (<a href="#ref-li_organization_2018" role="doc-biblioref">2018</a>)</span>.</p>
 </section>
 <section id="code" class="level2">
 <h2 class="anchored" data-anchor-id="code">Code</h2>
@@ -275,15 +276,15 @@ OC_{i,0} = \frac{SGA_{i,1}}{g+\delta_{OC}}
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-eisfeldt_organization_2013" class="csl-entry" role="listitem">
-Eisfeldt, Andrea L., and Dimitris Papanikolaou. 2013. <span>“Organization <span>Capital</span> and the <span>Cross</span>-<span>Section</span> of <span>Expected</span> <span>Returns</span>.”</span> <em>The Journal of Finance</em> 68 (4): 1365–1406. <a href="https://doi.org/10.1111/jofi.12034">https://doi.org/10.1111/jofi.12034</a>.
+Eisfeldt, Andrea L., and Dimitris Papanikolaou. 2013. <span>“Organization <span>Capital</span> and the <span>Cross</span>-<span>Section</span> of <span>Expected</span> <span>Returns</span>.”</span> <em>The Journal of Finance</em> 68 (4): 1365–406. <a href="https://doi.org/10.1111/jofi.12034">https://doi.org/10.1111/jofi.12034</a>.
 </div>
 <div id="ref-gao_organization_2021" class="csl-entry" role="listitem">
 Gao, Mingze, Henry Leung, and Buhui Qiu. 2021. <span>“Organization Capital and Executive Performance Incentives.”</span> <em>Journal of Banking &amp; Finance</em> 123: 106017. <a href="https://doi.org/10.1016/j.jbankfin.2020.106017">https://doi.org/10.1016/j.jbankfin.2020.106017</a>.
 </div>
 <div id="ref-li_organization_2018" class="csl-entry" role="listitem">
-Li, Kai, Buhui Qiu, and Rui Shen. 2018. <span>“Organization <span>Capital</span> and <span>Mergers</span> and <span>Acquisitions</span>.”</span> <em>The Journal of Financial and Quantitative Analysis</em> 53 (4): 1871–1909. <a href="https://www.jstor.org/stable/26592002">https://www.jstor.org/stable/26592002</a>.
+Li, Kai, Buhui Qiu, and Rui Shen. 2018. <span>“Organization <span>Capital</span> and <span>Mergers</span> and <span>Acquisitions</span>.”</span> <em>The Journal of Financial and Quantitative Analysis</em> 53 (4): 1871–909. <a href="https://www.jstor.org/stable/26592002">https://www.jstor.org/stable/26592002</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

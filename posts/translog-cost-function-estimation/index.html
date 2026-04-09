@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>Translog Cost Function Estimation – Mingze Gao</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -140,7 +141,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -360,7 +361,7 @@ d\ln C = d\ln \bar{W} \sum_{i=1}^{n} \gamma_i + d\ln \bar{W}^2 \frac{1}{2}\sum_{
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="citation" data-cites="zardkoohi_homogeneity_1986">Zardkoohi, Rangan, and Kolari (<a href="#ref-zardkoohi_homogeneity_1986" role="doc-biblioref">1986</a>)</span> published a 3-page paper on the <em>Journal of Finance</em>, essentially pointing out that some previous studies estimating translog cost functions forgot to impose the linear homogeneity constraint…</p>
+<p><span class="citation" data-cites="zardkoohi_homogeneity_1986">Zardkoohi et al. (<a href="#ref-zardkoohi_homogeneity_1986" role="doc-biblioref">1986</a>)</span> published a 3-page paper on the <em>Journal of Finance</em>, essentially pointing out that some previous studies estimating translog cost functions forgot to impose the linear homogeneity constraint…</p>
 </div>
 </div>
 </section>
@@ -426,7 +427,7 @@ d\ln C = d\ln \bar{W} \sum_{i=1}^{n} \gamma_i + d\ln \bar{W}^2 \frac{1}{2}\sum_{
 \tag{5}\]</span></span></p>
 <p>where <span class="math inline">\(m\)</span> indexes the firm, <span class="math inline">\(t\)</span> represents time. <span class="math inline">\(\tilde{C}_{mt}=\frac{C_{mt}}{W_{1mt}}\)</span> and <span class="math inline">\(\tilde{W}_{imt}=\frac{W_{imt}}{W_{1mt}}\)</span> are the scaled total costs and input prices.</p>
 <p>We can of course use OLS to estimate <a href="#eq-model-to-estimate" class="quarto-xref">Equation&nbsp;5</a>. However, this approach means that we do not accounting for differences in efficiency among different firms. Specifically, OLS assumes that the error term (<span class="math inline">\(\epsilon_{mt}\)</span>) in <a href="#eq-model-to-estimate" class="quarto-xref">Equation&nbsp;5</a> is just random noise.</p>
-<p>On the other hand, we can model <span class="math inline">\(\epsilon_{mt}=v_{mt}+u_{mt}\)</span> such that random error <span class="math inline">\(v_{mt}\)</span> is i.i.d. normal with mean zero and variance <span class="math inline">\(\sigma^2_{v}\)</span>. The <span class="math inline">\(u_{mt}\)</span> term denotes the systematic deviations from the optimal cost due to inefficiency. <span class="math inline">\(u_{mt}\)</span> can be modeled to be i.i.d. half-normal and variance <span class="math inline">\(\sigma^2_{u}\)</span> independent of <span class="math inline">\(v_{mt}\)</span>. This approach is basically a <strong>Stochastic Frontier Analysis (SFA)</strong>, which can be estimated via MLE. An influential example is <span class="citation" data-cites="koetter_enjoying_2012">Koetter, Kolari, and Spierdijk (<a href="#ref-koetter_enjoying_2012" role="doc-biblioref">2012</a>)</span>.</p>
+<p>On the other hand, we can model <span class="math inline">\(\epsilon_{mt}=v_{mt}+u_{mt}\)</span> such that random error <span class="math inline">\(v_{mt}\)</span> is i.i.d. normal with mean zero and variance <span class="math inline">\(\sigma^2_{v}\)</span>. The <span class="math inline">\(u_{mt}\)</span> term denotes the systematic deviations from the optimal cost due to inefficiency. <span class="math inline">\(u_{mt}\)</span> can be modeled to be i.i.d. half-normal and variance <span class="math inline">\(\sigma^2_{u}\)</span> independent of <span class="math inline">\(v_{mt}\)</span>. This approach is basically a <strong>Stochastic Frontier Analysis (SFA)</strong>, which can be estimated via MLE. An influential example is <span class="citation" data-cites="koetter_enjoying_2012">Koetter et al. (<a href="#ref-koetter_enjoying_2012" role="doc-biblioref">2012</a>)</span>.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="SFA: pooled or panel?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -482,8 +483,8 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 <section id="some-related-papers" class="level2">
 <h2 class="anchored" data-anchor-id="some-related-papers">Some related papers</h2>
 <ul>
-<li><span class="citation" data-cites="beck_bank_2013">Beck, De Jonghe, and Schepens (<a href="#ref-beck_bank_2013" role="doc-biblioref">2013</a>)</span></li>
-<li><span class="citation" data-cites="berger_bank_2009">Berger, Klapper, and Turk-Ariss (<a href="#ref-berger_bank_2009" role="doc-biblioref">2009</a>)</span></li>
+<li><span class="citation" data-cites="beck_bank_2013">Beck et al. (<a href="#ref-beck_bank_2013" role="doc-biblioref">2013</a>)</span></li>
+<li><span class="citation" data-cites="berger_bank_2009">Berger et al. (<a href="#ref-berger_bank_2009" role="doc-biblioref">2009</a>)</span></li>
 <li><span class="citation" data-cites="shaffer_measuring_2020">Shaffer and Spierdijk (<a href="#ref-shaffer_measuring_2020" role="doc-biblioref">2020</a>)</span></li>
 </ul>
 </section>
@@ -576,7 +577,7 @@ MC = \frac{C}{Q}\frac{\partial \ln C}{\partial \ln Q} = \frac{C}{Q}\frac{\partia
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-beck_bank_2013" class="csl-entry" role="listitem">
 Beck, Thorsten, Olivier De Jonghe, and Glenn Schepens. 2013. <span>“Bank Competition and Stability: <span>Cross</span>-Country Heterogeneity.”</span> <em>Journal of Financial Intermediation</em> 22 (2): 218–44. <a href="https://doi.org/10.1016/j.jfi.2012.07.001">https://doi.org/10.1016/j.jfi.2012.07.001</a>.
 </div>

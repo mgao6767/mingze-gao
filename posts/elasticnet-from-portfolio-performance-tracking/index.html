@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>ElasticNet from Portfolio Performance Tracking – Mingze Gao</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -26,7 +29,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -55,19 +57,18 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +106,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -271,7 +272,7 @@ window.Quarto = {
 <p>Very often I find research super interesting in that methods across fields can be related. In this post, I explain how I somewhat derived the core concepts of <a href="https://en.wikipedia.org/wiki/Elastic_net_regularization">ElasticNet</a> when trying to solve a practical finance question. To some degree, this can also serve as an intuitive example for teaching and understanding the ideas behind <strong>ElasticNet</strong>.</p>
 <section id="motivation" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Mutual funds in the United States report their portfolio holdings on a quarterly basis (Form N-PORT since 2019, Form N-Q previously) with a 60-day delay allowed.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Higher-frequency disclosure of fund holdings is rare and would inevitably disclose the fund’s strategy. However, the disclosure frequency of fund holdings data affects the evaluation of fund performance <span class="citation" data-cites="jiang_mutual_2007 elton_effect_2010 parida_impact_2018">(e.g., <a href="#ref-jiang_mutual_2007" role="doc-biblioref">Jiang, Yao, and Yu 2007</a>; <a href="#ref-elton_effect_2010" role="doc-biblioref">Elton et al. 2010</a>; <a href="#ref-parida_impact_2018" role="doc-biblioref">Parida and Teo 2018</a>)</span>.</p>
+<p>Mutual funds in the United States report their portfolio holdings on a quarterly basis (Form N-PORT since 2019, Form N-Q previously) with a 60-day delay allowed.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Higher-frequency disclosure of fund holdings is rare and would inevitably disclose the fund’s strategy. However, the disclosure frequency of fund holdings data affects the evaluation of fund performance <span class="citation" data-cites="jiang_mutual_2007 elton_effect_2010 parida_impact_2018">(e.g., <a href="#ref-jiang_mutual_2007" role="doc-biblioref">Jiang et al. 2007</a>; <a href="#ref-elton_effect_2010" role="doc-biblioref">Elton et al. 2010</a>; <a href="#ref-parida_impact_2018" role="doc-biblioref">Parida and Teo 2018</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Funds report in Form N-PORT their monthly holdings to the SEC, but only the last month of each quarter’s holdings are made publicly available.</p></div></div><p>I therefore had an idea, <mark><strong>what if we could estimate a fund’s daily fund holdings data</strong></mark> using publicly available 1) the fund’s quarterly disclosure, 2) its daily return computed from net asset value (NAV), and 3) the daily returns of all stocks? Arguably, the estimates are <em>ex post</em> but can still allow for some interesting studies, especially when we cannot access the monthly fund holdings like the SEC does.</p>
 </section>
 <section id="conceptualization" class="level2">
@@ -357,7 +358,7 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-elton_effect_2010" class="csl-entry" role="listitem">
 Elton, Edwin J., Martin J. Gruber, Christopher R. Blake, Yoel Krasny, and Sadi O. Ozelge. 2010. <span>“The Effect of Holdings Data Frequency on Conclusions about Mutual Fund Behavior.”</span> <em>Journal of Banking &amp; Finance</em> 34 (5): 912–22. https://doi.org/<a href="https://doi.org/10.1016/j.jbankfin.2009.10.002">https://doi.org/10.1016/j.jbankfin.2009.10.002</a>.
 </div>

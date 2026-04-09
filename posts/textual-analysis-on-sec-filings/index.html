@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>Textual Analysis on SEC Filings – Mingze Gao</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -211,7 +212,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#extract-all-items-reported-in-8-k-filings-since-2004" id="toc-extract-all-items-reported-in-8-k-filings-since-2004" class="nav-link" data-scroll-target="#extract-all-items-reported-in-8-k-filings-since-2004">3.1 Extract all items reported in 8-K filings since 2004</a></li>
   <li><a href="#find-all-8-k-filings-with-item-1.01-andor-item-2.03" id="toc-find-all-8-k-filings-with-item-1.01-andor-item-2.03" class="nav-link" data-scroll-target="#find-all-8-k-filings-with-item-1.01-andor-item-2.03">3.2 Find all 8-K filings with Item 1.01 and/or Item 2.03</a></li>
-  <li><a href="#nini_creditor_2009" id="toc-nini_creditor_2009" class="nav-link" data-scroll-target="#nini_creditor_2009">3.3 <span class="citation" data-cites="nini_creditor_2009">Nini, Smith, and Sufi (2009)</span></a></li>
+  <li><a href="#nini_creditor_2009" id="toc-nini_creditor_2009" class="nav-link" data-scroll-target="#nini_creditor_2009">3.3 <span class="citation" data-cites="nini_creditor_2009">Nini et al. (2009)</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -572,8 +573,8 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> cik, file_type, <span class="dt">date</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="nini_creditor_2009" class="level3">
-<h3 class="anchored" data-anchor-id="nini_creditor_2009">3.3 <span class="citation" data-cites="nini_creditor_2009">Nini, Smith, and Sufi (<a href="#ref-nini_creditor_2009" role="doc-biblioref">2009</a>)</span></h3>
-<p>This example code finds the appearance of any of the 10 search words used in “Creditor control rights and firm investment policy” by <span class="citation" data-cites="nini_creditor_2009">Nini, Smith, and Sufi (<a href="#ref-nini_creditor_2009" role="doc-biblioref">2009</a>)</span>, which is used to identify the loan contracts as attached in the SEC filing.</p>
+<h3 class="anchored" data-anchor-id="nini_creditor_2009">3.3 <span class="citation" data-cites="nini_creditor_2009">Nini et al. (<a href="#ref-nini_creditor_2009" role="doc-biblioref">2009</a>)</span></h3>
+<p>This example code finds the appearance of any of the 10 search words used in “Creditor control rights and firm investment policy” by <span class="citation" data-cites="nini_creditor_2009">Nini et al. (<a href="#ref-nini_creditor_2009" role="doc-biblioref">2009</a>)</span>, which is used to identify the loan contracts as attached in the SEC filing.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -667,7 +668,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-nini_creditor_2009" class="csl-entry" role="listitem">
 Nini, Greg, David C. Smith, and Amir Sufi. 2009. <span>“Creditor Control Rights and Firm Investment Policy.”</span> <em>Journal of Financial Economics</em> 92 (3): 400–420. <a href="https://doi.org/10.1016/j.jfineco.2008.04.008">https://doi.org/10.1016/j.jfineco.2008.04.008</a>.
 </div>

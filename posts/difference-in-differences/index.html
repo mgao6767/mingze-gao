@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>Difference-in-Differences Estimation – Mingze Gao</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-9a86fa71e44bb0c2021faf13eb7164db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-81b3645c7b9fe3978672c82f9d7f17b2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,7 +145,7 @@ gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
 <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -361,7 +362,7 @@ Y_{it} = \beta D_{it} + \theta_t + \gamma_{i} + \varepsilon_{it}
 <section id="what-to-do-then-an-overview" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-do-then-an-overview">What to do then? An overview</h2>
 <p>When there is a staggered adoption design, i.e., groups of entities receive treatments in a staggered way, there are a few modified DiD approaches that try to produce ATT estimates robust to the bias. But the key idea is to avoid including as controls the entities that have been previously treated, then find a good way to aggregate the many estimates as a result of multiple events. Here I discuss two approaches, namely stacked DiD and CS DiD.</p>
-<p><strong>Stacked DiD</strong> tries to solves the issue by essentially “selecting only good controls”. Specifically, for each treatment event, we construct a cohort of treated and untreated entities, where the “untreated” are those never treated and/or those not yet treated by <em>any</em> prior treatment. Cohorts are then stacked together in regression. To my knowledge, <span class="citation" data-cites="gormley_growing_2011">Gormley and Matsa (<a href="#ref-gormley_growing_2011" role="doc-biblioref">2011</a>)</span> and <span class="citation" data-cites="gormley_ceo_2013">Gormley, Matsa, and Milbourn (<a href="#ref-gormley_ceo_2013" role="doc-biblioref">2013</a>)</span> already use a stacked DiD. Some later papers using stacked DiD include, for example, <span class="citation" data-cites="cengiz_effect_2019">Cengiz et al. (<a href="#ref-cengiz_effect_2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="deshpande_who_2019">Deshpande and Li (<a href="#ref-deshpande_who_2019" role="doc-biblioref">2019</a>)</span>, among many others.</p>
+<p><strong>Stacked DiD</strong> tries to solves the issue by essentially “selecting only good controls”. Specifically, for each treatment event, we construct a cohort of treated and untreated entities, where the “untreated” are those never treated and/or those not yet treated by <em>any</em> prior treatment. Cohorts are then stacked together in regression. To my knowledge, <span class="citation" data-cites="gormley_growing_2011">Gormley and Matsa (<a href="#ref-gormley_growing_2011" role="doc-biblioref">2011</a>)</span> and <span class="citation" data-cites="gormley_ceo_2013">Gormley et al. (<a href="#ref-gormley_ceo_2013" role="doc-biblioref">2013</a>)</span> already use a stacked DiD. Some later papers using stacked DiD include, for example, <span class="citation" data-cites="cengiz_effect_2019">Cengiz et al. (<a href="#ref-cengiz_effect_2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="deshpande_who_2019">Deshpande and Li (<a href="#ref-deshpande_who_2019" role="doc-biblioref">2019</a>)</span>, among many others.</p>
 <p><strong>CS DiD</strong> <span class="citation" data-cites="callaway_2021">(<a href="#ref-callaway_2021" role="doc-biblioref">Callaway and Sant’Anna 2021</a>)</span> groups entities by their treatment time and estimates each group’s ATT at each time period since its treatment to the end of the sample period, also using never treated entities or those not yet treated. The many group-time ATTs are then aggregated to various levels for understanding the treatment effect. As at August 2023, CS DiD has already been cited over 3,000 times based on Google Scholar.</p>
 </section>
 <section id="stacked-did" class="level2">
@@ -700,9 +701,9 @@ ATT(g,t) = \mathbb{E} \left[\underbrace{\left(\frac{G_g}{\mathbb{E}(G_g)}-\frac{
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-callaway_2021" class="csl-entry" role="listitem">
-Callaway, Brantly, and Pedro H. C. Sant’Anna. 2021. <span>“Difference-in-<span>Differences</span> with Multiple Time Periods.”</span> <em>Journal of Econometrics</em>, Themed <span>Issue</span>: <span>Treatment</span> <span>Effect</span> 1, 225 (2): 200–230. <a href="https://doi.org/10.1016/j.jeconom.2020.12.001">https://doi.org/10.1016/j.jeconom.2020.12.001</a>.
+Callaway, Brantly, and Pedro H. C. Sant’Anna. 2021. <span>“Difference-in-<span>Differences</span> with Multiple Time Periods.”</span> <em>Journal of Econometrics</em>, Themed <span>Issue</span>: <span>Treatment</span> <span>Effect</span> 1, vol. 225 (2): 200–230. <a href="https://doi.org/10.1016/j.jeconom.2020.12.001">https://doi.org/10.1016/j.jeconom.2020.12.001</a>.
 </div>
 <div id="ref-cengiz_effect_2019" class="csl-entry" role="listitem">
 Cengiz, Doruk, Arindrajit Dube, Attila Lindner, and Ben Zipperer. 2019. <span>“The <span>Effect</span> of <span>Minimum</span> <span>Wages</span> on <span>Low</span>-<span>Wage</span> <span>Jobs</span>*.”</span> <em>The Quarterly Journal of Economics</em> 134 (3): 1405–54. <a href="https://doi.org/10.1093/qje/qjz014">https://doi.org/10.1093/qje/qjz014</a>.
@@ -711,13 +712,13 @@ Cengiz, Doruk, Arindrajit Dube, Attila Lindner, and Ben Zipperer. 2019. <span>�
 Deshpande, Manasi, and Yue Li. 2019. <span>“Who <span>Is</span> <span>Screened</span> <span>Out</span>? <span>Application</span> <span>Costs</span> and the <span>Targeting</span> of <span>Disability</span> <span>Programs</span>.”</span> <em>American Economic Journal: Economic Policy</em> 11 (4): 213–48. <a href="https://doi.org/10.1257/pol.20180076">https://doi.org/10.1257/pol.20180076</a>.
 </div>
 <div id="ref-goodman-bacon_2021" class="csl-entry" role="listitem">
-Goodman-Bacon, Andrew. 2021. <span>“Difference-in-Differences with Variation in Treatment Timing.”</span> <em>Journal of Econometrics</em>, Themed <span>Issue</span>: <span>Treatment</span> <span>Effect</span> 1, 225 (2): 254–77. <a href="https://doi.org/10.1016/j.jeconom.2021.03.014">https://doi.org/10.1016/j.jeconom.2021.03.014</a>.
+Goodman-Bacon, Andrew. 2021. <span>“Difference-in-Differences with Variation in Treatment Timing.”</span> <em>Journal of Econometrics</em>, Themed <span>Issue</span>: <span>Treatment</span> <span>Effect</span> 1, vol. 225 (2): 254–77. <a href="https://doi.org/10.1016/j.jeconom.2021.03.014">https://doi.org/10.1016/j.jeconom.2021.03.014</a>.
 </div>
 <div id="ref-gormley_growing_2011" class="csl-entry" role="listitem">
 Gormley, Todd A., and David A. Matsa. 2011. <span>“Growing <span>Out</span> of <span>Trouble</span>? <span>Corporate</span> <span>Responses</span> to <span>Liability</span> <span>Risk</span>.”</span> <em>The Review of Financial Studies</em> 24 (8): 2781–821. <a href="https://doi.org/10.1093/rfs/hhr011">https://doi.org/10.1093/rfs/hhr011</a>.
 </div>
 <div id="ref-gormley_ceo_2013" class="csl-entry" role="listitem">
-Gormley, Todd A., David A. Matsa, and Todd Milbourn. 2013. <span>“<span>CEO</span> Compensation and Corporate Risk: <span>Evidence</span> from a Natural Experiment.”</span> <em>Journal of Accounting and Economics</em>, Conference <span>Issue</span> on <span>Accounting</span> <span>Research</span> on <span>Classic</span> and <span>Contemporary</span> <span>Issues</span>, 56 (2, Supplement 1): 79–101. <a href="https://doi.org/10.1016/j.jacceco.2013.08.001">https://doi.org/10.1016/j.jacceco.2013.08.001</a>.
+Gormley, Todd A., David A. Matsa, and Todd Milbourn. 2013. <span>“<span>CEO</span> Compensation and Corporate Risk: <span>Evidence</span> from a Natural Experiment.”</span> <em>Journal of Accounting and Economics</em>, Conference <span>Issue</span> on <span>Accounting</span> <span>Research</span> on <span>Classic</span> and <span>Contemporary</span> <span>Issues</span>, vol. 56 (2, Supplement 1): 79–101. <a href="https://doi.org/10.1016/j.jacceco.2013.08.001">https://doi.org/10.1016/j.jacceco.2013.08.001</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
