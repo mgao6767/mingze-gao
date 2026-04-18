@@ -1,0 +1,22 @@
+[project]
+name = "mingze-gao"
+version = "0.1.0"
+description = "Mingze Gao's personal website"
+requires-python = ">=3.12"
+dependencies = [
+    "altair>=6.0.0",
+    "brms==0.1.0.dev2",
+    "ecdsa>=0.19.2",
+    "google-analytics-data>=0.21.0",
+    "google-auth>=2.49.1",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "pyyaml>=6.0.3",
+    "scipy>=1.17.1",
+]
+
+[tool.uv]
+package = false
+
