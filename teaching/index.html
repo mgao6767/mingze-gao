@@ -135,6 +135,34 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-Talks .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-highlight-style','listing-code-block-bg','listing-bibliography','listing-language','listing-website','listing-format','listing-engines','listing-title','listing-subtitle','listing-author','listing-institute','listing-date','listing-categories','listing-execute','listing-path','listing-outputHref','listing-date-modified','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-Talks'] = new List('listing-Talks', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
 
@@ -235,7 +263,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(82)</span></div><div class="category" data-category="MjAyNFMy">2024S2 <span class="quarto-category-count">(23)</span></div><div class="category" data-category="MjAyNVMx">2025S1 <span class="quarto-category-count">(25)</span></div><div class="category" data-category="MjAyNVMy">2025S2 <span class="quarto-category-count">(22)</span></div><div class="category" data-category="MjAyNlMx">2026S1 <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QUZJTjgwMDM=">AFIN8003 <span class="quarto-category-count">(82)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(83)</span></div><div class="category" data-category="MjAyNFMy">2024S2 <span class="quarto-category-count">(23)</span></div><div class="category" data-category="MjAyNVMx">2025S1 <span class="quarto-category-count">(25)</span></div><div class="category" data-category="MjAyNVMy">2025S2 <span class="quarto-category-count">(22)</span></div><div class="category" data-category="MjAyNlMx">2026S1 <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QUZJTjgwMDM=">AFIN8003 <span class="quarto-category-count">(82)</span></div><div class="category" data-category="VGFsa3M=">Talks <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -1153,6 +1181,56 @@ Jul 24, 2024
 <nav id="Workshops-pagination" class="listing-pagination" aria-label="Page Navigation">
   <ul class="pagination"></ul>
 </nav>
+</div>
+</section>
+<section id="talks" class="level2">
+<h2 class="anchored" data-anchor-id="talks">Talks</h2>
+<div id="listing-Talks" class="quarto-listing quarto-listing-container-custom">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-Talks-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-Talks'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Date
+</th>
+<th>
+Title
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="VGFsa3M=" data-listing-date-sort="1776866400000" data-listing-file-modified-sort="1776672613137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6839">
+<td class="listing-date">
+Apr 23, 2026
+</td>
+<td>
+<a href="../teaching/talks/navigating-corporate-filings/index.html" class="listing-title">Navigating Corporate Filings</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
 </div>
 
 
