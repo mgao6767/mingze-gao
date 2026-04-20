@@ -6,7 +6,7 @@ listing:
   - id: "Lectures"
     template: teaching.ejs
     page-size: 13
-    contents: AFIN8003
+    contents: "AFIN8003/**/*.qmd"
     sort-ui: [date, title]
     filter-ui: [date, title]
     sort: "date desc"
@@ -20,7 +20,7 @@ listing:
   - id: "Workshops"
     template: teaching.ejs
     page-size: 13
-    contents: AFIN8003
+    contents: "AFIN8003/**/*.qmd"
     sort-ui: [date, title]
     filter-ui: [date, title]
     sort: "date desc"
