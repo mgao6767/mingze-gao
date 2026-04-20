@@ -28,8 +28,19 @@ listing:
     categories: true
     exclude:
       pdf-name: "{week,Week}*.pdf"
-    template-params: 
+    template-params:
       workshops: true
+  - id: "Talks"
+    template: teaching.ejs
+    page-size: 13
+    contents: "talks/**/index.qmd"
+    sort-ui: [date, title]
+    filter-ui: [date, title]
+    sort: "date desc"
+    type: table
+    categories: true
+    template-params:
+      talks: true
 ---
 
 ::: {.callout-note}
@@ -49,4 +60,9 @@ These materials are prepared for my teaching at the [Macquarie Business School](
 ## Workshops
 
 ::: {#Workshops}
+:::
+
+## Talks
+
+::: {#Talks}
 :::
