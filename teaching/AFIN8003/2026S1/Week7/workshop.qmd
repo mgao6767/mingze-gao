@@ -1,0 +1,1506 @@
+---
+title: "AFIN8003 Week 7 Workshop - Credit Risk Modelling in Practice"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-04-28
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  mq-revealjs:
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Workshop 7 — Credit Risk Modelling"
+    mermaid-format: svg
+    slide-number: true
+    scrollable: true
+execute:
+  freeze: auto
+---
+
+# Credit Risk Modelling in Practice
+
+## Why this workshop exists
+
+- **Week 6** measured credit risk on an _individual_ loan.
+- **Week 7 lecture** covered the _portfolio_ view (concentration, migration, CDS).
+- **This workshop** fills in the practical middle: *how a bank actually estimates PD, calibrates it, and turns it into regulatory capital* using the  Internal Ratings-Based (IRB) model.
+
+::: {.callout-note}
+Every piece in this deck is a building block you will find useful in the group assignment. By the end of the session you should be able to look at a loan book and reason about regulatory capital end-to-end.
+:::
+
+```{=html}
+<style>
+/* Fallback CSS; real enforcement is by the script below (inline !important). */
+form[class] {
+  font-size: 0.65em;
+}
+</style>
+
+<script>
+// Observable Inputs hard-codes
+//   width: calc(var(--input-width) + var(--label-width))
+// in its own injected <style>. CSS loses the specificity fight because
+// Observable's stylesheet is inserted after ours. We instead set the
+// custom properties *inline* on each form element — inline !important
+// beats any stylesheet. A MutationObserver catches forms as OJS adds them.
+(function() {
+  function fixForm(f) {
+    if (!f || f.__ojsFixed) return;
+    if (!f.querySelector('input[type="range"], input[type="number"], select, input[type="text"]')) return;
+    f.__ojsFixed = true;
+    f.style.setProperty('width', '100%', 'important');
+    f.style.setProperty('max-width', '100%', 'important');
+    f.style.setProperty('--input-width', 'calc(100% - 9em)', 'important');
+    f.style.setProperty('--label-width', '8em', 'important');
+    f.style.setProperty('font-size', '0.65em', 'important');
+    f.style.setProperty('gap', '4px', 'important');
+    var labels = f.querySelectorAll('label');
+    labels.forEach(function(l) {
+      l.style.setProperty('width', '8em', 'important');
+      l.style.setProperty('min-width', '8em', 'important');
+      l.style.setProperty('white-space', 'nowrap', 'important');
+      l.style.setProperty('overflow', 'hidden', 'important');
+      l.style.setProperty('text-overflow', 'ellipsis', 'important');
+    });
+    var ranges = f.querySelectorAll('input[type="range"]');
+    ranges.forEach(function(r) {
+      r.style.setProperty('flex', '1 1 auto', 'important');
+      r.style.setProperty('min-width', '40px', 'important');
+      r.style.setProperty('width', 'auto', 'important');
+    });
+    var outs = f.querySelectorAll('output, input[type="number"]');
+    outs.forEach(function(o) {
+      o.style.setProperty('width', '3.5em', 'important');
+      o.style.setProperty('min-width', '3.5em', 'important');
+    });
+    var sels = f.querySelectorAll('select');
+    sels.forEach(function(s) {
+      s.style.setProperty('max-width', '9em', 'important');
+    });
+  }
+  function fixAll() {
+    document.querySelectorAll('form').forEach(fixForm);
+  }
+  var obs = new MutationObserver(function(muts) {
+    muts.forEach(function(m) {
+      m.addedNodes.forEach(function(n) {
+        if (n.nodeType !== 1) return;
+        if (n.tagName === 'FORM') fixForm(n);
+        if (n.querySelectorAll) n.querySelectorAll('form').forEach(fixForm);
+      });
+    });
+  });
+  obs.observe(document.documentElement, {childList: true, subtree: true});
+  document.addEventListener('DOMContentLoaded', fixAll);
+  window.addEventListener('load', fixAll);
+  // Re-sweep periodically for the first few seconds in case OJS inserts late.
+  var n = 0;
+  var iv = setInterval(function() { fixAll(); if (++n > 20) clearInterval(iv); }, 300);
+})();
+</script>
+```
+## Roadmap — 8 widgets, 9 parts
+
+1. IRB three parameters (PD, LGD, EAD)
+2. **Widget 1** — IRB RWA calculator
+3. Building a PD model — data & pipeline
+4. **Widget 2** — Information Value intuition
+5. **Widget 3** — Logistic curve visualiser · **Widget 4** — ROC / threshold slider
+6. **Widget 5** — Rating bin tuner (calibration)
+7. **Widget 6** — Transition matrix heatmap (validation)
+8. **Widgets 7–8** — Altman Z-score · Merton distance-to-default
+9. Knowledge check + wrap-up
+
+::: {.callout-tip}
+Everything runs in your browser. Nothing to install. Nothing to download. Slide numbers are in the footer — if you get lost, shout a number.
+:::
+
+## Credit risk dominates the capital stack
+
+|                          | CBA     | Westpac | NAB     | ANZ     | Macquarie |
+|--------------------------|---------|---------|---------|---------|-----------|
+| RWA for credit risk      | 370,444 | 351,724 | 350,891 | 361,185 | 98,250    |
+| RWA for market risk      | 52,132  | 37,510  | 26,953  | 30,875  | 14,277    |
+| RWA for operational risk | 44,975  | 48,196  | 36,102  | 49,650  | 17,512    |
+| Other RWA                | 0       | 0       | 0       | 4,872   | 0         |
+| **Total RWA**            | 467,551 | 437,430 | 413,946 | 446,582 | 130,039   |
+
+: 2024 RWA (A$m) of major Australian banks (source: Capital IQ) {#tbl-rwa-au-banks}
+
+- Credit risk = **~80%** of total RWA for every major Australian bank.
+- The IRB approach is how they turn a loan book into an RWA number.
+- If you misestimate PD, LGD or EAD, you miscapitalise the bank.
+
+## Overview of the IRB Approach
+
+::: {.columns}
+
+::: {.column}
+
+Using the IRB approach, banks need to classify its *banking book* exposures to one of the following asset classes:
+
+1. corporate;
+2. sovereign;
+3. financial institution; and
+4. retail.
+
+Then for each asset class, banks must estimate the key risk parameters to calculate RWA. The total RWA (for credit risk) is the sum of the RWA for each asset class, subject to certain adjustments.[^rwa-adjustment]
+
+[^rwa-adjustment]: This means that the computed RWAs may receive additional scaling or other adjustments as specified by the APS 113.
+
+:::
+
+::: {.column}
+A simplified overview of the IRB approach is illustrated below.
+
+```{mermaid}
+%%| fig-align: center
+
+flowchart LR
+    subgraph Corporate
+        A1[Estimate PD] --> D1[Risk-weight function]
+        B1[Estimate LGD] --> D1
+        C1[Estimate EAD] --> D1
+        D1 --> E1[RWA Corporate]
+        style A1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style B1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+        style C1 fill:#ddeaf1,stroke:#333,stroke-width:2px
+    end
+    subgraph Sovereign
+        A2[...] -->
+        E2[RWA Sovereign]
+    end
+    subgraph Financial Institution
+        A3[...] --> E3[RWA Financial]
+    end
+    subgraph Retail
+        A4[...] --> E4[RWA Retail]
+    end
+    E1 --> F[Aggregation]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    F --> G[Total Credit Risk RWA]
+```
+:::
+
+:::
+
+
+## The three pillars of IRB
+
+::: {.column-screen-inset}
+```{mermaid}
+%%| fig-align: center
+%%| fig-width: 12
+%%| fig-height: 5
+flowchart LR
+    subgraph IRB_inputs [IRB parameters per exposure]
+        PD[<b>PD</b><br/>Probability<br/>of default]
+        LGD[<b>LGD</b><br/>Loss given<br/>default]
+        EAD[<b>EAD</b><br/>Exposure at<br/>default]
+        M[<b>M</b><br/>Maturity]
+    end
+    IRB_inputs --> RWF["Risk-weight function<br/>K = f(PD, LGD, M)"]
+    RWF --> RWA["<b>RWA</b> = K × 12.5 × EAD"]
+    style PD fill:#D6D2C4,stroke:#333
+    style LGD fill:#D6D2C4,stroke:#333
+    style EAD fill:#D6D2C4,stroke:#333
+    style M fill:#D6D2C4,stroke:#333
+    style RWA fill:#A6192E,color:#fff,stroke:#333
+```
+:::
+
+- **PD** comes from a credit-scoring model (this workshop focuses here).
+- **LGD** and **EAD** come from loss-experience data and loan contracts.
+- **K** is the *capital requirement per unit EAD* — Basel gives us the formula.
+
+# Part 1 — The IRB risk-weight function
+
+## The capital formula (APRA APS 113 / Basel III)
+
+::: {.fragment}
+**Correlation** (borrowers' co-movement with the system):
+$$
+R = AVCM \cdot \left[0.12 \cdot \tfrac{1-e^{-50\,PD}}{1-e^{-50}} + 0.24 \cdot \left(1 - \tfrac{1-e^{-50\,PD}}{1-e^{-50}}\right)\right]
+$$
+:::
+
+::: {.fragment}
+**Maturity adjustment**:
+$$
+b = \left(0.11852 - 0.05478 \ln(PD)\right)^2
+$$
+:::
+
+::: {.fragment}
+**Capital requirement** (per unit EAD):
+$$
+K = \left[LGD \cdot N\!\left(\tfrac{G(PD) + \sqrt{R}\,G(0.999)}{\sqrt{1-R}}\right) - PD \cdot LGD\right] \cdot \tfrac{1+(M-2.5)\,b}{1-1.5\,b}
+$$
+:::
+
+::: {.fragment}
+**Risk-weighted asset**:
+$$
+RWA = K \times 12.5 \times EAD
+$$
+:::
+
+## Widget 1 — IRB RWA calculator {.scrollable}
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{ojs}
+//| echo: false
+
+import {Plot} from "@observablehq/plot"
+
+viewof pd = Inputs.range([0.05, 100], {value: 1.00, step: 0.01, label: "PD (%)"})
+viewof lgd = Inputs.range([0, 100], {value: 25, step: 0.5, label: "LGD (%)"})
+viewof ead = Inputs.range([0, 5_000_000], {value: 1_000_000, step: 10_000, label: "EAD"})
+viewof m = Inputs.range([0.25, 20], {value: 2.5, step: 0.25, label: "Maturity (years)"})
+viewof avcm = Inputs.select([1, 1.25], {value: 1, label: "AVCM"})
+
+
+// --- Formulas ---
+corr_R = (PD, AVCM) => {
+  const x = (1 - Math.exp(-50 * PD)) / (1 - Math.exp(-50));
+  const R = AVCM * (0.12 * x + 0.24 * (1 - x));
+  return Math.min(Math.max(R, 1e-6), 0.999);
+};
+
+b_maturity = PD => (0.11852 - 0.05478 * Math.log(PD)) ** 2;
+
+// Standard normal CDF
+function stdnorm_cdf(x) {
+  return (1 + erf(x / Math.sqrt(2))) / 2;
+}
+// Error function (Abramowitz & Stegun 7.1.26)
+function erf(x) {
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x);
+  const a1 =  0.254829592, a2 = -0.284496736, a3 = 1.421413741;
+  const a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+// Inverse error function (Giles 2010)
+function erfinv(x) {
+  const a = 0.147;
+  const ln = Math.log((1 - x) * (1 + x));
+  const sgn = x < 0 ? -1 : 1;
+  const part1 = 2 / (Math.PI * a) + ln / 2;
+  const part2 = ln / a;
+  return sgn * Math.sqrt(Math.sqrt(part1 * part1 - part2) - part1);
+}
+
+capital_K = (PD, LGD, M, AVCM) => {
+  const R = corr_R(PD, AVCM);
+  const b = b_maturity(PD);
+  const qnorm = p => Math.sqrt(2) * erfinv(2 * p - 1);
+  const term = (qnorm(PD) + Math.sqrt(R) * qnorm(0.999)) / Math.sqrt(1 - R);
+  const K = LGD * stdnorm_cdf(term) - PD * LGD;
+  const K_adj = K * ((1 + (M - 2.5) * b) / (1 - 1.5 * b));
+  return Math.max(K_adj, 0);
+};
+
+// --- Derived ---
+PD = pd / 100;
+LGD = lgd / 100;
+EAD = ead;
+M = m;
+AVCM = avcm;
+
+R = corr_R(PD, AVCM);
+b = b_maturity(PD);
+K = capital_K(PD, LGD, M, AVCM);
+RWA = K * 12.5 * EAD;
+
+// --- Sensitivity sequences ---
+pd_min = 0.0005;
+pd_max = 1.0;
+pd_lower = Math.max(pd_min, PD * 0.5);
+pd_upper = Math.min(pd_max, PD * 1.5);
+pd_seq = Array.from({length: 50}, (_, i) => pd_lower + i * (pd_upper - pd_lower) / 49);
+lgd_seq = Array.from({length: 50}, (_, i) => Math.max(0, LGD*0.5) + i*(Math.min(1, LGD*1.5)-Math.max(0, LGD*0.5))/49);
+ead_seq = Array.from({length: 50}, (_, i) => EAD*0.5 + i*(EAD*1.5-EAD*0.5)/49);
+m_min = 0.25;
+m_max = 20.0;
+m_lower = Math.max(m_min, M * 0.5);
+m_upper = Math.min(m_max, M * 1.5);
+m_seq = Array.from({length: 50}, (_, i) => m_lower + i * (m_upper - m_lower) / 49);
+
+data_pd = pd_seq.map(p => ({PD: p*100, RWA: capital_K(p, LGD, M, AVCM) * 12.5 * EAD}));
+data_lgd = lgd_seq.map(l => ({LGD: l*100, RWA: capital_K(PD, l, M, AVCM) * 12.5 * EAD}));
+data_ead = ead_seq.map(e => ({EAD: e, RWA: capital_K(PD, LGD, M, AVCM) * 12.5 * e}));
+data_m = m_seq.map(mv => ({M: mv, RWA: capital_K(PD, LGD, mv, AVCM) * 12.5 * EAD}));
+
+function highlight(x, y, xlab, ylab) {
+  return [
+    Plot.ruleX([x], {stroke: "gray", strokeDasharray: "4,2"}),
+    Plot.ruleY([y], {stroke: "gray", strokeDasharray: "4,2"}),
+    Plot.dot([{[xlab]: x, [ylab]: y}], {x: xlab, y: ylab, fill: "black", r: 5}),
+    Plot.text([{[xlab]: x, [ylab]: y, label: `(${x.toFixed(2)}, ${Math.round(y)})`}], {
+      x: xlab, y: ylab, text: "label", dx: 10, dy: -10, fill: "black", fontSize: 12
+    })
+  ];
+}
+
+plot_pd = Plot.plot({
+  grid: true, width: 380, height: 240, marginLeft: 55, marginBottom: 40,
+  marks: [
+    Plot.line(data_pd, {x: "PD", y: "RWA", stroke: "#A6192E"}),
+    ...highlight(pd, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "PD", "RWA")
+  ],
+  x: {label: "PD (%)"}, y: {label: "RWA"},
+  caption: "Sensitivity to PD"
+})
+
+plot_lgd = Plot.plot({
+  grid: true, width: 380, height: 240, marginLeft: 55, marginBottom: 40,
+  marks: [
+    Plot.line(data_lgd, {x: "LGD", y: "RWA", stroke: "#80225F"}),
+    ...highlight(lgd, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "LGD", "RWA")
+  ],
+  x: {label: "LGD (%)"}, y: {label: "RWA"},
+  caption: "Sensitivity to LGD"
+})
+
+plot_ead = Plot.plot({
+  grid: true, width: 380, height: 240, marginLeft: 55, marginBottom: 40,
+  marks: [
+    Plot.line(data_ead, {x: "EAD", y: "RWA", stroke: "#00AA4F"}),
+    ...highlight(ead, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "EAD", "RWA")
+  ],
+  x: {label: "EAD"}, y: {label: "RWA"},
+  caption: "Sensitivity to EAD"
+})
+
+plot_m = Plot.plot({
+  grid: true, width: 380, height: 240, marginLeft: 55, marginBottom: 40,
+  marks: [
+    Plot.line(data_m, {x: "M", y: "RWA", stroke: "#D6001C"}),
+    ...highlight(m, capital_K(PD, LGD, M, AVCM) * 12.5 * EAD, "M", "RWA")
+  ],
+  x: {label: "Maturity (years)"}, y: {label: "RWA"},
+  caption: "Sensitivity to Maturity"
+})
+
+html`
+  <table class="table" style="font-size:0.85em; margin-bottom:8px;">
+    <thead><tr><th>Quantity</th><th>Value</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td>Correlation (R)</td><td>${R.toFixed(6)}</td><td></td></tr>
+      <tr><td>Maturity adjustment (b)</td><td>${b.toFixed(6)}</td><td></td></tr>
+      <tr><td>Capital requirement (K)</td><td>${K.toFixed(6)}</td><td>per unit EAD</td></tr>
+      <tr><td><b>RWA</b></td><td><b>${Math.round(RWA).toLocaleString()}</b></td><td>currency</td></tr>
+    </tbody>
+  </table>
+`
+```
+:::
+
+::: {.column width="50%"}
+```{ojs}
+//| echo: false
+
+html`
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+    <div>${plot_pd}</div>
+    <div>${plot_lgd}</div>
+    <div>${plot_ead}</div>
+    <div>${plot_m}</div>
+  </div>
+`
+```
+:::
+
+:::
+
+
+::: {.callout-note title="Try this first"}
+Drag the **PD** slider from 0.05% to 30%. Watch RWA rise, then *fall*. Can you find the peak? Why does K drop for very high PDs?
+:::
+
+
+## Why K falls at very high PD
+
+::: {.callout-tip title="Expected vs unexpected loss" collapse="true"}
+IRB capital **K** covers only *unexpected* losses — the tail surprise.
+
+- **Low PD.** A default is surprising and large when it happens. The unexpected component dominates — capital rises with PD.
+- **High PD (say, >30%).** Default is nearly certain. Most of the loss is *expected* and paid for with accounting provisions (IFRS 9), not capital.
+
+Capital is for the *surprise*. Once there is no surprise left, capital retreats.
+:::
+
+# Part 2 — Building a credit scoring model
+
+## What a scoring model is — and why
+
+A **credit scoring model** turns borrower characteristics (financials, behavioural data, market signals) into a single score that rank-orders borrowers by default risk. The score is then converted into a **PD estimate** fed into the IRB capital formula from Part 1.
+
+- **Input:** borrower-level features (leverage, profitability, size, governance, …).
+- **Output:** a probability of default over a one-year horizon.
+- **Why it matters:** without a scoring model, a bank has no principled way to separate a BBB borrower from a CCC borrower — and no defensible PD for capital.
+
+The next few slides walk the standard build pipeline — sample, screen, estimate, calibrate, validate.
+
+## The modelling pipeline
+
+::: {.column-screen-inset}
+```{mermaid}
+%%| fig-align: center
+%%| fig-width: 13
+%%| fig-height: 5.5
+flowchart LR
+    A[Sample selection] --> B[Variable screening]
+    B --> C[Model estimation<br/>& evaluation]
+    C --> D[Calibration]
+    D --> E[Transition matrix<br/>analysis]
+    E --> F{Ratings stable?}
+    F -- No --> D
+    F -- Yes --> G[RWA impact<br/>analysis]
+    G --> H{Impact acceptable?}
+    H -- Yes --> I[Approval & deployment]
+    H -- No  --> D
+```
+:::
+
+- Each arrow is a **decision** banks actually make.
+- Each decision leaves audit trail the regulator reads.
+- This workshop walks every node.
+
+## Simulate a loan book
+
+```{r}
+#| label: load-libraries
+#| echo: false
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+library(modelsummary)
+library(tinytable)
+
+options(scipen = 999)
+```
+
+```{r}
+#| label: simulate-data
+#| code-fold: true
+#| code-summary: "Show data simulation code (R)"
+#| message: false
+
+# Parameters — reduced scale for workshop render speed (blog post uses 100k loans).
+current_year <- 2025
+n_loans     <- 10000
+n_borrowers <- 2500
+n_years     <- 5
+
+rating_labels <- c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "C")
+grade_prop    <- c(0.01, 0.04, 0.15, 0.30, 0.25, 0.15, 0.06, 0.025, 0.005)
+target_n      <- round(n_loans * grade_prop)
+target_n[length(target_n)] <- n_loans - sum(target_n[-length(target_n)])
+
+n_loans_large     <- 10 * n_loans
+n_borrowers_large <- 10 * n_borrowers
+
+set.seed(42)
+
+borrower_large <- data.frame(
+  borrower_id = 1:n_borrowers_large,
+  net_worth   = round(rlnorm(n_borrowers_large, log(120), 0.7), 2)
+)
+borrower_large$leverage          <- round(runif(n_borrowers_large, 0.1, 0.9), 2)
+borrower_large$assets            <- borrower_large$net_worth / (1 - borrower_large$leverage)
+borrower_large$debt              <- borrower_large$assets * borrower_large$leverage
+borrower_large$ebitda_margin     <- rnorm(n_borrowers_large, 0.18, 0.06)
+borrower_large$revenue           <- borrower_large$assets * runif(n_borrowers_large, 0.5, 1.5)
+borrower_large$ebitda            <- borrower_large$revenue * borrower_large$ebitda_margin
+borrower_large$ebitda_to_debt    <- round(borrower_large$ebitda / (borrower_large$debt + 1e-2), 3)
+borrower_large$net_profit_margin <- pmax(pmin(rnorm(n_borrowers_large, 0.08, 0.04), 0.25), -0.2)
+borrower_large$net_profit_vol    <- abs(rnorm(n_borrowers_large, 0.03, 0.015))
+borrower_large$board_size        <- sample(3:15, n_borrowers_large, replace = TRUE)
+borrower_large$ceo_tenure        <- sample(1:20, n_borrowers_large, replace = TRUE)
+borrower_large$audit_firm_big4   <- rbinom(n_borrowers_large, 1, 0.7)
+
+loan_large <- data.frame(
+  loan_id             = 1:n_loans_large,
+  borrower_id         = sample(borrower_large$borrower_id, n_loans_large, replace = TRUE),
+  amount_in_thousands = round(rlnorm(n_loans_large, log(20), 0.7), 2),
+  term_months         = sample(c(12, 36, 60, 84), n_loans_large, replace = TRUE, prob = c(0.2, 0.5, 0.2, 0.1)),
+  interest_rate       = round(rnorm(n_loans_large, 0.045, 0.012), 4),
+  year_borrowed       = sample((current_year-n_years+1):current_year, n_loans_large, replace = TRUE)
+)
+loan_large <- merge(loan_large, borrower_large, by = "borrower_id")
+
+loan_large <- loan_large |>
+  left_join(borrower_large[, c("borrower_id", "debt")], by = "borrower_id", suffix = c("", ".b")) |>
+  mutate(amount_in_thousands = pmin(amount_in_thousands, debt)) |>
+  select(-debt)
+
+linpred_large <- 0.13 +
+   0.12   * loan_large$leverage +
+  -4.8    * loan_large$ebitda_to_debt +
+  -1.1    * (loan_large$ebitda_to_debt)^2 +
+  -4.5    * loan_large$net_profit_margin +
+  -0.5    * (loan_large$net_profit_margin)^2 +
+   4.1    * loan_large$net_profit_vol +
+   0.001  * loan_large$amount_in_thousands +
+  -0.0065 * loan_large$net_worth +
+   0.002  * loan_large$interest_rate +
+   0.05   * loan_large$board_size +
+  -0.005  * loan_large$ceo_tenure +
+  -0.03   * loan_large$audit_firm_big4 +
+   0.001  * loan_large$term_months
+
+loan_large$pd_pit <- plogis(linpred_large)
+
+pd_breaks <- c(0, 0.0005, 0.001, 0.002, 0.007, 0.02, 0.05, 0.15, 0.25, 1)
+loan_large$rating <- cut(
+  loan_large$pd_pit, breaks = pd_breaks, labels = rating_labels,
+  include.lowest = TRUE, right = TRUE
+)
+
+loan <- purrr::map2_dfr(
+  rating_labels, target_n,
+  ~{
+    pool <- loan_large[loan_large$rating == .x, ]
+    if (nrow(pool) < .y) stop(glue::glue("Not enough loans in grade {.x}"))
+    pool[sample(nrow(pool), .y), ]
+  }
+)
+
+long_run_pd_table <- data.frame(
+  rating      = rating_labels,
+  long_run_pd = c(0.03, 0.07, 0.20, 0.60, 1.50, 3.50, 10.0, 25.0, 30.0) / 100
+)
+
+loan$default <- 0L
+for (i in seq_along(rating_labels)) {
+  grade    <- rating_labels[i]
+  pd_target <- long_run_pd_table$long_run_pd[i]
+  idx      <- which(loan$rating == grade)
+  n_grade  <- length(idx)
+  n_def    <- round(pd_target * n_grade)
+  if (n_grade > 0 && n_def > 0) {
+    idx_sorted <- idx[order(loan$pd_pit[idx], decreasing = TRUE)]
+    loan$default[idx_sorted[seq_len(n_def)]] <- 1L
+  }
+}
+
+credit_data <- loan[, c(
+  "loan_id", "borrower_id", "year_borrowed", "net_worth", "leverage", "ebitda_to_debt",
+  "net_profit_margin", "net_profit_vol", "board_size", "ceo_tenure", "audit_firm_big4",
+  "amount_in_thousands", "term_months", "interest_rate", "default", "rating"
+)]
+
+# Train/test split 80/20
+train_indices <- sample(1:nrow(credit_data), 0.8 * nrow(credit_data))
+train_data <- credit_data[train_indices, ]
+test_data  <- credit_data[-train_indices, ]
+```
+
+::: {.callout-note}
+`credit_data` now holds **`r format(nrow(credit_data), big.mark=",")`** simulated loans over **`r n_years`** years, with 9 rating grades and a realistic default distribution. The `set.seed(42)` above makes this reproducible — rerun my analysis and you will get the same tables.
+:::
+
+## Sample overview
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| label: tbl-grade-dist
+#| echo: false
+#| tbl-cap: "Grade distribution and observed default rates"
+
+credit_data |>
+  group_by(rating) |>
+  summarise(
+    Count    = n(),
+    Defaults = sum(default),
+    `DR (%)` = round(100 * mean(default), 2)
+  ) |>
+  rename(Grade = rating) |>
+  tt() |>
+  style_tt(j = 1, align = "l") |>
+  style_tt(j = 2:4, align = "r")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: tbl-sample-vars
+#| echo: false
+#| tbl-cap: "Selected borrower features (first 8 loans)"
+
+credit_data |>
+  select(rating, leverage, ebitda_to_debt, net_profit_margin, audit_firm_big4) |>
+  head(8) |>
+  tt() |>
+  style_tt(j = 1, align = "l") |>
+  style_tt(j = 2:5, align = "r")
+```
+:::
+
+:::
+
+- Defaults are **concentrated in lower grades** — exactly what a credit-scoring model is supposed to achieve in-sample.
+- Are you looking at PIT default rates or long-run? What's the difference for capital?
+
+# Part 3 — Variable screening
+
+## Why screen before fitting?
+
+A typical credit file has **dozens to hundreds** of potential predictors — ratios, trends, bureau flags, transactional features. Throwing all of them into a regression is a bad idea:
+
+- **Noise variables** dilute signal and inflate standard errors.
+- **Highly correlated** predictors cause multicollinearity — unstable coefficients, fragile predictions out of sample.
+- **Weak predictors** make the model harder to explain to credit officers, auditors, and regulators — and harder to monitor over time.
+
+**The goal of variable screening** is to arrive at a **compact set of strong, non-redundant predictors** *before* any model is fit. We do it in two passes:
+
+1. **Univariate screening** — drop variables that carry little signal about default (using Information Value).
+2. **Correlation / redundancy control** — among survivors, drop one of any highly correlated pair (keep the more informative).
+
+## Information Value (IV)
+
+For a predictor $X$ split into $k$ bins, with $p_i^G, p_i^B$ the proportion of goods and bads in bin $i$:
+
+$$
+IV(X) = \sum_{i=1}^k \left( p_i^G - p_i^B \right) \cdot \ln\!\left( \frac{p_i^G}{p_i^B} \right)
+$$
+
+Rules of thumb (industry convention):
+
+| IV range      | Interpretation                          |
+|---------------|-----------------------------------------|
+| < 0.02        | Not predictive                          |
+| 0.02 – 0.10   | Weak                                    |
+| 0.10 – 0.30   | **Medium (useful)**                     |
+| 0.30 – 0.50   | Strong                                  |
+| > 0.50        | Suspicious — check for leakage          |
+
+## Widget 2 — IV intuition {.scrollable}
+
+::: {.callout-note title="Experiment"}
+Set $p^G$ and $p^B$ for one bin. If goods and bads are proportionally the same, IV contribution is 0 — the bin carries no signal. Push them apart to see contribution grow.
+:::
+
+::: {.columns}
+
+::: {.column width="30%"}
+```{ojs}
+//| echo: false
+
+viewof pG_widget2 = Inputs.range([0.01, 0.99], {value: 0.30, step: 0.01, label: "Goods in bin: pᴳ"})
+viewof pB_widget2 = Inputs.range([0.01, 0.99], {value: 0.10, step: 0.01, label: "Bads in bin:  pᴮ"})
+```
+:::
+
+::: {.column width="70%"}
+```{ojs}
+//| echo: false
+
+iv_contrib = (pG_widget2 - pB_widget2) * Math.log(pG_widget2 / pB_widget2)
+
+iv_strength = iv_contrib < 0.02 ? "not predictive"
+             : iv_contrib < 0.10 ? "weak"
+             : iv_contrib < 0.30 ? "medium (useful)"
+             : iv_contrib < 0.50 ? "strong"
+             : "suspicious — check for leakage"
+
+iv_color = iv_contrib < 0.02 ? "#888"
+          : iv_contrib < 0.10 ? "#D6A100"
+          : iv_contrib < 0.30 ? "#00AA4F"
+          : iv_contrib < 0.50 ? "#007F4F"
+          : "#A6192E"
+
+html`
+  <div style="font-size:1.2em; margin-top:0.5em;">
+    <table class="table">
+      <tr><td><b>IV contribution from this bin</b></td>
+          <td style="font-family:monospace; font-size:1.2em;">${iv_contrib.toFixed(4)}</td></tr>
+      <tr><td>Interpretation</td>
+          <td><span style="color:${iv_color}; font-weight:bold;">${iv_strength}</span></td></tr>
+    </table>
+  </div>
+`
+
+Plot.plot({
+  width: 720, height: 260,
+  marginLeft: 60, marginBottom: 40,
+  y: {domain: [0, 1], label: "Proportion in bin", grid: true},
+  x: {label: null},
+  marks: [
+    Plot.barY([
+      {group: "Goods (non-default)", p: pG_widget2},
+      {group: "Bads (default)",       p: pB_widget2}
+    ], {x: "group", y: "p", fill: d => d.group.startsWith("Goods") ? "#00AA4F" : "#A6192E"}),
+    Plot.text([
+      {group: "Goods (non-default)", p: pG_widget2, label: (pG_widget2*100).toFixed(1) + "%"},
+      {group: "Bads (default)",       p: pB_widget2, label: (pB_widget2*100).toFixed(1) + "%"}
+    ], {x: "group", y: "p", text: "label", dy: -10, fontWeight: "bold"})
+  ]
+})
+```
+:::
+
+:::
+
+## IV screening — the real table
+
+```{r}
+#| label: tbl-iv-screening
+#| code-fold: true
+#| code-summary: "Compute Information Value for each candidate variable (R)"
+#| message: false
+
+library(scorecard)
+
+vars <- c(
+  "net_worth", "leverage", "ebitda_to_debt",
+  "net_profit_margin", "net_profit_vol",
+  "board_size", "ceo_tenure", "audit_firm_big4"
+)
+
+iv_df <- scorecard::iv(train_data, y = "default", x = vars) |>
+  as_tibble() |>
+  arrange(desc(info_value)) |>
+  rename(Variable = variable, `Information Value` = info_value)
+
+iv_df |> tt() |> style_tt(j = 1, align = "l") |> style_tt(j = 2, align = "r") |>
+  format_tt(j = 2, digits = 3)
+```
+
+```{r}
+#| echo: false
+candidate_vars <- iv_df |> filter(`Information Value` >= 0.1) |> pull(Variable)
+candidate_vars_str <- iv_df |> filter(`Information Value` >= 0.1) |>
+  mutate(Variable = paste0("`", Variable, "`")) |> pull(Variable) |> paste(collapse = ", ")
+```
+
+::: {.fragment}
+Variables passing the **IV ≥ 0.1** cut: `r candidate_vars_str`.
+:::
+
+## Correlation screening
+
+- Two variables with $|r| > 0.6$ → keep the one with higher IV.
+- Multicollinearity *doesn't bias* logistic coefficients but *does inflate standard errors* and destabilise interpretation.
+
+```{r}
+#| label: tbl-corr-matrix
+#| echo: false
+#| message: false
+#| tbl-cap: "Correlation matrix of candidate variables"
+
+corr_mat <- cor(train_data |> select(all_of(candidate_vars)), use = "pairwise.complete.obs")
+
+corr_df <- as.data.frame(round(corr_mat, 3)) |>
+  tibble::rownames_to_column(var = "Variable")
+
+corr_df |> tt() |> style_tt(j = 1, align = "l") |> style_tt(j = 2:ncol(corr_df), align = "r")
+```
+
+```{r}
+#| echo: false
+high_corr_pairs <- which(abs(corr_mat) > 0.6 & lower.tri(corr_mat), arr.ind = TRUE)
+if (nrow(high_corr_pairs) == 0) {
+  high_corr_info <- tibble(keep = character(), drop = character())
+  final_vars <- candidate_vars
+} else {
+  high_corr_info <- purrr::map_dfr(seq_len(nrow(high_corr_pairs)), function(i) {
+    var1 <- rownames(corr_mat)[high_corr_pairs[i, 1]]
+    var2 <- colnames(corr_mat)[high_corr_pairs[i, 2]]
+    iv1  <- iv_df$`Information Value`[iv_df$Variable == var1]
+    iv2  <- iv_df$`Information Value`[iv_df$Variable == var2]
+    keep <- if (iv1 >= iv2) var1 else var2
+    drop <- if (iv1 >= iv2) var2 else var1
+    tibble(var1 = var1, var2 = var2, correlation = corr_mat[var1, var2],
+           keep = keep, drop = drop)
+  })
+  final_vars <- setdiff(candidate_vars, high_corr_info$drop)
+}
+final_vars_str <- paste0("`", final_vars, "`") |> paste(collapse = ", ")
+```
+
+::: {.fragment}
+After correlation control, the final feature set is: `r final_vars_str`.
+:::
+
+# Part 4 — Logistic regression
+
+## The logit model
+
+$$
+P(\text{default}=1\mid X) = \frac{1}{1 + \exp(-\beta^\top X)}
+$$
+
+- Bounded in $[0,1]$ — outputs are valid probabilities.
+- Linear in *log-odds* — coefficients have a clean interpretation.
+- Fits with **maximum likelihood**; no closed form, but `glm()` handles it.
+
+::: {.callout-tip}
+A one-unit increase in $X_k$ changes the **log-odds** by $\beta_k$. Multiplicative effect on odds is $e^{\beta_k}$.
+:::
+
+## Widget 3 — The sigmoid {.scrollable}
+
+::: {.callout-note title="Experiment"}
+Drag $\beta_0$ — the curve shifts horizontally. Drag $\beta_1$ — the curve *tilts* (positive = default risk rises with $X$; negative = falls). The magnitude of $\beta_1$ controls how "sharp" the transition is.
+:::
+
+::: {.columns}
+
+::: {.column width="28%"}
+```{ojs}
+//| echo: false
+
+viewof beta0 = Inputs.range([-5, 5],  {value: -1.0, step: 0.1, label: "β₀ (intercept)"})
+viewof beta1 = Inputs.range([-3, 3],  {value:  1.0, step: 0.1, label: "β₁ (slope)"})
+viewof x_val = Inputs.range([-5, 5],  {value:  0.0, step: 0.1, label: "x"})
+```
+:::
+
+::: {.column width="72%"}
+```{ojs}
+//| echo: false
+
+xgrid = Array.from({length: 200}, (_, i) => -5 + 10 * i / 199)
+curve = xgrid.map(x => ({x: x, p: 1 / (1 + Math.exp(-(beta0 + beta1 * x)))}))
+p_here = 1 / (1 + Math.exp(-(beta0 + beta1 * x_val)))
+
+html`
+  <div style="font-size:1.1em; margin-bottom:0.3em;">
+    At <b>x = ${x_val.toFixed(2)}</b>, model predicts <b>P(default) = ${(p_here*100).toFixed(2)}%</b>
+  </div>
+`
+
+Plot.plot({
+  width: 780, height: 360, marginLeft: 55, marginBottom: 45,
+  x: {label: "x", domain: [-5, 5], grid: true},
+  y: {label: "P(default | x)", domain: [0, 1], grid: true},
+  marks: [
+    Plot.ruleY([0.5], {stroke: "#ccc", strokeDasharray: "2,2"}),
+    Plot.line(curve, {x: "x", y: "p", stroke: "#A6192E", strokeWidth: 2}),
+    Plot.ruleX([x_val], {stroke: "gray", strokeDasharray: "3,2"}),
+    Plot.ruleY([p_here], {stroke: "gray", strokeDasharray: "3,2"}),
+    Plot.dot([{x: x_val, p: p_here}], {x: "x", y: "p", fill: "black", r: 5})
+  ]
+})
+```
+:::
+
+:::
+
+## Fit the model on training data
+
+```{r}
+#| label: tbl-logit-results
+#| tbl-cap: "Logistic regression: estimated coefficients"
+#| code-fold: true
+#| code-summary: "Fit glm() with family=binomial() on the final feature set"
+#| message: false
+#| warning: false
+
+logit_formula <- as.formula(paste("default ~", paste(final_vars, collapse = " + ")))
+
+logit_fit <- glm(
+  formula = logit_formula,
+  data    = train_data,
+  family  = binomial()
+)
+
+modelsummary(
+  list("Logistic model" = logit_fit),
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  note  = "Standard errors in parentheses.",
+  output = "tinytable"
+)
+```
+
+- Look at signs. Higher leverage → higher PD (positive $\beta$). Higher profitability → lower PD (negative $\beta$).
+- The magnitudes are on the **log-odds** scale — don't read them as probability effects directly.
+
+## ROC and AUC
+
+```{r}
+#| label: fig-roc-curve
+#| fig-cap: "ROC curve on held-out test data"
+#| fig-height: 3.5
+#| code-fold: true
+#| code-summary: "Score test set, compute ROC, plot"
+#| message: false
+
+library(pROC)
+
+test_data$pd_hat <- predict(logit_fit, newdata = test_data, type = "response")
+
+roc_obj  <- roc(response = test_data$default, predictor = test_data$pd_hat, direction = "<")
+auc_val  <- as.numeric(auc(roc_obj))
+gini_val <- 2 * auc_val - 1
+
+roc_df <- data.frame(
+  fpr = 1 - roc_obj$specificities,
+  tpr = roc_obj$sensitivities
+)
+
+ggplot(roc_df, aes(x = fpr, y = tpr)) +
+  geom_line(linewidth = 1, color = "#A6192E") +
+  geom_abline(slope = 1, intercept = 0, linetype = 2, color = "#888") +
+  labs(
+    title = sprintf("AUC = %.3f · Gini = %.3f", auc_val, gini_val),
+    x = "False positive rate", y = "True positive rate"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+- **AUC** = probability that a randomly chosen defaulter is ranked above a randomly chosen non-defaulter.
+- **Gini** = $2 \cdot AUC - 1$. Bounded in $[0, 1]$; random model → 0; perfect model → 1.
+- An AUC of 0.70 is *deployable*; 0.80+ is strong; above 0.95, suspect leakage.
+
+## Widget 4 — ROC threshold slider {.scrollable}
+
+::: {.callout-note title="Why this matters"}
+AUC measures *ranking*. But to *deploy* a model, you pick a threshold. Different thresholds → different costs. A default missed costs X; a good loan denied costs Y. The threshold is a business call, not a statistical one.
+:::
+
+```{r}
+#| echo: false
+#| message: false
+
+# Push test-set scores into the OJS runtime.
+scores_for_ojs <- list(
+  pd_hat  = test_data$pd_hat,
+  default = as.integer(test_data$default)
+)
+ojs_define(scoresR = scores_for_ojs)
+```
+
+::: {.columns}
+
+::: {.column width="28%"}
+```{ojs}
+//| echo: false
+
+viewof threshold_w4 = Inputs.range([0.001, 0.30], {value: 0.02, step: 0.001, label: "Classification threshold"})
+```
+:::
+
+::: {.column width="72%"}
+```{ojs}
+//| echo: false
+
+scores_flat = scoresR.pd_hat.map((pd, i) => ({pd: pd, actual: scoresR.default[i]}))
+
+TP_w4 = scores_flat.filter(d => d.actual === 1 && d.pd >= threshold_w4).length
+FP_w4 = scores_flat.filter(d => d.actual === 0 && d.pd >= threshold_w4).length
+FN_w4 = scores_flat.filter(d => d.actual === 1 && d.pd <  threshold_w4).length
+TN_w4 = scores_flat.filter(d => d.actual === 0 && d.pd <  threshold_w4).length
+
+TPR_w4 = TP_w4 / (TP_w4 + FN_w4 || 1)
+FPR_w4 = FP_w4 / (FP_w4 + TN_w4 || 1)
+
+html`
+  <div style="display:flex; gap:24px; align-items:flex-start; font-size:0.95em;">
+    <table class="table" style="min-width:340px;">
+      <thead>
+        <tr><th></th><th>Predicted default</th><th>Predicted non-default</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Actual default</th>
+          <td style="background:#D6F5D6"><b>TP = ${TP_w4}</b></td>
+          <td style="background:#F8D7DA"><b>FN = ${FN_w4}</b></td>
+        </tr>
+        <tr>
+          <th>Actual non-default</th>
+          <td style="background:#F8D7DA"><b>FP = ${FP_w4}</b></td>
+          <td style="background:#D6F5D6"><b>TN = ${TN_w4}</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <tr><td>TPR (sensitivity)</td><td><b>${(TPR_w4*100).toFixed(1)}%</b></td></tr>
+      <tr><td>FPR (1 − specificity)</td><td><b>${(FPR_w4*100).toFixed(1)}%</b></td></tr>
+      <tr><td>Defaulters caught</td><td><b>${TP_w4} / ${TP_w4+FN_w4}</b></td></tr>
+      <tr><td>Good loans denied</td><td><b>${FP_w4} / ${FP_w4+TN_w4}</b></td></tr>
+    </table>
+  </div>
+`
+```
+:::
+
+:::
+
+::: {.fragment}
+Move the threshold up: fewer false positives (good customers you denied), but more missed defaulters. Move it down: catch more defaulters, but deny a lot of good applicants. **This tension is the whole job of a credit officer.**
+:::
+
+# Part 5 — Calibration
+
+## PIT PD vs long-run PD
+
+- Logistic output = **point-in-time (PIT) PD**. Reflects current conditions; cycles.
+- Basel III requires **long-run PDs** — multi-year averages — for capital. Pro-cyclicality is bad for stability.
+- **Calibration** = mapping continuous PIT PDs into discrete grades, each with a long-run PD attached.
+
+## The calibrated rating table
+
+| Grade | Description       | PIT PD range  | Long-run PD |
+|-------|-------------------|---------------|-------------|
+| AAA   | Prime             | 0.00 – 0.05%  | 0.00%       |
+| AA    | Very strong       | 0.05 – 0.10%  | 0.07%       |
+| A     | Strong            | 0.10 – 0.25%  | 0.20%       |
+| BBB   | Satisfactory      | 0.25 – 0.75%  | 0.60%       |
+| BB    | Weak              | 0.75 – 2.00%  | 1.50%       |
+| B     | Very weak         | 2.00 – 5.00%  | 3.50%       |
+| CCC   | Distressed        | 5.00 – 15.0%  | 10.0%       |
+| CC    | Highly distressed | 15.0 – 25.0%  | 25.0%       |
+| C     | Near default      | ≥ 25.0%       | 30.0%       |
+
+: Example calibrated rating table {#tbl-calibrated-rating}
+
+::: {.callout-caution}
+**APS 113 floor.** Every grade's long-run PD must be at least **0.05%** for capital. The AAA row above has PD = 0.00% — for capital calculation we would floor it to 0.05%.
+:::
+
+## Widget 5 — Rating bin tuner {.scrollable}
+
+::: {.callout-note title="You're the credit committee"}
+Drag the cut-points. Watch the grade distribution shift. In practice, *calibration is a policy decision* — tighter cutoffs mean fewer borrowers in top grades, which affects both RWA and commercial targeting.
+:::
+
+```{r}
+#| echo: false
+#| message: false
+
+# Score the full dataset with the fitted logit and push PIT PDs to OJS.
+credit_data$pd_pit_new <- predict(logit_fit, newdata = credit_data, type = "response")
+ojs_define(pitpds = as.numeric(credit_data$pd_pit_new))
+```
+
+::: {.columns}
+
+::: {.column width="30%"}
+```{ojs}
+//| echo: false
+
+viewof c1 = Inputs.range([0.0001, 0.003], {value: 0.0005, step: 0.0001, label: "AAA | AA"})
+viewof c2 = Inputs.range([0.0005, 0.005], {value: 0.001,  step: 0.0001, label: "AA  | A"})
+viewof c3 = Inputs.range([0.001,  0.01],  {value: 0.002,  step: 0.0001, label: "A   | BBB"})
+viewof c4 = Inputs.range([0.002,  0.03],  {value: 0.007,  step: 0.0005, label: "BBB | BB"})
+viewof c5 = Inputs.range([0.007,  0.1],   {value: 0.02,   step: 0.001,  label: "BB  | B"})
+viewof c6 = Inputs.range([0.02,   0.2],   {value: 0.05,   step: 0.005,  label: "B   | CCC"})
+viewof c7 = Inputs.range([0.05,   0.4],   {value: 0.15,   step: 0.005,  label: "CCC | CC"})
+viewof c8 = Inputs.range([0.15,   0.5],   {value: 0.25,   step: 0.01,   label: "CC  | C"})
+```
+:::
+
+::: {.column width="70%"}
+```{ojs}
+//| echo: false
+
+breaks_w5 = [0, c1, c2, c3, c4, c5, c6, c7, c8, 1]
+labels_w5 = ["AAA","AA","A","BBB","BB","B","CCC","CC","C"]
+
+function grade_of(pd, brks, lbls) {
+  for (let i = 0; i < lbls.length; i++) {
+    if (pd > brks[i] && pd <= brks[i+1]) return lbls[i];
+  }
+  return lbls[0];
+}
+
+grade_counts = labels_w5.map(g => ({
+  grade: g,
+  count: Array.from(pitpds).filter(pd => grade_of(pd, breaks_w5, labels_w5) === g).length
+}))
+
+Plot.plot({
+  width: 780, height: 320, marginLeft: 60, marginBottom: 40,
+  x: {label: "Grade", domain: labels_w5},
+  y: {label: "Count", grid: true},
+  marks: [
+    Plot.barY(grade_counts, {x: "grade", y: "count", fill: "#A6192E"}),
+    Plot.text(grade_counts, {x: "grade", y: "count", text: d => d.count, dy: -6, fontWeight: "bold"})
+  ]
+})
+```
+:::
+
+:::
+
+::: {.fragment}
+Notice: when you narrow the AAA band, those borrowers spill into AA — increasing the *count* of a higher-risk grade, hence the bank's RWA even if nothing changed in the underlying book. **Calibration is not neutral.**
+:::
+
+# Part 6 — Validation
+
+## Transition matrix — old vs new ratings
+
+```{r}
+#| label: tbl-transition-matrix
+#| tbl-cap: "Transition matrix: how ratings shift from old model to new model (% by old-row)"
+#| code-fold: true
+#| code-summary: "Cross-tabulate old vs new ratings"
+#| message: false
+
+calib_rating_labels <- c("AAA", "AA", "A", "BBB", "BB", "B", "CCC", "CC", "C")
+calib_pd_breaks     <- c(0, 0.0005, 0.001, 0.002, 0.007, 0.02, 0.05, 0.15, 0.25, 1)
+
+credit_data$rating_new <- cut(
+  credit_data$pd_pit_new,
+  breaks = calib_pd_breaks, labels = calib_rating_labels,
+  include.lowest = TRUE, right = TRUE
+)
+
+transition_mat  <- table("Old" = credit_data$rating, "New" = credit_data$rating_new)
+transition_prop <- round(prop.table(transition_mat, margin = 1) * 100, 1)
+
+transition_df <- as.data.frame.matrix(transition_prop) |>
+  tibble::rownames_to_column(var = "Old \\ New")
+
+transition_df |> tt() |>
+  style_tt(j = 1, align = "l", bold = TRUE) |>
+  style_tt(j = 2:10, align = "r")
+```
+
+- Diagonal cells = borrowers whose grade is *unchanged*.
+- A good model moves mass toward the diagonal. Wild dispersion = instability = recalibrate.
+
+## Widget 6 — Transition matrix heatmap {.scrollable}
+
+```{r}
+#| echo: false
+#| message: false
+
+# Push the transition matrix to OJS as a list of {old, new, pct} triples.
+trans_long <- as.data.frame(transition_prop) |>
+  dplyr::rename(pct = Freq)
+ojs_define(transData = list(
+  old = as.character(trans_long$Old),
+  new = as.character(trans_long$New),
+  pct = as.numeric(trans_long$pct)
+))
+```
+
+```{ojs}
+//| echo: false
+//| fig-align: center
+
+trans_records = transData.old.map((o, i) => ({
+  old: o, new: transData.new[i], pct: transData.pct[i]
+}))
+
+grades_all = ["AAA","AA","A","BBB","BB","B","CCC","CC","C"]
+
+Plot.plot({
+  width: 620, height: 420,
+  marginLeft: 60, marginBottom: 60, marginTop: 30,
+  x: {label: "New rating", domain: grades_all, padding: 0.05},
+  y: {label: "Old rating", domain: grades_all, padding: 0.05},
+  color: {scheme: "reds", label: "% of row", domain: [0, 100]},
+  marks: [
+    Plot.cell(trans_records, {x: "new", y: "old", fill: "pct", inset: 1}),
+    Plot.text(trans_records, {
+      x: "new", y: "old",
+      text: d => d.pct >= 1 ? d.pct.toFixed(1) : "",
+      fill: d => d.pct > 40 ? "white" : "black",
+      fontSize: 11
+    })
+  ]
+})
+
+html`
+  <div style="font-size:0.95em; margin-top:0.5em; color:#555;">
+    Hover any cell to read the exact %; diagonal = stable, off-diagonal = migration.
+    The cleaner the diagonal, the more stable the rating system across model versions.
+  </div>
+`
+```
+
+## RWA impact — does the new model hold up?
+
+```{r}
+#| label: tbl-rwa-impact
+#| tbl-cap: "Total RWA under old vs new ratings (active loans, LGD=20%, AVCM=1)"
+#| code-fold: true
+#| code-summary: "Apply irb_rwa() to each active loan under old and new ratings"
+#| message: false
+
+irb_rwa <- function(PD, LGD, EAD, M, AVCM = 1) {
+  PD <- pmax(PD, 0.0005)
+  x  <- (1 - exp(-50 * PD)) / (1 - exp(-50))
+  R  <- AVCM * (0.12 * x + 0.24 * (1 - x))
+  b  <- (0.11852 - 0.05478 * log(PD))^2
+  term <- (qnorm(PD) + sqrt(R) * qnorm(0.999)) / sqrt(1 - R)
+  K  <- (LGD * pnorm(term) - PD * LGD) * ((1 + (M - 2.5) * b) / (1 - 1.5 * b))
+  pmax(K, 0) * 12.5 * EAD
+}
+
+long_run_pd_table <- data.frame(
+  rating      = calib_rating_labels,
+  long_run_pd = c(0.0005, 0.0007, 0.0020, 0.0060, 0.0150, 0.0350, 0.10, 0.25, 0.30)
+)
+
+credit_data$pd_old <- long_run_pd_table$long_run_pd[match(credit_data$rating,     long_run_pd_table$rating)]
+credit_data$pd_new <- long_run_pd_table$long_run_pd[match(credit_data$rating_new, long_run_pd_table$rating)]
+
+credit_data$maturity_year <- credit_data$year_borrowed + ceiling(credit_data$term_months / 12) - 1
+active_loans <- credit_data |> filter(maturity_year >= current_year)
+
+LGD <- 0.20
+EAD <- active_loans$amount_in_thousands * 1000
+M   <- active_loans$term_months / 12
+
+active_loans$rwa_old <- irb_rwa(active_loans$pd_old, LGD, EAD, M, 1)
+active_loans$rwa_new <- irb_rwa(active_loans$pd_new, LGD, EAD, M, 1)
+
+total_rwa_old <- sum(active_loans$rwa_old, na.rm = TRUE)
+total_rwa_new <- sum(active_loans$rwa_new, na.rm = TRUE)
+total_ead     <- sum(EAD,                   na.rm = TRUE)
+pct_change    <- (total_rwa_new - total_rwa_old) / total_rwa_old * 100
+
+tibble(
+  Scenario       = c("Old ratings", "New ratings"),
+  `Total EAD`    = c(total_ead,    total_ead),
+  `Total RWA`    = c(total_rwa_old, total_rwa_new)
+) |>
+  mutate(
+    `Total EAD` = format(round(`Total EAD`), big.mark = ",", scientific = FALSE, trim = TRUE),
+    `Total RWA` = format(round(`Total RWA`), big.mark = ",", scientific = FALSE, trim = TRUE)
+  ) |>
+  tt() |> style_tt(j = 1, align = "l") |> style_tt(j = 2:3, align = "r")
+```
+
+::: {.fragment}
+The new model shifts total RWA by **`r sprintf("%+.2f%%", pct_change)`**. A bank signs off or sends the model back for recalibration based on this number *and* the stability of ratings.
+:::
+
+# Part 7 — Classic scoring models (bonus)
+
+## Before logit: Altman's Z-score (1968)
+
+Ed Altman fit a discriminant function on US manufacturers:
+
+$$
+Z = 1.2 X_1 + 1.4 X_2 + 3.3 X_3 + 0.6 X_4 + 1.0 X_5
+$$
+
+where
+
+- $X_1=$ Working capital / Total assets
+- $X_2=$ Retained earnings / Total assets
+- $X_3=$ EBIT / Total assets
+- $X_4=$ Market equity / Book liabilities
+- $X_5=$ Sales / Total assets
+
+**Zones:** 
+
+- $Z < 1.81$ → distressed
+- $1.81 \le Z < 2.99$ → grey
+- $Z \ge 2.99$ → safe
+
+## Widget 7 — Altman Z-score calculator {.scrollable}
+
+::: {.columns}
+
+::: {.column width="30%"}
+```{ojs}
+//| echo: false
+
+viewof x1_w7 = Inputs.range([-0.5, 1.0], {value: 0.20, step: 0.01, label: "X₁ Working capital / TA"})
+viewof x2_w7 = Inputs.range([-0.5, 1.0], {value: 0.30, step: 0.01, label: "X₂ Retained earnings / TA"})
+viewof x3_w7 = Inputs.range([-0.3, 0.5], {value: 0.10, step: 0.01, label: "X₃ EBIT / TA"})
+viewof x4_w7 = Inputs.range([0,    5.0], {value: 1.50, step: 0.05, label: "X₄ Market equity / Book liab."})
+viewof x5_w7 = Inputs.range([0,    3.0], {value: 1.00, step: 0.05, label: "X₅ Sales / TA"})
+```
+:::
+
+::: {.column width="70%"}
+```{ojs}
+//| echo: false
+
+z_w7 = 1.2*x1_w7 + 1.4*x2_w7 + 3.3*x3_w7 + 0.6*x4_w7 + 1.0*x5_w7
+zone_w7 = z_w7 < 1.81 ? "Distressed" : z_w7 < 2.99 ? "Grey zone" : "Safe"
+zone_color_w7 = z_w7 < 1.81 ? "#A6192E" : z_w7 < 2.99 ? "#D6A100" : "#00AA4F"
+
+html`
+  <div style="font-size:1.3em; margin-top:0.5em;">
+    <b>Z = ${z_w7.toFixed(3)}</b> →
+    <span style="color:${zone_color_w7}; font-weight:bold;">${zone_w7}</span>
+  </div>
+`
+
+Plot.plot({
+  width: 780, height: 160, marginLeft: 40, marginBottom: 40, marginTop: 20,
+  x: {domain: [-1, 6], label: "Z-score"},
+  y: {axis: null, domain: [0, 1]},
+  marks: [
+    Plot.rectX([{x1: -1, x2: 1.81}], {x1: "x1", x2: "x2", y1: 0, y2: 1, fill: "#F8D7DA"}),
+    Plot.rectX([{x1: 1.81, x2: 2.99}], {x1: "x1", x2: "x2", y1: 0, y2: 1, fill: "#FFF3CD"}),
+    Plot.rectX([{x1: 2.99, x2: 6}], {x1: "x1", x2: "x2", y1: 0, y2: 1, fill: "#D6F5D6"}),
+    Plot.text([
+      {x: 0.9,  y: 0.5, t: "Distressed"},
+      {x: 2.40, y: 0.5, t: "Grey"},
+      {x: 4.5,  y: 0.5, t: "Safe"}
+    ], {x: "x", y: "y", text: "t", fontWeight: "bold"}),
+    Plot.ruleX([z_w7], {stroke: "#A6192E", strokeWidth: 3}),
+    Plot.dot([{x: z_w7, y: 0.5}], {x: "x", y: "y", fill: "#A6192E", r: 6})
+  ]
+})
+```
+:::
+
+:::
+
+::: {.callout-note}
+Z-score is an accounting-data scorecard — no market prices required. That's its appeal for private firms. Its weakness is that the coefficients were fit on 1960s US manufacturers; they are not universal.
+:::
+
+## Merton's structural model (1974)
+
+Treat the firm as a call option on its assets:
+
+- Assets $V$ evolve as geometric Brownian motion with volatility $\sigma$.
+- Debt $D$ matures at horizon $T$.
+- Equity $=$ $\max(V_T - D, 0)$ — a call option on assets.
+- **Default** at $T$ if $V_T < D$.
+
+$$
+d_2 = \frac{\ln(V/D) + (r - \sigma^2/2)\,T}{\sigma\sqrt{T}}, \qquad
+PD = N(-d_2)
+$$
+
+## Widget 8 — Merton distance-to-default {.scrollable}
+
+::: {.columns}
+
+::: {.column width="30%"}
+```{ojs}
+//| echo: false
+
+viewof V_w8 = Inputs.range([10, 500],  {value: 100, step: 1,    label: "Asset value V"})
+viewof D_w8 = Inputs.range([10, 500],  {value: 70,  step: 1,    label: "Debt face value D"})
+viewof sig_w8 = Inputs.range([0.05, 1.0], {value: 0.3, step: 0.01, label: "Asset vol σ"})
+viewof T_w8 = Inputs.range([0.25, 5],  {value: 1.0, step: 0.25, label: "Horizon T (years)"})
+viewof r_w8 = Inputs.range([0.00, 0.10], {value: 0.03, step: 0.005, label: "Risk-free r"})
+```
+:::
+
+::: {.column width="70%"}
+```{ojs}
+//| echo: false
+
+// Reuse erf-based normal CDF
+function norm_cdf_w8(x) {
+  function erf(x) {
+    const sign = x < 0 ? -1 : 1;
+    x = Math.abs(x);
+    const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741;
+    const a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+    const t = 1 / (1 + p * x);
+    const y = 1 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1)*t*Math.exp(-x*x);
+    return sign * y;
+  }
+  return (1 + erf(x / Math.sqrt(2))) / 2;
+}
+
+d2_w8 = (Math.log(V_w8 / D_w8) + (r_w8 - 0.5 * sig_w8 * sig_w8) * T_w8) / (sig_w8 * Math.sqrt(T_w8))
+PD_w8 = norm_cdf_w8(-d2_w8)
+DD_w8 = d2_w8
+
+html`
+  <table class="table" style="font-size:1.15em;">
+    <tr><td>Distance to default (d₂)</td><td><b>${DD_w8.toFixed(3)}</b></td></tr>
+    <tr><td>Implied PD = N(−d₂)</td><td><b>${(PD_w8*100).toFixed(4)}%</b></td></tr>
+    <tr><td>Leverage (D/V)</td><td><b>${(D_w8/V_w8*100).toFixed(1)}%</b></td></tr>
+  </table>
+`
+```
+:::
+
+:::
+
+::: {.callout-tip}
+**Two worldviews for the same number.** Logit says "PD is a function of accounting ratios." Merton says "PD is implied by the firm's market-value capital structure." Moody's KMV commercialised Merton; Basel IRB expects logit-style empirical models. Real banks often blend both.
+:::
+
+# Part 8 — Knowledge check
+
+## Quiz 1
+
+**If PD doubles from 1.0% to 2.0%, does RWA double?**
+
+::: {.fragment}
+**No.** The risk-weight function is *non-linear* in PD — via correlation $R$, the maturity adjustment $b$, and the normal-CDF term. Use Widget 1 to check: at the default settings, RWA approximately increases by ~50% when PD doubles from 1% → 2%, not 100%.
+:::
+
+## Quiz 2
+
+**Our fitted model above scored AUC ≈ 0.83 (Gini ≈ 0.65) on held-out data. A colleague says "great, we're ready to deploy." Are they?**
+
+::: {.fragment}
+**Not by itself.** AUC ≈ 0.83 is a respectable *discrimination* number, but discrimination is only one of four pillars. Before deployment you also need:
+
+- **Calibration** — do predicted PDs match the realised default rates *per grade*? A well-ranked model can still be systematically off.
+- **Threshold economics** — Widget 4 shows the false-positive / false-negative trade-off. The right threshold depends on the cost of missed defaulters vs denied good loans.
+- **Stability** — Widget 6 and the transition matrix: does the new model re-grade borrowers sensibly, or does it churn them across grades?
+- **RWA impact** — will the new model's long-run PDs blow through the capital budget?
+
+A headline AUC number is a necessary condition, not a sufficient one.
+:::
+
+## Quiz 3
+
+**In our transition matrix (@tbl-transition-matrix), only ~3% of old-AAA borrowers remain AAA under the new model — about 50% are re-graded all the way down to BBB. About 49% of old-BBB loans drop to BB. Good news or bad?**
+
+::: {.fragment}
+**Red flag either way — it needs a story.** A three-notch downgrade concentrated at the *prime* end of the book is exactly the kind of shift a regulator will ask about:
+
+- **If the old AAAs really were prime**, the new model is broken at the high end — investigate the coefficients driving low-PD scores.
+- **If the old AAAs were never really AAA**, the old model was too generous and the bank was under-capitalised — a *correction*, but one that must come with a provisioning and capital-planning story.
+
+The large one-notch drift across the whole book (old-BBB → new-BB, old-A → new-BB) says the new model is *systematically more conservative*. You don't deploy a model with this much migration without (a) understanding which story applies and (b) stress-testing the RWA impact (@tbl-rwa-impact).
+:::
+
+## Quiz 4
+
+**Why does IRB capital $K$ fall when PD goes above ~30%?**
+
+::: {.fragment}
+**Because K covers unexpected loss, not expected loss.** When default is almost certain, the loss is *expected* — it belongs in provisioning (IFRS 9), not in capital. The "surprise" component — which is what capital funds — shrinks as PD approaches 1.
+:::
+
+# Wrap-up
+
+## Key takeaways
+
+1. **RWA = K × 12.5 × EAD** is the business end of credit-risk modelling. Everything before it — simulate, screen, fit, calibrate, validate — feeds one number.
+2. **PIT vs long-run PD.** Logit outputs are PIT; Basel capital needs long-run. Calibration is the bridge, and it's a *policy* choice.
+3. **Model quality is three things, not one.** Discrimination (AUC) + calibration + stability. Skip any one and you will be told about it.
+4. **Capital ≠ provisioning.** Expected loss lives in provisions (IFRS 9). Unexpected loss lives in capital (Basel). Don't double-count.
+5. **Structural vs empirical.** Merton and logit answer the same question from different directions. Use both when you can.
+
+## Resources
+
+- Full narrative version: [Credit Risk Modelling (IRB)](https://mingze-gao.com/posts/credit-risk-modelling/)
+- APRA Prudential Standard [APS 113 — Capital Adequacy: IRB Approach to Credit Risk](https://www.apra.gov.au/capital-adequacy-internal-ratings-based-approach-to-credit-risk)
+- BIS Basel framework [CRE32 — IRB approach: risk components](https://www.bis.org/basel_framework/chapter/CRE/32.htm)
+- Altman, E. I. (1968). "Financial Ratios, Discriminant Analysis and the Prediction of Corporate Bankruptcy." *Journal of Finance*.
+- @merton_pricing_1974 (structural approach)
+- @Gorton2008BankCycles
+
+## References
