@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Dr.&nbsp;Mingze Gao">
+  <meta name="dcterms.date" content="2026-05-05">
+  <title>Mingze Gao – AFIN8003 Week 9 - Liability and Liquidity Management</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-dfce579f1d8fe8fde31da5005cf0c837.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="../../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<meta name="twitter:title" content="AFIN8003 Week 9 - Liability and Liquidity Management – Mingze Gao">
+<meta name="twitter:description" content="Banking and Financial Intermediation">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+  <h1 class="title">AFIN8003 Week 9 - Liability and Liquidity Management</h1>
+  <p class="subtitle">Banking and Financial Intermediation</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mingze Gao 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Applied Finance
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-05-05</p>
+</section>
+<section>
+<section id="liability-and-liquidity-management" class="title-slide slide level1 center">
+<h1>Liability and Liquidity Management</h1>
+
+</section>
+<section id="cold-open-14-september-2007" class="slide level2">
+<h2>Cold open: 14 September 2007</h2>
+<div title="Newcastle, Friday morning">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Newcastle, Friday morning</strong></p>
+</div>
+<div class="callout-content">
+<p>Customers queued around the block outside Northern Rock branches.</p>
+<p>It was the <em>first run</em> on a British bank since <em>Overend, Gurney &amp; Co.</em> in 1866 — 141 years.</p>
+</div>
+</div>
+</div>
+</div>
+<p>We’ll come back to <em>why</em> in a moment.</p>
+</section>
+<section id="what-killed-northern-rock" class="slide level2">
+<h2>What killed Northern Rock?</h2>
+<p>It wasn’t bad loans. The mortgage book was performing.</p>
+<p>It was the <strong>funding mix</strong>:</p>
+<ul>
+<li>~75% of Northern Rock’s funding came from <em>wholesale markets</em> — securitisation, interbank lines, mortgage-backed securities.</li>
+<li>~25% came from retail deposits.</li>
+</ul>
+<p>When the asset-backed commercial paper (ABCP) market seized in August 2007, the bank could not roll its debt.</p>
+<p>The Bank of England announced emergency liquidity assistance on the evening of 13 September. The news leaked. The next morning, the queues formed.</p>
+</section>
+<section id="the-lesson-for-this-week" class="slide level2">
+<h2>The lesson for this week</h2>
+<p>A bank’s <em>liability mix</em> is a liquidity-risk decision.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Last week (Week 8)</th>
+<th>This week (Week 9)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What is liquidity risk?</td>
+<td>What’s the toolkit to manage it?</td>
+</tr>
+<tr class="even">
+<td>LCR, NSFR — measurement</td>
+<td>Asset-side and liability-side instruments</td>
+</tr>
+<tr class="odd">
+<td>The cost when it goes wrong</td>
+<td>The cost of <em>preventing</em> it going wrong</td>
+</tr>
+</tbody>
+</table>
+<p>Throughout: every choice is a trade-off between <em>cost</em> and <em>withdrawal risk</em>. There is no free liquidity.</p>
+</section>
+<section id="roadmap" class="slide level2">
+<h2>Roadmap</h2>
+<ol type="1">
+<li>Two sources of liquidity — stored and purchased.</li>
+<li>Asset-side toolkit — what counts as a liquid asset.</li>
+<li>The cash market and the RBA — how Australian banks settle.</li>
+<li>Liability-side toolkit — the deposit and wholesale ladder.</li>
+<li>The economics of a deposit — implicit and explicit interest.</li>
+<li>Other FIs and the 2025 regulatory update.</li>
+</ol>
+</section></section>
+<section>
+<section id="two-sources-of-liquidity" class="title-slide slide level1 center">
+<h1>Two sources of liquidity</h1>
+
+</section>
+<section id="where-does-the-cash-come-from" class="slide level2">
+<h2>Where does the cash come from?</h2>
+<p>When a depositor walks in and asks for their money, the bank has two options.</p>
+<p><strong>Option 1.</strong> Sell something it already owns.</p>
+<p><strong>Option 2.</strong> Borrow new money from someone else.</p>
+<p>That’s it. Every liquidity-management slide that follows is one of these two.</p>
+</section>
+<section id="stored-liquidity-defined" class="slide level2">
+<h2>Stored liquidity, defined</h2>
+<p><em>Stored liquidity</em> = selling or pledging liquid assets the bank already holds.</p>
+<p>Examples:</p>
+<ul>
+<li>Cash.</li>
+<li>Reserves at the central bank (in Australia, the Exchange Settlement Account — defined later).</li>
+<li>Government bonds.</li>
+<li>High-grade securities.</li>
+</ul>
+<p>The traditional approach. Used by <em>all</em> banks; relied on heavily by <em>small</em> banks.</p>
+</section>
+<section id="purchased-liquidity-defined" class="slide level2">
+<h2>Purchased liquidity, defined</h2>
+<p><em>Purchased liquidity</em> = borrowing new funds in wholesale markets.</p>
+<p>Examples:</p>
+<ul>
+<li>Overnight cash market between banks.</li>
+<li>Repurchase agreements (repos — defined shortly).</li>
+<li>Issuing wholesale certificates of deposit.</li>
+<li>Issuing bonds.</li>
+</ul>
+<p>The modern approach. Relied on heavily by <em>large</em> banks. Northern Rock relied on it too heavily.</p>
+</section>
+<section id="the-fundamental-trade-off" class="slide level2">
+<h2>The fundamental trade-off</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Stored</th>
+<th>Purchased</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cost</td>
+<td>Yield foregone on low-yielding assets</td>
+<td>Funding spread above the cash rate</td>
+</tr>
+<tr class="even">
+<td>Risk in stress</td>
+<td>Forced sale at fire-sale prices</td>
+<td>Lenders disappear; cannot roll over</td>
+</tr>
+<tr class="odd">
+<td>Effect on balance sheet</td>
+<td>Shrinks (asset sold)</td>
+<td>Stays the same size (new liability)</td>
+</tr>
+</tbody>
+</table>
+<p>Most modern banks use both. The mix is the <em>strategy</em>.</p>
+</section></section>
+<section>
+<section id="asset-side-toolkit" class="title-slide slide level1 center">
+<h1>Asset-side toolkit</h1>
+
+</section>
+<section id="what-makes-an-asset-liquid" class="slide level2">
+<h2>What makes an asset “liquid”?</h2>
+<p>An asset is <em>liquid</em> when it trades in a <em>deep</em> market.</p>
+<div title="Market depth">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Market depth</strong></p>
+</div>
+<div class="callout-content">
+<p>A market is deep if even <em>large</em> trades barely move the price.</p>
+<p>Example: an Australian Government 10-year bond. You can sell A$500m in an afternoon at roughly the screen price.</p>
+<p>Counter-example: a single residential mortgage. You can’t sell one. You have to securitise a portfolio of thousands.</p>
+</div>
+</div>
+</div>
+</div>
+<p>The deeper the market, the lower the <em>liquidation cost</em> of the asset — and the more useful it is in a crisis.</p>
+</section>
+<section id="the-hqla-hierarchy-week-8-recap" class="slide level2">
+<h2>The HQLA hierarchy (Week 8 recap)</h2>
+<p><em>HQLA</em> = High-Quality Liquid Assets — the numerator of the LCR (Liquidity Coverage Ratio).</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Examples</th>
+<th style="text-align: right;">Haircut</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Level 1</td>
+<td>Cash, central-bank reserves, sovereign debt</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr class="even">
+<td>Level 2A</td>
+<td>High-grade corporate debt, covered bonds</td>
+<td style="text-align: right;">15%</td>
+</tr>
+<tr class="odd">
+<td>Level 2B</td>
+<td>Eligible RMBS, equities</td>
+<td style="text-align: right;">25–50%</td>
+</tr>
+</tbody>
+</table>
+<p>Level 2 combined cannot exceed <em>40%</em> of total HQLA.</p>
+<p>The <em>haircut</em> is the assumed loss-on-sale in stress.</p>
+</section>
+<section id="the-cost-of-holding-hqla" class="slide level2">
+<h2>The cost of holding HQLA</h2>
+<p>Every dollar of HQLA is a dollar <em>not</em> lent to a customer.</p>
+<p>A simple example:</p>
+<ul>
+<li>Mortgage rate: 6%.</li>
+<li>Government bond yield: 4%.</li>
+<li>Holding HQLA instead of writing a mortgage costs the bank ~2% per year on that dollar.</li>
+</ul>
+<p>This is why banks don’t just hold “lots of HQLA to be safe” — <em>liquidity has a price</em>.</p>
+</section>
+<section id="the-exchange-settlement-account-esa" class="slide level2">
+<h2>The Exchange Settlement Account (ESA)</h2>
+<p>Every Australian bank has one account at the RBA: the <em>Exchange Settlement Account</em>.</p>
+<ul>
+<li>Used to settle obligations between banks at the end of each day.</li>
+<li>The balance in the ESA is called the bank’s <em>ES balance</em>.</li>
+<li>The RBA pays interest on the ES balance (currently the cash rate target <em>minus</em> 10 basis points).</li>
+</ul>
+<p>Without an ESA, two banks cannot settle interbank payments. It is the operational core of the Australian payment system.</p>
+</section></section>
+<section>
+<section id="the-cash-market-and-the-rba" class="title-slide slide level1 center">
+<h1>The cash market and the RBA</h1>
+
+</section>
+<section id="the-cash-market-price-and-quantity" class="slide level2">
+<h2>The cash market — price and quantity</h2>
+<p>The <em>cash market</em> is where banks lend and borrow ES balances, usually overnight.</p>
+<p>Two variables matter:</p>
+<ul>
+<li><em>Price.</em> The interest rate on these overnight loans is the <strong>cash rate</strong>.</li>
+<li><em>Quantity.</em> The total ES balances banks hold at the RBA.</li>
+</ul>
+<p>The RBA’s job is to keep the cash rate close to its target.</p>
+</section>
+<section id="the-cash-rate-target" class="slide level2">
+<h2>The cash rate target</h2>
+<p>The cash rate target is the RBA’s <em>headline policy rate</em> — the number that hits the news after every Board meeting.</p>
+<p>Mortgage rates, business loan rates, deposit rates — all are anchored, directly or indirectly, to the cash rate.</p>
+<p>The cash rate target is set by the RBA Board. The <em>actual</em> cash rate is determined by demand and supply in the cash market — and the RBA’s job is to align the two.</p>
+</section>
+<section id="what-is-a-repo" class="slide level2">
+<h2>What is a repo?</h2>
+<p><em>Repo</em> = repurchase agreement.</p>
+<p>A repo is a <em>sale today + an agreement to repurchase tomorrow</em>:</p>
+<ol type="1">
+<li>Bank A sells a bond to Bank B for $100 today.</li>
+<li>Bank A repurchases the same bond from Bank B for $100.05 tomorrow.</li>
+</ol>
+<p>Economically, Bank A has <em>borrowed $100 overnight at 5%</em> (annualised), with the bond as collateral.</p>
+<p>Repos dominate short-term funding because they’re <em>secured</em> — cheaper than unsecured lending.</p>
+</section>
+<section id="the-rbas-pre-covid-world" class="slide level2">
+<h2>The RBA’s pre-COVID world</h2>
+<p>Before March 2020:</p>
+<ul>
+<li>ES balances totalled around A$25 billion.</li>
+<li>The RBA <em>actively managed</em> the supply of ES balances each day, through repos with the banks.</li>
+<li>This kept the cash rate close to target.</li>
+</ul>
+<p>This was a <em>scarce reserves</em> regime — banks competed for a limited pool of reserves.</p>
+</section>
+<section id="es-balances-over-time" class="slide level2">
+<h2>ES balances over time</h2>
+<div id="cell-fig-es-balances" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-es-balances" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-es-balances-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-es-balances-output-1.png" width="950" height="394">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-es-balances-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Stylised aggregate Australian ES balances, 2018–2026 (illustrative).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Pre-COVID floor → COVID surge → post-TFF runoff → ample-reserves equilibrium.</p>
+</section>
+<section id="today-ample-reserves" class="slide level2">
+<h2>Today: ample reserves</h2>
+<p>In <em>March 2024</em> the RBA Board endorsed a permanent shift to an <em>ample reserves</em> framework.</p>
+<p>The mechanics:</p>
+<ul>
+<li>Each week, the RBA runs a <em>full-allotment</em> repo auction.</li>
+<li>Banks bid for as many reserves as they want.</li>
+<li>The RBA charges the cash rate target plus 5 basis points.</li>
+<li>The RBA delivers all bids in full.</li>
+</ul>
+<p>The RBA no longer controls the <em>quantity</em> of reserves — banks do. The RBA controls the <em>price</em>.</p>
+</section>
+<section id="other-rba-facilities" class="slide level2">
+<h2>Other RBA facilities</h2>
+<p>Three smaller facilities round out the toolkit.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Facility</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intra-day repo</td>
+<td>Liquidity within a business day; reversed before close.</td>
+</tr>
+<tr class="even">
+<td>Overnight repo</td>
+<td>Funds end-of-day liquidity needs.</td>
+</tr>
+<tr class="odd">
+<td>Standing Facility</td>
+<td>Penalty-rate overnight backstop if the ESA goes short.</td>
+</tr>
+</tbody>
+</table>
+<p>The standing facility exists for emergencies. Routine liquidity goes through the weekly OMO.</p>
+</section>
+<section id="two-facilities-that-disappeared" class="slide level2">
+<h2>Two facilities that disappeared</h2>
+<div title="Term Funding Facility (TFF) — 2020 to 2024">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Term Funding Facility (TFF) — 2020 to 2024</strong></p>
+</div>
+<div class="callout-content">
+<p>COVID-19 crisis tool. Banks could borrow up to <em>3 years</em> at the cash rate target.</p>
+<ul>
+<li>Drawdown window closed <em>30 June 2021</em>.</li>
+<li>Banks drew <strong>$188 billion</strong> at the peak — about 6% of all credit outstanding.</li>
+<li>All TFF funding <em>fully matured by 30 June 2024</em>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Committed Liquidity Facility (CLF) — 2015 to 2023">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Committed Liquidity Facility (CLF) — 2015 to 2023</strong></p>
+</div>
+<div class="callout-content">
+<p>A uniquely Australian fix. Basel III’s LCR requires HQLA. The Australian Government simply doesn’t issue enough debt for ADIs to hold sufficient Level 1 securities. The CLF was a paid line of credit from the RBA that <em>counted as HQLA</em>.</p>
+<p>The post-COVID surge in Commonwealth bond issuance solved the underlying problem. APRA reduced the aggregate CLF from $140bn (Sep 2021) to <strong>zero on 1 January 2023</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="liability-side-toolkit" class="title-slide slide level1 center">
+<h1>Liability-side toolkit</h1>
+
+</section>
+<section id="switching-to-the-liability-side" class="slide level2">
+<h2>Switching to the liability side</h2>
+<p>The <em>goal</em> of liability management:</p>
+<blockquote>
+<p>Construct a portfolio of liabilities that is <strong>low cost</strong> and has <strong>low withdrawal risk</strong>.</p>
+</blockquote>
+<p>The <em>problem</em>:</p>
+<ul>
+<li>Cheap funding tends to be flighty (demand deposits).</li>
+<li>Sticky funding tends to be expensive (term deposits, long bonds).</li>
+</ul>
+<p>There is no free quadrant. Northern Rock learned this the hard way.</p>
+</section>
+<section id="the-cost-vs.-withdrawal-risk-frontier" class="slide level2">
+<h2>The cost vs.&nbsp;withdrawal-risk frontier</h2>
+<div id="cell-fig-frontier" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-frontier" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-frontier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-frontier-output-1.png" width="943" height="470">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frontier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Stylised funding instruments plotted by withdrawal risk and funding cost. Illustrative; numbers will change with the cycle.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Cheap <em>and</em> sticky doesn’t exist. Banks pick a point on the frontier.</p>
+</section>
+<section id="the-depositwholesale-ladder" class="slide level2">
+<h2>The deposit/wholesale ladder</h2>
+<p>We’ll walk through the major instruments in three groups.</p>
+<ol type="1">
+<li><strong>Deposit liabilities</strong> — cheque accounts, savings, CMAs, term deposits, NCDs.</li>
+<li><strong>Wholesale liabilities</strong> — interbank, repos, bank bills, commercial paper.</li>
+<li><strong>Long-term debt</strong> — covered bonds, subordinated debt, MTNs.</li>
+</ol>
+<p>Each instrument sits somewhere on the frontier above. The order roughly matches <em>retail to wholesale</em> and <em>short to long</em>.</p>
+</section></section>
+<section>
+<section id="deposit-liabilities" class="title-slide slide level1 center">
+<h1>Deposit liabilities</h1>
+
+</section>
+<section id="demand-deposits" class="slide level2">
+<h2>Demand deposits</h2>
+<p>The cheque account, the everyday transaction account.</p>
+<ul>
+<li>Withdrawal risk: <em>very high</em>. Payable on demand, no notice.</li>
+<li>Cost (explicit interest): <em>very low or zero</em>.</li>
+<li>Used by: households and businesses for transactions.</li>
+</ul>
+<p>Why are these so cheap for the bank?</p>
+</section>
+<section id="the-regulation-q-backstory" class="slide level2">
+<h2>The Regulation Q backstory</h2>
+<p>In the <em>United States</em>, demand deposits paid <em>zero</em> interest from 1933 to 2011.</p>
+<div title="Regulation Q (1933 Banking Act)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Regulation Q (1933 Banking Act)</strong></p>
+</div>
+<div class="callout-content">
+<p>After the 1930s banking panics, U.S. regulators believed competition for deposits had pushed banks to take excessive risk.</p>
+<p><em>Regulation Q</em> prohibited U.S. banks from paying any interest on demand deposits. The prohibition lasted <em>78 years</em>.</p>
+<p><em>Section 627 of the Dodd–Frank Act</em> repealed it on <strong>21 July 2011</strong>. Banks are now permitted — but not required — to pay. Most still don’t.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Australia never had this prohibition. That’s why an Aussie online transaction account in 2026 can pay 4–5% while a Bank of America checking account pays ~0.01%.</p>
+</section>
+<section id="demand-deposits-arent-really-free" class="slide level2">
+<h2>Demand deposits aren’t really free</h2>
+<p>Even when explicit interest is zero, the deposit costs the bank <em>real money</em>:</p>
+<ul>
+<li>Branch staff, ATMs, online banking, fraud monitoring, 24/7 call centres.</li>
+<li>Cheque clearing.</li>
+<li>Card scheme fees.</li>
+</ul>
+<p>Competition forces banks to <em>partially absorb</em> these costs and offer subsidised services. The depositor receives <strong>implicit interest</strong> — interest paid in services rather than cash.</p>
+</section>
+<section id="the-implicit-interest-rate" class="slide level2">
+<h2>The implicit interest rate</h2>
+<p>Define the <em>implicit interest rate</em> (IIR) on a demand-deposit account as:</p>
+<p><span class="math display">\[
+\text{IIR} = \dfrac{C - F}{B}
+\]</span></p>
+<p>where, per account per year:</p>
+<ul>
+<li><span class="math inline">\(C\)</span> = bank’s management cost,</li>
+<li><span class="math inline">\(F\)</span> = fees earned by the bank,</li>
+<li><span class="math inline">\(B\)</span> = average annual balance.</li>
+</ul>
+<p>If <span class="math inline">\(C &gt; F\)</span>, the bank is <em>subsidising</em> the depositor. Implicit interest is <em>positive</em>.</p>
+<p>If <span class="math inline">\(C &lt; F\)</span>, the bank is <em>taxing</em> the depositor (fees exceed costs). Implicit interest is <em>negative</em>.</p>
+</section>
+<section id="calculator-implicit-interest-rate" class="slide level2">
+<h2>Calculator: implicit interest rate</h2>
+<p>Move <span class="math inline">\(C\)</span>, <span class="math inline">\(F\)</span>, and <span class="math inline">\(B\)</span>. The IIR updates live.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="431" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 430;"><span id="cb1-431"><a></a>viewof C <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"C ($/yr)"</span>})</span>
+<span id="cb1-432"><a></a>viewof F <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"F ($/yr)"</span>})</span>
+<span id="cb1-433"><a></a>viewof B <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1200</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"B ($)"</span>})</span>
+<span id="cb1-434"><a></a></span>
+<span id="cb1-435"><a></a>iir <span class="op">=</span> (C <span class="op">-</span> F) <span class="op">/</span> B</span>
+<span id="cb1-436"><a></a></span>
+<span id="cb1-437"><a></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb1-438"><a></a><span class="vs">IIR = </span><span class="sc">${</span>(iir<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%</span></span>
+<span id="cb1-439"><a></a></span>
+<span id="cb1-440"><a></a><span class="sc">${</span>iir <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb1-441"><a></a>  <span class="op">?</span> <span class="st">"Bank subsidises the depositor — costs exceed fees."</span></span>
+<span id="cb1-442"><a></a>  <span class="op">:</span> iir <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb1-443"><a></a>    <span class="op">?</span> <span class="st">"Bank taxes the depositor — fees exceed costs."</span></span>
+<span id="cb1-444"><a></a>    <span class="op">:</span> <span class="st">"Costs and fees exactly net out."</span><span class="sc">}</span></span>
+<span id="cb1-445"><a></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>The textbook example: <span class="math inline">\(C=\$150\)</span>, <span class="math inline">\(F=\$100\)</span>, <span class="math inline">\(B=\$1{,}200\)</span>. IIR ≈ <em>4.17%</em>. The depositor “earns” 4.17% per year in subsidised services, even though the cash interest rate on the account is zero.</p>
+</section>
+<section id="gross-interest-explicit-implicit" class="slide level2">
+<h2>Gross interest = explicit + implicit</h2>
+<p>If an account also pays <em>explicit</em> interest above some minimum balance, the depositor’s total return is:</p>
+<p><span class="math display">\[
+G = \underbrace{r \cdot B \cdot \mathbb{1}\{B \ge M\}}_{\text{explicit}} \;+\; \underbrace{(c - f) \cdot n \cdot 12}_{\text{implicit}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> = explicit interest rate (decimal, p.a.),</li>
+<li><span class="math inline">\(B\)</span> = average balance,</li>
+<li><span class="math inline">\(M\)</span> = minimum balance threshold to earn explicit interest,</li>
+<li><span class="math inline">\(c\)</span> = bank’s unit cost per transaction,</li>
+<li><span class="math inline">\(f\)</span> = fee charged per transaction,</li>
+<li><span class="math inline">\(n\)</span> = transactions per month.</li>
+</ul>
+<p>The indicator <span class="math inline">\(\mathbb{1}\{B \ge M\}\)</span> is 1 if the balance clears the threshold and 0 otherwise.</p>
+</section>
+<section id="calculator-gross-interest" class="slide level2">
+<h2>Calculator: gross interest</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="473" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 472;"><span id="cb2-473"><a></a>viewof B2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">5000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"B ($)"</span>})</span>
+<span id="cb2-474"><a></a>viewof r  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span>    {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>    <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"r (%)"</span>})</span>
+<span id="cb2-475"><a></a>viewof M  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">5000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span>  <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"M ($)"</span>})</span>
+<span id="cb2-476"><a></a>viewof c  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"c ($)"</span>})</span>
+<span id="cb2-477"><a></a>viewof f  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"f ($)"</span>})</span>
+<span id="cb2-478"><a></a>viewof n  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span>   <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"n"</span>})</span>
+<span id="cb2-479"><a></a></span>
+<span id="cb2-480"><a></a>explicit <span class="op">=</span> B2 <span class="op">&gt;=</span> M <span class="op">?</span> B2 <span class="op">*</span> (r<span class="op">/</span><span class="dv">100</span>) <span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb2-481"><a></a>implicit <span class="op">=</span> (c <span class="op">-</span> f) <span class="op">*</span> n <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb2-482"><a></a>gross    <span class="op">=</span> explicit <span class="op">+</span> implicit</span>
+<span id="cb2-483"><a></a></span>
+<span id="cb2-484"><a></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb2-485"><a></a><span class="vs">Explicit = $</span><span class="sc">${</span>explicit<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> &amp;nbsp;&amp;nbsp;</span></span>
+<span id="cb2-486"><a></a><span class="vs">Implicit = $</span><span class="sc">${</span>implicit<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> &amp;nbsp;&amp;nbsp;</span></span>
+<span id="cb2-487"><a></a><span class="vs">Gross G = $</span><span class="sc">${</span>gross<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span></span>
+<span id="cb2-488"><a></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>Two things to try:</p>
+<ul>
+<li>Drop <span class="math inline">\(B\)</span> below <span class="math inline">\(M\)</span> — explicit interest collapses to zero.</li>
+<li>Drop <span class="math inline">\(f\)</span> below <span class="math inline">\(c\)</span> — implicit interest goes positive.</li>
+</ul>
+</section>
+<section id="savings-accounts-and-cmas" class="slide level2">
+<h2>Savings accounts and CMAs</h2>
+<p>Two close cousins of the demand deposit, both with <em>lower</em> withdrawal risk.</p>
+<div class="columns">
+<div class="column">
+<p><em>Savings account</em></p>
+<ul>
+<li>Restrictions: limited monthly withdrawals, sometimes a notice period.</li>
+<li>Held for accumulation, not transactions.</li>
+<li>Pays explicit interest.</li>
+<li>Lower withdrawal risk than a cheque account.</li>
+</ul>
+</div><div class="column">
+<p><em>Cash management account (CMA)</em></p>
+<ul>
+<li>High minimum balance (typically A$10,000+).</li>
+<li>Funds available on call; supports cheques, debit cards, transfers.</li>
+<li>Modest implicit interest, mitigated by transaction fees.</li>
+<li>Aimed at investors and treasurers parking cash between trades.</li>
+</ul>
+</div></div>
+</section>
+<section id="term-deposits-and-retail-cds" class="slide level2">
+<h2>Term deposits and retail CDs</h2>
+<p>Fixed maturity, fixed rate, early withdrawal penalty.</p>
+<ul>
+<li>Withdrawal risk: <em>very low</em> — the penalty is the discipline device.</li>
+<li>Cost: <em>high</em> explicit interest. Banks pay a maturity premium.</li>
+<li>Used by yield-seeking retail savers.</li>
+</ul>
+<p>For the bank, term deposits are the workhorse of <em>long, sticky</em> retail funding. The cost is a known number locked in for the term.</p>
+</section>
+<section id="negotiable-certificates-of-deposit-ncds" class="slide level2">
+<h2>Negotiable certificates of deposit (NCDs)</h2>
+<p>A wholesale time deposit. Face value typically above ~A$100,000. Maturities from days to years.</p>
+<p>The key word is <em>negotiable</em>: the holder can sell the NCD in the secondary market.</p>
+<ul>
+<li>Withdrawal risk for the bank: <em>low</em>. The bank doesn’t repay until maturity; the holder gets liquidity by selling.</li>
+<li>Cost: <em>moderate</em>. Market-driven, benefits from the issuer’s credit rating.</li>
+</ul>
+<p>NCDs sit between retail term deposits and pure wholesale funding.</p>
+</section></section>
+<section>
+<section id="non-deposit-wholesale-liabilities" class="title-slide slide level1 center">
+<h1>Non-deposit (wholesale) liabilities</h1>
+
+</section>
+<section id="interbank-funds" class="slide level2">
+<h2>Interbank funds</h2>
+<p>Short-term <em>unsecured</em> loans between banks, usually overnight.</p>
+<ul>
+<li>The price is the <em>cash rate</em>.</li>
+<li>Withdrawal risk for the borrowing bank: <em>very high</em>. The lender can refuse to roll over the next day.</li>
+<li>Cost: <em>low to moderate</em> — close to the cash rate.</li>
+</ul>
+<p>This is the cheapest unsecured funding a bank can get. It’s also the first to disappear in a crisis.</p>
+</section>
+<section id="repurchase-agreements-repos" class="slide level2">
+<h2>Repurchase agreements (repos)</h2>
+<p>We met repos earlier as an RBA tool. Banks also use them with each other.</p>
+<ul>
+<li>The transaction is <em>collateralised</em> by securities.</li>
+<li>Cheaper than unsecured interbank lending — the lender bears almost no credit risk.</li>
+<li>Highly flexible: overnight, term, or open-ended.</li>
+</ul>
+<div title="Why secured beats unsecured">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why secured beats unsecured</strong></p>
+</div>
+<div class="callout-content">
+<p>The repo lender holds your collateral. If you default, they sell it. So they don’t need to charge a credit risk premium.</p>
+<p>In stress, secured markets often stay open while unsecured markets close. This is why every bank treasurer has a stack of repo-eligible collateral ready to go.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bank-accepted-bills-and-commercial-paper" class="slide level2">
+<h2>Bank-accepted bills and commercial paper</h2>
+<p>Two short-dated wholesale instruments.</p>
+<div class="columns">
+<div class="column">
+<p><em>Bank-accepted bill (BAB)</em></p>
+<ul>
+<li>A short-term bill of exchange that a bank guarantees (“accepts”).</li>
+<li>Sold to investors at a discount.</li>
+<li>Once the benchmark for the Australian short-rate (BBSW).</li>
+<li>Largely supplanted by NCDs and repos.</li>
+</ul>
+</div><div class="column">
+<p><em>Commercial paper (CP)</em></p>
+<ul>
+<li>Short-term unsecured promissory notes.</li>
+<li>Issued by both banks and large corporates.</li>
+<li>Heavily used in U.S. money markets.</li>
+<li><em>September 2019 episode</em>: U.S. repo rates spiked from ~2% to ~10% in a day when reserves drained — even “deep” wholesale markets can seize.</li>
+</ul>
+</div></div>
+</section>
+<section id="covered-bonds" class="slide level2">
+<h2>Covered bonds</h2>
+<p>A bond issued by the bank, <em>backed by a ring-fenced pool of assets</em> that stays on the bank’s balance sheet.</p>
+<div title="Why covered bonds are special">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why covered bonds are special</strong></p>
+</div>
+<div class="callout-content">
+<p>Bondholders have a <em>dual claim</em>:</p>
+<ol type="1">
+<li>On the issuing bank, like any senior bond.</li>
+<li>On the <em>cover pool</em> (typically high-quality mortgages), if the bank fails.</li>
+</ol>
+<p>Hence covered bonds are often rated <em>AAA</em> even when the issuer is rated AA−.</p>
+</div>
+</div>
+</div>
+</div>
+<p>In Australia:</p>
+<ul>
+<li>Legalised by the <em>Banking Amendment (Covered Bonds) Act 2011</em>.</li>
+<li>Capped at <em>8% of the ADI’s domestic assets</em> under APS 121.</li>
+<li>All Big 4 banks run active covered-bond programmes.</li>
+</ul>
+</section>
+<section id="subordinated-debt-and-long-term-borrowings" class="slide level2">
+<h2>Subordinated debt and long-term borrowings</h2>
+<p>The bottom of the funding stack — long-dated, often callable, subordinated to depositors and senior creditors.</p>
+<ul>
+<li><em>Subordinated debt (Tier 2):</em> counts toward regulatory capital. Expensive but stable.</li>
+<li><em>Medium-term notes (MTNs):</em> a flexible programme for issuing bonds in various tenors and currencies.</li>
+<li><em>Senior unsecured bonds, long-term loans:</em> the workhorse of long-term wholesale funding.</li>
+</ul>
+<p>The most stable funding a bank can have, short of equity. Also the most expensive.</p>
+</section></section>
+<section>
+<section id="other-fis-and-regulation" class="title-slide slide level1 center">
+<h1>Other FIs and regulation</h1>
+
+</section>
+<section id="liquidity-management-at-non-di-fis" class="slide level2">
+<h2>Liquidity management at non-DI FIs</h2>
+<p>The same trade-off, different instruments:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>FI type</th>
+<th>Main funding</th>
+<th>Distinct liquidity issue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Life insurer</td>
+<td>Premiums, policy reserves</td>
+<td>Mass policy surrenders</td>
+</tr>
+<tr class="even">
+<td>P–C insurer</td>
+<td>Premiums, claims reserves</td>
+<td>Catastrophe spike forces asset sales</td>
+</tr>
+<tr class="odd">
+<td>Securities firm / IB</td>
+<td>Repos, bank loans, short positions</td>
+<td>Inventory financing during stress</td>
+</tr>
+<tr class="even">
+<td>Finance company</td>
+<td>Commercial paper, long-term debt</td>
+<td>CP rollover stress</td>
+</tr>
+</tbody>
+</table>
+<p>The unifying theme: short-term liabilities funding less-liquid assets, with rollover risk in the middle.</p>
+</section>
+<section id="regulation-recap-from-week-8" class="slide level2">
+<h2>Regulation recap from Week 8</h2>
+<p>Australian liquidity rules sit under APRA’s <em>Prudential Standard APS 210</em>. Banks fall into one of two regimes:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>LCR ADI</th>
+<th>MLH ADI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who</td>
+<td>Big 4 + larger banks</td>
+<td>Smaller ADIs</td>
+</tr>
+<tr class="even">
+<td>Core ratio</td>
+<td>LCR ≥ 100% <em>and</em> NSFR ≥ 100%</td>
+<td>Liquid assets ≥ 9% of liabilities</td>
+</tr>
+<tr class="odd">
+<td>Liquid assets</td>
+<td>HQLA (Level 1 + capped Level 2)</td>
+<td>RBA-repo-eligible debt securities</td>
+</tr>
+</tbody>
+</table>
+<p>For depositors: the <em>Financial Claims Scheme</em> guarantees up to <strong>A$250,000</strong> per account-holder per ADI, since 1 February 2012.</p>
+</section>
+<section id="whats-new-aps-210-1-july-2025" class="slide level2">
+<h2>What’s new: APS 210, 1 July 2025</h2>
+<p>APRA finalised targeted changes in 2024 in response to the March 2023 banking turmoil.</p>
+<p>Effective <em>1 July 2025</em>:</p>
+<ul>
+<li>MLH ADIs must value their liquid assets at <em>mark-to-market</em> — no more amortised cost.</li>
+<li>All ADIs must be operationally ready to request <em>Exceptional Liquidity Assistance (ELA)</em> from the RBA.</li>
+<li>The headline 9% MLH minimum is unchanged.</li>
+</ul>
+<p>Why it matters: an MLH ADI’s liquidity cushion will now visibly shrink when bond yields rise, rather than hide behind book values.</p>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap-up</h1>
+
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key takeaways</h2>
+<ol type="1">
+<li>Two sources of liquidity: <em>stored</em> (sell what you own) and <em>purchased</em> (borrow new). Banks use both.</li>
+<li>The cash market is a <em>price</em> (the cash rate) and a <em>quantity</em> (ES balances). The RBA’s 2024 pivot to ample reserves changes how the quantity is set.</li>
+<li>The CLF is gone. LCR ADIs now meet HQLA requirements with Commonwealth and semi-government bonds plus ES balances.</li>
+<li>Liabilities sit on a frontier between <em>cost</em> and <em>withdrawal risk</em>. There is no point that is both cheap and sticky.</li>
+<li>Implicit interest is real interest. A subsidised “free” account is genuinely paying you in services.</li>
+<li>APS 210 changes (1 July 2025) bring mark-to-market into the small-bank liquidity regime.</li>
+</ol>
+</section>
+<section id="suggested-readings" class="slide level2">
+<h2>Suggested readings</h2>
+<ul>
+<li><a href="https://www.rba.gov.au/education/resources/explainers/how-rba-implements-monetary-policy.html">How RBA implements monetary policy</a></li>
+<li><a href="https://www.rba.gov.au/payments-and-infrastructure/esa/">RBA Exchange Settlement Account Policy</a></li>
+<li><a href="https://www.rba.gov.au/speeches/2024/sp-ag-2024-04-02.html">RBA — The Future System for Monetary Policy Implementation (April 2024)</a></li>
+<li><a href="https://www.rba.gov.au/publications/bulletin/2024/jan/the-committed-liquidity-facility-2015-2022.html">RBA — The Committed Liquidity Facility: 2015–2022</a></li>
+<li><a href="https://handbook.apra.gov.au/standard/aps-210">APRA — APS 210 Liquidity (Prudential Handbook)</a></li>
+<li><a href="https://www.apra.gov.au/news-and-publications/apra-finalises-targeted-changes-to-strengthen-banks%E2%80%99-liquidity-and-capital">APRA — Targeted changes to ADI liquidity and capital standards (2024–2025)</a></li>
+<li><a href="https://www.rba.gov.au/publications/bulletin/2017/sep/pdf/bu-0917-7-covered-bonds-in-australia.pdf">Covered bonds in Australia (RBA Bulletin)</a></li>
+</ul>
+</section>
+<section id="references" class="slide level2">
+<h2>References</h2>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBDID0gSW5wdXRzLnJhbmdlKFswLCA0MDBdLCB7dmFsdWU6IDE1MCwgc3RlcDogNSwgbGFiZWw6IFwiQyAoJC95cilcIn0pXG52aWV3b2YgRiA9IElucHV0cy5yYW5nZShbMCwgNDAwXSwge3ZhbHVlOiAxMDAsIHN0ZXA6IDUsIGxhYmVsOiBcIkYgKCQveXIpXCJ9KVxudmlld29mIEIgPSBJbnB1dHMucmFuZ2UoWzIwMCwgMTAwMDBdLCB7dmFsdWU6IDEyMDAsIHN0ZXA6IDUwLCBsYWJlbDogXCJCICgkKVwifSlcblxuaWlyID0gKEMgLSBGKSAvIEJcblxubWRgXG5JSVIgPSAkeyhpaXIqMTAwKS50b0ZpeGVkKDIpfSVcblxuJHtpaXIgPiAwXG4gID8gXCJCYW5rIHN1YnNpZGlzZXMgdGhlIGRlcG9zaXRvciDigJQgY29zdHMgZXhjZWVkIGZlZXMuXCJcbiAgOiBpaXIgPCAwXG4gICAgPyBcIkJhbmsgdGF4ZXMgdGhlIGRlcG9zaXRvciDigJQgZmVlcyBleGNlZWQgY29zdHMuXCJcbiAgICA6IFwiQ29zdHMgYW5kIGZlZXMgZXhhY3RseSBuZXQgb3V0LlwifVxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIEIyID0gSW5wdXRzLnJhbmdlKFswLCA1MDAwXSwge3ZhbHVlOiAxMDAwLCBzdGVwOiA1MCwgbGFiZWw6IFwiQiAoJClcIn0pXG52aWV3b2YgciAgPSBJbnB1dHMucmFuZ2UoWzAsIDhdLCAgICB7dmFsdWU6IDUsICAgIHN0ZXA6IDAuMDUsIGxhYmVsOiBcInIgKCUpXCJ9KVxudmlld29mIE0gID0gSW5wdXRzLnJhbmdlKFswLCA1MDAwXSwge3ZhbHVlOiA1MDAsICBzdGVwOiA1MCwgbGFiZWw6IFwiTSAoJClcIn0pXG52aWV3b2YgYyAgPSBJbnB1dHMucmFuZ2UoWzAsIDAuNV0sICB7dmFsdWU6IDAuMTUsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcImMgKCQpXCJ9KVxudmlld29mIGYgID0gSW5wdXRzLnJhbmdlKFswLCAwLjVdLCAge3ZhbHVlOiAwLjEwLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJmICgkKVwifSlcbnZpZXdvZiBuICA9IElucHV0cy5yYW5nZShbMCwgMjAwXSwgIHt2YWx1ZTogNTAsICAgc3RlcDogNSwgbGFiZWw6IFwiblwifSlcblxuZXhwbGljaXQgPSBCMiA+PSBNID8gQjIgKiAoci8xMDApIDogMFxuaW1wbGljaXQgPSAoYyAtIGYpICogbiAqIDEyXG5ncm9zcyAgICA9IGV4cGxpY2l0ICsgaW1wbGljaXRcblxubWRgXG5FeHBsaWNpdCA9ICQke2V4cGxpY2l0LnRvRml4ZWQoMil9ICZuYnNwOyZuYnNwO1xuSW1wbGljaXQgPSAkJHtpbXBsaWNpdC50b0ZpeGVkKDIpfSAmbmJzcDsmbmJzcDtcbkdyb3NzIEcgPSAkJHtncm9zcy50b0ZpeGVkKDIpfVxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdDJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ0YnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnQicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdCMicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdyJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ00nKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnYycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdmJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ24nKSJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../teaching/AFIN8003/2026S1/Week9";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../../../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
