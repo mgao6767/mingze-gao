@@ -1,0 +1,303 @@
+---
+title: "AFIN8003 - Workshop 8"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-05-05
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop8.pdf"
+# Custom fields
+pdf-name: "Workshop8.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Heads up — group activity in Workshop 8"}
+Workshop 8 includes a **group mini-pitch** comparing one Aussie Big 4 bank with an international bank. The full brief is in the **In-class group activity** section below — please read it **now** so your group has time to prep. You'll only get **20 minutes** in class to finalise.
+:::
+
+# MCQ
+
+1. The inability of an FI to meet the demands of liability holders or asset claimants is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] credit risk
+   - [ ] foreign exchange risk
+   - [ ] capital risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] liquidity risk
+   - [ ] credit risk
+   - [ ] foreign exchange risk
+   - [ ] capital risk
+   :::
+
+2. Deposits that provide a relatively stable, long-term source of funds are called:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] core deposits
+   - [ ] savings deposits
+   - [ ] loanable funds
+   - [ ] interbank funds
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] core deposits
+   - [ ] savings deposits
+   - [ ] loanable funds
+   - [ ] interbank funds
+   :::
+
+3. An FI that practices purchased liquidity management is unlikely to do which of the following to raise funds?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] interbank borrowing
+   - [ ] issue wholesale certificates of deposit
+   - [ ] sell assets at fire-sale prices
+   - [ ] sell notes or bonds
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] interbank borrowing
+   - [ ] issue wholesale certificates of deposit
+   - [x] sell assets at fire-sale prices
+   - [ ] sell notes or bonds
+   :::
+
+4. Which of the following is not a characteristic of stored liquidity management?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] DIs tend to hold excess reserve assets to meet liquidity drains
+   - [ ] The cost of using excess cash is the foregone return since cash is a non-earning asset
+   - [ ] The balance sheet will contract when the liquidity adjustment mechanism is used
+   - [ ] The balance sheet will expand when the liquidity adjustment mechanism is used
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] DIs tend to hold excess reserve assets to meet liquidity drains
+   - [ ] The cost of using excess cash is the foregone return since cash is a non-earning asset
+   - [ ] The balance sheet will contract when the liquidity adjustment mechanism is used
+   - [x] The balance sheet will expand when the liquidity adjustment mechanism is used
+   :::
+
+5. Abnormal deposit drains may occur for which of the following reasons?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Sudden changes in investor preferences regarding holding non-bank financial assets relative to deposits.
+   - [ ] Concerns about a DI's solvency relative to other DIs
+   - [ ] Failure of a related DI leading to increased concern about the solvency of other DIs
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Sudden changes in investor preferences regarding holding non-bank financial assets relative to deposits.
+   - [ ] Concerns about a DI's solvency relative to other DIs
+   - [ ] Failure of a related DI leading to increased concern about the solvency of other DIs
+   - [x] All of the listed options are correct.
+   :::
+
+6. Liquidity risk can arise from which of the following activities on the asset side of a bank's balance sheet?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Deposit withdrawals
+   - [ ] Borrowing additional funds
+   - [ ] Changes in the value of investment securities portfolios
+   - [ ] Increasing equity capital
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Deposit withdrawals
+   - [ ] Borrowing additional funds
+   - [x] Changes in the value of investment securities portfolios
+   - [ ] Increasing equity capital
+   :::
+
+7. The term "fire-sale" in the context of liquidity risk refers to:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] A strategy where banks reduce interest rates to attract more deposits.
+   - [ ] A situation where banks must sell assets quickly at reduced prices to generate liquidity.
+   - [ ] A method of restructuring bank loans.
+   - [ ] The process of issuing long-term debt.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] A strategy where banks reduce interest rates to attract more deposits.
+   - [x] A situation where banks must sell assets quickly at reduced prices to generate liquidity.
+   - [ ] A method of restructuring bank loans.
+   - [ ] The process of issuing long-term debt.
+   :::
+
+8. Which of the following is a key purpose of the Liquidity Coverage Ratio (LCR)?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] To ensure banks maintain a stable funding profile over a one-year period.
+   - [ ] To provide financial support to developing countries.
+   - [ ] To ensure banks hold enough high-quality liquid assets to cover net cash outflows over a 30-day stress period.
+   - [ ] To limit the reliance on short-term wholesale funding.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] To ensure banks maintain a stable funding profile over a one-year period.
+   - [ ] To provide financial support to developing countries.
+   - [x] To ensure banks hold enough high-quality liquid assets to cover net cash outflows over a 30-day stress period.
+   - [ ] To limit the reliance on short-term wholesale funding.
+   :::
+
+9. Which of the following is considered "stable funding" under the NSFR?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Short-term wholesale funding
+   - [ ] Long-term retail deposits
+   - [ ] High-risk, short-term loans
+   - [ ] Overnight borrowing from other banks
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Short-term wholesale funding
+   - [x] Long-term retail deposits
+   - [ ] High-risk, short-term loans
+   - [ ] Overnight borrowing from other banks
+   :::
+
+10. In the context of NSFR, stable funding sources are expected to be reliable for what duration?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] 30 days
+    - [ ] 6 months
+    - [ ] 1 year
+    - [ ] 5 years
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] 30 days
+    - [ ] 6 months
+    - [x] 1 year
+    - [ ] 5 years
+    :::
+
+11. Which type of asset is most likely to require stable funding under the NSFR?
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Cash reserves
+    - [ ] Short-term government bonds
+    - [ ] Long-term illiquid loans
+    - [ ] Overnight loans
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Cash reserves
+    - [ ] Short-term government bonds
+    - [x] Long-term illiquid loans
+    - [ ] Overnight loans
+    :::
+
+12.  Which of the following could lead to a bank failing to meet its NSFR requirements?
+
+     ::: {.content-hidden when-meta="include-answers"}
+     - [ ] A sudden influx of short-term deposits
+     - [ ] Excessive reliance on short-term wholesale funding
+     - [ ] Increase in long-term stable funding
+     - [ ] Reducing the bank's loan portfolio
+     :::
+     ::: {.content-hidden unless-meta="include-answers"}
+     - [ ] A sudden influx of short-term deposits
+     - [x] Excessive reliance on short-term wholesale funding
+     - [ ] Increase in long-term stable funding
+     - [ ] Reducing the bank's loan portfolio
+     :::
+
+# In-class group activity: Aussie vs. the world
+
+::: {.callout-important title="Read this one week before the workshop"}
+This task is **released a week ahead of Workshop 8**. Use the time to organise your group, pick your two banks, and do the prep. **You will only get 20 minutes in class to finalise** before presenting.
+:::
+
+## What you'll do
+
+In your **assignment group** (the same group you formed for the group assignment — if you haven't formed one yet, **this is your reminder**), you will:
+
+1. Pick **one Australian Big 4 bank** (CBA, NAB, ANZ, or Westpac) **and**
+2. Pick **one international bank** of your choice.
+3. **Compare their liquidity profiles** and present a **5-minute mini-pitch** to the class.
+
+## Deliverable
+
+A short slide deck (**≤ 5 slides**) covering:
+
+::: {.callout-warning title="Required content"}
+1. **Your two banks in one slide** — country, regulator, size (total assets, total deposits), business mix.
+2. **Headline numbers** — most recent reported **LCR** and **NSFR** for each bank, plus the previous quarter / year for trend context.
+3. **HQLA & funding mix** — what's the composition of HQLA (Level 1 vs Level 2)? What share of funding is retail deposits vs wholesale?
+4. **Same vs. different** — what reporting **similarities** and **differences** do you see between the two banks? *Examples to look for:* the table format, level of detail, frequency of reporting, currency of presentation, treatment of operational deposits, sensitivity disclosures.
+5. **Why?** — your best explanation for the differences. Is it the **regulator** (APRA vs. FRB vs. ECB vs. PBOC vs. MAS …)? The **business model**? The **deposit base**? The **post-2023 reforms** in that jurisdiction?
+:::
+
+## How to get this done — use AI
+
+::: {.callout-tip title="AI is your research assistant — use it well"}
+You are **encouraged** to use ChatGPT, Claude, Gemini, Copilot, or similar tools for this task. Some ideas:
+
+- Ask the AI to **find and summarise** the most recent Pillar 3 / liquidity disclosure of your chosen banks.
+- Have it **extract a table** comparing LCR, NSFR, HQLA composition across the two banks.
+- Ask it to **explain** any unfamiliar line item (e.g. "what is an operational deposit?", "why does this bank report a CLF?").
+- Ask it to **draft your first slide outline** — then *you* sharpen it.
+
+**Two rules:**
+
+- **Verify the numbers.** AI hallucinates. Always cross-check headline LCR / NSFR figures against the actual Pillar 3 PDF.
+- **Cite your sources** on the last slide. A "References" slide listing the two reports + any AI tool used (e.g. "Initial draft assisted by ChatGPT 5; numbers verified against bank filings") is enough.
+:::
+
+## Where to find the data
+
+| Source | What you'll find |
+|--------|------------------|
+| Bank's Investor Relations → "Regulatory disclosures" / "Pillar 3" | Headline LCR & NSFR table |
+| Annual Report (or 10-K for U.S. banks) | Balance-sheet composition, deposit and funding mix |
+| Local regulator (APRA, FRB/OCC, PRA, ECB/EBA, HKMA, MAS, …) | The prudential standard the bank reports under |
+| BIS / FSB statistical publications | Cross-country aggregates for sanity-checking |
+
+**Starter links** for the Aussie Big 4:
+
+- [NAB regulatory disclosures](https://www.nab.com.au/about-us/shareholder-centre/regulatory-disclosures)
+- [CBA results & disclosures](https://www.commbank.com.au/about-us/investors/results.html)
+- [ANZ regulatory disclosures](https://www.anz.com/shareholder/centre/reporting/regulatory-disclosure/)
+- [Westpac Pillar 3](https://www.westpac.com.au/about-westpac/investor-centre/financial-information/regulatory-disclosures/)
+
+**Reference materials**:
+
+- [APRA — APS 330 Public Disclosure](https://www.apra.gov.au/public-disclosure-requirements-for-authorised-deposit-taking-institutions)
+- [BIS — LCR framework (LCR40)](https://www.bis.org/basel_framework/chapter/LCR/40.htm)
+
+## On the day
+
+- **20 minutes** in workshop to finalise your slides and rehearse your pitch.
+- **5 minutes** per group to present, **2 minutes** for Q&A.
+- Bring your own **laptop**, *or* email your slides to me **before class** and I'll project from mine.
+- If you have no slides at all on the day, you can still present — but slides will help you a lot in 5 minutes.
+
+## Tips — what makes a good comparison
+
+There is no single right answer for this activity. The good pitches do these things well:
+
+::: {.callout-tip title="Things to look for when you compare"}
+- **HQLA composition.** U.S. banks lean heavily on Treasuries and reserves at the Fed. Aussie Big 4 historically used the RBA's **Committed Liquidity Facility (CLF)** — that has been **phased out**, so flag it if your bank still references it. Chinese banks tend to carry very large central-bank reserve balances. European banks often include a wider mix (covered bonds, EU sovereign debt).
+- **Reporting frequency and template.** APRA ADIs disclose quarterly under **APS 330**. U.S. G-SIBs disclose quarterly under the **LCR Public Disclosure Rule** and compute daily. Some EU banks disclose certain templates only semi-annually under **EBA ITS**. The Basel templates (BCBS **LIQ1, LIQ2**) are common, but each regulator adds local rows.
+- **Currency presentation.** AUD vs USD vs EUR vs CNY — and whether the LCR is **domestic-currency only** or an **all-currency aggregate**. This matters for cross-bank comparison.
+- **Behavioural assumptions.** APRA prescribes more conservative **retail run-off** in some cases than the Basel minimum. Some EU regulators allow national discretion on **operational deposit** factors. Hong Kong and Singapore have their own quirks.
+- **Post-2023 changes.** SVB and Credit Suisse triggered reviews everywhere. Look for new line items, sensitivity disclosures, or commentary on **deposit stickiness** in your bank's recent reports.
+:::
+
+::: {.callout-warning title="Common pitfalls"}
+- **"Higher LCR = safer."** Not quite — a very high LCR also means a lot of low-yielding HQLA dragging on profitability. Banks aim *above* 100%, not *as high as possible*.
+- **"Comparing LCR levels across jurisdictions is apples-to-apples."** It usually isn't — definitions, run-off factors, and templates differ. Flag this in your "Same vs. different" slide instead of glossing over it.
+- **"Pillar 3 LCR is a point-in-time number."** It's typically a **quarterly average** of daily values. This is *exactly* why SVB's intra-quarter run was invisible until too late — a good talking point.
+- **AI hallucinations.** AI tools will confidently give you wrong LCR/NSFR numbers. Always verify against the actual Pillar 3 PDF before you put a number on a slide.
+:::
