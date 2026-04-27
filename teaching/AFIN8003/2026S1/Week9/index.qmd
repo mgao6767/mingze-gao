@@ -1,0 +1,678 @@
+---
+title: "AFIN8003 Week 9 - Liability and Liquidity Management"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-05-05
+draft: false
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  mq-revealjs:
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week9.pdf"
+# Custom fields
+pdf-name: "Week9.pdf"
+---
+
+# Liability and Liquidity Management
+
+## Cold open: 14 September 2007
+
+::: {.callout-important title="Newcastle, Friday morning"}
+Customers queued around the block outside Northern Rock branches.
+
+It was the *first run* on a British bank since *Overend, Gurney & Co.* in 1866 — 141 years.
+:::
+
+We'll come back to *why* in a moment.
+
+## What killed Northern Rock?
+
+It wasn't bad loans. The mortgage book was performing.
+
+It was the **funding mix**:
+
+- ~75% of Northern Rock's funding came from *wholesale markets* — securitisation, interbank lines, mortgage-backed securities.
+- ~25% came from retail deposits.
+
+When the asset-backed commercial paper (ABCP) market seized in August 2007, the bank could not roll its debt.
+
+The Bank of England announced emergency liquidity assistance on the evening of 13 September. The news leaked. The next morning, the queues formed.
+
+## The lesson for this week
+
+A bank's *liability mix* is a liquidity-risk decision.
+
+| Last week (Week 8) | This week (Week 9) |
+|---|---|
+| What is liquidity risk? | What's the toolkit to manage it? |
+| LCR, NSFR — measurement | Asset-side and liability-side instruments |
+| The cost when it goes wrong | The cost of *preventing* it going wrong |
+
+Throughout: every choice is a trade-off between *cost* and *withdrawal risk*. There is no free liquidity.
+
+## Roadmap
+
+1. Two sources of liquidity — stored and purchased.
+2. Asset-side toolkit — what counts as a liquid asset.
+3. The cash market and the RBA — how Australian banks settle.
+4. Liability-side toolkit — the deposit and wholesale ladder.
+5. The economics of a deposit — implicit and explicit interest.
+6. Other FIs and the 2025 regulatory update.
+
+# Two sources of liquidity
+
+## Where does the cash come from?
+
+When a depositor walks in and asks for their money, the bank has two options.
+
+**Option 1.** Sell something it already owns.
+
+**Option 2.** Borrow new money from someone else.
+
+That's it. Every liquidity-management slide that follows is one of these two.
+
+## Stored liquidity, defined
+
+*Stored liquidity* = selling or pledging liquid assets the bank already holds.
+
+Examples:
+
+- Cash.
+- Reserves at the central bank (in Australia, the Exchange Settlement Account — defined later).
+- Government bonds.
+- High-grade securities.
+
+The traditional approach. Used by *all* banks; relied on heavily by *small* banks.
+
+## Purchased liquidity, defined
+
+*Purchased liquidity* = borrowing new funds in wholesale markets.
+
+Examples:
+
+- Overnight cash market between banks.
+- Repurchase agreements (repos — defined shortly).
+- Issuing wholesale certificates of deposit.
+- Issuing bonds.
+
+The modern approach. Relied on heavily by *large* banks. Northern Rock relied on it too heavily.
+
+## The fundamental trade-off
+
+| | Stored | Purchased |
+|---|---|---|
+| Cost | Yield foregone on low-yielding assets | Funding spread above the cash rate |
+| Risk in stress | Forced sale at fire-sale prices | Lenders disappear; cannot roll over |
+| Effect on balance sheet | Shrinks (asset sold) | Stays the same size (new liability) |
+
+Most modern banks use both. The mix is the *strategy*.
+
+# Asset-side toolkit
+
+## What makes an asset "liquid"?
+
+An asset is *liquid* when it trades in a *deep* market.
+
+::: {.callout-tip title="Market depth"}
+A market is deep if even *large* trades barely move the price.
+
+Example: an Australian Government 10-year bond. You can sell A\$500m in an afternoon at roughly the screen price.
+
+Counter-example: a single residential mortgage. You can't sell one. You have to securitise a portfolio of thousands.
+:::
+
+The deeper the market, the lower the *liquidation cost* of the asset — and the more useful it is in a crisis.
+
+## The HQLA hierarchy (Week 8 recap)
+
+*HQLA* = High-Quality Liquid Assets — the numerator of the LCR (Liquidity Coverage Ratio).
+
+| Tier | Examples | Haircut |
+|---|---|---:|
+| Level 1 | Cash, central-bank reserves, sovereign debt | 0% |
+| Level 2A | High-grade corporate debt, covered bonds | 15% |
+| Level 2B | Eligible RMBS, equities | 25–50% |
+
+Level 2 combined cannot exceed *40%* of total HQLA.
+
+The *haircut* is the assumed loss-on-sale in stress.
+
+## The cost of holding HQLA
+
+Every dollar of HQLA is a dollar *not* lent to a customer.
+
+A simple example:
+
+- Mortgage rate: 6%.
+- Government bond yield: 4%.
+- Holding HQLA instead of writing a mortgage costs the bank ~2% per year on that dollar.
+
+This is why banks don't just hold "lots of HQLA to be safe" — *liquidity has a price*.
+
+## The Exchange Settlement Account (ESA)
+
+Every Australian bank has one account at the RBA: the *Exchange Settlement Account*.
+
+- Used to settle obligations between banks at the end of each day.
+- The balance in the ESA is called the bank's *ES balance*.
+- The RBA pays interest on the ES balance (currently the cash rate target *minus* 10 basis points).
+
+Without an ESA, two banks cannot settle interbank payments. It is the operational core of the Australian payment system.
+
+# The cash market and the RBA
+
+## The cash market — price and quantity
+
+The *cash market* is where banks lend and borrow ES balances, usually overnight.
+
+Two variables matter:
+
+- *Price.* The interest rate on these overnight loans is the **cash rate**.
+- *Quantity.* The total ES balances banks hold at the RBA.
+
+The RBA's job is to keep the cash rate close to its target.
+
+## The cash rate target
+
+The cash rate target is the RBA's *headline policy rate* — the number that hits the news after every Board meeting.
+
+Mortgage rates, business loan rates, deposit rates — all are anchored, directly or indirectly, to the cash rate.
+
+The cash rate target is set by the RBA Board. The *actual* cash rate is determined by demand and supply in the cash market — and the RBA's job is to align the two.
+
+## What is a repo?
+
+*Repo* = repurchase agreement.
+
+A repo is a *sale today + an agreement to repurchase tomorrow*:
+
+1. Bank A sells a bond to Bank B for \$100 today.
+2. Bank A repurchases the same bond from Bank B for \$100.05 tomorrow.
+
+Economically, Bank A has *borrowed \$100 overnight at 5%* (annualised), with the bond as collateral.
+
+Repos dominate short-term funding because they're *secured* — cheaper than unsecured lending.
+
+## The RBA's pre-COVID world
+
+Before March 2020:
+
+- ES balances totalled around A\$25 billion.
+- The RBA *actively managed* the supply of ES balances each day, through repos with the banks.
+- This kept the cash rate close to target.
+
+This was a *scarce reserves* regime — banks competed for a limited pool of reserves.
+
+## ES balances over time
+
+```{python}
+#| label: fig-es-balances
+#| fig-cap: "Stylised aggregate Australian ES balances, 2018–2026 (illustrative)."
+#| echo: false
+import matplotlib.pyplot as plt
+from datetime import datetime
+
+dates = ["2018-01","2019-01","2020-01","2020-06","2020-12",
+         "2021-06","2021-12","2022-06","2023-06","2024-06",
+         "2024-12","2025-06","2026-04"]
+es    = [25, 30, 35, 90, 200, 320, 400, 430, 380, 190, 170, 175, 180]
+xs    = [datetime.strptime(d, "%Y-%m") for d in dates]
+
+fig, ax = plt.subplots(figsize=(10, 4.2))
+ax.plot(xs, es, color="#444", linewidth=1.6, marker="o", markersize=5)
+ax.axvspan(datetime(2020,3,1), datetime(2022,2,1),  alpha=0.08, color="tab:blue",
+           label="COVID stimulus")
+ax.axvspan(datetime(2023,1,1), datetime(2024,7,1),  alpha=0.08, color="tab:orange",
+           label="TFF runoff")
+ax.axvspan(datetime(2024,7,1), datetime(2026,6,1),  alpha=0.08, color="tab:green",
+           label="Ample-reserves regime")
+ax.set_ylabel("Aggregate ES balance (A$bn, illustrative)")
+ax.set_xlabel("")
+ax.grid(True, alpha=0.3)
+ax.legend(loc="upper right", fontsize=9, frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+Pre-COVID floor → COVID surge → post-TFF runoff → ample-reserves equilibrium.
+
+## Today: ample reserves
+
+In *March 2024* the RBA Board endorsed a permanent shift to an *ample reserves* framework.
+
+The mechanics:
+
+- Each week, the RBA runs a *full-allotment* repo auction.
+- Banks bid for as many reserves as they want.
+- The RBA charges the cash rate target plus 5 basis points.
+- The RBA delivers all bids in full.
+
+The RBA no longer controls the *quantity* of reserves — banks do. The RBA controls the *price*.
+
+## Other RBA facilities
+
+Three smaller facilities round out the toolkit.
+
+| Facility | What it does |
+|---|---|
+| Intra-day repo | Liquidity within a business day; reversed before close. |
+| Overnight repo | Funds end-of-day liquidity needs. |
+| Standing Facility | Penalty-rate overnight backstop if the ESA goes short. |
+
+The standing facility exists for emergencies. Routine liquidity goes through the weekly OMO.
+
+## Two facilities that disappeared
+
+::: {.callout-note title="Term Funding Facility (TFF) — 2020 to 2024"}
+COVID-19 crisis tool. Banks could borrow up to *3 years* at the cash rate target.
+
+- Drawdown window closed *30 June 2021*.
+- Banks drew **\$188 billion** at the peak — about 6% of all credit outstanding.
+- All TFF funding *fully matured by 30 June 2024*.
+:::
+
+::: {.callout-warning title="Committed Liquidity Facility (CLF) — 2015 to 2023"}
+A uniquely Australian fix. Basel III's LCR requires HQLA. The Australian Government simply doesn't issue enough debt for ADIs to hold sufficient Level 1 securities. The CLF was a paid line of credit from the RBA that *counted as HQLA*.
+
+The post-COVID surge in Commonwealth bond issuance solved the underlying problem. APRA reduced the aggregate CLF from \$140bn (Sep 2021) to **zero on 1 January 2023**.
+:::
+
+# Liability-side toolkit
+
+## Switching to the liability side
+
+The *goal* of liability management:
+
+> Construct a portfolio of liabilities that is **low cost** and has **low withdrawal risk**.
+
+The *problem*:
+
+- Cheap funding tends to be flighty (demand deposits).
+- Sticky funding tends to be expensive (term deposits, long bonds).
+
+There is no free quadrant. Northern Rock learned this the hard way.
+
+## The cost vs. withdrawal-risk frontier
+
+```{python}
+#| label: fig-frontier
+#| fig-cap: "Stylised funding instruments plotted by withdrawal risk and funding cost. Illustrative; numbers will change with the cycle."
+#| echo: false
+import matplotlib.pyplot as plt
+
+instruments = [
+    ("Cheque deposit",        95, 0.5,  "retail"),
+    ("Online savings",        70, 4.0,  "retail"),
+    ("CMA",                   50, 3.5,  "retail"),
+    ("Term deposit (12m)",    15, 4.6,  "retail"),
+    ("NCD (3m)",              25, 4.4,  "wholesale"),
+    ("Bank-accepted bill",    35, 4.5,  "wholesale"),
+    ("Repo (overnight)",      45, 4.3,  "wholesale"),
+    ("Interbank (unsecured)", 90, 4.35, "wholesale"),
+    ("Senior bond (5y)",      5,  5.4,  "wholesale"),
+    ("Covered bond (5y)",     5,  5.0,  "wholesale"),
+    ("Subordinated debt",     3,  6.5,  "wholesale"),
+]
+
+palette = {"retail": "#1f77b4", "wholesale": "#d62728"}
+
+fig, ax = plt.subplots(figsize=(10, 5))
+for name, risk, cost, kind in instruments:
+    ax.scatter(risk, cost, s=70, c=palette[kind],
+               edgecolor="white", linewidth=1, zorder=3)
+    ax.annotate(name, (risk, cost), xytext=(6, 6),
+                textcoords="offset points", fontsize=9, color="#333")
+ax.set_xlabel("Withdrawal risk (% likely to leave in 30-day stress, illustrative)")
+ax.set_ylabel("Funding cost (% p.a., illustrative)")
+ax.set_xlim(0, 100); ax.set_ylim(0, 8)
+ax.grid(True, alpha=0.3)
+for kind, color in palette.items():
+    ax.scatter([], [], c=color, label=kind.capitalize(),
+               edgecolor="white", linewidth=1, s=70)
+ax.legend(loc="upper left", frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+Cheap *and* sticky doesn't exist. Banks pick a point on the frontier.
+
+## The deposit/wholesale ladder
+
+We'll walk through the major instruments in three groups.
+
+1. **Deposit liabilities** — cheque accounts, savings, CMAs, term deposits, NCDs.
+2. **Wholesale liabilities** — interbank, repos, bank bills, commercial paper.
+3. **Long-term debt** — covered bonds, subordinated debt, MTNs.
+
+Each instrument sits somewhere on the frontier above. The order roughly matches *retail to wholesale* and *short to long*.
+
+# Deposit liabilities
+
+## Demand deposits
+
+The cheque account, the everyday transaction account.
+
+- Withdrawal risk: *very high*. Payable on demand, no notice.
+- Cost (explicit interest): *very low or zero*.
+- Used by: households and businesses for transactions.
+
+Why are these so cheap for the bank?
+
+## The Regulation Q backstory
+
+In the *United States*, demand deposits paid *zero* interest from 1933 to 2011.
+
+::: {.callout-note title="Regulation Q (1933 Banking Act)"}
+After the 1930s banking panics, U.S. regulators believed competition for deposits had pushed banks to take excessive risk.
+
+*Regulation Q* prohibited U.S. banks from paying any interest on demand deposits. The prohibition lasted *78 years*.
+
+*Section 627 of the Dodd–Frank Act* repealed it on **21 July 2011**. Banks are now permitted — but not required — to pay. Most still don't.
+:::
+
+Australia never had this prohibition. That's why an Aussie online transaction account in 2026 can pay 4–5% while a Bank of America checking account pays ~0.01%.
+
+## Demand deposits aren't really free
+
+Even when explicit interest is zero, the deposit costs the bank *real money*:
+
+- Branch staff, ATMs, online banking, fraud monitoring, 24/7 call centres.
+- Cheque clearing.
+- Card scheme fees.
+
+Competition forces banks to *partially absorb* these costs and offer subsidised services. The depositor receives **implicit interest** — interest paid in services rather than cash.
+
+## The implicit interest rate
+
+Define the *implicit interest rate* (IIR) on a demand-deposit account as:
+
+$$
+\text{IIR} = \dfrac{C - F}{B}
+$$
+
+where, per account per year:
+
+- $C$ = bank's management cost,
+- $F$ = fees earned by the bank,
+- $B$ = average annual balance.
+
+If $C > F$, the bank is *subsidising* the depositor. Implicit interest is *positive*.
+
+If $C < F$, the bank is *taxing* the depositor (fees exceed costs). Implicit interest is *negative*.
+
+## Calculator: implicit interest rate
+
+Move $C$, $F$, and $B$. The IIR updates live.
+
+```{ojs}
+//| echo: false
+viewof C = Inputs.range([0, 400], {value: 150, step: 5, label: "C ($/yr)"})
+viewof F = Inputs.range([0, 400], {value: 100, step: 5, label: "F ($/yr)"})
+viewof B = Inputs.range([200, 10000], {value: 1200, step: 50, label: "B ($)"})
+
+iir = (C - F) / B
+
+md`
+IIR = ${(iir*100).toFixed(2)}%
+
+${iir > 0
+  ? "Bank subsidises the depositor — costs exceed fees."
+  : iir < 0
+    ? "Bank taxes the depositor — fees exceed costs."
+    : "Costs and fees exactly net out."}
+`
+```
+
+The textbook example: $C=\$150$, $F=\$100$, $B=\$1{,}200$. IIR ≈ *4.17%*. The depositor "earns" 4.17% per year in subsidised services, even though the cash interest rate on the account is zero.
+
+## Gross interest = explicit + implicit
+
+If an account also pays *explicit* interest above some minimum balance, the depositor's total return is:
+
+$$
+G = \underbrace{r \cdot B \cdot \mathbb{1}\{B \ge M\}}_{\text{explicit}} \;+\; \underbrace{(c - f) \cdot n \cdot 12}_{\text{implicit}}
+$$
+
+where:
+
+- $r$ = explicit interest rate (decimal, p.a.),
+- $B$ = average balance,
+- $M$ = minimum balance threshold to earn explicit interest,
+- $c$ = bank's unit cost per transaction,
+- $f$ = fee charged per transaction,
+- $n$ = transactions per month.
+
+The indicator $\mathbb{1}\{B \ge M\}$ is 1 if the balance clears the threshold and 0 otherwise.
+
+## Calculator: gross interest
+
+```{ojs}
+//| echo: false
+viewof B2 = Inputs.range([0, 5000], {value: 1000, step: 50, label: "B ($)"})
+viewof r  = Inputs.range([0, 8],    {value: 5,    step: 0.05, label: "r (%)"})
+viewof M  = Inputs.range([0, 5000], {value: 500,  step: 50, label: "M ($)"})
+viewof c  = Inputs.range([0, 0.5],  {value: 0.15, step: 0.01, label: "c ($)"})
+viewof f  = Inputs.range([0, 0.5],  {value: 0.10, step: 0.01, label: "f ($)"})
+viewof n  = Inputs.range([0, 200],  {value: 50,   step: 5, label: "n"})
+
+explicit = B2 >= M ? B2 * (r/100) : 0
+implicit = (c - f) * n * 12
+gross    = explicit + implicit
+
+md`
+Explicit = $${explicit.toFixed(2)} &nbsp;&nbsp;
+Implicit = $${implicit.toFixed(2)} &nbsp;&nbsp;
+Gross G = $${gross.toFixed(2)}
+`
+```
+
+Two things to try:
+
+- Drop $B$ below $M$ — explicit interest collapses to zero.
+- Drop $f$ below $c$ — implicit interest goes positive.
+
+## Savings accounts and CMAs
+
+Two close cousins of the demand deposit, both with *lower* withdrawal risk.
+
+::: {.columns}
+:::: {.column}
+*Savings account*
+
+- Restrictions: limited monthly withdrawals, sometimes a notice period.
+- Held for accumulation, not transactions.
+- Pays explicit interest.
+- Lower withdrawal risk than a cheque account.
+::::
+:::: {.column}
+*Cash management account (CMA)*
+
+- High minimum balance (typically A\$10,000+).
+- Funds available on call; supports cheques, debit cards, transfers.
+- Modest implicit interest, mitigated by transaction fees.
+- Aimed at investors and treasurers parking cash between trades.
+::::
+:::
+
+## Term deposits and retail CDs
+
+Fixed maturity, fixed rate, early withdrawal penalty.
+
+- Withdrawal risk: *very low* — the penalty is the discipline device.
+- Cost: *high* explicit interest. Banks pay a maturity premium.
+- Used by yield-seeking retail savers.
+
+For the bank, term deposits are the workhorse of *long, sticky* retail funding. The cost is a known number locked in for the term.
+
+## Negotiable certificates of deposit (NCDs)
+
+A wholesale time deposit. Face value typically above ~A\$100,000. Maturities from days to years.
+
+The key word is *negotiable*: the holder can sell the NCD in the secondary market.
+
+- Withdrawal risk for the bank: *low*. The bank doesn't repay until maturity; the holder gets liquidity by selling.
+- Cost: *moderate*. Market-driven, benefits from the issuer's credit rating.
+
+NCDs sit between retail term deposits and pure wholesale funding.
+
+# Non-deposit (wholesale) liabilities
+
+## Interbank funds
+
+Short-term *unsecured* loans between banks, usually overnight.
+
+- The price is the *cash rate*.
+- Withdrawal risk for the borrowing bank: *very high*. The lender can refuse to roll over the next day.
+- Cost: *low to moderate* — close to the cash rate.
+
+This is the cheapest unsecured funding a bank can get. It's also the first to disappear in a crisis.
+
+## Repurchase agreements (repos)
+
+We met repos earlier as an RBA tool. Banks also use them with each other.
+
+- The transaction is *collateralised* by securities.
+- Cheaper than unsecured interbank lending — the lender bears almost no credit risk.
+- Highly flexible: overnight, term, or open-ended.
+
+::: {.callout-note title="Why secured beats unsecured"}
+The repo lender holds your collateral. If you default, they sell it. So they don't need to charge a credit risk premium.
+
+In stress, secured markets often stay open while unsecured markets close. This is why every bank treasurer has a stack of repo-eligible collateral ready to go.
+:::
+
+## Bank-accepted bills and commercial paper
+
+Two short-dated wholesale instruments.
+
+::: {.columns}
+:::: {.column}
+*Bank-accepted bill (BAB)*
+
+- A short-term bill of exchange that a bank guarantees ("accepts").
+- Sold to investors at a discount.
+- Once the benchmark for the Australian short-rate (BBSW).
+- Largely supplanted by NCDs and repos.
+::::
+:::: {.column}
+*Commercial paper (CP)*
+
+- Short-term unsecured promissory notes.
+- Issued by both banks and large corporates.
+- Heavily used in U.S. money markets.
+- *September 2019 episode*: U.S. repo rates spiked from ~2% to ~10% in a day when reserves drained — even "deep" wholesale markets can seize.
+::::
+:::
+
+## Covered bonds
+
+A bond issued by the bank, *backed by a ring-fenced pool of assets* that stays on the bank's balance sheet.
+
+::: {.callout-tip title="Why covered bonds are special"}
+Bondholders have a *dual claim*:
+
+1. On the issuing bank, like any senior bond.
+2. On the *cover pool* (typically high-quality mortgages), if the bank fails.
+
+Hence covered bonds are often rated *AAA* even when the issuer is rated AA−.
+:::
+
+In Australia:
+
+- Legalised by the *Banking Amendment (Covered Bonds) Act 2011*.
+- Capped at *8% of the ADI's domestic assets* under APS 121.
+- All Big 4 banks run active covered-bond programmes.
+
+## Subordinated debt and long-term borrowings
+
+The bottom of the funding stack — long-dated, often callable, subordinated to depositors and senior creditors.
+
+- *Subordinated debt (Tier 2):* counts toward regulatory capital. Expensive but stable.
+- *Medium-term notes (MTNs):* a flexible programme for issuing bonds in various tenors and currencies.
+- *Senior unsecured bonds, long-term loans:* the workhorse of long-term wholesale funding.
+
+The most stable funding a bank can have, short of equity. Also the most expensive.
+
+# Other FIs and regulation
+
+## Liquidity management at non-DI FIs
+
+The same trade-off, different instruments:
+
+| FI type | Main funding | Distinct liquidity issue |
+|---|---|---|
+| Life insurer | Premiums, policy reserves | Mass policy surrenders |
+| P–C insurer | Premiums, claims reserves | Catastrophe spike forces asset sales |
+| Securities firm / IB | Repos, bank loans, short positions | Inventory financing during stress |
+| Finance company | Commercial paper, long-term debt | CP rollover stress |
+
+The unifying theme: short-term liabilities funding less-liquid assets, with rollover risk in the middle.
+
+## Regulation recap from Week 8
+
+Australian liquidity rules sit under APRA's *Prudential Standard APS 210*. Banks fall into one of two regimes:
+
+| | LCR ADI | MLH ADI |
+|---|---|---|
+| Who | Big 4 + larger banks | Smaller ADIs |
+| Core ratio | LCR ≥ 100% *and* NSFR ≥ 100% | Liquid assets ≥ 9% of liabilities |
+| Liquid assets | HQLA (Level 1 + capped Level 2) | RBA-repo-eligible debt securities |
+
+For depositors: the *Financial Claims Scheme* guarantees up to **A\$250,000** per account-holder per ADI, since 1 February 2012.
+
+## What's new: APS 210, 1 July 2025
+
+APRA finalised targeted changes in 2024 in response to the March 2023 banking turmoil.
+
+Effective *1 July 2025*:
+
+- MLH ADIs must value their liquid assets at *mark-to-market* — no more amortised cost.
+- All ADIs must be operationally ready to request *Exceptional Liquidity Assistance (ELA)* from the RBA.
+- The headline 9% MLH minimum is unchanged.
+
+Why it matters: an MLH ADI's liquidity cushion will now visibly shrink when bond yields rise, rather than hide behind book values.
+
+# Wrap-up
+
+## Key takeaways
+
+1. Two sources of liquidity: *stored* (sell what you own) and *purchased* (borrow new). Banks use both.
+2. The cash market is a *price* (the cash rate) and a *quantity* (ES balances). The RBA's 2024 pivot to ample reserves changes how the quantity is set.
+3. The CLF is gone. LCR ADIs now meet HQLA requirements with Commonwealth and semi-government bonds plus ES balances.
+4. Liabilities sit on a frontier between *cost* and *withdrawal risk*. There is no point that is both cheap and sticky.
+5. Implicit interest is real interest. A subsidised "free" account is genuinely paying you in services.
+6. APS 210 changes (1 July 2025) bring mark-to-market into the small-bank liquidity regime.
+
+## Suggested readings
+
+- [How RBA implements monetary policy](https://www.rba.gov.au/education/resources/explainers/how-rba-implements-monetary-policy.html)
+- [RBA Exchange Settlement Account Policy](https://www.rba.gov.au/payments-and-infrastructure/esa/)
+- [RBA — The Future System for Monetary Policy Implementation (April 2024)](https://www.rba.gov.au/speeches/2024/sp-ag-2024-04-02.html)
+- [RBA — The Committed Liquidity Facility: 2015–2022](https://www.rba.gov.au/publications/bulletin/2024/jan/the-committed-liquidity-facility-2015-2022.html)
+- [APRA — APS 210 Liquidity (Prudential Handbook)](https://handbook.apra.gov.au/standard/aps-210)
+- [APRA — Targeted changes to ADI liquidity and capital standards (2024–2025)](https://www.apra.gov.au/news-and-publications/apra-finalises-targeted-changes-to-strengthen-banks%E2%80%99-liquidity-and-capital)
+- [Covered bonds in Australia (RBA Bulletin)](https://www.rba.gov.au/publications/bulletin/2017/sep/pdf/bu-0917-7-covered-bonds-in-australia.pdf)
+
+## References
