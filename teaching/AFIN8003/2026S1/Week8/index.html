@@ -1,0 +1,2442 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Dr.&nbsp;Mingze Gao">
+  <meta name="dcterms.date" content="2026-04-28">
+  <title>Mingze Gao – AFIN8003 Week 8 - Liquidity Risk</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-dfce579f1d8fe8fde31da5005cf0c837.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="../../../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+<meta name="twitter:title" content="AFIN8003 Week 8 - Liquidity Risk – Mingze Gao">
+<meta name="twitter:description" content="Banking and Financial Intermediation">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+  <h1 class="title">AFIN8003 Week 8 - Liquidity Risk</h1>
+  <p class="subtitle">Banking and Financial Intermediation</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mingze Gao 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Applied Finance
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-04-28</p>
+</section>
+<section>
+<section id="liquidity-risk" class="title-slide slide level1 center">
+<h1>Liquidity Risk</h1>
+
+</section>
+<section id="why-this-week-matters" class="slide level2">
+<h2>Why this week matters</h2>
+<div title="Two bank deaths in 10 days — March 2023">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Two bank deaths in 10 days — March 2023</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Silicon Valley Bank</strong></th>
+<th><strong>Credit Suisse</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run size</td>
+<td><strong>$42bn / day</strong> (≈25% of deposits)</td>
+<td><strong>CHF 110bn</strong> in days</td>
+</tr>
+<tr class="even">
+<td>Time to failure</td>
+<td><strong>36 hours</strong></td>
+<td>One week</td>
+</tr>
+<tr class="odd">
+<td>Trigger</td>
+<td>$1.8bn AFS loss disclosure</td>
+<td>Loss of confidence</td>
+</tr>
+<tr class="even">
+<td>Outcome</td>
+<td>FDIC seizure</td>
+<td>UBS takeover for <strong>CHF 3bn</strong></td>
+</tr>
+<tr class="odd">
+<td>Solvent on paper?</td>
+<td><strong>Yes</strong></td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Both banks died of thirst, not insolvency.</strong> A bank’s <em>funding model</em> is as much a risk as its <em>loan book</em>.</p>
+</section>
+<section id="roadmap" class="slide level2">
+<h2>Roadmap</h2>
+<div class="cell" data-layout-align="default">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>flowchart LR</span>
+<span id="cb1-2"><a></a>    A[Where it comes from] --&gt; B[How DIs manage it]</span>
+<span id="cb1-3"><a></a>    B --&gt; C[How we measure it]</span>
+<span id="cb1-4"><a></a>    C --&gt; D[LCR &amp; NSFR]</span>
+<span id="cb1-5"><a></a>    D --&gt; E[Australian regime]</span>
+<span id="cb1-6"><a></a>    E --&gt; F[Safety nets]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg id="mermaid-figure-1" width="960" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="flowchart" style="; display: block; margin: auto auto auto auto" viewbox="0 0 1336.6875 70" role="graphics-document document" aria-roledescription="flowchart-v2" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-figure-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .rough-node .label,#mermaid-figure-1 .node .label,#mermaid-figure-1 .image-shape .label,#mermaid-figure-1 .icon-shape .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 rect.text{fill:none;stroke-width:0;}#mermaid-figure-1 .icon-shape,#mermaid-figure-1 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .icon-shape p,#mermaid-figure-1 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#mermaid-figure-1 .icon-shape rect,#mermaid-figure-1 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-figure-1 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker id="mermaid-1777252849980_flowchart-v2-pointEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1777252849980_flowchart-v2-pointStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="4.5" refy="5" markerunits="userSpaceOnUse" markerwidth="8" markerheight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1777252849980_flowchart-v2-circleEnd" class="marker flowchart-v2" viewbox="0 0 10 10" refx="11" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1777252849980_flowchart-v2-circleStart" class="marker flowchart-v2" viewbox="0 0 10 10" refx="-1" refy="5" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1777252849980_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="12" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1777252849980_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewbox="0 0 11 11" refx="-1" refy="5.2" markerunits="userSpaceOnUse" markerwidth="11" markerheight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M218.406,35L222.573,35C226.74,35,235.073,35,242.74,35C250.406,35,257.406,35,260.906,35L264.406,35" id="L_A_B_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_A_B_0" data-points="W3sieCI6MjE4LjQwNjI1LCJ5IjozNX0seyJ4IjoyNDMuNDA2MjUsInkiOjM1fSx7IngiOjI2OC40MDYyNSwieSI6MzV9XQ==" marker-end="url(#mermaid-1777252849980_flowchart-v2-pointEnd)"></path><path d="M461.078,35L465.245,35C469.411,35,477.745,35,485.411,35C493.078,35,500.078,35,503.578,35L507.078,35" id="L_B_C_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_B_C_0" data-points="W3sieCI6NDYxLjA3ODEyNSwieSI6MzV9LHsieCI6NDg2LjA3ODEyNSwieSI6MzV9LHsieCI6NTExLjA3ODEyNSwieSI6MzV9XQ==" marker-end="url(#mermaid-1777252849980_flowchart-v2-pointEnd)"></path><path d="M708.625,35L712.792,35C716.958,35,725.292,35,732.958,35C740.625,35,747.625,35,751.125,35L754.625,35" id="L_C_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_C_D_0" data-points="W3sieCI6NzA4LjYyNSwieSI6MzV9LHsieCI6NzMzLjYyNSwieSI6MzV9LHsieCI6NzU4LjYyNSwieSI6MzV9XQ==" marker-end="url(#mermaid-1777252849980_flowchart-v2-pointEnd)"></path><path d="M902.172,35L906.339,35C910.505,35,918.839,35,926.505,35C934.172,35,941.172,35,944.672,35L948.172,35" id="L_D_E_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_D_E_0" data-points="W3sieCI6OTAyLjE3MTg3NSwieSI6MzV9LHsieCI6OTI3LjE3MTg3NSwieSI6MzV9LHsieCI6OTUyLjE3MTg3NSwieSI6MzV9XQ==" marker-end="url(#mermaid-1777252849980_flowchart-v2-pointEnd)"></path><path d="M1138.594,35L1142.76,35C1146.927,35,1155.26,35,1162.927,35C1170.594,35,1177.594,35,1181.094,35L1184.594,35" id="L_E_F_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_E_F_0" data-points="W3sieCI6MTEzOC41OTM3NSwieSI6MzV9LHsieCI6MTE2My41OTM3NSwieSI6MzV9LHsieCI6MTE4OC41OTM3NSwieSI6MzV9XQ==" marker-end="url(#mermaid-1777252849980_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_A_B_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_B_C_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_C_D_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_D_E_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g class="label" data-id="L_E_F_0" transform="translate(0, 0)"><foreignobject width="0" height="0">
+<div class="labelBkg" data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-0" transform="translate(113.203125, 35)"><rect class="basic label-container" style="" x="-105.203125" y="-27" width="210.40625" height="54"></rect><g class="label" style="" transform="translate(-75.203125, -12)"><rect></rect><foreignobject width="150.40625" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Where it comes from
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-B-1" transform="translate(364.7421875, 35)"><rect class="basic label-container" style="" x="-96.3359375" y="-27" width="192.671875" height="54"></rect><g class="label" style="" transform="translate(-66.3359375, -12)"><rect></rect><foreignobject width="132.671875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+How DIs manage it
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-C-3" transform="translate(609.8515625, 35)"><rect class="basic label-container" style="" x="-98.7734375" y="-27" width="197.546875" height="54"></rect><g class="label" style="" transform="translate(-68.7734375, -12)"><rect></rect><foreignobject width="137.546875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+How we measure it
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-D-5" transform="translate(830.3984375, 35)"><rect class="basic label-container" style="" x="-71.7734375" y="-27" width="143.546875" height="54"></rect><g class="label" style="" transform="translate(-41.7734375, -12)"><rect></rect><foreignobject width="83.546875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+LCR &amp; NSFR
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-E-7" transform="translate(1045.3828125, 35)"><rect class="basic label-container" style="" x="-93.2109375" y="-27" width="186.421875" height="54"></rect><g class="label" style="" transform="translate(-63.2109375, -12)"><rect></rect><foreignobject width="126.421875" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Australian regime
+</p>
+</span>
+</div>
+</foreignobject></g></g><g class="node default" id="flowchart-F-9" transform="translate(1258.640625, 35)"><rect class="basic label-container" style="" x="-70.046875" y="-27" width="140.09375" height="54"></rect><g class="label" style="" transform="translate(-40.046875, -12)"><rect></rect><foreignobject width="80.09375" height="24">
+<div data-xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+<span class="nodeLabel">
+<p>
+Safety nets
+</p>
+</span>
+</div>
+</foreignobject></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="two-sides-of-the-same-risk" class="slide level2">
+<h2>Two sides of the same risk</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Liability side</strong></th>
+<th><strong>Asset side</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Trigger</strong></td>
+<td>Depositors / wholesale funders demand cash</td>
+<td>Borrowers draw committed lines; investment portfolio loses value</td>
+</tr>
+<tr class="even">
+<td><strong>Symptom</strong></td>
+<td>Net deposit drain</td>
+<td>Forced asset sales</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost</strong></td>
+<td>New funding at higher rates</td>
+<td>Fire-sale loss on long-duration assets</td>
+</tr>
+<tr class="even">
+<td><strong>Key concept</strong></td>
+<td>Distribution of net deposit drains; core deposits</td>
+<td>Loan commitments; HQLA haircuts</td>
+</tr>
+<tr class="odd">
+<td><strong>March 2023 example</strong></td>
+<td>$42bn SVB run in one day</td>
+<td>$1.8bn SVB AFS loss</td>
+</tr>
+</tbody>
+</table>
+<p>We focus on <strong>DIs</strong> — the institutions most exposed because they fund long-term assets with short-term, on-demand liabilities.</p>
+</section></section>
+<section>
+<section id="sources-of-liquidity-risk-at-dis" class="title-slide slide level1 center">
+<h1>Sources of liquidity risk at DIs</h1>
+
+</section>
+<section id="liability-side-liquidity-risk" class="slide level2">
+<h2>Liability-side liquidity risk</h2>
+<ul>
+<li>A DI’s balance sheet typically features a large amount of short-term liabilities funding relatively long-term assets.
+<ul>
+<li>Short-term liabilities: demand deposits, other transaction accounts, etc.</li>
+<li>Long-term assets: mortgages, C&amp;I loans, etc.</li>
+</ul></li>
+<li>Demand deposit accounts, money market deposit accounts (MMDAs), and other transaction accounts allow holders to demand immediate repayment of the face value in cash.
+<ul>
+<li>For example, a DI with 20% of its liabilities in demand deposits, MMDAs, and other transaction accounts must be ready to liquidate assets to cover that amount on any banking day.</li>
+</ul></li>
+</ul>
+<div title="Scale of the maturity mismatch">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Scale of the maturity mismatch</strong></p>
+</div>
+<div class="callout-content">
+<p>For U.S. commercial banks, deposits typically make up <strong>70–80% of total liabilities and capital</strong>, while cash assets are a small single-digit-to-low-teens share of total assets. The maturity mismatch is the business model — and the source of the risk.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="liability-side-liquidity-risk-contd" class="slide level2">
+<h2>Liability-side liquidity risk (cont’d)</h2>
+<p>For CBA (FY2023), cash and liquid assets accounted for only <strong>9.3% of total assets</strong> — the rest is largely loans and long-dated securities.</p>
+
+<img data-src="./figures/CBA-balance-sheet-2023.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-cba-balance-sheet"><p class="caption">
+Figure&nbsp;1: Excerpt of CBA’s FY2023 balance sheet — assets. <em>Source:</em> Commonwealth Bank of Australia 2023 Annual Report.
+</p></section>
+<section id="liability-side-liquidity-risk-contd-1" class="slide level2">
+<h2>Liability-side liquidity risk (cont’d)</h2>
+<p>On the other side, CBA (FY2023) funded <strong>73.25% of total liabilities</strong> with deposits and other public borrowings — most of it short-dated and on demand.</p>
+
+<img data-src="figures/CBA-balance-sheet-liabilities-2023.png" class="quarto-figure quarto-figure-center r-stretch" id="fig-cba-balance-sheet-liabilities"><p class="caption">
+Figure&nbsp;2: Excerpt of CBA’s FY2023 balance sheet — liabilities. <em>Source:</em> Commonwealth Bank of Australia 2023 Annual Report.
+</p></section>
+<section id="liability-side-liquidity-risk-contd-2" class="slide level2">
+<h2>Liability-side liquidity risk (cont’d)</h2>
+<div title="It's not that bad.">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>It’s not that bad.</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Normally, only a small proportion of its deposits will be withdrawn on any given day.</li>
+<li>Further, deposit withdrawals may in part be offset by the inflow of new deposits<sup>1</sup> (and the DI’s income).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Most demand deposits are relatively “stable”, acting as consumer <strong>core deposits</strong> on a daily basis.</p>
+<ul>
+<li><strong>Core deposits</strong> are those deposits that provide a DI with a long-term funding source.</li>
+</ul>
+<p>The DI manager must monitor and predict the <em>net deposit drains</em> on any given normal banking day.</p>
+<ul>
+<li>Beyond predictable daily seasonality in deposit flows, other seasonal variations exist.</li>
+<li>Many of these seasonal variations are somewhat predictable.</li>
+<li>Retail DIs often experience above-average deposit outflows around the end of the year and in the summer (due to Christmas and the vacation season).</li>
+<li>Rural DIs may experience a deposit inflow–outflow cycle aligned with the local agricultural cycle.
+<ul>
+<li>During the planting and growing season, deposits tend to fall.</li>
+<li>During the harvest season, deposits tend to rise as crops are sold.</li>
+</ul></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Large inflow of deposits may also cause issues if the DI cannot find sufficiently attractive investments.</p></li></ol></aside></section>
+<section id="net-deposit-drains-and-how-dis-manage-them" class="slide level2">
+<h2>Net deposit drains and how DIs manage them</h2>
+<p>DI managers monitor the <strong>distribution of net deposit drains</strong> — the daily difference between withdrawals and inflows. Two stylised cases:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="cell-fig-net-deposit-drains-positive" class="cell" data-fig-location="center" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb2-5"><a></a>y <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((x <span class="op">-</span> <span class="dv">5</span>) <span class="op">/</span> <span class="dv">4</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi))</span>
+<span id="cb2-6"><a></a></span>
+<span id="cb2-7"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb2-8"><a></a>plt.plot(x, y, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-9"><a></a>plt.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb2-10"><a></a>plt.axvline(x<span class="op">=</span><span class="dv">5</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Mode = +5%'</span>)</span>
+<span id="cb2-11"><a></a>plt.xlabel(<span class="st">"% Net deposit drain (cash outflow)"</span>)</span>
+<span id="cb2-12"><a></a>plt.legend()</span>
+<span id="cb2-13"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-net-deposit-drains-positive" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-net-deposit-drains-positive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-net-deposit-drains-positive-output-1.png" width="653" height="356">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-net-deposit-drains-positive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Positive expected drain — balance sheet contracts
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Mode at +5%</em> ⇒ withdrawals routinely exceed inflows ⇒ liability side <strong>contracting</strong>.</p>
+</div><div class="column" style="width:50%;">
+<div id="cell-fig-net-deposit-drains-negative" class="cell" data-fig-location="center" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-5"><a></a>y <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((x <span class="op">+</span> <span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span> )<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> <span class="fl">0.1</span> <span class="op">*</span> np.pi))</span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb3-8"><a></a>plt.plot(x, y, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-9"><a></a>plt.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb3-10"><a></a>plt.axvline(x<span class="op">=-</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Mode = −2%'</span>)</span>
+<span id="cb3-11"><a></a>plt.xlabel(<span class="st">"% Net deposit drain (cash outflow)"</span>)</span>
+<span id="cb3-12"><a></a>plt.legend()</span>
+<span id="cb3-13"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-net-deposit-drains-negative" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-net-deposit-drains-negative-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-net-deposit-drains-negative-output-1.png" width="653" height="356">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-net-deposit-drains-negative-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Negative expected drain — balance sheet expands
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Mode at −2%</em> ⇒ inflows exceed withdrawals ⇒ balance sheet <strong>expanding</strong>.</p>
+</div></div>
+<p>When a positive drain materialises, the DI plugs it via either <strong>purchased liquidity</strong> (wholesale borrowing) or <strong>stored liquidity</strong> (run down cash / HQLA). Traditionally DIs leaned on stored liquidity; today most rely on purchased liquidity — examined next.</p>
+</section></section>
+<section>
+<section id="managing-liquidity-risk" class="title-slide slide level1 center">
+<h1>Managing liquidity risk</h1>
+
+</section>
+<section id="purchased-vs.-stored-liquidity-side-by-side" class="slide level2">
+<h2>Purchased vs.&nbsp;stored liquidity: side by side</h2>
+<p>A <strong>$5 deposit drain</strong> (deposits 70 → 65). Two ways to plug it:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>(A) Purchased liquidity</strong> — borrow in wholesale markets (interbank, repo, CDs, notes/bonds).</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">After drain</th>
+<th style="text-align: right;">After fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assets</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td>Deposits</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="odd">
+<td>Borrowed</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;"><strong>15</strong></td>
+</tr>
+<tr class="even">
+<td>Other liab.</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+<p>✓ Balance sheet size <strong>preserved</strong>. ✗ Wholesale funding is <strong>costlier</strong> and <strong>flightier</strong> than deposits.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>(B) Stored liquidity</strong> — run down cash and HQLA buffers.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">After drain &amp; fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;"><strong>4</strong></td>
+</tr>
+<tr class="even">
+<td>Other assets</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">91</td>
+</tr>
+<tr class="odd">
+<td>Deposits</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="even">
+<td>Borrowed</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td>Other liab.</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">95</td>
+</tr>
+</tbody>
+</table>
+<p>✓ No new (expensive) funding. ✗ Balance sheet <strong>contracts</strong>; foregone return on the cash buffer.</p>
+</div></div>
+<div title="Reserve requirements have largely faded">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reserve requirements have largely faded</strong></p>
+</div>
+<div class="callout-content">
+<p>The U.S. Fed cut all reserve requirements to <strong>zero on 26 March 2020</strong> and has not reinstated them; the RBA has never imposed a formal reserve ratio. Today, “stored liquidity” mostly means <strong>HQLA</strong> under the LCR, not regulatory cash reserves.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="asset-side-liquidity-risk-two-channels" class="slide level2">
+<h2>Asset-side liquidity risk: two channels</h2>
+<p>So far we have focused on <strong>liability-side</strong> drains. The <strong>asset side</strong> generates liquidity demand through two channels:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1. Loan-commitment drawdowns</strong></p>
+<p>Borrowers exercise pre-existing committed credit lines — the bank must fund the loan today, even though it priced the commitment yesterday.</p>
+<div title="COVID-19 dash for cash">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>COVID-19 dash for cash</strong></p>
+</div>
+<div class="callout-content">
+<p>In March 2020, U.S. corporates drew on credit lines at unprecedented speed. <span class="citation" data-cites="acharya_why_2024">Acharya et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span> link this drawdown channel directly to bank-stock underperformance during the pandemic.</p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>2. Investment-portfolio losses</strong></p>
+<p>Rising rates → MTM losses on bond holdings. If the bank must sell to fund withdrawals, paper losses become <strong>realised</strong> losses, eating into equity.</p>
+<div title="SVB, March 2023">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>SVB, March 2023</strong></p>
+</div>
+<div class="callout-content">
+<p>SVB sold its available-for-sale portfolio at an <strong>$1.8bn after-tax loss</strong> to raise cash for outflows. The disclosure itself triggered the run that killed the bank within 36 hours.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<p>The mechanics of plugging an asset-side need (a $5 drawdown or $5 MTM hit) are <strong>the same as on the liability side</strong>: either <em>purchase</em> liquidity (more borrowing) or <em>store</em> liquidity (run down cash). The cost trade-offs are identical to the previous slide.</p>
+</section>
+<section id="asset-side-liquidity-risk-combined-balance-sheet-view" class="slide level2">
+<h2>Asset-side liquidity risk: combined balance-sheet view</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Loan-commitment exercise ($5 drawn)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">Stored</th>
+<th style="text-align: right;">Purchased</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;"><strong>7</strong></td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td>Other assets</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">143</td>
+<td style="text-align: right;">143</td>
+</tr>
+<tr class="odd">
+<td>Deposits</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td>Borrowed</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;"><strong>25</strong></td>
+</tr>
+<tr class="odd">
+<td>Equity</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">155</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<p><strong>Investment-portfolio MTM loss ($5)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">Stored</th>
+<th style="text-align: right;">Purchased</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td>Inv. port.</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td>Other assets</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="even">
+<td>Deposits</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;"><strong>105</strong></td>
+</tr>
+<tr class="odd">
+<td>Borrowed</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td>Equity</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">145</td>
+<td style="text-align: right;">150</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<p>In both cases the <strong>stored</strong> route shrinks the balance sheet, and the <strong>purchased</strong> route preserves size at the cost of more wholesale funding.</p>
+</section></section>
+<section>
+<section id="measuring-liquidity-risk" class="title-slide slide level1 center">
+<h1>Measuring liquidity risk</h1>
+
+</section>
+<section id="measuring-liquidity-risk-from-textbook-to-regulation" class="slide level2">
+<h2>Measuring liquidity risk: from textbook to regulation</h2>
+<p>Liquidity-risk measurement has evolved through three layers. The first two (gap analysis, peer ratios) remain useful <strong>internal</strong> management tools; the <strong>Basel III LCR and NSFR</strong> are the binding regulatory standards.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 41%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Measure</th>
+<th>Question it answers</th>
+<th>Status today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Structural gap</td>
+<td><strong>Financing gap</strong> &amp; financing requirement</td>
+<td>How much wholesale funding do I need to plug the loan/deposit mismatch?</td>
+<td>Internal ALM tool</td>
+</tr>
+<tr class="even">
+<td>2. Peer benchmarking</td>
+<td><strong>Loan-to-deposit ratio</strong>, core deposits / assets, unused commitments / assets</td>
+<td>How does my balance-sheet structure compare to peers and history?</td>
+<td>Internal + supervisory monitoring</td>
+</tr>
+<tr class="odd">
+<td>3. Stress-based ratios</td>
+<td><strong>LCR</strong> (30-day), <strong>NSFR</strong> (1-year)</td>
+<td>Can I survive 30 days of stress? Is my funding stable over 1 year?</td>
+<td><strong>Binding Basel III minima</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="financing-gap-in-practice-the-loan-to-deposit-ratio" class="slide level2">
+<h2>Financing gap in practice — the loan-to-deposit ratio</h2>
+<p>The <strong>financing gap</strong> is the textbook framing; the <strong>loan-to-deposit ratio (LDR)</strong> is the version banks and supervisors actually report.</p>
+<p><span class="math display">\[
+\text{Financing gap} = \text{Average loans} - \text{Average (core) deposits}
+\]</span></p>
+<p>A <em>positive</em> gap must be filled by <strong>liquid assets sold</strong> or <strong>wholesale funding raised</strong>:</p>
+<p><span class="math display">\[
+\underbrace{\text{Financing gap}}_{\text{loans} - \text{deposits}} + \underbrace{\text{Liquid assets}}_{\text{stored}} = \underbrace{\text{Borrowed funds}}_{\text{purchased}}
+\]</span></p>
+<div title="Worked example — and the LDR view">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Worked example — and the LDR view</strong></p>
+</div>
+<div class="callout-content">
+<p>A bank reports average loans of $25bn, deposits of $20bn, and liquid assets of $3bn.</p>
+<ul>
+<li>Financing gap = 25 − 20 = <strong>$5bn</strong> ⇒ requires <strong>$5bn</strong> of non-deposit funding.</li>
+<li>Of that, $3bn can come from liquid assets; the remaining <strong>$2bn must be borrowed</strong>.</li>
+<li>Equivalently, <strong>LDR = 25 / 20 = 125%</strong> — well above the ~70–80% typical for the Australian Big 4. The higher the LDR, the more the bank relies on <strong>wholesale funding</strong> (and, post-2008, the more attention APRA pays).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-peer-ratios-worth-watching" class="slide level2">
+<h2>Other peer ratios worth watching</h2>
+<p>Common peer-comparison ratios:</p>
+<ul>
+<li><strong>Loans to assets</strong> — overall illiquidity of the asset book.</li>
+<li><strong>Core deposits to total assets</strong> — share of <em>sticky</em>, lower-cost funding.</li>
+<li><strong>Unused loan commitments to assets</strong> — contingent draw-down exposure (this is the channel that bit banks in March 2020).</li>
+<li><strong>Wholesale funding to total liabilities</strong> — how much short-term, <em>flighty</em> money the bank relies on.</li>
+</ul>
+<p>The 2023 SVB autopsy turned all of these into headline metrics: SVB’s <strong>uninsured-deposit share was ~94%</strong>, and its <strong>HTM bond book</strong> was ~50% of assets — both extreme outliers among U.S. peers.</p>
+</section></section>
+<section>
+<section id="lcr-short-term-resilience" class="title-slide slide level1 center">
+<h1>LCR — short-term resilience</h1>
+
+</section>
+<section id="basel-iii-two-ratios-two-horizons" class="slide level2">
+<h2>Basel III: two ratios, two horizons</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>LCR</strong></th>
+<th><strong>NSFR</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Question</strong></td>
+<td>Survive 30 days of acute stress?</td>
+<td>Funding stable over 1 year?</td>
+</tr>
+<tr class="even">
+<td><strong>Horizon</strong></td>
+<td>30 days</td>
+<td>1 year</td>
+</tr>
+<tr class="odd">
+<td><strong>Numerator</strong></td>
+<td>Stock of HQLA</td>
+<td>Available stable funding (ASF)</td>
+</tr>
+<tr class="even">
+<td><strong>Denominator</strong></td>
+<td>Net cash outflows in stress</td>
+<td>Required stable funding (RSF)</td>
+</tr>
+<tr class="odd">
+<td><strong>Minimum</strong></td>
+<td>≥ 100%</td>
+<td>≥ 100%</td>
+</tr>
+<tr class="even">
+<td><strong>In force</strong></td>
+<td>Phased 1 Jan 2015 → fully 1 Jan 2019</td>
+<td>1 Jan 2018</td>
+</tr>
+<tr class="odd">
+<td><strong>Reporting</strong></td>
+<td>Monthly</td>
+<td>Quarterly</td>
+</tr>
+</tbody>
+</table>
+<div title="Did Basel III prevent SVB?">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Did Basel III prevent SVB?</strong></p>
+</div>
+<div class="callout-content">
+<p>SVB sat just <strong>below the $250bn U.S. threshold</strong> — the strictest LCR/NSFR rules <strong>did not bind</strong>. The 2018 rollback of post-crisis rules for mid-sized U.S. banks (S.2155) is a recurring theme in post-mortems of March 2023.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="liquidity-coverage-ratio-lcr-the-30-day-question" class="slide level2">
+<h2>Liquidity Coverage Ratio (LCR): the 30-day question</h2>
+<blockquote>
+<p><em>“If a severe liquidity stress hits today, can the bank survive for 30 days using only its own liquid assets?”</em></p>
+</blockquote>
+<p><span class="math display">\[
+\text{LCR} = \frac{\text{Stock of HQLA}}{\text{Total net cash outflows over the next 30 calendar days}} \ge 100\%
+\]</span></p>
+<ul>
+<li><strong>Numerator</strong> — high-quality liquid assets the bank can sell, repo, or pledge in stress at little loss of value.</li>
+<li><strong>Denominator</strong> — modelled net cash outflows under a <strong>prescribed stress scenario</strong> combining an idiosyncratic shock (e.g.&nbsp;a credit-rating downgrade) and a market-wide shock (e.g.&nbsp;GFC-style funding freeze).</li>
+<li><strong>Reporting</strong> — at least monthly to supervisors, with daily computation capacity required.</li>
+</ul>
+<div title="Read the ratio as a survival horizon">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Read the ratio as a survival horizon</strong></p>
+</div>
+<div class="callout-content">
+<p>LCR = 100% means the bank can survive <strong>exactly 30 days</strong> of the stress scenario on its own liquidity. LCR = 150% buys a bigger margin of safety; LCR &lt; 100% means the bank fails the test and must rebuild its buffer.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="building-the-numerator-the-hqla-stack" class="slide level2">
+<h2>Building the numerator: the HQLA stack</h2>
+<p><strong>Two universal requirements</strong> for any asset to count as HQLA:</p>
+<ol type="1">
+<li><strong>Liquid in stress</strong> — convertible to cash at little loss of value and acceptable at the central-bank facility as collateral.</li>
+<li><strong>Unencumbered</strong> — free of legal, regulatory, contractual, or other restrictions on the bank to liquidate, sell, transfer, or assign it.</li>
+</ol>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 33%">
+<col style="width: 30%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Examples</th>
+<th style="text-align: right;">Haircut</th>
+<th>Cap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Level 1</strong></td>
+<td>Cash, central-bank reserves, sovereign/central-bank/PSE/multilateral debt (e.g.&nbsp;BIS, IMF, ECB, MDBs)</td>
+<td style="text-align: right;"><strong>0%</strong></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><strong>Level 2A</strong></td>
+<td>Other sovereign/PSE/MDB claims; high-grade corporate debt; covered bonds</td>
+<td style="text-align: right;"><strong>15%</strong></td>
+<td>combined Level 2 ≤ <strong>40% of HQLA</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Level 2B</strong></td>
+<td>RMBS (eligible)</td>
+<td style="text-align: right;"><strong>25%</strong></td>
+<td>of which Level 2B ≤ <strong>15% of HQLA</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Level 2B</strong></td>
+<td>Eligible corporate debt and equities</td>
+<td style="text-align: right;"><strong>50%</strong></td>
+<td>(subject to same Level 2B sub-cap)</td>
+</tr>
+</tbody>
+</table>
+<div title="Why the haircuts matter — SVB again">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why the haircuts matter — SVB again</strong></p>
+</div>
+<div class="callout-content">
+<p>SVB held a large portfolio of long-dated <strong>U.S. Treasuries and agency MBS</strong> — Level 1 / Level 2A on paper. The book was technically HQLA-eligible. The problem was that the bank classified much of it as <strong>held-to-maturity (HTM)</strong> at <em>amortised cost</em>: the unrealised losses didn’t show on the balance sheet, but they crystallised the moment SVB had to sell. The haircut framework prices in expected loss in stress; <strong>HTM accounting hid the loss until it was too late</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="building-the-denominator-net-cash-outflows" class="slide level2">
+<h2>Building the denominator: net cash outflows</h2>
+<p><span class="math display">\[
+\text{Net cash outflows} \,=\, \underbrace{\text{Out}}_{\text{outflows}} - \min\!\bigl(\underbrace{\text{In}}_{\text{inflows}},\ 0.75 \times \text{Out}\bigr)
+\]</span></p>
+<ul>
+<li><strong>Outflows</strong> (<span class="math inline">\(\text{Out}\)</span>) — every deposit, wholesale liability and contingent commitment, multiplied by a <strong>stressed run-off factor</strong>.</li>
+<li><strong>Inflows</strong> (<span class="math inline">\(\text{In}\)</span>) — contractual receipts within 30 days from performing assets.</li>
+<li>The <strong>75% cap on inflows</strong> ensures the bank cannot rely <em>entirely</em> on incoming cash — it must hold a meaningful HQLA buffer regardless.</li>
+</ul>
+</section>
+<section id="run-off-factors-pricing-the-flightiness-of-funding" class="slide level2">
+<h2>Run-off factors: pricing the flightiness of funding</h2>
+<p>The intuition: <em>the more flighty the funding, the higher the assumed run-off</em>.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 46%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Liability type</th>
+<th style="text-align: right;">Stressed run-off</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stable retail deposits (insured, transactional)</td>
+<td style="text-align: right;"><strong>3–5%</strong></td>
+<td>Sticky; protected by deposit insurance</td>
+</tr>
+<tr class="even">
+<td>Less-stable retail deposits (e.g.&nbsp;brokered)</td>
+<td style="text-align: right;"><strong>10%+</strong></td>
+<td>Less behavioural attachment</td>
+</tr>
+<tr class="odd">
+<td>Operational corporate deposits</td>
+<td style="text-align: right;"><strong>25%</strong></td>
+<td>Tied to clearing/payments services</td>
+</tr>
+<tr class="even">
+<td>Non-operational unsecured wholesale (financial)</td>
+<td style="text-align: right;"><strong>100%</strong></td>
+<td>Will leave overnight in a crisis</td>
+</tr>
+<tr class="odd">
+<td>Non-operational unsecured wholesale (corporate)</td>
+<td style="text-align: right;"><strong>40%</strong></td>
+<td>Slower, but still flighty</td>
+</tr>
+<tr class="even">
+<td>Undrawn committed credit lines (corporate)</td>
+<td style="text-align: right;"><strong>10%</strong></td>
+<td>Drawdowns spike in stress (cf.&nbsp;COVID-19)</td>
+</tr>
+</tbody>
+</table>
+<div title="The hidden assumption: 30 days of *that* deposit base">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The hidden assumption: 30 days of <em>that</em> deposit base</strong></p>
+</div>
+<div class="callout-content">
+<p>LCR run-offs were calibrated to <strong>GFC-era</strong> deposit behaviour. The March 2023 SVB run <strong>exceeded the assumed retail/SME run-off in a single day</strong>, not 30. Post-2023 reviews by the Basel Committee, FRB, BoE, and APRA are explicitly considering whether run-off factors need to rise for <strong>highly digital, concentrated, or uninsured</strong> deposit bases.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="liquidity-coverage-ratio-lcr-example" class="slide level2">
+<h2>Liquidity Coverage Ratio (LCR): example</h2>
+<p>Consider the following balance sheet (in million of dollars) of a bank. Calculate the bank’s LCR.</p>
+<ul>
+<li>Assume that the cash inflows over the next 30 days from the bank’s assets are $5 million.</li>
+</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 32%">
+<col style="width: 4%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Assets</strong></th>
+<th>$</th>
+<th><strong>Liquidity Level</strong></th>
+<th><strong>Liabilities and Equity</strong></th>
+<th>$</th>
+<th><strong>Run-Off Factor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash</td>
+<td>5</td>
+<td>Level 1</td>
+<td>Stable retail deposits</td>
+<td>95</td>
+<td>3%</td>
+</tr>
+<tr class="even">
+<td>Deposits at the Fed</td>
+<td>15</td>
+<td>Level 1</td>
+<td>Less Stable retail deposits</td>
+<td>40</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Treasury securities</td>
+<td>100</td>
+<td>Level 1</td>
+<td>Unsecured wholesale funding from:</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GNMA securities</td>
+<td>75</td>
+<td>Level 2A</td>
+<td>- Stable small business deposits</td>
+<td>100</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Loans to A-rated corporations</td>
+<td>110</td>
+<td>Level 2A</td>
+<td>- Less Stable small business deposits</td>
+<td>80</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Loans to B-rated corporations</td>
+<td>85</td>
+<td>Level 2B</td>
+<td>- Nonfinancial corporates</td>
+<td>50</td>
+<td>75</td>
+</tr>
+<tr class="odd">
+<td>Premises</td>
+<td>20</td>
+<td></td>
+<td>Equity</td>
+<td>45</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td>410</td>
+<td></td>
+<td><strong>Total</strong></td>
+<td>410</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="liquidity-coverage-ratio-lcr-example-contd" class="slide level2">
+<h2>Liquidity Coverage Ratio (LCR): example (cont’d)</h2>
+<p>The LCR is calculated as follows:</p>
+<p>First, calculate the amount of HQLA.</p>
+<ul>
+<li>Level 1 assets is <span class="math inline">\(5+15+100=120\)</span> million</li>
+</ul>
+<p>Before adjustment for caps,</p>
+<ul>
+<li>Level 2A assets is <span class="math inline">\((75+110)\times (1-15\%) = 157.25\)</span> million<sup>1</sup></li>
+<li>Level 2B assets is <span class="math inline">\(85\times (1-50\%)=42.5\)</span> million<sup>2</sup></li>
+</ul>
+<p>However, Level 2 assets is capped at 40% of HQLA!</p>
+<ul>
+<li>Given that Level 1 assets is 120 million, which should account for at least <span class="math inline">\(1-40\%=60\%\)</span> of HQLA.</li>
+<li>HQLA should be <span class="math inline">\(120/(1-40\%) = 200\)</span> million, which means a maximum of <span class="math inline">\(200-120=80\)</span> million Level 2 assets.</li>
+<li>The Level 2 assets after haircut is larger than the cap - they will not further increase HQLA.</li>
+</ul>
+<p>Therefore, the HQLA is 200 million.</p>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>There is a 15% haircut applied on the value of Level 2A assets.</p></li><li id="fn3"><p>There is a 50% haircut applied on the value of Level 2B assets.</p></li></ol></aside></section>
+<section id="liquidity-coverage-ratio-lcr-example-contd-1" class="slide level2">
+<h2>Liquidity Coverage Ratio (LCR): example (cont’d)</h2>
+<p>Next, calculate the total net cash outflows over next 30 days.</p>
+<p>Cash outflows are:</p>
+<ul>
+<li>Stable retail deposits: <span class="math inline">\(95\times 0.03 = 2.85\)</span></li>
+<li>Less stable retail deposits: <span class="math inline">\(40\times 0.1 = 4\)</span></li>
+<li>Stable small business deposits: <span class="math inline">\(100\times 0.05 = 5\)</span></li>
+<li>Less stable small business deposits: <span class="math inline">\(80\times 0.1 =8\)</span></li>
+<li>Nonfinancial corporates: <span class="math inline">\(50\times 0.75 = 37.5\)</span></li>
+</ul>
+<p>Therefore,</p>
+<ul>
+<li>Total cash outflows over next 30 days is 57.35 million.</li>
+<li>Total cash inflows over next 30 days is 5 million (assumed).</li>
+<li>Total net cash outflows over next 30 days is 57.35 million - min(5, 75% * 57.35) = 52.35 million.</li>
+</ul>
+<p>Lastly, calculate LCR:</p>
+<p><span class="math display">\[
+\text{LCR} = \frac{\text{Stock of HQLAs}}{\text{Total net cash outflows over next 30 calendar days}} = \frac{200}{52.35} = 382.04\% \ge 100\%
+\]</span></p>
+</section></section>
+<section>
+<section id="nsfr-structural-funding-stability" class="title-slide slide level1 center">
+<h1>NSFR — structural funding stability</h1>
+
+</section>
+<section id="net-stable-funding-ratio-nsfr-the-1-year-question" class="slide level2">
+<h2>Net Stable Funding Ratio (NSFR): the 1-year question</h2>
+<blockquote>
+<p><em>“Is the bank’s funding model <strong>structurally stable</strong> over a one-year horizon, or is it built on the kindness of overnight wholesale markets?”</em></p>
+</blockquote>
+<p><span class="math display">\[
+\text{NSFR} = \frac{\text{Available Stable Funding (ASF)}}{\text{Required Stable Funding (RSF)}} \ge 100\%
+\]</span></p>
+<p>The LCR addresses <strong>acute stress (30 days)</strong>; the NSFR addresses <strong>structural funding mismatch (1 year)</strong>. Both must be ≥ 100% — they are <strong>complements</strong>, not substitutes.</p>
+<div title="Where it bites">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Where it bites</strong></p>
+</div>
+<div class="callout-content">
+<p>The NSFR penalises banks that fund <strong>long-duration assets</strong> (long-term loans, illiquid securities) with <strong>short-term wholesale funding</strong> — exactly the funding model that blew up Northern Rock in 2007 and stressed European banks throughout the GFC.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="nsfr-asf-and-rsf-factors" class="slide level2">
+<h2>NSFR: ASF and RSF factors</h2>
+<p><strong>Available Stable Funding (ASF)</strong> weights <em>liabilities + equity</em> by how reliably they will stick around for a year. <strong>Required Stable Funding (RSF)</strong> weights <em>assets</em> by how illiquid / long-dated they are (i.e.&nbsp;how much stable funding they “need”).</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>ASF factors (selected)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Funding source</th>
+<th style="text-align: right;">ASF factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capital, liabilities with maturity &gt; 1 year</td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+<tr class="even">
+<td>“Stable” retail / SME deposits</td>
+<td style="text-align: right;"><strong>95%</strong></td>
+</tr>
+<tr class="odd">
+<td>“Less stable” retail / SME deposits</td>
+<td style="text-align: right;"><strong>90%</strong></td>
+</tr>
+<tr class="even">
+<td>Non-financial corporate, sovereign, PSE funding &lt; 1 year</td>
+<td style="text-align: right;"><strong>50%</strong></td>
+</tr>
+<tr class="odd">
+<td>Funding from financial institutions &lt; 6 months</td>
+<td style="text-align: right;"><strong>0%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Higher factor ⇒ “this funding is stable, count more of it.”</em></p>
+</div><div class="column" style="width:50%;">
+<p><strong>RSF factors (selected)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Asset / OBS exposure</th>
+<th style="text-align: right;">RSF factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cash, central-bank reserves</td>
+<td style="text-align: right;"><strong>0%</strong></td>
+</tr>
+<tr class="even">
+<td>Level 1 HQLA</td>
+<td style="text-align: right;"><strong>5%</strong></td>
+</tr>
+<tr class="odd">
+<td>Level 2A HQLA</td>
+<td style="text-align: right;"><strong>15%</strong></td>
+</tr>
+<tr class="even">
+<td>Performing residential mortgages (≤ 35% risk weight)</td>
+<td style="text-align: right;"><strong>65%</strong></td>
+</tr>
+<tr class="odd">
+<td>Other performing loans (residual maturity ≥ 1 year)</td>
+<td style="text-align: right;"><strong>85%</strong></td>
+</tr>
+<tr class="even">
+<td>Non-performing loans, encumbered assets &gt; 1 year</td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+<tr class="odd">
+<td>Undrawn committed facilities</td>
+<td style="text-align: right;"><strong>5%</strong> of notional</td>
+</tr>
+</tbody>
+</table>
+<p><em>Higher factor ⇒ “this asset locks up funding; you need more stable funding to hold it.”</em></p>
+</div></div>
+<div title="Reading the formula">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reading the formula</strong></p>
+</div>
+<div class="callout-content">
+<p>A bank holding lots of long-term mortgages (high RSF) funded mainly with overnight repos (low ASF) will fail the NSFR — exactly the funding-mismatch the rule is designed to discourage.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lcr-nsfr-in-practice-the-big-4" class="title-slide slide level1 center">
+<h1>LCR &amp; NSFR in practice — the Big 4</h1>
+
+</section>
+<section id="liquidity-risk-of-australian-banks-fy2023" class="slide level2">
+<h2>Liquidity risk of Australian banks (FY2023)</h2>
+<p>The figures below are drawn from the Big 4 banks’ FY2023 Pillar 3 disclosures. Workshop 8 will ask you to look up the latest figures from each bank’s most recent Pillar 3 report.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 59%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">CBA</th>
+<th style="text-align: right;">NAB</th>
+<th style="text-align: right;">ANZ</th>
+<th style="text-align: right;">Westpac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cash Outflows</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>Retail And Counterparties Deposits Outflow</td>
+<td style="text-align: right;">37,416</td>
+<td style="text-align: right;">29,947</td>
+<td style="text-align: right;">25,517</td>
+<td style="text-align: right;">29,304</td>
+</tr>
+<tr class="odd">
+<td>Stable Deposits</td>
+<td style="text-align: right;">12,700</td>
+<td style="text-align: right;">5,843</td>
+<td style="text-align: right;">5,879</td>
+<td style="text-align: right;">7,969</td>
+</tr>
+<tr class="even">
+<td>Less Stable Deposits</td>
+<td style="text-align: right;">24,716</td>
+<td style="text-align: right;">24,104</td>
+<td style="text-align: right;">19,638</td>
+<td style="text-align: right;">21,335</td>
+</tr>
+<tr class="odd">
+<td>Unsecured Wholesale Funding Outflow</td>
+<td style="text-align: right;">82,444</td>
+<td style="text-align: right;">82,299</td>
+<td style="text-align: right;">146,698</td>
+<td style="text-align: right;">76,953</td>
+</tr>
+<tr class="even">
+<td>Operational Deposit Outflow</td>
+<td style="text-align: right;">22,219</td>
+<td style="text-align: right;">21,540</td>
+<td style="text-align: right;">22,553</td>
+<td style="text-align: right;">18,631</td>
+</tr>
+<tr class="odd">
+<td>Non Operational Deposits Outflow</td>
+<td style="text-align: right;">49,236</td>
+<td style="text-align: right;">47,619</td>
+<td style="text-align: right;">111,549</td>
+<td style="text-align: right;">47,073</td>
+</tr>
+<tr class="even">
+<td>Unsecured Debt Outflow</td>
+<td style="text-align: right;">10,989</td>
+<td style="text-align: right;">13,140</td>
+<td style="text-align: right;">12,596</td>
+<td style="text-align: right;">11,249</td>
+</tr>
+<tr class="odd">
+<td>Secured Wholesale Funding Outflow</td>
+<td style="text-align: right;">6,839</td>
+<td style="text-align: right;">10,701</td>
+<td style="text-align: right;">5,405</td>
+<td style="text-align: right;">3,891</td>
+</tr>
+<tr class="even">
+<td>Additional Outflow Requirements</td>
+<td style="text-align: right;">26,186</td>
+<td style="text-align: right;">38,693</td>
+<td style="text-align: right;">70,639</td>
+<td style="text-align: right;">30,463</td>
+</tr>
+<tr class="odd">
+<td>Derivative Expo And Other Collateral Requirement</td>
+<td style="text-align: right;">7,557</td>
+<td style="text-align: right;">8,154</td>
+<td style="text-align: right;">48,206</td>
+<td style="text-align: right;">12,462</td>
+</tr>
+<tr class="even">
+<td>Loss of Funding on Debt Products</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">136</td>
+</tr>
+<tr class="odd">
+<td>Credit And Liquidity Facilities</td>
+<td style="text-align: right;">18,629</td>
+<td style="text-align: right;">30,539</td>
+<td style="text-align: right;">22,433</td>
+<td style="text-align: right;">17,865</td>
+</tr>
+<tr class="even">
+<td>Other Contractual Funding Obligation</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4,515</td>
+</tr>
+<tr class="odd">
+<td>Other Contingent Funding Obligation</td>
+<td style="text-align: right;">10,373</td>
+<td style="text-align: right;">5,219</td>
+<td style="text-align: right;">8,024</td>
+<td style="text-align: right;">4,082</td>
+</tr>
+<tr class="even">
+<td>Total Cash Outflow</td>
+<td style="text-align: right;">163,258</td>
+<td style="text-align: right;">166,940</td>
+<td style="text-align: right;">256,283</td>
+<td style="text-align: right;">149,208</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="liquidity-risk-of-australian-banks-fy2023-1" class="slide level2">
+<h2>Liquidity risk of Australian banks (FY2023)</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 59%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">CBA</th>
+<th style="text-align: right;">NAB</th>
+<th style="text-align: right;">ANZ</th>
+<th style="text-align: right;">Westpac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cash Inflows</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>Secured Lending</td>
+<td style="text-align: right;">2,328</td>
+<td style="text-align: right;">3,898</td>
+<td style="text-align: right;">1,549</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>Inflows From Fully Performing Exposures</td>
+<td style="text-align: right;">9,520</td>
+<td style="text-align: right;">11,788</td>
+<td style="text-align: right;">17,190</td>
+<td style="text-align: right;">5,020</td>
+</tr>
+<tr class="even">
+<td>Other Cash Inflows</td>
+<td style="text-align: right;">6,753</td>
+<td style="text-align: right;">1,589</td>
+<td style="text-align: right;">36,016</td>
+<td style="text-align: right;">7,988</td>
+</tr>
+<tr class="odd">
+<td>Total Cash Inflow</td>
+<td style="text-align: right;">18,601</td>
+<td style="text-align: right;">17,275</td>
+<td style="text-align: right;">54,755</td>
+<td style="text-align: right;">13,008</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="liquidity-risk-of-australian-banks-fy2023-2" class="slide level2">
+<h2>Liquidity risk of Australian banks (FY2023)</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 51%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">CBA</th>
+<th style="text-align: right;">NAB</th>
+<th style="text-align: right;">ANZ</th>
+<th style="text-align: right;">Westpac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Liquidity Coverage Ratio (LCR)</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>Average High Quality Liquid Assets</td>
+<td style="text-align: right;">189,419</td>
+<td style="text-align: right;">209,561</td>
+<td style="text-align: right;">267,905</td>
+<td style="text-align: right;">181,882</td>
+</tr>
+<tr class="odd">
+<td>Average Net Cash Outflows</td>
+<td style="text-align: right;">144,657</td>
+<td style="text-align: right;">149,665</td>
+<td style="text-align: right;">201,528</td>
+<td style="text-align: right;">136,200</td>
+</tr>
+<tr class="even">
+<td>Average Liquidity Coverage Ratio</td>
+<td style="text-align: right;">131.00</td>
+<td style="text-align: right;">140.00</td>
+<td style="text-align: right;">132.90</td>
+<td style="text-align: right;">134.00</td>
+</tr>
+<tr class="odd">
+<td><strong>Net Stable Funding Ratio (NSFR)</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>Available Stable Funding</td>
+<td style="text-align: right;">860,999</td>
+<td style="text-align: right;">646,508</td>
+<td style="text-align: right;">625,285</td>
+<td style="text-align: right;">707,893</td>
+</tr>
+<tr class="odd">
+<td>Required Stable Funding</td>
+<td style="text-align: right;">693,453</td>
+<td style="text-align: right;">556,016</td>
+<td style="text-align: right;">537,430</td>
+<td style="text-align: right;">615,341</td>
+</tr>
+<tr class="even">
+<td>Net Stable Funding Ratio</td>
+<td style="text-align: right;">124.00</td>
+<td style="text-align: right;">116.00</td>
+<td style="text-align: right;">116.35</td>
+<td style="text-align: right;">115.00</td>
+</tr>
+</tbody>
+</table>
+<div title="What to notice">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What to notice</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>All four banks sit comfortably above the <strong>100% minimum</strong> for both LCR and NSFR.</li>
+<li>The <strong>range is narrow</strong> (LCR ~131–140%, NSFR ~115–124%) — this reflects APRA’s tight supervisory benchmarking, not coincidence.</li>
+<li><strong>CBA’s NSFR (124%)</strong> is highest, consistent with its larger share of stable retail deposits.</li>
+<li><strong>ANZ’s outflows ($256bn)</strong> are roughly 50% larger than the others, driven by a larger non-operational wholesale book.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="bank-runs-and-safety-nets" class="title-slide slide level1 center">
+<h1>Bank runs and safety nets</h1>
+
+</section>
+<section id="liquidity-planning" class="slide level2">
+<h2>Liquidity planning</h2>
+<ul>
+<li><strong>Liquidity planning</strong> is crucial for managing liquidity risk and costs, helping with borrowing priorities and minimizing excess reserves.</li>
+<li>Components of a liquidity plan:
+<ol type="1">
+<li>Managerial responsibilities: Assign roles during a liquidity crisis and manage public disclosures.</li>
+<li>List of fund providers: Identify likely fund withdrawers and patterns, including sensitivity to funding composition changes.</li>
+<li>Withdrawal estimates: Assess potential deposit and fund withdrawals over different time horizons and identify funding sources.</li>
+<li>Internal limits and asset disposal: Set borrowing limits for subsidiaries and branches, determine acceptable risk premiums, and sequence asset disposals.</li>
+</ol></li>
+<li>The plan involves key departments like the money desk and Treasury for daily liability funding.</li>
+</ul>
+</section>
+<section id="liquidity-risk-unexpected-deposit-drains-and-bank-runs" class="slide level2">
+<h2>Liquidity risk, unexpected deposit drains, and bank runs</h2>
+<p>Major liquidity problems arise when deposit drains are <strong>abnormally large and unexpected</strong>, for reasons including:</p>
+<ul>
+<li>Concerns about a DI’s solvency relative to its peers.</li>
+<li>Failure of a related DI — the <strong>contagion</strong> effect.</li>
+<li>Sudden changes in investor preferences for holding non-bank financial assets (e.g.&nbsp;T-bills, money-market funds) over deposits — particularly when those alternatives offer materially higher yields.</li>
+</ul>
+<p>In these cases, unexpected deposit drains can trigger a <strong>bank run</strong> that eventually forces the bank into insolvency. In the worst case, a <strong>bank panic</strong> spreads — a systemic, contagious run across the banking industry.</p>
+<div title="The 2023 run was different">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The 2023 run was different</strong></p>
+</div>
+<div class="callout-content">
+<p>Classic bank runs (think 1930s) propagated by <strong>word of mouth</strong> and physical queues. The <strong>March 2023 SVB run</strong> propagated by <strong>Slack, Twitter/X, and WhatsApp</strong> — and depositors moved money out of mobile apps in seconds, not hours. Regulators are now actively rethinking how fast LCR-style buffers can really last when the run velocity is digital.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bank-runs-the-discount-window-and-deposit-insurance" class="slide level2">
+<h2>Bank runs, the discount window, and deposit insurance</h2>
+<p>The two major liquidity risk insulation devices are <strong>deposit insurance</strong> and the <strong>discount window</strong> (or its central-bank equivalent).</p>
+<ol type="1">
+<li><strong>Deposit insurance</strong> — a public guarantee on insured deposits up to a per-depositor cap (US: FDIC; Australia: FCS).</li>
+<li><strong>Discount window / lender-of-last-resort facilities</strong> — short-term central-bank lending against eligible collateral, at the “discount rate.”
+<ul>
+<li>In the week ending <strong>15 March 2023</strong>, U.S. banks drew <strong>$152.85 billion</strong> from the Federal Reserve’s discount window — a new record, eclipsing the <strong>$111 billion</strong> peak of the 2008 GFC.</li>
+<li>In Switzerland the same week, the <strong>SNB pledged CHF 50 billion</strong> of liquidity to Credit Suisse; when that was insufficient, the eventual support package totalled <strong>CHF 250 billion</strong>.</li>
+<li>In response to SVB, the Fed also launched the <strong>Bank Term Funding Program (BTFP)</strong>, lending against high-quality securities valued at <strong>par</strong> (no haircut) — an unusually generous LOLR design.</li>
+</ul></li>
+</ol>
+<div title="Moral hazard">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Moral hazard</strong></p>
+</div>
+<div class="callout-content">
+<p>Insulation is not free. Insured deposits and easy LOLR access can <strong>encourage DIs to take more liquidity risk</strong>: hold riskier loans, fewer HQLA, more flighty wholesale funding. This is precisely why the Basel III LCR/NSFR rules exist — to put a regulatory floor under the liquidity buffer that protection might otherwise erode.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="liquidity-regulation-and-depositor-protection" class="title-slide slide level1 center">
+<h1>Liquidity regulation and depositor protection</h1>
+
+</section>
+<section id="liquidity-regulation-in-australia" class="slide level2">
+<h2>Liquidity regulation in Australia</h2>
+<ul>
+<li>In Australia, liquidity requirements are set by <strong>APRA</strong>.</li>
+<li><strong>Prudential Standard APS 210 — Liquidity</strong> aims to ensure that an ADI has sufficient liquidity to meet obligations as they fall due.</li>
+</ul>
+<p>APRA classifies each ADI as either:</p>
+<ul>
+<li>an <strong>LCR ADI</strong> (subject to the Basel III LCR, effective from 1 January 2015), or</li>
+<li>an <strong>MLH ADI</strong> (subject to the Minimum Liquidity Holdings regime, effective from 1 January 2014).</li>
+</ul>
+<div title="What changed in 2025">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What changed in 2025</strong></p>
+</div>
+<div class="callout-content">
+<p>APRA finalised <strong>targeted changes to APS 210</strong> in 2024 in response to the March 2023 banking turmoil. From <strong>1 July 2025</strong>, MLH ADIs must adjust the value of their liquid assets regularly for <strong>mark-to-market</strong> movements (no more carrying at amortised cost — exactly the issue at SVB). All ADIs must also be <strong>operationally ready</strong> to provide key information when requesting <strong>Exceptional Liquidity Assistance (ELA)</strong> from the RBA. The headline 9% MLH minimum is unchanged.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lcr-adi-vs.-mlh-adi" class="slide level2">
+<h2>LCR ADI vs.&nbsp;MLH ADI</h2>
+<p>APRA splits ADIs into two regulatory tracks under APS 210:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th><strong>LCR ADI</strong></th>
+<th><strong>MLH ADI</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Who</strong></td>
+<td>Larger / internationally active banks (the Big 4 and other significant ADIs)</td>
+<td>Smaller ADIs (e.g.&nbsp;mutual banks, building societies, smaller credit unions)</td>
+</tr>
+<tr class="even">
+<td><strong>Core requirement</strong></td>
+<td>Basel III <strong>LCR ≥ 100%</strong> <em>and</em> <strong>NSFR ≥ 100%</strong></td>
+<td><strong>Liquid assets ≥ 9%</strong> of liabilities</td>
+</tr>
+<tr class="odd">
+<td><strong>Liquid asset definition</strong></td>
+<td>HQLA (Level 1 + capped Level 2, with haircuts)</td>
+<td>RBA-repo-eligible, unsubordinated debt securities</td>
+</tr>
+<tr class="even">
+<td><strong>Stress testing</strong></td>
+<td>Regular scenario analysis (at minimum: LCR scenario + “going concern”)</td>
+<td>Operational capacity to liquidate liquid assets within <strong>2 business days</strong>; trigger ratio set above 9%</td>
+</tr>
+<tr class="odd">
+<td><strong>Effective from</strong></td>
+<td>1 January 2015 (LCR), 1 January 2018 (NSFR)</td>
+<td>1 January 2014</td>
+</tr>
+</tbody>
+</table>
+<p>In short: <strong>LCR ADIs run the full Basel III stack</strong>; <strong>MLH ADIs run a simpler ratio-based regime</strong> scaled to their size and complexity.</p>
+</section>
+<section id="depositor-protection" class="slide level2">
+<h2>Depositor protection</h2>
+<ul>
+<li><strong>Deposit insurance</strong> is a public mechanism designed to insulate depositors — and, indirectly, DIs — from liquidity crises.
+<ul>
+<li>In the U.S., the <strong>Federal Deposit Insurance Corporation (FDIC)</strong> was created in <strong>1933</strong> in the wake of the Great Depression banking panics. The standard deposit insurance limit is <strong>$250,000 per depositor, per insured bank, per ownership category</strong> (raised from $100,000 in 2008).</li>
+<li>Most major economies now operate an explicit deposit insurance scheme.</li>
+</ul></li>
+<li>In <strong>October 2008</strong>, in response to the GFC, Australia introduced the <strong>Financial Claims Scheme (FCS)</strong> alongside a temporary wholesale funding guarantee.
+<ul>
+<li>The FCS initially guaranteed deposit balances up to <strong>$1 million</strong> per depositor per institution.</li>
+<li>The permanent cap of <strong>$250,000 per account-holder per ADI</strong> has been in place <strong>since 1 February 2012</strong>.</li>
+<li><strong>APRA</strong> administers the FCS, but it is <strong>only activated</strong> if the Treasurer declares an ADI to have failed — it is <em>not</em> a continuously running insurance product.</li>
+</ul></li>
+</ul>
+</section>
+<section id="other-australian-depositor-protection-mechanisms" class="slide level2">
+<h2>Other Australian depositor protection mechanisms</h2>
+<ul>
+<li>Guarantee scheme for large deposits and wholesale funding
+<ul>
+<li>Guaranteed deposit balances greater than $1 million and funding instruments with a maturity of 5 years or less</li>
+<li>Available to branches of foreign-owned banks</li>
+<li>Closed in March 2010 after the recovery of global funding conditions</li>
+</ul></li>
+<li>Financial Claims Scheme—Policyholders Compensation Facility
+<ul>
+<li>Similar as FCS for DIs</li>
+<li>Available to general insurers authorised by APRA</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="liquidity-risk-at-other-types-of-financial-institutions" class="title-slide slide level1 unnumbered center">
+<h1>Liquidity risk at other types of financial institutions</h1>
+<div title="Optional reading">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Optional reading</strong></p>
+</div>
+<div class="callout-content">
+<p>This chapter is <strong>optional reading</strong>. The mechanisms parallel those for DIs (forced asset sales, loss of confidence, run dynamics). Skim for context; not examinable in detail.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="life-insurance-companies" class="slide level2">
+<h2>Life insurance companies</h2>
+<ul>
+<li>Life insurance companies hold cash reserves and liquid assets to meet policy cancellations (surrenders) and working capital needs.</li>
+<li>Premium income and returns on investments usually cover policyholder surrenders, with government bonds serving as a liquidity buffer.</li>
+<li>If premium income is insufficient, insurers may sell liquid assets to meet demands.</li>
+<li>A loss of confidence in an insurer can lead to a run, with mass policy surrenders forcing asset liquidations at potentially low prices.</li>
+<li>Forced liquidations can push insurers towards insolvency, similar to banks (DIs).</li>
+</ul>
+<div title="Case study: Equitable Life">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Case study: Equitable Life</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://en.wikipedia.org/wiki/The_Equitable_Life_Assurance_Society">The Equitable Life Assurance Society</a> — founded in <strong>1762</strong> and the world’s oldest mutual insurer — lost a 2000 House of Lords ruling (the <em>Hyman</em> case) on guaranteed annuity rates. The adverse ruling triggered a wave of policy surrenders, and the society <strong>closed to new business in December 2000</strong>. After an 18-year wind-down, its remaining policies were transferred to <strong>Utmost Life and Pensions on 1 January 2020</strong>, ending a 258-year history.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="property-casualty-insurers" class="slide level2">
+<h2>Property-casualty insurers</h2>
+<ul>
+<li>Property–casualty (PC) insurers sell policies insuring against certain contingencies impacting either real property or individuals.</li>
+<li>Large unexpected claims may materialize and exceed the flow of premium income and income returns from assets.
+<ul>
+<li>For example, natural disasters.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="finally" class="title-slide slide level1 center">
+<h1>Finally…</h1>
+
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key takeaways</h2>
+<div title="What to remember">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What to remember</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li><strong>Liquidity ≠ solvency</strong> — but a liquidity shock can kill a solvent bank in 36 hours (SVB).</li>
+<li><strong>Both sides of the balance sheet matter</strong> — deposit runs (liability side) often coincide with fire-sale losses on long-duration securities (asset side).</li>
+<li><strong>Buffers come in two flavours</strong> — <em>purchased</em> (wholesale market) and <em>stored</em> (HQLA, central-bank reserves). Both have costs.</li>
+<li><strong>Basel III gave us LCR and NSFR</strong> — short-term (30-day) and structural (1-year) liquidity ratios, both with a 100% minimum.</li>
+<li><strong>Australia layers it on</strong> — APRA classifies ADIs as <strong>LCR</strong> (the Big 4 et al.) or <strong>MLH</strong> (smaller ADIs at 9%); 1 July 2025 brought mark-to-market and ELA-readiness tweaks.</li>
+<li><strong>Safety nets create moral hazard</strong> — deposit insurance and the discount window protect the system but encourage risk-taking, which is why prudential rules are needed.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="suggested-readings" class="slide level2">
+<h2>Suggested readings</h2>
+<ul>
+<li><a href="https://www.apra.gov.au/apra-explains-liquidity-banking">APRA Explains: Liquidity in banking</a>.</li>
+<li><a href="https://www.rba.gov.au/mkt-operations/resources/implementation-mp.html">RBA: The Implementation of Monetary Policy: Domestic Market Operations</a>.</li>
+<li><a href="https://www.bis.org/basel_framework/chapter/LCR/40.htm?inforce=20191215&amp;published=20230330">BIS: LCR - Liquidity Coverage Ratio</a>.</li>
+<li><a href="https://www.apra.gov.au/sites/default/files/APS%20210%20FINAL.pdf">Prudential Standard APS 210 Liquidity</a>.</li>
+<li>Acharya, V. V., Engle, R., Jager, M., &amp; Steffen, S. (2024). <a href="https://doi.org/10.1093/rfs/hhae028">Why Did Bank Stocks Crash during COVID-19?</a> <em>The Review of Financial Studies</em>, 37, 2627–2684.</li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-acharya_why_2024" class="csl-entry" role="listitem">
+Acharya, Viral V, Robert Engle, Maximilian Jager, and Sascha Steffen. 2024. <span>“Why <span>Did</span> <span>Bank</span> <span>Stocks</span> <span>Crash</span> During <span>COVID</span>-19?”</span> <em>The Review of Financial Studies</em> 37 (9): 2627–84. <a href="https://doi.org/10.1093/rfs/hhae028">https://doi.org/10.1093/rfs/hhae028</a>.
+</div>
+</div>
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
