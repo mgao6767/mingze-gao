@@ -1,0 +1,524 @@
+---
+title: "AFIN8003 - Workshop 10"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-05-19
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop10.pdf"
+# Custom fields
+pdf-name: "Workshop10.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 10 — Three risks in one bank"}
+This week we cover the risks that hit a bank **from outside its home market**: foreign exchange, sovereign, and off-balance-sheet. They look like different problems — but a real banking crisis usually involves all three at once.
+
+Plan for the hour:
+
+1. **Part A — Concept check** ($\approx$ 15 min). Thirteen MCQs. Self-mark.
+2. **Part B — Numerical questions** ($\approx$ 15 min). Loan-commitment economics and SLC vs loan-commitment trade-off.
+3. **Part C — Acacia Bank: three risks, one bad week** ($\approx$ 25 min). Three-round tabletop. *This is the bulk of the workshop.*
+4. **Part D — The big question** ($\approx$ 5 min). Open discussion.
+
+Bring a pen. Mark up the handout.
+:::
+
+\vspace{0.5em}
+
+# Part A — Concept check
+
+## MCQ
+
+1. The risk that a borrower may not be able to make payments on a contractual obligation because of interference by an outside governmental party is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] interest rate risk
+   - [ ] operating risk
+   - [ ] foreign exchange risk
+   - [ ] sovereign risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] interest rate risk
+   - [ ] operating risk
+   - [ ] foreign exchange risk
+   - [x] sovereign risk
+
+   *Why:* the **government** — not the borrower — blocks payment. The borrower may be perfectly solvent and willing to pay, yet legally prevented from doing so (capital controls, FX rationing, sanctions).
+   :::
+
+2. The outright cancellation of all current and future foreign debt and equity obligations is called:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] a Brady bond
+   - [ ] a MYRA
+   - [ ] a debt moratorium
+   - [ ] a debt repudiation
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] a Brady bond
+   - [ ] a MYRA
+   - [ ] a debt moratorium
+   - [x] a debt repudiation
+
+   *Why:* repudiation is **outright cancellation** — rare today. A *moratorium* is temporary suspension; a *MYRA* (Multi-Year Restructuring Agreement) changes the terms; *Brady bonds* were the 1980s vehicle for converting defaulted Latin-American bank loans into tradable bonds.
+   :::
+
+3. Which of the following internal evaluation models relies on the production of goods as well as the price of such goods?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the investment ratio
+   - [ ] the domestic money supply growth
+   - [ ] the import ratio
+   - [ ] variance of export revenue
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the investment ratio
+   - [ ] the domestic money supply growth
+   - [x] the import ratio
+   - [ ] variance of export revenue
+
+   *Why:* the import ratio = total imports / total FX reserves. Imports reflect both **quantity** of goods consumed and the **prices** the country pays for them.
+   :::
+
+4. The following will lead to a higher probability of debt restructuring for a country:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] a negative relationship with the debt servicing ratio.
+   - [ ] a negative relationship with the import ratio.
+   - [ ] a lower level of sovereign debt.
+   - [ ] a positive relationship with both the debt service ratio and the import ratio.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] a negative relationship with the debt servicing ratio.
+   - [ ] a negative relationship with the import ratio.
+   - [ ] a lower level of sovereign debt.
+   - [x] a positive relationship with both the debt service ratio and the import ratio.
+
+   *Why:* both ratios measure **stress on FX availability**. The more debt service you owe relative to exports, and the more imports you need relative to reserves, the more likely you cannot pay foreign creditors.
+   :::
+
+5. A lender (FI) may benefit from debt restructuring in the following way:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the FI cannot benefit.
+   - [ ] the restructuring may mean the loan becomes similar to a long-term bond.
+   - [ ] less regulatory attention.
+   - [ ] a restructuring is better than a loan default.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the FI cannot benefit.
+   - [ ] the restructuring may mean the loan becomes similar to a long-term bond.
+   - [ ] less regulatory attention.
+   - [x] a restructuring is better than a loan default.
+
+   *Why:* restructuring **preserves some recovery** on the loan; outright default forces a write-off. The lender gives up something (lower coupon, longer maturity, principal haircut) to keep the relationship alive.
+   :::
+
+6. The market in which foreign currency is traded for immediate delivery is the:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] spot market
+   - [ ] futures market
+   - [ ] forward market
+   - [ ] London market
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] spot market
+   - [ ] futures market
+   - [ ] forward market
+   - [ ] London market
+
+   *Why:* spot trades settle within T+2 by convention. Forwards and futures settle at a specified future date.
+   :::
+
+7. An FI has \$100 in FX assets and \$80 in FX liabilities. The FI also has \$60 of FX bought and \$90 of FX sold. The net FX exposure is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] \$20
+   - [ ] $-$\$30
+   - [ ] \$10
+   - [ ] $-$\$10
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] \$20
+   - [ ] $-$\$30
+   - [ ] \$10
+   - [x] $-$\$10
+
+   *Why:* Net exposure $=$ (FX assets $-$ FX liabilities) $+$ (FX bought $-$ FX sold) $= (100 - 80) + (60 - 90) = 20 - 30 = -10$. The FI is **net short** \$10 in this currency.
+   :::
+
+8. An unhedged position in a particular foreign currency is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] an open position
+   - [ ] a short position
+   - [ ] a long position
+   - [ ] facing the risk of loss if the exchange rate moves in either direction
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] an open position
+   - [ ] a short position
+   - [ ] a long position
+   - [ ] facing the risk of loss if the exchange rate moves in either direction
+
+   *Why:* "open" = no offsetting hedge. An open position can be **long or short**, so options (b) and (c) are too narrow. Option (d) is wrong because an open position loses only if the rate moves in **one direction** — the unfavourable one.
+   :::
+
+9. Off-balance-sheet activities have:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] risk-reducing attributes
+   - [ ] risk-increasing attributes
+   - [ ] profit-enhancing characteristics
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] risk-reducing attributes
+   - [ ] risk-increasing attributes
+   - [ ] profit-enhancing characteristics
+   - [x] All of the listed options are correct.
+
+   *Why:* OBS items can **hedge** existing exposures (risk-reducing), **add** exposure (risk-increasing), and generate **fee income** (profit-enhancing). The same instrument can play different roles depending on how it is used.
+   :::
+
+10. Items that affect the future, rather than the current, shape of an FI's balance sheet are:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] contingent assets
+    - [ ] contingent liabilities
+    - [ ] off-balance-sheet items
+    - [ ] All of the listed options are correct.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] contingent assets
+    - [ ] contingent liabilities
+    - [ ] off-balance-sheet items
+    - [x] All of the listed options are correct.
+
+    *Why:* "off-balance-sheet items" is the umbrella term; "contingent assets" and "contingent liabilities" are its two sides. All three describe the same thing from different angles.
+    :::
+
+11. Loan commitments are examples of:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] contingent assets
+    - [ ] contingent liabilities
+    - [ ] off-balance-sheet liabilities
+    - [ ] All of the listed options are correct.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [x] contingent assets
+    - [ ] contingent liabilities
+    - [ ] off-balance-sheet liabilities
+    - [ ] All of the listed options are correct.
+
+    *Why:* from the bank's view, an unused loan commitment is a **future income stream** (fees plus interest if drawn) — a contingent asset. The mirror image, the bank's obligation to lend if called upon, is the contingent liability side. Most textbooks classify loan commitments primarily as contingent assets because the fee income is the dominant earnings driver.
+    :::
+
+12. A contingent contract that guarantees the trade performance of the buyer of the guaranty is a:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] standby letter of credit
+    - [ ] commercial (documentary) letter of credit
+    - [ ] forward contract
+    - [ ] loan commitment
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] standby letter of credit
+    - [x] commercial (documentary) letter of credit
+    - [ ] forward contract
+    - [ ] loan commitment
+
+    *Why:* documentary LCs back **trade** transactions (imports/exports). **Standby** LCs back broader financial obligations (e.g., a CP issue or performance bond) and are used for less-predictable contingencies.
+    :::
+
+13. A back-end fee or commitment fee is:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] a fee charged upfront for a loan
+    - [ ] a fee charged by the borrower to the FI
+    - [ ] a fee the FI charges the borrower for any unused balances in the commitment line
+    - [ ] a fee charged at the back end of a loan
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] a fee charged upfront for a loan
+    - [ ] a fee charged by the borrower to the FI
+    - [x] a fee the FI charges the borrower for any unused balances in the commitment line
+    - [ ] a fee charged at the back end of a loan
+
+    *Why:* the back-end fee compensates the FI for **keeping liquidity available** that the borrower chose not to use. It is the price of optionality from the bank's perspective.
+    :::
+
+\vspace{0.5em}
+
+# Part B — Numerical questions
+
+## Q1 — Pricing a loan commitment
+
+An FI has issued a one-year loan commitment of \$2 million for an upfront fee of 25 basis points. The back-end fee on the unused portion of the commitment is 10 basis points. The FI requires a compensating balance of 5 per cent as demand deposits. The FI's cost of funds is 6 per cent, the interest rate on the loan is 10 per cent, and reserve requirements on demand deposits are 8 per cent. The customer is expected to draw down 80 per cent of the commitment at the beginning of the year.
+
+(a) What is the expected return on the loan **without** taking future values into consideration?
+(b) What is the expected return **using future values**? That is, the net fee and interest income are evaluated at the end of the year when the loan is due.
+(c) How is the expected return in part (b) affected if the reserve requirements on demand deposits are zero?
+(d) How is the expected return in part (b) affected if compensating balances are paid a nominal interest rate of 5 per cent?
+(e) What is the expected return using future values but with the compensating balance placed in certificates of deposit that pay 5.5 per cent and have no reserve requirements, rather than in demand deposits?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**(a) Direct method.**
+
+Income:
+
+- Upfront fee $= 0.0025 \times \$2,000,000 = \$5,000$
+- Interest income $= 0.10 \times \$2,000,000 \times 0.80 = \$160,000$
+- Back-end fee $= 0.0010 \times \$2,000,000 \times (1 - 0.80) = \$400$
+- **Total** $= \$165,400$
+
+Funds committed:
+
+- Funds drawn down $= \$2,000,000 \times 0.80 = \$1,600,000$
+- Compensating balances $= \$1,600,000 \times 0.05 = \$80,000$
+- Reserves held against demand deposits $= \$80,000 \times 0.08 = \$6,400$
+- **Net funds committed** $= \$1,600,000 - \$80,000 + \$6,400 = \$1,526,400$
+
+Expected return $= \$165,400 / \$1,526,400 = 10.836\%$.
+
+Equivalently, using the lecture formula with $f_1 = 0.0025$, $f_2 = 0.0010$, $\mathit{td} = 0.80$, $\mathit{BR} + \phi = 0.10$, $b = 0.05$, $\mathit{RR} = 0.08$:
+
+$$
+\begin{aligned}
+1+k &= 1 + \frac{f_1 + f_2(1 - \mathit{td}) + (\mathit{BR} + \phi)\,\mathit{td}}{\mathit{td} - b \cdot \mathit{td}\,(1 - \mathit{RR})} \\
+    &= 1 + \frac{0.0025 + 0.0010\,(1 - 0.80) + 0.10 \times 0.80}{0.80 - 0.05 \times 0.80\,(1 - 0.08)} \\
+    &= 1.10836,\qquad k = 10.836\%.
+\end{aligned}
+$$
+
+**(b) Future-value of upfront fee.** The upfront fee is now compounded to year-end at the cost of funds: $\$5,000 \times 1.06 = \$5,300$. Total income becomes $\$165,700$.
+
+$$
+1+k = 1 + \frac{0.0025\,(1 + 0.06) + 0.0010\,(1 - 0.80) + 0.10 \times 0.80}{0.80 - 0.05 \times 0.80\,(1 - 0.08)} = 1.10856,\qquad k = 10.856\%.
+$$
+
+**(c) No reserve requirements.** Funds committed shrinks by \$6,400 to \$1,520,000. Expected return $= \$165,700 / \$1,520,000 = 10.90\%$.
+
+$$
+1+k = 1 + \frac{0.0025\,(1 + 0.06) + 0.0010\,(1 - 0.80) + 0.10 \times 0.80}{0.80 - 0.05 \times 0.80} = 1.10900,\qquad k = 10.90\%.
+$$
+
+**(d) FI pays 5 per cent on the compensating balance.** Subtract the interest paid: $0.05 \times \$80,000 = \$4,000$. Total income becomes $\$165,700 - \$4,000 = \$161,700$. Expected return $= \$161,700 / \$1,526,400 = 10.5936\%$.
+
+$$
+1+k = 1 + \frac{0.0025\,(1 + 0.06) + 0.0010\,(1 - 0.80) + 0.10 \times 0.80 - 0.05 \times 0.05 \times 0.80}{0.80 - 0.05 \times 0.80\,(1 - 0.08)} = 1.105936,\qquad k = 10.5936\%.
+$$
+
+**(e) Compensating balance in CDs at 5.5 per cent, no reserves.** Income falls by $0.055 \times \$80,000 = \$4,400$, and funds committed is \$1,520,000 (no reserves). Expected return $= \$161,300 / \$1,520,000 = 10.612\%$.
+
+$$
+1+k = 1 + \frac{0.0025\,(1 + 0.06) + 0.0010\,(1 - 0.80) + 0.10 \times 0.80 - 0.05 \times 0.055 \times 0.80}{0.80 - 0.05 \times 0.80} = 1.10612,\qquad k = 10.612\%.
+$$
+
+**Reading the answers together.** Removing reserve requirements *raises* the return (denominator shrinks). Paying interest on compensating balances *cuts* the return (income shrinks). Whether compensating-balance interest hurts more or less than removing reserves depends on the relative magnitudes — exactly the lever a corporate treasurer would negotiate over.
+:::
+:::
+
+## Q2 — SLC vs loan commitment as CP collateral
+
+A corporation is planning to issue \$1 million of 270-day commercial paper for an effective yield of 5 per cent. The corporation expects to save 30 basis points on the interest rate by using either an SLC or a loan commitment as collateral for the issue.
+
+(a) What are the net savings to the corporation if a bank agrees to provide a 270-day SLC for an upfront fee of 20 basis points (of the face value of the loan commitment) to back the CP issue?
+(b) What are the net savings if a bank instead provides a 270-day loan commitment? The bank charges 10 basis points upfront and 10 basis points back-end on any unused portion. Assume the loan is **not** drawn and that the fees are on the face value.
+(c) Should the corporation be indifferent between the two collateral methods at the time the CP is issued?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**(a) SLC.**
+
+- Cost of SLC $= 0.0020 \times \$1,000,000 = \$2,000$.
+- Interest saving on the CP $= (0.0030 \times 270/365) \times \$1,000,000 = \$2,219.18$.
+- **Net saving** $= \$2,219.18 - \$2,000 = \$219.18$.
+
+**(b) Loan commitment, undrawn.**
+
+- Upfront fee $= 0.0010 \times \$1,000,000 = \$1,000$.
+- Back-end fee $= 0.0010 \times \$1,000,000 = \$1,000$.
+- Total cost $= \$2,000$.
+- Interest saving on the CP $= \$2,219.18$ (as in (a)).
+- **Net saving** $= \$219.18$.
+
+**(c) Indifference?** Not necessarily. The numbers are identical *only* under the assumption that the line is not drawn. If any portion of the loan commitment is drawn down, the back-end fee shrinks (it only applies to the **unused** part), so the loan commitment becomes cheaper than the SLC. The optionality is what differentiates the two.
+:::
+:::
+
+## Q3 — Credit risk vs sovereign risk
+
+A foreign corporation is profitable, well-managed, and current on all its obligations. **Yet your Australian bank still loses money on a loan to it.** In one short paragraph, give two non-credit-risk channels that could produce this loss. Then describe the **two-step due diligence** an FI should perform before extending the loan.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Two channels.
+
+- **Capital controls.** The borrower's central bank rations FX or imposes outright restrictions, so the company holds enough local currency to pay but cannot convert it to AUD or USD to remit.
+- **Government directive / sanctions.** The borrower's home government suspends external debt service (often as part of a broader debt restructuring), prohibits remittances to lenders in particular jurisdictions, or its trading partners impose sanctions that block payment channels.
+
+**Two-step due diligence.**
+
+1. **Credit-quality assessment of the borrower.** Standard credit analysis — financial statements, leverage, coverage ratios, industry, management. This determines whether the borrower can *generate the cash*.
+2. **Sovereign-risk assessment of the borrower's country.** External evaluation models (Euromoney Country Risk, OECD classifications, Institutional Investor ratings) plus internal statistical scoring (TDSR, IR, INVR, VAREX, MG). This determines whether the borrower will be *allowed to send the cash* once it is generated.
+
+A profitable borrower in a sovereign-distressed country can still default — Argentina 2001 and Greece 2012 are the canonical examples.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part C — Acacia Bank: three risks, one bad week
+
+::: {.callout-important title="The scenario"}
+You are back at the desk of **Acacia Bank**'s Group Treasurer (the same bank you ran through a liquidity crisis in Workshop 9). This week, the shocks come from outside Australia. Three risks hit one after another.
+
+This is a **decision-making exercise**. Discuss with your neighbour. Be ready to defend your numbers.
+:::
+
+## Acacia's international book (Monday, 9:00 AM)
+
+\small
+
+| **Selected exposures** | **Position** |
+|:---|---:|
+| Net long EUR-denominated corporate bonds | A\$500m equivalent |
+| Argentine USD-denominated sovereign bonds (face value) | A\$300m equivalent |
+| Committed but undrawn corporate credit lines (loan commitments) | A\$1,500m |
+| Outstanding standby letters of credit backing client CP issues | A\$200m |
+
+\normalsize
+
+**Pricing of the loan commitments:** 25 bp upfront, 10 bp back-end fee on unused.
+
+**Acacia's net-FX-exposure policy:** open position per currency must not exceed A\$200m. Acacia's CET1 equity is A\$4,000m.
+
+**Initial spot rates:** AUD/EUR $= 0.60$ (i.e., 1 EUR $=$ A\$1.67). AUD/USD $= 0.65$.
+
+\vspace{0.5em}
+
+## Round 1 — Monday (the FX shock)
+
+::: {.callout-warning title="11:00 AM Monday"}
+The RBA surprises markets with a 50 bp emergency cut, citing global growth fears. The AUD drops sharply against majors. By close, the new spot rate is AUD/EUR $= 0.565$ (i.e., 1 EUR $=$ A\$1.77) — an AUD depreciation of roughly 6 per cent against the euro.
+:::
+
+**(a)** Is Acacia's EUR bond position **long** or **short** EUR? Why?
+
+**(b)** What is the approximate AUD gain or loss on the EUR bond position?
+
+Gain/loss $=$ **____________** (A\$m)
+
+**(c)** Is Acacia in breach of its open-position policy? Show your check.
+
+**(d)** Identify two on-balance-sheet *and* two off-balance-sheet hedges the treasurer could have put on **last quarter** to neutralise the EUR exposure.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 1"}
+- **Long EUR.** The bonds are EUR-denominated assets — Acacia holds them, so it benefits when EUR appreciates against AUD.
+- **AUD value of the position** rises from A\$500m to roughly A\$500m $\times (1.77/1.67) \approx \text{A}\$530m$, so a **gain of about A\$30m** (a long position gains when the foreign currency appreciates). Quick check: A\$500m $\times 6\% = \text{A}\$30m$.
+- **Policy breach.** The open position was A\$500m before the shock and is now $\approx$ A\$530m, both well above the A\$200m per-currency cap. Acacia was *already* in breach on Monday morning — the shock just made it more obvious.
+- **Hedges.** On-balance-sheet: (i) fund the EUR bonds with EUR-denominated borrowings (currency-match the liability); (ii) acquire EUR-denominated liabilities of similar duration. Off-balance-sheet: (i) sell EUR forward against AUD; (ii) buy EUR put options (asymmetric protection); (iii) cross-currency swap. The forward is cheapest; options cost a premium but cap downside without giving up upside.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 2 — Tuesday (the sovereign shock)
+
+::: {.callout-warning title="9:00 AM Tuesday"}
+Argentina, mid-FX-crisis of its own, announces a **35 per cent NPV haircut** on its USD-denominated sovereign bonds — its tenth sovereign default since 1816. International bondholders are invited to a "voluntary" exchange.
+:::
+
+**(a)** Estimate Acacia's loss on the Argentine bond holding.
+
+Loss $\approx$ **____________** (A\$m)
+
+**(b)** Why is this **sovereign risk** rather than **credit risk**? What are Acacia's legal options? *Hint:* there is no global bankruptcy court for sovereigns.
+
+**(c)** Which of the internal evaluation ratios (TDSR, IR, INVR, VAREX, MG) would have *most likely* flagged this risk in advance? Justify briefly.
+
+**(d)** Acacia's risk committee asks: "Why did we hold Argentine sovereign debt at all?" Give one defensible reason and one indefensible one.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 2"}
+- **Loss** $\approx$ A\$300m $\times 35\% = \text{A}\$105m$. Note this is an NPV haircut, so depending on the new coupon, maturity, and discount rate, the *book* loss may be smaller or larger; A\$105m is the order of magnitude.
+- **Sovereign vs credit.** The bonds did not default because Argentina's tax base could not service them — they defaulted because the **government chose** to write them down as a matter of policy. Legal options for Acacia: participate in the exchange (most do); hold out and litigate (Elliott Management did this for 15 years after 2001 with mixed results); seek ICSID arbitration if a bilateral investment treaty applies. Crucially, **there is no global sovereign-bankruptcy court** — recovery depends on negotiation and the borrower's willingness to return to capital markets.
+- **Best early-warning ratios:** likely the **Total Debt Service Ratio (TDSR)** and **Import Ratio (IR)** — both flag external-financing stress directly. **Money-supply growth (MG)** could pick up imminent inflation-driven crises. INVR and VAREX are noisier indicators of long-run sustainability.
+- **Why hold it?** Defensible: high coupon, portfolio diversification, possible role-play in trading inventory, hedging another exposure. Indefensible: "we always have", or chasing yield without sovereign-risk assessment. Argentina's nine prior defaults are common knowledge.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 3 — Wednesday (the OBS shock)
+
+::: {.callout-warning title="9:00 AM Wednesday"}
+Three large corporate clients, spooked by the FX move and broader risk-off sentiment, **draw down their committed credit lines in full**. Total draw: **A\$600m**, requested as same-day cash. None of the three is in default; they are pre-empting a possible market squeeze.
+:::
+
+**(a)** Sketch what happens to Acacia's balance sheet and to the OBS book.
+
+**(b)** What does this do to Acacia's liquidity (recall Workshop 9)? Which Week 9 facility do you call on?
+
+**(c)** Compute the **total fee income** Acacia has earned on the full A\$1,500m commitment book this year, given the 25 bp upfront and 10 bp back-end fees, **before** Wednesday's draw. Then compute it again **after** the draw.
+
+Pre-draw fee income $=$ **____________** (A\$m).
+
+Post-draw fee income $=$ **____________** (A\$m).
+
+**(d)** Was the 25 bp + 10 bp pricing **adequate** compensation for the risk Acacia just absorbed? If not, what should the pricing have been? Discuss qualitatively.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 3"}
+- **Balance sheet.** Loans on the asset side jump by A\$600m. The funding has to come from somewhere — cash drawn down, repo of HQLA, or new wholesale borrowing. The OBS commitment book shrinks by A\$600m (it has been *converted* into on-balance-sheet exposure).
+- **Liquidity.** Acacia needs A\$600m in same-day cash. Repo with the RBA against AGS and semis is the obvious answer — the standing overnight repo facility at cash rate target + 5 bp. This is exactly the bridge Workshop 9 was about: OBS commitments are how off-balance-sheet risk becomes an on-balance-sheet liquidity problem.
+- **Fee income.**
+  - Pre-draw: upfront $0.0025 \times \text{A}\$1,500m = \text{A}\$3.75m$. Back-end (on full A\$1,500m unused) $0.0010 \times \text{A}\$1,500m = \text{A}\$1.5m$. **Total $= \text{A}\$5.25m$.**
+  - Post-draw: upfront unchanged, **A\$3.75m**. Back-end now applies only to the **A\$900m** still unused: $0.0010 \times \text{A}\$900m = \text{A}\$0.9m$. **Total $= \text{A}\$4.65m$.**
+  - Note the back-end fee mechanism: it falls as the line is drawn — exactly the wrong direction from the bank's perspective, because draw-down is when the risk materialises. This is why banks also price in a draw-down spread (loan rate minus cost of funds) on the funded portion.
+- **Adequate pricing?** Almost certainly not, in stress. A\$5m of annual fee income against A\$600m of suddenly-funded exposure to corporates that just chose to draw in a panic implies a loss-rate threshold under 1 per cent before the line becomes loss-making. Better pricing would build in (i) a higher upfront fee, (ii) a *higher* back-end fee or a step-up tied to credit deterioration, and (iii) MAC (material adverse change) clauses that allow Acacia to refuse to fund if the borrower's situation has changed.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part D — The big question
+
+::: {.callout-note title="Wrap-up — discuss for the last 5 minutes"}
+**AIG (2008).** Off-balance-sheet credit default swaps notionally worth around US\$440 billion. None of it appeared on the firm's balance sheet until the contingencies materialised — at which point AIG required a US\$182 billion taxpayer bailout.
+
+After 2008, regulators tried to drag OBS items onto the balance sheet via tougher disclosure and capital rules (Basel III, derivative netting, central clearing). And yet — **OBS books at major banks keep growing**.
+
+**Why?** Are regulators failing? Are banks finding new ways around the rules? Or is OBS activity genuinely useful when properly priced and hedged? What would you do differently?
+:::
+
+\vspace{0.5em}
+
+::: {.callout-tip title="Take home — three lines to remember"}
+1. **FX risk** comes from a *net* position, not gross exposure. Match assets to liabilities, or hedge — but know which currency you are in.
+2. **Sovereign risk** is what makes a creditworthy borrower default. There is no global bankruptcy court for sovereigns — only negotiation.
+3. **OBS items hide in the footnotes** until they don't. When the contingency hits, an off-balance-sheet line becomes an on-balance-sheet liquidity problem in a single afternoon.
+:::
