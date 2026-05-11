@@ -1,0 +1,32 @@
+# Heavy raw data — anyone reproducing fetches their own from WRDS
+data/*.rds
+
+# LaTeX auxiliary files
+paper/*.aux
+paper/*.bbl
+paper/*.bcf
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.log
+paper/*.out
+paper/*.run.xml
+paper/*.synctex.gz
+paper/*.toc
+paper/*.xdv
+
+# R / OS
+.Rhistory
+.RData
+.Rapp.history
+.DS_Store
+
+# Ephemeral skill state
+.claude/state/
+
+# Allow the compiled paper, factor data, and tables/figures into git
+!paper/main.pdf
+!output/*.tex
+!output/*.pdf
+!output/*.png
+!output/*.rds

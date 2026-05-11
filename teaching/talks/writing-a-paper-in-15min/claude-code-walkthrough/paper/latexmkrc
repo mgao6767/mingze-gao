@@ -1,0 +1,6 @@
+# latexmkrc -- XeLaTeX + biber configuration for main.tex
+$pdf_mode   = 5;                 # 5 = xelatex
+$bibtex_use = 2;                 # always run biber when bib file changed
+$out_dir    = '.';
+$pdflatex   = 'xelatex %O %S';
+$xelatex    = 'xelatex %O %S';

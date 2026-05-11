@@ -1,6 +1,10 @@
 # Claude
 .claude/
 
+# Unignore the walkthrough demo's claude config (shipped with the demo)
+!teaching/talks/writing-a-paper-in-15min/claude-code-walkthrough/.claude/
+!teaching/talks/writing-a-paper-in-15min/claude-code-walkthrough/.claude/**
+
 .DS_Store
 .vscode
 temp/
