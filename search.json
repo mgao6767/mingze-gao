@@ -14885,7 +14885,7 @@
     "href": "teaching/index.html#talks",
     "title": "Teaching",
     "section": "Talks",
-    "text": "Talks\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nApr 23, 2026\n\n\nNavigating Corporate Filings\n\n\n\n\nNo matching items"
+    "text": "Talks\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMay 19, 2026\n\n\nWriting a paper in 15 minutes\n\n\n\n\nApr 23, 2026\n\n\nNavigating Corporate Filings\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "teaching/talks/navigating-corporate-filings/corporate-filings-talk-spec.html",
@@ -17448,5 +17448,96 @@
     "title": "AFIN8003 Week 10 - Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk",
     "section": "Interest Rate Parity (cont’d)",
     "text": "Interest Rate Parity (cont’d)\nSuppose the AUD interest rate is \\(r_d = 5\\%\\), the EUR interest rate is \\(r_f = 10\\%\\), and the initial spot rate is \\(S_t = \\$0.60/\\text{€}\\). Assume CIRP holds. What is the one-year forward rate? If the spot rate then rises to \\(S'_t = \\$0.65/\\text{€}\\), what is the change in the forward rate?\n\n\n\nGiven:\n\nDomestic (AUD) interest rate, \\(r_d = 0.05\\)\nForeign (EUR) interest rate, \\(r_f = 0.10\\)\nInitial spot rate, \\(S_t = 0.60\\) AUD/EUR\nNew spot rate, \\(S'_t = 0.65\\) AUD/EUR\n\nApply CIRP at both spot rates:\n\\[F = S \\cdot \\frac{1 + r_d}{1 + r_f}.\\]\n\nStep 1 — Initial forward rate \\(F_t\\):\n\\[\nF_t = 0.60 \\cdot \\frac{1.05}{1.10} \\approx 0.5727 \\text{ AUD/EUR.}\n\\]\nStep 2 — New forward rate \\(F'_t\\):\n\\[\nF'_t = 0.65 \\cdot \\frac{1.05}{1.10} \\approx 0.6205 \\text{ AUD/EUR.}\n\\]\nStep 3 — Change in the forward rate:\n\\[\n\\Delta F_t = F'_t - F_t \\approx 0.0477 \\text{ AUD/EUR.}\n\\]\nEquivalently, \\(\\Delta F_t = \\Delta S_t \\cdot (1+r_d)/(1+r_f) = 0.05 \\times 1.05/1.10 \\approx 0.0477\\): under CIRP, the forward rate moves one-for-one (scaled by the interest-rate factor) with the spot rate."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#what-this-15-min-talk-is-about",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#what-this-15-min-talk-is-about",
+    "title": "Writing a paper in 15 minutes",
+    "section": "What this 15-min talk is about",
+    "text": "What this 15-min talk is about\n\n\n\n\nGoals\n\n\n\nMake the AI building blocks (Skills and Agents) concrete enough that you can decide whether to use them.\nWalk through one end-to-end empirical project produced this way.\nBe honest about where the framework helps and where the human is still indispensable.\n\n\n\n\n\n\n\n\n\nNon-goals\n\n\n\nNot a tutorial. You will not learn to write skills today.\nNot a sales pitch for any specific framework.\nNot a claim that AI replaces research judgement."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-premise",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-premise",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The premise",
+    "text": "The premise\nEmpirical research has a boring middle. We spend weeks on the parts that do not differentiate us from each other:\n\nReading the same dozen papers.\nBuilding the same merged Compustat–CRSP panel.\nWriting the same boilerplate Introduction and Data section.\nCompiling LaTeX. Twice. Three times. Fixing one missing bracket.\nRe-running everything because a referee asked for one new column.\n\n\nWhat if all of that collapsed — and only the interesting parts of research were left for you?"
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-claude-code",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-claude-code",
+    "title": "Writing a paper in 15 minutes",
+    "section": "What is Claude Code?",
+    "text": "What is Claude Code?\nA coding assistant that lives inside a project folder — reads files, edits them, runs commands, remembers your conventions. Not a chatbot in a separate window.\n\n\n\n\n\n\n\n\n\n\n\nChatbotClaude.ai · ChatGPT\nAutocompleteGitHub Copilot\nIDE chatCursor\nClaude Code(this talk)\n\n\n\n\nSees every file in your repo\n—\npartial\n✓\n✓\n\n\nEdits files directly\n—\ninline suggestions\n✓\n✓\n\n\nRuns commands (R, LaTeX, git, …)\n—\n—\nlimited\n✓\n\n\nCustom skills + agents\n—\n—\npartial\n✓\n\n\nWhere it runs\nBrowser\nIDE\nIDE\nCLI · IDE · Desktop\n\n\n\n\n\nOther tools in the same agentic category: OpenAI Codex CLI, Cursor’s agent mode, Aider, Gemini CLI, Cline. The skill-and-agent pattern transfers across most of them — written workflows are not locked to one vendor."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-a-skill",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-a-skill",
+    "title": "Writing a paper in 15 minutes",
+    "section": "What is a “Skill”?",
+    "text": "What is a “Skill”?\nClaude Code ships with the concept of skills.\n\n\nA skill is a plain-text written workflow, a short document that tells Claude how to perform a recurring task properly.\n\n\n\n\n\nAnalogy\n\n\nA skill is like a standard operating procedure you would hand a new research assistant on their first day. It says: “When I ask you to do a literature review, here is what good looks like. These are the journals to check. These are the buckets the papers fall into. Report back in this format.”\nClaude follows the skill the same way a careful assistant would.\n\n\n\n\n\n\n\nWe can share, version control skills.\n\n\n\n\n\nExample\n\n\nSkills we use today:\n\ndiscover — literature + data check\nstrategize — hypotheses + identification\nanalyze — code + results + review\nwrite — paper drafting"
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-an-agent",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#what-is-an-agent",
+    "title": "Writing a paper in 15 minutes",
+    "section": "What is an “agent”?",
+    "text": "What is an “agent”?\nInside a skill, Claude can call on smaller specialists — agents.\n\n\nAn agent is a plain-text contract that gives one specialist a narrow job, a defined output, and the tools it is allowed to use.\n\n\n\n\n\nAnalogy\n\n\nAn agent is like a member of a research team — the literature reviewer, the data engineer, the methodologist. Each reads a narrower brief than “do the whole paper”, which is why each does its job better.\nSmaller jobs, better work.\n\n\n\n\n\n\n\nA skill can dispatch many agents; agents can also dispatch other agents.\n\n\n\n\n\nExample\n\n\nAgents we use today:\n\nlibrarian — searches the literature\nexplorer — documents each dataset\nstrategist — designs hypotheses & identification\ncoder — writes the R script\nwriter — drafts the manuscript\n\n\n\n\n\n\n\n\nSkills and agents are the two Claude Code primitives we will use today. Everything beyond that is design choices you make."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#how-i-wired-it-together",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#how-i-wired-it-together",
+    "title": "Writing a paper in 15 minutes",
+    "section": "How I wired it together",
+    "text": "How I wired it together\nAround Claude Code’s skills and agents, I added:\n\nPaired reviewers for every creator agent\nWritten rules the reviewers enforce\nQuality gates before each step advances\n\n\n\n\n\nThis is one design choice, not part of Claude Code. Pick what fits your work."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-recipe",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-recipe",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The recipe",
+    "text": "The recipe\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nreview\n\n\n\n\n\n\n\nreview\n\n\n\n\n\n\n\nreview\n\n\n\n\n\n\n\nreview\n\n\n\n\n\n\n\nreview\n\n\n\n\n\n\n\n≥ 80/100\n\n\n\n\n\n\n\nA researchquestion\n\n\n\n\n\n\n\nClaude Code\n\n\n\n\n\n\n\nLiterature\n\n\n\n\n\n\n\nData check\n\n\n\n\n\n\n\nStrategy\n\n\n\n\n\n\n\nCode &results\n\n\n\n\n\n\n\nManuscript\n\n\n\n\n\n\n\nRevieweragents\n\n\n\n\n\n\n\nPass\n\n\n\n\n\n\n\n\n\n\n\n\nThe human writes the question and the rules. Claude runs the loop. The reviewer agents enforce the rules. The human reviews the final output."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#todays-experiment",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#todays-experiment",
+    "title": "Writing a paper in 15 minutes",
+    "section": "Today’s experiment",
+    "text": "Today’s experiment\nWe hand Claude three things:\n\n\n\n\nA question\n\n\nDoes the well-known “idiosyncratic-volatility puzzle” (Ang, Hodrick, Xing, Zhang 2006) still hold in the modern US stock market, 1990–2024?\n\n\n\n\n\n\n\n\nSome data\n\n\nFour standard WRDS extracts — daily stock prices, monthly accounting fundamentals, and the link between them.\nAbout 580 MB. 67 million daily observations.\n\n\n\n\n\n\n\n\nThe rules\n\n\n\nWorking-paper LaTeX format\nNo causal language in a descriptive paper\nEvery table needs notes\nEvery figure caption says what to look at"
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#five-steps-automated-end-to-end",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#five-steps-automated-end-to-end",
+    "title": "Writing a paper in 15 minutes",
+    "section": "Five steps, automated end-to-end",
+    "text": "Five steps, automated end-to-end\n\n\n1 · Literature — a 23-paper annotated bibliography in four buckets (AHXZ 2006, Fu 2009, Bali–Cakici–Whitelaw 2011, Hou–Loh 2016, …).\n2 · Strategy — three pre-specified hypotheses + nine robustness checks. E.g. H1 — low-volatility stocks earn higher next-month returns.\n3 · Code — a 1,295-line R script that runs end-to-end in 1 min 36 s.\n4 · Analysis — 1.6 M stock-months · 15,030 firms · 6 tables · 2 figures.\n5 · Writing — a 35-page paper · 30 references · numbers tied to the tables.\n\n\n\n\n\n\nAll five steps run hands-off. Human-in-the-loop steering is possible at every step — review the literature, reject a strategy, ask for an extra robustness — but not required."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-compiled-paper",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-compiled-paper",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The compiled paper",
+    "text": "The compiled paper\nThirty-five pages. References, tables, figures, appendix, replication note. Compiles cleanly. Open the PDF in a new tab."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-headline-finding",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-headline-finding",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The headline finding",
+    "text": "The headline finding\nThe puzzle, viewed three ways on 1990–2024 data:\n\n\n\n\nUnconditional: average low-volatility return minus high-volatility return is \\(+0.16\\%\\) per month, \\(t = 0.41\\) — the puzzle has weakened.\nAfter standard risk adjustment (FF3): \\(+0.76\\%\\) per month, \\(t = 2.96\\) — the puzzle reappears.\nAfter also controlling for momentum (Carhart): \\(+0.12\\%\\) per month, \\(t = 0.61\\) — the puzzle is absorbed.\n\n\n\n\nIn the modern sample, what looked like a stand-alone anomaly is largely the momentum factor in disguise.\n\nThis is the kind of nuanced empirical conclusion that took the literature twenty years to converge on.\nWe arrive at one consistent telling of it in one session."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-reviewer-pattern-in-action",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-reviewer-pattern-in-action",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The reviewer pattern in action",
+    "text": "The reviewer pattern in action\nThe paired reviewers are not theatre. Three real catches from this paper:\n\nA fabricated citation. The first literature-review draft cited “Jegadeesh et al., 2023, JFE.” The reviewer flagged it. There is no such paper. The 2019 version of the same author group exists; the system substituted it.\nA causal verb in a descriptive paper. The first manuscript draft wrote “the CAPM alphas are positive and significant, driven by size exposure.” The writing reviewer caught the verb “driven” and rejected the paragraph until it was rewritten.\nA wrong rounded number. The body text said \\(t = -6.07\\). The table said \\(-6.06\\). The reviewer compared them and demanded the body match the table.\n\n\nNone of these mistakes is fatal. All of them get past a tired human reader. None of them got past the reviewer."
+  },
+  {
+    "objectID": "teaching/talks/writing-a-paper-in-15min/index.html#the-role-of-the-human",
+    "href": "teaching/talks/writing-a-paper-in-15min/index.html#the-role-of-the-human",
+    "title": "Writing a paper in 15 minutes",
+    "section": "The role of the human",
+    "text": "The role of the human\nThe plumbing got automated. The judgement did not.\n\n\n\n\n\n\nDelegate to AI\n\n\n\nSearching and summarising the literature.\nBuilding and cleaning the data.\nWriting and running the code.\nDrafting the manuscript.\n\n\n\n\n\n\n\n\n\n\nKeep for yourself\n\n\n\nPicking the question worth asking.\nChoosing methods that will hold up.\nReading what the result actually says.\nOwning the claim."
   }
 ]
