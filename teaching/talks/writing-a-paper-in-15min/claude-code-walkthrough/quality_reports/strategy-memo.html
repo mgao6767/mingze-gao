@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>strategy-memo – Mingze Gao</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<link href="../../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../../styles.css">
+<meta name="twitter:title" content="Mingze Gao">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../../images/favicon.png" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#strategy-memo-idiosyncratic-volatility-and-the-cross-section-of-stock-returns-1990-2024" id="toc-strategy-memo-idiosyncratic-volatility-and-the-cross-section-of-stock-returns-1990-2024" class="nav-link active" data-scroll-target="#strategy-memo-idiosyncratic-volatility-and-the-cross-section-of-stock-returns-1990-2024">Strategy Memo — Idiosyncratic Volatility and the Cross-Section of Stock Returns, 1990-2024</a>
+  <ul class="collapse">
+  <li><a href="#pre-strategy-report" id="toc-pre-strategy-report" class="nav-link" data-scroll-target="#pre-strategy-report">Pre-Strategy Report</a>
+  <ul class="collapse">
+  <li><a href="#literature-review-quality_reportsliterature-review.md" id="toc-literature-review-quality_reportsliterature-review.md" class="nav-link" data-scroll-target="#literature-review-quality_reportsliterature-review.md">1. Literature review (<code>quality_reports/literature-review.md</code>)</a></li>
+  <li><a href="#data-assessment-quality_reportsdata-assessment.md" id="toc-data-assessment-quality_reportsdata-assessment.md" class="nav-link" data-scroll-target="#data-assessment-quality_reportsdata-assessment.md">2. Data assessment (<code>quality_reports/data-assessment.md</code>)</a></li>
+  <li><a href="#project-conventions-claude.md-content-invariants-working-paper-format" id="toc-project-conventions-claude.md-content-invariants-working-paper-format" class="nav-link" data-scroll-target="#project-conventions-claude.md-content-invariants-working-paper-format">3. Project conventions (<code>CLAUDE.md</code> + content-invariants + working-paper-format)</a></li>
+  </ul></li>
+  <li><a href="#research-question-and-hypotheses" id="toc-research-question-and-hypotheses" class="nav-link" data-scroll-target="#research-question-and-hypotheses">Research Question and Hypotheses</a></li>
+  <li><a href="#sample-construction" id="toc-sample-construction" class="nav-link" data-scroll-target="#sample-construction">Sample Construction</a></li>
+  <li><a href="#idiovol-construction-main-specification" id="toc-idiovol-construction-main-specification" class="nav-link" data-scroll-target="#idiovol-construction-main-specification">Idiovol Construction (Main Specification)</a></li>
+  <li><a href="#identification-frame" id="toc-identification-frame" class="nav-link" data-scroll-target="#identification-frame">Identification Frame</a></li>
+  <li><a href="#main-specifications" id="toc-main-specifications" class="nav-link" data-scroll-target="#main-specifications">Main Specifications</a>
+  <ul class="collapse">
+  <li><a href="#spec-1-quintile-portfolio-sorts" id="toc-spec-1-quintile-portfolio-sorts" class="nav-link" data-scroll-target="#spec-1-quintile-portfolio-sorts">Spec 1 — Quintile portfolio sorts</a></li>
+  <li><a href="#spec-2-factor-model-alphas" id="toc-spec-2-factor-model-alphas" class="nav-link" data-scroll-target="#spec-2-factor-model-alphas">Spec 2 — Factor-model alphas</a></li>
+  <li><a href="#spec-3-fama-macbeth-cross-sectional-regressions" id="toc-spec-3-fama-macbeth-cross-sectional-regressions" class="nav-link" data-scroll-target="#spec-3-fama-macbeth-cross-sectional-regressions">Spec 3 — Fama-MacBeth cross-sectional regressions</a></li>
+  </ul></li>
+  <li><a href="#robustness-map" id="toc-robustness-map" class="nav-link" data-scroll-target="#robustness-map">Robustness Map</a></li>
+  <li><a href="#falsification-predictions" id="toc-falsification-predictions" class="nav-link" data-scroll-target="#falsification-predictions">Falsification Predictions</a></li>
+  <li><a href="#threats-and-mitigations" id="toc-threats-and-mitigations" class="nav-link" data-scroll-target="#threats-and-mitigations">Threats and Mitigations</a></li>
+  <li><a href="#pre-registration-note" id="toc-pre-registration-note" class="nav-link" data-scroll-target="#pre-registration-note">Pre-Registration Note</a></li>
+  <li><a href="#critic-anticipated-weaknesses" id="toc-critic-anticipated-weaknesses" class="nav-link" data-scroll-target="#critic-anticipated-weaknesses">Critic-Anticipated Weaknesses</a></li>
+  <li><a href="#estimation-approach-summary" id="toc-estimation-approach-summary" class="nav-link" data-scroll-target="#estimation-approach-summary">Estimation Approach Summary</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="strategy-memo-idiosyncratic-volatility-and-the-cross-section-of-stock-returns-1990-2024" class="level1">
+<h1>Strategy Memo — Idiosyncratic Volatility and the Cross-Section of Stock Returns, 1990-2024</h1>
+<p><strong>Author:</strong> strategist agent <strong>Date:</strong> 2026-05-11 <strong>Paper type:</strong> <strong>Descriptive / measurement / predictive.</strong> No causal claim. The unit of analysis is a stock-month return; the right-hand-side variable of interest is lagged realised idiosyncratic volatility. We test whether a stylised fact — the AHXZ (2006) negative idiovol-return spread — is preserved in the 1990-2024 US universe.</p>
+<hr>
+<section id="pre-strategy-report" class="level2">
+<h2 class="anchored" data-anchor-id="pre-strategy-report">Pre-Strategy Report</h2>
+<p>I read the three required inputs before designing the strategy. Key takeaways feeding the memo are summarised below.</p>
+<section id="literature-review-quality_reportsliterature-review.md" class="level3">
+<h3 class="anchored" data-anchor-id="literature-review-quality_reportsliterature-review.md">1. Literature review (<code>quality_reports/literature-review.md</code>)</h3>
+<ul>
+<li><strong>Four-bucket frontier map:</strong> (i) does the puzzle exist; (ii) why; (iii) does it still exist; (iv) FM methods. Bucket (i) anchors on <code>ang2006cross</code> (foundational, 1963-2000) with replication/measurement critiques in <code>bali2008idiosyncratic</code>, <code>han2011investor</code>, and time-series backdrop in <code>campbell2001have</code>.</li>
+<li><strong>Bucket (ii) explanations</strong> we cite but do <strong>not</strong> test: <code>fu2009idiosyncratic</code> (expected vs.&nbsp;realised idiovol), <code>boyer2010expected</code>, <code>bali2011maxing</code> (MAX lottery proxy), <code>huang2010return</code> (return reversal), <code>stambaugh2015arbitrage</code> (arbitrage asymmetry), <code>chen2012does</code>, <code>liu2018absolving</code>, <code>asness2020betting</code>.</li>
+<li><strong>Bucket (iii) — Does it still exist?</strong> is unsettled. <code>mclean2016does</code> predicts post-publication decay. <code>hou2020replicating</code> finds survival under VW + NYSE breakpoints with smaller magnitude. <code>chu2020idiosyncratic</code> shows sensitivity to short-sale environment (Reg SHO).</li>
+<li><strong>The gap statement</strong> is explicit: no transparent decade-by-decade AHXZ replication on 1990-2024 exists; our contribution is descriptive and methodological — an updated stylised fact, not an adjudication of explanations.</li>
+<li><strong>Methods bucket</strong> (<code>famamacbeth1973</code>, <code>shanken1992estimation</code>, <code>petersen2009estimating</code>, <code>jegadeesh2019empirical</code>) sets the FM specification with Newey-West SEs and month clustering.</li>
+</ul>
+</section>
+<section id="data-assessment-quality_reportsdata-assessment.md" class="level3">
+<h3 class="anchored" data-anchor-id="data-assessment-quality_reportsdata-assessment.md">2. Data assessment (<code>quality_reports/data-assessment.md</code>)</h3>
+<ul>
+<li><strong>Coverage grade: A.</strong> Four RDS files (<code>crsp.dsf</code> 67.6M rows; <code>crsp.msenames</code> 83.8k; <code>comp.funda</code> 404k; <code>crsp.ccmxpf_lnkhist</code> 32.8k). After universe filters the analytical panel should exceed 4M stock-months — orders of magnitude above the inferential threshold.</li>
+<li><strong>Filters justified by Explorer:</strong> <code>shrcd ∈ {10,11}</code>, <code>exchcd ∈ {1,2,3}</code>, exclude SIC 6000-6999 (financials) and SIC 4900-4999 (utilities), require ≥17 daily observations per (<code>permno</code>, month).</li>
+<li><strong>Market return constructible from <code>crsp.dsf</code></strong> as beginning-of-day market-cap-weighted aggregate over the same filtered universe; validates ≥5 decimals against <code>crsp.dsi</code> <code>vwretd</code>.</li>
+<li><strong>Explorer-critic recommendation:</strong> add <code>curcd == 'USD'</code> to the Compustat funda filter alongside <code>indfmt=='INDL' &amp; datafmt=='STD' &amp; popsrc=='D' &amp; consol=='C'</code>. Adopted in Section 3 below.</li>
+<li><strong>Open caveats:</strong> delisting returns (<code>dlret</code> lives in <code>msedelist</code>, not <code>dsf</code>) — flagged as documented limitation; Han-Lesmond microstructure noise — addressed in robustness; January seasonality — addressed in robustness; negative book equity drop.</li>
+</ul>
+</section>
+<section id="project-conventions-claude.md-content-invariants-working-paper-format" class="level3">
+<h3 class="anchored" data-anchor-id="project-conventions-claude.md-content-invariants-working-paper-format">3. Project conventions (<code>CLAUDE.md</code> + content-invariants + working-paper-format)</h3>
+<ul>
+<li>R language, <code>here::here()</code> paths, <code>set.seed(20260519)</code> once at top, R exports bare <code>tabular</code> to <code>output/</code>, no titles in ggplot, double-spaced 12pt working paper.</li>
+<li>INV-8 binding: this is a descriptive paper — no causal claims. INV-7: notation consistent across sections. INV-11: numbers in text must match tables.</li>
+<li>Strategy phase severity is <strong>medium</strong> (constructive criticism per <code>quality.md</code>). Missing robustness check costs -5 at this phase.</li>
+</ul>
+<p>I have inputs from all three required sources and noted the explorer-critic’s <code>curcd</code> recommendation. No discovery inputs are missing.</p>
+<hr>
+</section>
+</section>
+<section id="research-question-and-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-and-hypotheses">Research Question and Hypotheses</h2>
+<p>We document — descriptively — whether sorting US common stocks by lagged-month idiosyncratic volatility produces the AHXZ (2006) cross-sectional return spread on the 1990-2024 sample. Three pre-specified predictive hypotheses follow.</p>
+<p><strong>H1 (main, magnitude preservation).</strong> Conditional on standard pricing controls, the next-month average return spread between the low-idiovol quintile (Q1) and the high-idiovol quintile (Q5) is positive: <span class="math inline">\(\mathbb{E}[r_{Q1,t+1} - r_{Q5,t+1} \mid \mathcal{F}_t] &gt; 0\)</span>. Equivalently, the FF3 alpha of the long-Q1/short-Q5 portfolio is positive and economically meaningful. This preserves the AHXZ sign convention (low idiovol predicts high returns).</p>
+<p><strong>H2 (heterogeneity, sub-period).</strong> The Q1-minus-Q5 spread is <strong>larger</strong> in the post-1999 sub-period than in the pre-1999 sub-period, consistent with the listings-decline composition shift documented by Doidge-Karolyi-Stulz (and the time-trend trajectory implied by Hou-Loh 2016).</p>
+<p><strong>H3 (heterogeneity, size).</strong> The Q1-minus-Q5 spread is <strong>concentrated in small-cap stocks</strong>, defined as below the NYSE 20th percentile of market capitalisation. The spread is statistically and economically smaller — possibly indistinguishable from zero — among NYSE-large stocks.</p>
+<p>None of these hypotheses is causal. They are statements about <strong>conditional predictive moments</strong> of returns given lagged characteristics, in the spirit of Cochrane’s “characteristic-based” cross-sectional pricing.</p>
+<hr>
+</section>
+<section id="sample-construction" class="level2">
+<h2 class="anchored" data-anchor-id="sample-construction">Sample Construction</h2>
+<p><strong>Universe.</strong> Begin with <code>crsp.dsf</code> joined to <code>crsp.msenames</code> on <code>permno</code> with the validity condition <code>namedt &lt;= date &lt;= coalesce(nameendt, today)</code>. Apply:</p>
+<ul>
+<li><code>shrcd %in% c(10, 11)</code> (domestic common stocks)</li>
+<li><code>exchcd %in% c(1, 2, 3)</code> (NYSE, AMEX, Nasdaq)</li>
+<li><code>!(siccd %in% 6000:6999)</code> (exclude financials)</li>
+<li><code>!(siccd %in% 4900:4999)</code> (exclude utilities)</li>
+<li>Date range: <code>1990-01-01 &lt;= date &lt;= 2024-12-31</code></li>
+<li>Stock-month requirement: at least 17 valid daily returns within the calendar month (AHXZ convention; ≈80% of the 21 trading days)</li>
+</ul>
+<p><strong>Compustat link.</strong> Join <code>comp.funda</code> to the CRSP panel via <code>crsp.ccmxpf_lnkhist</code>. Compustat filters: <code>indfmt == 'INDL' &amp; datafmt == 'STD' &amp; popsrc == 'D' &amp; consol == 'C' &amp; curcd == 'USD'</code> (the <code>curcd</code> clause is per the explorer-critic recommendation; prevents non-USD filers from contaminating book equity construction). Link filters: <code>linktype %in% c('LU', 'LC')</code>, <code>linkprim %in% c('P', 'C')</code>, with <code>linkdt &lt;= datadate &lt;= coalesce(linkenddt, today)</code>.</p>
+<p><strong>Book equity (Fama-French convention).</strong> <span class="math inline">\(BE = ceq + txditc - PS\)</span>, where <span class="math inline">\(PS = \text{coalesce}(pstkrv, pstkl, pstk, 0)\)</span>. Drop firm-years with <span class="math inline">\(BE \le 0\)</span> for BE/ME-based controls (Fama-French 1992 convention). For sorting purposes, book equity at fiscal year-end <span class="math inline">\(y\)</span> is matched to monthly returns in July of year <span class="math inline">\(y+1\)</span> through June of year <span class="math inline">\(y+2\)</span> (FF12 lag).</p>
+<p><strong>Market equity.</strong> <span class="math inline">\(ME_{i,t} = |prc_{i,t}| \cdot shrout_{i,t}\)</span> in $ thousands; aggregated to $ millions.</p>
+<p><strong>Self-constructed market return.</strong> From the filtered <code>dsf</code> panel: <span class="math display">\[r_{M,t} = \frac{\sum_i ME_{i,t-1} \cdot r_{i,t}}{\sum_i ME_{i,t-1}}.\]</span> Lagged market cap as weight avoids look-ahead. Validate against <code>crsp.dsi</code> <code>vwretd</code> if available. Risk-free rate: Ken French daily <span class="math inline">\(r_f\)</span> file.</p>
+<hr>
+</section>
+<section id="idiovol-construction-main-specification" class="level2">
+<h2 class="anchored" data-anchor-id="idiovol-construction-main-specification">Idiovol Construction (Main Specification)</h2>
+<p>For each (permno, month) pair with <span class="math inline">\(\ge 17\)</span> valid daily returns:</p>
+<ol type="1">
+<li>Compute daily excess return <span class="math inline">\(r^e_{i,d} = r_{i,d} - r_{f,d}\)</span>.</li>
+<li>Compute daily market excess return <span class="math inline">\(r^e_{M,d} = r_{M,d} - r_{f,d}\)</span>.</li>
+<li>Run the within-month CAPM time-series regression <span class="math display">\[r^e_{i,d} = \alpha_{i,m} + \beta_{i,m} r^e_{M,d} + \varepsilon_{i,d}, \qquad d \in \text{month } m.\]</span></li>
+<li>Store <span class="math inline">\(\widehat{\text{IVOL}}_{i,m} = \text{sd}(\widehat{\varepsilon}_{i,d})\)</span> as the <strong>monthly</strong> idiovol (raw daily residual standard deviation).</li>
+<li>Optional secondary measure: annualised-monthly equivalent <span class="math inline">\(\widehat{\text{IVOL}}^{(21)}_{i,m} = \widehat{\text{IVOL}}_{i,m} \cdot \sqrt{21}\)</span>. Primary reporting uses the raw daily-std measure.</li>
+</ol>
+<p><strong>Output object:</strong> one <span class="math inline">\(\widehat{\text{IVOL}}_{i,m}\)</span> value per (permno, month).</p>
+<p><strong>Predictive lag.</strong> <span class="math inline">\(\widehat{\text{IVOL}}_{i,m}\)</span> predicts return <span class="math inline">\(r_{i,m+1}\)</span>. We never use contemporaneous idiovol as a regressor.</p>
+<hr>
+</section>
+<section id="identification-frame" class="level2">
+<h2 class="anchored" data-anchor-id="identification-frame">Identification Frame</h2>
+<p><strong>This is a predictive, not causal, exercise.</strong> We make four explicit non-claims.</p>
+<ol type="1">
+<li>We do <strong>not</strong> claim that idiovol <em>causes</em> low future returns. An equivalent statement is: low future returns <em>cause</em> high lagged idiovol — both are consistent with the same conditional moment.</li>
+<li>We do <strong>not</strong> test any of the bucket-(ii) mechanisms (lottery preferences, arbitrage asymmetry, return reversal, mispricing). Those require either an instrument or an experiment we do not have.</li>
+<li>We do <strong>not</strong> interpret the Fama-MacBeth slope on idiovol as a “price of risk.” Following <code>jegadeesh2019empirical</code>, individual-stock FM coefficients are subject to errors-in-variables; we report the slope as a conditional predictive coefficient, not as a structural risk premium.</li>
+<li>We do <strong>not</strong> claim external validity beyond US common stocks 1990-2024.</li>
+</ol>
+<p><strong>What we DO test.</strong> The AHXZ research design — quintile portfolios, monthly rebalancing, EW and VW returns, CAPM/FF3 alphas, FM cross-sectional slopes — applied unchanged to the 1990-2024 sample, yields a positive Q1-minus-Q5 spread. The hypothesis is operationally a sign test: in the 35-year sample, the time-series mean of the Q1-minus-Q5 portfolio return exceeds zero at conventional significance.</p>
+<hr>
+</section>
+<section id="main-specifications" class="level2">
+<h2 class="anchored" data-anchor-id="main-specifications">Main Specifications</h2>
+<section id="spec-1-quintile-portfolio-sorts" class="level3">
+<h3 class="anchored" data-anchor-id="spec-1-quintile-portfolio-sorts">Spec 1 — Quintile portfolio sorts</h3>
+<p>At the end of each month <span class="math inline">\(m\)</span>:</p>
+<ul>
+<li>Compute <span class="math inline">\(\widehat{\text{IVOL}}_{i,m}\)</span> as above using daily data from month <span class="math inline">\(m\)</span>.</li>
+<li>Compute <strong>NYSE breakpoints</strong>: the 20th, 40th, 60th, 80th percentiles of <span class="math inline">\(\widehat{\text{IVOL}}_{i,m}\)</span> over the subset of permnos with <span class="math inline">\(exchcd = 1\)</span>.</li>
+<li>Assign every stock in the analytical universe (NYSE + AMEX + Nasdaq) to quintile Q1…Q5 according to those NYSE breakpoints.</li>
+<li>Form Q1…Q5 portfolios; hold for month <span class="math inline">\(m+1\)</span>.</li>
+<li>Report:
+<ul>
+<li><strong>Equal-weighted</strong> monthly excess returns of Q1, Q2, Q3, Q4, Q5, and the long-Q1/short-Q5 spread.</li>
+<li><strong>Value-weighted</strong> monthly excess returns of Q1…Q5 and the long-Q1/short-Q5 spread (VW preferred per AHXZ and <code>hou2020replicating</code>).</li>
+</ul></li>
+<li>Tabulate average excess return, standard deviation, Sharpe ratio, and Newey-West <span class="math inline">\(t\)</span>-statistic (12 lags) for each portfolio and the Q1-minus-Q5 spread.</li>
+</ul>
+</section>
+<section id="spec-2-factor-model-alphas" class="level3">
+<h3 class="anchored" data-anchor-id="spec-2-factor-model-alphas">Spec 2 — Factor-model alphas</h3>
+<p>Run the time-series regressions on the long-Q1/short-Q5 monthly portfolio return <span class="math inline">\(r^{LS}_{m+1}\)</span>:</p>
+<p><span class="math display">\[r^{LS}_{m+1} = \alpha^{CAPM} + \beta^{MKT} \, \text{MKT}_{m+1} + u_{m+1},\]</span></p>
+<p><span class="math display">\[r^{LS}_{m+1} = \alpha^{FF3} + \beta^{MKT} \, \text{MKT}_{m+1} + \beta^{SMB} \, \text{SMB}_{m+1} + \beta^{HML} \, \text{HML}_{m+1} + u_{m+1}.\]</span></p>
+<p>Report <span class="math inline">\(\widehat{\alpha}\)</span> in monthly percent, Newey-West <span class="math inline">\(t\)</span>-statistic with 12 lags, adjusted <span class="math inline">\(R^2\)</span>, and the number of monthly observations.</p>
+</section>
+<section id="spec-3-fama-macbeth-cross-sectional-regressions" class="level3">
+<h3 class="anchored" data-anchor-id="spec-3-fama-macbeth-cross-sectional-regressions">Spec 3 — Fama-MacBeth cross-sectional regressions</h3>
+<p>For each month <span class="math inline">\(t\)</span>, run the cross-sectional regression</p>
+<p><span class="math display">\[r_{i,t} = \lambda_{0,t} + \lambda_{1,t} \widehat{\text{IVOL}}_{i,t-1} + \lambda_{2,t} \log(\text{ME}_{i,t-1}) + \lambda_{3,t} \log(\text{BE/ME}_{i,t-1}) + \lambda_{4,t} \text{MOM}_{i,t-12, t-2} + \lambda_{5,t} \text{STR}_{i,t-1} + e_{i,t},\]</span></p>
+<p>where MOM is the cumulative return from <span class="math inline">\(t-12\)</span> to <span class="math inline">\(t-2\)</span> (skipping <span class="math inline">\(t-1\)</span>, Jegadeesh-Titman convention) and STR is the prior-month return (short-term reversal, <code>huang2010return</code>). Report time-series means <span class="math inline">\(\bar{\lambda}_k\)</span> and Newey-West-adjusted <span class="math inline">\(t\)</span>-statistics with 12 lags. Cluster observations within months for the cross-sectional fit per <code>petersen2009estimating</code>. Report Shanken-adjusted SEs alongside the standard FM SEs as a secondary diagnostic.</p>
+<hr>
+</section>
+</section>
+<section id="robustness-map" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-map">Robustness Map</h2>
+<p>The descriptive paper’s signal is the <strong>stability</strong> of the spread under design perturbations. Pre-committed robustness suite:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Perturbation</th>
+<th>Reference</th>
+<th>What we check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R1</strong></td>
+<td>Replace CAPM-residual IVOL with <strong>FF3-residual IVOL</strong></td>
+<td><code>fama1993common</code>, <code>ang2006cross</code></td>
+<td>Robustness to factor benchmark in idiovol construction (the Fu 2009 measurement debate)</td>
+</tr>
+<tr class="even">
+<td><strong>R2</strong></td>
+<td>Split sample at January 2000: pre-1999 vs.&nbsp;post-1999</td>
+<td><code>hou2016have</code>, <code>mclean2016does</code></td>
+<td>Whether the spread has decayed in the more recent decade (H2 heterogeneity test)</td>
+</tr>
+<tr class="odd">
+<td><strong>R3</strong></td>
+<td>NYSE-20% small-cap vs.&nbsp;NYSE-80% large-cap subsamples</td>
+<td><code>bali2008idiosyncratic</code></td>
+<td>Whether the spread concentrates in small stocks (H3 test)</td>
+</tr>
+<tr class="even">
+<td><strong>R4</strong></td>
+<td>Conditional double sorts: 5x5 size <span class="math inline">\(\times\)</span> IVOL and 5x5 BE/ME <span class="math inline">\(\times\)</span> IVOL</td>
+<td>AHXZ Table VI</td>
+<td>Whether the IVOL spread survives within each size/value bin</td>
+</tr>
+<tr class="odd">
+<td><strong>R5</strong></td>
+<td>Replace IVOL with <strong>MAX</strong> = mean of five highest daily returns in prior month</td>
+<td><code>bali2011maxing</code></td>
+<td>Whether the lottery proxy subsumes IVOL; report both in horse-race FM</td>
+</tr>
+<tr class="even">
+<td><strong>R6</strong></td>
+<td>Drop stock-months with <span class="math inline">\(prc_{i,m-1} &lt; \$5\)</span></td>
+<td><code>han2011investor</code></td>
+<td>Microstructure-noise robustness</td>
+</tr>
+<tr class="odd">
+<td><strong>R7</strong></td>
+<td>Drop January observations from portfolio time series</td>
+<td><code>han2011investor</code></td>
+<td>January-seasonality robustness</td>
+</tr>
+<tr class="even">
+<td><strong>R8</strong></td>
+<td>Drop 2008-01 through 2009-12 (financial-crisis window)</td>
+<td>n/a</td>
+<td>Crisis-window robustness — verifies the spread is not driven by 2008-09</td>
+</tr>
+<tr class="odd">
+<td><strong>R9</strong></td>
+<td>Report CAPM, FF3, FF4 (Carhart) and FF5 (Fama-French 2015) alphas where the factor file is available; EW vs.&nbsp;VW</td>
+<td><code>fama1993common</code>, <code>carhart1997persistence</code>, <code>hou2020replicating</code></td>
+<td>Alpha is not an artefact of factor-model choice</td>
+</tr>
+</tbody>
+</table>
+<p>That is <strong>nine</strong> robustness checks against the user-required threshold of seven; the redundancy is deliberate because the strategist-critic deducts -5 per missing robustness at strategy-phase severity.</p>
+<hr>
+</section>
+<section id="falsification-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="falsification-predictions">Falsification Predictions</h2>
+<p>Pre-committed falsifiers — what we would have to observe to <strong>reject</strong> each hypothesis.</p>
+<ul>
+<li><strong>Falsifies H1.</strong> The 35-year time-series mean of the VW long-Q1/short-Q5 portfolio return is non-positive <em>and</em> the FF3 alpha is non-positive (both with <span class="math inline">\(t &lt; 1.96\)</span>). Equivalently, the FM slope on lagged IVOL is non-negative (recall sign: AHXZ predicts <span class="math inline">\(\lambda_1 &lt; 0\)</span> in the spec above since IVOL enters levels — H1 says low IVOL predicts high returns, i.e., the FM slope on raw IVOL is <strong>negative</strong>).</li>
+<li><strong>Falsifies H2.</strong> The Q1-Q5 spread in the post-1999 sub-period is <strong>smaller</strong> than (or equal to within 1 SE of) the pre-1999 spread. We allow either smaller-than or statistically indistinguishable as falsifying.</li>
+<li><strong>Falsifies H3.</strong> The Q1-Q5 spread among NYSE-large stocks (size above NYSE 20th percentile) is <strong>as large or larger</strong> than in the small-cap subsample. We allow either as falsifying.</li>
+</ul>
+<p>We will not p-hack our way to non-falsification. The robustness map is fixed before estimation.</p>
+<hr>
+</section>
+<section id="threats-and-mitigations" class="level2">
+<h2 class="anchored" data-anchor-id="threats-and-mitigations">Threats and Mitigations</h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Threat</th>
+<th>Source</th>
+<th>Mitigation in our design</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>T1 — Data snooping / multiple testing.</strong> Nine robustness checks <span class="math inline">\(\times\)</span> two hypotheses generate many tests; some will be “significant” by chance.</td>
+<td>Lo-MacKinlay (1990)</td>
+<td>Pre-commit to the robustness list. Headline H1-H3 are the only confirmatory tests; robustness is supportive, not confirmatory. We do not report joint <span class="math inline">\(p\)</span>-values; we report consistency of sign across robustness.</td>
+</tr>
+<tr class="even">
+<td><strong>T2 — Idiovol mismeasurement.</strong> Residual std with ≈21 observations is noisy; sampling error attenuates the cross-sectional slope.</td>
+<td><code>jegadeesh2019empirical</code>, <code>han2011investor</code></td>
+<td>(i) Use NYSE breakpoints to make portfolio assignment robust to within-quintile measurement noise; (ii) report Shanken-corrected SEs in the FM; (iii) the ≥17-obs filter reduces variance of the daily-residual std.</td>
+</tr>
+<tr class="odd">
+<td><strong>T3 — Microstructure noise.</strong> Bid-ask bounce inflates IVOL for low-priced/illiquid stocks.</td>
+<td><code>han2011investor</code></td>
+<td>Robustness R6 (drop <span class="math inline">\(prc &lt; \$5\)</span>) and R3 (NYSE-only large subset) directly address this.</td>
+</tr>
+<tr class="even">
+<td><strong>T4 — Fu (2009) expected-vs-realised critique.</strong> Conditioning on lagged realised IVOL may capture mean reversion in volatility, not a pricing relationship.</td>
+<td><code>fu2009idiosyncratic</code>, with <code>guo2014</code> corrective</td>
+<td>We explicitly adopt the AHXZ realised-IVOL convention and disclaim it. We do <strong>not</strong> claim to estimate the price of expected idiovol. Robustness R1 (FF3-residual IVOL) speaks to the same residual definition Fu critiques.</td>
+</tr>
+<tr class="odd">
+<td><strong>T5 — Transaction-cost realisation of the spread.</strong> A Q1-Q5 spread of 100 bps/month may not survive bid-ask costs for high-IVOL stocks.</td>
+<td><code>novymarx2016taxes</code></td>
+<td>We report gross returns. Net-of-cost feasibility is a separate research question; we flag this as a limitation, not a result we claim.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="pre-registration-note" class="level2">
+<h2 class="anchored" data-anchor-id="pre-registration-note">Pre-Registration Note</h2>
+<p>Even though this paper is descriptive, we pre-commit to the following design choices <strong>before</strong> running estimation. Deviations would be disclosed and explained in any revision.</p>
+<ol type="1">
+<li><strong>Quintile breakpoints.</strong> NYSE breakpoints (NYSE-only sample, <span class="math inline">\(exchcd = 1\)</span>), 20/40/60/80 percentiles, recomputed monthly.</li>
+<li><strong>Long-short construction.</strong> Long Q1, short Q5 (low-minus-high). This is the <strong>AHXZ sign convention</strong> — positive expected spread under H1.</li>
+<li><strong>Portfolio weighting.</strong> Equal-weighted <strong>and</strong> value-weighted, both reported. VW is the primary specification (per <code>hou2020replicating</code>).</li>
+<li><strong>Standard errors.</strong> Newey-West with 12 monthly lags for all time-series tests. Petersen-style month clustering plus Newey-West-adjusted FM-coefficient SEs for the Fama-MacBeth regressions. Shanken-adjusted SEs reported as secondary.</li>
+<li><strong>Sample period.</strong> 1990-01-01 through 2024-12-31. No in-sample-optimisation of start or end dates.</li>
+<li><strong>Hypothesis sign.</strong> H1 predicts <span class="math inline">\(\bar r_{Q1} - \bar r_{Q5} &gt; 0\)</span> (equivalently, the FM slope on <span class="math inline">\(\widehat{\text{IVOL}}_{i,t-1}\)</span> is negative).</li>
+<li><strong>Lookback convention.</strong> IVOL in month <span class="math inline">\(m\)</span> predicts return in month <span class="math inline">\(m+1\)</span>. No skip-a-month variant in the main specification.</li>
+</ol>
+<hr>
+</section>
+<section id="critic-anticipated-weaknesses" class="level2">
+<h2 class="anchored" data-anchor-id="critic-anticipated-weaknesses">Critic-Anticipated Weaknesses</h2>
+<p>The strategist-critic will flag at least the following. We list each with a defensible response.</p>
+<ol type="1">
+<li><strong>“Why CAPM-residual IVOL as the main spec, not FF3-residual?”</strong> AHXZ (2006) Table I and <code>bali2008idiosyncratic</code> both report CAPM-residual as a benchmark precisely because the FF3 residual conflates exposures to SMB and HML (which are themselves volatile). The literature reports both; we follow the AHXZ main-text convention with FF3 in R1. <em>Response:</em> this is a convention choice, not an optimisation; we report both.</li>
+<li><strong>“You don’t have delisting returns (<code>dlret</code>).”</strong> Confirmed limitation per the data assessment. Affects <span class="math inline">\(\le 5\%\)</span> of stock-months, and the bias is well-known to be small for monthly-frequency portfolio-level results (Shumway 1997). <em>Response:</em> documented in the limitations sub-section; quantified by reporting the delisting-flagged fraction of each quintile in summary stats.</li>
+<li><strong>“H2 (post-1999 larger) contradicts McLean-Pontiff post-publication decay.”</strong> Yes — the two hypotheses are competing. AHXZ was published in 2006, so MP-style decay would predict a <em>smaller</em> post-publication spread. Our H2 instead conditions on listings-composition shifts (<code>doidge2017</code>-style stylised fact: post-1999 the public-firm population skews toward smaller, riskier firms). <em>Response:</em> H2 is a stated horserace between two interpretations; the data adjudicates.</li>
+<li><strong>“Using individual-stock FM violates the Shanken correction.”</strong> Per <code>jegadeesh2019empirical</code>. <em>Response:</em> we report both Shanken-adjusted and unadjusted SEs and interpret FM slopes as conditional predictive coefficients, not structural risk premia.</li>
+<li><strong>“Why no MAX-orthogonalised IVOL in main spec?”</strong> The MAX-vs-IVOL horserace is the central question of <code>bali2011maxing</code> and is one paper’s worth of work to do properly. We report MAX as R5 (a robustness, not a confirmatory test) and explicitly disclaim adjudication of the lottery-preference mechanism.</li>
+</ol>
+<hr>
+</section>
+<section id="estimation-approach-summary" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-approach-summary">Estimation Approach Summary</h2>
+<ul>
+<li><strong>Headline portfolios:</strong> quintile sorts with NYSE breakpoints (Spec 1).</li>
+<li><strong>Headline alphas:</strong> CAPM and FF3 (Spec 2) on the long-Q1/short-Q5 portfolio. Newey-West SEs (12 lags).</li>
+<li><strong>Headline cross-section:</strong> Fama-MacBeth with month clustering and Newey-West-adjusted SEs (Spec 3); five controls (size, BE/ME, MOM, STR, lagged IVOL).</li>
+<li><strong>Software:</strong> R, <code>data.table</code> + <code>fixest::feols</code> for the within-month CAPM regressions (vectorised), <code>sandwich::NeweyWest</code> for SEs.</li>
+<li><strong>Output organisation:</strong> tables (.tex bare-tabular) and figures (.pdf, .png) to <code>output/</code>. No table/figure caption in the .tex output; LaTeX wraps with <code>threeparttable</code> per INV-13. Notation across paper, tables, and talk uses the symbols defined in this memo per INV-7 and INV-20.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<ul>
+<li><code>quality_reports/strategy-memo.md</code> (this file)</li>
+</ul>
+<p>Companion artifacts to be produced by paired creators in subsequent dispatches:</p>
+<ul>
+<li><code>scripts/build_factors.R</code> and <code>scripts/analysis.R</code> (coder)</li>
+<li><code>output/table_*.tex</code> and <code>output/figure_*.pdf</code> (coder)</li>
+<li><code>paper/main.tex</code>, <code>paper/references.bib</code> (writer)</li>
+</ul>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://www.mq.edu.au/research/research-centres-groups-and-facilities/centres/fintech-and-banking"><img src="../../../../..\images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2019 - 2026 Mingze Gao
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

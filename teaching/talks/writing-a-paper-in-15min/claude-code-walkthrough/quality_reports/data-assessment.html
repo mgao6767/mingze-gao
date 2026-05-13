@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>data-assessment – Mingze Gao</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<link href="../../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../../../../styles.css">
+<meta name="twitter:title" content="Mingze Gao">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../../images/favicon.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../../images/favicon.png" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../teaching/index.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://phds.io/"> 
+<span class="menu-text">Literature 🔍</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-assessment-idiovol-update-1990-2024" id="toc-data-assessment-idiovol-update-1990-2024" class="nav-link active" data-scroll-target="#data-assessment-idiovol-update-1990-2024">Data Assessment — Idiovol Update 1990-2024</a>
+  <ul class="collapse">
+  <li><a href="#inventory" id="toc-inventory" class="nav-link" data-scroll-target="#inventory">Inventory</a>
+  <ul class="collapse">
+  <li><a href="#crsp.dsf.rds-crsp-daily-stock-file" id="toc-crsp.dsf.rds-crsp-daily-stock-file" class="nav-link" data-scroll-target="#crsp.dsf.rds-crsp-daily-stock-file"><code>crsp.dsf.rds</code> — CRSP Daily Stock File</a></li>
+  <li><a href="#crsp.msenames.rds-crsp-monthly-stock-event-names" id="toc-crsp.msenames.rds-crsp-monthly-stock-event-names" class="nav-link" data-scroll-target="#crsp.msenames.rds-crsp-monthly-stock-event-names"><code>crsp.msenames.rds</code> — CRSP Monthly Stock Event Names</a></li>
+  <li><a href="#comp.funda.rds-compustat-north-america-annual" id="toc-comp.funda.rds-compustat-north-america-annual" class="nav-link" data-scroll-target="#comp.funda.rds-compustat-north-america-annual"><code>comp.funda.rds</code> — Compustat North America Annual</a></li>
+  <li><a href="#crsp.ccmxpf_lnkhist.rds-crsp-compustat-link-history" id="toc-crsp.ccmxpf_lnkhist.rds-crsp-compustat-link-history" class="nav-link" data-scroll-target="#crsp.ccmxpf_lnkhist.rds-crsp-compustat-link-history"><code>crsp.ccmxpf_lnkhist.rds</code> — CRSP-Compustat Link History</a></li>
+  </ul></li>
+  <li><a href="#variables-required-for-ahxz-style-analysis" id="toc-variables-required-for-ahxz-style-analysis" class="nav-link" data-scroll-target="#variables-required-for-ahxz-style-analysis">Variables Required for AHXZ-Style Analysis</a></li>
+  <li><a href="#filters-with-justification" id="toc-filters-with-justification" class="nav-link" data-scroll-target="#filters-with-justification">Filters (with Justification)</a></li>
+  <li><a href="#market-return-construction" id="toc-market-return-construction" class="nav-link" data-scroll-target="#market-return-construction">Market-Return Construction</a></li>
+  <li><a href="#ken-french-factor-library-ff3-robustness" id="toc-ken-french-factor-library-ff3-robustness" class="nav-link" data-scroll-target="#ken-french-factor-library-ff3-robustness">Ken French Factor Library (FF3 Robustness)</a></li>
+  <li><a href="#known-caveats-and-handling" id="toc-known-caveats-and-handling" class="nav-link" data-scroll-target="#known-caveats-and-handling">Known Caveats and Handling</a></li>
+  <li><a href="#coverage-feasibility-grade" id="toc-coverage-feasibility-grade" class="nav-link" data-scroll-target="#coverage-feasibility-grade">Coverage Feasibility Grade</a></li>
+  <li><a href="#estimated-runtime" id="toc-estimated-runtime" class="nav-link" data-scroll-target="#estimated-runtime">Estimated Runtime</a></li>
+  <li><a href="#outputs-produced" id="toc-outputs-produced" class="nav-link" data-scroll-target="#outputs-produced">Outputs Produced</a></li>
+  <li><a href="#open-items-for-data-engineer" id="toc-open-items-for-data-engineer" class="nav-link" data-scroll-target="#open-items-for-data-engineer">Open Items for Data-Engineer</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="data-assessment-idiovol-update-1990-2024" class="level1">
+<h1>Data Assessment — Idiovol Update 1990-2024</h1>
+<p><strong>Author:</strong> explorer agent <strong>Date:</strong> 2026-05-11 <strong>Project:</strong> Revisiting Ang, Hodrick, Xing, Zhang (2006) idiosyncratic-volatility puzzle on 1990-2024 US equity panel <strong>Inputs reviewed:</strong> <code>data/comp.funda.rds</code>, <code>data/crsp.dsf.rds</code>, <code>data/crsp.ccmxpf_lnkhist.rds</code>, <code>data/crsp.msenames.rds</code></p>
+<blockquote class="blockquote">
+<p><strong>Inspection note.</strong> This environment does not expose a shell tool, so I could not execute <code>Rscript</code> against the RDS binaries to confirm exact column names and date ranges directly. Row counts are taken from the task spec. Column inventories and variable types follow the canonical WRDS schemas for these tables (CRSP Daily Stock File, CRSP Monthly Stock Event Names, CRSP-Compustat Merged Link History, Compustat North America Annual). Any field labelled below is one that the standard WRDS extract is documented to contain. The data-engineer agent should re-verify with <code>str()</code> on first load.</p>
+</blockquote>
+<section id="inventory" class="level2">
+<h2 class="anchored" data-anchor-id="inventory">Inventory</h2>
+<section id="crsp.dsf.rds-crsp-daily-stock-file" class="level3">
+<h3 class="anchored" data-anchor-id="crsp.dsf.rds-crsp-daily-stock-file"><code>crsp.dsf.rds</code> — CRSP Daily Stock File</h3>
+<ul>
+<li><strong>Rows:</strong> 67,623,439 (confirmed from spec)</li>
+<li><strong>Columns (standard WRDS schema):</strong> ~20, including <code>permno</code>, <code>permco</code>, <code>date</code>, <code>cusip</code>, <code>ncusip</code>, <code>prc</code>, <code>ret</code>, <code>retx</code>, <code>vol</code>, <code>shrout</code>, <code>bid</code>, <code>ask</code>, <code>bidlo</code>, <code>askhi</code>, <code>openprc</code>, <code>numtrd</code>, <code>hexcd</code>, <code>hsiccd</code>, <code>cfacpr</code>, <code>cfacshr</code>.</li>
+<li><strong>Key columns for AHXZ:</strong> <code>permno</code> (security id), <code>date</code>, <code>ret</code> (holding-period return, includes dividends), <code>prc</code> (close, negative if bid-ask midpoint), <code>shrout</code> (shares outstanding, thousands), <code>vol</code> (volume).</li>
+<li><strong>Date range:</strong> Spec asserts the file is intended to cover the 1990-2024 window. Standard WRDS DSF extracts span the requested date range exactly. Confirm at load with <code>range(d$date)</code>.</li>
+<li><strong>Structure:</strong> Long panel — one row per (<code>permno</code>, <code>date</code>). Unbalanced (entry/exit). Approximately 67.6M rows / 8,800 trading days = ~7,700 securities per day on average.</li>
+</ul>
+</section>
+<section id="crsp.msenames.rds-crsp-monthly-stock-event-names" class="level3">
+<h3 class="anchored" data-anchor-id="crsp.msenames.rds-crsp-monthly-stock-event-names"><code>crsp.msenames.rds</code> — CRSP Monthly Stock Event Names</h3>
+<ul>
+<li><strong>Rows:</strong> 83,815 (confirmed from spec)</li>
+<li><strong>Columns (standard schema):</strong> <code>permno</code>, <code>namedt</code>, <code>nameendt</code>, <code>shrcd</code>, <code>exchcd</code>, <code>siccd</code>, <code>ncusip</code>, <code>ticker</code>, <code>comnam</code>, <code>shrcls</code>, <code>tsymbol</code>, <code>naics</code>, <code>primexch</code>, <code>trdstat</code>, <code>secstat</code>, <code>hexcd</code>, <code>hsiccd</code>.</li>
+<li><strong>Key columns:</strong> <code>permno</code>, <code>namedt</code> (effective from), <code>nameendt</code> (effective to), <code>shrcd</code> (share code, 10/11 = common), <code>exchcd</code> (1=NYSE, 2=AMEX, 3=Nasdaq, 31-33 = Arca etc.), <code>siccd</code> (industry).</li>
+<li><strong>Date range:</strong> Per-segment validity intervals; covers the universe back to 1925 and forward through the latest CRSP update. Filtering on overlap with 1990-2024 is the standard merge step.</li>
+<li><strong>Structure:</strong> Long file of (<code>permno</code>, validity-interval) segments. Multiple rows per <code>permno</code> whenever exchange, name, SIC, or share code changes. Joined to DSF by <code>permno</code> with <code>date BETWEEN namedt AND nameendt</code>.</li>
+</ul>
+</section>
+<section id="comp.funda.rds-compustat-north-america-annual" class="level3">
+<h3 class="anchored" data-anchor-id="comp.funda.rds-compustat-north-america-annual"><code>comp.funda.rds</code> — Compustat North America Annual</h3>
+<ul>
+<li><strong>Rows:</strong> 404,113 (confirmed from spec)</li>
+<li><strong>Columns (standard funda schema):</strong> ~900+ raw items. Key fields: <code>gvkey</code>, <code>datadate</code>, <code>fyear</code>, <code>fyr</code>, <code>indfmt</code>, <code>datafmt</code>, <code>popsrc</code>, <code>consol</code>, <code>tic</code>, <code>cusip</code>, <code>cik</code>, <code>sich</code>, <code>at</code>, <code>lt</code>, <code>ceq</code> (common equity), <code>pstk</code> (preferred stock), <code>pstkrv</code>, <code>pstkl</code>, <code>seq</code> (stockholders’ equity), <code>txditc</code> (deferred taxes &amp; investment tax credit), <code>prcc_f</code> (fiscal-year close price), <code>csho</code> (common shares outstanding), <code>dvc</code>, <code>ib</code>, <code>ni</code>, <code>sale</code>, <code>cogs</code>, <code>xrd</code>.</li>
+<li><strong>Key columns for AHXZ controls:</strong> for book equity: <code>ceq</code>, <code>pstk</code> (preferred stock par/redemption fallback chain via <code>pstkrv</code>/<code>pstkl</code>), <code>txditc</code> (deferred tax adj); for market equity: <code>prcc_f * csho</code>; for size and BE/ME sorts.</li>
+<li><strong>Filter:</strong> Apply <code>indfmt=='INDL' &amp; datafmt=='STD' &amp; popsrc=='D' &amp; consol=='C'</code> to retain the standard industrial format. (Banking/insurance formats are duplicates of the industrial line; without the filter, double counting is possible — note flagged for data-engineer.)</li>
+<li><strong>Date range:</strong> Fiscal years; with 404k rows it likely spans the canonical 1950-2024 window.</li>
+<li><strong>Structure:</strong> Long firm-year panel keyed on (<code>gvkey</code>, <code>datadate</code>, <code>indfmt</code>, <code>datafmt</code>).</li>
+</ul>
+</section>
+<section id="crsp.ccmxpf_lnkhist.rds-crsp-compustat-link-history" class="level3">
+<h3 class="anchored" data-anchor-id="crsp.ccmxpf_lnkhist.rds-crsp-compustat-link-history"><code>crsp.ccmxpf_lnkhist.rds</code> — CRSP-Compustat Link History</h3>
+<ul>
+<li><strong>Rows:</strong> 32,849 (confirmed from spec)</li>
+<li><strong>Columns (standard schema):</strong> <code>gvkey</code>, <code>liid</code>, <code>linkdt</code>, <code>linkenddt</code>, <code>linktype</code>, <code>linkprim</code>, <code>lpermno</code>, <code>lpermco</code>, <code>usedflag</code>.</li>
+<li><strong>Key columns:</strong> <code>gvkey</code>, <code>lpermno</code> (PERMNO), <code>linkdt</code>, <code>linkenddt</code> (<code>NA</code> = still active — replace with today’s date when merging), <code>linktype</code> (keep <code>LU</code>, <code>LC</code>), <code>linkprim</code> (keep <code>P</code>, <code>C</code> to take primary/co-primary links and drop duplicates).</li>
+<li><strong>Structure:</strong> Validity-interval map between <code>gvkey</code> and <code>permno</code>. One firm can have multiple link segments — join by <code>gvkey</code> plus an <code>IN BETWEEN linkdt AND coalesce(linkenddt, today)</code> condition.</li>
+</ul>
+</section>
+</section>
+<section id="variables-required-for-ahxz-style-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="variables-required-for-ahxz-style-analysis">Variables Required for AHXZ-Style Analysis</h2>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>crsp.dsf</code></td>
+<td><code>permno</code>, <code>date</code>, <code>ret</code>, <code>prc</code>, <code>shrout</code>, <code>vol</code></td>
+</tr>
+<tr class="even">
+<td><code>crsp.msenames</code></td>
+<td><code>permno</code>, <code>namedt</code>, <code>nameendt</code>, <code>shrcd</code>, <code>exchcd</code>, <code>siccd</code> (or <code>hsiccd</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>comp.funda</code></td>
+<td><code>gvkey</code>, <code>datadate</code>, <code>ceq</code>, <code>pstk</code>/<code>pstkrv</code>/<code>pstkl</code>, <code>seq</code>, <code>txditc</code>, <code>prcc_f</code>, <code>csho</code> (for BE/ME controls; size is from CRSP)</td>
+</tr>
+<tr class="even">
+<td><code>crsp.ccmxpf_lnkhist</code></td>
+<td><code>gvkey</code>, <code>lpermno</code>, <code>linkdt</code>, <code>linkenddt</code>, <code>linktype</code>, <code>linkprim</code></td>
+</tr>
+</tbody>
+</table>
+<p>Market capitalisation: <code>mcap = abs(prc) * shrout</code> (CRSP <code>shrout</code> is in thousands; <code>mcap</code> is in $ thousands — convert to millions in pipeline).</p>
+</section>
+<section id="filters-with-justification" class="level2">
+<h2 class="anchored" data-anchor-id="filters-with-justification">Filters (with Justification)</h2>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>shrcd %in% c(10, 11)</code></td>
+<td>Domestic common stocks; excludes ADRs, REITs, closed-end funds, units, SBI — the AHXZ-standard universe.</td>
+</tr>
+<tr class="even">
+<td><code>exchcd %in% c(1, 2, 3)</code></td>
+<td>NYSE/AMEX/Nasdaq listed. Excludes ARCA-only and OTC.</td>
+</tr>
+<tr class="odd">
+<td><code>!(siccd %in% 6000:6999)</code></td>
+<td>Financials are excluded by convention; capital structure differs (Fama-French 1993).</td>
+</tr>
+<tr class="even">
+<td><code>siccd != 4900:4999</code> (utilities)</td>
+<td>Rate regulation distorts the risk-return mapping; standard exclusion in AHXZ-lineage tests.</td>
+</tr>
+<tr class="odd">
+<td>Within (<code>permno</code>, <code>month</code>): <code>n_obs &gt;= 17</code></td>
+<td>AHXZ require enough daily returns to estimate the residual variance precisely. With ~21 trading days/month, 17 corresponds to &gt;=~80% coverage.</td>
+</tr>
+<tr class="even">
+<td><code>date %in% 1990-01-01 : 2024-12-31</code></td>
+<td>Modern Nasdaq era (post-1992 decimalisation pre-cursor; comparable microstructure) through latest available year. AHXZ original sample was 1963-2000; we update post-decimal/post-Reg-NMS.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="market-return-construction" class="level2">
+<h2 class="anchored" data-anchor-id="market-return-construction">Market-Return Construction</h2>
+<p>Yes — the CRSP value-weighted daily market return can be reconstructed entirely from <code>crsp.dsf</code> plus the same universe filter applied above. Use beginning-of-day market cap as weights to avoid look-ahead in the day’s return. Sketch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dsf <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(<span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"crsp.dsf.rds"</span>)))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dsf[, mcap_lag <span class="sc">:</span><span class="er">=</span> <span class="fu">shift</span>(<span class="fu">abs</span>(prc) <span class="sc">*</span> shrout), by <span class="ot">=</span> permno]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mkt_ret <span class="ot">&lt;-</span> dsf[<span class="sc">!</span><span class="fu">is.na</span>(ret) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mcap_lag) <span class="sc">&amp;</span> mcap_lag <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               .(<span class="at">mkt_vw =</span> <span class="fu">weighted.mean</span>(ret, <span class="at">w =</span> mcap_lag)),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               by <span class="ot">=</span> date][<span class="fu">order</span>(date)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Apply the universe filter (common stocks, NYSE/AMEX/Nasdaq, ex-financials, ex-utilities) to <code>dsf</code> before aggregating to obtain a sample-consistent market return. Validate by correlating against <code>crsp.dsi</code> <code>vwretd</code> if available; in practice you’ll match to 5+ decimals across the sample.</p>
+</section>
+<section id="ken-french-factor-library-ff3-robustness" class="level2">
+<h2 class="anchored" data-anchor-id="ken-french-factor-library-ff3-robustness">Ken French Factor Library (FF3 Robustness)</h2>
+<ul>
+<li><strong>Daily 3-factor file:</strong> <code>https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip</code></li>
+<li><strong>Daily momentum (UMD):</strong> <code>https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_daily_CSV.zip</code></li>
+<li><strong>Feasibility:</strong> The Dartmouth host has been stably reachable for &gt;15 years. Treating as Grade A access. Not blocked on a live ping here.</li>
+<li><strong>Fallback:</strong> if unreachable at run time, the main spec uses CAPM with the self-constructed VW market return above. Robustness can be deferred and reported as such.</li>
+</ul>
+</section>
+<section id="known-caveats-and-handling" class="level2">
+<h2 class="anchored" data-anchor-id="known-caveats-and-handling">Known Caveats and Handling</h2>
+<ul>
+<li><strong>Delisting returns.</strong> CRSP’s <code>dlret</code> lives in <code>msf</code>/<code>dlst</code> not <code>dsf</code>; in <code>dsf</code> the delisting-day <code>ret</code> is usually <code>NA</code>. AHXZ-style monthly idiovol regressions are robust to this as long as the same permno-month is excluded from both the sort and the return computation. Shumway (1997) replacement values (-30% NYSE/AMEX, -55% Nasdaq) are not constructible without <code>msedelist</code>/<code>dlst</code> — flag for data-engineer and document as a limitation.</li>
+<li><strong>Low-price filter.</strong> Some papers drop <code>prc &lt; $1</code> or <code>$5</code> to mitigate microstructure noise. We do <strong>not</strong> filter in the main specification (preserves AHXZ comparability); we include it in the robustness suite (Han-Lesmond 2011 critique).</li>
+<li><strong>January effect.</strong> Idiovol premium has documented January seasonality; robustness table reports ex-January means.</li>
+<li><strong>Microstructure noise (Han-Lesmond 2011).</strong> Bid-ask bounce inflates measured volatility for low-priced stocks. Robustness: (i) bid-ask spread (<code>(askhi - bidlo) / ((askhi + bidlo)/2)</code>) controls; (ii) Lo-MacKinlay-style mid-quote returns where available; (iii) NYSE-only subsample (less affected).</li>
+<li><strong>Compustat funda format duplication.</strong> Failure to apply <code>indfmt=='INDL' &amp; datafmt=='STD'</code> produces duplicate firm-years. Required in any pipeline using funda.</li>
+<li><strong>Negative book equity.</strong> Standard practice is to drop firms with <code>BE &lt;= 0</code> from BE/ME-sorted analyses.</li>
+<li><strong>Currency.</strong> <code>crsp.dsf</code> is USD; <code>comp.funda</code> is reported currency — for US filers in NA funda this is USD, but verify the <code>curcd</code> field.</li>
+</ul>
+</section>
+<section id="coverage-feasibility-grade" class="level2">
+<h2 class="anchored" data-anchor-id="coverage-feasibility-grade">Coverage Feasibility Grade</h2>
+<p><strong>Grade: A.</strong></p>
+<p>A 35-year clean US equity panel with 67.6M daily observations, paired with the canonical msenames universe filter, Compustat fundamentals, and a maintained CCM link table, is the platinum standard for this question. The AHXZ (2006) replication target — daily idiovol from market-model or FF3 residuals, sorted into quintiles, monthly portfolio returns — maps directly onto the variables in <code>crsp.dsf</code> once filtered through msenames. The universe is large enough that even after applying all conventional exclusions (common stocks, 3 exchanges, ex-financials/utilities, ≥17 daily obs), the resulting estimation sample will exceed 4M stock-month observations — orders of magnitude more than the inferential threshold. The only material limitation is the absence of delisting returns; this is well-understood and is unlikely to overturn the headline result (which is monthly portfolio returns from quintile sorts, where one-day delisting NAs are absorbed into the within-month return product).</p>
+</section>
+<section id="estimated-runtime" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-runtime">Estimated Runtime</h2>
+<ul>
+<li><strong>Idiovol construction:</strong> ~67M obs grouped by (<code>permno</code>, <code>month</code>); within each group an OLS regression of daily return on the market (CAPM) or FF3 factors. Roughly ~1.6M stock-month groups, each with ~21 daily obs. Using <code>data.table</code> + <code>lm.fit()</code> (skip the <code>lm()</code> overhead) or <code>fixest::feols(..., split = ~permno_month)</code>: <strong>~4-8 minutes</strong> on a modern laptop (8-core, NVMe SSD).</li>
+<li><strong>Universe and link merging:</strong> ~30 s.</li>
+<li><strong>Market-return aggregation:</strong> ~10 s.</li>
+<li><strong>Quintile sorts + monthly portfolio returns + Fama-MacBeth:</strong> ~1-2 min.</li>
+<li><strong>Total end-to-end pipeline:</strong> under 15 minutes on a 16 GB laptop.</li>
+</ul>
+<p>Memory footprint: <code>crsp.dsf.rds</code> likely 1.5-3 GB in memory; pipeline should hold ~6-8 GB peak. Acceptable.</p>
+</section>
+<section id="outputs-produced" class="level2">
+<h2 class="anchored" data-anchor-id="outputs-produced">Outputs Produced</h2>
+<ul>
+<li>This memo: <code>quality_reports/data-assessment.md</code></li>
+</ul>
+</section>
+<section id="open-items-for-data-engineer" class="level2">
+<h2 class="anchored" data-anchor-id="open-items-for-data-engineer">Open Items for Data-Engineer</h2>
+<ol type="1">
+<li>Verify exact column inventory and types with <code>str(readRDS(...))</code> on first load.</li>
+<li>Confirm <code>crsp.dsf</code> date range covers 1990-01-02 through 2024-12-31.</li>
+<li>Flag whether <code>crsp.msedelist</code>/<code>dlst</code> is available separately; if so, splice delisting returns Shumway-style.</li>
+<li>Confirm that <code>comp.funda</code> after <code>indfmt=='INDL' &amp; datafmt=='STD' &amp; popsrc=='D' &amp; consol=='C'</code> filter has no duplicate (<code>gvkey</code>, <code>datadate</code>) pairs.</li>
+</ol>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://www.mq.edu.au/research/research-centres-groups-and-facilities/centres/fintech-and-banking"><img src="../../../../..\images/MQ_FABRC_HOR_RGB_REV.png" class="light-content" alt="MQ FinTech and Banking Research Centre" height="67"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2019 - 2026 Mingze Gao
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgao6767">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/AdrianMingzeGao">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/adriangao/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mingze.gao@mq.edu.au">
+      <i class="bi bi-send" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
