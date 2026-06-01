@@ -1,0 +1,530 @@
+---
+title: "AFIN8003 - Workshop 11"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-05-26
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop11.pdf"
+# Custom fields
+pdf-name: "Workshop11.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 11 — Off the balance sheet, into the system"}
+This week we leave the bank's balance sheet behind. **Loan sales** transfer ownership of a loan to a buyer; **securitisation** repackages loans into tradable securities. Both reshape who actually carries the credit risk — and 2008 showed what happens when nobody is paying attention.
+
+Plan for the hour:
+
+1. **Part A — Concept check** ($\approx$ 15 min). Fifteen MCQs. Self-mark, then compare with your neighbour on the two you got wrong.
+2. **Part B — Numerical and short answer** ($\approx$ 15 min). Duration mixing, the MBB deposit-insurance subsidy, and a structured discussion of securitisation across the three risks.
+3. **Part C — Acacia Bank: clearing the deck** ($\approx$ 25 min). Three-round tabletop. *This is the bulk of the workshop.*
+4. **Part D — The big question** ($\approx$ 5 min). Are CLOs the new subprime?
+
+Bring a pen. Mark up the handout.
+:::
+
+\vspace{0.5em}
+
+# Part A — Concept check
+
+## MCQ
+
+1. The **originate-to-distribute** model involves:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Making loans and holding them until maturity, then re-issuing.
+   - [ ] Making loans, selling or securitising them, and using the proceeds to originate new loans.
+   - [ ] Making loans and securitising them without selling.
+   - [ ] Making loans and keeping all loans on the balance sheet without further distribution.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Making loans and holding them until maturity, then re-issuing.
+   - [x] Making loans, selling or securitising them, and using the proceeds to originate new loans.
+   - [ ] Making loans and securitising them without selling.
+   - [ ] Making loans and keeping all loans on the balance sheet without further distribution.
+
+   *Why:* the bank's profit model shifts from **net interest margin** (earned over the loan's life) to **origination fees** (earned upfront). This is the structural reason banks' incentive to screen borrowers weakened pre-2008.
+   :::
+
+2. In a **loan sale without recourse**, the selling FI:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Retains liability if the loan defaults.
+   - [ ] Has no liability if the loan defaults.
+   - [ ] Shares liability with the buyer.
+   - [ ] Must provide additional collateral.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Retains liability if the loan defaults.
+   - [x] Has no liability if the loan defaults.
+   - [ ] Shares liability with the buyer.
+   - [ ] Must provide additional collateral.
+
+   *Why:* "without recourse" = a clean break. The buyer has bought the asset *and* the risk. Most loan sales today are without recourse — *with-recourse* sales would leave the credit risk on the seller's balance sheet, defeating the regulatory-capital purpose.
+   :::
+
+3. Traditional short-term loan sales typically:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Are secured by assets and issued for terms longer than three years.
+   - [ ] Are secured, short-term, and yields tied closely to the commercial paper rate.
+   - [ ] Are unsecured, long-term, and tied to LIBOR.
+   - [ ] Are distressed loans with significant covenant protection.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Are secured by assets and issued for terms longer than three years.
+   - [x] Are secured, short-term, and yields tied closely to the commercial paper rate.
+   - [ ] Are unsecured, long-term, and tied to LIBOR.
+   - [ ] Are distressed loans with significant covenant protection.
+
+   *Why:* traditional short-term loans are a **commercial paper substitute** for the same investment-grade borrowers — secured, $\le$ 90 days, priced off CP. They compete *directly* with the CP market for the same investor base.
+   :::
+
+4. A distinguishing feature of **leveraged loans** is that they:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Have short maturities and fixed interest rates.
+   - [ ] Are always issued at a premium to par.
+   - [ ] Have floating rates over a benchmark (historically LIBOR, now SOFR) and are made to sub-investment-grade borrowers.
+   - [ ] Are issued only to investment-grade borrowers.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Have short maturities and fixed interest rates.
+   - [ ] Are always issued at a premium to par.
+   - [x] Have floating rates over a benchmark (historically LIBOR, now SOFR) and are made to sub-investment-grade borrowers.
+   - [ ] Are issued only to investment-grade borrowers.
+
+   *Why:* "leveraged" = sub-investment grade. The benchmark migration matters: **LIBOR ceased in mid-2023**; most U.S. leveraged loans now reference SOFR (Secured Overnight Financing Rate). Australian equivalents would reference BBSW.
+   :::
+
+5. A loan sale by **assignment** involves:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Transferring only part of the loan rights to the buyer.
+   - [ ] Transferring all rights and claims on the borrower to the buyer.
+   - [ ] Allowing the buyer to control the original credit agreement, but not own the loan.
+   - [ ] Keeping ownership with the seller.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Transferring only part of the loan rights to the buyer.
+   - [x] Transferring all rights and claims on the borrower to the buyer.
+   - [ ] Allowing the buyer to control the original credit agreement, but not own the loan.
+   - [ ] Keeping ownership with the seller.
+
+   *Why:* **assignment** = direct claim. **Participation** = indirect claim through the originator (and double exposure: borrower + originator). Lehman's failure in 2008 taught participants the hard way to insist on assignment language.
+   :::
+
+6. In a **participation** loan sale contract, the buyer:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Holds a direct claim on the borrower.
+   - [ ] Gains full control over loan contract terms.
+   - [ ] Assumes risk both from the borrower *and* from the selling FI.
+   - [ ] Becomes the primary creditor.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Holds a direct claim on the borrower.
+   - [ ] Gains full control over loan contract terms.
+   - [x] Assumes risk both from the borrower *and* from the selling FI.
+   - [ ] Becomes the primary creditor.
+
+   *Why:* the original credit agreement is between borrower and seller — the participant's claim is on the seller's right to receive payment. If the seller fails (Lehman, 2008), the participant becomes an unsecured creditor in the seller's bankruptcy.
+   :::
+
+7. FIs sell loans primarily to:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Shift credit risk only.
+   - [ ] Earn fee income, reduce regulatory capital costs, and improve liquidity.
+   - [ ] Expand lending portfolios without origination.
+   - [ ] Avoid Basel III altogether.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Shift credit risk only.
+   - [x] Earn fee income, reduce regulatory capital costs, and improve liquidity.
+   - [ ] Expand lending portfolios without origination.
+   - [ ] Avoid Basel III altogether.
+
+   *Why:* the four motives from lecture — credit risk, reserve requirements (historically), fee income, capital costs, liquidity. "Avoid Basel III" is too strong: banks reduce risk-weighted assets *within* Basel, but they don't escape it.
+   :::
+
+8. Asset **securitisation** is primarily aimed at managing:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Credit and market risk.
+   - [ ] Interest rate, credit, and liquidity risks (and capital cost).
+   - [ ] Liquidity risk only.
+   - [ ] Operational and liquidity risks.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Credit and market risk.
+   - [x] Interest rate, credit, and liquidity risks (and capital cost).
+   - [ ] Liquidity risk only.
+   - [ ] Operational and liquidity risks.
+
+   *Why:* securitisation is the *multi-tool* of bank risk management — it can move credit exposure off-balance-sheet, generate cash (liquidity), and shorten the asset side's duration (interest rate).
+   :::
+
+9. In a securitisation via **SPV**, the SPV:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Holds loans until maturity and issues short-term debt.
+   - [ ] Packages loans, creates new securities, sells them to investors, and ceases to exist when the loans mature.
+   - [ ] Manages loans indefinitely on the originating bank's balance sheet.
+   - [ ] Acts as a deposit-taking institution.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Holds loans until maturity and issues short-term debt.
+   - [x] Packages loans, creates new securities, sells them to investors, and ceases to exist when the loans mature.
+   - [ ] Manages loans indefinitely on the originating bank's balance sheet.
+   - [ ] Acts as a deposit-taking institution.
+
+   *Why:* the SPV is a single-purpose, bankruptcy-remote vehicle — it does its one job (issue ABS against a fixed pool) and dissolves. This is what makes it *off-balance-sheet* from the originating bank's perspective.
+   :::
+
+10. A key risk specific to **SIVs** (but not SPVs) is:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Prepayment risk.
+    - [ ] Operational risk.
+    - [ ] Run risk — short-term ABCP funding cannot be rolled over.
+    - [ ] Liquidity risk does not apply, because SIVs hold deposits.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Prepayment risk.
+    - [ ] Operational risk.
+    - [x] Run risk — short-term ABCP funding cannot be rolled over.
+    - [ ] Liquidity risk does not apply, because SIVs hold deposits.
+
+    *Why:* SIVs hold long-dated loans funded by *short-term* asset-backed commercial paper. They are **banks in everything except deposits** — and crucially, without deposit insurance or a lender of last resort. This is exactly the maturity transformation that vapourised the SIV sector in 2007–2008.
+    :::
+
+11. **Pass-through securities** are characterised by:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Fractional ownership of a mortgage pool, with all prepayments passed pro-rata to investors.
+    - [ ] Multiple tranches with pre-specified prepayment waterfalls.
+    - [ ] Excess collateral pledged against a fixed bond coupon.
+    - [ ] Funding through short-term commercial paper.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [x] Fractional ownership of a mortgage pool, with all prepayments passed pro-rata to investors.
+    - [ ] Multiple tranches with pre-specified prepayment waterfalls.
+    - [ ] Excess collateral pledged against a fixed bond coupon.
+    - [ ] Funding through short-term commercial paper.
+
+    *Why:* pass-throughs are the *simplest* and *largest* form — the U.S. agency MBS market exceeds US\$9 trillion outstanding. The other three options describe CMOs, MBBs, and SIVs respectively.
+    :::
+
+12. **CMOs** differ from pass-throughs in that they:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Guarantee higher returns to all investors.
+    - [ ] Allocate prepayments across tranches in a specified order, redistributing prepayment risk.
+    - [ ] Remain on the originator's balance sheet.
+    - [ ] Are issued only by commercial banks.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Guarantee higher returns to all investors.
+    - [x] Allocate prepayments across tranches in a specified order, redistributing prepayment risk.
+    - [ ] Remain on the originator's balance sheet.
+    - [ ] Are issued only by commercial banks.
+
+    *Why:* a CMO doesn't *remove* prepayment risk — it just decides who gets it first. Class A absorbs early prepayments; Class C absorbs them last. Same total cash flow, sliced differently.
+    :::
+
+13. Class A of a CMO is most attractive to:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Insurance companies seeking long duration.
+    - [ ] Depositary institutions (banks) because of its short average life.
+    - [ ] Pension funds seeking medium-term assets.
+    - [ ] Distressed-debt funds.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Insurance companies seeking long duration.
+    - [x] Depositary institutions (banks) because of its short average life.
+    - [ ] Pension funds seeking medium-term assets.
+    - [ ] Distressed-debt funds.
+
+    *Why:* Class A pays down first, so it has the **shortest expected life**. Banks match short-life liabilities (deposits) with short-life assets — Class A fits. Class C, with the longest life, is the pension-fund and life-insurance tranche.
+    :::
+
+14. **Mortgage-backed bonds (MBBs)** differ from pass-throughs and CMOs because they:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Pass mortgage cash flows directly to investors.
+    - [ ] Remain on the issuer's balance sheet and are backed by excess collateral that has *no direct cash-flow link* to the bond coupon.
+    - [ ] Provide investors a fractional ownership share in the mortgage pool.
+    - [ ] Require no excess collateral.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Pass mortgage cash flows directly to investors.
+    - [x] Remain on the issuer's balance sheet and are backed by excess collateral that has *no direct cash-flow link* to the bond coupon.
+    - [ ] Provide investors a fractional ownership share in the mortgage pool.
+    - [ ] Require no excess collateral.
+
+    *Why:* MBBs (and European/Australian **covered bonds**) are *issuer obligations* — the mortgages are collateral, not the source of cash flow. The bank still pays a fixed coupon regardless of what borrowers do, until the bank itself fails.
+    :::
+
+15. In September 2018, U.S. regulators flagged **leveraged loans** as a financial stability risk because:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] Demand from CLO investors had collapsed.
+    - [ ] Protections on loans to junk-rated borrowers were strengthening.
+    - [ ] Market size had doubled in six years, with ~90% of new loans now "covenant-lite" and CLOs absorbing the bulk of issuance.
+    - [ ] Credit ratings of leveraged loans had improved dramatically.
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] Demand from CLO investors had collapsed.
+    - [ ] Protections on loans to junk-rated borrowers were strengthening.
+    - [x] Market size had doubled in six years, with ~90% of new loans now "covenant-lite" and CLOs absorbing the bulk of issuance.
+    - [ ] Credit ratings of leveraged loans had improved dramatically.
+
+    *Why:* the parallel to 2007 subprime was the *scale and the weakening protections*, not the ratings. The U.S. leveraged loan market is now ~US\$1.4–1.5T outstanding; CLOs buy 60–70% of new issuance.
+    :::
+
+\vspace{0.5em}
+
+# Part B — Numerical and short answer
+
+## Q1 — Mixing duration with a loan purchase
+
+An FI has total assets of \$20 million: \$5 million in cash (duration 0) and \$15 million in loans. Its current average asset duration is 3.5 years. It plans to use the \$5 million cash to **buy** a new loan and lift average asset duration to 5 years.
+
+(a) What is the implied duration of the *existing* \$15 million loan book?
+(b) If the FI purchases a loan with duration 7 years, what will the new average asset duration be? Is this acceptable?
+(c) What duration should the *purchased* loan have to hit the 5-year target exactly?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**(a)** Let $D_L$ be the loan-book duration. Average duration today:
+
+$$
+0 \times \frac{5}{20} + D_L \times \frac{15}{20} = 3.5 \;\Rightarrow\; D_L = \frac{3.5 \times 20}{15} = 4.667 \text{ years}.
+$$
+
+**(b)** Replace the cash with a 7-year loan; the loan book is now \$15m at 4.667 and \$5m at 7:
+
+$$
+\bar{D} = \frac{15}{20}\times 4.667 + \frac{5}{20}\times 7 = 3.5 + 1.75 = 5.25 \text{ years}.
+$$
+
+That overshoots 5 years. *Acceptable?* It depends on the FI's interest-rate-risk tolerance — 5.25 is 25 bp of duration *longer* than target, which translates to roughly $0.25 \times \Delta r$ extra equity sensitivity per percentage-point rate move. Most ALM committees would push back and look for a slightly shorter loan.
+
+**(c)** Solve for the required duration $D^\star$ of the new loan:
+
+$$
+\frac{15}{20}\times 4.667 + \frac{5}{20}\times D^\star = 5 \;\Rightarrow\; D^\star = \frac{(5 - 3.5)\times 20}{5} = 6.0 \text{ years}.
+$$
+
+So a 6-year loan hits the target exactly. The lesson: a **loan sale or purchase is a duration-management tool** as much as a credit-management tool.
+:::
+:::
+
+## Q2 — The MBB deposit-insurance subsidy
+
+Re-read the MBB balance-sheet example from lecture. A bank holds \$20m in long-term mortgages, financed by \$10m insured deposits and \$10m uninsured deposits. The insured-deposit rate is 2% (just above risk-free); uninsured deposits demand 4%. The bank now issues a \$10m MBB backed by **\$12m of pledged (segregated) mortgages**. The MBB is rated AAA because of the excess collateral and trades at 2.5%. The bank uses the proceeds to redeem the uninsured deposits.
+
+(a) What is the **annual funding-cost saving** for the bank?
+(b) After the swap, the deposit insurer's exposure is to \$10m of *insured* deposits backed by what amount of *unpledged* assets? What is the implicit subsidy *from the deposit insurer* (and ultimately taxpayers) to the bank?
+(c) **Mini-debate.** Why might APRA allow covered-bond issuance up to **8% of Australian assets** but no more?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**(a)** Funding-cost saving: uninsured deposits cost $4\% \times \$10\text{m} = \$400\text{k}$ p.a. The MBB costs $2.5\% \times \$10\text{m} = \$250\text{k}$ p.a. **Saving = \$150k per year.**
+
+**(b)** The pledged \$12m is ring-fenced for MBB holders. Insured deposits of \$10m are now backed by only $\$20\text{m} - \$12\text{m} = \$8\text{m}$ of unpledged assets. If the bank fails, MBB holders take their \$12m collateral first; the insurer is left to cover the \$2m shortfall on the insured deposits. **The implicit subsidy is the value of that bailout option** — economically, the bank has converted unsecured creditor risk into deposit-insurer (taxpayer) risk. The \$150k annual saving from (a) is a lower bound on the subsidy.
+
+**(c)** APRA's 8% asset-encumbrance cap exists *exactly* to limit this. If covered-bond issuance is too large a share of the balance sheet, the deposit-insurance scheme (FCS in Australia) ends up backstopping a bank that has already ring-fenced most of its high-quality assets to other investors. The cap balances funding-diversification benefits against this asset-encumbrance risk. The U.K. and EU use similar caps — Australia's 8% is at the conservative end internationally.
+:::
+:::
+
+## Q3 — Securitisation across the three risks
+
+How does an FI use **securitisation** to manage (i) interest-rate risk, (ii) credit risk, and (iii) liquidity risk? For each, give **one sentence** on the mechanism and **one example product** (pass-through, CMO, MBB, or CLO) most useful for that risk.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+1. **Interest-rate risk.** Mechanism: move long-duration assets off the balance sheet, replacing them with cash or short-duration assets, which shrinks the duration gap. Best fit: **pass-throughs** (clean removal) or **CMOs** if the FI wants to retain a *specific* duration slice (e.g., keep Class A on-book).
+2. **Credit risk.** Mechanism: sell the loan into a bankruptcy-remote SPV; the SPV issues ABS to investors who now bear the default risk. Best fit: **CLOs** for corporate loan books and **pass-throughs** for residential mortgages.
+3. **Liquidity risk.** Mechanism: convert illiquid loans into tradable securities, generating same-day cash without forced sales of the underlying loans. Best fit: **pass-throughs** (deepest market) or, for a *temporary* liquidity need, retain the senior tranche of a self-issued securitisation and use it as repo collateral with the central bank.
+
+Note: **MBBs / covered bonds** are the odd ones out — they manage *funding cost* rather than transferring credit risk, and the underlying mortgages stay on-balance-sheet.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part C — Acacia Bank: clearing the deck
+
+::: {.callout-important title="The scenario"}
+You're back at **Acacia Bank**'s desk. Last week the Group Treasurer dealt with FX, sovereign, and OBS shocks (Workshop 10). This week, the **Head of Credit Portfolio Management** has handed you a different problem.
+
+Acacia has originated A\$5 billion of corporate loans over the past 12 months — far more than its capital plan envisaged. Risk-weighted assets are bumping against APRA's CET1 floor. The Board wants RWA down by **A\$2 billion in this quarter**, without shrinking the customer franchise. You have three tools: **loan sales, securitisation, and CLO issuance**. Use them.
+
+Discuss with your neighbour. Be ready to defend your numbers.
+:::
+
+## Acacia's loan book (Monday 9:00 AM)
+
+\small
+
+| **Tranche** | **Size (A\$m)** | **Avg rating** | **Avg coupon** | **RWA density** |
+|:---|---:|:---:|---:|---:|
+| Investment-grade corporate term loans | 2,000 | BBB | SOFR + 180 bp | 60% |
+| Leveraged loans (sub-IG, covenant-lite) | 1,500 | B+ | SOFR + 425 bp | 100% |
+| Residential mortgages (prime) | 1,000 | n/a | 5.50% fixed | 35% |
+| Distressed leveraged loans (recently downgraded) | 500 | CCC | SOFR + 650 bp | 150% |
+
+\normalsize
+
+**Funding cost:** Acacia's marginal wholesale funding rate is **SOFR + 95 bp**. CET1 ratio target is **11.5%**.
+
+\vspace{0.5em}
+
+## Round 1 — Monday (the distressed CCC book)
+
+::: {.callout-warning title="9:30 AM Monday"}
+The A\$500m CCC tranche is the obvious first cut. Bid lists arrive from two buyers: a **vulture fund** offering 78 cents per dollar of par, and a **regional bank** offering 84 cents on the condition that Acacia sells **with recourse**.
+:::
+
+**(a)** Which bid maximises Acacia's *cash proceeds*? Which maximises Acacia's *risk transfer*?
+
+**(b)** A junior banker suggests selling **80% of the tranche to the vulture fund as a participation**, keeping 20% on-book. Identify *two distinct problems* with this idea.
+
+**(c)** Estimate the **RWA reduction** from selling 100% of the CCC tranche, without recourse, to the vulture fund. By how much does this move Acacia toward the A\$2bn quarterly target?
+
+RWA reduction $=$ **____________** (A\$m)
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 1"}
+- **Bids.** The vulture fund (78c, no recourse) gives A\$390m cash and a clean break — the credit risk is *gone*. The regional bank (84c, with recourse) gives A\$420m cash but the bank can put the loans back if they default further — so the credit risk *isn't actually gone*. Acacia should compare the A\$30m extra cash against the expected cost of repurchasing the worst-performing loans (and probably also the regulatory-capital benefit, which is much smaller under recourse because the loans don't get a clean derecognition).
+- **Participation with the vulture fund.** Problem 1: a vulture fund is the *worst counterparty for a participation* — the participation buyer bears the seller's solvency risk, but here the *fund* is the buyer, so the issue is actually whether the fund has the franchise and access to vote/negotiate workout terms. Problem 2: keeping 20% on-book preserves both the RWA charge (proportionally) *and* puts Acacia in an awkward position vis-à-vis the workout — the vulture fund and Acacia have very different incentives (fund wants quick recovery, Acacia wants to preserve the client relationship).
+- **RWA reduction.** RWA on the tranche today $=$ A\$500m $\times 150\% = $ A\$750m. Clean sale removes this entirely. **Reduction = A\$750m, which is 37.5% of the A\$2,000m target.** A great start — the worst-quality tranche carries disproportionate RWA.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 2 — Tuesday (securitising the mortgages)
+
+::: {.callout-warning title="10:00 AM Tuesday"}
+Next on the list: the A\$1,000m residential mortgage book. The Treasury team proposes pooling these into an **RMBS** (residential mortgage-backed security) issued through a bankruptcy-remote **SPV**. Capital markets desk pre-sounded investors and indicates the SPV would issue:
+
+- **Class A (60%)** — AAA, expected coupon SOFR + 70 bp
+- **Class B (25%)** — AA, expected coupon SOFR + 110 bp
+- **Class M (10%)** — BBB, expected coupon SOFR + 240 bp
+- **Class E (5%)** — unrated **equity tranche, retained by Acacia** (regulatory requirement under APS 120)
+:::
+
+**(a)** Sketch the **waterfall logic**. Which class absorbs the *first* mortgage default? Which class absorbs *prepayments* first?
+
+**(b)** Why is Acacia *required* to retain the 5% equity tranche? (Hint: the term is "skin in the game".) Which post-2008 reform is this?
+
+**(c)** Compute the **RWA reduction** from this securitisation, assuming the equity tranche carries a **1,250% risk weight** (the standard punitive weight for retained securitisation equity under Basel III). Compare to a naive "sold everything" expectation.
+
+Mortgage RWA *today* $=$ **____________** (A\$m).
+
+Retained equity RWA *after securitisation* $=$ **____________** (A\$m).
+
+**Net RWA reduction** $=$ **____________** (A\$m).
+
+**(d)** Is Acacia exposed to **run risk** in this structure? Would your answer change if Acacia had used an **SIV** instead of an SPV?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 2"}
+- **Waterfall.** **Defaults** hit from the bottom up: equity first, then Class M, then B, then A. **Prepayments** are usually allocated top-down to senior tranches first in standard sequential-pay structures — Class A retires first, then B, then M. This is the classic CMO logic applied to RMBS.
+- **Skin in the game.** Post-2008 (specifically the Dodd-Frank Act § 941 in the U.S. and equivalent rules under APRA's APS 120 and EU Securitisation Regulation Art. 6), securitisation originators must retain at least 5% of the issuance — *to align incentives with investors* and prevent the 2006–2007 problem where originators sold every dollar of exposure and stopped caring about loan quality. The 1,250% risk weight on retained equity is APRA's way of saying "we believe you're keeping the worst slice — capitalise it as if it will all be lost".
+- **RWA numbers.**
+  - *Today:* A\$1,000m $\times 35\% = $ **A\$350m**.
+  - *After:* Acacia keeps A\$50m equity at 1,250% $=$ **A\$625m** in RWA.
+  - **Net effect: RWA *increases* by A\$275m.** Securitisation *moves capital around the balance sheet but doesn't always release it* — this is a critical lesson. The mortgage book had relatively low RWA to begin with (prime mortgages are 35%); securitising forces Acacia to hold *more* capital against the equity tranche than against the original pool. **Securitising prime mortgages purely for RWA relief is usually a bad trade.**
+  - The trade *would* make sense if Acacia's primary objective were **liquidity** (it raises ~A\$950m of cash from selling the senior tranches) or **funding diversification**.
+- **Run risk.** Not in the SPV structure — the SPV is funded by *long-dated* RMBS bondholders who can't demand their money back. If Acacia used a **SIV** funded by short-term ABCP, run risk would re-emerge: ABCP investors can refuse to roll, and the SIV would have to fire-sell the mortgages or come back on-balance-sheet (exactly what happened to Citigroup in December 2007).
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 3 — Wednesday (the CLO trade)
+
+::: {.callout-warning title="11:00 AM Wednesday"}
+After Rounds 1 and 2, Acacia has reduced RWA by A\$750m (CCC sale) but added A\$275m (RMBS retention). **Net: down A\$475m of A\$2,000m target.** The remaining lever is the **leveraged loan book** (A\$1,500m at 100% RWA).
+
+The capital markets desk proposes packaging it into a **CLO** managed by a third-party manager. The structure is similar to Round 2, but Acacia retains a **5% vertical strip** rather than the equity tranche — i.e., 5% of *every* tranche from AAA down to equity. Capital treatment is more favourable.
+:::
+
+**(a)** Compute the **RWA effect** of the CLO, assuming the retained vertical strip is treated under Basel's **SEC-IRBA approach** at an average risk weight of **100%** on the retained 5%.
+
+Leveraged loan RWA today $=$ **____________** (A\$m).
+
+Retained strip RWA after $=$ **____________** (A\$m).
+
+**Net reduction** $=$ **____________** (A\$m).
+
+**(b)** Does Acacia hit the A\$2,000m quarterly target with the three trades combined?
+
+**Cumulative RWA reduction across Rounds 1–3** $=$ **____________** (A\$m).
+
+**(c)** **Risk migration check.** Acacia has now *sold* most of its leveraged loan exposure. Where did the credit risk *go*? Identify the typical buyers of (i) the AAA tranche, (ii) the BBB tranche, and (iii) the equity tranche of the CLO.
+
+**(d)** A regulator at next month's review says: *"You've reduced your RWA, but you haven't reduced systemic risk."* Defend or rebut.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 3"}
+- **CLO numbers.**
+  - *Today:* A\$1,500m $\times 100\% = $ **A\$1,500m**.
+  - *After:* Acacia retains 5% vertical $=$ A\$75m at 100% RWA $=$ **A\$75m** of RWA. (The vertical strip is far gentler than the equity-only retention from Round 2, because the AAA portion has a low risk weight.)
+  - **Net reduction: A\$1,425m.** This is enormous compared with the mortgage trade.
+- **Cumulative.** Round 1: $-$A\$750m. Round 2: $+$A\$275m. Round 3: $-$A\$1,425m. **Total: $-$A\$1,900m.** Just short of A\$2,000m — Acacia gets to ~95% of target, which is close enough that the Board would accept it.
+- **Where did the risk go?**
+  - *AAA tranche:* insurance companies, pension funds, sovereign wealth funds, other banks' liquidity portfolios. Often Asian and European institutional investors.
+  - *BBB tranche:* dedicated credit funds, asset-management firms, some hedge funds.
+  - *Equity tranche:* CLO equity funds, specialist alternative-credit managers, sometimes the CLO manager itself ("manager equity").
+- **Defend or rebut.** Both sides have merit.
+  - *The regulator is right* in the sense that the **leveraged loans still exist** — Acacia simply transferred them to a CLO held by institutional investors. If those investors are themselves highly leveraged (some BDCs are 1× or 2× levered), the system's gross exposure is unchanged or even amplified. @irani_rise_2021 documents exactly this migration into less-regulated nonbanks.
+  - *The regulator is wrong* in the sense that **diversification across many CLO investors** is structurally safer than concentration on one bank's balance sheet. Most CLO investors hold to maturity and can absorb losses without triggering a run. CLOs survived COVID-19 with surprisingly few defaults.
+  - The honest answer: it depends on *who* the buyers turn out to be in stress. The post-2008 worry is that risk has migrated from regulated banks to *less observable* corners of the financial system — which means the next crisis will start somewhere regulators aren't looking.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part D — The big question
+
+::: {.callout-note title="Wrap-up — discuss for the last 5 minutes"}
+**The CLO market is now around US\$1 trillion outstanding — comparable in scale to the 2007 subprime mortgage market.**
+
+Yet during the COVID-19 shock of 2020, CLOs *did not implode*. Defaults peaked far below the doomsday scenarios painted by the Fed, IMF, and BIS in 2018–2019. Some argue this proves CLOs are structurally sounder than subprime ever was: better diversified, with corporate borrowers rather than households, and held by long-dated institutional investors rather than money-market funds.
+
+Others argue CLOs were saved by **Fed intervention** (the Primary and Secondary Market Corporate Credit Facilities of April 2020) and that we shouldn't conclude anything about their resilience absent a rescue.
+
+**So — are CLOs the new subprime, a fundamentally safer product, or just one rescue away from being the next subprime?** What would you tell the Acacia Board?
+:::
+
+\vspace{0.5em}
+
+::: {.callout-tip title="Take home — three lines to remember"}
+1. **Loan sales** are a duration-and-credit tool: assignment is clean, participation is double-exposure, and most sales today are without recourse.
+2. **Securitisation moves risk around the balance sheet — it does not always release capital.** Retention rules (the 5% rule, 1,250% risk weights on equity) deliberately keep "skin in the game".
+3. **Risk doesn't disappear — it migrates.** CLOs took the credit risk that banks once held; whether that makes the system safer or just less visible is the open question of post-2008 banking.
+:::
