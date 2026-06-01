@@ -1,0 +1,385 @@
+---
+title: "AFIN8003 Week 12 - Emerging Topics in Bank Risk Management"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-05-26
+draft: false
+categories:
+    - AFIN8003
+    - 2026S1
+format:
+  mq-revealjs:
+    chalkboard: true
+    embed-resources: false
+    echo: true
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    echo: false
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week12.pdf"
+# Custom fields
+pdf-name: "Week12.pdf"
+---
+
+# Emerging topics in bank risk management
+
+## Where we are
+
+Twelve weeks ago we asked a simple question: **why do banks exist?**
+
+The standard answer — banks reduce information asymmetry, transform liquidity, and allocate credit — has held up for two centuries. But every function in that sentence is now contested by someone who does not call themselves a bank.
+
+::: {.callout-tip title="A useful provocation"}
+In 1994, Bill Gates said: *"Banking is necessary, banks are not."* Three decades later, the world is still arguing about the second half of that sentence.
+:::
+
+This week we look at the forces pulling at the traditional banking model — **FinTech**, **BigTech**, **neobanks**, **open banking**, and **central bank digital currencies (CBDCs)** — and what they mean for risk management.
+
+## Changing dynamics
+
+Traditional banks — taking deposits, granting loans, running payments — face pressure on every side.
+
+- **Global competition** with other banks.
+- **Competition with nonbanks** ("shadow banks"):
+    - Many of banks' classic functions can now be performed by nonbanks.
+    - FinTech firms reduce information asymmetry through big-data screening and AI/ML monitoring, customise services, and cut search-and-match costs through platform economics.
+    - Crucially, **nonbanks are not regulated, or are less regulated, than banks**.
+- **Central bank digital currencies (CBDC)**:
+    - If households hold CBDC instead of bank deposits, banks lose their cheapest funding source.
+- **Technology**:
+    - Mobile banking has made deposits more mobile too — runs now happen at the speed of a Twitter screenshot (see SVB, March 2023).
+- **Business model**:
+    - The shift from *originate-and-hold* to *originate-and-distribute* (Week 11) means banks now manufacture and ship credit risk rather than warehouse it.
+
+::: {.callout-note title="Silicon Valley Bank, 10 March 2023"}
+SVB lost **US\$42 billion of deposits in a single day** — about a quarter of its deposit base — after a Slack-and-Twitter-driven panic among its tech-VC client base. The FDIC took it over the next morning. This was the **first social-media-driven bank run** at systemic scale. The takeaway: digital channels are not just a customer-experience story; they are a liquidity-risk story.
+:::
+
+## FinTech
+
+Financial technology — **FinTech** — has grown from a niche to a structural feature of finance.
+
+The **EY Global FinTech Adoption Index** (2019), measuring FinTech users as a share of the digitally active population, gave a snapshot just before COVID:
+
+  - Global average: **64%** in 2019 (up from 16% in 2015).
+  - China and India led at **87%**.
+  - Russia and South Africa: **82%**.
+  - Australia: **58%**.
+  - United States: **46%**.
+
+::: {.callout-warning title="The numbers are now stale"}
+EY did not refresh this index after 2019. By all subsequent measures (Statista, FIS, World Bank Findex 2021/2025) adoption has risen further — particularly mobile payments in emerging markets and BNPL in advanced economies. Treat the 2019 numbers as a *lower bound*, not current state.
+:::
+
+::: {.callout-note}
+The Financial Stability Board (FSB) defines FinTech as *"technology-enabled innovation in financial services that could result in new business models, applications, processes or products with an associated material effect on the provision of financial services."*
+:::
+
+## Evolution of FinTech
+
+FinTech is older than your phone — it dates to the **1800s**.
+
+- **1866** — the first successful trans-Atlantic telegraph cable was laid, enabling near-instant financial globalisation.
+- **1918** — the Federal Reserve Banks established **Fedwire**, transferring funds via a Morse-code telegraph system.
+- **1930s** — Germany trialled the world's first **telex** network, replacing the Morse key with a typewriter keyboard.
+- **1958** — Western Union began building a telex network in the United States.
+- **1960** — **Quotron Systems** delivered the first electronic real-time stock quotes.
+- **1966** — telex became the standard for long-distance interbank communication.
+
+::: {.callout-tip title="History rhymes"}
+Each generation thinks its technology is uniquely transformative. In 1866 the telegraph let London and New York settle trades the same day — a change as radical as instant settlement looks today.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Evolution of FinTech (cont'd)
+:::
+
+The late 1960s and 1970s brought rapid advances in electronic payments.
+
+- **1967** — Barclays installed the **first ATM** in Enfield, London. Cheques marked with carbon-14 served as security tokens (anti-card-skimming, 1960s edition).
+- **1968** — the UK established the **Inter-Bank Computer Bureau** (renamed **BACS** in 1971).
+- **1970** — the US launched the **Clearing House Interbank Payments System (CHIPS)**.
+- **1971** — **NASDAQ**, the world's first electronic stock market, opened for business.
+- **1973** — **SWIFT** was founded to standardise global interbank messaging.
+
+The **1980s** brought electronic trading, mainframe-driven retail banking, and the modern customer database.
+
+The **1990s** brought the public Internet, e-commerce, and online discount brokerages (E\*Trade, Charles Schwab Online).
+
+The **early 2000s** brought decimalisation, algorithmic trading, and high-frequency trading (HFT) — see @shkilko_every_2020 on how HFT competition redistributes liquidity provision and consumption across the trading day.
+
+::: {.callout-note title="So when did 'FinTech' start?"}
+Depending on whom you ask: 1866 (the cable), 1967 (the ATM), 1973 (SWIFT), 2008 (Bitcoin), or 2009 (the iPhone App Store). The label is recent; the activity is not.
+:::
+
+## Factors driving FinTech development
+
+Both **supply-side** and **demand-side** factors explain the modern FinTech wave.
+
+### Supply-side
+
+1. **The Global Financial Crisis (2008–09):**
+      - Post-crisis regulation forced banks to cut costs, hoard capital, and de-risk.
+      - Higher capital and conduct costs led banks to retreat from marginal lending (small business, riskier consumers).
+      - New entrants — peer-to-peer (P2P) lenders, marketplace lenders — moved into the gap, using cloud infrastructure rather than branch networks.
+2. **Macroeconomic conditions:**
+      - The post-GFC near-zero interest rate environment compressed net interest margins.
+      - FinTechs leaned hard on automation — algorithmic underwriting, instant onboarding — to undercut bank cost structures.
+
+::: {.callout-tip title="Same crisis, two opposite responses"}
+The GFC made *banking* more conservative and *banking-adjacent activity* more aggressive. Almost every household-name FinTech (LendingClub, Stripe, Square, Klarna, Revolut, Up) was founded **2009–2015** — a direct product of the regulatory and rate environment that followed the crisis.
+:::
+
+::: {.content-hidden when-format="pdf"}
+## Factors driving FinTech development (cont'd)
+:::
+
+### Demand-side
+
+1. **Mobile technology:**
+      - The **iPhone (2007)** and Android launched the mobile revolution.
+      - Smartphones turned a phone into a wallet, broker, bank branch, and payment terminal.
+      - Global smartphone penetration was ~67% in 2020 and has continued to rise, particularly in Asia, Africa, and Latin America.
+2. **Demographics:**
+      - **Millennials** (born 1981–1996) became the largest generation in the U.S. labour force in 2016.
+      - They are tech-native and, in surveys, more sceptical of traditional banks (a residue of watching parents in the GFC).
+      - **Gen Z** is even more app-first and bank-agnostic. For many, their "bank" is whichever app holds their card.
+
+::: {.callout-note title="Cultural shift, not just product shift"}
+Ask a 25-year-old to describe their main bank. Increasingly the answer is an app — Up, Revolut, Wise, Cash App — even though a chartered ADI sits invisibly behind it. The customer relationship has moved up the stack.
+:::
+
+## Changing relationship between banks and FinTechs
+
+A decade ago, the consensus was that FinTechs would eat banks. The story is now more nuanced.
+
+- In the **2010s** many predicted the demise of traditional banks.
+- FinTechs had real advantages: no legacy core systems, no branches, no compliance scars, a single-product focus.
+- Some suggested banks would shrink into **"narrow banking"** — holding only safe assets while platforms matched borrowers and savers directly.
+- In 2015, JPMorgan Chase CEO **Jamie Dimon** famously warned shareholders that *"Silicon Valley is coming"* for the banking industry.
+- A 2015 PwC survey: **56%** of CEOs worried about cross-sector competition; **32%** named technology as the main threat.
+- By 2016: **76%** of executives saw FinTech as a risk — particularly in consumer banking. Key worries: market share loss (70%), margin pressure (70%), customer churn (50%).
+- McKinsey estimated that **10–40% of retail banking revenues** and **20–60% of profits** could be at risk by 2025.
+
+::: {.callout-important title="What actually happened"}
+By 2026, the apocalyptic predictions look overstated. Incumbents kept the **deposit franchise** (cheap funding, deposit insurance, regulated trust). Most successful FinTechs ended up either *partnering* with banks, *acquiring* a bank (or an ADI licence), or *being acquired* — Revolut, Wise, Klarna, Square. The interesting question is no longer "will banks survive?" but **"who owns the customer interface, and who owns the balance sheet?"**
+:::
+
+::: {.callout-warning title="FinTech failure: Wirecard (June 2020)"}
+Germany's celebrated payments FinTech — at one point worth more than Deutsche Bank — collapsed when auditors discovered that **€1.9 billion** of supposed escrow cash in the Philippines simply did not exist. CEO Markus Braun was arrested; COO Jan Marsalek remains a fugitive. The episode forced a broader European debate about how *exactly* FinTech "innovation" was being supervised.
+:::
+
+## Neobanks and challenger banks in Australia
+
+- **Neobank**: fully digital bank, no physical branches, mobile-first, modern tech stack.
+- **Challenger bank**: newer, agile bank competing with incumbents; can be digital-only or hybrid.
+
+Common features:
+
+  - App-based onboarding and product delivery.
+  - Faster product cycles; little legacy IT debt.
+  - Low fixed costs (no branch network).
+  - Often target younger or underserved segments (SMEs, gig workers, students).
+
+::: {.content-hidden when-format="pdf"}
+## Neobanks and challenger banks in Australia (cont'd)
+:::
+
+::: {.callout-important title="To take deposits, you need an ADI licence"}
+APRA grants **Authorised Deposit-taking Institution (ADI)** licences. Without one, an entity may *brand* itself as a bank-like product but cannot legally call itself a bank or accept deposits. APRA introduced a **Restricted ADI (RADI)** pathway in 2018 to lower the entry barrier for new entrants — Volt, Xinja and Judo were among the early users.
+:::
+
+| Bank          | Notes                                                                                  |
+|---------------|----------------------------------------------------------------------------------------|
+| **Up**        | Mobile-only, launched 2018; runs on Bendigo & Adelaide Bank's ADI                      |
+| **UBank**     | NAB-owned; relaunched 2022 on the 86 400 tech stack after NAB acquired 86 400 in 2021  |
+| **Judo Bank** | Full ADI granted April 2019; SME-focused; ASX-listed November 2021                     |
+| **Alex Bank** | Full ADI granted 22 December 2022; consumer lending and savings                        |
+| **ANZ Plus**  | ANZ's in-house digital bank, launched 2022 on a new cloud core                          |
+
+: Selected neobanks and digital challengers in Australia {#tbl-neobanks-aus}
+
+::: {.callout-warning title="Neobank graveyard"}
+Two Australian neobanks did **not** make it:
+
+- **Xinja** — surrendered its ADI in **December 2020** after burning through capital while paying market-leading deposit rates with no lending book to offset funding cost.
+- **Volt Bank** — closed and returned deposits in **June 2022** after failing to raise the capital needed to scale a profitable lending book.
+
+The lesson: a neobank is still a bank. You cannot out-tech the basic arithmetic of net interest margin, capital adequacy, and credit losses.
+:::
+
+## Why it matters for banking & risk
+
+- **Competition** — new entrants pressure incumbents on UX, pricing, and deposit products.
+- **Funding & liquidity** — digital-only customer bases tend to be **more rate-sensitive** and **more mobile**. Deposit beta is higher; deposit runs are faster (SVB, again).
+- **Operational & cyber risk** — heavy reliance on cloud, APIs, third-party tech. A single AWS region outage can take a neobank offline; a single API key leak can be catastrophic.
+- **Regulation** — APRA's regimes for digital banks, Banking-as-a-Service (BaaS), and crypto/stablecoin exposure are still evolving.
+- **Profitability challenge** — many neobanks remain structurally loss-making. *Growth at any cost* is no longer rewarded by capital markets.
+
+## BigTech in finance
+
+Google, Apple, Amazon, Meta and (in Asia) Alibaba and Tencent have all pushed into financial services.
+
+- Tech giants invested heavily in FinTech for new revenue streams (CB Insights tracks well over **US\$1 billion** in big-tech FinTech investment per year in recent years).
+- The competitive edge: massive distribution, deep user data, no legacy IT, near-zero customer-acquisition cost for existing users.
+- Focus has been **mostly on payments and embedded credit** rather than full banking:
+    - **Apple Pay**, **Google Pay**, **Amazon Pay**.
+    - **Apple Card** (with Goldman Sachs, 2019 — Goldman announced its exit from the partnership in late 2023, illustrating that even highly publicised BigTech–bank tie-ups are fragile).
+    - **Apple Savings Account** (2023, via Goldman) — a high-yield savings product reached billions of dollars in deposits within weeks.
+- BigTechs generally **prefer to partner with a licensed bank** rather than become one — the regulatory burden of a full bank charter is rarely worth the marginal profit.
+
+::: {.callout-warning title="Ant Group's IPO, November 2020"}
+In one of the most dramatic regulatory interventions in financial history, China suspended Ant Group's **US\$34 billion** IPO — what would have been the largest IPO ever — *48 hours before pricing*. Beijing then forced Ant to restructure as a financial holding company subject to bank-style capital rules. The clear message to the rest of the world's BigTechs: **if you start to look like a bank, you will be regulated like one.**
+:::
+
+## Generative AI and banks
+
+The wave that none of the textbooks anticipated. Since the release of **ChatGPT (November 2022)**, banks have shifted from cautious AI pilots to large-scale deployment.
+
+- **Customer service automation** — **Klarna** announced in early 2024 that an OpenAI-powered assistant was handling the equivalent of **700 full-time customer-service roles** in its first month, with comparable customer satisfaction.
+- **Code generation** — most major banks now have internal LLM coding assistants; Goldman, JPMorgan, and Morgan Stanley have publicly disclosed deployments.
+- **Risk and compliance** — LLMs are being used to triage AML alerts, draft credit memos, and summarise regulatory filings.
+
+::: {.callout-caution title="New risks to manage"}
+GenAI introduces *new* operational and model risk categories that current frameworks barely address:
+
+- **Hallucination** in customer-facing chat (a wrong answer about a mortgage product is a mis-selling exposure).
+- **Third-party concentration** — almost every bank's GenAI stack runs on Microsoft Azure / OpenAI or AWS Bedrock. That is a *systemic* concentration of operational dependency.
+- **Model and data governance** — APRA's CPS 230 (operational resilience, effective July 2025) and CPS 234 (information security) now both apply to AI service providers.
+- **Bias and explainability** — GenAI-assisted credit decisions still need to satisfy responsible-lending obligations.
+:::
+
+## Regulatory approaches to FinTech
+
+### FinTech charters and other licences
+
+- Regulators have introduced virtual bank licences, FinTech charters, e-money licences, and restricted ADIs to **lower the cost of entry**.
+- In 2018, the U.S. Treasury recommended **special-purpose national bank charters for FinTechs**; legal challenges from state regulators have delayed implementation, and several FinTechs have instead sought *full* national bank charters.
+- Australia uses the **RADI** pathway (APRA, since 2018); the U.K. uses **PRA's New Bank Start-up Unit**; Singapore issues **digital full-bank** and **digital wholesale-bank** licences.
+
+::: {.content-hidden when-format="pdf"}
+## Regulatory approaches to FinTech (cont'd)
+:::
+
+### Regulating BigTech
+
+- BigTech firms can scale rapidly using existing user bases, data, and network effects — raising concerns about market power, data governance, and contagion to the financial system.
+- In China, **Alipay (Ant)** and **WeChat Pay (Tencent)** between them process the vast majority of mobile payments — a level of concentration regulators elsewhere consider a cautionary tale.
+- BigTechs have already expanded into lending, insurance, and wealth management.
+- The traditional **activity-based** regulatory framework (regulate the activity, not the firm) may be inadequate when one firm conducts many activities at scale.
+- **Entity-based** regulation is on the rise:
+    - EU **Digital Markets Act** (2022) and **Digital Services Act**.
+    - China's anti-monopoly guidelines and the Ant restructuring.
+    - U.S. antitrust action against the largest platforms.
+
+::: {.content-hidden when-format="pdf"}
+## Regulatory approaches to FinTech (cont'd)
+:::
+
+### Cross-border regulations
+
+Two EU regulations have been particularly consequential for FinTech globally.
+
+- **GDPR** (adopted 2016, enforceable 25 May 2018) gives EU citizens control over their personal data and requires protection of data exported outside the EU. It has effectively become a **global standard** because most multinational firms apply one privacy regime everywhere.
+- **PSD2** (passed 2015, payment services in effect Jan 2018; strong customer authentication from Sep 2019) requires banks to share consumer banking data with authorised third parties — the foundation of **open banking**.
+
+## Open Banking and the Consumer Data Right (CDR)
+
+PSD2 was the first regulatory move to the concept of **open banking**.
+
+**Open banking** allows the sharing of financial data between institutions through application programming interfaces (APIs), conditional on **the consent of the customer**. In Australia this lives under the **Consumer Data Right (CDR)**.
+
+- CDR launched in **banking in 2020**, expanded to **energy in 2022**, and is staged into non-bank lending and other sectors.
+- It gives customers (and the FinTechs they authorise) machine-readable access to their own transaction data.
+
+::: {.callout-note title="What the research says"}
+@he_open_2023 model how open banking redistributes informational rents between incumbents and entrants — it lowers banks' information monopoly over their depositors but also intensifies competition for the *most profitable* customers. @babina2024 document the early effects in practice.
+:::
+
+::: {.callout-tip title="A concrete example"}
+A neobank like Up can, with your consent, pull your full transaction history from another bank via the CDR and underwrite a personal loan in minutes — using *the incumbent bank's own data* against it. That is open banking working as designed.
+:::
+
+## Central Bank Digital Currency (CBDC)
+
+A **CBDC** is a digital form of a country's fiat currency, issued and regulated by its central bank.
+
+- Two flavours:
+    - **Retail CBDC** — for the general public, like digital cash.
+    - **Wholesale CBDC** — restricted to financial institutions for interbank settlement.
+- Potential benefits: financial inclusion, faster and cheaper payments (including cross-border), a regulated alternative to crypto, stronger monetary policy transmission, better visibility of money flows.
+- Key concerns: **privacy** (the central bank could in principle see every transaction), **cybersecurity**, and — most discussed in academic literature — **bank disintermediation**.
+
+::: {.callout-warning title="Why bank treasurers worry about CBDC"}
+If households can hold central-bank money directly — risk-free, fully insured by definition, instant — why hold uninsured deposits at a commercial bank? The fear is a **structural outflow of deposits** to CBDC, forcing banks into more expensive wholesale funding and shrinking credit supply.
+
+@chiu_bank_2023, @chiu_central_2023, @williamson_central_2022, @niepelt_money_2024 model these channels and reach more nuanced conclusions: whether CBDC is *contractionary* for bank credit depends on its design — interest-bearing or not, capped or uncapped per holder, and how the central bank recycles the resulting reserves back to banks.
+:::
+
+## Where CBDCs actually stand in 2026
+
+::: {.callout-note title="Live and at scale"}
+- **Bahamas — Sand Dollar** (Oct 2020) — the world's **first** live retail CBDC. Adoption has been modest.
+- **Nigeria — eNaira** (Oct 2021) — uptake has been disappointing; cash remains dominant.
+- **China — e-CNY** — large pilots since 2020, expanded coverage at the 2022 Beijing Winter Olympics; still positioned as complementary to cash and digital wallets.
+:::
+
+::: {.callout-note title="In active design"}
+- **EU — digital euro** — ECB launched the **preparation phase** in November 2023; legislative framework is working through the European Parliament.
+- **UK — digital pound** — Bank of England and HM Treasury have published design papers; no commitment to launch.
+- **Australia** — see Project Acacia below.
+:::
+
+::: {.callout-important title="Australia: Project Atom → Project Dunbar → Project Acacia"}
+The RBA's CBDC research has been **wholesale-focused**, not retail:
+
+- **Project Atom** (2020) — RBA's first wholesale CBDC proof-of-concept, with CBA, NAB, Perpetual and ConsenSys.
+- **Project Dunbar** (2022) — RBA with BIS Innovation Hub, Singapore (MAS), Malaysia (BNM), and South Africa (SARB) — multi-CBDC cross-border settlement.
+- **Project Acacia** (announced November 2024) — RBA + Treasury, a three-year research programme on **wholesale CBDC** and **tokenised asset markets**.
+
+This is the same "Acacia" name we have been using in workshops, on purpose. The RBA is *not* (yet) pursuing a retail CBDC.
+:::
+
+::: {.callout-caution title="Politics matters"}
+On **23 January 2025**, the new U.S. administration issued an executive order **prohibiting the Federal Reserve from issuing or studying a retail CBDC**. The same week, the ECB reiterated its commitment to the digital euro. Whether your country gets a CBDC has become, like much of finance, a question of politics as much as economics.
+:::
+
+@bai_adoption_2025 studies the conditions under which CBDC adoption actually takes off — design choices, the existing payments stack, and how aggressively the central bank competes with private money matter more than the technology itself.
+
+Read more: [phds.io](https://phds.io/?all=CBDC).
+
+## What we have learned this semester
+
+If you remember three things from this entire course:
+
+1. **Banks exist because information is costly and trust is scarce.** Every "disruption" — FinTech, BigTech, crypto, CBDC — is ultimately a story about who can solve those two problems most cheaply, and who is allowed to.
+2. **Risk does not disappear; it migrates.** Loan sales move credit risk to buyers. Securitisation moves it to investors. Shadow banking moves it outside the regulated perimeter. Open banking moves it across firms. CBDC could move it onto the central bank's balance sheet. The regulator's job is to know where it lands.
+3. **The regulator is always one crisis behind.** Basel I was the response to 1980s loan-loss cycles. Basel II/III to the GFC. CPS 230 to operational and cloud risk. Whatever the next big rulebook covers will tell us what just broke.
+
+# Finally...
+
+## Suggested readings
+
+- Australian Banking Association — [Open Banking](https://www.ausbanking.org.au/priorities/open-banking/).
+- [Consumer Data Right (CDR)](https://www.cdr.gov.au/) — the official Australian CDR portal.
+- Reserve Bank of Australia — [Project Acacia](https://www.rba.gov.au/payments-and-infrastructure/central-bank-digital-currency/) and predecessor wholesale CBDC research.
+- BIS Innovation Hub — [Project Dunbar](https://www.bis.org/about/bisih/topics/cbdc/dunbar.htm) on multi-CBDC cross-border settlement.
+- He, Z., Huang, J., & Zhou, J. (2023). [Open banking: Credit market competition when borrowers own the data](https://doi.org/10.1016/j.jfineco.2022.12.003). *Journal of Financial Economics*, 147(2), 449–474.
+- Babina, T., Bahaj, S. A., Buchak, G., De Marco, F., Foulis, A., Gornall, W., Mazzola, F., & Yu, T. (2024). [Customer Data Access and Fintech Entry: Early Evidence from Open Banking](https://doi.org/10.3386/w32089). NBER Working Paper 32089.
+- Chiu, J., Davoodalhosseini, S. M., Jiang, J., & Zhu, Y. (2023). [Bank market power and central bank digital currency: Theory and quantitative assessment](https://doi.org/10.1086/722517). *Journal of Political Economy*, 131(5), 1213–1248.
+
+## References
