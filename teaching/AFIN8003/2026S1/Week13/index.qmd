@@ -1,0 +1,1263 @@
+---
+title: "AFIN8003 Week 13 - Review"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-06-02
+categories:
+    - AFIN8003
+    - 2026S1
+format: 
+  mq-revealjs: 
+    chalkboard: true
+    embed-resources: false
+    code-fold: true
+    footer: "AFIN8003 Banking and Financial Intermediation"
+    mermaid-format: svg
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Week13.pdf"
+# Custom fields
+pdf-name: "Week13.pdf"
+---
+
+# Course overview
+
+## About this course
+
+Course description:
+
+- This unit applies finance theory to the context of operational decision-making and risk management in banking and financial intermediation. 
+- The major decision areas for banking management are covered within a regulatory and corporate responsibility framework. 
+- Major risks of banks and financial intermediation are being examined.
+
+Key approaches:
+
+- Research-informed teaching.
+- Australian focus with global evidence.
+- Priority on bank risk management.
+
+## Weekly topics
+
+1. Introduction to banking and financial intermediation
+1. Risks and regulation
+1. Capital management and adequacy
+1. Interest rate risk
+1. Market risk 
+1. Credit risk I: individual loan risk
+1. Credit risk II: loan portfolio and concentration risk
+1. Liquidity risk
+1. Liability and liquidity management
+1. Sovereign risk, foreign exchange risk, and off-balance-sheet risk
+1. Loan sales and securitisation
+1. Emerging topics in bank risk management
+1. Review
+
+## Three big ideas to take with you
+
+Before we walk through twelve weeks of material in one hour, here is the spine of the whole course:
+
+::: {.callout-tip title="Three big ideas"}
+1. **Banks exist because information is costly and trust is scarce.** Every risk we have studied — credit, liquidity, market, operational, FX, sovereign — is a price we pay for solving those two problems with leverage.
+2. **Risk does not disappear; it migrates.** Capital regulation moves risk onto buffers. Loan sales move it to buyers. Securitisation moves it to investors. Derivatives move it to counterparties. Open banking and CBDC move it across firms and onto central banks. The exam-ready question is always *where did the risk go*?
+3. **The regulator is always one crisis behind.** Basel I followed the 1980s loan-loss cycle. Basel II/III followed the GFC. CPS 230 (operational resilience) followed COVID and cloud incidents. The *next* rulebook will tell us what just broke.
+:::
+
+::: {.callout-note title="How to use this review"}
+This deck **does not replace** the weekly lectures. It is a navigation map. For any concept you are unsure about, jump back to the weekly slides.
+:::
+
+# The specialness of bank and financial intermediaries
+
+## Financial intermediation
+
+> A __financial system__ encompasses various _financial intermediaries_, markets, regulators, and infrastructure in the generation and distribution of financial resources. 
+
+__Financial intermediation__ is part of the financial system.
+
+- It is the process by which financial intermediaries, such as banks, facilitate the flow of funds between savers and borrowers. 
+- Banks are a major part of financial intermediation.
+
+## Why is banking and financial intermediation necessary?
+
+A banking analogue of the @Modigliani1958 theorem would imply that banks are useless with perfect financial markets.
+
+- In a competitive equilibrium, banks make zero profit and have no impact on other agents' decisions. Firms are indifferent between bank credit and bonds. [@freixas_microeconomics_2023]
+
+The existence of banks (and other financial intermediaries) must be justified by their roles in __mitigating market frictions__. 
+
+- A simple look at the @Diamond1983 model.
+- The optimal allocation can be achieved with competitive banks offering deposit contracts and investing in the long-term (i.e., maturity transformation).
+  - also, asset transformation, risk transformation and liquidity transformation.
+  - Panic-based bank runs may occur even when illiquid assets are risk-free.
+- Banks are also better positioned to mitigate informational frictions in the market due to __economies of scale__.
+  - __Screening__ costs in the context of _adverse selection_ [@Broecker1990].
+  - __Monitoring__ costs in the context of _moral hazard_ [@Holmstrom1997].
+
+# Risks and regulation
+
+## Why banks are regulated, and how
+
+Bank failure has large negative externalities — depositor losses, credit-supply collapse, real-economy damage (cf. the GFC). Hence heavy regulation:
+
+::: {.columns}
+:::: {.column width="60%"}
+- **Microprudential** — safety and soundness of the *individual* bank (capital adequacy, risk and liquidity management). The pre-GFC focus.
+- **Macroprudential** — stability of the *system* (systemic focus, countercyclical policies, stress testing). Added post-GFC.
+
+The two are complementary, not substitutes.
+::::
+:::: {.column width="40%"}
+For every risk in this course we apply the **I-M-M** framework:
+
+1. **Identify** — definition, source, nature.
+2. **Measure** — gauge exposure.
+3. **Manage** — mitigate.
+::::
+:::
+
+# Capital management and adequacy
+
+## Capital management and regulation
+
+::: {.callout-tip title="Why capital regulation exists"}
+Bank failures impose costs on people who never agreed to bear them — depositors, borrowers, taxpayers. Capital is the **first line of defence** that keeps those costs internal to shareholders, not external to the public.
+:::
+
+Capital absorbs losses and mitigates insolvency risk. The level a bank holds is guided by:
+
+1. **Regulated capital adequacy requirements** — country-specific, but the **Basel Accords** (BCBS of the BIS) provide the global framework.
+2. **Risk-return trade-offs** — capital is expensive; banks won't hold more than they have to.
+
+## From Basel I to Basel III
+
+- **Basel I (1988)** — first systematic capital adequacy framework; RWA for credit risk only; min Tier 1 = 4%, Total = 8%.
+- **Basel II (2006)** — three pillars (minimum requirements, supervisory review, market discipline); added operational risk; standardized vs IRB.
+- **Basel 2.5 (2009)** — patched market-risk capital after the GFC trading-book disasters.
+- **Basel III (2010, revised 2017)** — our focus. Adds macroprudential layers: buffers, liquidity ratios (LCR/NSFR), leverage ratio, and higher trading-book charges.
+
+::: {.callout-note}
+Basel III is our focus, of course.
+:::
+
+## Risk-based capital ratio
+
+Under Basel III, depositary institutions (DIs) calculate and monitor four capital ratios:
+
+::: {.columns}
+:::: {.column width="50%"}
+1. __Common equity Tier 1 (CET1) risk-based capital ratio__
+$$
+\text{CET1 capital ratio} = \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}
+$${#eq-cet1-capital-ratio}
+
+2. __Tier 1 risk-based capital ratio__
+$$
+\text{Tier 1 capital ratio} = \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}}
+$${#eq-tier1-capital-ratio}
+
+3. __Total risk-based capital ratio__
+$$
+\text{Total capital ratio} = \frac{\text{Total capital}}{\text{Risk-weighted assets}}
+$${#eq-total-capital-ratio}
+
+4. __Tier 1 leverage ratio__
+$$
+\text{Tier 1 leverage ratio} = \frac{\text{Tier 1 capital}}{\text{Total exposure}}
+$${#eq-tier1-leverage-ratio}
+::::
+
+:::: {.column width="50%"}
+- The calculation of these capital ratios is complex.
+- Use risk-weighted assets (RWA) to distinguish the different credit risks of different assets.
+- Measure a DI's __credit risk__ (on-and off-balance-sheet).
+
+::: {.callout-important}
+- Additional capital charges for __market risk__ and __operational risk__.
+  - For now, we do not consider these risks and their impact on RWA.
+  - We briefly explain how they affect RWA and capital ratios at the end of this lecture.
+:::
+
+::::
+:::
+
+## Tiers of capital
+
+- **CET1** — common shares, retained earnings, other reserves, minority interests (less regulatory adjustments). The "loss-absorbing-while-going-concern" core.
+- **Additional Tier 1** — perpetual instruments without maturity (e.g. noncumulative perpetual preferred stock).
+- **Tier 2** — supplementary capital: subordinated debt, certain loan-loss provisions.
+
+$$\text{Tier 1} = \text{CET1} + \text{Additional Tier 1}, \quad \text{Total Capital} = \text{Tier 1} + \text{Tier 2}$$
+
+Two approaches to measure credit RWA (since Basel II):
+
+- **Standardised** — used by smaller DIs.
+- **Internal ratings-based (IRB)** — used by large DIs (in Australia, the 6 largest).
+
+## Minimum required capital adequacy ratios
+
+The minimum required capital ratios:
+$$
+\begin{aligned}
+\text{CET1 capital ratio} &= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}} \ge 4.5\% \\
+\text{Tier 1 capital ratio} &= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} \ge 6\% \\
+\text{Total capital ratio} &= \frac{\text{Total capital}}{\text{Risk-weighted assets}} \ge 8\% \\
+\text{Tier 1 leverage ratio} &= \frac{\text{Tier 1 capital}}{\text{Total exposure}} \ge 4\%
+\end{aligned}
+$$ {#eq-min-required-capital-ratio}
+
+## Buffers on top of the minimums
+
+Basel III adds two buffers — both **CET1 only** — that sit *above* the minimums:
+
+- **Capital conservation buffer**: +2.5% of RWA — effective CET1 floor of **7%**. If breached, distributions (dividends, bonuses) are restricted.
+- **Countercyclical capital buffer (CCyB)**: 0–2.5% of RWA, switched on by national regulators when credit growth is excessive.
+
+The point of the buffers is **automatic restraint**: as the buffer is eaten, dividend and bonus payouts are choked off *before* the bank hits the binding minimum.
+
+## Risk-based capital: beyond credit risk
+
+So far, the capital ratios (specifically, RWA) are calculated to account for the DI's credit risk. However, a DI's insolvency risk can also manifest from interest rate risk, market risk, operational risk, and more.
+
+In Basel III, RWA should be the sum of three components:
+
+1. RWA for credit risk (covered in this lecture)
+2. RWA for market risk. Can be calculated using two approaches:[^rwa-mkt-risk]
+   1. Standardized approach proposed by regulators. Revised standards published in 2016 to be implemented in 2019.
+   2. DI's internal market risk model subject to regulator approval. Move towards expected shortfall rather than value at risk (VaR).
+3. RWA for operational risk. Some complicated calculation.[^rwa-op-risk]
+
+[^rwa-mkt-risk]: For details, see [RBC20.9](https://www.bis.org/basel_framework/chapter/RBC/20.htm?inforce=20230101&published=20201126#paragraph_RBC_20_20230101_20_9).
+[^rwa-op-risk]: For details, see [RBC20.10](https://www.bis.org/basel_framework/chapter/RBC/20.htm?inforce=20230101&published=20201126#paragraph_RBC_20_20230101_20_10).
+
+::: {.callout-important}
+The RWA in the minimum capital ratios (@eq-min-required-capital-ratio) is the sum of all three RWAs.
+
+We covered only the RWA for credit risk.
+:::
+
+
+# Interest rate risk
+
+## What is interest rate risk?
+
+::: {.callout-note title="Interest Rate Risk"}
+__Interest rate risk__ is the possibility of a financial loss due to changes in interest rates.
+:::
+
+::: {.callout-warning title="Why interest rate risk matters — SVB, again"}
+Silicon Valley Bank had bought long-dated Treasuries when rates were near zero. When the Fed raised rates aggressively in 2022–23, those bonds' market value fell sharply — turning **interest rate risk** into a **liquidity crisis** the moment depositors demanded their money. Maturity mismatch is the oldest banking risk and still the most lethal.
+:::
+
+One of the key functions performed by financial institutions (especially depositary institutions) is __maturity transformation__. For DIs, they take short-term deposits from depositors and make long-term loans to borrowers. As a result,
+
+1. This maturity transformation means that FIs have __mismatches of maturities__ of their liabilities (e.g., deposits) and assets (e.g., loans).
+2. Maturity mismatch exposes FIs to (unexpected) interest rate changes:
+   1. refinancing and reinvestment risks
+   2. financial instruments have different levels of value sensitivity to interest rate changes
+3. Interest rate _is_ volatile and can be unexpected.
+
+## Interest rate risk and Basel framework
+
+As discussed previously, the three pillars of Basel framework (since Basel II) include:
+
+1. minimum capital requirements
+2. supervisory review
+3. effective use of disclosure (for market discipline)
+
+The Pillar 1 involves a capital adequacy framework surrounding minimum ratios of various capital (CET1, Tier 1, Total) to RWA.
+
+- The RWA is sum of RWAs for credit risk, market risk, and operational risk.
+- There is currently no "RWA for interest rate risk".
+
+The __Interest Rate Risk in the Banking Book (IRRBB)__ is part of the Basel capital framework's Pillar 2 (supervisory review) and Pillar 3 (disclosure).
+
+## Repricing model
+
+The **repricing (funding-gap) model** is a book-value cash-flow analysis of the difference between interest income on assets and interest paid on liabilities over each maturity bucket. APRA requires smaller ADIs to use it for banking-book interest-rate exposure.
+
+**Repricing gap** = $RSA - RSL$, where RSA/RSL are rate-sensitive assets/liabilities that reprice within a given maturity bucket (e.g. variable-rate mortgages, term deposits).
+
+$$
+\Delta NII_i = GAP_i \times \Delta R_i = (RSA_i - RSL_i) \times \Delta R_i
+$$
+
+where $\Delta NII_i$ is the change in net interest income in bucket $i$.
+
+## Duration model
+
+The essence of duration gap model is the concept of __duration__, which is covered in introductory finance courses.
+
+Duration directly measures the interest rate sensitivity of an asset or liability:
+
+$$
+\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R
+$$ {#eq-duration-and-price}
+
+where
+
+- $\Delta P$ is the price change of assets or liabilities
+- $\Delta R$ is the change of interest rate
+- $MD$ is the __modified duration__ that equals to $\frac{D}{1+R}$
+
+The larger the numerical value of $D$, the more sensitive is the price of that asset or liability to changes or shocks in interest rates.
+
+::: {.callout-important}
+The relationship is only true for small changes in the yield.
+:::
+
+## Duration and interest rate risk management
+
+Duration can be used to measure a financial institution's __duration gap__ to evaluate the FI's overall interest rate exposure.
+It is possible to calculate the duration of the asset portfolio and of the liability portfolio.
+
+- Duration of a portfolio is the weighted average duration of its components.
+
+::: {.columns}
+:::: {.column}
+Duration of assets portfolio:
+
+$$
+D_A = \sum_{i=1}^{N_A} w_{iA} \times D^A_i
+$$
+
+where $N_A$ is the total number of assets, $w_{iA}$ is the market value weight of asset $i$, $D^A_i$ is the duration of asset $i$.
+
+So, change of assets value for a given change in interest rate is 
+
+$$
+\Delta A = - D_A \times A \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-and-assets-value}
+::::
+
+:::: {.column}
+Duration of liabilities portfolio:
+
+$$
+D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
+$$
+
+where $N_L$ is the total number of liabilities, $w_{iL}$ is the market value weight of liability $i$, $D^L_i$ is the duration of liability $i$.
+
+So, change of liabilities for a given change in interest rate is 
+
+$$
+\Delta L = - D_L \times L \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-and-liabilities-value}
+::::
+:::
+
+## The duration model
+
+Since $A = L + E$, we have $\Delta E = \Delta A - \Delta L$. Substituting @eq-duration-and-assets-value and @eq-duration-and-liabilities-value and assuming the rate shock is the same on both sides:
+
+$$
+\Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
+$$ {#eq-duration-model-lev}
+
+where $k = L/A$ is leverage. The effect on net worth decomposes into three terms:
+
+1. The **leverage-adjusted duration gap** $(D_A - D_L k)$.
+2. The **size** of the FI, $A$.
+3. The **size of the rate shock**, $\Delta R / (1+R)$.
+
+# Market risk
+
+## Market risk
+
+::: {.callout-note title="Market Risk"}
+__Market risk__ is uncertainty of an FI’s earnings on its trading portfolio caused by changes, particularly extreme changes, in market conditions such as the price of an asset, interest rates, market volatility, and market liquidity.
+:::
+
+<!-- ::: {.callout-warning title="When tail risk arrives — Archegos and the LME nickel squeeze"}
+- **Archegos Capital Management** (March 2021) — a single family office's concentrated equity swaps positions blew up, costing Credit Suisse **US\$5.5B** and contributing to its eventual 2023 collapse. *Counterparty risk in the trading book.*
+- **LME nickel** (March 2022) — a short squeeze sent nickel prices to **US\$100,000/tonne** in hours. The LME cancelled trades and shut the market for a week. *Market liquidity risk meeting governance failure.*
+
+Both episodes are why regulators have moved away from VaR — which assumes "normal" distributions — toward **Expected Shortfall** for trading-book capital.
+::: -->
+
+FIs are concerned about the potential impact of changing market conditions on their trading book and ultimately their net worth and solvency.
+
+A natural question becomes:
+
+> How to quantify such impact?
+> What is the __potential change in value__ of trading portfolio for a given period?
+
+More specifically,
+
+1. What is the worst loss we can expect not to exceed with a given confidence level over a specific time horizon?
+2. What is the expected loss when losses exceed a certain level over a specific time horizon?
+
+Answering these questions leads to the development of two important concepts for measuring market risk exposure:
+
+1. Value at Risk (VaR).
+2. Expected Shortfall (ES).
+
+We start with the concept of Value at Risk (VaR), then discuss its limitations and the use of Expected Shortfall (ES).
+
+## Value at Risk (VaR)
+
+Suppose we know the distribution of an asset's returns over a specific period (in the future), then for a given confidence level $c\in[0,1]$ (e.g., $c=0.95$), we can partition the distribution into two parts: one (in red) that represents a proportion of $(1-c)$ of the distribution and the other (in blue) accounting the remaining $c$ proportion.
+
+::: {.columns}
+:::: {.column}
+```{python}
+# | label: fig-returns-VaR
+# | fig-cap: "Distribution of expected returns and VaR"
+# | fig-location: center
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Parameters
+mu = 0  # Mean of returns
+sigma = 0.01  # Standard deviation of returns
+n = 10000  # Number of simulations
+confidence_level = 0.95
+
+# Simulate returns
+returns = np.random.normal(mu, sigma, n)
+
+# Calculate VaR
+VaR = np.percentile(returns, (1 - confidence_level) * 100)
+
+# Plot histogram with different colors for bars below and above VaR
+plt.figure(figsize=(10, 6))
+
+# Histogram data
+n, bins, patches = plt.hist(returns, bins=50, alpha=0.75, edgecolor="black")
+
+# Change color of bars
+for i in range(len(patches)):
+    if bins[i] < VaR:
+        patches[i].set_facecolor("#A6192E")
+    else:
+        patches[i].set_facecolor("#D6D2C4")
+
+# Add VaR line
+plt.axvline(VaR, color="#A6192E", linestyle="dashed", linewidth=2)
+plt.title("Simulated Distribution of Returns with VaR")
+plt.xlabel("Return")
+plt.ylabel("Frequency")
+plt.legend(["VaR at 95%", "Returns"])
+plt.grid(True)
+plt.show()
+```
+::::
+
+:::: {.column}
+Therefore, the cutoff value of returns that separates the two parts defines:
+
+- a minimum return that we are confident 95% of the time, or
+- __a maximum loss that we are confident 95% of the time__.
+
+::::
+:::
+
+## Models for computing VaR
+
+Over the years, many models have been developed to compute VaR.
+
+This is because we do not have the return distribution of trading portfolio over a specific period in the future.
+
+- If we do, then VaR is unambiguous.
+
+Therefore, different assumptions lead to different models and approaches. We are interested in three in this course:
+
+1. RiskMetrics (variance-covariance approach)
+2. Historic or back simulation
+3. Monte Carlo simulation
+
+## Expected Shortfall (ES)
+
+VaR's drawbacks became evident in the GFC: returns plunged into the **fat tail**, and VaR projections badly underestimated actual losses. Regulators have since replaced VaR with **expected shortfall (ES)** — also called "conditional VaR" — the average loss *beyond* the VaR threshold.
+
+$$
+ES(c) = \frac{1}{1-c}\int_c^1 VaR(u)\,du
+$$
+
+For $c = 95\%$, ES is the area under the loss distribution from the 95th to the 100th percentile.
+
+```{python}
+# | label: fig-returns-ES
+# | fig-cap: "Distribution of expected returns and ES"
+# | fig-location: center
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+np.random.seed(42)
+n_scenarios = 10000
+confidence_level = 0.95
+
+# Adjust Distribution: Mixture of normal distributions
+mu2, sigma2 = 0, 0.01
+extreme_mu, extreme_sigma = -0.05, 0.02
+
+# Create a mixture distribution that has the desired VaR
+extreme_component = np.random.normal(extreme_mu, extreme_sigma, int(n_scenarios * 0.1))
+normal_component = np.random.normal(mu2, sigma2, int(n_scenarios * 0.9))
+returns = np.concatenate([extreme_component, normal_component])
+VaR = np.percentile(returns, (1 - confidence_level) * 100)
+
+# Calculate ES
+ES = np.mean(returns[returns <= VaR])
+
+# Plot histogram
+plt.figure(figsize=(10, 6))
+
+# Histogram data
+n, bins, patches = plt.hist(returns, bins=50, alpha=0.75, edgecolor="black")
+
+# Highlight bars below VaR
+for i in range(len(patches)):
+    if bins[i] < VaR:
+        patches[i].set_facecolor("#A6192E")
+    else:
+        patches[i].set_facecolor("#D6D2C4")
+
+# Add VaR and ES lines
+plt.axvline(VaR, color="#A6192E", linestyle="dashed", linewidth=2, label="VaR at 95%")
+plt.axvline(ES, color="purple", linestyle="dashed", linewidth=2, label="ES")
+
+plt.title("Simulated Portfolio Returns with VaR and ES")
+plt.xlabel("Return")
+plt.ylabel("Frequency")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+## ES: advantages and (potential) problems
+
+ES is the average of losses that occur beyond the VaR level. It provides a better risk assessment by considering the tail of the loss distribution.
+
+In addition, an important advantage of ES over VaR is that ES is additive.
+
+- This means that the ES of a portfolio equals the sum of individual assets' ESs.
+- The same does not hold true for VaR: recall that we have to consider covariances.
+
+Potential issues with the use of ES include:
+
+- Estimation challenges, model dependency, computational complexity.
+
+
+# Credit Risk I: Individual Loan Risk
+
+## Credit risk
+
+::: {.callout-tip title="Why we spent two weeks on credit"}
+For most banks, credit risk is by some distance the **biggest single source of unexpected losses**. The RWA table below makes the point: for every Australian major, RWA for credit risk is roughly **6–10x** RWA for market or operational risk.
+:::
+
+As suggested by @tbl-rwa-au-banks below, __credit risk__ is likely the most significant risk factor, the risk that the promised cash flows from loans and securities may not be paid in full (e.g., borrower defaults).
+
+|                          | CBA     | Westpac | NAB     | ANZ     | Macquarie |
+|--------------------------|---------|---------|---------|---------|-----------|
+| RWA for credit risk      | 362,869 | 339,758 | 355,554 | 349,041 |    97,485 |
+| RWA for market risk      |  61,968 |  51,676 |  38,274 |  41,967 |    11,663 |
+| RWA for operational risk |  43,155 |  55,175 |  41,178 |  42,319 |    15,828 |
+| Other RWA                |       0 |   4,809 |       0 |       0 |         0 |
+| Total RWA                | 467,992 | 451,418 | 435,006 | 433,327 |   124,976 |
+
+: RWA of Australian banks in 2023 (source: Capital IQ) {#tbl-rwa-au-banks}
+
+## Promised vs expected return on a loan
+
+The **return on assets** approach adjusts for fees, compensating balances, and reserve requirements.
+
+- $f$ = origination fee; $b$ = compensating balance share; $RR$ = reserve requirement; $BR$ = base rate; $\phi$ = risk premium.
+
+$$
+1+k = 1+\frac{f+(BR+\phi)}{1-b(1-RR)}
+$$
+
+Because of default risk, the **expected return** differs from the promised return. With repayment probability $p$:
+
+$$
+1+E(r) = p(1+k) + (1-p)\cdot 0
+$$
+
+i.e. a probability-weighted average of full repayment ($1+k$) and zero recovery.[^recovery]
+
+[^recovery]: In practice, the FI may recover part of the loan (LGD < 100%).
+
+## Measurement of credit risk
+
+Many different qualitative and quantitative models are employed to assess the default risk on loans and bonds.
+
+- They are not mutually exclusive. 
+- An FI manager may use both qualitative and quantitative models and use more than one model to reach a credit decision.
+
+__Credit scoring models__ use observed borrower characteristics to
+
+1. either calculate a score representing the applicant's default probability, or
+2. sort borrowers into different default risk classes.
+
+::: {.columns}
+:::: {.column}
+Scoring models might help to:
+
+- Establish factors that help to explain default risk
+- Evaluate the relative importance of these factors
+- Improve the pricing of default risk
+- Sort out bad loan applicants
+- More easily calculate reserve needs
+::::
+:::: {.column}
+Three broad types
+
+1. Linear probability models
+2. Logit models
+3. Linear discriminant analysis
+::::
+:::
+
+## RAROC
+
+Risk-adjusted return on capital (RAROC) was pioneered by Bankers Trust (acquired by Deutsche bank in 1998).
+
+$$
+RAROC = \frac{\text{One-year net income on a loan}}{\text{Loan risk}}
+$$
+where
+$$
+\text{One-year net income on loan} = (\text{Spread} + \text{Fees}) \times \text{Dollar value of the loan outstanding}
+$$
+and Loan risk can be measure by, for example, _duration_.
+$$
+\frac{\Delta LN}{LN} = - D_{LN} \frac{\Delta R}{1+R}
+$$
+so that
+$$
+\underbrace{\Delta LN}_{\text{dollar risk exposure}} = - \underbrace{D_{LN}}_{\text{duration of loan}} \times \underbrace{LN}_{\text{loan amount}} \times \underbrace{\frac{\Delta R}{1+R}}_{\text{shock}}
+$$
+
+- Loan approval if RAROC > benchmark return on capital.
+ 
+## Option models of default risk
+
+Rationale:
+
+- A borrower borrows to invest.
+- If its investments are successful, the borrower repays.
+- If its investments fail and the borrower cannot repay the lender,
+  - The borrower has an _option to default_ on its debt, simply turning any remaining assets over to the lender.
+- The borrower's (equity holders') loss is capped due to limited liability.
+
+::: {.callout-note}
+The KMV Corporation[^kmv] turned this relatively simple idea into a credit monitoring model. 
+
+Many of the largest U.S. FIs are now using this model to determine the __expected default frequency (EDF)__ of large corporations.
+
+[^kmv]: The KMV Corporation was purchased by Moody’s in 2002 and is now part of Moody’s Analytics Enterprise Risk Solutions.
+:::
+
+# Credit Risk II: Loan Portfolio and Concentration Risk
+
+## Simple models
+
+- Regulations are in place to limit such exposure.
+- As a result, individual loans rarely cause material losses or bank failures.
+- Primary cause of credit-related distress is that pools of individual loans sharing similar characteristics perform similarly, especially during extreme conditions. 
+- An important lesson learned is that products exposed to the same types of risks can have different names and under different business units.
+
+Two simple models widely employed to measure credit risk concentration in the loan portfolio:
+
+1. Migration analysis
+2. Concentration limits
+
+## Loan portfolio diversification and MPT
+
+MPT can be used to measure and control an FI's aggregate credit risk exposure.
+
+Any model that seeks to estimate an efficient frontier for loans needs to determine and measure three things:
+
+- The expected return on individual loans
+- The risk of individual loans
+- The correlation of default risks between loans
+
+The fundamental lesson of MPT is that by taking advantage of its size, an FI can diversify considerable amounts of credit risk as long as the returns on different assets are imperfectly correlated with respect to their default risk adjusted returns. 
+
+## Moody's Analytics RiskFrontier Model
+
+Moody's **RiskFrontier** applies MPT to the loan portfolio using EDF (from Moody's **Credit Monitor**) and LGD as primary inputs — no need for loan returns to be normally distributed.
+
+Three inputs per borrower $i$:
+
+1. **Expected return**: $R_i = AIS_i - (EDF_i \times LGD_i)$, where $AIS$ is the all-in-drawn spread.[^error3]
+2. **Unexpected loss** (risk): $\sigma_i = \sqrt{EDF_i(1-EDF_i)} \times LGD_i$, assuming binomial default.[^error4]
+3. **Default correlation** $\rho_{ij}$: estimated from systematic asset-return components of $i$ and $j$ via Moody's **Global Correlation Model (GCORR)** — a factor model rather than direct historical correlation.
+
+[^error3]: In the textbook @saunders_financial_2023, this equation has a typo: $E(L_i)$ is written as $R(L_i)$.
+
+[^error4]: In the textbook @saunders_financial_2023, this equation is entirely incorrectly written.
+
+## Use of derivatives to manage credit risk
+
+- Diversification of loan portfolio helps FIs to manage their credit risk exposure.
+- New types of derivative instruments are now available to better allow FIs to hedge their credit risk both on individual loans or on loan portfolios.
+    - Credit forwards, options, and swaps.
+- These credit derivatives allow FIs to separate the credit risk exposure from the lending process itself.
+
+## Credit (default) swaps (CDS)
+
+Fastest-growing types of swaps. Most important type of credit derivatives.
+
+Why CDS?
+
+1. Credit risk is still more likely to cause an FI to fail than is either interest rate risk or FX risk.
+2. CDSs allow FIs to maintain long-term customer lending relationships without bearing the full credit risk exposure from those relationships.
+
+We examine two types of credit swaps:
+
+1. total return swap
+2. pure credit swap
+
+# Liquidity Risk
+
+## Liquidity risk
+
+::: {.callout-warning title="The textbook bank run, updated"}
+The classic image of a bank run is a queue around the block. The 2023 image is a Slack channel. SVB lost a quarter of its deposit base in **24 hours**. The deposit-runoff assumptions baked into the LCR were calibrated on pre-smartphone behaviour — regulators are now revisiting them.
+:::
+
+Liquidity risk is a normal aspect of everyday management of a financial institution (FI). It can arise on both sides of the balance sheet:
+
+::: {.columns}
+:::: {.column}
+- Liability side
+    - Depositors and other claim holders decide to cash in their financial claims immediately
+        - The DI has to borrow additional funds or sell assets
+    - DI need to be able to predict the distribution of __net deposit drains__
+        - The difference between deposit withdrawals and deposit additions on any specific normal banking day
+::::
+:::: {.column}
+- Asset side
+    - Risk from OBS loan commitments and other credit lines
+    - Change of the value of investment securities portfolios due to unexpected changes of interest rates
+    - Problems associated with 'quick' asset sales/fire-sales
+        - High costs for turning illiquid assets into cash
+        - Low sales price; in worst case, fire-sale price
+::::
+:::
+
+## Managing liquidity — purchased vs stored
+
+::: {.columns}
+:::: {.column}
+**Purchased liquidity** — *buy* funds in the market.
+
+- Cash market, repos, wholesale CDs, note/bond issuance.
+- Higher rates than deposits, but no asset disposal.
+- Disappears in stress.
+::::
+:::: {.column}
+**Stored liquidity** — *liquidate* assets.
+
+- Cash reserves at the central bank, in vaults.
+- U.S. Fed reserve requirement reduced to **0%** on 26 Mar 2020.
+- The **RBA imposes no formal reserve requirement**.
+::::
+:::
+
+## Liquidity Coverage Ratio (LCR)
+
+Post-GFC, the BCBS introduced two new minimum liquidity standards: **LCR** (short-term, since Jan 2015) and **NSFR** (structural, since Jan 2018). Both apply to internationally active banks above size thresholds.
+
+The **LCR** ensures a DI holds enough **high-quality liquid assets (HQLA)** to survive a 30-day stress scenario calibrated on GFC conditions:
+
+$$
+\text{LCR} = \frac{\text{Stock of HQLA}}{\text{Total net cash outflows over 30 days}} \ge 100\%
+$$
+
+Reported monthly.
+
+::: {.content-hidden when-format="pdf"}
+## LCR — HQLA and net outflows
+:::
+
+**HQLA** — assets that stay liquid in stress and are **unencumbered**. Split into:
+
+- **Level 1** (no cap, no haircut): cash, central-bank reserves, high-quality sovereign debt.
+- **Level 2A** (capped at 40%, 15% haircut) and **Level 2B** (further caps and 25–50% haircuts): eligible corporate debt, covered bonds, certain RMBS and equities.
+
+**Net cash outflows** over 30 days:
+
+$$\text{Net outflows} = Out - \min(In, 75\% \times Out)$$
+
+Cash flows are computed by applying regulator-set draw-down factors to each asset/liability type.
+
+## Net Stable Funding Ratio (NSFR)
+
+NSFR targets **structural** funding stability over a **one-year** horizon — reducing reliance on short-term wholesale funding (a key GFC failure mode).
+
+$$
+\text{NSFR} = \frac{\text{Available stable funding (ASF)}}{\text{Required stable funding (RSF)}} \ge 100\%
+$$
+
+- **ASF** — weighted sum of capital, long-term liabilities, and the stable portion of retail/wholesale deposits.
+- **RSF** — weighted sum of on-balance-sheet assets and OBS exposures, with weights set by liquidity profile.
+
+Reported quarterly since 2018.
+
+## Bank runs and safety nets
+
+Abnormal deposit drains can trigger a **bank run** — fuelled by solvency concerns, contagion from related DIs, or sudden preference shifts. A systemic, contagious run is a **bank panic**.
+
+The two main insulation devices:
+
+1. **Deposit insurance** — keeps the typical depositor calm so the run never starts.
+2. **Discount window** — central-bank standing facility lending short-term funds against collateral. In the **March 2023 U.S. banking stress**, banks drew a record **US\$153 billion** from the Fed's discount window in one week, and the Fed launched the **Bank Term Funding Program (BTFP)** — lending at *par* against eligible securities to neutralise the unrealised losses that had sunk SVB. BTFP closed to new loans on **11 March 2024**.
+
+::: {.callout-caution title="Moral hazard, the dark side of safety nets"}
+Both backstops are necessary — and both encourage risk-taking. Deposit insurance lets weak banks bid for deposits at the same rate as strong banks. A generous discount window lets banks economise on costly HQLA. The regulator's job is to price the insurance and the access so the subsidy doesn't outrun the public benefit.
+:::
+
+# Liability and Liquidity Management
+
+## Two sources of liquidity
+
+::: {.columns}
+:::: {.column}
+**Stored liquidity (asset-side)** — historically dominant.
+
+- Cash, central-bank reserves, sovereign securities traded in *deep* markets.
+- Government securities act as secondary buffer reserves.
+- Composition shaped by reserve requirements and earnings considerations.
+::::
+:::: {.column}
+**Purchased liquidity (liability-side)** — dominant today.
+
+- Interbank market (cash market), repos, wholesale issuance.
+- Cheaper in normal times — but evaporates in stress.
+::::
+:::
+
+The day-to-day game is **risk-return trade-off**: liquid assets earn less; under-shooting LCR/NSFR triggers charges; over-shooting ties up earning assets. Management of the RBA **Exchange Settlement Account (ESA)** is at the centre of this.[^cost-of-esa]
+
+[^cost-of-esa]: RBA pays "cash target rate minus 10 basis points" on ESA balances.
+
+## The cash market and the RBA
+
+The **cash market** is the overnight interbank market where banks lend/borrow ES balances.
+
+- **Price** of funds = the **cash rate** (RBA's policy target).
+- **Quantity** traded = the ES balance held in each DI's ESA at the RBA.
+
+**Pre-COVID:** the RBA managed ES supply via daily **repurchase agreements (repos)** to keep the cash rate near target.
+
+**Post-COVID:** the RBA's monetary operations changed substantially:
+
+- **TFF** — Term Funding Facility (drawdown closed 2021, repayments completed **30 June 2024**).
+- **Government Bond Purchases** — ceased **10 February 2022**.
+- **Standing Facility** — overnight access at a penalty rate.
+- **Private repo market** — bilateral repos between FIs continue as a key liquidity tool.
+
+## Liability-side liquidity and management
+
+Aim: construct a **low-cost and low-withdrawal-risk** liability portfolio. The two are in tension — low-cost liabilities (demand deposits) have high withdrawal risk; low-withdrawal-risk liabilities (CDs) carry higher cost.
+
+::: {.columns}
+:::: {.column}
+**Deposit liabilities**
+
+- Cheque accounts / demand deposits
+- Savings accounts
+- Cash management / investment savings accounts
+- Fixed-term deposits
+- Negotiable certificates of deposit (NCDs)
+::::
+:::: {.column}
+**Non-deposit liabilities**
+
+- Interbank funds, repos
+- Covered bonds, bank-accepted bills
+- Commercial paper / promissory notes
+- Subordinated debt, medium-term notes
+- Other long-term borrowings
+::::
+:::
+
+# Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk
+
+## Foreign exchange risk
+
+::: {.callout-note title="The risks that hit when you cross a border"}
+- **George Soros and the pound** (Sep 1992) — the textbook example of *FX risk* meeting *speculative pressure*; the BoE lost ~£3.4B defending the peg before capitulating.
+- **Greece** (2010–12) — *sovereign risk* on what was supposed to be a developed-country bond; the haircut on private bondholders was ~53.5% face value.
+- **AIG** (2008) — wrote ~US\$440B of credit-default-swap protection on mortgage securities and could not post collateral when ratings cut; the Fed bailed it out to prevent counterparty contagion. *Off-balance-sheet risk* at its most extreme.
+:::
+
+An FI’s overall FX exposure in any given currency can be measured by the net position exposure, which is measured in local currency as
+
+$$
+\begin{aligned}
+\text{Net exposure}_i &= (\text{FX assets}_i - \text{FX liabilities}_i) + (\text{FX bought}_i - \text{FX sold}_i) \\
+&=\text{Net foreign assets}_i + \text{Net FX bought}_i
+\end{aligned}
+$$
+
+where $i$ represents the $i$th currency.
+
+## FX volatility and DEAR
+
+Potential loss in any currency $i$:
+
+$$
+\text{Dollar loss/gain}_i = \text{Net exposure}_i \times \text{Shock to FX rate}_i
+$$
+
+Greater exposure × greater FX volatility ⇒ greater **daily earnings at risk (DEAR)**.
+
+FX volatility itself reflects shifts in the demand/supply of a currency, often driven by **inflation and interest-rate differentials** — which leads us to the two parity conditions: **PPP** (inflation) and **IRP** (interest rates).
+
+## Purchasing Power Parity
+
+Nominal interest rate $R$ is basically the sum of inflation $i$ and real interest rate $r$: 
+
+For two countries, e.g., Australia (AU) and United States (US), we have:
+
+$$
+\begin{aligned}
+R_{AU} &= i_{AU} + r_{AU} \\
+R_{US} &= i_{US} + r_{US} 
+\end{aligned}
+$$
+
+Assuming real interest rates are equal across countries: $r_{AU}=r_{US}$, then
+
+$$
+R_{AU} - R_{US} = i_{AU} - i_{US}
+$$
+
+That is, the (nominal) interest rate spread between Australia and the United States represents the difference in inflation rates between the two countries.
+
+::: {.callout-important}
+When inflation rates and/or interest rates change, foreign exchange rates (without government control) should adjust to account for relative differences in the price levels (inflation) between the two countries.
+:::
+
+**Purchasing Power Parity (PPP)** is one theory explaining how this adjustment takes place — built on the **law of one price**: identical goods should have one price across markets in equilibrium.
+
+The PPP theorem states that the change in the exchange rate equals the inflation differential:
+
+$$
+i_{domestic} - i_{foreign} = \frac{\Delta S_{domestic/foreign}}{S_{domestic/foreign}}
+$$
+
+::: {.callout-tip title="Quick example"}
+Spot $S_{AUD/CNY} = 0.17$. Inflation: Australia 4%, China 10%. PPP gives:
+$$0.04 - 0.10 = \Delta S / 0.17 \Rightarrow \Delta S = -0.0102$$
+The yuan depreciates ~6% against the AUD; new rate ≈ 0.1598 AUD/CNY.
+:::
+
+## Interest Rate Parity
+
+To illustrate (covered) __interest rate parity (IRP)__, let's consider two investment strategies.
+
+Strategy 1: Domestic Investment
+
+- You invest $1 domestically at an interest rate $r_d$ for one period.
+- After one period, your investment grows to $1 + r_d$.
+
+Strategy 2: Foreign Investment with Forward Contract
+
+- You convert $1 into foreign currency at the current spot exchange rate $S$, which gives $1/S$ foreign currency.
+- You then invest the foreign currency amount in a foreign asset at the interest rate $r_f$ for one period.
+- After one period, this investment grows to $(1 + r_f)$.
+- You lock in the forward exchange rate $F$ now to convert the foreign currency back to domestic currency after one period.
+
+For these two strategies to have the same return (and eliminate arbitrage opportunities), the returns on both should be equivalent when the foreign investment is converted back using the forward rate. This gives us the CIRP condition:
+
+$$
+1 + r_d = \frac{(1 + r_f) \cdot F}{S}
+$$
+
+Rearranging, we can see the relation between interest rates and the forward rate:
+
+$$
+F = S \cdot \frac{1 + r_d}{1 + r_f}
+$$
+
+## Managing FX risk
+
+On-balance-sheet hedging
+
+- Requires duration matching to control exposure to foreign interest rate risk
+- A direct match of foreign assets and liabilities can result in positive profits for the FI
+
+Off-balance-sheet hedging
+
+- Uses forwards, futures, options and swaps
+- Example: hedging with forwards allows FI to offset uncertainty regarding the future spot rate on a currency
+
+
+## Sovereign risk
+
+- Mismatches in the size and maturities of foreign assets and liabilities expose FIs to FX risk.
+- Beyond FX risk, holding assets in a foreign country also exposes FIs to country or __sovereign risk__.
+    - e.g., when the foreign corporation may be unable to repay the principal or interest on a loan even if it would like to. 
+    - the government of the country in which a borrower is headquartered may prohibit or limit debt payments
+
+A sovereign country’s (negative) decisions on its debt obligations or the obligations of its public and private organizations may take two forms: __repudiation__ and __restructuring__.
+
+1. Debt repudiation
+    - An outright cancellation of all a borrower’s current and future foreign debt and equity obligations
+2. Debt restructuring 
+    - Change the contractual terms of a loan, such as maturity and interest payment
+    - Most common form of sovereign risk
+
+## Off-balance-sheet (OBS) activities
+
+OBS items are **contingent assets and liabilities** — they shape the *future* balance sheet and produce positive or negative cash flows. True net worth = market value of on- *plus* off-balance-sheet activities.
+
+::: {.columns}
+:::: {.column}
+**Major types**
+
+- **Loan commitments** — promise to lend up to a stated amount at a given rate.
+- **Letters of credit** — contingent guarantees underwriting a buyer's performance.
+- **Derivative contracts** — forwards, futures, options, swaps.
+- **When-issued trading** — pre-issuance trades.
+- **Loans sold** with recourse.
+::::
+:::: {.column}
+**Why banks use OBS**
+
+- Fee income.
+- Avoid regulatory costs (reserves, deposit-insurance premiums, capital).
+
+**OBS is not just risk-increasing** — much of it is *hedging* (interest-rate, FX) and so reduces insolvency risk. Big, creditworthy banks earn substantial OBS fee income.
+::::
+:::
+
+# Loan Sales and Securitisation
+
+## From originate-to-hold to originate-to-distribute
+
+For most of the 20th century, banking followed a simple model: **originate-to-hold**. A bank made a loan, kept it on its books, and collected interest until maturity.
+
+Today, the dominant model is **originate-to-distribute**:
+
+1. Make loans.
+2. **Sell** them (loan sales) or **repackage** them (securitisation).
+3. Use the proceeds to originate new loans.
+
+::: {.callout-warning title="A model with consequences"}
+The originate-to-distribute model fuelled the **2008 global financial crisis**: once banks no longer held the loans they originated, their incentive to screen and monitor borrowers collapsed. Subprime mortgages were originated, securitised, sold, and the risk landed everywhere except on the originator's balance sheet.
+:::
+
+## Loan sales
+
+- **Credit derivatives** reduce credit risk *without* removing assets from the balance sheet.
+- **Loan sales** transfer *ownership* (and credit risk) to an outside buyer; the loan leaves the balance sheet.
+    - **Without recourse** — no further FI liability after sale (the dominant practice).
+    - **With recourse** — buyer may put the loan back to the FI under defined conditions.
+- Loan sales do *not* create new securities. Pass-throughs, CMOs and MBBs are products of *securitisation*.
+
+::: {.callout-tip title="A market hiding in plain sight"}
+The U.S. secondary loan trading market has grown to roughly **US\$800 billion in annual trading volume** in recent years (LSTA). This market barely existed in 1990.
+:::
+
+## Types of loan sales
+
+::: {.columns}
+:::: {.column}
+__Traditional short-term loan sales__
+
+- secured by assets of the borrowing firm
+- made to investment-grade borrowers or better
+- short term (≤ 90 days)
+- yields tied to commercial paper rates
+- sold in units of \$1 million and up
+::::
+:::: {.column}
+__Leveraged loan sales__
+
+- term loans (TLs)
+- secured by assets of the borrowing firm (often senior secured)
+- long maturity (3–6 years)
+- floating-rate, historically tied to LIBOR; since LIBOR's cessation in **2023**, predominantly **SOFR** in the U.S. and **SONIA** in the U.K.
+- strong covenant protection *in theory* — see "covenant-lite" below
+::::
+:::
+
+::: {.callout-note}
+The definition of "leveraged loan" is ambiguous: some use spreads (e.g. +125 bps), others use rating (BB- or lower).
+:::
+
+## Participation vs assignment, and the "good bank / bad bank" trick
+
+::: {.columns}
+:::: {.column}
+**Participation** — the buyer is *not* a party to the original credit agreement. They take only partial control and bear *double* risk: borrower **and** selling FI.
+
+**Assignment** — the more common form. All rights transfer; the buyer has a direct claim on the borrower.
+::::
+:::: {.column}
+**Good bank / bad bank** carve-outs are a special kind of loan sale.
+
+- **UKAR** absorbed the bad assets of Northern Rock and Bradford & Bingley (peak £116B); the residual was sold to Cerberus in 2015 and wound up in 2021.
+- **Citi Holdings** carved out ~US\$800B of unwanted assets in January 2009 and wound them down by 90% by 2015.
+::::
+:::
+
+## Why loan sales?
+
+1. **Capital relief** — sell risky assets to reduce RWA.
+2. **Liquidity** — improve asset-side liquidity.
+3. **Fee income** — origination and servicing fees survive the sale.
+4. **Reserve requirements** — historically a driver; matters less now.
+
+## Securitisation
+
+**Asset securitisation** packages loans into newly created securities — **asset-backed securities (ABS)** — sold to investors. Two mechanisms, both creating off-balance-sheet subsidiaries:
+
+- **Special-purpose vehicle (SPV)** — passive; pools loans, issues ABS, ceases when loans mature. Underlying loans belong to the *investors*.
+- **Structured investment vehicle (SIV)** — active; holds loans and funds itself with short-term commercial paper. Underlying loans belong to the *SIV*.
+
+::: {.callout-important title="The SIV problem — Citi, 2007"}
+SIVs hold long-term assets funded with short-term paper — that is **maturity transformation without deposit insurance**. When ABCP markets froze in 2007, Citi's seven SIVs (~US\$58B) lost market access. Citi consolidated them back onto its balance sheet — the *first* signal that the GFC would be a bank-balance-sheet problem, not just an investor problem.
+:::
+
+## Three major forms of securitisation
+
+1. **Pass-through security** — fractional ownership in a mortgage pool; principal and interest pass through to investors. **Prepayment risk** is the headline concern.
+2. **Collateralised mortgage obligation (CMO)** — repackages cash flows into **tranches** (Class A, B, C…) with a pre-specified prepayment waterfall. Different tranches attract different buyers (short A → DIs; long C → insurers, pension funds).
+3. **Mortgage-backed bond (MBB) / covered bond** — bonds *secured* by a ring-fenced pool that **remains on the bank's balance sheet**. Over-collateralised; the trustee monitors the cover pool.
+
+::: {.callout-caution title="The MBB deposit-insurance subsidy"}
+By pledging collateral to MBB holders, the FI reduces the assets backing **insured depositors** — effectively transferring risk to the deposit-insurance scheme. This is why **APRA caps Australian covered-bond asset encumbrance at 8%** of an ADI's domestic assets.
+:::
+
+## CLOs and leveraged loans — the post-GFC story
+
+Securitisation never went away after 2008; it migrated.
+
+- The U.S. **leveraged loan** market is around **US\$1.4–1.5 trillion**; the global **CLO** market exceeds **US\$1 trillion**.
+- Around **90%** of new leveraged loans are now **covenant-lite** [@berlin_concentration_2020], compared with under 25% pre-crisis.
+- **CLOs** absorb roughly two-thirds of new leveraged-loan issuance — they are *the* marginal buyer.
+- @irani_rise_2021 documents that post-GFC capital regulation pushed risky loans *out* of banks and into less-regulated **non-bank lenders** — the rise of shadow banking is partly a regulatory artefact.
+
+::: {.callout-warning title="Was 2020 the next subprime?"}
+In 2018 the Fed, BoE, IMF and BIS all flagged leveraged-loan CLOs as a systemic risk. COVID-19 was the stress test — CLOs survived, in part because of unprecedented central-bank intervention. Whether they would survive a *normal* recession is still an open question.
+:::
+
+# Emerging topics in bank risk management
+
+## Changing dynamics
+
+Traditional banks face pressure on every side:
+
+- **Global competition** with other banks.
+- **Competition with nonbanks** ("shadow banks") — FinTech firms reduce information asymmetry via big-data screening and AI/ML monitoring, and are *less* regulated than banks.
+- **Central bank digital currencies (CBDC)** — if households hold CBDC instead of bank deposits, banks lose their cheapest funding source.
+- **Technology** — mobile banking has made deposits more *mobile* too; runs now happen at the speed of a screenshot.
+- **Business model** — the shift to *originate-and-distribute* (Week 11) means banks now manufacture and ship credit risk rather than warehouse it.
+
+::: {.callout-note title="Silicon Valley Bank, 10 March 2023"}
+SVB lost **US\$42 billion of deposits in a single day** — a quarter of its deposit base — after a Slack-and-Twitter-driven panic among its tech-VC clients. The FDIC took it over the next morning. This was the **first social-media-driven bank run** at systemic scale. Digital channels are not just a customer-experience story; they are a liquidity-risk story.
+:::
+
+## FinTech and BigTech
+
+- **FinTech** is older than your phone (telegraph 1866, ATM 1967, SWIFT 1973), but the **post-GFC + iPhone** combination produced the modern wave: most household-name FinTechs (LendingClub, Stripe, Square, Klarna, Revolut, Up) were founded **2009–2015**.
+- A decade ago the consensus was that FinTechs would *eat* banks. By 2026 the more accurate view is: **incumbents kept the deposit franchise; FinTechs took the customer interface.**
+- **BigTech** (Apple, Google, Amazon, Meta; Alibaba, Tencent) has pushed mostly into **payments and embedded credit** — partnering with licensed banks rather than becoming one.
+
+::: {.callout-warning title="FinTech failure modes"}
+- **Wirecard** (June 2020) — €1.9B of claimed escrow cash did not exist; CEO arrested, COO a fugitive.
+- **Xinja** (Dec 2020) — Australia's first neobank failure; high deposit rates with no lending book to fund them.
+- **Volt** (June 2022) — Australia's second neobank failure; couldn't raise capital to scale lending.
+- **Ant Group IPO** (Nov 2020) — Beijing pulled the largest IPO in history 48 hours before pricing and forced Ant to restructure as a financial holding company. *If you look like a bank, you will be regulated like one.*
+:::
+
+## Neobanks and digital challengers in Australia
+
+| Bank          | Notes                                                                                  |
+|---------------|----------------------------------------------------------------------------------------|
+| **Up**        | Mobile-only, launched 2018; runs on Bendigo & Adelaide Bank's ADI                      |
+| **UBank**     | NAB-owned; relaunched 2022 on the 86 400 tech stack after NAB acquired 86 400 in 2021  |
+| **Judo Bank** | Full ADI granted April 2019; SME-focused; ASX-listed November 2021                     |
+| **Alex Bank** | Full ADI granted 22 December 2022                                                      |
+| **ANZ Plus**  | ANZ's in-house digital bank, launched 2022 on a new cloud core                          |
+
+: Selected Australian neobanks and digital challengers {#tbl-neobanks-aus-review}
+
+::: {.callout-important}
+To take deposits in Australia, you need an **Authorised Deposit-taking Institution (ADI)** licence from **APRA**. The **Restricted ADI (RADI)** pathway (since 2018) lowers the entry barrier — Volt, Xinja and Judo all used it.
+:::
+
+## Generative AI in banking
+
+The wave none of the textbooks anticipated. Since **ChatGPT** (Nov 2022), banks have moved from cautious pilots to scaled deployment.
+
+- **Klarna** (early 2024) — an OpenAI-powered assistant handled the equivalent of **700 full-time customer-service roles** in its first month.
+- Major banks (JPM, Goldman, Morgan Stanley, CBA) have public internal LLM coding-assistant deployments.
+
+::: {.callout-caution title="New risks to manage"}
+- **Hallucination** in customer-facing chat = mis-selling exposure.
+- **Third-party concentration** — almost every bank's GenAI stack runs on Microsoft/OpenAI or AWS Bedrock. That is a *systemic* concentration of operational dependency.
+- **APRA CPS 230** (operational resilience, effective July 2025) and **CPS 234** (information security) now apply to AI service providers.
+- **Bias and explainability** — AI-assisted credit decisions still need to satisfy responsible-lending obligations.
+:::
+
+## Open Banking and the Consumer Data Right (CDR)
+
+**PSD2** (EU, 2018) was the first regulatory move to open banking. Australia's equivalent is the **Consumer Data Right**:
+
+- CDR launched in **banking (2020)**, expanded to **energy (2022)**, with non-bank lending staged in.
+- It gives customers — and the FinTechs they authorise — machine-readable access to their own transaction data.
+- @he_open_2023 and @babina2024 show open banking redistributes informational rents: it lowers incumbents' information monopoly, but intensifies competition for the most profitable customers.
+
+## Central Bank Digital Currency (CBDC)
+
+A **CBDC** is a digital form of fiat currency issued by the central bank. Two flavours:
+
+- **Retail CBDC** — for the public; digital cash.
+- **Wholesale CBDC** — for interbank settlement.
+
+::: {.callout-warning title="Why bank treasurers worry"}
+If households can hold central-bank money directly — risk-free, instantly transferable — why hold uninsured commercial-bank deposits? The fear is a **structural outflow of deposits to CBDC**, forcing banks into more expensive wholesale funding and shrinking credit supply. @chiu_bank_2023 and @niepelt_money_2024 show the effect depends on design (interest-bearing? capped? how are reserves recycled?).
+:::
+
+### Where CBDCs stand in 2026
+
+- **Live** — Bahamas Sand Dollar (Oct 2020, first), Nigeria eNaira (Oct 2021, low uptake), China e-CNY (large pilots).
+- **In active design** — ECB digital euro (preparation phase from Nov 2023); UK digital pound (design papers, no decision).
+- **Australia** — RBA's CBDC research is **wholesale-only**: **Project Atom** (2020), **Project Dunbar** (2022, with BIS/MAS/BNM/SARB), and **Project Acacia** (announced Nov 2024 — three-year wholesale-CBDC and tokenisation programme). *Yes, that's the same Acacia name we used in workshops.*
+- **U.S.** — Trump executive order (23 Jan 2025) **prohibiting** the Fed from issuing a retail CBDC. Whether your country gets a CBDC has become a question of politics as much as economics.
+
+# Wrap-up
+
+## Where risk has migrated this semester
+
+| Mechanism                         | Risk moves from…       | …to                                  |
+|-----------------------------------|------------------------|--------------------------------------|
+| Capital regulation (Wk 3)         | depositors             | shareholders (equity buffers)        |
+| Hedging with derivatives (Wk 4/5) | the FI                 | the counterparty                     |
+| Loan sales (Wk 11)                | originating FI         | the buyer (often a non-bank)         |
+| Securitisation (Wk 11)            | originating FI         | ABS/CLO investors                    |
+| Open banking (Wk 12)              | the incumbent bank     | whoever the customer authorises      |
+| CBDC (Wk 12)                      | commercial-bank deposit base | the central bank's balance sheet |
+
+: Where risk migrates — the unifying theme of the unit {#tbl-risk-migration}
+
+# Finally...
+
+
+## References
