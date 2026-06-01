@@ -1,0 +1,2229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Dr.&nbsp;Mingze Gao">
+  <meta name="dcterms.date" content="2026-06-02">
+  <title>Mingze Gao – AFIN8003 Week 13 - Review</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../../../../site_libs/revealjs/dist/theme/quarto-dfce579f1d8fe8fde31da5005cf0c837.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1QDTTQ6EHM"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1QDTTQ6EHM', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta name="twitter:title" content="AFIN8003 Week 13 - Review – Mingze Gao">
+<meta name="twitter:description" content="Banking and Financial Intermediation">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="..\..\..\..\site_libs\quarto-contrib\quarto-project\mgao6767\mq\MQ-diag-full.png" data-background-position="60% 105%" data-background-size="120% 25%" class="quarto-title-block center">
+  <h1 class="title">AFIN8003 Week 13 - Review</h1>
+  <p class="subtitle">Banking and Financial Intermediation</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mingze Gao 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Applied Finance
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-06-02</p>
+</section>
+<section>
+<section id="course-overview" class="title-slide slide level1 center">
+<h1>Course overview</h1>
+
+</section>
+<section id="about-this-course" class="slide level2">
+<h2>About this course</h2>
+<p>Course description:</p>
+<ul>
+<li>This unit applies finance theory to the context of operational decision-making and risk management in banking and financial intermediation.</li>
+<li>The major decision areas for banking management are covered within a regulatory and corporate responsibility framework.</li>
+<li>Major risks of banks and financial intermediation are being examined.</li>
+</ul>
+<p>Key approaches:</p>
+<ul>
+<li>Research-informed teaching.</li>
+<li>Australian focus with global evidence.</li>
+<li>Priority on bank risk management.</li>
+</ul>
+</section>
+<section id="weekly-topics" class="slide level2">
+<h2>Weekly topics</h2>
+<ol type="1">
+<li>Introduction to banking and financial intermediation</li>
+<li>Risks and regulation</li>
+<li>Capital management and adequacy</li>
+<li>Interest rate risk</li>
+<li>Market risk</li>
+<li>Credit risk I: individual loan risk</li>
+<li>Credit risk II: loan portfolio and concentration risk</li>
+<li>Liquidity risk</li>
+<li>Liability and liquidity management</li>
+<li>Sovereign risk, foreign exchange risk, and off-balance-sheet risk</li>
+<li>Loan sales and securitisation</li>
+<li>Emerging topics in bank risk management</li>
+<li>Review</li>
+</ol>
+</section>
+<section id="three-big-ideas-to-take-with-you" class="slide level2">
+<h2>Three big ideas to take with you</h2>
+<p>Before we walk through twelve weeks of material in one hour, here is the spine of the whole course:</p>
+<div title="Three big ideas">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Three big ideas</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li><strong>Banks exist because information is costly and trust is scarce.</strong> Every risk we have studied — credit, liquidity, market, operational, FX, sovereign — is a price we pay for solving those two problems with leverage.</li>
+<li><strong>Risk does not disappear; it migrates.</strong> Capital regulation moves risk onto buffers. Loan sales move it to buyers. Securitisation moves it to investors. Derivatives move it to counterparties. Open banking and CBDC move it across firms and onto central banks. The exam-ready question is always <em>where did the risk go</em>?</li>
+<li><strong>The regulator is always one crisis behind.</strong> Basel I followed the 1980s loan-loss cycle. Basel II/III followed the GFC. CPS 230 (operational resilience) followed COVID and cloud incidents. The <em>next</em> rulebook will tell us what just broke.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div title="How to use this review">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>How to use this review</strong></p>
+</div>
+<div class="callout-content">
+<p>This deck <strong>does not replace</strong> the weekly lectures. It is a navigation map. For any concept you are unsure about, jump back to the weekly slides.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-specialness-of-bank-and-financial-intermediaries" class="title-slide slide level1 center">
+<h1>The specialness of bank and financial intermediaries</h1>
+
+</section>
+<section id="financial-intermediation" class="slide level2">
+<h2>Financial intermediation</h2>
+<blockquote>
+<p>A <strong>financial system</strong> encompasses various <em>financial intermediaries</em>, markets, regulators, and infrastructure in the generation and distribution of financial resources.</p>
+</blockquote>
+<p><strong>Financial intermediation</strong> is part of the financial system.</p>
+<ul>
+<li>It is the process by which financial intermediaries, such as banks, facilitate the flow of funds between savers and borrowers.</li>
+<li>Banks are a major part of financial intermediation.</li>
+</ul>
+</section>
+<section id="why-is-banking-and-financial-intermediation-necessary" class="slide level2">
+<h2>Why is banking and financial intermediation necessary?</h2>
+<p>A banking analogue of the <span class="citation" data-cites="Modigliani1958">Modigliani and Miller (<a href="#/references" role="doc-biblioref" onclick="">1958</a>)</span> theorem would imply that banks are useless with perfect financial markets.</p>
+<ul>
+<li>In a competitive equilibrium, banks make zero profit and have no impact on other agents’ decisions. Firms are indifferent between bank credit and bonds. <span class="citation" data-cites="freixas_microeconomics_2023">(<a href="#/references" role="doc-biblioref" onclick="">Freixas and Rochet 2023</a>)</span></li>
+</ul>
+<p>The existence of banks (and other financial intermediaries) must be justified by their roles in <strong>mitigating market frictions</strong>.</p>
+<ul>
+<li>A simple look at the <span class="citation" data-cites="Diamond1983">Diamond and Dybvig (<a href="#/references" role="doc-biblioref" onclick="">1983</a>)</span> model.</li>
+<li>The optimal allocation can be achieved with competitive banks offering deposit contracts and investing in the long-term (i.e., maturity transformation).
+<ul>
+<li>also, asset transformation, risk transformation and liquidity transformation.</li>
+<li>Panic-based bank runs may occur even when illiquid assets are risk-free.</li>
+</ul></li>
+<li>Banks are also better positioned to mitigate informational frictions in the market due to <strong>economies of scale</strong>.
+<ul>
+<li><strong>Screening</strong> costs in the context of <em>adverse selection</em> <span class="citation" data-cites="Broecker1990">(<a href="#/references" role="doc-biblioref" onclick="">Broecker 1990</a>)</span>.</li>
+<li><strong>Monitoring</strong> costs in the context of <em>moral hazard</em> <span class="citation" data-cites="Holmstrom1997">(<a href="#/references" role="doc-biblioref" onclick="">Holmstrom and Tirole 1997</a>)</span>.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="risks-and-regulation" class="title-slide slide level1 center">
+<h1>Risks and regulation</h1>
+
+</section>
+<section id="why-banks-are-regulated-and-how" class="slide level2">
+<h2>Why banks are regulated, and how</h2>
+<p>Bank failure has large negative externalities — depositor losses, credit-supply collapse, real-economy damage (cf.&nbsp;the GFC). Hence heavy regulation:</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><strong>Microprudential</strong> — safety and soundness of the <em>individual</em> bank (capital adequacy, risk and liquidity management). The pre-GFC focus.</li>
+<li><strong>Macroprudential</strong> — stability of the <em>system</em> (systemic focus, countercyclical policies, stress testing). Added post-GFC.</li>
+</ul>
+<p>The two are complementary, not substitutes.</p>
+</div><div class="column" style="width:40%;">
+<p>For every risk in this course we apply the <strong>I-M-M</strong> framework:</p>
+<ol type="1">
+<li><strong>Identify</strong> — definition, source, nature.</li>
+<li><strong>Measure</strong> — gauge exposure.</li>
+<li><strong>Manage</strong> — mitigate.</li>
+</ol>
+</div></div>
+</section></section>
+<section>
+<section id="capital-management-and-adequacy" class="title-slide slide level1 center">
+<h1>Capital management and adequacy</h1>
+
+</section>
+<section id="capital-management-and-regulation" class="slide level2">
+<h2>Capital management and regulation</h2>
+<div title="Why capital regulation exists">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why capital regulation exists</strong></p>
+</div>
+<div class="callout-content">
+<p>Bank failures impose costs on people who never agreed to bear them — depositors, borrowers, taxpayers. Capital is the <strong>first line of defence</strong> that keeps those costs internal to shareholders, not external to the public.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Capital absorbs losses and mitigates insolvency risk. The level a bank holds is guided by:</p>
+<ol type="1">
+<li><strong>Regulated capital adequacy requirements</strong> — country-specific, but the <strong>Basel Accords</strong> (BCBS of the BIS) provide the global framework.</li>
+<li><strong>Risk-return trade-offs</strong> — capital is expensive; banks won’t hold more than they have to.</li>
+</ol>
+</section>
+<section id="from-basel-i-to-basel-iii" class="slide level2">
+<h2>From Basel I to Basel III</h2>
+<ul>
+<li><strong>Basel I (1988)</strong> — first systematic capital adequacy framework; RWA for credit risk only; min Tier 1 = 4%, Total = 8%.</li>
+<li><strong>Basel II (2006)</strong> — three pillars (minimum requirements, supervisory review, market discipline); added operational risk; standardized vs IRB.</li>
+<li><strong>Basel 2.5 (2009)</strong> — patched market-risk capital after the GFC trading-book disasters.</li>
+<li><strong>Basel III (2010, revised 2017)</strong> — our focus. Adds macroprudential layers: buffers, liquidity ratios (LCR/NSFR), leverage ratio, and higher trading-book charges.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Basel III is our focus, of course.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="risk-based-capital-ratio" class="slide level2">
+<h2>Risk-based capital ratio</h2>
+<p>Under Basel III, depositary institutions (DIs) calculate and monitor four capital ratios:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ol type="1">
+<li><p><strong>Common equity Tier 1 (CET1) risk-based capital ratio</strong> <span id="eq-cet1-capital-ratio"><span class="math display">\[
+\text{CET1 capital ratio} = \frac{\text{CET1 capital}}{\text{Risk-weighted assets}}
+\tag{1}\]</span></span></p></li>
+<li><p><strong>Tier 1 risk-based capital ratio</strong> <span id="eq-tier1-capital-ratio"><span class="math display">\[
+\text{Tier 1 capital ratio} = \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}}
+\tag{2}\]</span></span></p></li>
+<li><p><strong>Total risk-based capital ratio</strong> <span id="eq-total-capital-ratio"><span class="math display">\[
+\text{Total capital ratio} = \frac{\text{Total capital}}{\text{Risk-weighted assets}}
+\tag{3}\]</span></span></p></li>
+<li><p><strong>Tier 1 leverage ratio</strong> <span id="eq-tier1-leverage-ratio"><span class="math display">\[
+\text{Tier 1 leverage ratio} = \frac{\text{Tier 1 capital}}{\text{Total exposure}}
+\tag{4}\]</span></span></p></li>
+</ol>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>The calculation of these capital ratios is complex.</li>
+<li>Use risk-weighted assets (RWA) to distinguish the different credit risks of different assets.</li>
+<li>Measure a DI’s <strong>credit risk</strong> (on-and off-balance-sheet).</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Additional capital charges for <strong>market risk</strong> and <strong>operational risk</strong>.
+<ul>
+<li>For now, we do not consider these risks and their impact on RWA.</li>
+<li>We briefly explain how they affect RWA and capital ratios at the end of this lecture.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="tiers-of-capital" class="slide level2">
+<h2>Tiers of capital</h2>
+<ul>
+<li><strong>CET1</strong> — common shares, retained earnings, other reserves, minority interests (less regulatory adjustments). The “loss-absorbing-while-going-concern” core.</li>
+<li><strong>Additional Tier 1</strong> — perpetual instruments without maturity (e.g.&nbsp;noncumulative perpetual preferred stock).</li>
+<li><strong>Tier 2</strong> — supplementary capital: subordinated debt, certain loan-loss provisions.</li>
+</ul>
+<p><span class="math display">\[\text{Tier 1} = \text{CET1} + \text{Additional Tier 1}, \quad \text{Total Capital} = \text{Tier 1} + \text{Tier 2}\]</span></p>
+<p>Two approaches to measure credit RWA (since Basel II):</p>
+<ul>
+<li><strong>Standardised</strong> — used by smaller DIs.</li>
+<li><strong>Internal ratings-based (IRB)</strong> — used by large DIs (in Australia, the 6 largest).</li>
+</ul>
+</section>
+<section id="minimum-required-capital-adequacy-ratios" class="slide level2">
+<h2>Minimum required capital adequacy ratios</h2>
+<p>The minimum required capital ratios: <span id="eq-min-required-capital-ratio"><span class="math display">\[
+\begin{aligned}
+\text{CET1 capital ratio} &amp;= \frac{\text{CET1 capital}}{\text{Risk-weighted assets}} \ge 4.5\% \\
+\text{Tier 1 capital ratio} &amp;= \frac{\text{Tier 1 capital}}{\text{Risk-weighted assets}} \ge 6\% \\
+\text{Total capital ratio} &amp;= \frac{\text{Total capital}}{\text{Risk-weighted assets}} \ge 8\% \\
+\text{Tier 1 leverage ratio} &amp;= \frac{\text{Tier 1 capital}}{\text{Total exposure}} \ge 4\%
+\end{aligned}
+\tag{5}\]</span></span></p>
+</section>
+<section id="buffers-on-top-of-the-minimums" class="slide level2">
+<h2>Buffers on top of the minimums</h2>
+<p>Basel III adds two buffers — both <strong>CET1 only</strong> — that sit <em>above</em> the minimums:</p>
+<ul>
+<li><strong>Capital conservation buffer</strong>: +2.5% of RWA — effective CET1 floor of <strong>7%</strong>. If breached, distributions (dividends, bonuses) are restricted.</li>
+<li><strong>Countercyclical capital buffer (CCyB)</strong>: 0–2.5% of RWA, switched on by national regulators when credit growth is excessive.</li>
+</ul>
+<p>The point of the buffers is <strong>automatic restraint</strong>: as the buffer is eaten, dividend and bonus payouts are choked off <em>before</em> the bank hits the binding minimum.</p>
+</section>
+<section id="risk-based-capital-beyond-credit-risk" class="slide level2">
+<h2>Risk-based capital: beyond credit risk</h2>
+<p>So far, the capital ratios (specifically, RWA) are calculated to account for the DI’s credit risk. However, a DI’s insolvency risk can also manifest from interest rate risk, market risk, operational risk, and more.</p>
+<p>In Basel III, RWA should be the sum of three components:</p>
+<ol type="1">
+<li>RWA for credit risk (covered in this lecture)</li>
+<li>RWA for market risk. Can be calculated using two approaches:<sup>1</sup>
+<ol type="1">
+<li>Standardized approach proposed by regulators. Revised standards published in 2016 to be implemented in 2019.</li>
+<li>DI’s internal market risk model subject to regulator approval. Move towards expected shortfall rather than value at risk (VaR).</li>
+</ol></li>
+<li>RWA for operational risk. Some complicated calculation.<sup>2</sup></li>
+</ol>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>The RWA in the minimum capital ratios (<a href="#/eq-min-required-capital-ratio" class="quarto-xref">Equation&nbsp;5</a>) is the sum of all three RWAs.</p>
+<p>We covered only the RWA for credit risk.</p>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>For details, see <a href="https://www.bis.org/basel_framework/chapter/RBC/20.htm?inforce=20230101&amp;published=20201126#paragraph_RBC_20_20230101_20_9">RBC20.9</a>.</p></li><li id="fn2"><p>For details, see <a href="https://www.bis.org/basel_framework/chapter/RBC/20.htm?inforce=20230101&amp;published=20201126#paragraph_RBC_20_20230101_20_10">RBC20.10</a>.</p></li></ol></aside></section></section>
+<section>
+<section id="interest-rate-risk" class="title-slide slide level1 center">
+<h1>Interest rate risk</h1>
+
+</section>
+<section id="what-is-interest-rate-risk" class="slide level2">
+<h2>What is interest rate risk?</h2>
+<div title="Interest Rate Risk">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Interest Rate Risk</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Interest rate risk</strong> is the possibility of a financial loss due to changes in interest rates.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Why interest rate risk matters — SVB, again">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why interest rate risk matters — SVB, again</strong></p>
+</div>
+<div class="callout-content">
+<p>Silicon Valley Bank had bought long-dated Treasuries when rates were near zero. When the Fed raised rates aggressively in 2022–23, those bonds’ market value fell sharply — turning <strong>interest rate risk</strong> into a <strong>liquidity crisis</strong> the moment depositors demanded their money. Maturity mismatch is the oldest banking risk and still the most lethal.</p>
+</div>
+</div>
+</div>
+</div>
+<p>One of the key functions performed by financial institutions (especially depositary institutions) is <strong>maturity transformation</strong>. For DIs, they take short-term deposits from depositors and make long-term loans to borrowers. As a result,</p>
+<ol type="1">
+<li>This maturity transformation means that FIs have <strong>mismatches of maturities</strong> of their liabilities (e.g., deposits) and assets (e.g., loans).</li>
+<li>Maturity mismatch exposes FIs to (unexpected) interest rate changes:
+<ol type="1">
+<li>refinancing and reinvestment risks</li>
+<li>financial instruments have different levels of value sensitivity to interest rate changes</li>
+</ol></li>
+<li>Interest rate <em>is</em> volatile and can be unexpected.</li>
+</ol>
+</section>
+<section id="interest-rate-risk-and-basel-framework" class="slide level2">
+<h2>Interest rate risk and Basel framework</h2>
+<p>As discussed previously, the three pillars of Basel framework (since Basel II) include:</p>
+<ol type="1">
+<li>minimum capital requirements</li>
+<li>supervisory review</li>
+<li>effective use of disclosure (for market discipline)</li>
+</ol>
+<p>The Pillar 1 involves a capital adequacy framework surrounding minimum ratios of various capital (CET1, Tier 1, Total) to RWA.</p>
+<ul>
+<li>The RWA is sum of RWAs for credit risk, market risk, and operational risk.</li>
+<li>There is currently no “RWA for interest rate risk”.</li>
+</ul>
+<p>The <strong>Interest Rate Risk in the Banking Book (IRRBB)</strong> is part of the Basel capital framework’s Pillar 2 (supervisory review) and Pillar 3 (disclosure).</p>
+</section>
+<section id="repricing-model" class="slide level2">
+<h2>Repricing model</h2>
+<p>The <strong>repricing (funding-gap) model</strong> is a book-value cash-flow analysis of the difference between interest income on assets and interest paid on liabilities over each maturity bucket. APRA requires smaller ADIs to use it for banking-book interest-rate exposure.</p>
+<p><strong>Repricing gap</strong> = <span class="math inline">\(RSA - RSL\)</span>, where RSA/RSL are rate-sensitive assets/liabilities that reprice within a given maturity bucket (e.g.&nbsp;variable-rate mortgages, term deposits).</p>
+<p><span class="math display">\[
+\Delta NII_i = GAP_i \times \Delta R_i = (RSA_i - RSL_i) \times \Delta R_i
+\]</span></p>
+<p>where <span class="math inline">\(\Delta NII_i\)</span> is the change in net interest income in bucket <span class="math inline">\(i\)</span>.</p>
+</section>
+<section id="duration-model" class="slide level2">
+<h2>Duration model</h2>
+<p>The essence of duration gap model is the concept of <strong>duration</strong>, which is covered in introductory finance courses.</p>
+<p>Duration directly measures the interest rate sensitivity of an asset or liability:</p>
+<p><span id="eq-duration-and-price"><span class="math display">\[
+\frac{\Delta P}{P} = - D \times \frac{\Delta R}{1+R} = - MD \times \Delta R
+\tag{6}\]</span></span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\Delta P\)</span> is the price change of assets or liabilities</li>
+<li><span class="math inline">\(\Delta R\)</span> is the change of interest rate</li>
+<li><span class="math inline">\(MD\)</span> is the <strong>modified duration</strong> that equals to <span class="math inline">\(\frac{D}{1+R}\)</span></li>
+</ul>
+<p>The larger the numerical value of <span class="math inline">\(D\)</span>, the more sensitive is the price of that asset or liability to changes or shocks in interest rates.</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>The relationship is only true for small changes in the yield.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="duration-and-interest-rate-risk-management" class="slide level2">
+<h2>Duration and interest rate risk management</h2>
+<p>Duration can be used to measure a financial institution’s <strong>duration gap</strong> to evaluate the FI’s overall interest rate exposure. It is possible to calculate the duration of the asset portfolio and of the liability portfolio.</p>
+<ul>
+<li>Duration of a portfolio is the weighted average duration of its components.</li>
+</ul>
+<div class="columns">
+<div class="column">
+<p>Duration of assets portfolio:</p>
+<p><span class="math display">\[
+D_A = \sum_{i=1}^{N_A} w_{iA} \times D^A_i
+\]</span></p>
+<p>where <span class="math inline">\(N_A\)</span> is the total number of assets, <span class="math inline">\(w_{iA}\)</span> is the market value weight of asset <span class="math inline">\(i\)</span>, <span class="math inline">\(D^A_i\)</span> is the duration of asset <span class="math inline">\(i\)</span>.</p>
+<p>So, change of assets value for a given change in interest rate is</p>
+<p><span id="eq-duration-and-assets-value"><span class="math display">\[
+\Delta A = - D_A \times A \times \frac{\Delta R}{1+R}
+\tag{7}\]</span></span></p>
+</div><div class="column">
+<p>Duration of liabilities portfolio:</p>
+<p><span class="math display">\[
+D_L = \sum_{i=1}^{N_L} w_{iL} \times D^L_i
+\]</span></p>
+<p>where <span class="math inline">\(N_L\)</span> is the total number of liabilities, <span class="math inline">\(w_{iL}\)</span> is the market value weight of liability <span class="math inline">\(i\)</span>, <span class="math inline">\(D^L_i\)</span> is the duration of liability <span class="math inline">\(i\)</span>.</p>
+<p>So, change of liabilities for a given change in interest rate is</p>
+<p><span id="eq-duration-and-liabilities-value"><span class="math display">\[
+\Delta L = - D_L \times L \times \frac{\Delta R}{1+R}
+\tag{8}\]</span></span></p>
+</div></div>
+</section>
+<section id="the-duration-model" class="slide level2">
+<h2>The duration model</h2>
+<p>Since <span class="math inline">\(A = L + E\)</span>, we have <span class="math inline">\(\Delta E = \Delta A - \Delta L\)</span>. Substituting <a href="#/eq-duration-and-assets-value" class="quarto-xref">Equation&nbsp;7</a> and <a href="#/eq-duration-and-liabilities-value" class="quarto-xref">Equation&nbsp;8</a> and assuming the rate shock is the same on both sides:</p>
+<p><span id="eq-duration-model-lev"><span class="math display">\[
+\Delta E = - (D_A - D_L k) \times A \times \frac{\Delta R}{1+R}
+\tag{9}\]</span></span></p>
+<p>where <span class="math inline">\(k = L/A\)</span> is leverage. The effect on net worth decomposes into three terms:</p>
+<ol type="1">
+<li>The <strong>leverage-adjusted duration gap</strong> <span class="math inline">\((D_A - D_L k)\)</span>.</li>
+<li>The <strong>size</strong> of the FI, <span class="math inline">\(A\)</span>.</li>
+<li>The <strong>size of the rate shock</strong>, <span class="math inline">\(\Delta R / (1+R)\)</span>.</li>
+</ol>
+</section></section>
+<section>
+<section id="market-risk" class="title-slide slide level1 center">
+<h1>Market risk</h1>
+
+</section>
+<section id="market-risk-1" class="slide level2">
+<h2>Market risk</h2>
+<div title="Market Risk">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Market Risk</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Market risk</strong> is uncertainty of an FI’s earnings on its trading portfolio caused by changes, particularly extreme changes, in market conditions such as the price of an asset, interest rates, market volatility, and market liquidity.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ::: {.callout-warning title="When tail risk arrives — Archegos and the LME nickel squeeze"}
+- **Archegos Capital Management** (March 2021) — a single family office's concentrated equity swaps positions blew up, costing Credit Suisse **US\$5.5B** and contributing to its eventual 2023 collapse. *Counterparty risk in the trading book.*
+- **LME nickel** (March 2022) — a short squeeze sent nickel prices to **US\$100,000/tonne** in hours. The LME cancelled trades and shut the market for a week. *Market liquidity risk meeting governance failure.*
+
+Both episodes are why regulators have moved away from VaR — which assumes "normal" distributions — toward **Expected Shortfall** for trading-book capital.
+::: -->
+<p>FIs are concerned about the potential impact of changing market conditions on their trading book and ultimately their net worth and solvency.</p>
+<p>A natural question becomes:</p>
+<blockquote>
+<p>How to quantify such impact? What is the <strong>potential change in value</strong> of trading portfolio for a given period?</p>
+</blockquote>
+<p>More specifically,</p>
+<ol type="1">
+<li>What is the worst loss we can expect not to exceed with a given confidence level over a specific time horizon?</li>
+<li>What is the expected loss when losses exceed a certain level over a specific time horizon?</li>
+</ol>
+<p>Answering these questions leads to the development of two important concepts for measuring market risk exposure:</p>
+<ol type="1">
+<li>Value at Risk (VaR).</li>
+<li>Expected Shortfall (ES).</li>
+</ol>
+<p>We start with the concept of Value at Risk (VaR), then discuss its limitations and the use of Expected Shortfall (ES).</p>
+</section>
+<section id="value-at-risk-var" class="slide level2">
+<h2>Value at Risk (VaR)</h2>
+<p>Suppose we know the distribution of an asset’s returns over a specific period (in the future), then for a given confidence level <span class="math inline">\(c\in[0,1]\)</span> (e.g., <span class="math inline">\(c=0.95\)</span>), we can partition the distribution into two parts: one (in red) that represents a proportion of <span class="math inline">\((1-c)\)</span> of the distribution and the other (in blue) accounting the remaining <span class="math inline">\(c\)</span> proportion.</p>
+<div class="columns">
+<div class="column">
+<div id="cell-fig-returns-VaR" class="cell" data-fig-location="center" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-returns-var" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-var-output-1.png" width="816" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of expected returns and VaR
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p>Therefore, the cutoff value of returns that separates the two parts defines:</p>
+<ul>
+<li>a minimum return that we are confident 95% of the time, or</li>
+<li><strong>a maximum loss that we are confident 95% of the time</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section id="models-for-computing-var" class="slide level2">
+<h2>Models for computing VaR</h2>
+<p>Over the years, many models have been developed to compute VaR.</p>
+<p>This is because we do not have the return distribution of trading portfolio over a specific period in the future.</p>
+<ul>
+<li>If we do, then VaR is unambiguous.</li>
+</ul>
+<p>Therefore, different assumptions lead to different models and approaches. We are interested in three in this course:</p>
+<ol type="1">
+<li>RiskMetrics (variance-covariance approach)</li>
+<li>Historic or back simulation</li>
+<li>Monte Carlo simulation</li>
+</ol>
+</section>
+<section id="expected-shortfall-es" class="slide level2">
+<h2>Expected Shortfall (ES)</h2>
+<p>VaR’s drawbacks became evident in the GFC: returns plunged into the <strong>fat tail</strong>, and VaR projections badly underestimated actual losses. Regulators have since replaced VaR with <strong>expected shortfall (ES)</strong> — also called “conditional VaR” — the average loss <em>beyond</em> the VaR threshold.</p>
+<p><span class="math display">\[
+ES(c) = \frac{1}{1-c}\int_c^1 VaR(u)\,du
+\]</span></p>
+<p>For <span class="math inline">\(c = 95\%\)</span>, ES is the area under the loss distribution from the 95th to the 100th percentile.</p>
+<div id="cell-fig-returns-ES" class="cell" data-fig-location="center" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-returns-es" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-returns-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-returns-es-output-1.png" width="825" height="523">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-es-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of expected returns and ES
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="es-advantages-and-potential-problems" class="slide level2">
+<h2>ES: advantages and (potential) problems</h2>
+<p>ES is the average of losses that occur beyond the VaR level. It provides a better risk assessment by considering the tail of the loss distribution.</p>
+<p>In addition, an important advantage of ES over VaR is that ES is additive.</p>
+<ul>
+<li>This means that the ES of a portfolio equals the sum of individual assets’ ESs.</li>
+<li>The same does not hold true for VaR: recall that we have to consider covariances.</li>
+</ul>
+<p>Potential issues with the use of ES include:</p>
+<ul>
+<li>Estimation challenges, model dependency, computational complexity.</li>
+</ul>
+</section></section>
+<section>
+<section id="credit-risk-i-individual-loan-risk" class="title-slide slide level1 center">
+<h1>Credit Risk I: Individual Loan Risk</h1>
+
+</section>
+<section id="credit-risk" class="slide level2">
+<h2>Credit risk</h2>
+<div title="Why we spent two weeks on credit">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why we spent two weeks on credit</strong></p>
+</div>
+<div class="callout-content">
+<p>For most banks, credit risk is by some distance the <strong>biggest single source of unexpected losses</strong>. The RWA table below makes the point: for every Australian major, RWA for credit risk is roughly <strong>6–10x</strong> RWA for market or operational risk.</p>
+</div>
+</div>
+</div>
+</div>
+<p>As suggested by <a href="#/tbl-rwa-au-banks" class="quarto-xref">Table&nbsp;1</a> below, <strong>credit risk</strong> is likely the most significant risk factor, the risk that the promised cash flows from loans and securities may not be paid in full (e.g., borrower defaults).</p>
+<div id="tbl-rwa-au-banks" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: RWA of Australian banks in 2023 (source: Capital IQ)
+</figcaption>
+<div aria-describedby="tbl-rwa-au-banks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CBA</th>
+<th>Westpac</th>
+<th>NAB</th>
+<th>ANZ</th>
+<th>Macquarie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RWA for credit risk</td>
+<td>362,869</td>
+<td>339,758</td>
+<td>355,554</td>
+<td>349,041</td>
+<td>97,485</td>
+</tr>
+<tr class="even">
+<td>RWA for market risk</td>
+<td>61,968</td>
+<td>51,676</td>
+<td>38,274</td>
+<td>41,967</td>
+<td>11,663</td>
+</tr>
+<tr class="odd">
+<td>RWA for operational risk</td>
+<td>43,155</td>
+<td>55,175</td>
+<td>41,178</td>
+<td>42,319</td>
+<td>15,828</td>
+</tr>
+<tr class="even">
+<td>Other RWA</td>
+<td>0</td>
+<td>4,809</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Total RWA</td>
+<td>467,992</td>
+<td>451,418</td>
+<td>435,006</td>
+<td>433,327</td>
+<td>124,976</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="promised-vs-expected-return-on-a-loan" class="slide level2">
+<h2>Promised vs expected return on a loan</h2>
+<p>The <strong>return on assets</strong> approach adjusts for fees, compensating balances, and reserve requirements.</p>
+<ul>
+<li><span class="math inline">\(f\)</span> = origination fee; <span class="math inline">\(b\)</span> = compensating balance share; <span class="math inline">\(RR\)</span> = reserve requirement; <span class="math inline">\(BR\)</span> = base rate; <span class="math inline">\(\phi\)</span> = risk premium.</li>
+</ul>
+<p><span class="math display">\[
+1+k = 1+\frac{f+(BR+\phi)}{1-b(1-RR)}
+\]</span></p>
+<p>Because of default risk, the <strong>expected return</strong> differs from the promised return. With repayment probability <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+1+E(r) = p(1+k) + (1-p)\cdot 0
+\]</span></p>
+<p>i.e.&nbsp;a probability-weighted average of full repayment (<span class="math inline">\(1+k\)</span>) and zero recovery.<sup>1</sup></p>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>In practice, the FI may recover part of the loan (LGD &lt; 100%).</p></li></ol></aside></section>
+<section id="measurement-of-credit-risk" class="slide level2">
+<h2>Measurement of credit risk</h2>
+<p>Many different qualitative and quantitative models are employed to assess the default risk on loans and bonds.</p>
+<ul>
+<li>They are not mutually exclusive.</li>
+<li>An FI manager may use both qualitative and quantitative models and use more than one model to reach a credit decision.</li>
+</ul>
+<p><strong>Credit scoring models</strong> use observed borrower characteristics to</p>
+<ol type="1">
+<li>either calculate a score representing the applicant’s default probability, or</li>
+<li>sort borrowers into different default risk classes.</li>
+</ol>
+<div class="columns">
+<div class="column">
+<p>Scoring models might help to:</p>
+<ul>
+<li>Establish factors that help to explain default risk</li>
+<li>Evaluate the relative importance of these factors</li>
+<li>Improve the pricing of default risk</li>
+<li>Sort out bad loan applicants</li>
+<li>More easily calculate reserve needs</li>
+</ul>
+</div><div class="column">
+<p>Three broad types</p>
+<ol type="1">
+<li>Linear probability models</li>
+<li>Logit models</li>
+<li>Linear discriminant analysis</li>
+</ol>
+</div></div>
+</section>
+<section id="raroc" class="slide level2">
+<h2>RAROC</h2>
+<p>Risk-adjusted return on capital (RAROC) was pioneered by Bankers Trust (acquired by Deutsche bank in 1998).</p>
+<p><span class="math display">\[
+RAROC = \frac{\text{One-year net income on a loan}}{\text{Loan risk}}
+\]</span> where <span class="math display">\[
+\text{One-year net income on loan} = (\text{Spread} + \text{Fees}) \times \text{Dollar value of the loan outstanding}
+\]</span> and Loan risk can be measure by, for example, <em>duration</em>. <span class="math display">\[
+\frac{\Delta LN}{LN} = - D_{LN} \frac{\Delta R}{1+R}
+\]</span> so that <span class="math display">\[
+\underbrace{\Delta LN}_{\text{dollar risk exposure}} = - \underbrace{D_{LN}}_{\text{duration of loan}} \times \underbrace{LN}_{\text{loan amount}} \times \underbrace{\frac{\Delta R}{1+R}}_{\text{shock}}
+\]</span></p>
+<ul>
+<li>Loan approval if RAROC &gt; benchmark return on capital.</li>
+</ul>
+</section>
+<section id="option-models-of-default-risk" class="slide level2">
+<h2>Option models of default risk</h2>
+<p>Rationale:</p>
+<ul>
+<li>A borrower borrows to invest.</li>
+<li>If its investments are successful, the borrower repays.</li>
+<li>If its investments fail and the borrower cannot repay the lender,
+<ul>
+<li>The borrower has an <em>option to default</em> on its debt, simply turning any remaining assets over to the lender.</li>
+</ul></li>
+<li>The borrower’s (equity holders’) loss is capped due to limited liability.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The KMV Corporation<sup>1</sup> turned this relatively simple idea into a credit monitoring model.</p>
+<p>Many of the largest U.S. FIs are now using this model to determine the <strong>expected default frequency (EDF)</strong> of large corporations.</p>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>The KMV Corporation was purchased by Moody’s in 2002 and is now part of Moody’s Analytics Enterprise Risk Solutions.</p></li></ol></aside></section></section>
+<section>
+<section id="credit-risk-ii-loan-portfolio-and-concentration-risk" class="title-slide slide level1 center">
+<h1>Credit Risk II: Loan Portfolio and Concentration Risk</h1>
+
+</section>
+<section id="simple-models" class="slide level2">
+<h2>Simple models</h2>
+<ul>
+<li>Regulations are in place to limit such exposure.</li>
+<li>As a result, individual loans rarely cause material losses or bank failures.</li>
+<li>Primary cause of credit-related distress is that pools of individual loans sharing similar characteristics perform similarly, especially during extreme conditions.</li>
+<li>An important lesson learned is that products exposed to the same types of risks can have different names and under different business units.</li>
+</ul>
+<p>Two simple models widely employed to measure credit risk concentration in the loan portfolio:</p>
+<ol type="1">
+<li>Migration analysis</li>
+<li>Concentration limits</li>
+</ol>
+</section>
+<section id="loan-portfolio-diversification-and-mpt" class="slide level2">
+<h2>Loan portfolio diversification and MPT</h2>
+<p>MPT can be used to measure and control an FI’s aggregate credit risk exposure.</p>
+<p>Any model that seeks to estimate an efficient frontier for loans needs to determine and measure three things:</p>
+<ul>
+<li>The expected return on individual loans</li>
+<li>The risk of individual loans</li>
+<li>The correlation of default risks between loans</li>
+</ul>
+<p>The fundamental lesson of MPT is that by taking advantage of its size, an FI can diversify considerable amounts of credit risk as long as the returns on different assets are imperfectly correlated with respect to their default risk adjusted returns.</p>
+</section>
+<section id="moodys-analytics-riskfrontier-model" class="slide level2">
+<h2>Moody’s Analytics RiskFrontier Model</h2>
+<p>Moody’s <strong>RiskFrontier</strong> applies MPT to the loan portfolio using EDF (from Moody’s <strong>Credit Monitor</strong>) and LGD as primary inputs — no need for loan returns to be normally distributed.</p>
+<p>Three inputs per borrower <span class="math inline">\(i\)</span>:</p>
+<ol type="1">
+<li><strong>Expected return</strong>: <span class="math inline">\(R_i = AIS_i - (EDF_i \times LGD_i)\)</span>, where <span class="math inline">\(AIS\)</span> is the all-in-drawn spread.<sup>1</sup></li>
+<li><strong>Unexpected loss</strong> (risk): <span class="math inline">\(\sigma_i = \sqrt{EDF_i(1-EDF_i)} \times LGD_i\)</span>, assuming binomial default.<sup>2</sup></li>
+<li><strong>Default correlation</strong> <span class="math inline">\(\rho_{ij}\)</span>: estimated from systematic asset-return components of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> via Moody’s <strong>Global Correlation Model (GCORR)</strong> — a factor model rather than direct historical correlation.</li>
+</ol>
+<aside><ol class="aside-footnotes"><li id="fn5"><p>In the textbook <span class="citation" data-cites="saunders_financial_2023">Saunders et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span>, this equation has a typo: <span class="math inline">\(E(L_i)\)</span> is written as <span class="math inline">\(R(L_i)\)</span>.</p></li><li id="fn6"><p>In the textbook <span class="citation" data-cites="saunders_financial_2023">Saunders et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span>, this equation is entirely incorrectly written.</p></li></ol></aside></section>
+<section id="use-of-derivatives-to-manage-credit-risk" class="slide level2">
+<h2>Use of derivatives to manage credit risk</h2>
+<ul>
+<li>Diversification of loan portfolio helps FIs to manage their credit risk exposure.</li>
+<li>New types of derivative instruments are now available to better allow FIs to hedge their credit risk both on individual loans or on loan portfolios.
+<ul>
+<li>Credit forwards, options, and swaps.</li>
+</ul></li>
+<li>These credit derivatives allow FIs to separate the credit risk exposure from the lending process itself.</li>
+</ul>
+</section>
+<section id="credit-default-swaps-cds" class="slide level2">
+<h2>Credit (default) swaps (CDS)</h2>
+<p>Fastest-growing types of swaps. Most important type of credit derivatives.</p>
+<p>Why CDS?</p>
+<ol type="1">
+<li>Credit risk is still more likely to cause an FI to fail than is either interest rate risk or FX risk.</li>
+<li>CDSs allow FIs to maintain long-term customer lending relationships without bearing the full credit risk exposure from those relationships.</li>
+</ol>
+<p>We examine two types of credit swaps:</p>
+<ol type="1">
+<li>total return swap</li>
+<li>pure credit swap</li>
+</ol>
+</section></section>
+<section>
+<section id="liquidity-risk" class="title-slide slide level1 center">
+<h1>Liquidity Risk</h1>
+
+</section>
+<section id="liquidity-risk-1" class="slide level2">
+<h2>Liquidity risk</h2>
+<div title="The textbook bank run, updated">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The textbook bank run, updated</strong></p>
+</div>
+<div class="callout-content">
+<p>The classic image of a bank run is a queue around the block. The 2023 image is a Slack channel. SVB lost a quarter of its deposit base in <strong>24 hours</strong>. The deposit-runoff assumptions baked into the LCR were calibrated on pre-smartphone behaviour — regulators are now revisiting them.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Liquidity risk is a normal aspect of everyday management of a financial institution (FI). It can arise on both sides of the balance sheet:</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Liability side
+<ul>
+<li>Depositors and other claim holders decide to cash in their financial claims immediately
+<ul>
+<li>The DI has to borrow additional funds or sell assets</li>
+</ul></li>
+<li>DI need to be able to predict the distribution of <strong>net deposit drains</strong>
+<ul>
+<li>The difference between deposit withdrawals and deposit additions on any specific normal banking day</li>
+</ul></li>
+</ul></li>
+</ul>
+</div><div class="column">
+<ul>
+<li>Asset side
+<ul>
+<li>Risk from OBS loan commitments and other credit lines</li>
+<li>Change of the value of investment securities portfolios due to unexpected changes of interest rates</li>
+<li>Problems associated with ‘quick’ asset sales/fire-sales
+<ul>
+<li>High costs for turning illiquid assets into cash</li>
+<li>Low sales price; in worst case, fire-sale price</li>
+</ul></li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="managing-liquidity-purchased-vs-stored" class="slide level2">
+<h2>Managing liquidity — purchased vs stored</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Purchased liquidity</strong> — <em>buy</em> funds in the market.</p>
+<ul>
+<li>Cash market, repos, wholesale CDs, note/bond issuance.</li>
+<li>Higher rates than deposits, but no asset disposal.</li>
+<li>Disappears in stress.</li>
+</ul>
+</div><div class="column">
+<p><strong>Stored liquidity</strong> — <em>liquidate</em> assets.</p>
+<ul>
+<li>Cash reserves at the central bank, in vaults.</li>
+<li>U.S. Fed reserve requirement reduced to <strong>0%</strong> on 26 Mar 2020.</li>
+<li>The <strong>RBA imposes no formal reserve requirement</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section id="liquidity-coverage-ratio-lcr" class="slide level2">
+<h2>Liquidity Coverage Ratio (LCR)</h2>
+<p>Post-GFC, the BCBS introduced two new minimum liquidity standards: <strong>LCR</strong> (short-term, since Jan 2015) and <strong>NSFR</strong> (structural, since Jan 2018). Both apply to internationally active banks above size thresholds.</p>
+<p>The <strong>LCR</strong> ensures a DI holds enough <strong>high-quality liquid assets (HQLA)</strong> to survive a 30-day stress scenario calibrated on GFC conditions:</p>
+<p><span class="math display">\[
+\text{LCR} = \frac{\text{Stock of HQLA}}{\text{Total net cash outflows over 30 days}} \ge 100\%
+\]</span></p>
+<p>Reported monthly.</p>
+</section>
+<section id="lcr-hqla-and-net-outflows" class="slide level2">
+<h2>LCR — HQLA and net outflows</h2>
+<p><strong>HQLA</strong> — assets that stay liquid in stress and are <strong>unencumbered</strong>. Split into:</p>
+<ul>
+<li><strong>Level 1</strong> (no cap, no haircut): cash, central-bank reserves, high-quality sovereign debt.</li>
+<li><strong>Level 2A</strong> (capped at 40%, 15% haircut) and <strong>Level 2B</strong> (further caps and 25–50% haircuts): eligible corporate debt, covered bonds, certain RMBS and equities.</li>
+</ul>
+<p><strong>Net cash outflows</strong> over 30 days:</p>
+<p><span class="math display">\[\text{Net outflows} = Out - \min(In, 75\% \times Out)\]</span></p>
+<p>Cash flows are computed by applying regulator-set draw-down factors to each asset/liability type.</p>
+</section>
+<section id="net-stable-funding-ratio-nsfr" class="slide level2">
+<h2>Net Stable Funding Ratio (NSFR)</h2>
+<p>NSFR targets <strong>structural</strong> funding stability over a <strong>one-year</strong> horizon — reducing reliance on short-term wholesale funding (a key GFC failure mode).</p>
+<p><span class="math display">\[
+\text{NSFR} = \frac{\text{Available stable funding (ASF)}}{\text{Required stable funding (RSF)}} \ge 100\%
+\]</span></p>
+<ul>
+<li><strong>ASF</strong> — weighted sum of capital, long-term liabilities, and the stable portion of retail/wholesale deposits.</li>
+<li><strong>RSF</strong> — weighted sum of on-balance-sheet assets and OBS exposures, with weights set by liquidity profile.</li>
+</ul>
+<p>Reported quarterly since 2018.</p>
+</section>
+<section id="bank-runs-and-safety-nets" class="slide level2">
+<h2>Bank runs and safety nets</h2>
+<p>Abnormal deposit drains can trigger a <strong>bank run</strong> — fuelled by solvency concerns, contagion from related DIs, or sudden preference shifts. A systemic, contagious run is a <strong>bank panic</strong>.</p>
+<p>The two main insulation devices:</p>
+<ol type="1">
+<li><strong>Deposit insurance</strong> — keeps the typical depositor calm so the run never starts.</li>
+<li><strong>Discount window</strong> — central-bank standing facility lending short-term funds against collateral. In the <strong>March 2023 U.S. banking stress</strong>, banks drew a record <strong>US$153 billion</strong> from the Fed’s discount window in one week, and the Fed launched the <strong>Bank Term Funding Program (BTFP)</strong> — lending at <em>par</em> against eligible securities to neutralise the unrealised losses that had sunk SVB. BTFP closed to new loans on <strong>11 March 2024</strong>.</li>
+</ol>
+<div title="Moral hazard, the dark side of safety nets">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Moral hazard, the dark side of safety nets</strong></p>
+</div>
+<div class="callout-content">
+<p>Both backstops are necessary — and both encourage risk-taking. Deposit insurance lets weak banks bid for deposits at the same rate as strong banks. A generous discount window lets banks economise on costly HQLA. The regulator’s job is to price the insurance and the access so the subsidy doesn’t outrun the public benefit.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="liability-and-liquidity-management" class="title-slide slide level1 center">
+<h1>Liability and Liquidity Management</h1>
+
+</section>
+<section id="two-sources-of-liquidity" class="slide level2">
+<h2>Two sources of liquidity</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Stored liquidity (asset-side)</strong> — historically dominant.</p>
+<ul>
+<li>Cash, central-bank reserves, sovereign securities traded in <em>deep</em> markets.</li>
+<li>Government securities act as secondary buffer reserves.</li>
+<li>Composition shaped by reserve requirements and earnings considerations.</li>
+</ul>
+</div><div class="column">
+<p><strong>Purchased liquidity (liability-side)</strong> — dominant today.</p>
+<ul>
+<li>Interbank market (cash market), repos, wholesale issuance.</li>
+<li>Cheaper in normal times — but evaporates in stress.</li>
+</ul>
+</div></div>
+<p>The day-to-day game is <strong>risk-return trade-off</strong>: liquid assets earn less; under-shooting LCR/NSFR triggers charges; over-shooting ties up earning assets. Management of the RBA <strong>Exchange Settlement Account (ESA)</strong> is at the centre of this.<sup>1</sup></p>
+<aside><ol class="aside-footnotes"><li id="fn7"><p>RBA pays “cash target rate minus 10 basis points” on ESA balances.</p></li></ol></aside></section>
+<section id="the-cash-market-and-the-rba" class="slide level2">
+<h2>The cash market and the RBA</h2>
+<p>The <strong>cash market</strong> is the overnight interbank market where banks lend/borrow ES balances.</p>
+<ul>
+<li><strong>Price</strong> of funds = the <strong>cash rate</strong> (RBA’s policy target).</li>
+<li><strong>Quantity</strong> traded = the ES balance held in each DI’s ESA at the RBA.</li>
+</ul>
+<p><strong>Pre-COVID:</strong> the RBA managed ES supply via daily <strong>repurchase agreements (repos)</strong> to keep the cash rate near target.</p>
+<p><strong>Post-COVID:</strong> the RBA’s monetary operations changed substantially:</p>
+<ul>
+<li><strong>TFF</strong> — Term Funding Facility (drawdown closed 2021, repayments completed <strong>30 June 2024</strong>).</li>
+<li><strong>Government Bond Purchases</strong> — ceased <strong>10 February 2022</strong>.</li>
+<li><strong>Standing Facility</strong> — overnight access at a penalty rate.</li>
+<li><strong>Private repo market</strong> — bilateral repos between FIs continue as a key liquidity tool.</li>
+</ul>
+</section>
+<section id="liability-side-liquidity-and-management" class="slide level2">
+<h2>Liability-side liquidity and management</h2>
+<p>Aim: construct a <strong>low-cost and low-withdrawal-risk</strong> liability portfolio. The two are in tension — low-cost liabilities (demand deposits) have high withdrawal risk; low-withdrawal-risk liabilities (CDs) carry higher cost.</p>
+<div class="columns">
+<div class="column">
+<p><strong>Deposit liabilities</strong></p>
+<ul>
+<li>Cheque accounts / demand deposits</li>
+<li>Savings accounts</li>
+<li>Cash management / investment savings accounts</li>
+<li>Fixed-term deposits</li>
+<li>Negotiable certificates of deposit (NCDs)</li>
+</ul>
+</div><div class="column">
+<p><strong>Non-deposit liabilities</strong></p>
+<ul>
+<li>Interbank funds, repos</li>
+<li>Covered bonds, bank-accepted bills</li>
+<li>Commercial paper / promissory notes</li>
+<li>Subordinated debt, medium-term notes</li>
+<li>Other long-term borrowings</li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="sovereign-risk-foreign-exchange-risk-and-off-balance-sheet-risk" class="title-slide slide level1 center">
+<h1>Sovereign Risk, Foreign Exchange Risk, and Off-Balance-Sheet Risk</h1>
+
+</section>
+<section id="foreign-exchange-risk" class="slide level2">
+<h2>Foreign exchange risk</h2>
+<div title="The risks that hit when you cross a border">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The risks that hit when you cross a border</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>George Soros and the pound</strong> (Sep 1992) — the textbook example of <em>FX risk</em> meeting <em>speculative pressure</em>; the BoE lost ~£3.4B defending the peg before capitulating.</li>
+<li><strong>Greece</strong> (2010–12) — <em>sovereign risk</em> on what was supposed to be a developed-country bond; the haircut on private bondholders was ~53.5% face value.</li>
+<li><strong>AIG</strong> (2008) — wrote ~US$440B of credit-default-swap protection on mortgage securities and could not post collateral when ratings cut; the Fed bailed it out to prevent counterparty contagion. <em>Off-balance-sheet risk</em> at its most extreme.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>An FI’s overall FX exposure in any given currency can be measured by the net position exposure, which is measured in local currency as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Net exposure}_i &amp;= (\text{FX assets}_i - \text{FX liabilities}_i) + (\text{FX bought}_i - \text{FX sold}_i) \\
+&amp;=\text{Net foreign assets}_i + \text{Net FX bought}_i
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(i\)</span> represents the <span class="math inline">\(i\)</span>th currency.</p>
+</section>
+<section id="fx-volatility-and-dear" class="slide level2">
+<h2>FX volatility and DEAR</h2>
+<p>Potential loss in any currency <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+\text{Dollar loss/gain}_i = \text{Net exposure}_i \times \text{Shock to FX rate}_i
+\]</span></p>
+<p>Greater exposure × greater FX volatility ⇒ greater <strong>daily earnings at risk (DEAR)</strong>.</p>
+<p>FX volatility itself reflects shifts in the demand/supply of a currency, often driven by <strong>inflation and interest-rate differentials</strong> — which leads us to the two parity conditions: <strong>PPP</strong> (inflation) and <strong>IRP</strong> (interest rates).</p>
+</section>
+<section id="purchasing-power-parity" class="slide level2">
+<h2>Purchasing Power Parity</h2>
+<p>Nominal interest rate <span class="math inline">\(R\)</span> is basically the sum of inflation <span class="math inline">\(i\)</span> and real interest rate <span class="math inline">\(r\)</span>:</p>
+<p>For two countries, e.g., Australia (AU) and United States (US), we have:</p>
+<p><span class="math display">\[
+\begin{aligned}
+R_{AU} &amp;= i_{AU} + r_{AU} \\
+R_{US} &amp;= i_{US} + r_{US}
+\end{aligned}
+\]</span></p>
+<p>Assuming real interest rates are equal across countries: <span class="math inline">\(r_{AU}=r_{US}\)</span>, then</p>
+<p><span class="math display">\[
+R_{AU} - R_{US} = i_{AU} - i_{US}
+\]</span></p>
+<p>That is, the (nominal) interest rate spread between Australia and the United States represents the difference in inflation rates between the two countries.</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>When inflation rates and/or interest rates change, foreign exchange rates (without government control) should adjust to account for relative differences in the price levels (inflation) between the two countries.</p>
+</div>
+</div>
+</div>
+<p><strong>Purchasing Power Parity (PPP)</strong> is one theory explaining how this adjustment takes place — built on the <strong>law of one price</strong>: identical goods should have one price across markets in equilibrium.</p>
+<p>The PPP theorem states that the change in the exchange rate equals the inflation differential:</p>
+<p><span class="math display">\[
+i_{domestic} - i_{foreign} = \frac{\Delta S_{domestic/foreign}}{S_{domestic/foreign}}
+\]</span></p>
+<div title="Quick example">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Quick example</strong></p>
+</div>
+<div class="callout-content">
+<p>Spot <span class="math inline">\(S_{AUD/CNY} = 0.17\)</span>. Inflation: Australia 4%, China 10%. PPP gives: <span class="math display">\[0.04 - 0.10 = \Delta S / 0.17 \Rightarrow \Delta S = -0.0102\]</span> The yuan depreciates ~6% against the AUD; new rate ≈ 0.1598 AUD/CNY.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="interest-rate-parity" class="slide level2">
+<h2>Interest Rate Parity</h2>
+<p>To illustrate (covered) <strong>interest rate parity (IRP)</strong>, let’s consider two investment strategies.</p>
+<p>Strategy 1: Domestic Investment</p>
+<ul>
+<li>You invest $1 domestically at an interest rate <span class="math inline">\(r_d\)</span> for one period.</li>
+<li>After one period, your investment grows to <span class="math inline">\(1 + r_d\)</span>.</li>
+</ul>
+<p>Strategy 2: Foreign Investment with Forward Contract</p>
+<ul>
+<li>You convert $1 into foreign currency at the current spot exchange rate <span class="math inline">\(S\)</span>, which gives <span class="math inline">\(1/S\)</span> foreign currency.</li>
+<li>You then invest the foreign currency amount in a foreign asset at the interest rate <span class="math inline">\(r_f\)</span> for one period.</li>
+<li>After one period, this investment grows to <span class="math inline">\((1 + r_f)\)</span>.</li>
+<li>You lock in the forward exchange rate <span class="math inline">\(F\)</span> now to convert the foreign currency back to domestic currency after one period.</li>
+</ul>
+<p>For these two strategies to have the same return (and eliminate arbitrage opportunities), the returns on both should be equivalent when the foreign investment is converted back using the forward rate. This gives us the CIRP condition:</p>
+<p><span class="math display">\[
+1 + r_d = \frac{(1 + r_f) \cdot F}{S}
+\]</span></p>
+<p>Rearranging, we can see the relation between interest rates and the forward rate:</p>
+<p><span class="math display">\[
+F = S \cdot \frac{1 + r_d}{1 + r_f}
+\]</span></p>
+</section>
+<section id="managing-fx-risk" class="slide level2">
+<h2>Managing FX risk</h2>
+<p>On-balance-sheet hedging</p>
+<ul>
+<li>Requires duration matching to control exposure to foreign interest rate risk</li>
+<li>A direct match of foreign assets and liabilities can result in positive profits for the FI</li>
+</ul>
+<p>Off-balance-sheet hedging</p>
+<ul>
+<li>Uses forwards, futures, options and swaps</li>
+<li>Example: hedging with forwards allows FI to offset uncertainty regarding the future spot rate on a currency</li>
+</ul>
+</section>
+<section id="sovereign-risk" class="slide level2">
+<h2>Sovereign risk</h2>
+<ul>
+<li>Mismatches in the size and maturities of foreign assets and liabilities expose FIs to FX risk.</li>
+<li>Beyond FX risk, holding assets in a foreign country also exposes FIs to country or <strong>sovereign risk</strong>.
+<ul>
+<li>e.g., when the foreign corporation may be unable to repay the principal or interest on a loan even if it would like to.</li>
+<li>the government of the country in which a borrower is headquartered may prohibit or limit debt payments</li>
+</ul></li>
+</ul>
+<p>A sovereign country’s (negative) decisions on its debt obligations or the obligations of its public and private organizations may take two forms: <strong>repudiation</strong> and <strong>restructuring</strong>.</p>
+<ol type="1">
+<li>Debt repudiation
+<ul>
+<li>An outright cancellation of all a borrower’s current and future foreign debt and equity obligations</li>
+</ul></li>
+<li>Debt restructuring
+<ul>
+<li>Change the contractual terms of a loan, such as maturity and interest payment</li>
+<li>Most common form of sovereign risk</li>
+</ul></li>
+</ol>
+</section>
+<section id="off-balance-sheet-obs-activities" class="slide level2">
+<h2>Off-balance-sheet (OBS) activities</h2>
+<p>OBS items are <strong>contingent assets and liabilities</strong> — they shape the <em>future</em> balance sheet and produce positive or negative cash flows. True net worth = market value of on- <em>plus</em> off-balance-sheet activities.</p>
+<div class="columns">
+<div class="column">
+<p><strong>Major types</strong></p>
+<ul>
+<li><strong>Loan commitments</strong> — promise to lend up to a stated amount at a given rate.</li>
+<li><strong>Letters of credit</strong> — contingent guarantees underwriting a buyer’s performance.</li>
+<li><strong>Derivative contracts</strong> — forwards, futures, options, swaps.</li>
+<li><strong>When-issued trading</strong> — pre-issuance trades.</li>
+<li><strong>Loans sold</strong> with recourse.</li>
+</ul>
+</div><div class="column">
+<p><strong>Why banks use OBS</strong></p>
+<ul>
+<li>Fee income.</li>
+<li>Avoid regulatory costs (reserves, deposit-insurance premiums, capital).</li>
+</ul>
+<p><strong>OBS is not just risk-increasing</strong> — much of it is <em>hedging</em> (interest-rate, FX) and so reduces insolvency risk. Big, creditworthy banks earn substantial OBS fee income.</p>
+</div></div>
+</section></section>
+<section>
+<section id="loan-sales-and-securitisation" class="title-slide slide level1 center">
+<h1>Loan Sales and Securitisation</h1>
+
+</section>
+<section id="from-originate-to-hold-to-originate-to-distribute" class="slide level2">
+<h2>From originate-to-hold to originate-to-distribute</h2>
+<p>For most of the 20th century, banking followed a simple model: <strong>originate-to-hold</strong>. A bank made a loan, kept it on its books, and collected interest until maturity.</p>
+<p>Today, the dominant model is <strong>originate-to-distribute</strong>:</p>
+<ol type="1">
+<li>Make loans.</li>
+<li><strong>Sell</strong> them (loan sales) or <strong>repackage</strong> them (securitisation).</li>
+<li>Use the proceeds to originate new loans.</li>
+</ol>
+<div title="A model with consequences">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A model with consequences</strong></p>
+</div>
+<div class="callout-content">
+<p>The originate-to-distribute model fuelled the <strong>2008 global financial crisis</strong>: once banks no longer held the loans they originated, their incentive to screen and monitor borrowers collapsed. Subprime mortgages were originated, securitised, sold, and the risk landed everywhere except on the originator’s balance sheet.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="loan-sales" class="slide level2">
+<h2>Loan sales</h2>
+<ul>
+<li><strong>Credit derivatives</strong> reduce credit risk <em>without</em> removing assets from the balance sheet.</li>
+<li><strong>Loan sales</strong> transfer <em>ownership</em> (and credit risk) to an outside buyer; the loan leaves the balance sheet.
+<ul>
+<li><strong>Without recourse</strong> — no further FI liability after sale (the dominant practice).</li>
+<li><strong>With recourse</strong> — buyer may put the loan back to the FI under defined conditions.</li>
+</ul></li>
+<li>Loan sales do <em>not</em> create new securities. Pass-throughs, CMOs and MBBs are products of <em>securitisation</em>.</li>
+</ul>
+<div title="A market hiding in plain sight">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A market hiding in plain sight</strong></p>
+</div>
+<div class="callout-content">
+<p>The U.S. secondary loan trading market has grown to roughly <strong>US$800 billion in annual trading volume</strong> in recent years (LSTA). This market barely existed in 1990.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="types-of-loan-sales" class="slide level2">
+<h2>Types of loan sales</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Traditional short-term loan sales</strong></p>
+<ul>
+<li>secured by assets of the borrowing firm</li>
+<li>made to investment-grade borrowers or better</li>
+<li>short term (≤ 90 days)</li>
+<li>yields tied to commercial paper rates</li>
+<li>sold in units of $1 million and up</li>
+</ul>
+</div><div class="column">
+<p><strong>Leveraged loan sales</strong></p>
+<ul>
+<li>term loans (TLs)</li>
+<li>secured by assets of the borrowing firm (often senior secured)</li>
+<li>long maturity (3–6 years)</li>
+<li>floating-rate, historically tied to LIBOR; since LIBOR’s cessation in <strong>2023</strong>, predominantly <strong>SOFR</strong> in the U.S. and <strong>SONIA</strong> in the U.K.</li>
+<li>strong covenant protection <em>in theory</em> — see “covenant-lite” below</li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The definition of “leveraged loan” is ambiguous: some use spreads (e.g.&nbsp;+125 bps), others use rating (BB- or lower).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="participation-vs-assignment-and-the-good-bank-bad-bank-trick" class="slide level2">
+<h2>Participation vs assignment, and the “good bank / bad bank” trick</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Participation</strong> — the buyer is <em>not</em> a party to the original credit agreement. They take only partial control and bear <em>double</em> risk: borrower <strong>and</strong> selling FI.</p>
+<p><strong>Assignment</strong> — the more common form. All rights transfer; the buyer has a direct claim on the borrower.</p>
+</div><div class="column">
+<p><strong>Good bank / bad bank</strong> carve-outs are a special kind of loan sale.</p>
+<ul>
+<li><strong>UKAR</strong> absorbed the bad assets of Northern Rock and Bradford &amp; Bingley (peak £116B); the residual was sold to Cerberus in 2015 and wound up in 2021.</li>
+<li><strong>Citi Holdings</strong> carved out ~US$800B of unwanted assets in January 2009 and wound them down by 90% by 2015.</li>
+</ul>
+</div></div>
+</section>
+<section id="why-loan-sales" class="slide level2">
+<h2>Why loan sales?</h2>
+<ol type="1">
+<li><strong>Capital relief</strong> — sell risky assets to reduce RWA.</li>
+<li><strong>Liquidity</strong> — improve asset-side liquidity.</li>
+<li><strong>Fee income</strong> — origination and servicing fees survive the sale.</li>
+<li><strong>Reserve requirements</strong> — historically a driver; matters less now.</li>
+</ol>
+</section>
+<section id="securitisation" class="slide level2">
+<h2>Securitisation</h2>
+<p><strong>Asset securitisation</strong> packages loans into newly created securities — <strong>asset-backed securities (ABS)</strong> — sold to investors. Two mechanisms, both creating off-balance-sheet subsidiaries:</p>
+<ul>
+<li><strong>Special-purpose vehicle (SPV)</strong> — passive; pools loans, issues ABS, ceases when loans mature. Underlying loans belong to the <em>investors</em>.</li>
+<li><strong>Structured investment vehicle (SIV)</strong> — active; holds loans and funds itself with short-term commercial paper. Underlying loans belong to the <em>SIV</em>.</li>
+</ul>
+<div title="The SIV problem — Citi, 2007">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The SIV problem — Citi, 2007</strong></p>
+</div>
+<div class="callout-content">
+<p>SIVs hold long-term assets funded with short-term paper — that is <strong>maturity transformation without deposit insurance</strong>. When ABCP markets froze in 2007, Citi’s seven SIVs (~US$58B) lost market access. Citi consolidated them back onto its balance sheet — the <em>first</em> signal that the GFC would be a bank-balance-sheet problem, not just an investor problem.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="three-major-forms-of-securitisation" class="slide level2">
+<h2>Three major forms of securitisation</h2>
+<ol type="1">
+<li><strong>Pass-through security</strong> — fractional ownership in a mortgage pool; principal and interest pass through to investors. <strong>Prepayment risk</strong> is the headline concern.</li>
+<li><strong>Collateralised mortgage obligation (CMO)</strong> — repackages cash flows into <strong>tranches</strong> (Class A, B, C…) with a pre-specified prepayment waterfall. Different tranches attract different buyers (short A → DIs; long C → insurers, pension funds).</li>
+<li><strong>Mortgage-backed bond (MBB) / covered bond</strong> — bonds <em>secured</em> by a ring-fenced pool that <strong>remains on the bank’s balance sheet</strong>. Over-collateralised; the trustee monitors the cover pool.</li>
+</ol>
+<div title="The MBB deposit-insurance subsidy">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The MBB deposit-insurance subsidy</strong></p>
+</div>
+<div class="callout-content">
+<p>By pledging collateral to MBB holders, the FI reduces the assets backing <strong>insured depositors</strong> — effectively transferring risk to the deposit-insurance scheme. This is why <strong>APRA caps Australian covered-bond asset encumbrance at 8%</strong> of an ADI’s domestic assets.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="clos-and-leveraged-loans-the-post-gfc-story" class="slide level2">
+<h2>CLOs and leveraged loans — the post-GFC story</h2>
+<p>Securitisation never went away after 2008; it migrated.</p>
+<ul>
+<li>The U.S. <strong>leveraged loan</strong> market is around <strong>US$1.4–1.5 trillion</strong>; the global <strong>CLO</strong> market exceeds <strong>US$1 trillion</strong>.</li>
+<li>Around <strong>90%</strong> of new leveraged loans are now <strong>covenant-lite</strong> <span class="citation" data-cites="berlin_concentration_2020">(<a href="#/references" role="doc-biblioref" onclick="">Berlin et al. 2020</a>)</span>, compared with under 25% pre-crisis.</li>
+<li><strong>CLOs</strong> absorb roughly two-thirds of new leveraged-loan issuance — they are <em>the</em> marginal buyer.</li>
+<li><span class="citation" data-cites="irani_rise_2021">Irani et al. (<a href="#/references" role="doc-biblioref" onclick="">2021</a>)</span> documents that post-GFC capital regulation pushed risky loans <em>out</em> of banks and into less-regulated <strong>non-bank lenders</strong> — the rise of shadow banking is partly a regulatory artefact.</li>
+</ul>
+<div title="Was 2020 the next subprime?">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Was 2020 the next subprime?</strong></p>
+</div>
+<div class="callout-content">
+<p>In 2018 the Fed, BoE, IMF and BIS all flagged leveraged-loan CLOs as a systemic risk. COVID-19 was the stress test — CLOs survived, in part because of unprecedented central-bank intervention. Whether they would survive a <em>normal</em> recession is still an open question.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="emerging-topics-in-bank-risk-management" class="title-slide slide level1 center">
+<h1>Emerging topics in bank risk management</h1>
+
+</section>
+<section id="changing-dynamics" class="slide level2">
+<h2>Changing dynamics</h2>
+<p>Traditional banks face pressure on every side:</p>
+<ul>
+<li><strong>Global competition</strong> with other banks.</li>
+<li><strong>Competition with nonbanks</strong> (“shadow banks”) — FinTech firms reduce information asymmetry via big-data screening and AI/ML monitoring, and are <em>less</em> regulated than banks.</li>
+<li><strong>Central bank digital currencies (CBDC)</strong> — if households hold CBDC instead of bank deposits, banks lose their cheapest funding source.</li>
+<li><strong>Technology</strong> — mobile banking has made deposits more <em>mobile</em> too; runs now happen at the speed of a screenshot.</li>
+<li><strong>Business model</strong> — the shift to <em>originate-and-distribute</em> (Week 11) means banks now manufacture and ship credit risk rather than warehouse it.</li>
+</ul>
+<div title="Silicon Valley Bank, 10 March 2023">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Silicon Valley Bank, 10 March 2023</strong></p>
+</div>
+<div class="callout-content">
+<p>SVB lost <strong>US$42 billion of deposits in a single day</strong> — a quarter of its deposit base — after a Slack-and-Twitter-driven panic among its tech-VC clients. The FDIC took it over the next morning. This was the <strong>first social-media-driven bank run</strong> at systemic scale. Digital channels are not just a customer-experience story; they are a liquidity-risk story.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="fintech-and-bigtech" class="slide level2">
+<h2>FinTech and BigTech</h2>
+<ul>
+<li><strong>FinTech</strong> is older than your phone (telegraph 1866, ATM 1967, SWIFT 1973), but the <strong>post-GFC + iPhone</strong> combination produced the modern wave: most household-name FinTechs (LendingClub, Stripe, Square, Klarna, Revolut, Up) were founded <strong>2009–2015</strong>.</li>
+<li>A decade ago the consensus was that FinTechs would <em>eat</em> banks. By 2026 the more accurate view is: <strong>incumbents kept the deposit franchise; FinTechs took the customer interface.</strong></li>
+<li><strong>BigTech</strong> (Apple, Google, Amazon, Meta; Alibaba, Tencent) has pushed mostly into <strong>payments and embedded credit</strong> — partnering with licensed banks rather than becoming one.</li>
+</ul>
+<div title="FinTech failure modes">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>FinTech failure modes</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>Wirecard</strong> (June 2020) — €1.9B of claimed escrow cash did not exist; CEO arrested, COO a fugitive.</li>
+<li><strong>Xinja</strong> (Dec 2020) — Australia’s first neobank failure; high deposit rates with no lending book to fund them.</li>
+<li><strong>Volt</strong> (June 2022) — Australia’s second neobank failure; couldn’t raise capital to scale lending.</li>
+<li><strong>Ant Group IPO</strong> (Nov 2020) — Beijing pulled the largest IPO in history 48 hours before pricing and forced Ant to restructure as a financial holding company. <em>If you look like a bank, you will be regulated like one.</em></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="neobanks-and-digital-challengers-in-australia" class="slide level2">
+<h2>Neobanks and digital challengers in Australia</h2>
+<div id="tbl-neobanks-aus-review" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-neobanks-aus-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Selected Australian neobanks and digital challengers
+</figcaption>
+<div aria-describedby="tbl-neobanks-aus-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bank</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Up</strong></td>
+<td>Mobile-only, launched 2018; runs on Bendigo &amp; Adelaide Bank’s ADI</td>
+</tr>
+<tr class="even">
+<td><strong>UBank</strong></td>
+<td>NAB-owned; relaunched 2022 on the 86 400 tech stack after NAB acquired 86 400 in 2021</td>
+</tr>
+<tr class="odd">
+<td><strong>Judo Bank</strong></td>
+<td>Full ADI granted April 2019; SME-focused; ASX-listed November 2021</td>
+</tr>
+<tr class="even">
+<td><strong>Alex Bank</strong></td>
+<td>Full ADI granted 22 December 2022</td>
+</tr>
+<tr class="odd">
+<td><strong>ANZ Plus</strong></td>
+<td>ANZ’s in-house digital bank, launched 2022 on a new cloud core</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>To take deposits in Australia, you need an <strong>Authorised Deposit-taking Institution (ADI)</strong> licence from <strong>APRA</strong>. The <strong>Restricted ADI (RADI)</strong> pathway (since 2018) lowers the entry barrier — Volt, Xinja and Judo all used it.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="generative-ai-in-banking" class="slide level2">
+<h2>Generative AI in banking</h2>
+<p>The wave none of the textbooks anticipated. Since <strong>ChatGPT</strong> (Nov 2022), banks have moved from cautious pilots to scaled deployment.</p>
+<ul>
+<li><strong>Klarna</strong> (early 2024) — an OpenAI-powered assistant handled the equivalent of <strong>700 full-time customer-service roles</strong> in its first month.</li>
+<li>Major banks (JPM, Goldman, Morgan Stanley, CBA) have public internal LLM coding-assistant deployments.</li>
+</ul>
+<div title="New risks to manage">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>New risks to manage</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>Hallucination</strong> in customer-facing chat = mis-selling exposure.</li>
+<li><strong>Third-party concentration</strong> — almost every bank’s GenAI stack runs on Microsoft/OpenAI or AWS Bedrock. That is a <em>systemic</em> concentration of operational dependency.</li>
+<li><strong>APRA CPS 230</strong> (operational resilience, effective July 2025) and <strong>CPS 234</strong> (information security) now apply to AI service providers.</li>
+<li><strong>Bias and explainability</strong> — AI-assisted credit decisions still need to satisfy responsible-lending obligations.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="open-banking-and-the-consumer-data-right-cdr" class="slide level2">
+<h2>Open Banking and the Consumer Data Right (CDR)</h2>
+<p><strong>PSD2</strong> (EU, 2018) was the first regulatory move to open banking. Australia’s equivalent is the <strong>Consumer Data Right</strong>:</p>
+<ul>
+<li>CDR launched in <strong>banking (2020)</strong>, expanded to <strong>energy (2022)</strong>, with non-bank lending staged in.</li>
+<li>It gives customers — and the FinTechs they authorise — machine-readable access to their own transaction data.</li>
+<li><span class="citation" data-cites="he_open_2023">He et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span> and <span class="citation" data-cites="babina2024">Babina et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span> show open banking redistributes informational rents: it lowers incumbents’ information monopoly, but intensifies competition for the most profitable customers.</li>
+</ul>
+</section>
+<section id="central-bank-digital-currency-cbdc" class="slide level2">
+<h2>Central Bank Digital Currency (CBDC)</h2>
+<p>A <strong>CBDC</strong> is a digital form of fiat currency issued by the central bank. Two flavours:</p>
+<ul>
+<li><strong>Retail CBDC</strong> — for the public; digital cash.</li>
+<li><strong>Wholesale CBDC</strong> — for interbank settlement.</li>
+</ul>
+<div title="Why bank treasurers worry">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Why bank treasurers worry</strong></p>
+</div>
+<div class="callout-content">
+<p>If households can hold central-bank money directly — risk-free, instantly transferable — why hold uninsured commercial-bank deposits? The fear is a <strong>structural outflow of deposits to CBDC</strong>, forcing banks into more expensive wholesale funding and shrinking credit supply. <span class="citation" data-cites="chiu_bank_2023">Chiu et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span> and <span class="citation" data-cites="niepelt_money_2024">Niepelt (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span> show the effect depends on design (interest-bearing? capped? how are reserves recycled?).</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="where-cbdcs-stand-in-2026">Where CBDCs stand in 2026</h3>
+<ul>
+<li><strong>Live</strong> — Bahamas Sand Dollar (Oct 2020, first), Nigeria eNaira (Oct 2021, low uptake), China e-CNY (large pilots).</li>
+<li><strong>In active design</strong> — ECB digital euro (preparation phase from Nov 2023); UK digital pound (design papers, no decision).</li>
+<li><strong>Australia</strong> — RBA’s CBDC research is <strong>wholesale-only</strong>: <strong>Project Atom</strong> (2020), <strong>Project Dunbar</strong> (2022, with BIS/MAS/BNM/SARB), and <strong>Project Acacia</strong> (announced Nov 2024 — three-year wholesale-CBDC and tokenisation programme). <em>Yes, that’s the same Acacia name we used in workshops.</em></li>
+<li><strong>U.S.</strong> — Trump executive order (23 Jan 2025) <strong>prohibiting</strong> the Fed from issuing a retail CBDC. Whether your country gets a CBDC has become a question of politics as much as economics.</li>
+</ul>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap-up</h1>
+
+</section>
+<section id="where-risk-has-migrated-this-semester" class="slide level2">
+<h2>Where risk has migrated this semester</h2>
+<div id="tbl-risk-migration" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-risk-migration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Where risk migrates — the unifying theme of the unit
+</figcaption>
+<div aria-describedby="tbl-risk-migration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 24%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mechanism</th>
+<th>Risk moves from…</th>
+<th>…to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Capital regulation (Wk 3)</td>
+<td>depositors</td>
+<td>shareholders (equity buffers)</td>
+</tr>
+<tr class="even">
+<td>Hedging with derivatives (Wk 4/5)</td>
+<td>the FI</td>
+<td>the counterparty</td>
+</tr>
+<tr class="odd">
+<td>Loan sales (Wk 11)</td>
+<td>originating FI</td>
+<td>the buyer (often a non-bank)</td>
+</tr>
+<tr class="even">
+<td>Securitisation (Wk 11)</td>
+<td>originating FI</td>
+<td>ABS/CLO investors</td>
+</tr>
+<tr class="odd">
+<td>Open banking (Wk 12)</td>
+<td>the incumbent bank</td>
+<td>whoever the customer authorises</td>
+</tr>
+<tr class="even">
+<td>CBDC (Wk 12)</td>
+<td>commercial-bank deposit base</td>
+<td>the central bank’s balance sheet</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="finally" class="title-slide slide level1 center">
+<h1>Finally…</h1>
+
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-babina2024" class="csl-entry" role="listitem">
+Babina, Tania, Saleem Bahaj, Greg Buchak, et al. 2024. <em>Customer Data Access and Fintech Entry: Early Evidence from Open Banking</em>. Bank of England Working Papers No. 1059. Bank of England. <a href="https://ideas.repec.org/p/boe/boeewp/1059.html">https://ideas.repec.org/p/boe/boeewp/1059.html</a>.
+</div>
+<div id="ref-berlin_concentration_2020" class="csl-entry" role="listitem">
+Berlin, Mitchell, Greg Nini, and Edison G. Yu. 2020. <span>“Concentration of Control Rights in Leveraged Loan Syndicates.”</span> <em>Journal of Financial Economics</em> 137 (1): 249–71. <a href="https://doi.org/10.1016/j.jfineco.2020.02.002">https://doi.org/10.1016/j.jfineco.2020.02.002</a>.
+</div>
+<div id="ref-Broecker1990" class="csl-entry" role="listitem">
+Broecker, Thorsten. 1990. <span>“Credit-Worthiness Tests and Interbank Competition.”</span> <em>Econometrica</em> 58 (2): 429.
+</div>
+<div id="ref-chiu_bank_2023" class="csl-entry" role="listitem">
+Chiu, Jonathan, Seyed Mohammadreza Davoodalhosseini, Janet Jiang, and Yu Zhu. 2023. <span>“Bank <span>Market</span> <span>Power</span> and <span>Central</span> <span>Bank</span> <span>Digital</span> <span>Currency</span>: <span>Theory</span> and <span>Quantitative</span> <span>Assessment</span>.”</span> <em>Journal of Political Economy</em> 131 (5): 1213–48. <a href="https://doi.org/10.1086/722517">https://doi.org/10.1086/722517</a>.
+</div>
+<div id="ref-Diamond1983" class="csl-entry" role="listitem">
+Diamond, Douglas W., and Philip H. Dybvig. 1983. <span>“Bank Runs, Deposit Insurance, and Liquidity.”</span> <em>Journal of Political Economy</em> 91 (3): 401–19.
+</div>
+<div id="ref-freixas_microeconomics_2023" class="csl-entry" role="listitem">
+Freixas, Xavier, and Jean-Charles Rochet. 2023. <em>Microeconomics of <span>Banking</span></em>. 3rd ed. MIT Press.
+</div>
+<div id="ref-he_open_2023" class="csl-entry" role="listitem">
+He, Zhiguo, Jing Huang, and Jidong Zhou. 2023. <span>“Open Banking: <span>Credit</span> Market Competition When Borrowers Own the Data.”</span> <em>Journal of Financial Economics</em> 147 (2): 449–74. <a href="https://doi.org/10.1016/j.jfineco.2022.12.003">https://doi.org/10.1016/j.jfineco.2022.12.003</a>.
+</div>
+<div id="ref-Holmstrom1997" class="csl-entry" role="listitem">
+Holmstrom, Bengt, and Jean Tirole. 1997. <span>“Financial Intermediation, Loanable Funds, and the Real Sector.”</span> <em>Quarterly Journal of Economics</em> 112 (3): 663–91.
+</div>
+<div id="ref-irani_rise_2021" class="csl-entry" role="listitem">
+Irani, Rustom M, Rajkamal Iyer, Ralf R Meisenzahl, and José-Luis Peydró. 2021. <span>“The <span>Rise</span> of <span>Shadow</span> <span>Banking</span>: <span>Evidence</span> from <span>Capital</span> <span>Regulation</span>.”</span> <em>The Review of Financial Studies</em> 34 (5): 2181–235. <a href="https://doi.org/10.1093/rfs/hhaa106">https://doi.org/10.1093/rfs/hhaa106</a>.
+</div>
+<div id="ref-Modigliani1958" class="csl-entry" role="listitem">
+Modigliani, F, and M H Miller. 1958. <span>“The Cost of Capital, Corporation Finance and the Theory of Investment.”</span> <em>The American Economic Review</em> 48 (3): 261–97.
+</div>
+<div id="ref-niepelt_money_2024" class="csl-entry" role="listitem">
+Niepelt, Dirk. 2024. <span>“Money and <span>Banking</span> with <span>Reserves</span> and <span>CBDC</span>.”</span> <em>The Journal of Finance</em> 79 (4): 2505–52. https://doi.org/<a href="https://doi.org/10.1111/jofi.13357">https://doi.org/10.1111/jofi.13357</a>.
+</div>
+<div id="ref-saunders_financial_2023" class="csl-entry" role="listitem">
+Saunders, Anthony, Marcia Millon Cornett, and Otgo Erhemjamts. 2023. <em>Financial <span>Institutions</span> <span>Management</span> <span>ISE</span></em>. 11th ed. McGraw Hill.
+</div>
+</div>
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>AFIN8003 Banking and Financial Intermediation</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/mingze-gao\.com");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
