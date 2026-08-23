@@ -1,0 +1,639 @@
+---
+title: "AFIN8003 - Workshop 4"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-08-27
+draft: false
+categories:
+    - AFIN8003
+    - 2026S2
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: false
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop4.pdf"
+# Custom fields
+pdf-name: "Workshop4.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 4: Interest rate risk in action"}
+Last week you saved AdriaBank from the capital review. This week the bank faces a different enemy: the RBA's next move.
+
+Plan for the hour:
+
+1. **Part A: Concept check** (about 10 min). Six quick questions. Self-mark.
+2. **Part B: The ALCO Game** (about 35 min). A three-round rate-shock simulation. *This is the bulk of the workshop.*
+3. **Part C: The big question** (about 10 min). Open discussion.
+4. **Part D: Take-home practice set.** The full drill: more MCQs, short answers, and one challenge question. Do these before next week; worked answers are released with the solutions version.
+
+Bring a pen and a calculator.
+:::
+
+\vspace{0.5em}
+
+# Part A: Concept check
+
+*Six questions, about 90 seconds each. Mark your own as we go.*
+
+1. Because of its simplicity, the Australian Prudential Regulation Authority (APRA) requires smaller ADIs to use _______ as their primary measure of interest rate risk.
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the maturity model
+   - [ ] the repricing model
+   - [ ] the duration model
+   - [ ] the option pricing model
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the maturity model
+   - [x] the repricing model
+   - [ ] the duration model
+   - [ ] the option pricing model
+   :::
+
+2. The difference between the dollar amount of assets whose interest rates will change and the dollar amount of liabilities whose interest rates will change when market rates change in some given time window is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] rate-sensitive assets
+   - [ ] the repricing gap
+   - [ ] rate-sensitive liabilities
+   - [ ] the duration gap
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] rate-sensitive assets
+   - [x] the repricing gap
+   - [ ] rate-sensitive liabilities
+   - [ ] the duration gap
+   :::
+
+3. A positive gap implies that a decrease in interest rates will cause _______ in net interest income.
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] decrease
+   - [ ] increase
+   - [ ] no change
+   - [ ] an uncertain change
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] decrease
+   - [ ] increase
+   - [ ] no change
+   - [ ] an uncertain change
+   :::
+
+4. AFIN Bank has a repricing gap of -$400 million. Interest rates are expected to increase by 1 per cent. What will be the impact on the bank's net interest income (NII)?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] 4 million
+   - [ ] 2 million
+   - [ ] -2 million
+   - [ ] -4 million
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] 4 million
+   - [ ] 2 million
+   - [ ] -2 million
+   - [x] -4 million
+   :::
+
+5. An FI has invested in a five-year, zero-coupon bond that is selling to yield 6 per cent. What is the duration of this bond?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] less than 5 years
+   - [ ] more than 5 years
+   - [ ] exactly 5 years
+   - [ ] less than 5 years only if using semi-annual compounding
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] less than 5 years
+   - [ ] more than 5 years
+   - [x] exactly 5 years
+   - [ ] less than 5 years only if using semi-annual compounding
+   :::
+
+6. An FI has invested $400 in an asset with a duration of 2 years and $600 in an asset with a duration of 4 years. What is the duration of the total assets?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] 3 years
+   - [ ] 0.8 years
+   - [ ] 2.4 years
+   - [ ] 3.2 years
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] 3 years
+   - [ ] 0.8 years
+   - [ ] 2.4 years
+   - [x] 3.2 years
+   :::
+
+\newpage
+
+# Part B: The ALCO Game
+
+::: {.callout-important title="AdriaBank: six months later"}
+AdriaBank survived the APRA capital review. The dividend was cancelled, the CEO is still grumpy, and you have all been promoted to the **Asset-Liability Committee (ALCO)**.
+
+It is the day before the RBA's rate decision, and the market is split: some economists expect emergency hikes, others expect cuts. The Board wants to know one thing: *are we positioned to survive whatever happens?*
+
+**How the game works.** Three rounds. In Round 1 you diagnose the bank's position. In Round 2 your team commits to ONE strategy, in writing, before anything is revealed. In Round 3 the instructor rolls a die to determine the RBA's move, and every team computes its own profit or loss. Highest score wins. Bragging rights (and a hypothetical bonus) are at stake.
+:::
+
+## AdriaBank's balance sheet (the day before the decision)
+
+\small
+
+| **Assets** (\$m) | | Duration (yrs) | **Liabilities & Equity** (\$m) | | Duration (yrs) |
+|:---|---:|---:|:---|---:|---:|
+| Cash and ES balances (non-interest-bearing) | 50 | 0 | At-call online savings (rate moves with cash rate) | 250 | 0.1 |
+| 3-month Treasury notes | 100 | 0.25 | 6-month term deposits | 130 | 0.5 |
+| Variable-rate mortgages (repriced quarterly) | 150 | 0.25 | 2-year term deposits | 100 | 1.9 |
+| 5-year fixed-rate business loans | 250 | 4.0 | 5-year senior notes | 150 | 4.2 |
+| 10-year fixed-rate Treasury bonds | 150 | 7.0 | **Equity** | **70** | |
+| **Total assets** | **700** | | **Total L&E** | **700** | |
+
+\normalsize
+
+The current level of interest rates is $R = 5\%$.
+
+## Round 1: Read the position (10 min)
+
+Work through these as a team. Every later step depends on them.
+
+**(a)** The **one-year repricing gap**. Which items are rate-sensitive within one year? Compute $GAP = RSA - RSL$.
+
+$RSA =$ \underline{\hspace{2cm}} $\qquad RSL =$ \underline{\hspace{2cm}} $\qquad GAP =$ \underline{\hspace{2cm}}
+
+**(b)** The **duration of assets** $D_A$ and **duration of liabilities** $D_L$ (weighted averages).
+
+$D_A =$ \underline{\hspace{2cm}} $\qquad D_L =$ \underline{\hspace{2cm}}
+
+**(c)** The **leverage-adjusted duration gap** $= D_A - D_L \times k$ where $k = L/A$.
+
+$k =$ \underline{\hspace{2cm}} $\qquad$ Duration gap $=$ \underline{\hspace{2cm}}
+
+**(d)** Diagnosis, in one sentence: which direction of rate moves hurts AdriaBank, and through which channel?
+
+\vspace{1.5em}
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Solution: Round 1"}
+**(a)** RSA $=$ 3-month T-notes (100) $+$ variable-rate mortgages (150) $= 250$. Cash is non-interest-bearing, so it has no rate to reset. RSL $=$ at-call savings (250) $+$ 6-month term deposits (130) $= 380$. $GAP = 250 - 380 = -130$ (\$m).
+
+**(b)** $D_A = (50 \times 0 + 100 \times 0.25 + 150 \times 0.25 + 250 \times 4.0 + 150 \times 7.0)/700 = 2112.5/700 \approx 3.02$ years.
+$D_L = (250 \times 0.1 + 130 \times 0.5 + 100 \times 1.9 + 150 \times 4.2)/630 = 910/630 \approx 1.44$ years.
+
+**(c)** $k = 630/700 = 0.90$. Duration gap $= 3.02 - 1.44 \times 0.90 \approx 1.72$ years.
+
+**(d)** Rate **rises** hurt on both channels: the negative repricing gap means funding costs reprice up faster than asset income (NII falls), and the positive duration gap means asset values fall by more than liability values (equity falls). Rate cuts help on both. AdriaBank is, in effect, betting on cuts.
+:::
+:::
+
+## Round 2: Commit to a strategy (10 min)
+
+The ALCO must choose exactly **one** of the following before the RBA announcement. Annual costs are quoted by the treasury desk. Write down your choice and one sentence of justification. **No changing after the roll.**
+
+\small
+
+| # | Strategy | Effect on the position | Annual cost (\$m) |
+|---|:---|:---|---:|
+| (a) | **Do nothing.** | Repricing gap $-130$; duration gap $1.72$ | 0 |
+| (b) | **Shorten assets.** Sell \$100m of the 10-year Treasury bonds, buy 3-month Treasury notes. | Repricing gap $-30$; duration gap $0.75$ | 0.5 |
+| (c) | **Term out funding.** Replace \$100m of at-call savings with new 5-year senior notes. | Repricing gap $-30$; duration gap $1.13$ | 1.0 |
+| (d) | **Hedge with swaps.** Pay-fixed/receive-floating package quoted by the swap desk. | Repricing gap $-30$; duration gap $0.50$ | 0.75 |
+
+\normalsize
+
+> **On strategy (d):** how a swap changes the gaps is Week 5+ material. Today, trust the desk's quote. The other rows you can verify yourself with the Round 1 formulas (try it for strategy (b) if your team finishes early).
+
+**Our strategy:** \underline{\hspace{2cm}} **Because:**
+
+\vspace{1.5em}
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Verification of the strategy table"}
+Strategy (b): new $D_A = (2112.5 - 100 \times 7.0 + 100 \times 0.25)/700 = 1437.5/700 \approx 2.05$; duration gap $= 2.05 - 1.30 = 0.75$. RSA rises to 350, so gap $= 350 - 380 = -30$.
+
+Strategy (c): new $D_L = (910 - 100 \times 0.1 + 100 \times 4.2)/630 = 1320/630 \approx 2.10$; duration gap $= 3.02 - 0.90 \times 2.10 \approx 1.13$. RSL falls to 280, so gap $= 250 - 280 = -30$.
+:::
+:::
+
+## Round 3: The RBA decides (10 min)
+
+The instructor rolls a six-sided die:
+
+| Roll | Scenario | $\Delta R$ |
+|:----:|:---------|:----------:|
+| 1 or 2 | Inflation shock: emergency hikes | $+2\%$ |
+| 3 or 4 | On hold | $0\%$ |
+| 5 | Gentle easing | $-1\%$ |
+| 6 | Recession: crisis cuts | $-2\%$ |
+
+Every team now computes its **score** under the realised scenario:
+
+$$
+\text{Score} = \underbrace{-\text{Duration gap} \times 700 \times \frac{\Delta R}{1.05}}_{\Delta E \text{ (equity value)}} + \underbrace{GAP \times \Delta R}_{\Delta NII \text{ (one year)}} - \text{Strategy cost}
+$$
+
+> **A deliberate simplification:** the score adds a change in *market value* ($\Delta E$) to a one-year *flow* ($\Delta NII$). Strictly, these overlap: this year's net interest income is part of what the market value already capitalises. We add them so that both models stay visible in a single number. A real ALCO reports $\Delta EVE$ and $\Delta NII$ side by side and never sums them, which is exactly what the Basel IRRBB standards require (see lecture).
+
+**Our score:** \underline{\hspace{3cm}} (\$m)
+
+Report your score for the class scoreboard. Highest score wins the round.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Answer key: full payoff matrix (\$m)"}
+
+| Scenario | (a) Do nothing | (b) Shorten assets | (c) Term out | (d) Swap |
+|:---------|---------------:|-------------------:|-------------:|---------:|
+| $+2\%$   | $-25.5$        | $-11.1$            | $-16.7$      | $-8.0$   |
+| $0\%$    | $0$            | $-0.5$             | $-1.0$       | $-0.75$  |
+| $-1\%$   | $+12.8$        | $+4.8$             | $+6.8$       | $+2.9$   |
+| $-2\%$   | $+25.5$        | $+10.1$            | $+14.7$      | $+6.5$   |
+
+Worked example, strategy (a) under $+2\%$: $\Delta E = -1.72 \times 700 \times 0.02/1.05 \approx -22.9$; $\Delta NII = -130 \times 0.02 = -2.6$; cost 0; total $\approx -25.5$.
+
+**Points for the debrief:**
+
+- Strategy (a) is a naked bet: the outcome swings \$51m from best case to worst, and the bad state alone costs \$25.5m, or **36% of AdriaBank's \$70m equity**. If the hikes land, the bank that just scraped through the APRA capital review (Workshop 3) blows through its buffers again.
+- Every hedge has a **negative expected cost** in the calm scenario. Teams that "won" with (a) after a lucky roll should be asked: would the Board approve that positioning *before* seeing the die?
+- **SVB played strategy (a).** It held a large positive duration gap, unhedged, into the fastest hiking cycle in four decades. The die came up 1.
+- The point of hedging is not to maximise the expected score; it is to make the left tail survivable. Insurance costs money in the states where nothing happens.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part C: The big question
+
+::: {.callout-note title="Discuss together for the last 10 minutes"}
+AdriaBank's at-call savings reprice the moment the cash rate moves. A major bank's transaction deposits mostly do not; they pay near zero regardless.
+
+**Who has more interest rate risk?** Before you answer "AdriaBank": SVB's deposits didn't reprice either. They *left*. Is "my deposit rate never changes" the same as "my funding is safe when rates change"? Connect to the deposit franchise research note from the lecture.
+:::
+
+\newpage
+
+# Part D: Take-home practice set
+
+*These consolidate the mechanics. Attempt them before next week's workshop; the answers version will be released on iLearn.*
+
+## MCQ
+
+1. An FI operating with a negative gap implies that management expects interest rates
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] to decrease
+   - [ ] to increase
+   - [ ] to not change
+   - [ ] to have an uncertain change
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] to decrease
+   - [ ] to increase
+   - [ ] to not change
+   - [ ] to have an uncertain change
+   :::
+
+2. Ignoring information regarding the distribution of assets and liabilities within buckets when defining buckets over a range of maturities is the problem of:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] runoff
+   - [ ] ignoring cash flows from off-balance-sheet activities
+   - [ ] over-aggregation
+   - [ ] market value effects
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] runoff
+   - [ ] ignoring cash flows from off-balance-sheet activities
+   - [x] over-aggregation
+   - [ ] market value effects
+   :::
+
+3. The repricing model:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] implicitly assumes book value accounting
+   - [ ] is over-aggregative
+   - [ ] ignores the problem of runoffs
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] implicitly assumes book value accounting
+   - [ ] is over-aggregative
+   - [ ] ignores the problem of runoffs
+   - [x] All of the listed options are correct.
+   :::
+
+4. A measure of the weighted-average time to maturity on an asset using the relative present values of the cash flows as weights is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] average maturity
+   - [ ] duration
+   - [ ] the Monte Carlo simulation
+   - [ ] the funding gap
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] average maturity
+   - [x] duration
+   - [ ] the Monte Carlo simulation
+   - [ ] the funding gap
+   :::
+
+5. Other things equal, the higher the coupon or promised interest payment is on a fixed-income asset:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the higher the duration
+   - [ ] the more likely it is that impact on duration cannot be determined
+   - [ ] the lower the duration
+   - [ ] the more likely it is that the duration will eventually become negative
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the higher the duration
+   - [ ] the more likely it is that impact on duration cannot be determined
+   - [x] the lower the duration
+   - [ ] the more likely it is that the duration will eventually become negative
+   :::
+
+6. If interest rate shocks leave the value of an FI's equity unaffected, then:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the duration of its assets must equal the duration of its liabilities
+   - [ ] its duration gap must be positive
+   - [ ] its leverage adjusted duration gap must be positive
+   - [ ] its leverage adjusted duration gap must be zero
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the duration of its assets must equal the duration of its liabilities
+   - [ ] its duration gap must be positive
+   - [ ] its leverage adjusted duration gap must be positive
+   - [x] its leverage adjusted duration gap must be zero
+   :::
+
+7. The effect of interest rate changes on the market value of an FI's equity is determined by:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the size of the interest rate shock
+   - [ ] the size of the FI
+   - [ ] the leverage adjusted duration gap
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the size of the interest rate shock
+   - [ ] the size of the FI
+   - [ ] the leverage adjusted duration gap
+   - [x] All of the listed options are correct.
+   :::
+
+8. The larger the duration for an asset or liability:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the higher the return on the asset
+   - [ ] the lower the interest cost of the liability
+   - [ ] the higher the interest rate sensitivity of that asset or liability
+   - [ ] the lower the interest rate sensitivity of that asset or liability
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the higher the return on the asset
+   - [ ] the lower the interest cost of the liability
+   - [x] the higher the interest rate sensitivity of that asset or liability
+   - [ ] the lower the interest rate sensitivity of that asset or liability
+   :::
+
+9. Which of the following assets or liabilities fit the one‑year rate or repricing sensitivity test?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ]  91-day treasury notes
+   - [ ]  one-year treasury bonds
+   - [ ]  20-year treasury bonds
+   - [ ]  20-year floating-rate corporate bonds with annual repricing
+   - [ ]  30-year floating-rate mortgages with annual repricing
+   - [ ]  overnight interbank funds
+   - [ ]  nine-month fixed-rate term deposits
+   - [ ]  one-year fixed rate term deposits
+   - [ ]  five-year floating-rate corporate bonds with annual repricing
+   - [ ]  common equity
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x]  91-day treasury notes
+   - [x]  one-year treasury bonds
+   - [ ]  20-year treasury bonds
+   - [x]  20-year floating-rate corporate bonds with annual repricing
+   - [x]  30-year floating-rate mortgages with annual repricing
+   - [x]  overnight interbank funds
+   - [x]  nine-month fixed-rate term deposits
+   - [x]  one-year fixed rate term deposits
+   - [x]  five-year floating-rate corporate bonds with annual repricing
+   - [ ]  common equity
+   :::
+
+## Short answer questions
+
+### Repricing gap
+
+A bank manager is quite certain that interest rates are going to fall within the next six months. How should the bank manager adjust the bank’s six-month repricing gap and spread to take advantage of this anticipated fall? What if the manager believes rates will rise in the next six months?
+
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+When interest rates are expected to fall, a bank should set its repricing gap to a negative position. Further, the manager would want to increase the spread between the return on RSAs and RSLs.
+In this case, as rates fall, interest income will fall by less than interest expense. The result is an increase in net interest income.
+
+When interest rates are expected to rise, a bank should set its repricing gap to a positive position.
+Again, the manager would want to increase the spread between the return on RSAs and RSLs. In this case, as rates rise, interest income will rise by more than interest expense. The result is an increase in net interest income.
+:::
+:::
+
+### Repricing model
+
+Consider the following balance sheet for AFIN Bank (in millions):
+
+| **Assets**               | **\$** | **Liabilities and equity**       | **\$** |
+|--------------------------|--------|----------------------------------|--------|
+| Floating-rate mortgages  | 50     | 1-year term deposits             | 70     |
+| (currently 10% annually) |        | (currently 6% annually)          |        |
+| 30-year fixed-rate loans | 50     | 3-year term deposits             | 20     |
+| (currently 7% annually)  |        | (currently 7% annually)          |        |
+|                          |        | **Equity**                       | 10     |
+| **Total assets**         | 100    | **Total liabilities and equity** | 100    |
+
+(a) What is AFIN Bank’s expected net interest income at year-end?
+(b) What will net interest income be at year-end if interest rates rise by 2 per cent?
+(c) Using the cumulative repricing gap model, what is the expected net interest income for a 2 per cent increase in interest rates?
+(d) What will net interest income be at year-end if interest rates on RSAs increase by 2 per cent but interest rates on RSLs increase by 1 percent? Is it reasonable for changes in interest rates on RSAs and RSLs to differ? Why?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+- Current expected interest income: \$50m(0.10) + \$50m(0.07) = \$8.5m.
+- Expected interest expense: \$70m(0.06) + \$20m(0.07) = \$5.6m.
+- Expected net interest income: \$8.5m – \$5.6m = \$2.9m.
+
+(b)
+After the 200 basis point interest rate increase, net interest income declines to:
+50(0.12) + 50(0.07) – 70(0.08) – 20(.07) = \$9.5m – \$7.0m = \$2.5m, a decline of \$0.4m.
+
+(c)
+Repricing or funding gap is \$50m – \$70m = –\$20m. The change in net interest income using the funding gap model is (–\$20m)(0.02) = –\$.4m.
+
+(d)
+After the unequal rate increases, net interest income will be 50(0.12) + 50(0.07) – 70(0.07) – 20(.07) = \$9.5m – \$6.3m = \$3.2m, an increase of \$0.3m.
+
+It is not uncommon for interest rates to adjust in an unequal manner on RSAs versus RSLs. Interest rates often do not adjust solely because of market pressures. In many cases the changes are affected by decisions of management. Thus, you can see the difference between this answer and the answer for part (a).
+:::
+:::
+
+### Duration model
+
+The following balance sheet information is available (amounts in thousands of dollars and duration in years) for a financial institution:
+
+| **Item**            | **Amount** | **Duration** |
+|---------------------|------------|--------------|
+| T-notes             | $90        | 0.50         |
+| T-notes             | $55        | 0.90         |
+| T-notes (5 year)    | $176       | 4.3931       |
+| Loans               | $2724      | 7.00         |
+| Deposits            | $2092      | 1.00         |
+| Interbank borrowings| $238       | 0.01         |
+| Equity              | $715       |              |
+
+(a) What is the average duration of all the assets?
+(b) What is the average duration of all the liabilities?
+(c) What is the leverage adjusted duration gap? What is the interest rate risk exposure?
+(d) What is the forecasted impact on the market value of equity caused by a relative upward shift in the entire yield curve of 0.5 percent? That is, $\frac{\Delta R}{1+R}=0.0050$.
+(e) What variables are available to the financial institution to immunize the balance sheet? How much would each variable need to change to get duration gap equal to 0?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+Total assets is
+$$
+\$90+\$55+\$176+\$2724 = \$3045
+$$
+Duration of all assets:
+$$
+[(0.5)(\$90) + (0.9)(\$55) + (4.3931)(\$176) + (7)(\$2724)]/\$3045 = 6.5470 \text{ years}
+$$
+
+(b)
+Total liabilities is
+$$
+\$2092+\$238 = \$2330
+$$
+Duration of all liabilities:
+$$
+[(1)(\$2092) + (0.01)(\$238)]/\$2330 = 0.8989 \text{ years}
+$$
+
+(c)
+Leverage-adjusted duration gap (DGAP):
+$$
+D_A - k D_L = 6.5470 – (\$2330/\$3045)(0.8989) = 5.8592 \text{ years}
+$$
+The duration gap is positive, indicating that an increase in interest rates will lead to a decrease in the market value of equity.
+
+(d)
+The market value of the equity will change by:
+$$
+\Delta E = –DGAP \times A \times \frac{\Delta R}{1 + R} = –5.8592(\$3045)(0.0050) = –\$89 207
+$$
+The loss in equity of $89 207 will reduce the market value of equity to $625 793.
+
+(e)
+    Immunization requires the bank to have a leverage-adjusted duration gap of 0.
+
+    Therefore, the FI could reduce the duration of its assets to 0.6878 years by using more T-notes and floating-rate loans.
+    Or the FI could try to increase the duration of its deposits possibly by using fixed-rate CDs with a maturity of three or four years.
+
+    Finally, the FI could use a combination of reducing asset duration and increasing liability duration in such a manner that DGAP is 0.
+
+    This duration gap of 5.8592 years is quite large and it is not likely that the FI will be able to reduce it to zero by using only balance sheet adjustments. For example, even if the FI moved all of its loans into T-notes, the duration of the assets still would exceed the duration of the liabilities after adjusting for leverage. This adjustment in asset mix would imply forgoing a large yield advantage from the loan portfolio relative to the T-note yields in most economic environments.
+:::
+:::
+
+## Challenge question
+
+::: {.callout-note}
+This is a somewhat challenging question. Please take time to work it through.
+:::
+
+Two banks are being examined by regulators to determine the interest rate sensitivity of their balance sheets. Bank A has assets composed solely of a 10-year $1 million loan with a coupon rate and yield of 12 per cent. The loan is financed with a 10-year $1 million CD with a coupon rate and yield of 10 per cent. Bank B has assets composed solely of a 7-year, 12 per cent zero-coupon bond with a current (market) value of $894 006.20 and a maturity (principal) value of $1 976 362.88. The bond is financed with a 10-year, 8.275 per cent coupon $1 000 000 face value CD with a yield to maturity of 10 per cent. The loan and the CDs pay interest annually, with principal due at maturity.
+
+(a) If market interest rates increase 1 per cent (100 basis points), how do the market values of the assets and liabilities of each bank change? That is, what will be the net effect on the market value of the equity for each bank?
+(b) What accounts for the differences in the changes in the market value of equity between the two banks?
+(c) Verify your results above by calculating the duration for the assets and liabilities of each bank, and estimate the changes in value for the expected change in interest rates. Summarize your results.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Recall that the PV formula of a fixed-income instrument is
+$$
+PV = C \times \frac{1-(1+r)^{-n}}{r} + \frac{F}{(1+r)^n}
+$$
+
+(a)
+    For Bank A, both loan and CD are priced at par (\$1 million) since their coupon rate equal to yield.
+
+    If interest rates increases by 100bps, the new market value of loan is
+    $$
+    \begin{aligned}
+    PV &= C \times \frac{1-(1+r)^{-n}}{r} + \frac{F}{(1+r)^n} \\
+       &= (1000000\times 0.12) \times \frac{1-(1+0.13)^{-10}}{0.13} + \frac{1000000}{(1+0.13)^{10}} \\
+       &= 945737.57
+    \end{aligned}
+    $$
+    The new market value of CD is
+    $$
+    \begin{aligned}
+    PV &= C \times \frac{1-(1+r)^{-n}}{r} + \frac{F}{(1+r)^n} \\
+       &= (1000000\times 0.10) \times \frac{1-(1+0.11)^{-10}}{0.11} + \frac{1000000}{(1+0.11)^{10}} \\
+       &= 941107.68
+    \end{aligned}
+    $$
+    The loan value decreases by \$54262.43 and the CD value falls by \$58892.32. Therefore, the decrease in value of the asset is __\$4629.89__ less than the liability.
+
+    For Bank B, the zero-coupon bond (ZCB) has a principal value of \$1 976 362.88. If interest rates increase by 100bps, its new market value is
+    $$
+    \begin{aligned}
+    PV &= \frac{F}{(1+r)^n} \\
+       &= \frac{1 976 362.88}{(1+0.13)^{7}} \\
+       &= 840074.08
+    \end{aligned}
+    $$
+
+    The current market value of Bank B's CD is
+    $$
+    \begin{aligned}
+    PV &= C \times \frac{1-(1+r)^{-n}}{r} + \frac{F}{(1+r)^n} \\
+       &= (1000000\times 0.08275) \times \frac{1-(1+0.10)^{-10}}{0.10} + \frac{1000000}{(1+0.10)^{10}} \\
+       &= 894006.22
+    \end{aligned}
+    $$
+    When interest rates increase by 100bps, the new market value of the CD is
+    $$
+    \begin{aligned}
+    PV &= C \times \frac{1-(1+r)^{-n}}{r} + \frac{F}{(1+r)^n} \\
+       &= (1000000\times 0.08275) \times \frac{1-(1+0.11)^{-10}}{0.11} + \frac{1000000}{(1+0.11)^{10}} \\
+       &= 839518.43
+    \end{aligned}
+    $$
+    Therefore, the bond value decreases by \$53932.12 (=894006.20-840074.08) and the CD value falls \$54487.79 (=894006.22-839518.43).
+    Further, the decrease in value of the asset is __\$555.67__ less than the liability.
+
+(b)
+The assets and liabilities of Bank A change in value by different amounts because the durations of the assets and liabilities are not the same,even though the face values and maturities are the same. For Bank B, the maturities of the assets and liabilities are different, but the current market values and durations are the same. Thus, the change in interest rates causes the same (approximate) change in value for both liabilities and assets.
+
+(c)
+Skipped. Please attempt this yourself.
+
+:::
+:::
