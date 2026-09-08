@@ -1,0 +1,720 @@
+---
+title: "AFIN8003 - Workshop 6"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-09-10
+draft: false
+categories:
+    - AFIN8003
+    - 2026S2
+format: 
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop6.pdf"
+# Custom fields
+pdf-name: "Workshop6.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 6: deciding who gets the money"}
+Last week's lecture answered three questions in order: what do we earn if the loan performs, what is the chance it does not, and so do we lend. Today you sit on the committee that has to actually decide.
+
+Plan for the hour:
+
+1. **Part A: Concept check** (about 10 min). Ten questions. Self-mark.
+2. **Part B: The AdriaBank Credit Committee** (about 25 min). Three applications, three rounds, one uncomfortable discovery.
+3. **Part C: A first look at credit risk modelling** (about 15 min). Where the numbers come from in practice, and a preview of the **group assignment**.
+4. **Part D: Take-home practice set.** The full drill. Do these before next week.
+
+Bring a calculator.
+:::
+
+\vspace{0.5em}
+
+# Part A: Concept check
+
+1. The risk that the borrower is unwilling or unable to fulfil the terms promised under the loan contract is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [ ] default risk
+   - [ ] market risk
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] liquidity risk
+   - [ ] interest rate risk
+   - [x] default risk
+   - [ ] market risk
+   :::
+
+2. A loan which is made and taken down immediately is a:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] syndicated loan
+   - [ ] loan commitment
+   - [ ] spot loan
+   - [ ] secured loan
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] syndicated loan
+   - [ ] loan commitment
+   - [x] spot loan
+   - [ ] secured loan
+   :::
+
+3. A portion of a loan which a borrower may not use but which must be kept on deposit at the lending institution is a:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] compensating balance
+   - [ ] revolving credit line
+   - [ ] loan commitment
+   - [ ] minimum reserve requirement
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] compensating balance
+   - [ ] revolving credit line
+   - [ ] loan commitment
+   - [ ] minimum reserve requirement
+   :::
+
+4. The process of restricting the quantity of loans to an individual borrower is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] leverage lending
+   - [ ] covenants
+   - [ ] using implicit contracts
+   - [ ] credit rationing
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] leverage lending
+   - [ ] covenants
+   - [ ] using implicit contracts
+   - [x] credit rationing
+   :::
+
+5. A bank's *contractually promised* return on a loan is higher than its *expected* return because the promised return:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] excludes origination fees
+   - [ ] ignores the probability that the borrower defaults
+   - [ ] is measured after tax
+   - [ ] assumes the compensating balance is zero
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] excludes origination fees
+   - [x] ignores the probability that the borrower defaults
+   - [ ] is measured after tax
+   - [ ] assumes the compensating balance is zero
+   :::
+
+6. Which of the following factors may affect the promised return an FI receives on a loan?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] fees relating to the loan
+   - [ ] the interest rate on the loan
+   - [ ] the credit risk premium on the loan
+   - [ ] all of the listed options are correct
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] fees relating to the loan
+   - [ ] the interest rate on the loan
+   - [ ] the credit risk premium on the loan
+   - [x] all of the listed options are correct
+   :::
+
+7. Which of the following refers to restrictions in bond and loan contracts that either encourage or limit certain actions by the borrower?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] mortality rates
+   - [ ] RAROC
+   - [ ] covenants
+   - [ ] credit rationing
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] mortality rates
+   - [ ] RAROC
+   - [x] covenants
+   - [ ] credit rationing
+   :::
+
+
+8. Credit scoring models include all of the following broad types except:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] linear discriminant models
+   - [ ] linear probability models
+   - [ ] term structure models
+   - [ ] logit models
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] linear discriminant models
+   - [ ] linear probability models
+   - [x] term structure models
+   - [ ] logit models
+   :::
+
+9. According to Altman's credit scoring model, which of the following Z-scores would indicate a high default risk firm? 
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] less than 1.81
+   - [ ] between 1 and 1.81
+   - [ ] between 1.81 and 2.99
+   - [ ] greater than 2.99
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] less than 1.81
+   - [ ] between 1 and 1.81
+   - [ ] between 1.81 and 2.99
+   - [ ] greater than 2.99
+   :::
+
+
+10. The logit model is generally preferred to the linear probability model for credit scoring because it:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] requires fewer explanatory variables
+    - [ ] does not require historical default data
+    - [ ] constrains the estimated default probability to lie between 0 and 1
+    - [ ] is a discriminant rather than a probability model
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] requires fewer explanatory variables
+    - [ ] does not require historical default data
+    - [x] constrains the estimated default probability to lie between 0 and 1
+    - [ ] is a discriminant rather than a probability model
+    :::
+
+11. Under the internal ratings-based (IRB) approach, the three risk parameters that drive the capital calculation for each exposure are:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] duration, convexity and yield
+    - [ ] probability of default, loss given default and exposure at default
+    - [ ] VaR, expected shortfall and stressed VaR
+    - [ ] CET1, Tier 1 and Tier 2
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] duration, convexity and yield
+    - [x] probability of default, loss given default and exposure at default
+    - [ ] VaR, expected shortfall and stressed VaR
+    - [ ] CET1, Tier 1 and Tier 2
+    :::
+
+12. A borrower is refused a loan even though it offers to pay a higher interest rate than any other applicant. This is best described as:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] a covenant
+    - [ ] credit rationing
+    - [ ] a compensating balance
+    - [ ] a loan commitment
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] a covenant
+    - [x] credit rationing
+    - [ ] a compensating balance
+    - [ ] a loan commitment
+    :::
+
+<!-- Retired: RAROC is no longer assessed in this unit.
+10. The expected income per dollar lent is 0.4 cents. The 99th percentile historic (extreme case) default rate for this type of borrower is 5 per cent and the dollar proportion that cannot be recaptured is 85 per cent. The RAROC is:
+
+    ::: {.content-hidden when-meta="include-answers"}
+    - [ ] 4.25%
+    - [ ] 6.756%
+    - [ ] 9.41%
+    - [ ] 4.324%
+    :::
+    ::: {.content-hidden unless-meta="include-answers"}
+    - [ ] 4.25%
+    - [ ] 6.756%
+    - [x] 9.41%
+    - [ ] 4.324%
+    ::: 
+-->
+
+\newpage
+
+# Part B: The AdriaBank Credit Committee
+
+::: {.callout-important title="AdriaBank: the lending desk"}
+You survived the APRA capital review in Week 3 and the rate decision in Week 4. You have now been moved to the **credit committee**, which meets on Thursdays to approve or decline business loans.
+
+Three applications are on the table this morning. Each wants **\$10 million for one year**. AdriaBank's base rate is **6%**, it charges a **0.125%** origination fee on every loan, and its cost of funds is **5%**.
+
+**How the game works.** Three rounds. In Round 1 you rank the applications *before* you are allowed to see their default probabilities. In Round 2 the probabilities are revealed and you compute what the loans are really worth. In Round 3 you decide what to do about the one you got wrong.
+:::
+
+::: {.callout-note title="A note on the reserve requirement"}
+Set $RR = 0$ throughout. Australia has had no reserve requirement since 1999, so the term drops out of the formula here. See the appendix to the Week 6 lecture.
+:::
+
+## Round 1: rank them on price alone (5 min)
+
+Here is what the credit committee sees first. Notice what is missing.
+
+\small
+
+| | Applicant | Risk premium $\phi$ | Compensating balance $b$ |
+|:--|:--|--:|--:|
+| **A** | Harbour Logistics (25-year-old freight firm) | 1.5% | 5% |
+| **B** | Ridgeline Manufacturing (mid-size, recently expanded) | 4.0% | 10% |
+| **C** | Vertex Nutraceuticals (three-year-old, fast growing) | 12.0% | 10% |
+
+\normalsize
+
+**Task.** Compute the contractually promised gross return $k$ for each, using
+
+$$
+1+k = 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]}
+$$
+
+Then rank them from most to least attractive, and **write your ranking down before Round 2**.
+
+| | A | B | C |
+|:--|:--|:--|:--|
+| $k$ | | | |
+| Rank | | | |
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Answer"}
+With $RR=0$ the denominator is simply $1-b$.
+
+- **A:** $(0.00125 + 0.06 + 0.015)/(1-0.05) = 0.07625/0.95 \Rightarrow k = \mathbf{8.03\%}$
+- **B:** $(0.00125 + 0.06 + 0.040)/(1-0.10) = 0.10125/0.90 \Rightarrow k = \mathbf{11.25\%}$
+- **C:** $(0.00125 + 0.06 + 0.120)/(1-0.10) = 0.18125/0.90 \Rightarrow k = \mathbf{20.14\%}$
+
+On price alone the ranking is **C, B, A**. Almost every committee picks C. Hold that thought.
+:::
+:::
+
+## Round 2: the credit team reveals the default probabilities (10 min)
+
+\small
+
+| | Applicant | $k$ | Probability of default $(1-p)$ |
+|:--|:--|--:|--:|
+| **A** | Harbour Logistics | 8.03% | 1% |
+| **B** | Ridgeline Manufacturing | 11.25% | 3% |
+| **C** | Vertex Nutraceuticals | 20.14% | 22% |
+
+\normalsize
+
+**Task.** Compute the expected return on each loan, assuming no recovery in default:
+
+$$
+1+E(r) = p(1+k)
+$$
+
+| | A | B | C |
+|:--|:--|:--|:--|
+| $E(r)$ | | | |
+| New rank | | | |
+
+Then answer: **which loans clear AdriaBank's 5% cost of funds?**
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Answer and debrief"}
+
+| | **A Harbour** | **B Ridgeline** | **C Vertex** |
+|:--|--:|--:|--:|
+| Promised $k$ | 8.03% | 11.25% | 20.14% |
+| $E(r)$ | **6.95%** | **7.91%** | **-6.29%** |
+| Clears 5% cost of funds? | Yes | Yes | **No** |
+
+**The ranking inverts.** C had by far the highest promised return and is the only loan that *loses money*. On a \$10 million loan an expected return of $-6.29\%$ is an expected loss of about **\$629,000**.
+
+Two things to take away:
+
+1. **The 22% default probability did not cost 22% of the return.** It cost about 26 percentage points, because the bank loses the principal as well as the interest. Default destroys the whole cash flow, not just the margin.
+2. **B beats A even though B is riskier.** Risk is not the enemy, *unpriced* risk is. B's extra 2.5% of premium more than covers its extra 2% of default probability. That is the business of banking in one line.
+:::
+:::
+
+## Round 3: Vertex comes back (10 min)
+
+Vertex Nutraceuticals is told it has been declined. Its CFO calls back the same afternoon:
+
+> "We will pay an **18% risk premium** instead of 12%. That is a promised return well above anything else on your book. Surely at some price this loan is worth doing?"
+
+Your credit analyst adds one line to the file: *at that rate Vertex will have to take on the riskiest of its three expansion projects to service the debt, and our estimated default probability rises to 35%.*
+
+**(a)** Recompute $k$ and $E(r)$ under the CFO's offer. Is the bank better off?
+
+**(b)** So what should the committee do instead? List two things AdriaBank could change about the loan, other than its price, that would make Vertex bankable.
+
+**(c)** Suppose one of your suggestions in (b) works and cuts Vertex's default probability to 8%, at the original 12% premium. Recompute $E(r)$. Where does Vertex now rank?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Answer and debrief"}
+**(a)** $k = (0.00125+0.06+0.18)/0.90 = 0.24125/0.90 \Rightarrow \mathbf{26.81\%}$, and $E(r) = 0.65 \times 1.2681 - 1 = \mathbf{-17.58\%}$.
+
+The bank is **much worse off**. Raising the price from 12% to 18% moved the expected return from $-6.29\%$ to $-17.58\%$. On \$10 million that is an expected loss of \$1.76 million instead of \$629,000.
+
+This is the result the lecture was building towards. Because $p$ is not independent of $k$, the expected return is **hump-shaped** in the interest rate, and past the peak charging more earns less. Two channels drive it:
+
+- **Adverse selection.** At 26.8% the only borrowers who still accept are the ones who privately know they are unlikely to repay.
+- **Moral hazard.** A borrower who has to service 26.8% must gamble to do it, so charging the rate creates the very risk it was meant to compensate for.
+
+This is @StiglitzWeiss1981, and it is why a bank facing a queue of borrowers **rations credit** instead of clearing the market on price. It also answers the question posed at the start of the lecture: your two friends pay the same mortgage rate because the bank is pulling the *quantity* lever, not the price lever.
+
+**(b)** Anything that lowers $(1-p)$ or raises recovery, rather than raising $k$:
+
+- Take **collateral**, which raises recovery and gives the borrower something to lose
+- Impose **covenants** (leverage caps, dividend restrictions, minimum interest cover) that block the risky project outright
+- **Shorten the maturity** so the bank can reassess sooner
+- **Reduce the loan size**, which is credit rationing on the intensive margin
+
+**(c)** $k$ returns to $20.14\%$, and $E(r) = 0.92 \times 1.2014 - 1 = \mathbf{10.53\%}$.
+
+Vertex goes from the **worst** loan on the table to the **best**, and the interest rate never changed. The line to leave the room with: *a bank's job is not to price default risk, it is to manage it.* Pricing is what you do with the risk you could not design away.
+:::
+:::
+
+\newpage
+
+# Part C: A first look at credit risk modelling
+
+::: {.callout-note title="Why this section exists"}
+In Part B the default probabilities were handed to you. In a real bank somebody has to **estimate** them from data. That is what your **group assignment** asks you to do.
+
+This is a short orientation, not the method. The assignment is released in **Week 8**, and **Workshop 7** walks through it in detail.
+:::
+
+Under the **internal ratings-based (IRB)** approach, three parameters for each exposure feed a regulatory formula that returns risk-weighted assets:
+
+$$
+\text{PD},\; \text{LGD},\; \text{EAD} \;\longrightarrow\; \text{RWA}
+$$
+
+\small
+
+| Term | Name | The question it answers |
+|:--|:--|:--|
+| **PD** | Probability of default | How likely is this borrower to default within a year? |
+| **LGD** | Loss given default | If they do default, what fraction do we lose after recovery? |
+| **EAD** | Exposure at default | How much will be owed at the moment they default? |
+
+\normalsize
+
+Multiply the three and you get the **expected loss**, the same quantity you netted off the spread in Part B. The subtle one is EAD. For a fully drawn term loan it is close to today's balance, but for a credit card or an undrawn line it is *higher*, because borrowers draw down what is available to them on the way into trouble.
+
+That RWA is the denominator of the capital ratio you met in Week 3, so how a bank models PD determines how much capital it has to hold.
+
+Estimating PD runs roughly as: **screen the candidate variables, fit a logistic regression, then calibrate the scores into rating grades.** The logit model from the lecture is only the middle step. Below is the first one.
+
+## Micro-exercise: screen the variables (5 min)
+
+A bank has 100,000 loans and eight candidate predictors. The **information value (IV)** of a variable measures how well it separates defaulters from non-defaulters. The rule of thumb is to keep variables with $\text{IV} \ge 0.1$.
+
+\small
+
+| Variable | IV | Variable | IV |
+|:--|--:|:--|--:|
+| EBITDA to debt | 1.622 | Net profit volatility | 0.264 |
+| Leverage | 1.012 | Board size | 0.033 |
+| Net worth | 0.475 | CEO tenure | 0.012 |
+| Net profit margin | 0.264 | Big 4 auditor | 0.001 |
+
+\normalsize
+
+**(a)** Which variables survive the screen?
+
+**(b)** The correlation between *EBITDA to debt* and *leverage* is $-0.693$. What problem does that create, and which of the two would you drop?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Answer"}
+**(a)** Five survive: EBITDA to debt, leverage, net worth, net profit margin and net profit volatility. The three governance variables fall well below 0.1.
+
+**(b)** The two carry much the same information, so including both invites multicollinearity: unstable coefficients and signs that flip when the sample changes. Drop **leverage** and keep **EBITDA to debt**, which has the higher IV. That leaves four predictors.
+:::
+:::
+
+::: {.callout-tip title="Before Week 8"}
+A full worked implementation, with code and an interactive IRB capital calculator:
+
+<https://mingze-gao.com/posts/credit-risk-modelling/>
+
+Skim it. We work through it properly in Workshop 7.
+:::
+
+\newpage
+
+# Part D: Take-home practice set
+
+::: {.callout-note}
+These are for your own practice. Attempt them before next week's workshop and bring anything that does not work out.
+:::
+
+## Q1 - Loan returns
+
+Metrobank offers one-year loans with a 9 per cent stated or base rate, charges a 0.25 per cent loan origination fee, imposes a 10 per cent compensating balance requirement and must pay a 6 per cent reserve requirement to the central bank. The loans typically are repaid at maturity.
+
+(a) If the risk premium for a given customer is 2.5 per cent, what is the simple promised interest return on the loan?
+(b) What is the contractually promised gross return on the loan per dollar lent?
+(c) Which of the fee items has the greatest impact on the gross return?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+The simple promised interest return on the loan is 0.09 + 0.025 = 0.115 or 11.5 per cent.
+
+(b)
+$$
+1+k = 1+\frac{f+(BR+\phi)}{1-[b(1-RR)]} = 1+\frac{0.0025+(0.09+0.025)}{1-[0.1(1-0.06)]} = 1.12969
+$$
+So the contractually promised gross return $k=12.97\%$.
+
+(c)
+The compensating balance has the strongest effect on the gross return on the loan. 
+- Without the compensating balance, the gross return would equal 11.75 per cent, a reduction of 1.22 per cent. 
+- Without the origination fee, the gross return would be 12.69 percent, a reduction of only 0.28 per cent. 
+- Eliminating the reserve requirement would cause the gross return to increase to 13.06 percent, an increase of 0.09 per cent.
+:::
+:::
+
+## Q2 - Expected return and the break-even default rate
+
+AdriaBank is asked to lend \$2 000 000 for one year. Its base rate is 6 per cent, the risk premium for this borrower is 3 per cent, it charges a 0.5 per cent origination fee and requires a 10 per cent compensating balance. There is no reserve requirement. AdriaBank's cost of funds is 5 per cent.
+
+(a) What is the contractually promised gross return on the loan per dollar lent?
+(b) If the probability of default is 4 per cent and the bank recovers nothing in default, what is the expected return?
+(c) At what default probability does this loan just break even against the bank's cost of funds?
+(d) In practice the bank would recover part of the loan. Would the true break-even default probability be higher or lower than your answer to (c)? Explain in one sentence.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+$$
+1+k = 1+\frac{0.005+(0.06+0.03)}{1-[0.10(1-0)]} = 1+\frac{0.095}{0.90} = 1.10556
+$$
+So $k = 10.56\%$.
+
+(b)
+$$
+1+E(r) = p(1+k) = 0.96 \times 1.10556 = 1.06133 \quad\Rightarrow\quad E(r) = 6.13\%
+$$
+
+Note that a 4 per cent default probability cost 4.43 percentage points of return, not 4, because the principal is lost alongside the interest.
+
+(c)
+Set $p(1+k) = 1.05$:
+$$
+p = \frac{1.05}{1.10556} = 0.94975 \quad\Rightarrow\quad \text{PD} = 5.03\%
+$$
+
+The loan tolerates a default probability of just over 5 per cent before it stops covering the cost of funds.
+
+(d)
+**Higher.** With positive recovery the bank keeps part of the exposure in default, so each default costs less and the loan can withstand more of them before breaking even. Formally, $1+E(r) = p(1+k) + (1-p)(1-\text{LGD})$ rather than $p(1+k)$.
+:::
+:::
+
+## Q3 - Altman's Z-score
+
+Redwood Industries, a listed manufacturer, reports the following (\$ millions):
+
+| Item | Amount |
+|:--|--:|
+| Working capital | 8 |
+| Retained earnings | 12 |
+| Earnings before interest and taxes | 9 |
+| Market value of equity | 60 |
+| Book value of total liabilities | 50 |
+| Sales | 95 |
+| Total assets | 100 |
+
+(a) Compute $X_1$ through $X_5$ and the Z-score. How would Altman's model classify Redwood?
+(b) Suppose the equity market falls and Redwood's market capitalisation halves to \$30 million, with nothing else changing. Recompute Z. What changes about the classification?
+(c) Your answer to (b) points to a general weakness of the Z-score model. State it, and give one other weakness.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+
+| Ratio | Value | Weight | Contribution |
+|:--|--:|--:|--:|
+| $X_1$ = Working capital / Total assets | 0.08 | 1.2 | 0.096 |
+| $X_2$ = Retained earnings / Total assets | 0.12 | 1.4 | 0.168 |
+| $X_3$ = EBIT / Total assets | 0.09 | 3.3 | 0.297 |
+| $X_4$ = Market value of equity / Book value of liabilities | 1.20 | 0.6 | 0.720 |
+| $X_5$ = Sales / Total assets | 0.95 | 1.0 | 0.950 |
+| | | **Z** | **2.231** |
+
+Since $1.81 < 2.231 < 2.99$, Redwood falls in the **indeterminate** or grey zone. The model neither approves nor rejects it, which in practice means the file goes to a human credit officer.
+
+(b) Only $X_4$ changes, from 1.20 to $30/50 = 0.60$. The contribution falls from 0.720 to 0.360, so
+
+$$Z = 2.231 - 0.360 = \mathbf{1.871}$$
+
+Redwood is now barely above the 1.81 cut-off, and a slightly larger market fall would push it into the **high default risk** category. Nothing about the firm's operations, earnings or balance sheet changed.
+
+(c) The general weakness: $X_4$ makes the score depend on the **market value of equity**, so a firm's measured default risk moves with the equity market rather than with its own fundamentals. The model is procyclical, downgrading borrowers precisely when markets fall, which is when banks can least afford a wave of downgrades.
+
+Any one of these is acceptable as the second weakness:
+
+- The weights were estimated on US manufacturing firms and are unlikely to be stable across countries, industries or time periods
+- It produces a classification, not a probability of default, so it cannot feed an expected-loss or IRB capital calculation directly
+- It requires a market value of equity, so it cannot be applied to private firms at all
+:::
+:::
+
+## Q4 - From log-odds to a default probability
+
+A bank estimates the following logit model on its small business portfolio:
+
+$$
+\ln\!\left(\frac{PD}{1-PD}\right) = -5.0 + 1.6\left(\frac{D}{E}\right) - 0.5\left(\frac{S}{A}\right)
+$$
+
+(a) A borrower has a debt-to-equity ratio of 1.5 and a sales-to-assets ratio of 2.0. Compute its estimated probability of default.
+(b) The borrower takes on more debt, raising $D/E$ to 2.5 with $S/A$ unchanged. Recompute the PD.
+(c) A classmate says "the coefficient on $D/E$ is 1.6, so a one-unit rise in leverage raises the default probability by 1.6." Explain what is wrong with that statement, using your answers to (a) and (b).
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+$$
+z = -5.0 + 1.6(1.5) - 0.5(2.0) = -5.0 + 2.4 - 1.0 = -3.60
+$$
+$$
+PD = \frac{1}{1+e^{-z}} = \frac{1}{1+e^{3.60}} = \frac{1}{1+36.598} = 0.0266
+$$
+So $PD = \mathbf{2.66\%}$.
+
+(b)
+$$
+z = -5.0 + 1.6(2.5) - 0.5(2.0) = -2.00 \quad\Rightarrow\quad PD = \frac{1}{1+e^{2.00}} = 0.1192
+$$
+So $PD = \mathbf{11.92\%}$. The default probability more than quadruples.
+
+(c) Two errors, and the second is the important one.
+
+First, a probability cannot rise by 1.6, since probabilities live in $[0,1]$. Anything above 1 is a signal that the interpretation is wrong.
+
+Second, and more fundamentally, **the model is linear in the log-odds, not in the probability**. The coefficient 1.6 says that a one-unit rise in $D/E$ raises the log-odds of default by 1.6, which is equivalent to multiplying the *odds* by $e^{1.6} = 4.95$. The effect on the *probability* depends on where the borrower started: here it moved the PD by 9.26 percentage points, but the same one-unit rise applied to a much safer or much riskier borrower would move it by a completely different amount. This is precisely why the logit model was introduced. The nonlinearity that makes the coefficient harder to read is the same nonlinearity that keeps the predicted probability between 0 and 1.
+:::
+:::
+
+## Q5 - Why not just charge more?
+
+Two firms apply to AdriaBank for identical \$1 million one-year loans. The bank approves the first at 9 per cent and declines the second outright, even though the second firm volunteers to pay 15 per cent.
+
+(a) Explain, using adverse selection and moral hazard, why AdriaBank may be unwilling to lend to the second firm **at any interest rate**.
+(b) Sketch the relationship between the interest rate charged and the bank's expected return. Mark the rate that maximises expected return.
+(c) Name two mechanisms, other than the interest rate, that AdriaBank could use to make the second firm bankable.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a) The interest rate is not a neutral price, because the probability of repayment depends on it.
+
+- **Adverse selection.** Borrowers know their own risk better than the bank does. As the rate rises, safe borrowers with modest returns drop out first, because they cannot profitably service the debt. The applicant pool that remains at 15 per cent is disproportionately made up of firms that privately expect not to repay. Raising the price worsens the average quality of who accepts.
+- **Moral hazard.** Once the loan is made, a borrower facing a 15 per cent obligation has to pursue a higher-return, higher-variance project to service it. The upside of that gamble accrues to the borrower, while the downside falls on the bank. Charging the rate therefore creates the risk it was supposed to compensate for.
+
+Together these mean expected return can *fall* as the rate rises. If the second firm's expected return is below the bank's cost of funds at every rate the firm would accept, no price clears the market and the bank rations instead. This is @StiglitzWeiss1981.
+
+(b) The expected return $E(r)$ is **hump-shaped** in the loan rate $k$: rising at first, because more interest is collected per dollar lent, then falling once the adverse selection and moral hazard effects on $p$ dominate. The peak, $k^*$, is the profit-maximising rate. Beyond it the bank refuses to lend more even to willing borrowers, so there is an excess demand for credit that the price mechanism does not eliminate.
+
+(c) Any two of: require **collateral**; impose **covenants** restricting leverage, dividends or asset sales; **shorten the maturity** so the bank can reassess; **reduce the size** of the facility; require a **personal or parent guarantee**; demand a longer **relationship** or deposit history first; or ask for a larger equity contribution so the owners have more to lose.
+:::
+:::
+
+## Challenge question
+
+In Round 3 of the Credit Committee, raising the risk premium from 12 per cent to 18 per cent lowered the expected return because the default probability rose with it.
+
+Suppose the relationship is linear over the relevant range: $(1-p) = \alpha + \beta k$, where $\alpha = -0.10$ and $\beta = 1.6$.
+
+(a) Write the bank's expected return $E(r)$ as a function of $k$ alone.
+(b) Find the rate $k^*$ that maximises $E(r)$, and the expected return at that rate.
+(c) The bank's cost of funds is 5 per cent. What is the highest cost of funds at which this borrower is still worth lending to?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a) With $p = 1-\alpha-\beta k$,
+
+$$
+1+E(r) = p(1+k) = (1-\alpha-\beta k)(1+k) = (1.10 - 1.6k)(1+k)
+$$
+
+Expanding, $1+E(r) = 1.10 - 0.5k - 1.6k^2$, so
+
+$$
+E(r) = 0.10 - 0.5k - 1.6k^2
+$$
+
+(b) Differentiate and set to zero:
+
+$$
+\frac{dE(r)}{dk} = -0.5 - 3.2k = 0 \quad\Rightarrow\quad k^* = -0.15625
+$$
+
+The turning point is negative, which means that over the admissible range $k \ge 0$ the expected return is **strictly decreasing**. The best this borrower can do is $k \to 0$, giving $E(r) \to 10\%$, and every rate the bank might realistically charge makes the loan worse. At $k = 0.20$, for instance, $E(r) = 0.10 - 0.10 - 0.064 = -6.4\%$.
+
+The economics: with $\beta = 1.6$, each extra percentage point of interest adds 1.6 percentage points of default probability. The borrower's risk responds so strongly to price that there is no rate at which the bank is compensated. This is the corner case of @StiglitzWeiss1981 in which the borrower is simply **unbankable on price**, and the only options are the non-price mechanisms from Q5(c) or refusal.
+
+(c) At $k^* \to 0$ the maximum attainable expected return is 10 per cent, so the borrower is worth lending to only if the bank's cost of funds is below **10 per cent**, and even then only at a rate close to zero, which no bank would offer. At the actual cost of funds of 5 per cent the loan requires $0.10 - 0.5k - 1.6k^2 \ge 0.05$, that is $k \le 8.6$ per cent. Since the borrower's risk premium alone exceeds that, the loan fails.
+
+**The wider point.** A borrower is bankable when its risk responds weakly to price (small $\beta$). When it responds strongly, the decision has to be made with covenants, collateral and quantity limits instead of with the interest rate.
+:::
+:::
+
+<!-- Retired: RAROC is no longer assessed in this unit.
+
+## Q2 - RAROC (retired)
+
+::: {.callout-note}
+This is not examinable.
+:::
+
+A bank is planning to make a loan of $5 000 000 to a firm in the steel industry. It expects to charge a servicing fee of 50 basis points. The loan has a maturity of 8 years and a duration of 7.5 years. The cost of funds (the RAROC benchmark) for the bank is 10 per cent. Assume the bank has estimated the maximum change in the risk premium on the steel manufacturing sector to be approximately 4.2 per cent, based on two years of historical data. The current market interest rate for loans in this sector is 12 per cent.
+
+(a) Using the RAROC model, estimate whether the bank should make the loan.
+(b) What should be the duration in order for this loan to be approved?
+
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+(a)
+    RAROC = Fees and interest income earned on loan / Loan risk
+
+    Loan risk is captured by ${\Delta LN} = - D_{LN} \times LN \times \frac{\Delta R}{1+R}$.
+
+    $$
+    {\Delta LN} = - D_{LN} \times LN \times \frac{\Delta R}{1+R} = -7.5\times \$5 \text{m} \times (0.042/1.12) = -\$1 406 250
+    $$
+
+    - Expected interest $=0.12\times \$5 000 000 = \$600 000$
+    - Servicing fees $=0.005\times \$5 000 000 = \$25 000$
+    - _Less_ cost of funds $=0.1\times \$5 000 000 = \$500 000$
+    - Net interest and fee income $=\$125 000$
+
+    Therefore, RAROC = 125000/1406250 = 8.89 per cent. Since RAROC is lower than the cost of funds to the bank, the bank should not make the loan.
+
+(b)
+
+   For RAROC to be 10 per cent, loan risk ($\Delta LN$) should be:
+
+   $$
+    \$125 000 / \Delta LN = 0.1
+   $$
+
+   $\Delta LN = 1 250 000 = - D_{LN} \times LN \times \frac{\Delta R}{1+R}$
+
+   Therefore, $D_{LN}=6.67$ years. Thus, this loan can be made if the duration is reduced to 6.67 years from 7.5 years.
+
+:::
+:::
+
+-->
