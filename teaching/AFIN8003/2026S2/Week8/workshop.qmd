@@ -1,0 +1,31 @@
+---
+title: "AFIN8003 - Workshop 8"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao"
+institute: "Department of Applied Finance"
+date: 2026-10-08
+draft: false
+categories:
+    - AFIN8003
+    - 2026S2
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop8.pdf"
+# Custom fields
+pdf-name: "Workshop8.pdf"
+include-answers: false
+---
+
+{{< include _workshop8-body.qmd >}}
