@@ -8,3 +8,18 @@ $code-block-bg-alpha: -0.6;
 .citation {
   background-color: bisque;
 }
+
+// Research page: paper titles keep the link colour; co-author links are muted
+#publications, #working-papers {
+  li > p > a:not(:has(strong)) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--bs-border-color);
+    text-underline-offset: 0.2em;
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+      text-decoration-color: currentColor;
+    }
+  }
+}
