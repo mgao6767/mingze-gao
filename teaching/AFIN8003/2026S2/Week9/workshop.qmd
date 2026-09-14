@@ -1,0 +1,621 @@
+---
+title: "AFIN8003 - Workshop 9"
+subtitle: "Banking and Financial Intermediation"
+author:
+  - "Dr. Mingze Gao"
+  - "Dr. Lyungmae Choi"
+institute: "Department of Applied Finance"
+date: 2026-10-15
+draft: false
+categories:
+    - AFIN8003
+    - 2026S2
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop9.pdf"
+# Custom fields
+pdf-name: "Workshop9.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 9: Liquidity in crisis"}
+Last week we **measured** liquidity (LCR, NSFR). This week we **manage** it, and we do it in a crisis.
+
+Plan for the hour:
+
+1. Part A, Concept check ($\approx$ 15 min). Nine MCQs. Self-mark.
+2. Part B, Short answers ($\approx$ 10 min). Three discussion questions.
+3. Part C, A liquidity crisis, worked through ($\approx$ 25 min). Three rounds, Monday to Wednesday. *This is the bulk of the workshop.*
+4. Part D, The big question ($\approx$ 10 min). Open discussion.
+
+Bring a pen. Mark up the handout.
+:::
+
+\vspace{0.5em}
+
+# Part A: Concept check
+
+## MCQ
+
+1. The cost of holding reserves that pay no interest at the central bank is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] buffer reserves
+   - [ ] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] buffer reserves
+   - [x] a reserve requirement tax
+   - [ ] the liquid assets ratio
+   - [ ] required by law in all countries
+
+   *Why:* the bank gives up the yield it could earn on those funds. Economists call this implicit cost a "tax" because it functions like one: the regulator forces you to hold a non-earning asset.
+   :::
+
+2. A deep market is an important consideration in the management of FI liquidity in that:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [ ] the FI will need to be able to sell short-term assets quickly to convert to cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the FI may wish to issue more loans
+   - [ ] the FI may wish to issue more equity
+   - [ ] the FI could be an inactive market participant
+   - [x] the FI will need to be able to sell short-term assets quickly to convert to cash
+
+   *Why:* depth = large trades barely move the price. That is exactly what you need in a fire sale.
+   :::
+
+3. Which of the following is a determinant of an FI's optimal liquid asset ratio?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] the variability of deposit inflows and outflows
+   - [ ] the yield on non-liquid assets
+   - [ ] the liquidation costs of highly non-liquid assets
+   - [x] All of the listed options are correct.
+
+   *Why:* the optimum balances the **benefit** of liquid assets (covering withdrawal volatility, avoiding fire-sale losses) against their **cost** (the yield given up on non-liquid alternatives).
+   :::
+
+4. Under the RBA's ample-reserves framework, the weekly open market operation is best described as:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] an auction in which the RBA fixes the quantity of reserves and banks bid on price
+   - [ ] an outright purchase of government bonds, with no agreement to resell
+   - [ ] a full-allotment repo auction: banks bid for as many reserves as they want, and every bid is filled
+   - [ ] a facility open only to ADIs that have breached their LCR
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] an auction in which the RBA fixes the quantity of reserves and banks bid on price
+   - [ ] an outright purchase of government bonds, with no agreement to resell
+   - [x] a full-allotment repo auction: banks bid for as many reserves as they want, and every bid is filled
+   - [ ] a facility open only to ADIs that have breached their LCR
+
+   *Why:* under ample reserves, banks bid for as many reserves as they want and every bid is filled. The RBA sets the **price** of reserves, not the quantity. Rationing the quantity was the scarce-reserves system before March 2020.
+   :::
+
+5. Covered bonds are:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [x] bonds issued by banks that have backing of a pool of high quality assets
+   - [ ] bonds that are backed by the Australian government
+   - [ ] bonds issued by sovereign nations and backed by the IMF
+   - [ ] a pool of various assets
+
+   *Why:* the cover pool (typically high-grade residential mortgages) **stays on the bank's balance sheet** but is ring-fenced for bondholders if the bank fails. This is the key distinction from securitisation, where the assets leave the balance sheet.
+   :::
+
+6. What is the primary method of meeting cash demands in modern financial institutions?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [ ] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Asset liquidity
+   - [x] Liability liquidity
+   - [ ] Securitization
+   - [ ] Cash reserves
+
+   *Why:* modern banks lean on **purchased liquidity**, borrowing in wholesale markets to plug gaps, rather than sitting on big asset buffers. This is also why Northern Rock fell so fast in 2007.
+   :::
+
+7. A high quality liquid asset (HQLA) must be:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [ ] unencumbered and easily and immediately able to be converted into cash
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] well rated by the rating agencies
+   - [ ] easy to obtain
+   - [ ] a long-term investment
+   - [x] unencumbered and easily and immediately able to be converted into cash
+
+   *Why:* "unencumbered" is the word to remember, a bond already pledged as collateral in another repo doesn't count, because you can't sell it twice in stress.
+   :::
+
+8. Governments seek to protect depositors more than other DI creditors because:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [ ] All of the listed options are correct.
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] deposits are a critical part of the financial system
+   - [ ] deposits are a primary form of savings for individuals
+   - [ ] non-deposit creditors are usually better placed to assess and manage risk
+   - [x] All of the listed options are correct.
+
+   *Why:* all three lenses point the same way, systemic importance, household welfare, and information asymmetry. Wholesale lenders are paid to do credit work; retail depositors aren't.
+   :::
+
+9. Which of the following instruments is considered a low-cost liability but carries high withdrawal risk?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [ ] Demand deposits
+   - [ ] Savings accounts
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] Negotiable certificates of deposit (NCDs)
+   - [ ] Term deposits
+   - [x] Demand deposits
+   - [ ] Savings accounts
+
+   *Why:* demand deposits pay (almost) no interest, cheapest funding the bank has, but the depositor can walk out the door at any moment, which is the highest withdrawal risk on the liability side.
+   :::
+
+\vspace{0.5em}
+
+# Part B: Short answer questions
+
+## Q1: When the two risks fight each other
+
+How can liquidity-risk and interest-rate-risk management objectives **conflict** inside a DI? Give at least one concrete example. Are these conflicts resolvable? Explain.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Liquidity risk and interest-rate risk are linked, and managing one well can worsen the other.
+
+\medskip
+
+**Example 1, Duration-gap bet that backfires.** A DI runs a positive duration gap to profit from expected rate cuts. If rates *rise* instead, the equity value of the DI falls, depositors lose confidence, and withdrawals accelerate, interest-rate losses convert into a liquidity drain.
+
+\medskip
+
+**Example 2, Immunising against rates can create cash mismatches.** Setting a zero duration gap to neutralise interest-rate risk often forces asset/liability *cash-flow* mismatches, because duration matching is about present-value sensitivity, not about timing of cash. A zero-duration-gap balance sheet can still have a 60-day liquidity hole.
+
+\medskip
+
+**Example 3, Long-term fixed-rate funding to stabilise liquidity worsens rate exposure.** Issuing 5-year fixed-rate notes locks in stable funding (good for liquidity) but extends the liability duration. If the DI already has a zero or negative duration gap, this *widens* the gap and increases rate exposure.
+
+\medskip
+
+**Resolution.** The conflicts cannot be eliminated, but they can be managed. Treasurers need to:
+
+1. model both risks jointly;
+2. accept a second-best outcome on one objective when the trade-off is unfavourable;
+3. build backstops, such as committed standby lines with other DIs, to cover the cash-flow gap a duration-immunisation strategy creates.
+:::
+:::
+
+## Q2: Why deposit guarantees stop runs
+
+How do **deposit insurance** and deposit guarantees mitigate bank runs, and what schemes exist in Australia to protect DI deposits?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Bank runs are socially costly for two reasons:
+
+1. The **first-come, first-served** rule on deposits gives every depositor a private incentive to run as soon as they suspect trouble.
+2. A run on one bank can spread by **contagion** to healthy banks.
+
+\smallskip
+
+Deposit insurance breaks the first link: if the government guarantees your money up to a cap, you have no reason to queue. The incentive to run dies, and the run dies with it.
+
+In Australia, the primary safety net is the **Financial Claims Scheme (FCS)**:
+
+- Covers eligible deposits up to A\$250,000 per account holder per ADI, unchanged since February 2012.
+- It pays out only if an ADI fails.
+
+\smallskip
+
+The RBA's repo facilities are the other backstop: they lend to solvent banks against collateral. But the FCS is the tool aimed directly at depositor behaviour.
+:::
+:::
+
+## Q3: Two crises, two failures
+
+In 2007, **Northern Rock** failed in part because it relied too much on wholesale funding that suddenly disappeared. In 2023, Silicon Valley Bank (SVB) failed in part because its deposit base walked out the door in a day.
+
+Both are liquidity crises, but the **mechanism is different**. In two paragraphs, contrast (i) where the liquidity drain came from in each case, and (ii) what each bank's liability mix would need to have looked like to survive.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**Northern Rock (Sep 2007)** ran a *wholesale-heavy* funding model: roughly three quarters of its funding came from wholesale markets (securitisation plus short-term money-market borrowing) and about a quarter from retail deposits. When the asset-backed commercial paper market seized in August 2007 and wholesale markets dried up, the bank could not refinance: the *supply side* of its funding disappeared. The retail run came later, only after the Bank of England's emergency assistance was reported. The drain was **wholesale-driven**.
+
+\medskip
+
+**SVB (Mar 2023)** was the opposite: $\approx$ 94\% of deposits were **uninsured** (above the FDIC cap of US\$250k), concentrated in a single industry (tech) with overlapping social and information networks. When concerns surfaced, the *demand side* of funding evaporated, US\$42 billion in deposit outflow requests in a single day, partly coordinated via Twitter/Slack. The drain was **retail-but-uninsured-and-coordinated**.
+
+\medskip
+
+**Survivable mixes.**
+
+- *Northern Rock* needed a much larger core retail deposit base, and longer-dated wholesale funding (covered bonds, term notes) to ride out the market freeze.
+- *SVB* needed:
+  1. a depositor base diversified across industries;
+  2. more deposits *below* the insurance cap;
+  3. liquid assets it could use without selling bonds at a loss. The US\$1.8 billion loss it announced on bond sales is what triggered the run.
+
+\medskip
+
+**The lessons.** Northern Rock: don't depend on a market that can close. SVB: a deposit guarantee protects little when most deposits sit above the cap and the depositors all talk to each other.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part C: A liquidity crisis, worked through
+
+::: {.callout-important title="The scenario"}
+You are the Group Treasurer of **Acacia Bank**, a mid-sized Australian ADI. Today is Monday. Yesterday everything was fine.
+
+Work through the questions in order. Some are calculations and some ask for judgement, and both are marked the same way in the solutions: numbers first, then the reasoning.
+:::
+
+## The opening balance sheet (Monday, 9:00 AM)
+
+\small
+
+| Assets (A\$bn) | | Liabilities & Equity (A\$bn) | |
+|:---|---:|:---|---:|
+| Cash & ESA balance at the RBA | 3 | Demand deposits (retail) | 20 |
+| HQLA Level 1, AGS, semis | 8 | Term deposits, $\leq$ 1 yr | 15 |
+| HQLA Level 2A, covered bonds | 2 | Short-term wholesale ($\leq$ 1 yr) | 12 |
+| HQLA Level 2B, eligible RMBS | 2 | Long-term wholesale ($>$ 1 yr) | 5 |
+| Residential mortgages | 35 | Equity (CET1 + other) | 4 |
+| Business loans | 6 | | |
+| Total assets | 56 | Total L\&E | 56 |
+
+\normalsize
+
+A few useful facts for the day:
+
+- The RBA cash rate target is 4.35%. Under the ample-reserves framework the weekly full-allotment OMO repo is priced at the cash rate target plus 10 bp, and the standing overnight repo facility at the target plus 25 bp.
+- Acacia's most recent LCR was 125%. NSFR was 108%.
+- Acacia's covered bonds and AGS are *unencumbered* (not already pledged). About 30% of its eligible RMBS is already pledged in private repos.
+- The FCS covers eligible deposits up to A\$250,000 per account holder per ADI.
+- Of the A\$12bn short-term wholesale book, **A\$1 billion matures on Monday**.
+
+::: {.callout-note title="Reference: the formulas you need"}
+You are not expected to recall these. Use them.
+
+**Only unencumbered assets count.** An asset already pledged as collateral is not free to be sold in a crisis.
+
+*This exercise applies the HQLA rules from Week 8.*
+
+$$\text{LCR} = \frac{\text{HQLA}}{\text{net cash outflows over 30 days}} \ge 100\%$$
+
+Building the numerator:
+
+| Tier | Haircut | Cap |
+|---|---:|---|
+| Level 1 | 0% | none |
+| Level 2A | 15% | Level 2 combined $\le$ 40% of HQLA |
+| Level 2B | 25% | and Level 2B alone $\le$ 15% of HQLA |
+
+The 40% cap is far easier to apply in this form:
+
+$$\text{admissible Level 2} \;\le\; \tfrac{2}{3} \times \text{Level 1}$$
+
+And the denominator:
+
+$$\text{net cash outflows} = \text{outflows} - \min\!\left(\text{inflows},\; 0.75 \times \text{outflows}\right)$$
+:::
+
+\vspace{0.5em}
+
+## Round 1: Monday (the rumour)
+
+::: {.callout-warning title="11:00 AM Monday"}
+*A senior business correspondent posts on X: "Sources inside Acacia tell me the bank is sitting on the same kind of duration mismatch that took down SVB. I'd be moving money this morning."* The post has 40,000 reposts by lunchtime.
+
+By 4 PM Monday, **A\$2 billion** of retail demand deposits has left. Wholesale lenders stop returning calls; your overnight wholesale lines do not roll.
+:::
+
+Work through these decisions. Write your answers next to each question, you'll be asked to defend them.
+
+**(a)** Total cash needed by close of business Monday: **____________**
+
+   *Hint: two things leave the bank on Monday. One is in the news box above, the other is in the scenario facts.*
+
+**(b)** Rank the **stored-liquidity** options in the order you'd use them. Justify the ordering:
+
+1. _______________________________
+2. _______________________________
+3. _______________________________
+
+**(c)** Can you tap **purchased liquidity** today? Why or why not? Where is the friction?
+
+**(d)** Sketch the post-Monday balance sheet. Which assets shrink, which liabilities shrink?
+
+**(e)** Now put a number on it, using the reference box above.
+
+   (i) Compute Acacia's opening stock of HQLA.
+
+   *Hint: add up Level 1 first. Before applying the haircuts to Level 2A and 2B, check the scenario facts for anything already pledged. Then check how much of that Level 2 the cap lets you count.*
+
+   (ii) The opening LCR was 125%. Rearrange the LCR formula to get the implied net cash outflow figure.
+
+   (iii) To raise Monday's cash, Acacia enters a **repo** (a repurchase agreement) against A\$3bn of its Level 1 assets: it sells the bonds for cash today and agrees to buy them back shortly after. Those bonds are now pledged, so they stop counting as free HQLA.
+
+   Assume the 30-day outflow figure has not been revised yet. Recompute the LCR.
+
+   *Hint: the repo'd bonds drop out of Level 1. The Level 2 ceiling is set as a fraction of Level 1, so it falls too. Check whether the cap still binds.*
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 1"}
+**(a) Cash needed.** A\$2bn of deposits walked out, and A\$1bn of short-term wholesale matured without rolling: **A\$3bn** on Monday alone.
+
+\medskip
+
+**(b) Stored-liquidity ordering.** Cheapest first:
+
+1. Sell or repo AGS and semis: Level 1, no haircut, deep market.
+2. Sell or repo covered bonds: Level 2A, 15% haircut.
+3. RMBS last: Level 2B, 25% haircut, and 30% already pledged.
+
+\smallskip
+
+Cash and the ESA balance can also be drawn, but keep a buffer for settlement.
+
+\medskip
+
+**(c) Purchased liquidity.** Available in theory (interbank cash market, new CDs, NCDs), but the rumour has poisoned the well: wholesale lenders price you out or stop returning calls. This is the "market that can close" lesson from Northern Rock.
+
+\medskip
+
+**(d) The balance sheet shrinks on both sides.** Liquid assets fall by the cash raised; deposits and unrolled wholesale funding fall by the same amount. Equity is untouched, because this is a liquidity event, not a solvency one.
+
+\medskip
+
+**(e) The numbers.**
+
+\medskip
+
+*(i) Opening HQLA*
+
+- Level 1: cash and ESA plus AGS and semis, $3 + 8 = 11$.
+- Level 2A: $2 \times 0.85 = 1.7$.
+- Level 2B: only the unpledged 70% of the RMBS counts, $2 \times 0.70 \times 0.75 = 1.05$.
+- Level 2 in total is $2.75$. The 40% cap allows $\tfrac{2}{3} \times 11 = 7.33$ and the Level 2B cap about $2.06$, so neither binds.
+
+\smallskip
+
+HQLA $= 11 + 2.75 = \mathbf{13.75}$bn.
+
+\medskip
+
+*(ii) Implied net cash outflows*
+
+$$\text{NCO} = \frac{\text{HQLA}}{\text{LCR}} = \frac{13.75}{1.25} = \mathbf{11.0}\text{bn}$$
+
+\medskip
+
+*(iii) LCR at Monday's close*
+
+- The repo'd bonds leave Level 1 at $8$.
+- The cap falls to $\tfrac{2}{3} \times 8 = 5.33$, still above the $2.75$ available, so all the Level 2 still counts.
+- HQLA $= 8 + 2.75 = 10.75$bn.
+
+$$\text{LCR} = \frac{10.75}{11.0} = \mathbf{97.7\%}$$
+
+\medskip
+
+**One day of the run has taken Acacia below the 100% minimum**, before any revision to the outflow assumptions. A supervisor revising run-off factors upward on Tuesday would make it worse still. This is the number that triggers the call from APRA.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 2: Tuesday (the crisis intensifies)
+
+::: {.callout-warning title="9:00 AM Tuesday"}
+Outflows resume at the open. A further **A\$3 billion** of deposits walks out before noon. Two long-standing wholesale counterparties tell you they will *not* roll the A\$4bn of short-term notes maturing this week. **APRA calls.**
+:::
+
+**(a)** Which **RBA facility** do you call on? Be specific about the terms (rate, collateral, tenor) under the *ample-reserves framework*.
+
+**(b)** What **collateral** can you still pledge? Estimate the cash you can raise (apply rough haircuts: AGS 0%, covered bonds 5–10%, RMBS 15–25%).
+
+**(c)** APRA will likely require a **public statement**. List two things APRA could say or do that would **help** Acacia, and one that would make things **worse**.
+
+**(d)** Your unencumbered HQLA is running thin. What is the very next thing on your balance sheet you'd try to sell, and at what discount?
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 2"}
+**(a) Which RBA facility.** The **standing overnight repo facility** is the right tool for today.
+
+- Tenor: overnight.
+- Rate: cash rate target plus 25 bp, so 4.60%.
+- Collateral: AGS, semis and eligible private securities, at the RBA's published haircuts.
+
+\smallskip
+
+The weekly OMO at plus 10 bp is cheaper but runs only once a week. Set against a fire sale of the mortgage book, 25 bp over target is cheap. If eligible collateral runs out, the next step is the RBA's *Exceptional Liquidity Assistance*, which is why APRA now requires ADIs to be ready to request it.
+
+\medskip
+
+**(b) Collateral still available.** Start from what is left after Monday, when A\$3bn of Level 1 was already pledged.
+
+| Collateral | Available | Haircut | Cash raised |
+|:---|---:|---:|---:|
+| AGS | A\$5.0bn | 0% | A\$5.00bn |
+| Covered bonds | A\$2.0bn | $\approx$ 7% | A\$1.86bn |
+| Unpledged RMBS | A\$1.4bn | $\approx$ 20% | A\$1.12bn |
+| Total | | | $\approx$ A\$8bn |
+
+That is all the capacity left before touching mortgages. Against this week's A\$7bn of outflows (A\$3bn of deposits plus A\$4bn of notes), it leaves almost nothing.
+
+\medskip
+
+**(c) APRA's statement.**
+
+What helps:
+
+- a clear statement that Acacia is solvent and meets regulatory minima;
+- reminding depositors that eligible deposits are already protected by the FCS;
+- coordinating with the RBA on liquidity support.
+
+\smallskip
+
+What hurts: anything ambiguous, or naming solvency concerns without a backstop announced in the same breath. Markets read silence as confirmation of trouble.
+
+\medskip
+
+**(d) Next to sell.** The mortgage book, the only sizeable asset left. As the lecture's liquidity table showed, there is no ready market for a mortgage, so any sale is slow and at a steep discount. This is the *fire sale* you spent the rest of the year trying to avoid.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 3: Wednesday (the turn)
+
+::: {.callout-warning title="2:00 PM Wednesday"}
+The Treasurer and APRA issue a **joint statement**: Acacia is solvent, eligible deposits up to A\$250,000 per account holder are protected by the Financial Claims Scheme, and the RBA will provide the liquidity Acacia needs.
+
+Within an hour, outflows **stop**. Some deposits even begin to return.
+:::
+
+**(a)** Deposits are repaid **first come, first served**: a bank that runs out of cash pays the depositors at the front of the queue and not those at the back. Using that fact, explain in one sentence why the announcement stops the run.
+
+**(b)** Write the **two-sentence headline** Acacia's CEO should issue at 4 PM. Be specific about what you do and do not say.
+
+CEO statement (draft here):
+
+\vspace{4em}
+
+**(c)** Looking back from a calm Thursday morning: what could the treasurer have done **last quarter** to make this week easier? List three concrete actions.
+
+1. _______________________________
+2. _______________________________
+3. _______________________________
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 3"}
+**(a) Why the announcement stops the run.** Under first come, first served, running only makes sense if being late could cost you your money. The announcement removes that risk twice over:
+
+- the FCS guarantee covers balances up to A\$250,000;
+- the RBA's promise of liquidity means the bank will not run out of cash, which protects depositors above the cap too.
+
+\smallskip
+
+With no private incentive to withdraw, the queue dissolves. Note that the FCS already applied on Monday; what changed is that depositors now *believe* it.
+
+\medskip
+
+**(b) The CEO statement.**
+
+Good ingredients:
+
+1. Acknowledge the rumour without repeating it.
+2. Confirm the bank meets all regulatory liquidity and capital minima.
+3. Point to the FCS and the RBA's support.
+4. Thank customers and direct them to a help line.
+
+\smallskip
+
+Bad ingredients: detailed denials, attacking the journalist, naming counterparties.
+
+*Example:* "Acacia Bank is well-capitalised, meets all APRA prudential requirements, and has full access to the RBA's standing liquidity facilities. As the Treasurer and APRA confirmed today, eligible deposits are protected up to A\$250,000 per account holder, and we are here to serve our customers."
+
+\medskip
+
+**(c) Last-quarter actions.** Any three of:
+
+1. Pre-position more unencumbered HQLA: a larger buffer of AGS not pledged in private repos.
+2. Term out wholesale funding: replace short-term notes with longer-dated covered bonds and term notes.
+3. Diversify the deposit base by industry and geography, and stress-test the share of deposits above the FCS cap.
+4. Have a playbook for social-media-driven runs: pre-drafted statements and open lines to APRA and the RBA.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part D: The big question
+
+::: {.callout-note title="Wrap-up: discuss together for the last 10 minutes"}
+SVB saw US\$42 billion of deposits withdrawn **in a single day** in March 2023, about a quarter of its deposit base, as concern spread on social media among a concentrated group of uninsured depositors.
+
+The Basel LCR's run-off factors were calibrated on deposit behaviour in the 2008 crisis. It assumes **30 days** of stress.
+
+**Should the 30-day window be shortened, or the run-off factors raised, in the age of viral runs?** What would your bank lose if regulators forced you to hold materially more HQLA against social-media risk? Who would *gain* from that change?
+:::
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points"}
+There is no single right answer. Good answers weigh both sides and take a position.
+
+\medskip
+
+**The case for tightening.** A 30-day stress with modest retail run-off rates cannot describe a bank that loses a quarter of its deposits in a day. Deposits that are uninsured, concentrated in one industry, or reachable through an app behave nothing like the stable retail deposits the ratio assumed.
+
+\medskip
+
+**The case against a blunt change.** No affordable buffer survives a 25% daily outflow, so simply demanding more HQLA mostly adds cost. Two more targeted tools:
+
+- **Raise run-off rates for the risky deposits only:** uninsured, concentrated or digitally sourced. Banks funded by sticky insured retail deposits are then barely affected.
+- **Make central bank borrowing fast.** A run is survivable if the bank can pledge collateral to the RBA the same day. This is the point of APRA's 2025 requirement that ADIs be ready to request Exceptional Liquidity Assistance.
+
+\medskip
+
+**What your bank loses.** Liquid assets earn less than loans, about 2% a year in the lecture example. For Acacia, holding an extra A\$5bn of HQLA would cost roughly A\$100m a year, around 2.5 percentage points of return on its A\$4bn of equity. That comes out of shareholders' returns, or out of borrowers through higher loan rates and less lending.
+
+\medskip
+
+**Who gains.**
+
+- *Depositors and taxpayers*, through fewer bank failures and FCS payouts.
+- *Banks funded by sticky insured retail deposits*, relative to rivals relying on concentrated or uninsured funding, since the rule costs them far less.
+:::
+:::
