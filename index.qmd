@@ -50,6 +50,7 @@ Some of his open-source works include, for example,
 
 ## News
 
+- 2026-09-14: My paper [The 52-Week High Liquidity Mirage: How Behavioral Convergence Impairs Price Discovery](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3925756) with Joshua Della Vedova, Andrew Grant, Joakim Westerholm and Barbara Bliss has been accepted for publication at the ***Journal of Banking & Finance***.
 - 2026-05-13: My appointment as a **Visiting Fellow in the School of Finance at the University of Sydney** has been extended until the end of 2028.
 - 2026-04-09: My paper [Debt Contracting Relevance of Earnings Downside Risk](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5784962), with Steve Lim and Vassil Mihov has been accepted for presentation at the American Accounting Association Global Connect (formerly Annual Meeting) 2026.
 - 2026-01-22: My paper [Real Estate Collateral, Lender Screening, and M&A Performance](https://doi.org/10.1016/j.jcorpfin.2026.102962) with with Thanh Son Luong and Buhui Qiu has been accepted for publication at the ***Journal of Corporate Finance***.
@@ -70,6 +71,35 @@ Some of his open-source works include, for example,
 - 2023-08-16: My paper ["Borrower Technology Similarity and Bank Loan Contracting"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4579677) with Yunying Huang, Steven Ongena and Eliza Wu has been selected as a **semifinalist for the Best Paper Awards of FMA Annual Meeting 2023**. Winners TBA.
 - 2023-07-27: I will join Macquarie University as a Lecturer in Finance. Contract signed. Starting January 2024.
 - 2023-06-27: I presented my paper ["Lone (Loan) Wolf Pack Risk"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4331418) at the **WFA 2023** at San Francisco.
+
+```{=html}
+<script>
+// Fold the news list to the latest items; without JavaScript everything stays visible.
+document.addEventListener("DOMContentLoaded", () => {
+  const SHOW = 10;
+  const list = document.querySelector("#news > ul");
+  if (!list) return;
+  const extra = [...list.children].slice(SHOW);
+  if (!extra.length) return;
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "btn btn-outline-primary btn-sm";
+  const setFolded = (folded) => {
+    extra.forEach((li) => (li.hidden = folded));
+    btn.textContent = folded ? `Show all (${list.children.length})` : "Show fewer";
+    btn.setAttribute("aria-expanded", String(!folded));
+  };
+  btn.addEventListener("click", () => {
+    const fold = !extra[0].hidden;
+    setFolded(fold);
+    if (fold) btn.scrollIntoView({ block: "nearest" });
+  });
+  list.after(btn);
+  setFolded(true);
+});
+</script>
+```
 
 ## MRes/PhD students
 
