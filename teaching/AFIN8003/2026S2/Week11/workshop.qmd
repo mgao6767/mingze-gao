@@ -1,0 +1,479 @@
+---
+title: "AFIN8003 - Workshop 11"
+subtitle: "Banking and Financial Intermediation"
+author: "Dr. Mingze Gao and Dr. Lyungmae Choi"
+institute: "Department of Applied Finance"
+date: 2026-10-29
+draft: false
+categories:
+    - AFIN8003
+    - 2026S2
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    toc: false
+    number-sections: true
+    colorlinks: true
+    geometry:
+      - top=25mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    fig-pos: "H"
+    fig-width: 1
+    fig-cap-location: "bottom"
+    output-file: "Workshop11.pdf"
+# Custom fields
+pdf-name: "Workshop11.pdf"
+include-answers: false
+---
+
+::: {.callout-important title="Workshop 11: Loan sales and securitisation"}
+This week a bank's loans leave its balance sheet. **Loan sales** hand a loan to a buyer; **securitisation** turns loans into securities. Today you use both, and compare them with a covered bond.
+
+Plan for the hour:
+
+1. Part A, Concept check ($\approx$ 10 min). Eight MCQs. Self-mark.
+2. Part B, Short answers ($\approx$ 10 min). Two discussion questions.
+3. Part C, Clearing the books, worked through ($\approx$ 30 min). Three rounds, Monday to Wednesday. *This is the bulk of the workshop.*
+4. Part D, The big question ($\approx$ 10 min). Open discussion.
+
+Bring a pen. Mark up the handout.
+:::
+
+\vspace{0.5em}
+
+# Part A: Concept check
+
+## MCQ
+
+1. The **originate-to-distribute** model involves:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] making loans and holding them until maturity
+   - [ ] making loans, selling or securitising them, and using the proceeds to make new loans
+   - [ ] making loans and keeping them on the balance sheet as collateral
+   - [ ] buying loans from other banks and holding them until maturity
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] making loans and holding them until maturity
+   - [x] making loans, selling or securitising them, and using the proceeds to make new loans
+   - [ ] making loans and keeping them on the balance sheet as collateral
+   - [ ] buying loans from other banks and holding them until maturity
+
+   *Why:* the bank earns fees upfront instead of interest over the loan's life. Once the loan is gone, the incentive to screen the borrower weakens, one of the causes of the 2008 crisis.
+   :::
+
+2. In a loan sale **without recourse**, the selling FI:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] must buy the loan back if it defaults
+   - [ ] has no explicit liability if the loan defaults
+   - [ ] shares any default losses equally with the buyer
+   - [ ] keeps the loan on its balance sheet
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] must buy the loan back if it defaults
+   - [x] has no explicit liability if the loan defaults
+   - [ ] shares any default losses equally with the buyer
+   - [ ] keeps the loan on its balance sheet
+
+   *Why:* the buyer takes the loan and its credit risk. With recourse, the buyer can put the loan back to the seller, so the risk has not really left. Most loans are sold without recourse.
+   :::
+
+3. A leveraged loan trading at a bid price of **85 cents** per \$1 of par is:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] nondistressed
+   - [ ] distressed
+   - [ ] investment grade
+   - [ ] a traditional short-term loan
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] nondistressed
+   - [x] distressed
+   - [ ] investment grade
+   - [ ] a traditional short-term loan
+
+   *Why:* a leveraged loan is distressed if its bid price is below 90 cents per \$1 of par, or the borrower is in default.
+   :::
+
+4. In a loan **participation**, the buyer:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] holds a direct claim on the borrower
+   - [ ] gains full control over the loan's terms
+   - [ ] is exposed to both the borrower and the selling FI
+   - [ ] replaces the seller in the original credit agreement
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] holds a direct claim on the borrower
+   - [ ] gains full control over the loan's terms
+   - [x] is exposed to both the borrower and the selling FI
+   - [ ] replaces the seller in the original credit agreement
+
+   *Why:* the buyer is not a party to the credit agreement, which stays between the borrower and the seller. That is the double risk exposure. In an assignment, all rights transfer and the buyer has a direct claim.
+   :::
+
+5. Which of the following is **not** a reason FIs sell loans?
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] to earn fee income
+   - [ ] to reduce capital costs
+   - [ ] to improve liquidity
+   - [ ] to raise the deposit insurance cover on their deposits
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] to earn fee income
+   - [ ] to reduce capital costs
+   - [ ] to improve liquidity
+   - [x] to raise the deposit insurance cover on their deposits
+
+   *Why:* the lecture's reasons are reserve requirements (historically), fee income, capital costs and liquidity. Selling a loan does nothing to deposit insurance.
+   :::
+
+6. The key difference between an **SPV** and an **SIV** is that:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] only an SIV is off the originating bank's balance sheet
+   - [ ] an SPV ceases to exist when its loans mature, while an SIV continues and funds its loans with short-term debt
+   - [ ] an SPV takes deposits and an SIV does not
+   - [ ] an SIV is protected by deposit insurance
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] only an SIV is off the originating bank's balance sheet
+   - [x] an SPV ceases to exist when its loans mature, while an SIV continues and funds its loans with short-term debt
+   - [ ] an SPV takes deposits and an SIV does not
+   - [ ] an SIV is protected by deposit insurance
+
+   *Why:* an SIV acts like a bank without deposits, deposit insurance or a lender of last resort. That short-term funding is what exposed SIVs to runs in 2007.
+   :::
+
+7. In a sequential-pay **CMO**, prepayments in the early years go to:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] all classes in proportion to their size
+   - [ ] Class A, until it is fully repaid
+   - [ ] Class C first, as the longest class
+   - [ ] the originating bank
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] all classes in proportion to their size
+   - [x] Class A, until it is fully repaid
+   - [ ] Class C first, as the longest class
+   - [ ] the originating bank
+
+   *Why:* every class receives its coupon, but all principal, scheduled and prepaid, goes to Class A until it is repaid, then to Class B, then to Class C.
+   :::
+
+8. **Mortgage-backed bonds (MBBs)** and covered bonds differ from pass-throughs because they:
+
+   ::: {.content-hidden when-meta="include-answers"}
+   - [ ] give investors a fractional ownership share in the mortgage pool
+   - [ ] pass mortgage payments straight through to investors
+   - [ ] stay on the issuer's balance sheet, with the mortgages serving as collateral
+   - [ ] need no excess collateral
+   :::
+   ::: {.content-hidden unless-meta="include-answers"}
+   - [ ] give investors a fractional ownership share in the mortgage pool
+   - [ ] pass mortgage payments straight through to investors
+   - [x] stay on the issuer's balance sheet, with the mortgages serving as collateral
+   - [ ] need no excess collateral
+
+   *Why:* there is no direct link between the mortgage cash flows and the bond payments. The bond is the issuer's obligation, backed by pledged mortgages worth more than the bonds.
+   :::
+
+\vspace{0.5em}
+
+# Part B: Short answer questions
+
+## Q1: SIVs and SPVs in 2007
+
+In 2007 many SIVs collapsed, and Citigroup had to bring roughly US\$58 billion of SIV assets back onto its balance sheet. Securitisations done through SPVs did not face runs in the same way. Explain the difference.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+**SPV.** The SPV buys the pool of loans and sells securities backed by it to investors. The loans' cash flows pay the investors, and the SPV ceases to exist when the loans mature. It has no short-term debt to roll over, so there is nothing for investors to run from.
+
+\medskip
+
+**SIV.** The SIV keeps the loans and funds them with short-term commercial paper, like a bank without deposits. It must roll that debt over again and again, with no deposit insurance and no lender of last resort. In summer 2007, investors lost confidence in subprime-backed assets and refused to roll. The SIVs could not sell long-term assets fast enough to repay: a bank run without deposits.
+
+\medskip
+
+**The lesson.** Sponsors such as Citigroup brought SIV assets back onto their own balance sheets, so the risk came back to the banks.
+:::
+:::
+
+## Q2: Moving risk is not removing it
+
+Loan sales and securitisation move credit risk off a bank's balance sheet. Use two examples from the lecture to show that the risk does not disappear.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Example answer"}
+Any two of the following.
+
+\medskip
+
+**2008.** Subprime mortgages were originated, securitised and sold, yet much of the risk came back to banks through tranches they kept and vehicles they sponsored, such as Citigroup's SIVs.
+
+\medskip
+
+**Shadow banks.** @irani_rise_2021 find that banks short of capital retain less of their riskier loans, and nonbanks step in. The risk moves to less regulated lenders.
+
+\medskip
+
+**Buying back the AAA tranche.** A bank can sell a leveraged loan into a CLO and buy back the AAA tranche. It keeps the safest slice of the same credit risk, at a lower capital cost.
+
+\medskip
+
+**Participations and recourse.** A participation buyer is still exposed to the selling FI. A loan sold with recourse can come back to the seller.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part C: Clearing the books, worked through
+
+::: {.callout-important title="The scenario"}
+You work in the credit portfolio team at **Acacia Bank**, a mid-sized Australian ADI. Acacia's loan book has grown faster than planned. The Board wants to raise cash and free up capital without losing customers.
+
+You have three tools from the lecture: sell loans, securitise mortgages, and issue covered bonds. Work through the rounds in order.
+:::
+
+::: {.callout-note title="Reference: facts from the lecture"}
+You are not expected to recall these. Use them.
+
+- A leveraged loan is *distressed* if its bid price is below 90 cents per \$1 of par, or the borrower is in default.
+- *Without recourse*, the buyer bears the default risk. *With recourse*, the buyer can put the loan back to the seller.
+- In a *participation*, the buyer is not a party to the credit agreement, has only partial control over its terms, and is exposed to both the borrower and the seller. In an *assignment*, all rights transfer and the buyer has a direct claim on the borrower.
+- A 1% share of a *pass-through* receives 1% of the pool's interest and principal, including prepayments.
+- In a sequential-pay *CMO*, every class receives its coupon, but all principal goes to Class A until it is repaid, then to Class B, then to Class C.
+- A *covered bond* stays on the issuer's balance sheet, backed by pledged mortgages worth more than the bonds.
+:::
+
+\vspace{0.5em}
+
+## Round 1: Monday (the downgraded loans)
+
+::: {.callout-warning title="9:30 AM Monday"}
+Acacia holds **A\$500m** of leveraged loans that were recently downgraded. They now trade at around 80 cents per \$1 of par.
+
+Two bids arrive:
+
+- a **vulture fund** offers 78 cents per \$1 of par, without recourse;
+- a **regional bank** offers 84 cents per \$1 of par, but only with recourse.
+:::
+
+**(a)** Are these loans distressed or nondistressed?
+
+**(b)** How much cash does each bid raise?
+
+Vulture fund $=$ **____________** (A\$m) \quad Regional bank $=$ **____________** (A\$m)
+
+**(c)** Which bid actually moves the credit risk off Acacia's books? What does the extra cash from the other bid cost Acacia?
+
+**(d)** The vulture fund insists on an **assignment**. A junior banker suggests offering a **participation** instead. Give two reasons the fund prefers an assignment.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 1"}
+**(a) Distressed.** A bid price of about 80 cents is below the 90-cent threshold.
+
+\medskip
+
+**(b) Cash raised.**
+
+- Vulture fund: $500 \times 0.78 = $ **A\$390m**.
+- Regional bank: $500 \times 0.84 = $ **A\$420m**.
+
+\medskip
+
+**(c) Risk transfer.** Only the vulture fund's bid moves the risk. With recourse, the regional bank can put loans back to Acacia if they sour, so the default risk stays with Acacia. The extra A\$30m is paid for with that hidden liability: if the loans that come back cost more than A\$30m, the higher bid is the worse deal. Since the Board wants the risk gone, the vulture fund's bid fits the goal.
+
+\medskip
+
+**(d) Assignment over participation.**
+
+1. A participation leaves the fund outside the credit agreement, with only partial control over changes to the loan's terms. For distressed loans, those terms are likely to change, so the fund wants a direct say.
+2. A participation adds a second exposure, to Acacia itself. If Acacia failed, the fund would have to show the participation was a true sale. An assignment gives it a direct claim on the borrower.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 2: Tuesday (securitising the mortgages)
+
+::: {.callout-warning title="10:00 AM Tuesday"}
+Acacia pools **A\$1,000m** of prime residential mortgages and sells them to a special-purpose vehicle (SPV), which issues securities backed by the pool to investors.
+:::
+
+**(a)** Give two reasons Acacia uses an SPV, rather than a structured investment vehicle (SIV).
+
+**(b)** First, suppose the SPV issues **pass-through** securities. In year 1 the pool pays A\$50m of interest, A\$20m of scheduled principal, and A\$30m of prepayments. An investor holds **2%** of the pool. How much does the investor receive?
+
+Interest $=$ **____________** \quad Principal $=$ **____________** \quad Total $=$ **____________** (A\$m)
+
+**(c)** Now suppose the SPV issues a **CMO** instead, with three classes: Class A A\$400m, Class B A\$350m, Class C A\$250m. Rates fall in year 2 and prepayments surge. Fill in each class's balance at the end of each year.
+
+| End of | Principal paid out (A\$m) | Class A | Class B | Class C |
+|:---|---:|---:|---:|---:|
+| Start | | 400 | 350 | 250 |
+| Year 1 | 150 | | | |
+| Year 2 | 200 | | | |
+| Year 3 | 250 | | | |
+
+*Hint: principal goes to Class A until it is repaid, then to Class B.*
+
+**(d)** Which class would a bank prefer to buy, and which suits a life insurance company? Explain.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 2"}
+**(a) SPV, not SIV.**
+
+1. The SPV is bankruptcy remote: if Acacia failed, the mortgages would not be part of its bankruptcy estate, and investors would keep getting paid.
+2. The SPV sells the securities and ceases to exist when the mortgages mature. It has no short-term debt to roll over, so it faces no run risk. An SIV funds itself with commercial paper and can suffer a run, as in 2007.
+
+\medskip
+
+**(b) Pass-through.**
+
+- Interest: $50 \times 2\% = $ **A\$1.0m**.
+- Principal: $(20 + 30) \times 2\% = $ **A\$1.0m**, of which A\$0.6m is prepayment.
+- Total: **A\$2.0m**.
+
+\smallskip
+
+The A\$0.6m of prepaid principal is the prepayment risk: it arrives early, and if rates have fallen, the investor must reinvest it at lower yields.
+
+\medskip
+
+**(c) CMO balances.**
+
+| End of | Principal paid out (A\$m) | Class A | Class B | Class C |
+|:---|---:|---:|---:|---:|
+| Start | | 400 | 350 | 250 |
+| Year 1 | 150 | 250 | 350 | 250 |
+| Year 2 | 200 | 50 | 350 | 250 |
+| Year 3 | 250 | 0 | 150 | 250 |
+
+\smallskip
+
+In year 3, the first A\$50m retires Class A and the remaining A\$200m goes to Class B. After three years and a surge in prepayments, Class C has not received a dollar of principal: Class A absorbed the prepayments first.
+
+\medskip
+
+**(d) Matching the classes to investors.**
+
+- A bank prefers **Class A**: shortest expected life, which suits its short-term deposit funding.
+- A life insurance company prefers **Class C**: longest expected life and the most prepayment protection, which matches its long-term liabilities.
+- Class B sits in between and suits pension funds and life insurers seeking medium-term assets.
+:::
+:::
+
+\vspace{0.5em}
+
+## Round 3: Wednesday (a covered bond instead)
+
+::: {.callout-warning title="11:00 AM Wednesday"}
+A colleague asks: why not keep the mortgages and issue a covered bond instead? Consider a simplified part of Acacia's balance sheet:
+
+\small
+
+| Assets (A\$m) | | Liabilities (A\$m) | |
+|:---|---:|:---|---:|
+| Long-term mortgages | 50 | Insured deposits (cost 2.0%) | 25 |
+| | | Uninsured deposits (cost 4.5%) | 25 |
+| Total | 50 | Total | 50 |
+
+\normalsize
+
+Acacia issues an **A\$25m covered bond** backed by **A\$30m of pledged mortgages**. Thanks to the excess collateral, the bond yields only **3.0%**. Acacia uses the proceeds to repay the uninsured deposits.
+:::
+
+**(a)** What is Acacia's annual funding cost saving?
+
+Saving $=$ **____________** (A\$ per year)
+
+**(b)** Redraw the balance sheet after the issue.
+
+**(c)** The insured deposits are now backed by how much in *unpledged* mortgages? If Acacia failed, who would bear the shortfall? How does Australia's 8% cap on covered bonds help?
+
+**(d)** Compare Round 2 with Round 3. Give one advantage and one drawback of the covered bond for Acacia.
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points for Round 3"}
+**(a) Funding cost saving.**
+
+- Before: uninsured deposits cost $25 \times 4.5\% = $ A\$1.125m a year.
+- After: the covered bond costs $25 \times 3.0\% = $ A\$0.75m a year.
+- Saving: **A\$375,000 a year**.
+
+\medskip
+
+**(b) Balance sheet after the issue.**
+
+| Assets (A\$m) | | Liabilities (A\$m) | |
+|:---|---:|:---|---:|
+| Pledged mortgages (collateral) | 30 | Covered bond | 25 |
+| Other mortgages | 20 | Insured deposits | 25 |
+| Total | 50 | Total | 50 |
+
+\medskip
+
+**(c) Who bears the shortfall.** The A\$25m of insured deposits is now backed by only **A\$20m** of unpledged mortgages. If Acacia failed, covered bond holders would take the A\$30m of pledged mortgages first, and the deposit insurer would cover the A\$5m shortfall to insured depositors. Part of Acacia's A\$375,000 saving is paid for by the deposit insurer, and ultimately taxpayers.
+
+\smallskip
+
+The 8% cap limits how much of a bank's assets can be pledged to covered bond holders, which limits how large this problem can get.
+
+\medskip
+
+**(d) Round 2 versus Round 3.**
+
+- *Advantage:* cheap funding. The excess collateral earns the bond a high credit rating, potentially higher than Acacia's own.
+- *Drawback:* the mortgages stay on Acacia's balance sheet, so the bond frees up no capital, and the excess collateral ties up even more mortgages. The Round 2 securitisation removes the mortgages from the balance sheet entirely.
+:::
+:::
+
+\vspace{0.5em}
+
+# Part D: The big question
+
+::: {.callout-note title="Wrap-up: discuss together for the last 10 minutes"}
+The U.S. CLO market now exceeds US\$1 trillion outstanding, comparable in scale to the 2007 subprime mortgage market. Roughly 90% of leveraged loans are covenant-lite, and CLOs buy 60–70% of new leveraged loan issuance.
+
+Yet when COVID-19 hit in 2020, CLOs came through far better than feared, partly because the Fed's emergency facilities supported credit broadly.
+
+**Are CLOs the new subprime?** What would you tell Acacia's Board before it sells more leveraged loans into CLOs?
+:::
+
+::: {.content-hidden unless-meta="include-answers"}
+::: {.callout-tip title="Discussion points"}
+There is no single right answer. Good answers weigh both sides and take a position.
+
+\medskip
+
+**The case for "yes".**
+
+- The scale is similar to subprime in 2007.
+- Protections on the loans have weakened: most are now covenant-lite.
+- Banks arrange the loans and sell them on, the same originate-to-distribute incentive that weakened screening before 2008.
+
+\medskip
+
+**The case for "no".**
+
+- The borrowers are companies, not households.
+- The CLO structure gives investors better protections than subprime securities did.
+- CLOs came through the 2020 shock far better than feared.
+
+\medskip
+
+**The caveat.** CLOs survived 2020 with help from the Fed, so their resilience is untested without a rescue. And the risk has not left the system: it has moved to nonbanks, where regulators see less of it.
+
+\medskip
+
+**For Acacia's Board.** Selling leveraged loans into CLOs moves the risk off Acacia's books, but Acacia still faces it indirectly: through any CLO tranches it buys back, and through the borrowers and markets it depends on in the next downturn.
+:::
+:::
