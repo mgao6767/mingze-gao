@@ -101,9 +101,9 @@ div.csl-indent {
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-dark-d68aeba3a79b5d13331dcac62a63c5fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-e059821d6effba5895112697234fbda0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-c0e61ca7aba3d6b5d433ae4f86a6d281.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-e2e495b8a4962ecc4e082f3e186ba006.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-c0e61ca7aba3d6b5d433ae4f86a6d281.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -263,7 +263,7 @@ window.Quarto = {
   <ul>
   <li><a href="#credit-risk-modelling-in-practice" id="toc-credit-risk-modelling-in-practice" class="nav-link active" data-scroll-target="#credit-risk-modelling-in-practice">Credit Risk Modelling in Practice</a>
   <ul class="collapse">
-  <li><a href="#from-one-loan-to-a-portfolio-to-capital" id="toc-from-one-loan-to-a-portfolio-to-capital" class="nav-link" data-scroll-target="#from-one-loan-to-a-portfolio-to-capital">From one loan, to a portfolio, to capital</a></li>
+  <li><a href="#why-this-workshop-exists" id="toc-why-this-workshop-exists" class="nav-link" data-scroll-target="#why-this-workshop-exists">Why this workshop exists</a></li>
   <li><a href="#roadmap-8-widgets-9-parts" id="toc-roadmap-8-widgets-9-parts" class="nav-link" data-scroll-target="#roadmap-8-widgets-9-parts">Roadmap: 8 widgets, 9 parts</a></li>
   <li><a href="#credit-risk-dominates-the-capital-stack" id="toc-credit-risk-dominates-the-capital-stack" class="nav-link" data-scroll-target="#credit-risk-dominates-the-capital-stack">Credit risk dominates the capital stack</a></li>
   <li><a href="#overview-of-the-irb-approach" id="toc-overview-of-the-irb-approach" class="nav-link" data-scroll-target="#overview-of-the-irb-approach">Overview of the IRB Approach</a></li>
@@ -381,8 +381,8 @@ window.Quarto = {
 
 <section id="credit-risk-modelling-in-practice" class="level1 page-columns page-full">
 <h1>Credit Risk Modelling in Practice</h1>
-<section id="from-one-loan-to-a-portfolio-to-capital" class="level2">
-<h2 class="anchored" data-anchor-id="from-one-loan-to-a-portfolio-to-capital">From one loan, to a portfolio, to capital</h2>
+<section id="why-this-workshop-exists" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-workshop-exists">Why this workshop exists</h2>
 <ul>
 <li><strong>Week 6</strong> measured credit risk on an <em>individual</em> loan.</li>
 <li><strong>Week 7 lecture</strong> covered the <em>portfolio</em> view (concentration, migration, CDS).</li>
@@ -1202,7 +1202,7 @@ RWA = K \times 12.5 \times EAD
 <ul>
 <li><strong>Input:</strong> borrower-level features (leverage, profitability, size, governance, …).</li>
 <li><strong>Output:</strong> a probability of default over a one-year horizon.</li>
-<li><strong>The stake:</strong> without a scoring model, a bank has no principled way to separate a BBB borrower from a CCC borrower, and no defensible PD for capital.</li>
+<li><strong>Why it matters:</strong> without a scoring model, a bank has no principled way to separate a BBB borrower from a CCC borrower, and no defensible PD for capital.</li>
 </ul>
 <p>The next few slides walk the standard build pipeline: sample, screen, estimate, calibrate, validate.</p>
 </section>
@@ -2565,13 +2565,13 @@ Figure&nbsp;1: ROC curve on held-out test data
 </section>
 <section id="widget-4-roc-threshold-slider" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="widget-4-roc-threshold-slider">Widget 4: ROC threshold slider</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="AUC ranks; a threshold decides">
+<div class="callout callout-style-simple callout-note callout-titled" title="Why this matters">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>AUC ranks; a threshold decides
+<span class="screen-reader-only">Note</span>Why this matters
 </div>
 </div>
 <div class="callout-body-container callout-body">
